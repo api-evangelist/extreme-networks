@@ -1,0 +1,263 @@
+aid: extreme-networks
+name: Extreme Networks
+description: >-
+  Extreme Networks (NASDAQ: EXTR) is a Morrisville, North Carolina–headquartered
+  enterprise networking company that provides cloud-managed wired switching,
+  Wi-Fi 6E/Wi-Fi 7 wireless access, SD-WAN, and integrated network security
+  for education, healthcare, government, retail, manufacturing, and large
+  venues. Its flagship platform is Extreme Platform ONE, an AI-driven
+  networking platform that unifies wired, wireless, and security operations,
+  built on top of ExtremeCloud IQ — the company's multi-tenant, cloud-managed
+  network management system. ExtremeCloud IQ exposes a comprehensive
+  OpenAPI 3.0 REST API at api.extremecloudiq.com covering authentication,
+  device lifecycle, network policy, client and application analytics, alerts,
+  dashboards, SD-WAN, Copilot connectivity experience, packet captures, and
+  hierarchical multi-organization management, with official SDKs in Python,
+  Java, Go, JavaScript, and C#. Extreme also publishes Ansible collections for
+  EXOS, VOSS, SLXOS, NOS, and Fabric Engine for declarative on-box switch
+  configuration, a public Postman collection of 400+ requests, and a portfolio
+  of on-prem REST gateways for ExtremeCloud IQ Controller (campus wireless
+  controller) and Application Manager.
+type: Index
+position: Provider
+access: 3rd-Party
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+tags:
+  - Networking
+  - Wireless
+  - Wired
+  - Switching
+  - Wi-Fi
+  - Wi-Fi 7
+  - Cloud Management
+  - SD-WAN
+  - Network Security
+  - Network Management
+  - AI Networking
+  - Enterprise
+url: https://raw.githubusercontent.com/api-evangelist/extreme-networks/refs/heads/main/apis.yml
+created: '2026-05-25'
+modified: '2026-05-25'
+specificationVersion: '0.20'
+apis:
+  - aid: extreme-networks:extremecloud-iq-api
+    name: ExtremeCloud IQ API
+    description: >-
+      The ExtremeCloud IQ REST API enables customers and partners to manage,
+      monitor, and provision any ExtremeCloud IQ environment. It is an
+      OpenAPI 3.0 surface with 460+ operations covering authentication and API
+      tokens, accounts and users, hierarchical organizations (HIQ), locations
+      and floor plans, devices across Cloud Engine / IQ Engine / WiNG / VOSS /
+      EXOS, network policy for wired and wireless, network scorecards, clients,
+      application metrics, alerts, logs, notifications, deployment and
+      configuration management, Copilot anomalies and connectivity experience,
+      packet captures, ExtremeLocation, SD-WAN, AFC, Universal Compute Platform,
+      and dashboards. Hosted at https://api.extremecloudiq.com and licensed
+      under Apache 2.0.
+    humanURL: https://developer.extremecloudiq.com/
+    baseURL: https://api.extremecloudiq.com
+    tags:
+      - Networking
+      - Cloud Management
+      - Wireless
+      - Wired
+      - SD-WAN
+      - Device Management
+      - Network Policy
+    properties:
+      - type: Documentation
+        url: https://developer.extremecloudiq.com/documentation/
+      - type: APIReference
+        url: https://extremecloudiq.com/api-docs/api-reference.html
+      - type: OpenAPI
+        url: openapi/extremecloud-iq-openapi.yml
+      - type: SourceOpenAPI
+        url: https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI-Specification/blob/main/xcloudiq-openapi.yaml
+      - type: SwaggerUI
+        url: https://api.extremecloudiq.com/swagger-ui/index.html
+      - type: SDK
+        url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Python
+      - type: SDK
+        url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Java
+      - type: SDK
+        url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Go
+      - type: SDK
+        url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Javascript
+      - type: SDK
+        url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-CSharp
+      - type: PostmanCollection
+        url: https://github.com/extremenetworks/ExtremeCloudIQ-APIs
+      - type: SignUp
+        url: https://www.extremenetworks.com/cloud-networking/
+      - type: TermsOfService
+        url: https://www.extremenetworks.com/company/legal/terms-of-use/
+
+  - aid: extreme-networks:extremecloud-iq-controller-rest-api
+    name: ExtremeCloud IQ Controller REST API Gateway
+    description: >-
+      On-premises REST API gateway exposed by the ExtremeCloud IQ Controller
+      (the wired and wireless campus controller). Provides programmatic access
+      to controller configuration, sites, RF management, AP and switch
+      provisioning, RADIUS, NAC, and reporting on locally managed Extreme
+      infrastructure. Version 10.03.01 of the gateway is documented at
+      documentation.extremenetworks.com.
+    humanURL: https://documentation.extremenetworks.com/ExtremeCloud_IQ_Controller/v10.03.01/API/index_gateway_api.html
+    tags:
+      - Networking
+      - Wireless
+      - Controller
+      - On-Premises
+    properties:
+      - type: Documentation
+        url: https://documentation.extremenetworks.com/ExtremeCloud_IQ_Controller/v10.03.01/API/index_gateway_api.html
+
+  - aid: extreme-networks:extremecloud-iq-controller-application-manager-api
+    name: ExtremeCloud IQ Controller Application Manager API
+    description: >-
+      Application Manager REST API for the ExtremeCloud IQ Controller,
+      enabling visibility into Layer 7 application traffic, per-application
+      policy, and per-application reporting on locally managed Extreme
+      wireless and wired networks.
+    humanURL: https://documentation.extremenetworks.com/ExtremeCloud_IQ_Controller/v10.05.02/API/index_apps_manager.html
+    tags:
+      - Networking
+      - Application Visibility
+      - Policy
+      - On-Premises
+    properties:
+      - type: Documentation
+        url: https://documentation.extremenetworks.com/ExtremeCloud_IQ_Controller/v10.05.02/API/index_apps_manager.html
+
+  - aid: extreme-networks:ansible-extreme-exos
+    name: Ansible Network Collection for Extreme EXOS
+    description: >-
+      Ansible collection providing modules and roles to automate configuration
+      and operations of Extreme Networks EXOS switches (e.g. ExtremeSwitching
+      X-Series, Summit). Supports declarative network configuration, fact
+      gathering, and CLI/API access for EXOS-based devices.
+    humanURL: https://github.com/extremenetworks/ansible_collections.extreme.exos
+    tags:
+      - Networking
+      - Automation
+      - Ansible
+      - EXOS
+      - Switching
+    properties:
+      - type: Repository
+        url: https://github.com/extremenetworks/ansible_collections.extreme.exos
+
+  - aid: extreme-networks:ansible-extreme-voss
+    name: Ansible Network Collection for Extreme VOSS
+    description: >-
+      Ansible collection for Extreme Networks VOSS (VSP Operating System)
+      switches, including Fabric Engine devices. Provides modules for
+      declarative configuration of VOSS-based platforms.
+    humanURL: https://github.com/extremenetworks/ansible_collections.extreme.voss
+    tags:
+      - Networking
+      - Automation
+      - Ansible
+      - VOSS
+      - Switching
+    properties:
+      - type: Repository
+        url: https://github.com/extremenetworks/ansible_collections.extreme.voss
+
+  - aid: extreme-networks:ansible-extreme-slxos
+    name: Ansible Network Collection for Extreme SLX-OS
+    description: >-
+      Ansible collection for Extreme Networks SLX-OS data center switches.
+      Provides modules for declarative configuration and operational tasks on
+      SLX platforms.
+    humanURL: https://github.com/extremenetworks/ansible_collections.extreme.slxos
+    tags:
+      - Networking
+      - Automation
+      - Ansible
+      - SLX-OS
+      - Data Center
+    properties:
+      - type: Repository
+        url: https://github.com/extremenetworks/ansible_collections.extreme.slxos
+
+  - aid: extreme-networks:ansible-extreme-nos
+    name: Ansible Network Collection for Extreme NOS
+    description: >-
+      Ansible collection for Extreme Networks NOS (Network Operating System)
+      switches, supporting declarative configuration and automation workflows.
+    humanURL: https://github.com/extremenetworks/ansible_collections.extreme.nos
+    tags:
+      - Networking
+      - Automation
+      - Ansible
+      - NOS
+    properties:
+      - type: Repository
+        url: https://github.com/extremenetworks/ansible_collections.extreme.nos
+
+  - aid: extreme-networks:ansible-extreme-fabric-engine
+    name: Ansible Network Collection for Extreme Fabric Engine
+    description: >-
+      Ansible collection for Extreme Fabric Engine, used to automate Shortest
+      Path Bridging (SPB) fabric configuration across Extreme VSP and ERS
+      platforms.
+    humanURL: https://github.com/extremenetworks/ansible_collections.extreme.fe
+    tags:
+      - Networking
+      - Automation
+      - Ansible
+      - Fabric Engine
+      - SPB
+    properties:
+      - type: Repository
+        url: https://github.com/extremenetworks/ansible_collections.extreme.fe
+
+common:
+  - type: Website
+    url: https://www.extremenetworks.com/
+  - type: Platform
+    url: https://www.extremenetworks.com/platform-one
+  - type: CloudPlatform
+    url: https://www.extremecloudiq.com/
+  - type: Products
+    url: https://www.extremenetworks.com/products
+  - type: Solutions
+    url: https://www.extremenetworks.com/solutions
+  - type: DeveloperPortal
+    url: https://developer.extremecloudiq.com/
+  - type: APIReference
+    url: https://extremecloudiq.com/api-docs/api-reference.html
+  - type: GitHub
+    url: https://github.com/extremenetworks
+  - type: Documentation
+    url: https://documentation.extremenetworks.com/
+  - type: Support
+    url: https://www.extremenetworks.com/support
+  - type: Community
+    url: https://community.extremenetworks.com/
+  - type: Blog
+    url: https://www.extremenetworks.com/resources/blogs
+  - type: Newsroom
+    url: https://www.extremenetworks.com/company/newsroom
+  - type: Careers
+    url: https://www.extremenetworks.com/company/careers
+  - type: InvestorRelations
+    url: https://investor.extremenetworks.com/
+  - type: TermsOfService
+    url: https://www.extremenetworks.com/company/legal/terms-of-use/
+  - type: PrivacyPolicy
+    url: https://www.extremenetworks.com/company/legal/privacy/
+  - type: Trust
+    url: https://www.extremenetworks.com/company/trust/
+  - type: Status
+    url: https://status.extremecloudiq.com/
+  - type: Twitter
+    url: https://twitter.com/ExtremeNetworks
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/extreme-networks
+  - type: YouTube
+    url: https://www.youtube.com/user/ExtremeNetworks
+
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
