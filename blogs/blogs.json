@@ -10,9 +10,12 @@
     },
     {
       "source": "https://community.extremenetworks.com/",
-      "error": "HTTPError"
+      "feed_url": "https://community.extremenetworks.com/zxxfm75553/rss/Community?interaction.style=forum",
+      "title": "",
+      "saved": 3,
+      "method": "discovered"
     }
   ],
-  "post_count": 0,
-  "fetched": "2026-06-14T20:42:17Z"
+  "post_count": 3,
+  "fetched": "2026-06-27T12:03:07Z"
 }

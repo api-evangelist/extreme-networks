@@ -75,19 +75,19 @@ apis:
         url: https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI-Specification/blob/main/xcloudiq-openapi.yaml
       - type: SwaggerUI
         url: https://api.extremecloudiq.com/swagger-ui/index.html
-      - type: SDK
+      - type: SDKs
         url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Python
-      - type: SDK
+      - type: SDKs
         url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Java
-      - type: SDK
+      - type: SDKs
         url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Go
-      - type: SDK
+      - type: SDKs
         url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Javascript
-      - type: SDK
+      - type: SDKs
         url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-CSharp
       - type: PostmanCollection
         url: https://github.com/extremenetworks/ExtremeCloudIQ-APIs
-      - type: SignUp
+      - type: Signup
         url: https://www.extremenetworks.com/cloud-networking/
       - type: TermsOfService
         url: https://www.extremenetworks.com/company/legal/terms-of-use/
