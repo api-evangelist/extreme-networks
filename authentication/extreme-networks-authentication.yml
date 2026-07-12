@@ -1,0 +1,14 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/extremecloud-iq-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: BearerAuth
+  type: http
+  scheme: bearer
+  bearerFormat: JWT
+  description: JSON Web Token (JWT) based authentication
+  sources:
+  - openapi/extremecloud-iq-openapi.yml

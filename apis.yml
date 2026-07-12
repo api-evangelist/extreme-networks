@@ -213,6 +213,10 @@ apis:
         url: https://github.com/extremenetworks/ansible_collections.extreme.fe
 
 common:
+  - type: DomainSecurity
+    url: security/extreme-networks-domain-security.yml
+  - type: Authentication
+    url: authentication/extreme-networks-authentication.yml
   - type: Website
     url: https://www.extremenetworks.com/
   - type: Platform
