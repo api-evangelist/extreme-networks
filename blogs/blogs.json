@@ -9,13 +9,14 @@
       "method": "none"
     },
     {
+      "source": "https://community.extremenetworks.com/zxxfm75553/rss/Community?interaction.style=forum",
+      "error": "HTTPError"
+    },
+    {
       "source": "https://community.extremenetworks.com/",
-      "feed_url": "https://community.extremenetworks.com/zxxfm75553/rss/Community?interaction.style=forum",
-      "title": "",
-      "saved": 3,
-      "method": "discovered"
+      "error": "HTTPError"
     }
   ],
   "post_count": 3,
-  "fetched": "2026-06-27T12:03:07Z"
+  "fetched": "2026-07-11T11:50:51Z"
 }
