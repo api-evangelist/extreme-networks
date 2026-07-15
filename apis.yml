@@ -213,6 +213,8 @@ apis:
         url: https://github.com/extremenetworks/ansible_collections.extreme.fe
 
 common:
+  - type: AgenticAccess
+    url: agentic-access/extreme-networks-agentic-access.yml
   - type: DomainSecurity
     url: security/extreme-networks-domain-security.yml
   - type: Authentication
