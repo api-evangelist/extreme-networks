@@ -1,0 +1,413 @@
+openapi: 3.0.3
+info:
+  title: ExtremeCloud IQ Account Notification API
+  description: 'ExtremeCloud IQ™ API allows customers and partners to create solutions for the management, monitoring, and provisioning
+
+    of any ExtremeCloud IQ™ environment.
+
+
+    All related resources and documentation are available at [ExtremeCloud IQ Developer Portal](https://developer.extremecloudiq.com/).
+
+    Please check [Get Started and Tutorial](https://developer.extremecloudiq.com/documentation/) to understand how to use the APIs.
+
+
+    Get the [latest OpenAPI definition](https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI/blob/main/xcloudiq-openapi.yaml)
+
+    from [ExtremeCloud IQ OpenAPI GitHub repository](https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI).
+
+
+    Please have a valid [ExtremeCloud IQ](https://extremecloudiq.com/) account before getting started.
+
+    If you don''t have one, please [register a new account](https://www.extremenetworks.com/cloud-networking/).'
+  termsOfService: https://www.extremenetworks.com/company/legal/terms-of-use/
+  contact:
+    name: Extreme Networks Support
+    url: https://www.extremenetworks.com/support
+    email: support@extremenetworks.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  version: 25.9.0-36
+servers:
+- url: https://api.extremecloudiq.com
+  description: ExtremeCloud IQ REST API Server
+tags:
+- name: Notification
+  description: Push events/logs to users via Webhook, Email, SMS, etc.
+paths:
+  /subscriptions/webhook:
+    get:
+      tags:
+      - Notification
+      summary: List webhook subscriptions
+      description: List all webhook subscriptions.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_list_webhook_subscriptions
+      operationId: list
+      parameters:
+      - $ref: '#/components/parameters/page'
+      - $ref: '#/components/parameters/limit'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PagedXiqWebhookSubscription'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+    post:
+      tags:
+      - Notification
+      summary: Create webhook subscriptions
+      description: Create multiple webhook subscriptions.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_create_webhook_subscriptions
+      operationId: createSubscriptions
+      requestBody:
+        description: The payload of create multiple webhook subscriptions
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/XiqCreateWebhookSubscriptionRequest'
+        required: true
+      responses:
+        '202':
+          description: Accepted
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /subscriptions/webhook/{id}:
+    delete:
+      tags:
+      - Notification
+      summary: Delete webhook subscription
+      description: Delete an exist webhook subscription.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_delete_webhook_subscriptions
+      operationId: deleteSubscription
+      parameters:
+      - $ref: '#/components/parameters/id'
+      responses:
+        '202':
+          description: Accepted
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+    put:
+      tags:
+      - Notification
+      summary: Update webhook subscription by ID
+      description: Update an existing webhook subscription by the specified ID.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_update_webhook_subscription
+      operationId: updateSubscription
+      parameters:
+      - $ref: '#/components/parameters/id'
+      requestBody:
+        description: The payload to update webhook subscription
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/XiqUpdateWebhookSubscriptionRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XiqWebhookSubscription'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /subscriptions/webhook/export:
+    get:
+      tags:
+      - Notification
+      summary: Export all webhook subscriptions
+      description: Export all webhook subscriptions as a csv file.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_export_webhook_subscriptions
+      operationId: exportToCsv
+      parameters:
+      - name: sortField
+        in: query
+        description: The field for sorting
+        required: false
+        schema:
+          $ref: '#/components/schemas/XiqSortOrder'
+      - name: keyword
+        in: query
+        description: The keyword to filter - user name, email
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: byte
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+components:
+  schemas:
+    XiqSubscriptionDataType:
+      type: string
+      description: The webhook subscription data type.
+      enum:
+      - LOCATION
+      - AUDIT_LOG
+      - GDPR_LOG
+      - CREDENTIAL_LOG
+      - ACCOUNTING_LOG
+      - AUTHENTICATION_LOG
+      - EMAIL_LOG
+      - SMS_LOG
+    XiqCreateWebhookSubscriptionRequest:
+      type: object
+      description: The payload to create webhook subscription
+      required:
+      - application
+      - url
+      - message_type
+      properties:
+        application:
+          type: string
+          description: The external application name.
+        url:
+          type: string
+          description: The webhook endpoint URL.
+        secret:
+          type: string
+          description: The basic auth secret for the webhook endpoint.
+        message_type:
+          $ref: '#/components/schemas/XiqSubscriptionMessageType'
+    XiqUpdateWebhookSubscriptionRequest:
+      type: object
+      description: The payload to update webhook subscription
+      required:
+      - application
+      - url
+      - message_type
+      - status
+      properties:
+        application:
+          type: string
+          description: The external application name.
+        url:
+          type: string
+          description: The webhook endpoint URL.
+        secret:
+          type: string
+          description: The basic auth secret for the webhook endpoint.
+        message_type:
+          $ref: '#/components/schemas/XiqSubscriptionMessageType'
+          description: The API Subscriber message type e.g, "LOCATION_AP_CENTRIC" or "LOCATION_CLIENT_CENTRIC".
+        status:
+          $ref: '#/components/schemas/XiqSubscriptionStatus'
+          description: The API Subscriber status e.g, "ENABLED" or "DISABLED".
+    XiqError:
+      type: object
+      properties:
+        error_code:
+          type: string
+          description: The error code
+        error_id:
+          type: string
+          description: The error ID for internal troubleshooting
+        error_message:
+          type: string
+          description: The error detailed message
+        error_message_code:
+          type: string
+          description: The error message code
+        error_message_description:
+          type: string
+          description: The error message description
+        error_params:
+          $ref: '#/components/schemas/XiqErrorParams'
+      required:
+      - error_code
+      - error_id
+      - error_message
+    PagedXiqWebhookSubscription:
+      allOf:
+      - $ref: '#/components/schemas/XiqPage'
+      - type: object
+        properties:
+          data:
+            type: array
+            description: The data in the current page
+            items:
+              $ref: '#/components/schemas/XiqWebhookSubscription'
+    XiqWebhookSubscription:
+      allOf:
+      - $ref: '#/components/schemas/XiqBaseEntity'
+      - type: object
+        description: The webhook subscription data model
+        required:
+        - application
+        - url
+        - secret
+        - data_type
+        - message_type
+        - status
+        properties:
+          application:
+            type: string
+            description: The external application name.
+          url:
+            type: string
+            description: The webhook endpoint URL.
+          secret:
+            type: string
+            description: The basic auth secret for the webhook endpoint.
+          data_type:
+            $ref: '#/components/schemas/XiqSubscriptionDataType'
+          message_type:
+            $ref: '#/components/schemas/XiqSubscriptionMessageType'
+          status:
+            $ref: '#/components/schemas/XiqSubscriptionStatus'
+    XiqSubscriptionStatus:
+      type: string
+      description: The webhook subscription status.
+      enum:
+      - ENABLED
+      - DISABLED
+    XiqSortOrder:
+      type: string
+      enum:
+      - ASC
+      - DESC
+    XiqErrorParams:
+      type: object
+      description: Error parameters
+      properties:
+        field:
+          type: string
+          description: The error field
+        value:
+          type: string
+          description: The error value
+    XiqSubscriptionMessageType:
+      type: string
+      description: The subscription message type.
+      enum:
+      - LOCATION_AP_CENTRIC
+      - LOCATION_CLIENT_CENTRIC
+      - AUDIT_LOG_ALL
+      - GDPR_LOG_ALL
+      - CREDENTIAL_LOG_ALL
+      - ACCOUNTING_LOG_ALL
+      - AUTHENTICATION_LOG_ALL
+      - EMAIL_LOG_ALL
+      - SMS_LOG_ALL
+    XiqPage:
+      required:
+      - count
+      - page
+      - total_count
+      - total_pages
+      type: object
+      properties:
+        page:
+          type: integer
+          description: The current page number
+          format: int32
+        count:
+          type: integer
+          description: The element count of the current page
+          format: int32
+        total_pages:
+          type: integer
+          description: The total page number based on request page size
+          format: int32
+        total_count:
+          type: integer
+          description: The total element count
+          format: int64
+    XiqBaseEntity:
+      required:
+      - id
+      - create_time
+      - update_time
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The unique identifier
+          format: int64
+        create_time:
+          type: string
+          description: The create time
+          format: date-time
+        update_time:
+          type: string
+          description: The last update time
+          format: date-time
+  parameters:
+    page:
+      name: page
+      in: query
+      description: Page number, min = 1
+      required: false
+      schema:
+        minimum: 1
+        type: integer
+        format: int32
+        default: 1
+    id:
+      name: id
+      in: path
+      description: The unique identifier
+      required: true
+      schema:
+        type: integer
+        format: int64
+    limit:
+      name: limit
+      in: query
+      description: Page Size, min = 1, max = 100
+      required: false
+      schema:
+        maximum: 100
+        minimum: 1
+        type: integer
+        format: int32
+        default: 10
+  responses:
+    ErrorResponse:
+      description: The generic ExtremeCloud IQ API error response
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/XiqError'
+  securitySchemes:
+    BearerAuth:
+      type: http
+      description: JSON Web Token (JWT) based authentication
+      scheme: bearer
+      bearerFormat: JWT
+externalDocs:
+  description: API Reference
+  url: https://extremecloudiq.com/api-docs/api-reference.html

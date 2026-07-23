@@ -1,0 +1,810 @@
+openapi: 3.0.3
+info:
+  title: ExtremeCloud IQ Account Dashboard - Wired Device Health API
+  description: 'ExtremeCloud IQ™ API allows customers and partners to create solutions for the management, monitoring, and provisioning
+
+    of any ExtremeCloud IQ™ environment.
+
+
+    All related resources and documentation are available at [ExtremeCloud IQ Developer Portal](https://developer.extremecloudiq.com/).
+
+    Please check [Get Started and Tutorial](https://developer.extremecloudiq.com/documentation/) to understand how to use the APIs.
+
+
+    Get the [latest OpenAPI definition](https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI/blob/main/xcloudiq-openapi.yaml)
+
+    from [ExtremeCloud IQ OpenAPI GitHub repository](https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI).
+
+
+    Please have a valid [ExtremeCloud IQ](https://extremecloudiq.com/) account before getting started.
+
+    If you don''t have one, please [register a new account](https://www.extremenetworks.com/cloud-networking/).'
+  termsOfService: https://www.extremenetworks.com/company/legal/terms-of-use/
+  contact:
+    name: Extreme Networks Support
+    url: https://www.extremenetworks.com/support
+    email: support@extremenetworks.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  version: 25.9.0-36
+servers:
+- url: https://api.extremecloudiq.com
+  description: ExtremeCloud IQ REST API Server
+tags:
+- name: Dashboard - Wired Device Health
+  description: Device dashboard
+paths:
+  /dashboard/wired/device-health/summary:
+    post:
+      tags:
+      - Dashboard - Wired Device Health
+      summary: Device health summary for wired devices
+      description: Returns the count of total wired devices and total devices with health issues based on the provided filters. You can filter the results by sites.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_post_device_health_wired_summary
+      operationId: wiredDeviceHealthSummary
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                site_ids:
+                  description: List of site IDs to filter the wired devices summary
+                  type: array
+                  items:
+                    type: integer
+                    format: int64
+      responses:
+        '200':
+          description: Returns the counts of wired devices and devices with health issues
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XiqWiredDeviceHealthSummary'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /dashboard/wired/device-health/cpu-usage-issues:
+    post:
+      tags:
+      - Dashboard - Wired Device Health
+      summary: CPU usage issues for wired devices
+      description: Returns the count of wired devices having CPU usage issues (CPU usage >= 95%) based on the provided filters. You can filter the results by sites.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_get_wired_device_health_issues_cpu_usage
+      operationId: wiredDeviceHealthCpuUsageIssues
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                site_ids:
+                  description: List of site IDs to filter the wired devices CPU usage issues.
+                  type: array
+                  items:
+                    type: integer
+                    format: int64
+      responses:
+        '200':
+          description: Returns the counts of wired devices having CPU usage issues
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XiqWiredDeviceHealthCpuUsageIssues'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /dashboard/wired/device-health/memory-usage-issues:
+    post:
+      tags:
+      - Dashboard - Wired Device Health
+      summary: Memory usage issues for wired devices
+      description: Returns the count of wired devices having memory usage issues (memory usage >= 95%) based on the provided filters. You can filter the results by sites.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_get_wired_device_health_issues_memory_usage
+      operationId: wiredDeviceHealthMemoryUsageIssues
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                site_ids:
+                  description: List of site IDs to filter the wired devices Memory usage issues
+                  type: array
+                  items:
+                    type: integer
+                    format: int64
+      responses:
+        '200':
+          description: Returns the counts of wired devices having memory usage issues
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XiqWiredDeviceHealthMemoryUsageIssues'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /dashboard/wired/device-health/temperature-issues:
+    post:
+      tags:
+      - Dashboard - Wired Device Health
+      summary: Temperature issues for wired devices
+      description: Returns the count of wired devices having temperature issues based on the provided filters. You can filter the results by sites.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_get_wired_device_health_issues_temperature
+      operationId: wiredDeviceHealthTemperatureIssues
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                site_ids:
+                  description: List of site IDs to filter the wired devices temperature issues
+                  type: array
+                  items:
+                    type: integer
+                    format: int64
+      responses:
+        '200':
+          description: Returns the counts of wired devices having temperature issues
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XiqWiredDeviceHealthTemperatureIssues'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /dashboard/wired/device-health/poe-usage-issues:
+    post:
+      tags:
+      - Dashboard - Wired Device Health
+      summary: PoE usage issues for wired devices
+      description: Returns the count of wired devices having PoE usage issues based on the provided filters. You can filter the results by sites.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_get_wired_device_health_issues_poe_usage
+      operationId: wiredDeviceHealthPoEUsageIssues
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                site_ids:
+                  description: List of site IDs to filter the wired devices PoE usage issues
+                  type: array
+                  items:
+                    type: integer
+                    format: int64
+      responses:
+        '200':
+          description: Returns the counts of wired devices having PoE usage issues
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XiqWiredDeviceHealthPoeUsageIssues'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /dashboard/wired/device-health/fan-issues:
+    post:
+      tags:
+      - Dashboard - Wired Device Health
+      summary: Fan status issues for wired devices
+      description: Returns the count of wired devices having fan status issues based on the provided filters. You can filter the results by sites.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_get_wired_device_health_issues_fan_status
+      operationId: wiredDeviceHealthFanStatusIssues
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                site_ids:
+                  description: List of site IDs to filter the wired devices fan status issues
+                  type: array
+                  items:
+                    type: integer
+                    format: int64
+      responses:
+        '200':
+          description: Returns the counts of wired devices having fan status issues
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XiqWiredDeviceHealthFanStatusIssues'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /dashboard/wired/device-health/psu-issues:
+    post:
+      tags:
+      - Dashboard - Wired Device Health
+      summary: PSU status issues for wired devices
+      description: Returns the count of wired devices having PSU status issues based on the provided filters. You can filter the results by sites.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_get_wired_device_health_issues_psu_status
+      operationId: wiredDeviceHealthPSUStatusIssues
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                site_ids:
+                  description: List of site IDs to filter the wired devices PSU status issues
+                  type: array
+                  items:
+                    type: integer
+                    format: int64
+      responses:
+        '200':
+          description: Returns the counts of wired devices having PSU status issues
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XiqWiredDeviceHealthPsuStatusIssues'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /dashboard/wired/device-health/grid:
+    post:
+      tags:
+      - Dashboard - Wired Device Health
+      summary: Wired Device Health Grid
+      description: Returns the device health grid of wired devices based on the provided filters. The results can be filtered by sites.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_get_device_health_grid
+      operationId: wiredDeviceHealthGrid
+      parameters:
+      - $ref: '#/components/parameters/page'
+      - $ref: '#/components/parameters/limit'
+      - name: keyword
+        in: query
+        description: The keyword to search
+        required: false
+        schema:
+          type: string
+      - name: sortField
+        in: query
+        description: The sort field
+        required: false
+        schema:
+          $ref: '#/components/schemas/XiqWiredDeviceHealthGridSortField'
+      - name: sortOrder
+        in: query
+        description: The sort order
+        required: false
+        schema:
+          $ref: '#/components/schemas/XiqSortOrder'
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                site_ids:
+                  description: List of site IDs to filter the device health grid
+                  type: array
+                  items:
+                    type: integer
+                    format: int64
+                device_ids:
+                  description: List of device IDs to filter the device health grid
+                  type: array
+                  items:
+                    type: integer
+                    format: int64
+                filter_field:
+                  description: The filters available for the device health grid
+                  type: array
+                  items:
+                    type: string
+                    format: enum
+                    $ref: '#/components/schemas/XiqWiredDeviceHealthGridFilterField'
+      responses:
+        '200':
+          description: Returns the response of the device health grid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagedXiqWiredDeviceHealthGridResponse'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /dashboard/wired/device-health/poe-usage-status:
+    post:
+      tags:
+      - Dashboard - Wired Device Health
+      summary: PoE usage status for wired devices
+      description: Returns the PoE usage for wired devices based on the provided device ID.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_get_device_health_poe
+      operationId: wiredDeviceHealthPoe
+      parameters:
+      - name: deviceId
+        in: query
+        description: The device ID to provide the PoE usage (all the slots will be provided for a stack)
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: Returns the PoE usage for the specified device ID (all the slots will be provided for a stack)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XiqWiredDeviceHealthPoeUsageStatusResponse'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /dashboard/wired/device-health/temperature-status:
+    post:
+      tags:
+      - Dashboard - Wired Device Health
+      summary: Temperature status for wired devices
+      description: Returns the temperature for wired devices based on the provided device ID.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_get_device_health_temperature
+      operationId: wiredDeviceHealthTemperature
+      parameters:
+      - name: deviceId
+        in: query
+        description: The device ID to provide the temperature (all the slots will be provided for a stack)
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: Returns the temperature for the specified device ID (all the slots will be provided for a stack)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XiqWiredDeviceHealthTemperatureStatusResponse'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /dashboard/wired/device-health/fan-status:
+    post:
+      tags:
+      - Dashboard - Wired Device Health
+      summary: Fan status for wired devices
+      description: Returns the fan health status for wired devices based on the provided device ID.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_get_device_health_fan_status
+      operationId: wiredDeviceHealthFanStatus
+      parameters:
+      - name: deviceId
+        in: query
+        description: The device ID to provide the fan health status (all the slots will be provided for a stack)
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: Returns the fan health status for the specified device ID (all the slots will be provided for a stack)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XiqWiredDeviceHealthFanStatusResponse'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /dashboard/wired/device-health/psu-status:
+    post:
+      tags:
+      - Dashboard - Wired Device Health
+      summary: PSU status for wired devices
+      description: Returns the PSU health status for wired devices based on the provided device ID.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_get_device_health_psu
+      operationId: wiredDeviceHealthPsu
+      parameters:
+      - name: deviceId
+        in: query
+        description: The device ID to provide the fan health status (all the slots will be provided for a stack)
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: Returns the PSU health status for the specified device ID (all the slots will be provided for a stack)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XiqWiredDeviceHealthPsuStatusResponse'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+components:
+  schemas:
+    XiqWiredDeviceHealthPsuStatus:
+      type: object
+      properties:
+        psu_description:
+          type: string
+          description: The PSU description
+        psu_status:
+          type: string
+          description: The PSU status
+    PagedXiqWiredDeviceHealthGridResponse:
+      allOf:
+      - $ref: '#/components/schemas/XiqPage'
+      - type: object
+        properties:
+          data:
+            type: array
+            description: The data in the current page
+            items:
+              $ref: '#/components/schemas/XiqWiredDeviceHealthGridResponse'
+    XiqSortOrder:
+      type: string
+      enum:
+      - ASC
+      - DESC
+    XiqWiredDeviceHealthSummary:
+      type: object
+      properties:
+        wired_devices:
+          type: integer
+          format: int64
+          description: Total count of devices
+        wired_unhealthy_devices:
+          type: integer
+          format: int64
+          description: Total count of unhealthy devices
+    XiqWiredDeviceHealthPoeUsageStatusResponseEntry:
+      type: object
+      properties:
+        slot_number:
+          type: integer
+          format: int8
+          description: The slot number of the device
+        poe_usage:
+          type: integer
+          format: int8
+          description: The PoE usage percentage of the device
+    XiqWiredDeviceHealthGridFilterField:
+      description: The filters available for the wired device health grid
+      enum:
+      - CPU
+      - MEM
+      - TEMP
+      - POE
+      - FAN
+      - PSU
+      - HEALTH
+    XiqWiredDeviceHealthFanStatusResponseEntry:
+      type: object
+      properties:
+        slot_number:
+          type: integer
+          format: int8
+          description: The slot number of the device (0 for standalone)
+        fan_status_error:
+          type: integer
+          format: int8
+          description: The number of fans that are not operating correctly
+        fan_total:
+          type: integer
+          format: int8
+          description: The total number of fans
+        fan_units:
+          type: array
+          description: The list of fans with their corresponding status
+          items:
+            $ref: '#/components/schemas/XiqWiredDeviceHealthFanStatus'
+    XiqWiredDeviceHealthTemperatureIssues:
+      type: object
+      properties:
+        temperature_issue_device_count:
+          type: integer
+          format: int64
+          description: Count of devices with temperature issues
+    XiqWiredDeviceHealthFanStatusResponse:
+      type: object
+      properties:
+        devices:
+          type: array
+          description: The list contains a single element for standalone devices and multiple elements for each member of a stack
+          items:
+            $ref: '#/components/schemas/XiqWiredDeviceHealthFanStatusResponseEntry'
+    XiqErrorParams:
+      type: object
+      description: Error parameters
+      properties:
+        field:
+          type: string
+          description: The error field
+        value:
+          type: string
+          description: The error value
+    XiqWiredDeviceHealthPsuStatusIssues:
+      type: object
+      properties:
+        psu_status_issue_device_count:
+          type: integer
+          format: int64
+          description: Count of devices with PSU status issues
+    XiqWiredDeviceHealthCpuUsageIssues:
+      type: object
+      properties:
+        cpu_usage_issue_device_count:
+          type: integer
+          format: int64
+          description: Count of devices with CPU usage issues
+    XiqWiredDeviceHealthGridSortField:
+      type: string
+      title: WiredDeviceHealthSortField
+      description: Pre-defined fields for device health sorting - CPU - MEM - TEMP - POE - FAN - PSU
+      example: CPU
+    XiqWiredDeviceHealthPsuStatusResponse:
+      type: object
+      properties:
+        devices:
+          type: array
+          description: The list contains a single element for standalone devices and multiple elements for each member of a stack
+          items:
+            $ref: '#/components/schemas/XiqWiredDeviceHealthPsuStatusResponseEntry'
+    XiqError:
+      type: object
+      properties:
+        error_code:
+          type: string
+          description: The error code
+        error_id:
+          type: string
+          description: The error ID for internal troubleshooting
+        error_message:
+          type: string
+          description: The error detailed message
+        error_message_code:
+          type: string
+          description: The error message code
+        error_message_description:
+          type: string
+          description: The error message description
+        error_params:
+          $ref: '#/components/schemas/XiqErrorParams'
+      required:
+      - error_code
+      - error_id
+      - error_message
+    XiqWiredDeviceHealthGridResponse:
+      type: object
+      properties:
+        device_id:
+          type: integer
+          format: int64
+          description: The id of the device
+        stack_size:
+          type: integer
+          format: int8
+          description: The number of devices in the stack (0 for standalone devices)
+        device_hostname:
+          type: string
+          description: The hostname of the device
+        device_ip:
+          type: string
+          description: The IP address of the device
+        site:
+          type: string
+          description: The site where the device is located
+        building:
+          type: string
+          description: The building where the device is located
+        floor:
+          type: string
+          description: The floor where the device is located
+        cpu_usage:
+          type: integer
+          format: int8
+          description: The CPU usage percentage of the device
+        memory_usage:
+          type: integer
+          format: int8
+          description: The memory usage percentage of the device
+        temperature:
+          type: integer
+          format: int16
+          description: The temperature of the device
+        temperature_error_slots:
+          type: integer
+          format: int8
+          description: Indicates the number of the stack slots that have temperature errors/if a standalone device has temperature errors
+        poe_usage:
+          type: integer
+          format: int8
+          description: The PoE usage percentage of the device
+        poe_error_slots:
+          type: integer
+          format: int8
+          description: Indicates the number of the stack slots that have PoE errors/if a standalone device has PoE errors
+        fan_error_slots:
+          type: integer
+          format: int8
+          description: Indicates the number of the stack slots that have fan errors/if a standalone device has fan errors
+        psu_error_slots:
+          type: integer
+          format: int8
+          description: Indicates the number of the stack slots that have PSU errors/if a standalone device has PSU errors
+    XiqPage:
+      required:
+      - count
+      - page
+      - total_count
+      - total_pages
+      type: object
+      properties:
+        page:
+          type: integer
+          description: The current page number
+          format: int32
+        count:
+          type: integer
+          description: The element count of the current page
+          format: int32
+        total_pages:
+          type: integer
+          description: The total page number based on request page size
+          format: int32
+        total_count:
+          type: integer
+          description: The total element count
+          format: int64
+    XiqWiredDeviceHealthMemoryUsageIssues:
+      type: object
+      properties:
+        memory_usage_issue_device_count:
+          type: integer
+          format: int64
+          description: Count of devices with memory usage issues
+    XiqWiredDeviceHealthPsuStatusResponseEntry:
+      type: object
+      properties:
+        slot_number:
+          type: integer
+          format: int8
+          description: The slot number of the device (0 for standalone)
+        psu_status_error:
+          type: integer
+          format: int8
+          description: The number of PSUs that are not operating correctly
+        psu_total:
+          type: integer
+          format: int8
+          description: The total number of PSUs
+        psu_units:
+          type: array
+          description: The list of PSUs with their corresponding status
+          items:
+            $ref: '#/components/schemas/XiqWiredDeviceHealthPsuStatus'
+    XiqWiredDeviceHealthTemperatureStatusResponse:
+      type: object
+      properties:
+        devices:
+          type: array
+          description: The list contains a single element for standalone devices and multiple elements for each member of a stack
+          items:
+            $ref: '#/components/schemas/XiqWiredDeviceHealthTemperatureStatusResponseEntry'
+    XiqWiredDeviceHealthFanStatusIssues:
+      type: object
+      properties:
+        fan_status_issue_device_count:
+          type: integer
+          format: int64
+          description: Count of devices with fan status issues
+    XiqWiredDeviceHealthPoeUsageIssues:
+      type: object
+      properties:
+        poe_usage_issue_device_count:
+          type: integer
+          format: int64
+          description: Count of devices with PoE usage issues
+    XiqWiredDeviceHealthFanStatus:
+      type: object
+      properties:
+        fan_description:
+          type: string
+          description: The fan description
+        fan_status:
+          type: string
+          description: The fan status
+    XiqWiredDeviceHealthTemperatureStatusResponseEntry:
+      type: object
+      properties:
+        slot_number:
+          type: integer
+          format: int8
+          description: The slot number of the device
+        temperature:
+          type: integer
+          format: int16
+          description: The temperature of the device
+    XiqWiredDeviceHealthPoeUsageStatusResponse:
+      type: object
+      properties:
+        devices:
+          type: array
+          description: The list contains a single element for standalone devices and multiple elements for each member of a stack
+          items:
+            $ref: '#/components/schemas/XiqWiredDeviceHealthPoeUsageStatusResponseEntry'
+  parameters:
+    page:
+      name: page
+      in: query
+      description: Page number, min = 1
+      required: false
+      schema:
+        minimum: 1
+        type: integer
+        format: int32
+        default: 1
+    limit:
+      name: limit
+      in: query
+      description: Page Size, min = 1, max = 100
+      required: false
+      schema:
+        maximum: 100
+        minimum: 1
+        type: integer
+        format: int32
+        default: 10
+  responses:
+    ErrorResponse:
+      description: The generic ExtremeCloud IQ API error response
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/XiqError'
+  securitySchemes:
+    BearerAuth:
+      type: http
+      description: JSON Web Token (JWT) based authentication
+      scheme: bearer
+      bearerFormat: JWT
+externalDocs:
+  description: API Reference
+  url: https://extremecloudiq.com/api-docs/api-reference.html

@@ -1,0 +1,582 @@
+openapi: 3.0.3
+info:
+  title: ExtremeCloud IQ Account Dashboard - Wired Client Health API
+  description: 'ExtremeCloud IQ™ API allows customers and partners to create solutions for the management, monitoring, and provisioning
+
+    of any ExtremeCloud IQ™ environment.
+
+
+    All related resources and documentation are available at [ExtremeCloud IQ Developer Portal](https://developer.extremecloudiq.com/).
+
+    Please check [Get Started and Tutorial](https://developer.extremecloudiq.com/documentation/) to understand how to use the APIs.
+
+
+    Get the [latest OpenAPI definition](https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI/blob/main/xcloudiq-openapi.yaml)
+
+    from [ExtremeCloud IQ OpenAPI GitHub repository](https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI).
+
+
+    Please have a valid [ExtremeCloud IQ](https://extremecloudiq.com/) account before getting started.
+
+    If you don''t have one, please [register a new account](https://www.extremenetworks.com/cloud-networking/).'
+  termsOfService: https://www.extremenetworks.com/company/legal/terms-of-use/
+  contact:
+    name: Extreme Networks Support
+    url: https://www.extremenetworks.com/support
+    email: support@extremenetworks.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  version: 25.9.0-36
+servers:
+- url: https://api.extremecloudiq.com
+  description: ExtremeCloud IQ REST API Server
+tags:
+- name: Dashboard - Wired Client Health
+  description: Client dashboard
+paths:
+  /dashboard/wired/client-health/grid:
+    post:
+      tags:
+      - Dashboard - Wired Client Health
+      summary: Wired client health grid
+      description: Returns the client health grid of wired devices based on the provided filters. You can filter the results by sites.
+      operationId: wiredClientHealthGrid
+      parameters:
+      - $ref: '#/components/parameters/page'
+      - $ref: '#/components/parameters/limit'
+      - name: keyword
+        in: query
+        description: The keyword to search
+        required: false
+        schema:
+          type: string
+      - name: sortField
+        in: query
+        description: The sort field
+        required: false
+        schema:
+          $ref: '#/components/schemas/XiqWiredClientHealthSortField'
+      - name: sortOrder
+        in: query
+        description: The sort order
+        required: false
+        schema:
+          $ref: '#/components/schemas/XiqSortOrder'
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                site_ids:
+                  description: List of site IDs to filter the client health grid
+                  type: array
+                  items:
+                    type: integer
+                    format: int64
+                device_ids:
+                  description: List of device IDs to filter the client health grid
+                  type: array
+                  items:
+                    type: integer
+                    format: int64
+                number_filter:
+                  type: object
+                  description: The number based column filters available.
+                  properties:
+                    data:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/number_filter'
+      responses:
+        '200':
+          description: Returns the response of the client health grid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagedXiqWiredClientHealthGridResponse'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /dashboard/wired/client-health/ip-connectivity-issues:
+    post:
+      tags:
+      - Dashboard - Wired Client Health
+      summary: Wired clients count with IP connectivity issues
+      description: Returns the wired clients with IP connectivity issues based on the provided filters. You can filter the results by sites.
+      operationId: wiredClientHealthIpConnectivityIssues
+      parameters:
+      - name: deviceId
+        in: query
+        description: The device ID
+        required: false
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                site_ids:
+                  description: List of site IDs to filter the clients with IP connectivity issues
+                  type: array
+                  items:
+                    type: integer
+                    format: int64
+                device_ids:
+                  description: List of device IDs to filter the clients with IP connectivity issues
+                  type: array
+                  items:
+                    type: integer
+                    format: int64
+      responses:
+        '200':
+          description: Returns the counts of clients with IP connectivity issues based on the filters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XiqWiredClientHealthIpConnectivityIssues'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /dashboard/wired/client-health/port-congestion:
+    post:
+      tags:
+      - Dashboard - Wired Client Health
+      summary: Wired clients count with port congestion issues
+      description: Returns the wired clients with port congestion issues based on the provided filters. You can filter the results by sites.
+      operationId: wiredClientHealthPortCongestionIssues
+      parameters:
+      - name: deviceId
+        in: query
+        description: The device ID
+        required: false
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                site_ids:
+                  description: List of site IDs to filter the clients with port congestion issues
+                  type: array
+                  items:
+                    type: integer
+                    format: int64
+                device_ids:
+                  description: List of device IDs to filter the clients with port congestion issues
+                  type: array
+                  items:
+                    type: integer
+                    format: int64
+      responses:
+        '200':
+          description: Returns the counts of clients with port congestion issues based on the filters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XiqWiredClientHealthPortCongestionIssues'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /dashboard/wired/client-health/traffic-anomalies:
+    post:
+      tags:
+      - Dashboard - Wired Client Health
+      summary: Wired clients count with traffic anomalies
+      description: Returns the wired clients with traffic anomalies based on the provided filters. You can filter the results by sites.
+      operationId: wiredClientHealthTrafficAnomalies
+      parameters:
+      - name: deviceId
+        in: query
+        description: The device ID
+        required: false
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                site_ids:
+                  description: List of site IDs to filter the clients with traffic anomalies
+                  type: array
+                  items:
+                    type: integer
+                    format: int64
+                device_ids:
+                  description: List of device IDs to filter the clients with traffic anomalies
+                  type: array
+                  items:
+                    type: integer
+                    format: int64
+      responses:
+        '200':
+          description: Returns the counts of clients with traffic anomalies based on the filters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XiqWiredClientHealthTrafficAnomalies'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /dashboard/wired/client-health/port-errors:
+    post:
+      tags:
+      - Dashboard - Wired Client Health
+      summary: Wired clients count with port errors
+      description: Returns the wired clients with port errors based on the provided filters. You can filter the results by sites.
+      operationId: wiredClientHealthPortErrors
+      parameters:
+      - name: deviceId
+        in: query
+        description: The device ID
+        required: false
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                site_ids:
+                  description: List of site IDs to filter the clients with port errors
+                  type: array
+                  items:
+                    type: integer
+                    format: int64
+                device_ids:
+                  description: List of device IDs to filter the  clients with port errors
+                  type: array
+                  items:
+                    type: integer
+                    format: int64
+      responses:
+        '200':
+          description: Returns the counts of clients with port errors based on the filters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XiqWiredClientHealthPortErrors'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+components:
+  schemas:
+    XiqWiredClientHealthGridResponse:
+      type: object
+      properties:
+        connectionStatus:
+          $ref: '#/components/schemas/XiqWiredClientHealthConnectionStatus'
+          description: The current connection status of the client
+        client_hostname:
+          type: string
+          description: The hostname of the client
+        client_ip:
+          type: string
+          description: The IP address of the client
+        site:
+          type: string
+          description: The site where the client is located
+        building:
+          type: string
+          description: The building where the client is located
+        floor:
+          type: string
+          description: The floor where the client is located
+        ipv4:
+          type: string
+          description: The IPv4 address assigned to the client
+        has_ip_address_issues:
+          type: boolean
+          description: Indicates if there are IP address issues (related to UI tooltip)
+        ipv6:
+          type: string
+          description: The IPv6 address assigned to the client
+        port_number:
+          type: string
+          description: The port number on which the device is connected
+        switch_name:
+          type: string
+          description: The switch name of the connected device
+        vlan:
+          type: integer
+          format: int32
+          description: The VLAN ID
+        operating_system:
+          type: string
+          description: The operating system of the client device
+        mac:
+          type: string
+          description: The MAC address of the client device
+        username:
+          type: string
+          description: The username of the client
+        instant_port_profile:
+          type: string
+          description: The Instant Port Profile type assignment to client
+        total_congestion_packets:
+          type: integer
+          format: int64
+          description: The total congestion packets
+        total_unicast_packets_percentage:
+          type: number
+          format: double
+          description: The total unicast packets percentage
+        total_multicast_packets_percentage:
+          type: number
+          format: double
+          description: The total multicast packets percentage
+        total_broadcast_packets_percentage:
+          type: number
+          format: double
+          description: The total broadcast packets percentage
+        total_port_errors:
+          type: integer
+          format: int64
+          description: The total port errors
+        device_id:
+          type: integer
+          format: int64
+          description: The device to which client is connected
+        client_id:
+          type: integer
+          format: int64
+          description: The client ID
+    XiqError:
+      type: object
+      properties:
+        error_code:
+          type: string
+          description: The error code
+        error_id:
+          type: string
+          description: The error ID for internal troubleshooting
+        error_message:
+          type: string
+          description: The error detailed message
+        error_message_code:
+          type: string
+          description: The error message code
+        error_message_description:
+          type: string
+          description: The error message description
+        error_params:
+          $ref: '#/components/schemas/XiqErrorParams'
+      required:
+      - error_code
+      - error_id
+      - error_message
+    PagedXiqWiredClientHealthGridResponse:
+      allOf:
+      - $ref: '#/components/schemas/XiqPage'
+      - type: object
+        properties:
+          data:
+            type: array
+            description: The data in the current page
+            items:
+              $ref: '#/components/schemas/XiqWiredClientHealthGridResponse'
+    XiqWiredClientHealthConnectionStatus:
+      type: string
+      enum:
+      - CONNECTED
+      - DISCONNECTED
+    XiqWiredClientHealthPortCongestionIssues:
+      type: object
+      properties:
+        total_clients:
+          type: integer
+          format: int64
+          description: The total number of clients
+        congestion:
+          type: integer
+          format: int64
+          description: The number of clients with port congestion issues
+        healthy:
+          type: integer
+          format: int64
+          description: The number of healthy client that do not have port congestion issues
+    XiqSortOrder:
+      type: string
+      enum:
+      - ASC
+      - DESC
+    XiqWiredClientHealthTrafficAnomalies:
+      type: object
+      properties:
+        total_clients:
+          type: integer
+          format: int64
+          description: The total number of clients
+        anomalies:
+          type: integer
+          format: int64
+          description: The number of clients with traffic anomalies
+        healthy:
+          type: integer
+          format: int64
+          description: The number of healthy client that do not have traffic anomalies
+    XiqErrorParams:
+      type: object
+      description: Error parameters
+      properties:
+        field:
+          type: string
+          description: The error field
+        value:
+          type: string
+          description: The error value
+    XiqPage:
+      required:
+      - count
+      - page
+      - total_count
+      - total_pages
+      type: object
+      properties:
+        page:
+          type: integer
+          description: The current page number
+          format: int32
+        count:
+          type: integer
+          description: The element count of the current page
+          format: int32
+        total_pages:
+          type: integer
+          description: The total page number based on request page size
+          format: int32
+        total_count:
+          type: integer
+          description: The total element count
+          format: int64
+    number_filter:
+      type: object
+      description: If the filter type is between, only then min and max are to be used, else value is to be used.
+      properties:
+        column_name:
+          description: The name of the column being filtered
+          type: string
+        filter_type:
+          description: The type of number filter
+          type: string
+          enum:
+          - eq
+          - neq
+          - gt
+          - gte
+          - lt
+          - lte
+          - bw
+          - blank
+          - notblank
+        value:
+          description: The value of the number
+          type: integer
+          format: int64
+        min:
+          description: The minimum value of the number
+          type: integer
+          format: int64
+        max:
+          description: The maximum value of the number
+          type: integer
+          format: int64
+    XiqWiredClientHealthIpConnectivityIssues:
+      type: object
+      properties:
+        total_clients:
+          type: integer
+          format: int64
+          description: The total number of clients
+        unassigned_ip:
+          type: integer
+          format: int64
+          description: The number of clients with unassigned IPs
+        self_assigned_ip:
+          type: integer
+          format: int64
+          description: The number of clients with self assigned IPs
+        valid_ip:
+          type: integer
+          format: int64
+          description: The number of clients with self assigned IPs
+    XiqWiredClientHealthPortErrors:
+      type: object
+      properties:
+        total_clients:
+          type: integer
+          format: int64
+          description: The total number of clients
+        port_errors:
+          type: integer
+          format: int64
+          description: The number of clients with port errors
+        healthy:
+          type: integer
+          format: int64
+          description: The number of healthy client that do not have port errors
+    XiqWiredClientHealthSortField:
+      type: string
+      title: WiredClientHealthSortField
+      description: Pre-defined filters for client health sorting - CONNECTION_STATUS - CLIENT_HOSTNAME - SITE - BUILDING - FLOOR - IPV4 - IPV6 - PORT_NUMBER - PORT_NUMBER_SWITCH_NAME - VLAN - OPERATING_SYSTEM - MAC - USERNAME - INSTANT_PORT_PROFILE - TOTAL_CONGESTION - TOTAL_UNICAST - TOTAL_MULTICAST - TOTAL_BROADCAST - TOTAL_PORT_ERRORS
+      example: CONNECTION_STATUS
+  parameters:
+    page:
+      name: page
+      in: query
+      description: Page number, min = 1
+      required: false
+      schema:
+        minimum: 1
+        type: integer
+        format: int32
+        default: 1
+    limit:
+      name: limit
+      in: query
+      description: Page Size, min = 1, max = 100
+      required: false
+      schema:
+        maximum: 100
+        minimum: 1
+        type: integer
+        format: int32
+        default: 10
+  responses:
+    ErrorResponse:
+      description: The generic ExtremeCloud IQ API error response
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/XiqError'
+  securitySchemes:
+    BearerAuth:
+      type: http
+      description: JSON Web Token (JWT) based authentication
+      scheme: bearer
+      bearerFormat: JWT
+externalDocs:
+  description: API Reference
+  url: https://extremecloudiq.com/api-docs/api-reference.html

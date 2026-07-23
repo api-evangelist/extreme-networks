@@ -1,0 +1,1807 @@
+openapi: 3.0.3
+info:
+  title: ExtremeCloud IQ Account D360 API
+  description: 'ExtremeCloud IQ™ API allows customers and partners to create solutions for the management, monitoring, and provisioning
+
+    of any ExtremeCloud IQ™ environment.
+
+
+    All related resources and documentation are available at [ExtremeCloud IQ Developer Portal](https://developer.extremecloudiq.com/).
+
+    Please check [Get Started and Tutorial](https://developer.extremecloudiq.com/documentation/) to understand how to use the APIs.
+
+
+    Get the [latest OpenAPI definition](https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI/blob/main/xcloudiq-openapi.yaml)
+
+    from [ExtremeCloud IQ OpenAPI GitHub repository](https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI).
+
+
+    Please have a valid [ExtremeCloud IQ](https://extremecloudiq.com/) account before getting started.
+
+    If you don''t have one, please [register a new account](https://www.extremenetworks.com/cloud-networking/).'
+  termsOfService: https://www.extremenetworks.com/company/legal/terms-of-use/
+  contact:
+    name: Extreme Networks Support
+    url: https://www.extremenetworks.com/support
+    email: support@extremenetworks.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  version: 25.9.0-36
+servers:
+- url: https://api.extremecloudiq.com
+  description: ExtremeCloud IQ REST API Server
+tags:
+- name: D360
+  description: Device 360
+paths:
+  /d360/wireless/surrounding-aps:
+    post:
+      tags:
+      - D360
+      summary: Surrounding APs
+      description: Get a list of surrounding APs.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_wireless_surrounding_aps
+      operationId: surroundingAps
+      parameters:
+      - name: deviceId
+        in: query
+        description: The device ID
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - $ref: '#/components/parameters/startTime'
+      - $ref: '#/components/parameters/endTime'
+      - $ref: '#/components/parameters/selectedTime'
+      - $ref: '#/components/parameters/page'
+      - $ref: '#/components/parameters/limit'
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                numberFilters:
+                  type: object
+                  description: The number based column filters available(Available columns- Channel width, rssi, channel utilization %, number of clients ).
+                  properties:
+                    data:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/number_filter'
+                ssids:
+                  description: The ssids available
+                  type: array
+                  items:
+                    type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagedRmSurroundingAps'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /d360/wireless/interfaces-stats:
+    get:
+      tags:
+      - D360
+      summary: Wireless Interfaces Stats
+      description: Get Statistics of wireless interfaces of a device.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_wireless_interfaces_stats
+      operationId: wirelessInterfacesStats
+      parameters:
+      - name: deviceId
+        in: query
+        description: The device ID
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - $ref: '#/components/parameters/startTime'
+      - $ref: '#/components/parameters/endTime'
+      - $ref: '#/components/parameters/selectedTime'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RmWirelessInterfacesList'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /d360/overview/devices-summary:
+    get:
+      tags:
+      - D360
+      summary: Get Device Summary
+      description: List the summary of device details.
+      externalDocs:
+        description: API Reference
+        url: http://extremecloudiq.com/api-docs/api-reference.html#_get_device_summary
+      operationId: getDeviceSummary
+      parameters:
+      - name: deviceId
+        in: query
+        description: The device ID
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RmDeviceSummary'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /d360/overview/devices-location:
+    get:
+      tags:
+      - D360
+      summary: Get Device Geo Location
+      description: Get the geographical location of device.
+      externalDocs:
+        description: API Reference
+        url: http://extremecloudiq.com/api-docs/api-reference.html#_get_device_geo_location
+      operationId: getDeviceGeoLocation
+      parameters:
+      - name: deviceId
+        in: query
+        description: The device ID
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RmDeviceGeoLocation'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /d360/alert/graph:
+    get:
+      tags:
+      - D360
+      summary: Alerts Graph
+      description: List a list of alerts for Graphing API.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_alert_graph
+      operationId: alertsGraph
+      parameters:
+      - $ref: '#/components/parameters/startTime'
+      - $ref: '#/components/parameters/endTime'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GraphResponse'
+  /d360/client/graph:
+    post:
+      tags:
+      - D360
+      summary: Client Graph
+      description: List a list of connected clients for Graphing API of D360.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_client_graph
+      operationId: clientsGraph
+      parameters:
+      - name: deviceId
+        in: query
+        description: The device ID
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - $ref: '#/components/parameters/startTime'
+      - $ref: '#/components/parameters/endTime'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                filter_name:
+                  description: List of available filters for clients graph
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/RmClientGraphFilterType'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                description: The graph response based on filters.
+                items:
+                  $ref: '#/components/schemas/RmClientGraphResponse'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /d360/device-metadata:
+    get:
+      tags:
+      - D360
+      summary: Device metadata
+      description: The device metadata like timestamp from which device is online and location.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_get_connected_since
+      operationId: connectedSince
+      parameters:
+      - name: deviceId
+        in: query
+        description: The device ID
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: deviceType
+        in: query
+        description: The device type (wired/wireless)
+        schema:
+          $ref: '#/components/schemas/XiqDeviceType'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  device_data:
+                    $ref: '#/components/schemas/RmDeviceData'
+                  device_path:
+                    type: object
+                    properties:
+                      folder_path_info:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/RmDevicePathInfo'
+                  network_policy:
+                    type: object
+                    description: The network policy attached to device
+                    properties:
+                      policy_id:
+                        description: The policy Id.
+                        type: integer
+                        format: int64
+                      policy_name:
+                        description: The policy Name
+                        type: string
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /d360/installation/media:
+    post:
+      tags:
+      - D360
+      summary: Installation Media-upload
+      description: Upload installation media.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_upload_media
+      operationId: uploadMedia
+      requestBody:
+        description: The request body to upload the installation media.
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                filePath:
+                  description: The path of the file(.png/.jpg or .mp4/.mov)
+                  type: string
+                title:
+                  description: The title of the the file
+                  type: string
+                fileDescription:
+                  description: The description of the file
+                  type: string
+      responses:
+        '200':
+          description: Returns the response of the client health grid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RmMediaUploadResponse'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+    delete:
+      tags:
+      - D360
+      summary: Installation Media-delete
+      description: Delete installation media.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_delete_media
+      operationId: deleteMedia
+      parameters:
+      - name: mediaId
+        in: query
+        description: The id of the media file
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /d360/wired/interface-grid:
+    get:
+      tags:
+      - D360
+      summary: Wired Interfaces
+      description: Wired Interfaces -Grid.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_wired_interfaces_grid
+      operationId: wiredGrid
+      parameters:
+      - name: deviceId
+        in: query
+        description: The device ID
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: Returns the response of the wired interfaces grid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RmWiredInterfaceGrid'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /d360/device/location:
+    get:
+      tags:
+      - D360
+      summary: Device Location
+      description: Retrieves the device location details on the map for the device.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_device_location
+      operationId: deviceLocation
+      parameters:
+      - name: deviceId
+        in: query
+        description: The device ID
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: Returns the response of the device location
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  folder_id:
+                    type: integer
+                    description: Unique identifier for the folder.
+                  device_id:
+                    type: integer
+                    description: Unique identifier for the device.
+                  device_mac_address:
+                    type: string
+                    description: MAC address of the device.
+                  device_hostname:
+                    type: string
+                    description: Hostname of the device.
+                  device_type:
+                    type: string
+                    description: Type of the device.
+                  device_function:
+                    type: string
+                    description: Function of the device.
+                  x:
+                    type: number
+                    format: double
+                    description: X-coordinate of the device location.
+                  y:
+                    type: number
+                    format: double
+                    description: Y-coordinate of the device location.
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /d360/device/issues:
+    get:
+      tags:
+      - D360
+      summary: Device Issues
+      description: Retrieves the various issues for device.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_device_issues
+      operationId: deviceIssues
+      parameters:
+      - name: deviceId
+        in: query
+        description: The device ID
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: Returns the response of the device issues
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  association_failures:
+                    type: integer
+                    description: The number of association failures.
+                  authentication_failures:
+                    type: integer
+                    description: The number of authentication failures.
+                  ip_address_issues:
+                    type: integer
+                    description: The number of IP Address issues.
+                  excessive_packet_loss_ap_count:
+                    type: integer
+                    format: int64
+                    description: Count of APs with excessive packet loss
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /d360/device/stats:
+    get:
+      tags:
+      - D360
+      summary: Device Stats
+      description: Grid of Device Stats.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_wireless_interfaces_graph
+      operationId: deviceStats
+      parameters:
+      - name: deviceId
+        in: query
+        description: The device ID
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - $ref: '#/components/parameters/startTime'
+      - $ref: '#/components/parameters/endTime'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                description: The graph response based on filters.
+                items:
+                  $ref: '#/components/schemas/XiqDeviceHealthGridResponse'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /d360/wireless/interfaces-graph:
+    get:
+      tags:
+      - D360
+      summary: Wireless Interfaces Graph
+      description: List a list of wireless interfaces metrics for Graphing API.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_wireless_interfaces_graph
+      operationId: wirelessInterfacesGraph
+      parameters:
+      - name: deviceId
+        in: query
+        description: The device ID
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - $ref: '#/components/parameters/startTime'
+      - $ref: '#/components/parameters/endTime'
+      - name: channel
+        in: query
+        description: The channel filters.
+        required: true
+        schema:
+          $ref: '#/components/schemas/RmChannelFilterType'
+      - name: source
+        in: query
+        description: The source filters.
+        required: true
+        schema:
+          $ref: '#/components/schemas/RmSourceFilterType'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                description: The graph response based on filters.
+                items:
+                  $ref: '#/components/schemas/RmWirelessInterfacesGraphResponse'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /d360/client/stats:
+    get:
+      tags:
+      - D360
+      summary: Client Stats
+      description: Client statistics.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_client_stats
+      operationId: clientStats
+      parameters:
+      - name: deviceId
+        in: query
+        description: The device ID
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - $ref: '#/components/parameters/startTime'
+      - $ref: '#/components/parameters/endTime'
+      responses:
+        '200':
+          description: Returns the client statistics.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RmClientStats'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /d360/device/interfaces:
+    get:
+      tags:
+      - D360
+      summary: Wireless Interfaces per device
+      description: List available wifi interfaces on device model.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_device_interfaces
+      operationId: deviceInterfaces
+      parameters:
+      - name: deviceModel
+        in: query
+        description: The model of device
+        required: true
+        schema:
+          $ref: '#/components/schemas/RmDevices'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                description: The available interfaces for the device.
+                items:
+                  $ref: '#/components/schemas/RmDeviceInterfaces'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /d360/client/grid:
+    get:
+      tags:
+      - D360
+      summary: Client Grid
+      description: List a list of connected clients for Graphing API of D360.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_client_graph
+      operationId: clientGrid
+      parameters:
+      - $ref: '#/components/parameters/page'
+      - $ref: '#/components/parameters/limit'
+      - name: keyword
+        in: query
+        description: The keyword to search
+        required: false
+        schema:
+          type: string
+      - name: deviceId
+        in: query
+        description: The device ID
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - $ref: '#/components/parameters/startTime'
+      - $ref: '#/components/parameters/endTime'
+      - $ref: '#/components/parameters/selectedTime'
+      - name: clientStatus
+        in: query
+        description: The client statistics filter.
+        required: false
+        schema:
+          type: array
+          items:
+            $ref: '#/components/schemas/RmClientStatisticsFilter'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagedRmD360ClientGrid'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /d360/wireless/surrounding-aps/ssid-metadata:
+    get:
+      tags:
+      - D360
+      summary: SSID metadata of surrounding APs
+      description: Grid of Device Stats.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_ssid_metadata
+      operationId: ssidMetadata
+      parameters:
+      - name: deviceId
+        in: query
+        description: The device ID
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - $ref: '#/components/parameters/startTime'
+      - $ref: '#/components/parameters/endTime'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                description: The available ssids of the surrounding APs of the device
+                items:
+                  type: string
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /d360/event/graph:
+    get:
+      tags:
+      - D360
+      summary: Events Graph
+      description: Retrieve a time-series graph of event metrics. Each timestamp includes an array of event types with their respective counts. Only selected filters will be included in the response.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_event_graph
+      operationId: eventsGraph
+      parameters:
+      - $ref: '#/components/parameters/startTime'
+      - $ref: '#/components/parameters/endTime'
+      - name: deviceId
+        in: query
+        description: The device ID
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: filter
+        in: query
+        description: 'Filter events by type. Only selected event types will be included in the response. Valid values: `CRITICAL`, `MAJOR`, `MINOR`, `INFO`, `ACTIVE`, `CLEARED`, `ALL`.
+
+          '
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+            enum:
+            - CRITICAL
+            - MAJOR
+            - MINOR
+            - INFO
+            - ACTIVE
+            - CLEARED
+            - ALL
+          uniqueItems: true
+          example:
+          - CRITICAL
+          - MAJOR
+        style: form
+        explode: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                description: The Graph metric response.
+                properties:
+                  data:
+                    type: array
+                    description: List of event metrics grouped by timestamp.
+                    items:
+                      type: object
+                      properties:
+                        timestamp:
+                          type: integer
+                          format: int64
+                          description: The timestamp of the event metric (Unix epoch in ms).
+                        events:
+                          type: array
+                          description: List of event types and their counts.
+                          items:
+                            type: object
+                            properties:
+                              event_name:
+                                type: string
+                                enum:
+                                - CRITICAL
+                                - MAJOR
+                                - MINOR
+                                - INFO
+                                - ACTIVE
+                                - CLEARED
+                                - ALL
+                                description: The name of the event type.
+                              count:
+                                type: integer
+                                format: int64
+                                description: Number of events of this type at the timestamp.
+  /d360/wired/queue-grid:
+    get:
+      tags:
+      - D360
+      summary: Wired QOS queue grid
+      description: Returns all QOS queue statistics for a wired device.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_get_wired_queue_grid
+      operationId: wiredQueueGrid
+      parameters:
+      - $ref: '#/components/parameters/page'
+      - $ref: '#/components/parameters/limit'
+      - name: deviceId
+        in: query
+        description: The unique device identifier. It can be virtual slot id and all stack ports will be returned or a member slot id and only that slot ports will be returned.
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: Returns all QOS queue statistics for a wired device
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagedRmWiredQueueGridResponse'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+components:
+  schemas:
+    RmDeviceGeoLocation:
+      type: object
+      description: The Device Details.
+      properties:
+        gps_last_reported:
+          type: integer
+          description: Timestamp of when gps was last reported
+          format: int64
+        latitude:
+          type: integer
+          description: The latitude of geo location
+          format: int64
+        longitude:
+          type: integer
+          description: The longitude of geo location
+          format: int64
+        elevation:
+          type: integer
+          description: The elevation in metres
+          format: int64
+    RmSourceFilterType:
+      type: string
+      title: RmSourceFilterType
+      description: Pre-defined filters for wireless interface graph
+      enum:
+      - CHANNEL_UTILIZATION
+      - CONNECTED_CLIENTS
+      example: CHANNEL_UTILIZATION
+    RmClientStatisticsFilter:
+      type: string
+      title: RmClientStatisticsFilter
+      description: The pre defined filters for Client statistics grid
+      enum:
+      - POOR_HEALTH
+      - UNIQUE
+      - TOTAL
+      example: POOR_HEALTH
+    XiqDeviceType:
+      type: string
+      title: XiqDeviceType
+      description: Pre-defined filters for XIQ device type
+      enum:
+      - WIRELESS
+      - WIRED
+      example: WIRED
+    RmDevices:
+      title: RmDevices
+      description: The devices supported with IQE.
+      enum:
+      - AP_650
+      - AP_650X
+      - AP_4000
+      - AP_4000U
+      - AP_302W
+      - AP_510C
+      - AP_510CX
+      - AP_410C
+      - AP_460C
+      - AP_305C
+      - AP_305CX
+      - AP_460S6C
+      - AP_460S12C
+      - AP_5010
+      - AP_5010U
+      - AP_5050U
+      - AP_5050D
+      - AP_3000
+      - AP_3000X
+      - AP_5020
+      example: AP_650
+    RmDeviceInterfaces:
+      type: string
+      title: XiqDeviceType
+      description: Pre-defined filters for XIQ device type
+      enum:
+      - WIFI0
+      - WIFI1
+      - WIFI2
+      example: WIFI0
+    RmWirelessInterfacesGraphResponse:
+      type: object
+      description: The response for Wireless Interfaces graph.
+      properties:
+        timestamp:
+          type: integer
+          description: The graph metric timestamp.
+          format: int64
+        channel_utilization:
+          type: integer
+          description: The channel utilization.
+          format: int64
+        connected_clients:
+          type: integer
+          format: int64
+          description: The channel utilization percentage.
+    RmClientGraphResponse:
+      type: object
+      description: The response for client graph.
+      properties:
+        timestamp:
+          type: integer
+          description: The graph metric timestamp.
+          format: int64
+        connected_clients:
+          type: integer
+          format: int64
+          description: The channel utilization percentage.
+        unique_clients:
+          type: integer
+          format: int64
+          description: The number of clients connected.
+        poor_health_clients:
+          type: integer
+          format: int64
+          description: The signal-to-noise ratio.
+    XiqDeviceLicenseTier:
+      type: string
+      description: The Device License Tier Enum.
+      enum:
+      - NOT_APPLICABLE
+      - TIER_A
+      - TIER_B
+      - TIER_C
+      - TIER_D
+      - UNKNOWN
+      - NONE
+    RmClientStats:
+      type: object
+      description: The Client statistics..
+      properties:
+        total_clients:
+          type: integer
+          description: Total clients within selected time range.
+        poor_health_clients:
+          type: integer
+          description: Number of poor health clients
+        unique_clients:
+          type: integer
+          description: Number of unique clients
+    RmChannelFilterType:
+      type: string
+      title: RmChannelFilterType
+      description: Pre-defined channel filters for wireless interface graph
+      enum:
+      - WIFI0
+      - WIFI1
+      - WIFI2
+      example: WIFI0
+    RmClientGraphFilterType:
+      type: string
+      title: RmClientGraphFilterType
+      description: Pre-defined filters for client graph
+      enum:
+      - CONNECTED_CLIENTS
+      - UNIQUE_CLIENTS
+      - POOR_HEALTH_CLIENTS
+      - ALL
+      example: CONNECTED_CLIENTS
+    XiqErrorParams:
+      type: object
+      description: Error parameters
+      properties:
+        field:
+          type: string
+          description: The error field
+        value:
+          type: string
+          description: The error value
+    RmDeviceSummary:
+      type: object
+      description: The Device Summary.
+      properties:
+        connected_status:
+          type: boolean
+          description: Whether device is connected or not
+        active_since:
+          type: integer
+          description: Timestamp for time since when device is online
+          format: int64
+        device_health_issues:
+          type: integer
+          description: Number of device issues
+        usage_and_capacity_issues:
+          type: integer
+          description: Number of usage and capacity issues
+        client_health_issues:
+          type: integer
+          description: Number of client health issues
+        device_details:
+          $ref: '#/components/schemas/RmDeviceDetails'
+        system_information:
+          $ref: '#/components/schemas/RmDeviceSystemInformation'
+    GraphResponse:
+      type: object
+      description: The Graph metric response.
+      properties:
+        data:
+          type: array
+          description: The graph metric points
+          items:
+            type: object
+            properties:
+              value:
+                type: integer
+                description: The graph metric value
+                format: int64
+              timestamp:
+                type: integer
+                description: The graph metric timestamp
+                format: int64
+    PagedRmSurroundingAps:
+      allOf:
+      - $ref: '#/components/schemas/XiqPage'
+      - type: object
+        properties:
+          data:
+            type: array
+            description: The data in the current page
+            items:
+              $ref: '#/components/schemas/RmSurroundingAps'
+    number_filter:
+      type: object
+      description: If the filter type is between, only then min and max are to be used, else value is to be used.
+      properties:
+        column_name:
+          description: The name of the column being filtered
+          type: string
+        filter_type:
+          description: The type of number filter
+          type: string
+          enum:
+          - eq
+          - neq
+          - gt
+          - gte
+          - lt
+          - lte
+          - bw
+          - blank
+          - notblank
+        value:
+          description: The value of the number
+          type: integer
+          format: int64
+        min:
+          description: The minimum value of the number
+          type: integer
+          format: int64
+        max:
+          description: The maximum value of the number
+          type: integer
+          format: int64
+    RmWiredQueueGridResponse:
+      type: array
+      description: QOS queue statistics per interface
+      items:
+        allOf:
+        - type: array
+        - $ref: '#/components/schemas/RmWiredPortQosState'
+    PagedRmD360ClientGrid:
+      allOf:
+      - $ref: '#/components/schemas/XiqPage'
+      - type: object
+        properties:
+          data:
+            type: array
+            description: The data in the current page
+            items:
+              $ref: '#/components/schemas/RmD360ClientGrid'
+    XiqDeviceFunction:
+      type: string
+      description: The device function, such as AP, Router, Switch, etc.
+      enum:
+      - AP
+      - ROUTER
+      - ROUTER_AS_L2_VPN_GATEWAY
+      - ROUTER_AS_L3_VPN_GATEWAY
+      - SWITCH
+      - SWITCH_HAC
+      - SWITCH_DELL
+      - L2_VPN_GATEWAY
+      - L3_VPN_GATEWAY
+    XiqAhDeviceLicenseType:
+      type: string
+      description: The Device License Type Enum.
+      enum:
+      - LEGACY
+      - NAVIGATOR
+      - PILOT
+      - COPILOT
+      - NONE
+      - NA
+      - TRIAL
+      - NOT_REQUIRED
+      - GRACEPERIOD
+      - UNLICENSED
+      - STANDARD
+      - ADVANCED
+      - NOT_LICENSED
+    XiqError:
+      type: object
+      properties:
+        error_code:
+          type: string
+          description: The error code
+        error_id:
+          type: string
+          description: The error ID for internal troubleshooting
+        error_message:
+          type: string
+          description: The error detailed message
+        error_message_code:
+          type: string
+          description: The error message code
+        error_message_description:
+          type: string
+          description: The error message description
+        error_params:
+          $ref: '#/components/schemas/XiqErrorParams'
+      required:
+      - error_code
+      - error_id
+      - error_message
+    XiqDeviceHealthGridResponse:
+      type: object
+      properties:
+        device_id:
+          type: integer
+          description: The device identifier
+          format: int64
+        hostname:
+          type: string
+          description: The hostname of the client
+        device_ip:
+          type: string
+          description: The IP address of the client
+        site:
+          type: string
+          description: The site where the client is located
+        building:
+          type: string
+          description: The building where the client is located
+        floor:
+          type: string
+          description: The floor where the client is located
+        cpu_usage_percentage:
+          type: integer
+          format: int64
+          description: Percentage of CPU utilisation
+        memory_usage_percentage:
+          type: integer
+          format: int64
+          description: Percentage of memory utilisation
+        poe_usage_indicator:
+          type: boolean
+          description: Indicates whether PoE usage is within acceptable limits (device has adequate power supply).
+        channel_change_count:
+          type: integer
+          format: int64
+          description: The count for channel change for the device
+        wifi_reboots_count:
+          type: integer
+          format: int64
+          description: The count for Wi-Fi reboots for the device
+        eth0_unicast_score:
+          type: integer
+          format: int64
+          description: Unicast score for Eth0 interface
+        eth0_broadcast_score:
+          type: integer
+          format: int64
+          description: Broadcast score for Eth0 interface
+        eth0_multicast_score:
+          type: integer
+          format: int64
+          description: Multicast score for Eth0 interface
+        eth1_unicast_score:
+          type: integer
+          format: int64
+          description: Unicast score for Eth1 interface
+        eth1_broadcast_score:
+          type: integer
+          format: int64
+          description: Broadcast score for Eth1 interface
+        eth1_multicast_score:
+          type: integer
+          format: int64
+          description: Multicast score for Eth1 interface
+        has_device_health_issue:
+          type: boolean
+          description: Indicates where the device has a device health issue
+    XiqDeviceAdminState:
+      type: string
+      enum:
+      - NEW
+      - BOOTSTRAP
+      - STAGED
+      - MANAGED
+      - UNMANAGED
+    RmDeviceSystemInformation:
+      type: object
+      description: The Device System Information.
+      properties:
+        host_name:
+          type: string
+          description: The name of the host
+        network_policy:
+          type: string
+          description: The network policy applied to the device
+        ssid:
+          type: array
+          items:
+            type: string
+          description: The SSIDs of the network
+        device_model:
+          type: string
+          description: The model of the device
+        function:
+          $ref: '#/components/schemas/XiqDeviceFunction'
+        device_template:
+          type: string
+          description: The template used for the device configuration
+        alias:
+          type: string
+          description: The alias
+        configuration_type:
+          type: string
+          description: The type of configuration applied to the device
+        serial_number:
+          type: string
+          description: The serial number of the device
+        iq_engine:
+          type: string
+          description: The IQ engine version running on the device
+        device_status:
+          $ref: '#/components/schemas/XiqDeviceAdminState'
+        mgt0_ipv4_address:
+          type: string
+          description: The IPv4 address of the management interface
+        mgt0_ipv6_address:
+          type: string
+          description: The IPv6 address of the management interface
+        ipv4_subnet_mask:
+          type: string
+          description: The IPv4 subnet mask
+        ipv6_subnet_mask:
+          type: string
+          description: The IPv6 subnet mask
+        ipv4_default_gateway:
+          type: string
+          description: The IPv4 default gateway
+        ipv6_default_gateway:
+          type: string
+          description: The IPv6 default gateway
+        mgt0_macaddress:
+          type: string
+          description: The MAC address of the management interface
+        dns:
+          type: string
+          description: The DNS server addresses
+        ntp:
+          type: string
+          description: The NTP server addresses
+    RmDevicePathInfo:
+      type: object
+      description: The Device location path info.
+      properties:
+        folder_id:
+          type: integer
+          format: int64
+          description: Unique identifier for the folder.
+        parent_id:
+          type: integer
+          format: int64
+          description: Unique identifier for the parent folder.
+        name:
+          type: string
+          description: Name of the folder.
+        folder_type:
+          type: string
+          description: Type of the folder (e.g., FLOOR).
+    XiqAfcApStatus:
+      type: string
+      description: Status of AP AFC.
+      enum:
+      - PENDING
+      - GRACE_PERIOD
+      - AVAILABLE
+      - NA
+    PagedRmWiredQueueGridResponse:
+      allOf:
+      - $ref: '#/components/schemas/XiqPage'
+      - type: object
+        properties:
+          data:
+            type: array
+            description: The data in the current page
+            items:
+              $ref: '#/components/schemas/RmWiredQueueGridResponse'
+    XiqPage:
+      required:
+      - count
+      - page
+      - total_count
+      - total_pages
+      type: object
+      properties:
+        page:
+          type: integer
+          description: The current page number
+          format: int32
+        count:
+          type: integer
+          description: The element count of the current page
+          format: int32
+        total_pages:
+          type: integer
+          description: The total page number based on request page size
+          format: int32
+        total_count:
+          type: integer
+          description: The total element count
+          format: int64
+    RmDeviceData:
+      type: object
+      description: The Device Data.
+      properties:
+        folder_id:
+          type: integer
+          format: int64
+          description: Unique identifier for the folder containing the device.
+        device_id:
+          type: integer
+          format: int64
+          description: Unique identifier for the device.
+        device_mac_address:
+          type: string
+          description: MAC address of the device.
+        device_type:
+          type: string
+          description: Type or category of the device.
+        device_function:
+          type: string
+          description: Function or role of the device.
+        device_model:
+          type: string
+          description: The model of the device.
+        host_name:
+          type: string
+          description: Hostname assigned to the device.
+        image_base_url:
+          type: string
+          description: Base URL for the device's image.
+        image_file_name:
+          type: string
+          description: File name of the device's image.
+        image_width:
+          type: integer
+          description: Width of the device's image in pixels.
+        image_height:
+          type: integer
+          description: Height of the device's image in pixels.
+        connected_since:
+          type: integer
+          format: int64
+          description: Timestamp indicating when the device was first connected.
+        xaxis:
+          type: integer
+          description: X-axis coordinate of the device's location.
+        yaxis:
+          type: integer
+          description: Y-axis coordinate of the device's location.
+    RmMediaUploadResponse:
+      type: object
+      description: The Media Upload response.
+      properties:
+        id:
+          type: integer
+          description: Unique identifier for the media.
+        createdAt:
+          type: integer
+          format: int64
+          description: Timestamp when the media was created.
+        updatedAt:
+          type: integer
+          format: int64
+          description: Timestamp when the media was last updated.
+        ownerId:
+          type: integer
+          description: Unique identifier for the owner of the media.
+        orgId:
+          type: integer
+          description: Unique identifier for the organization.
+        deviceId:
+          type: integer
+          description: Unique identifier for the device.
+        title:
+          type: string
+          description: Title of the media.
+        type:
+          type: string
+          description: Type of the media (e.g., IMAGE, VIDEO).
+        size:
+          type: integer
+          description: Size of the media in bytes.
+        height:
+          type: integer
+          description: Height of the media in pixels.
+        width:
+          type: integer
+          description: Width of the media in pixels.
+        originalUrl:
+          type: string
+          description: URL to access the original media.
+        thumbnailUrl:
+          type: string
+          description: URL to access the thumbnail version of the media.
+        description:
+          type: string
+          description: Description of the media.
+    RmDeviceDetails:
+      type: object
+      description: The Device Details.
+      properties:
+        system_name:
+          type: string
+          description: The name of the system
+        ip_address:
+          type: string
+          description: The IP address of the device
+        model:
+          type: string
+          description: The model of the device
+        sys_up_time:
+          type: string
+          description: The system uptime
+        os_version:
+          type: string
+          description: The operating system version
+        location:
+          type: string
+          description: The physical location of the device
+        system_mac:
+          type: string
+          description: The MAC address of the system
+        serial_number:
+          type: string
+          description: The serial number of the device
+        system_description:
+          type: string
+          description: A brief description of the system
+        software_version:
+          type: string
+          description: The version of the software running on the device
+        device_license_tier:
+          $ref: '#/components/schemas/XiqDeviceLicenseTier'
+        device_license_type:
+          $ref: '#/components/schemas/XiqAhDeviceLicenseType'
+    RmWiredInterfaceGrid:
+      type: array
+      description: An array of wired interface objects.
+      items:
+        type: object
+        properties:
+          status:
+            type: string
+            enum:
+            - online
+            - offline
+            - unknown
+            description: The status of the interface.
+          interface:
+            type: string
+            enum:
+            - eth0
+            - eth1
+            description: The interface identifier.
+          poe_usage:
+            type: boolean
+            description: Whether POE is being used
+          port:
+            type: string
+            description: The port type.
+          speed:
+            type: integer
+            description: The speed of the interface in Mbps.
+          tx_bytes:
+            type: integer
+            description: The number of transmitted bytes.
+          rx_bytes:
+            type: integer
+            description: The number of received bytes.
+          tx_errors:
+            type: integer
+            description: The number of transmission errors.
+          rx_errors:
+            type: integer
+            description: The number of reception errors.
+          tx_drops:
+            type: integer
+            description: The number of dropped transmitted packets.
+          rx_drops:
+            type: integer
+            description: The number of dropped received packets.
+    RmSurroundingAps:
+      type: object
+      description: The Info about surrounding AP
+      properties:
+        mac:
+          type: string
+          description: The MAC address (BSSID) of the AP
+        ssid:
+          type: string
+          description: SSID of the AP
+        channelWidth:
+          type: string
+          description: Channel width
+        rssi:
+          type: integer
+          description: Received Signal Strength Indicator (RSSI)
+        mode:
+          type: string
+          description: Mode (Access / Backhaul)
+        apType:
+          type: integer
+          description: Type of AP (0 --> unknown, 1 --> rogue AP, 2 --> friendly AP)
+        isExtremeDevice:
+          type: string
+          description: Indicates if the device is an Extreme device
+        channelUtilization:
+          type: string
+          description: Channel utilization percentage
+        channelCrcRate:
+          type: string
+          description: Channel CRC rate
+        clientNum:
+          type: integer
+          description: Number of clients connected
+    RmWiredQueueStats:
+      type: object
+      properties:
+        qos_queue:
+          type: integer
+          format: int64
+          description: QOS queue value. In Switch Engine (EXOS) the values of 1 through 8 correspond to QOS profiles QP1 through QP8 respectively. In Fabric Engine (VOSS) the values of 0 to 7 correspond to QOS COS queues.
+        cong_pkts:
+          type: integer
+          format: int64
+          description: Number of packets dropped due to congestion on the QOS queue.
+        tx_pkts:
+          type: integer
+          format: int64
+          description: Number of packets transmitted on the QOS queue.
+    RmWiredPortQosState:
+      type: object
+      description: QOS queue statistics of the interface
+      properties:
+        port_name:
+          type: string
+          description: The interface name
+        queue_stats:
+          type: array
+          description: QOS queue statistics of the interface
+          items:
+            allOf:
+            - type: array
+            - $ref: '#/components/schemas/RmWiredQueueStats'
+    RmWirelessInterfacesList:
+      type: array
+      description: The WiFi interface list.
+      items:
+        type: object
+        properties:
+          wifi0:
+            $ref: '#/components/schemas/RmWifiIntStats'
+            description: Stats of WiFi interface 0
+          wifi1:
+            $ref: '#/components/schemas/RmWifiIntStats'
+            description: Stats of WiFi interface 1
+          wifi2:
+            description: Stats of WiFi interface 2
+            allOf:
+            - $ref: '#/components/schemas/RmWifiIntStats'
+            - type: object
+              properties:
+                afc_status:
+                  $ref: '#/components/schemas/XiqAfcApStatus'
+    RmD360ClientGrid:
+      type: object
+      description: The Client statistics.
+      properties:
+        connection_status:
+          type: boolean
+          description: Connection status of the client.
+        client_hostname:
+          type: string
+          description: Hostname of the client.
+        client_ip:
+          type: string
+          description: IP address of the client.
+        site:
+          type: string
+          description: Site where the client is located.
+        building:
+          type: string
+          description: Building where the client is located.
+        floor:
+          type: string
+          description: Floor where the client is located.
+        association_issues:
+          type: integer
+          description: Number of association issues.
+        authentication_issues:
+          type: integer
+          description: Number of authentication issues.
+        ip_address_issues:
+          type: integer
+          description: Number of IP address issues.
+        snr:
+          type: integer
+          description: Signal-to-noise ratio.
+        rssi:
+          type: integer
+          description: Received signal strength indicator.
+        channel_utilization_score:
+          type: integer
+          description: Channel utilization score.
+        frequency:
+          type: string
+          description: Frequency band used by the client.
+        roaming_issues:
+          type: integer
+          description: Number of roaming issues.
+        ipv4:
+          type: string
+          description: IPv4 address of the client.
+        connected_device_mac:
+          type: string
+          description: MAC address of the connected device.
+        ssid:
+          type: string
+          description: SSID of the network.
+        vlan:
+          type: integer
+          description: VLAN ID.
+        username:
+          type: string
+          description: Username of the client.
+        authentication:
+          type: string
+          description: Authentication method used.
+        encryption:
+          type: string
+          description: Encryption method used.
+        user_profile:
+          type: string
+          description: User profile assigned to the client.
+        alias:
+          type: string
+          description: Alias of the client.
+        category_assignment:
+          type: string
+          description: Category assignment of the client.
+        ipv6:
+          type: string
+          description: IPv6 address of the client.
+        client_device_id:
+          type: integer
+          description: Unique identifier for the client device.
+        device_id:
+          type: integer
+          description: Unique identifier for the device.
+        last_session_start_time:
+          type: integer
+          format: int64
+          description: Timestamp of the last session start time.
+        operating_system:
+          type: string
+          description: Operating system of the client device.
+        client_mac:
+          type: string
+          description: MAC address of the client device.
+    RmWifiIntStats:
+      type: object
+      description: The WiFi interface stats
+      properties:
+        ssid_count:
+          type: integer
+        ssids:
+          type: array
+          items:
+            type: string
+        number_of_clients:
+          type: integer
+        channel_utilization:
+          type: integer
+        channel:
+          type: integer
+        channel_width:
+          type: integer
+        load_balancing:
+          type: boolean
+        band_steering:
+          type: boolean
+        channel_utilization_details:
+          type: object
+          properties:
+            interference_percentage:
+              type: integer
+            tx_retries_percentage:
+              type: integer
+            rx_retries_percentage:
+              type: integer
+  parameters:
+    page:
+      name: page
+      in: query
+      description: Page number, min = 1
+      required: false
+      schema:
+        minimum: 1
+        type: integer
+        format: int32
+        default: 1
+    startTime:
+      name: startTime
+      in: query
+      description: The start time to query, epoch time in milliseconds since 1/1/1970
+      required: true
+      schema:
+        type: integer
+        format: int64
+    limit:
+      name: limit
+      in: query
+      description: Page Size, min = 1, max = 100
+      required: false
+      schema:
+        maximum: 100
+        minimum: 1
+        type: integer
+        format: int32
+        default: 10
+    endTime:
+      name: endTime
+      in: query
+      description: The end time to query, epoch time in milliseconds since 1/1/1970
+      required: true
+      schema:
+        type: integer
+        format: int64
+    selectedTime:
+      name: selectedTime
+      in: query
+      description: The selected time to query, epoch time in milliseconds since 1/1/1970
+      required: false
+      schema:
+        type: integer
+        format: int64
+  responses:
+    ErrorResponse:
+      description: The generic ExtremeCloud IQ API error response
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/XiqError'
+  securitySchemes:
+    BearerAuth:
+      type: http
+      description: JSON Web Token (JWT) based authentication
+      scheme: bearer
+      bearerFormat: JWT
+externalDocs:
+  description: API Reference
+  url: https://extremecloudiq.com/api-docs/api-reference.html

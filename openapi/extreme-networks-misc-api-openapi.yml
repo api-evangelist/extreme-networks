@@ -1,0 +1,239 @@
+openapi: 3.0.3
+info:
+  title: ExtremeCloud IQ Account Misc API
+  description: 'ExtremeCloud IQ™ API allows customers and partners to create solutions for the management, monitoring, and provisioning
+
+    of any ExtremeCloud IQ™ environment.
+
+
+    All related resources and documentation are available at [ExtremeCloud IQ Developer Portal](https://developer.extremecloudiq.com/).
+
+    Please check [Get Started and Tutorial](https://developer.extremecloudiq.com/documentation/) to understand how to use the APIs.
+
+
+    Get the [latest OpenAPI definition](https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI/blob/main/xcloudiq-openapi.yaml)
+
+    from [ExtremeCloud IQ OpenAPI GitHub repository](https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI).
+
+
+    Please have a valid [ExtremeCloud IQ](https://extremecloudiq.com/) account before getting started.
+
+    If you don''t have one, please [register a new account](https://www.extremenetworks.com/cloud-networking/).'
+  termsOfService: https://www.extremenetworks.com/company/legal/terms-of-use/
+  contact:
+    name: Extreme Networks Support
+    url: https://www.extremenetworks.com/support
+    email: support@extremenetworks.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  version: 25.9.0-36
+servers:
+- url: https://api.extremecloudiq.com
+  description: ExtremeCloud IQ REST API Server
+tags:
+- name: Misc
+  description: Metadata - Country/...
+paths:
+  /countries:
+    get:
+      tags:
+      - Misc
+      summary: Get country list
+      description: Get list of countries and country codes.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_get_country_list
+      operationId: getCountryList
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                $ref: '#/components/schemas/XiqCountry'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security: []
+  /countries/{countryCode}/:validate:
+    get:
+      tags:
+      - Misc
+      summary: Validate country code
+      description: Validate whether the country code is a valid code or not.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_validate_country_code
+      operationId: validateCountryCode
+      parameters:
+      - name: countryCode
+        in: path
+        description: The country code.
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: boolean
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security: []
+  /countries/{countryAlpha2Code}/states:
+    get:
+      tags:
+      - Misc
+      summary: Get state list in a country
+      description: Get list of states or provinces in a country with country alpha2 code.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_get_list_of_states_in_a_country
+      operationId: getStateListByCountryCode
+      parameters:
+      - name: countryAlpha2Code
+        in: path
+        description: The country ISO 2-letter code.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XiqCountryState'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security: []
+components:
+  schemas:
+    XiqCountry:
+      type: object
+      description: The country list and country codes.
+      required:
+      - alpha2_code
+      - country_code
+      - short_name
+      properties:
+        dial_code:
+          description: The dialing code for international calls, typically prefixed by the '+' key for mobile.
+          type: string
+        alpha2_code:
+          description: The country ISO 2-letter code.
+          type: string
+        country_code:
+          description: The country ISO numeric code.
+          format: int32
+          maximum: 999
+          minimum: 1
+          type: integer
+        internal_country_codes:
+          description: Extreme IQ internal country codes.
+          items:
+            description: Extreme IQ internal country codes.
+            format: int32
+            type: integer
+          type: array
+        short_name:
+          description: The country short name.
+          type: string
+        name_en:
+          description: The country official name in English.
+          type: string
+        name_jp:
+          description: The country official name in Japanese.
+          type: string
+        name_fr:
+          description: The country official name in French.
+          type: string
+        name_de:
+          description: The country official name in German.
+          type: string
+        name_it:
+          description: The country official name in Italian.
+          type: string
+        name_pt:
+          description: The country official name in Portuguese.
+          type: string
+        name_zh:
+          description: The country official name in Chinese.
+          type: string
+        name_es:
+          description: The country official name in Spanish.
+          type: string
+        name_ko:
+          description: The country official name in Korean.
+          type: string
+    XiqError:
+      type: object
+      properties:
+        error_code:
+          type: string
+          description: The error code
+        error_id:
+          type: string
+          description: The error ID for internal troubleshooting
+        error_message:
+          type: string
+          description: The error detailed message
+        error_message_code:
+          type: string
+          description: The error message code
+        error_message_description:
+          type: string
+          description: The error message description
+        error_params:
+          $ref: '#/components/schemas/XiqErrorParams'
+      required:
+      - error_code
+      - error_id
+      - error_message
+    XiqErrorParams:
+      type: object
+      description: Error parameters
+      properties:
+        field:
+          type: string
+          description: The error field
+        value:
+          type: string
+          description: The error value
+    XiqCountryState:
+      type: object
+      description: The states list of a country.
+      required:
+      - country_code
+      - code
+      - name
+      properties:
+        country_code:
+          description: The country ISO 2-letter code.
+          type: string
+        code:
+          description: The state or province code.
+          type: string
+        name:
+          description: The state or province name.
+          type: string
+  responses:
+    ErrorResponse:
+      description: The generic ExtremeCloud IQ API error response
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/XiqError'
+  securitySchemes:
+    BearerAuth:
+      type: http
+      description: JSON Web Token (JWT) based authentication
+      scheme: bearer
+      bearerFormat: JWT
+externalDocs:
+  description: API Reference
+  url: https://extremecloudiq.com/api-docs/api-reference.html

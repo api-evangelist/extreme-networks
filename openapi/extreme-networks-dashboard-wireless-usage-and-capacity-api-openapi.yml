@@ -1,0 +1,734 @@
+openapi: 3.0.3
+info:
+  title: ExtremeCloud IQ Account Dashboard - Wireless Usage and Capacity API
+  description: 'ExtremeCloud IQ™ API allows customers and partners to create solutions for the management, monitoring, and provisioning
+
+    of any ExtremeCloud IQ™ environment.
+
+
+    All related resources and documentation are available at [ExtremeCloud IQ Developer Portal](https://developer.extremecloudiq.com/).
+
+    Please check [Get Started and Tutorial](https://developer.extremecloudiq.com/documentation/) to understand how to use the APIs.
+
+
+    Get the [latest OpenAPI definition](https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI/blob/main/xcloudiq-openapi.yaml)
+
+    from [ExtremeCloud IQ OpenAPI GitHub repository](https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI).
+
+
+    Please have a valid [ExtremeCloud IQ](https://extremecloudiq.com/) account before getting started.
+
+    If you don''t have one, please [register a new account](https://www.extremenetworks.com/cloud-networking/).'
+  termsOfService: https://www.extremenetworks.com/company/legal/terms-of-use/
+  contact:
+    name: Extreme Networks Support
+    url: https://www.extremenetworks.com/support
+    email: support@extremenetworks.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  version: 25.9.0-36
+servers:
+- url: https://api.extremecloudiq.com
+  description: ExtremeCloud IQ REST API Server
+tags:
+- name: Dashboard - Wireless Usage and Capacity
+  description: Usage and capacity dashboard
+paths:
+  /dashboard/wireless/usage-capacity/grid:
+    post:
+      tags:
+      - Dashboard - Wireless Usage and Capacity
+      summary: Wireless usage & capacity grid
+      description: Returns the usage & capacity grid of wireless devices based on the provided filters. You can filter the results by sites.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_post_usage_and_capacity_grid
+      operationId: wirelessUsageAndCapacityGrid
+      parameters:
+      - $ref: '#/components/parameters/page'
+      - $ref: '#/components/parameters/limit'
+      - name: keyword
+        in: query
+        description: The keyword to search
+        required: false
+        schema:
+          type: string
+      - name: sortField
+        in: query
+        description: The sort order
+        required: false
+        schema:
+          $ref: '#/components/schemas/XiqUsageAndCapacitySortField'
+      - name: sortOrder
+        in: query
+        description: The sort order
+        required: false
+        schema:
+          $ref: '#/components/schemas/XiqSortOrder'
+      - name: includeUnassigned
+        in: query
+        description: To include unassigned devices
+        required: false
+        schema:
+          type: boolean
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                site_ids:
+                  description: List of site IDs to filter the usage & capacity grid
+                  type: array
+                  items:
+                    type: integer
+                    format: int64
+                device_ids:
+                  description: List of device IDs to filter the device health grid
+                  type: array
+                  items:
+                    type: integer
+                    format: int64
+                building_ids:
+                  description: List of building IDs to filter the usage & capacity grid
+                  type: array
+                  items:
+                    type: integer
+                    format: int64
+                buildings:
+                  description: List of building to filter the usage & capacity grid
+                  type: array
+                  items:
+                    type: string
+                floors:
+                  description: List of floor to filter the usage & capacity grid
+                  type: array
+                  items:
+                    type: string
+                has_usage_capacity_issues:
+                  description: Indicates if the device has a usage capacity issue
+                  type: boolean
+                has_packet_loss_issues:
+                  description: Indicates if the device has a packet loss issue
+                  type: boolean
+                has_retries_issues:
+                  description: Indicates if the device has a retries issue
+                  type: boolean
+                number_filters:
+                  type: array
+                  description: The number based column filters available (Available columns- radio_2dot4g_utilization_score, radio_5g_utilization_score, radio_6g_utilization_score, wifi0_retry_score, wifi1_retry_score, wifi2_retry_score, packet_loss).
+                  items:
+                    $ref: '#/components/schemas/number_filter'
+      responses:
+        '200':
+          description: Returns the response of usage & capacity grid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagedXiqUsageAndCapacityGridResponse'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /dashboard/wireless/usage-capacity/excessive-packet-loss:
+    post:
+      tags:
+      - Dashboard - Wireless Usage and Capacity
+      summary: Count of APs with excessive packet loss
+      description: Returns the count of wireless devices having excessive packet loss based on the provided filters. You can filter the results by sites.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_post_wireless_usage_capacity_excessive_packet_loss
+      operationId: wirelessUsageCapacityExcessivePacketLoss
+      parameters:
+      - name: includeUnassigned
+        in: query
+        description: To include unassigned devices
+        required: false
+        schema:
+          type: boolean
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                site_ids:
+                  description: List of site IDs to filter the count of APs with excessive packet loss
+                  type: array
+                  items:
+                    type: integer
+                    format: int64
+      responses:
+        '200':
+          description: Returns the counts of APs with excessive packet loss based on the filters
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  excessive_packet_loss_ap_count:
+                    type: integer
+                    format: int64
+                    description: Count of APs with excessive packet loss
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /dashboard/wireless/usage-capacity/excessive-utilization:
+    post:
+      tags:
+      - Dashboard - Wireless Usage and Capacity
+      summary: Count of APs with excessive utilization
+      description: Returns the count of wireless devices having excessive channel utilization based on the provided filters. You can filter the results by sites.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_post_wireless_usage_capacity_excessive_utilization
+      operationId: wirelessUsageCapacityExcessiveUtilization
+      parameters:
+      - name: includeUnassigned
+        in: query
+        description: To include unassigned devices
+        required: false
+        schema:
+          type: boolean
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                site_ids:
+                  description: List of site IDs to filter the counts of APs with excessive channel utilization
+                  type: array
+                  items:
+                    type: integer
+                    format: int64
+      responses:
+        '200':
+          description: Returns the counts of APs with excessive channel utilization based on the filters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XiqWirelessUsageCapacityExcessiveUtilization'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /dashboard/wireless/usage-capacity/excessive-retries:
+    post:
+      tags:
+      - Dashboard - Wireless Usage and Capacity
+      summary: Count of APs with excessive retries
+      description: Returns the count of wireless devices having excessive retries based on the provided filters. You can filter the results by sites.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_post_wireless_usage_capacity_excessive_retries
+      operationId: wirelessUsageCapacityExcessiveRetries
+      parameters:
+      - name: includeUnassigned
+        in: query
+        description: To include unassigned devices
+        required: false
+        schema:
+          type: boolean
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                site_ids:
+                  description: List of site IDs to filter the counts of APs with excessive retries
+                  type: array
+                  items:
+                    type: integer
+                    format: int64
+      responses:
+        '200':
+          description: Returns the counts of APs with excessive retries based on the filters
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  excessive_retries_ap_count:
+                    type: integer
+                    format: int64
+                    description: Count of APs with excessive retries
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /dashboard/wireless/usage-capacity/export:
+    post:
+      tags:
+      - Dashboard - Wireless Usage and Capacity
+      summary: 'Export Wireless usage & capacity grid as CSV File '
+      description: Returns the CSV File of the usage & capacity grid of wireless devices based on the provided filters. You can filter the results by sites.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_post_usage_and_capacity_grid
+      operationId: wirelessUsageAndCapacityGridExport
+      parameters:
+      - name: keyword
+        in: query
+        description: The keyword to search
+        required: false
+        schema:
+          type: string
+      - name: sortField
+        in: query
+        description: The sort field
+        required: false
+        schema:
+          $ref: '#/components/schemas/XiqUsageAndCapacitySortField'
+      - name: sortOrder
+        in: query
+        description: The sort order
+        required: false
+        schema:
+          $ref: '#/components/schemas/XiqSortOrder'
+      - name: includeUnassigned
+        in: query
+        description: To include unassigned devices
+        required: false
+        schema:
+          type: boolean
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                site_ids:
+                  description: List of site IDs to filter the usage & capacity grid
+                  type: array
+                  items:
+                    type: integer
+                    format: int64
+                device_ids:
+                  description: List of device IDs to filter the device health grid
+                  type: array
+                  items:
+                    type: integer
+                    format: int64
+                building_ids:
+                  description: List of building IDs to filter the usage & capacity grid
+                  type: array
+                  items:
+                    type: integer
+                    format: int64
+                buildings:
+                  description: List of building to filter the usage & capacity grid
+                  type: array
+                  items:
+                    type: string
+                floors:
+                  description: List of floor to filter the usage & capacity grid
+                  type: array
+                  items:
+                    type: string
+                has_usage_capacity_issues:
+                  description: Indicates if the device has a usage capacity issue
+                  type: boolean
+                number_filters:
+                  type: array
+                  description: The number based column filters available (Available columns- radio_2dot4g_utilization_score, radio_5g_utilization_score, radio_6g_utilization_score, wifi0_retry_score, wifi1_retry_score, wifi2_retry_score, packet_loss).
+                  items:
+                    $ref: '#/components/schemas/number_filter'
+      responses:
+        '202':
+          description: Accepted - The request has been accepted for processing, but the processing has not been completed.
+          headers:
+            cache-control:
+              description: Cache control directives
+              schema:
+                type: string
+            content-length:
+              description: The length of the response body in octets (8-bit bytes)
+              schema:
+                type: integer
+            date:
+              description: The date and time at which the message was originated
+              schema:
+                type: string
+                format: date-time
+            expires:
+              description: The date/time after which the response is considered stale
+              schema:
+                type: string
+            location:
+              description: The URL to which the client should navigate to check the status of the request
+              schema:
+                type: string
+                format: uri
+            pragma:
+              description: Implementation-specific directives that might apply to any recipient along the request-response chain
+              schema:
+                type: string
+            ratelimit-limit:
+              description: The maximum number of requests that the client is allowed to make in a given time period
+              schema:
+                type: string
+            ratelimit-remaining:
+              description: The number of requests remaining in the current rate limit window
+              schema:
+                type: integer
+            retry-after:
+              description: The amount of time to wait before making a follow-up request
+              schema:
+                type: integer
+            server:
+              description: A name for the server
+              schema:
+                type: string
+                example: nginx
+            x-content-type-options:
+              description: Prevents the browser from interpreting files as a different MIME type
+              schema:
+                type: string
+            x-xss-protection:
+              description: Enables cross-site scripting (XSS) filter
+              schema:
+                type: string
+                format: byte
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /dashboard/wireless/usage-capacity/reports/{id}:
+    get:
+      tags:
+      - Dashboard - Wireless Usage and Capacity
+      summary: Download the Export CSV file
+      description: Returns the CSV File of the Wireless Usage And Capacity status based on the provided filters.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_get_usage_and_capacity_report
+      operationId: wirelessUsageAndCapacityGridExportReport
+      parameters:
+      - name: id
+        in: path
+        description: The report ID
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Returns the CSV File of the usage and capacity grid
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+components:
+  schemas:
+    XiqError:
+      type: object
+      properties:
+        error_code:
+          type: string
+          description: The error code
+        error_id:
+          type: string
+          description: The error ID for internal troubleshooting
+        error_message:
+          type: string
+          description: The error detailed message
+        error_message_code:
+          type: string
+          description: The error message code
+        error_message_description:
+          type: string
+          description: The error message description
+        error_params:
+          $ref: '#/components/schemas/XiqErrorParams'
+      required:
+      - error_code
+      - error_id
+      - error_message
+    XiqUsageAndCapacitySortField:
+      type: string
+      title: UsageAndCapacitySortField
+      description: Pre-defined filters for usage and capacity filters - HOSTNAME - SITE - RADIO_2DOT4G_UTILIZATION_SCORE - RADIO_5G_UTILIZATION_SCORE - RADIO_6G_UTILIZATION_SCORE - WIFI0_RETRY_SCORE - WIFI1_RETRY_SCORE - WIFI2_RETRY_SCORE - WIFI0_PACKET_LOSS - WIFI1_PACKET_LOSS - WIFI2_PACKET_LOSS - ETH0_UNICAST_SCORE - ETH0_BROADCAST_SCORE - ETH0_MULTICAST_SCORE - ETH1_UNICAST_SCORE - ETH1_BROADCAST_SCORE - ETH1_MULTICAST_SCORE - WIFI0_INTERFERENCE_SCORE - WIFI1_INTERFERENCE_SCORE - WIFI2_INTERFERENCE_SCORE - WIFI0_NOISE - WIFI1_NOISE - WIFI2_NOISE - TOTAL_ETH0_SCORE - TOTAL_ETH1_SCORE
+      example: HOSTNAME
+    XiqSortOrder:
+      type: string
+      enum:
+      - ASC
+      - DESC
+    XiqErrorParams:
+      type: object
+      description: Error parameters
+      properties:
+        field:
+          type: string
+          description: The error field
+        value:
+          type: string
+          description: The error value
+    XiqPage:
+      required:
+      - count
+      - page
+      - total_count
+      - total_pages
+      type: object
+      properties:
+        page:
+          type: integer
+          description: The current page number
+          format: int32
+        count:
+          type: integer
+          description: The element count of the current page
+          format: int32
+        total_pages:
+          type: integer
+          description: The total page number based on request page size
+          format: int32
+        total_count:
+          type: integer
+          description: The total element count
+          format: int64
+    XiqWirelessUsageCapacityExcessiveUtilization:
+      type: object
+      properties:
+        total_ap_count:
+          type: integer
+          format: int64
+          description: Total count of APs
+        radio2_dot4g_utilization_issue_ap_count:
+          type: integer
+          format: int64
+          description: Count of APs with utilization issues for 2.4 GHz radio
+        radio5g_utilization_issue_ap_count:
+          type: integer
+          format: int64
+          description: Count of APs with utilization issues for 5 GHz radio
+        radio6g_utilization_issue_ap_count:
+          type: integer
+          format: int64
+          description: Count of APs with utilization issues for 6 GHz radio
+    number_filter:
+      type: object
+      description: If the filter type is between, only then min and max are to be used, else value is to be used.
+      properties:
+        column_name:
+          description: The name of the column being filtered
+          type: string
+        filter_type:
+          description: The type of number filter
+          type: string
+          enum:
+          - eq
+          - neq
+          - gt
+          - gte
+          - lt
+          - lte
+          - bw
+          - blank
+          - notblank
+        value:
+          description: The value of the number
+          type: integer
+          format: int64
+        min:
+          description: The minimum value of the number
+          type: integer
+          format: int64
+        max:
+          description: The maximum value of the number
+          type: integer
+          format: int64
+    PagedXiqUsageAndCapacityGridResponse:
+      allOf:
+      - $ref: '#/components/schemas/XiqPage'
+      - type: object
+        properties:
+          data:
+            type: array
+            description: The data in the current page
+            items:
+              $ref: '#/components/schemas/XiqUsageAndCapacityGridResponse'
+    XiqUsageAndCapacityGridResponse:
+      type: object
+      properties:
+        hostname:
+          type: string
+          description: Hostname of the device
+        device_ip:
+          type: string
+          description: The IP address of the device
+        site:
+          type: string
+          description: Site location of the device
+        building:
+          type: string
+          description: The building where the device is located
+        floor:
+          type: string
+          description: The floor where the device is located
+        mac_address:
+          type: string
+          description: MAC address of the device
+        device_id:
+          type: integer
+          description: The device ID
+          format: int64
+        healthy_clients:
+          type: integer
+          description: The count of healthy clients connected to the device
+          format: int32
+        unhealthy_clients:
+          type: integer
+          description: The count of unhealthy clients connected to the device
+          format: int32
+        radio_2dot4g_utilization_score:
+          type: integer
+          format: int64
+          description: Channel Utilization score for 2.4 GHz radio
+        radio_5g_utilization_score:
+          type: integer
+          format: int64
+          description: Channel Utilization score for 5 GHz radio
+        radio_6g_utilization_score:
+          type: integer
+          format: int64
+          description: Channel Utilization score for 6 GHz radio
+        wifi0_retry_score:
+          type: integer
+          format: int64
+          description: Retry score for wifi0
+        wifi1_retry_score:
+          type: integer
+          format: int64
+          description: Retry score for wifi1
+        wifi2_retry_score:
+          type: integer
+          format: int64
+          description: Retry score for wifi2
+        wifi0_packet_loss:
+          type: integer
+          format: int64
+          description: Packet loss score in APs for wifi0 interference
+        wifi1_packet_loss:
+          type: integer
+          format: int64
+          description: Packet loss score in APs for wifi1 interference
+        wifi2_packet_loss:
+          type: integer
+          format: int64
+          description: Packet loss score in APs for wifi2 interference
+        wifi0_interference_score:
+          type: integer
+          format: int64
+          description: Wifi 0 interface score
+        wifi1_interference_score:
+          type: integer
+          format: int64
+          description: Wifi 1 interface score
+        wifi2_interference_score:
+          type: integer
+          format: int64
+          description: Wifi 0 interface score
+        wifi0_noise:
+          type: integer
+          format: int64
+          description: Wifi 0 noise
+        wifi1_noise:
+          type: integer
+          format: int64
+          description: Wifi 1 noise
+        wifi2_noise:
+          type: integer
+          format: int64
+          description: Wifi 2 noise
+        link_error_2dot4g:
+          type: integer
+          format: int64
+          description: Link error score for 2.4 GHz radio
+        link_error_5g:
+          type: integer
+          format: int64
+          description: Link error score for 5 GHz radio
+        link_error_6g:
+          type: integer
+          format: int64
+          description: Link error score for 6 GHz radio
+        eth0_unicast_score:
+          type: integer
+          format: int64
+          description: Unicast score for Eth0 interface
+        eth0_broadcast_score:
+          type: integer
+          format: int64
+          description: Broadcast score for Eth0 interface
+        eth0_multicast_score:
+          type: integer
+          format: int64
+          description: Multicast score for Eth0 interface
+        eth1_unicast_score:
+          type: integer
+          format: int64
+          description: Unicast score for Eth1 interface
+        eth1_broadcast_score:
+          type: integer
+          format: int64
+          description: Broadcast score for Eth1 interface
+        eth1_multicast_score:
+          type: integer
+          format: int64
+          description: Multicast score for Eth1 interface
+        has_usage_capacity_issue:
+          type: boolean
+          description: Indicates if the device has a usage capacity issue
+  parameters:
+    page:
+      name: page
+      in: query
+      description: Page number, min = 1
+      required: false
+      schema:
+        minimum: 1
+        type: integer
+        format: int32
+        default: 1
+    limit:
+      name: limit
+      in: query
+      description: Page Size, min = 1, max = 100
+      required: false
+      schema:
+        maximum: 100
+        minimum: 1
+        type: integer
+        format: int32
+        default: 10
+  responses:
+    ErrorResponse:
+      description: The generic ExtremeCloud IQ API error response
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/XiqError'
+  securitySchemes:
+    BearerAuth:
+      type: http
+      description: JSON Web Token (JWT) based authentication
+      scheme: bearer
+      bearerFormat: JWT
+externalDocs:
+  description: API Reference
+  url: https://extremecloudiq.com/api-docs/api-reference.html

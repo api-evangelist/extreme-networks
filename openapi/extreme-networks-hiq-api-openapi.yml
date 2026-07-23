@@ -1,0 +1,455 @@
+openapi: 3.0.3
+info:
+  title: ExtremeCloud IQ Account HIQ API
+  description: 'ExtremeCloud IQ™ API allows customers and partners to create solutions for the management, monitoring, and provisioning
+
+    of any ExtremeCloud IQ™ environment.
+
+
+    All related resources and documentation are available at [ExtremeCloud IQ Developer Portal](https://developer.extremecloudiq.com/).
+
+    Please check [Get Started and Tutorial](https://developer.extremecloudiq.com/documentation/) to understand how to use the APIs.
+
+
+    Get the [latest OpenAPI definition](https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI/blob/main/xcloudiq-openapi.yaml)
+
+    from [ExtremeCloud IQ OpenAPI GitHub repository](https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI).
+
+
+    Please have a valid [ExtremeCloud IQ](https://extremecloudiq.com/) account before getting started.
+
+    If you don''t have one, please [register a new account](https://www.extremenetworks.com/cloud-networking/).'
+  termsOfService: https://www.extremenetworks.com/company/legal/terms-of-use/
+  contact:
+    name: Extreme Networks Support
+    url: https://www.extremenetworks.com/support
+    email: support@extremenetworks.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  version: 25.9.0-36
+servers:
+- url: https://api.extremecloudiq.com
+  description: ExtremeCloud IQ REST API Server
+tags:
+- name: HIQ
+  description: Hierarchical ExtremeCloud IQ
+paths:
+  /hiq/status:
+    get:
+      tags:
+      - HIQ
+      summary: Get HIQ status
+      description: Get Hierarchical ExtremeCloud IQ (HIQ) status.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_get_hiq_status
+      operationId: getHiqStatus
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XiqHiqStatus'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /hiq/context:
+    get:
+      tags:
+      - HIQ
+      summary: Get HIQ context
+      description: 'Get the current effective HIQ context for reading or creating data in organizations.
+
+        Appliable when HIQ is enabled.'
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_get_hiq_context
+      operationId: getHiqContext
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XiqHiqContext'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+    put:
+      tags:
+      - HIQ
+      summary: Set HIQ context
+      description: 'Set the current effective HIQ context for reading or creating data in organizations.
+
+        Only HIQ Admin can performance this operation when HIQ is enabled.'
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_set_hiq_context
+      operationId: setHiqContext
+      requestBody:
+        description: The new HIQ context
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/XiqHiqContext'
+        required: true
+      responses:
+        '200':
+          description: OK
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /hiq/context/reading:
+    get:
+      tags:
+      - HIQ
+      summary: Get organizations for reading data
+      description: 'Get organizations for reading data (Empty list means reading data from all organizations in the HIQ).
+
+        Appliable when HIQ is enabled.'
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_get_reading_context
+      operationId: getReadingOrgIds
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: integer
+                  format: int64
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+    put:
+      tags:
+      - HIQ
+      summary: Set organizations for reading data
+      description: 'Set organization for reading data (Empty list means reading data from all organizations in the HIQ).
+
+        Only HIQ Admin can performance this operation.'
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_set_reading_context
+      operationId: setReadingOrgIds
+      requestBody:
+        description: The organization IDs used for reading data
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: integer
+                format: int64
+        required: true
+      responses:
+        '200':
+          description: OK
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /hiq/context/creating:
+    get:
+      tags:
+      - HIQ
+      summary: Get organization for creating new data
+      description: 'Get organization for creating new data (Only one organization is active for creating new data).
+
+        Appliable when HIQ is enabled.'
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_get_creating_context
+      operationId: getCreatingOrgId
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: integer
+                format: int64
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+    put:
+      tags:
+      - HIQ
+      summary: Set organization for creating new data
+      description: 'Set organization for creating new data (Only one organization is active for creating new data).
+
+        Only HIQ Admin can performance this operation when HIQ is enabled.'
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_set_creating_context
+      operationId: setCreatingOrgId
+      requestBody:
+        description: The organization ID used for creating new data
+        content:
+          application/json:
+            schema:
+              type: integer
+              format: int64
+        required: true
+      responses:
+        '200':
+          description: OK
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /hiq/organizations:
+    get:
+      tags:
+      - HIQ
+      summary: List all organizations
+      description: List all organizations in current HIQ (Available when HIQ is enabled).
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_get_all_organizations
+      operationId: listOrganizations
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/XiqOrganization'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+    post:
+      tags:
+      - HIQ
+      summary: Create a new organization
+      description: Create a new organization in current HIQ (Available when HIQ is enabled).
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_create_organization
+      operationId: createOrganization
+      requestBody:
+        description: Create new organization request body
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/XiqCreateOrganizationRequest'
+        required: true
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XiqOrganization'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /hiq/organizations/{id}:
+    delete:
+      tags:
+      - HIQ
+      summary: Delete an existing organization
+      description: Delete an existing organization (Available when HIQ is enabled).
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_delete_organization
+      operationId: deleteOrganization
+      parameters:
+      - $ref: '#/components/parameters/id'
+      responses:
+        '204':
+          description: No Content
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /hiq/organizations/{id}/:rename:
+    post:
+      tags:
+      - HIQ
+      summary: Rename an existing organization
+      description: Rename an existing organization (Available when HIQ is enabled).
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_rename_organization
+      operationId: renameOrganization
+      parameters:
+      - $ref: '#/components/parameters/id'
+      requestBody:
+        description: The new organization name
+        content:
+          application/json:
+            schema:
+              type: string
+        required: true
+      responses:
+        '204':
+          description: No Content
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+components:
+  schemas:
+    XiqViqEntity:
+      allOf:
+      - $ref: '#/components/schemas/XiqBaseEntity'
+      - type: object
+        properties:
+          org_id:
+            type: integer
+            description: The organization identifier, valid when enabling HIQ feature
+            format: int64
+        required:
+        - org_id
+    XiqError:
+      type: object
+      properties:
+        error_code:
+          type: string
+          description: The error code
+        error_id:
+          type: string
+          description: The error ID for internal troubleshooting
+        error_message:
+          type: string
+          description: The error detailed message
+        error_message_code:
+          type: string
+          description: The error message code
+        error_message_description:
+          type: string
+          description: The error message description
+        error_params:
+          $ref: '#/components/schemas/XiqErrorParams'
+      required:
+      - error_code
+      - error_id
+      - error_message
+    XiqHiqContext:
+      type: object
+      required:
+      - reading_org_ids
+      - creating_org_id
+      properties:
+        reading_org_ids:
+          type: array
+          description: The organization ID list for reading data (Empty means read data from all organizations in the HIQ)
+          items:
+            type: integer
+            description: The organization ID list for reading data (Empty means read data from all organizations in the HIQ)
+            format: int64
+        creating_org_id:
+          type: integer
+          description: The organization ID for creating new data
+          format: int64
+    XiqErrorParams:
+      type: object
+      description: Error parameters
+      properties:
+        field:
+          type: string
+          description: The error field
+        value:
+          type: string
+          description: The error value
+    XiqHiqStatus:
+      type: object
+      required:
+      - enabled
+      properties:
+        enabled:
+          type: boolean
+          description: HIQ is enabled or not
+    XiqOrganization:
+      allOf:
+      - $ref: '#/components/schemas/XiqViqEntity'
+      - type: object
+        description: The HIQ organization
+        required:
+        - name
+        - type
+        properties:
+          name:
+            type: string
+            description: The organization name
+          type:
+            $ref: '#/components/schemas/XiqOrganizationType'
+          color:
+            type: string
+            description: The tagged color for the organization
+    XiqCreateOrganizationRequest:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          description: The organization name, must be unique in VIQ
+        color:
+          type: string
+          description: The tagged color for the organization
+    XiqOrganizationType:
+      type: string
+      description: The organization type
+      enum:
+      - REGULAR
+      - PRIVATE
+    XiqBaseEntity:
+      required:
+      - id
+      - create_time
+      - update_time
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The unique identifier
+          format: int64
+        create_time:
+          type: string
+          description: The create time
+          format: date-time
+        update_time:
+          type: string
+          description: The last update time
+          format: date-time
+  parameters:
+    id:
+      name: id
+      in: path
+      description: The unique identifier
+      required: true
+      schema:
+        type: integer
+        format: int64
+  responses:
+    ErrorResponse:
+      description: The generic ExtremeCloud IQ API error response
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/XiqError'
+  securitySchemes:
+    BearerAuth:
+      type: http
+      description: JSON Web Token (JWT) based authentication
+      scheme: bearer
+      bearerFormat: JWT
+externalDocs:
+  description: API Reference
+  url: https://extremecloudiq.com/api-docs/api-reference.html

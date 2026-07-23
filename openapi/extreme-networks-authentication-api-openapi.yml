@@ -1,0 +1,214 @@
+openapi: 3.0.3
+info:
+  title: ExtremeCloud IQ Account Authentication API
+  description: 'ExtremeCloud IQ™ API allows customers and partners to create solutions for the management, monitoring, and provisioning
+
+    of any ExtremeCloud IQ™ environment.
+
+
+    All related resources and documentation are available at [ExtremeCloud IQ Developer Portal](https://developer.extremecloudiq.com/).
+
+    Please check [Get Started and Tutorial](https://developer.extremecloudiq.com/documentation/) to understand how to use the APIs.
+
+
+    Get the [latest OpenAPI definition](https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI/blob/main/xcloudiq-openapi.yaml)
+
+    from [ExtremeCloud IQ OpenAPI GitHub repository](https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI).
+
+
+    Please have a valid [ExtremeCloud IQ](https://extremecloudiq.com/) account before getting started.
+
+    If you don''t have one, please [register a new account](https://www.extremenetworks.com/cloud-networking/).'
+  termsOfService: https://www.extremenetworks.com/company/legal/terms-of-use/
+  contact:
+    name: Extreme Networks Support
+    url: https://www.extremenetworks.com/support
+    email: support@extremenetworks.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  version: 25.9.0-36
+servers:
+- url: https://api.extremecloudiq.com
+  description: ExtremeCloud IQ REST API Server
+tags:
+- name: Authentication
+  description: User login & logout
+paths:
+  /login:
+    post:
+      tags:
+      - Authentication
+      summary: User login with username and password
+      description: Get access token via username and password authentication. <p> The client must present Bearer token to access the protected API endpoints.The Bearer token should be present in the "Authorization" request header field and use the "Bearer" HTTP authentication scheme to transmit the access token. <p> User can also provide an optional rate limits parameter to control the rate limiting for the current session.
+      operationId: login
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_login
+      requestBody:
+        description: Login request body
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/XiqLoginRequest'
+            examples:
+              Normal_login:
+                summary: Login with username and password
+                description: User login with username/email and password
+                value:
+                  username: username@company.com
+                  password: ChangeMe
+              login_with_rate_limiting:
+                summary: Login with rate limiting
+                description: User login with rate limiting
+                value:
+                  username: username@company.com
+                  password: ChangeMe
+                  rate_limit:
+                    hour: 7500
+              login_with_multiple_rate_limits:
+                summary: Login with multiple rate limits
+                description: User login with multiple rate limits
+                value:
+                  username: username@company.com
+                  password: ChangeMe
+                  rate_limit:
+                    hour: 7500
+                    second: 100
+        required: true
+      responses:
+        '200':
+          description: Successfully login
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XiqLoginResponse'
+              examples:
+                Login_successful:
+                  summary: Login successful
+                  description: Login successful response example.
+                  value:
+                    access_token: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBjdXN0MDAxLmNvbSIsInVzZXJfaWQiOjEsInJvbGUiOiJBZG1pbmlzdHJhdG9yIiwiY3VzdG9tZXJfaWQiOjEsImN1c3RvbWVyX21vZGUiOjAsImhpcV9lbmFibGVkIjpmYWxzZSwib3duZXJfaWQiOjEwMiwib3JnX2lkIjowLCJkYXRhX2NlbnRlciI6IlVTX1dlc3QiLCJxdW90YSI6Ijc1MDA7dz0zNjAwIiwianRpIjoiMTcyZTExMWMwNDMzNDBkODkyYmViYTkyNmZlOTM0NmYiLCJpc3MiOiJleHRyZW1lY2xvdWRpcS5jb20iLCJpYXQiOjE2NDQ4NzcwNDgsImV4cCI6MTY0NDk2MzQ0OH0.kFRSUXLhg9800gSU2BQ4Gf7l_8eEhgpd0D90Ia6w0kw
+                    token_type: Bearer
+                    expires_in: 86400
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+  /logout:
+    post:
+      tags:
+      - Authentication
+      summary: User logout (Revoke the current access token)
+      description: User logout, the current access token will be revoked and the following access with the same token will be immediately denied.
+      operationId: logout
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_logout
+      responses:
+        '200':
+          description: OK
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+components:
+  schemas:
+    XiqError:
+      type: object
+      properties:
+        error_code:
+          type: string
+          description: The error code
+        error_id:
+          type: string
+          description: The error ID for internal troubleshooting
+        error_message:
+          type: string
+          description: The error detailed message
+        error_message_code:
+          type: string
+          description: The error message code
+        error_message_description:
+          type: string
+          description: The error message description
+        error_params:
+          $ref: '#/components/schemas/XiqErrorParams'
+      required:
+      - error_code
+      - error_id
+      - error_message
+    XiqLoginResponse:
+      type: object
+      required:
+      - access_token
+      - token_type
+      - expires_in
+      properties:
+        access_token:
+          type: string
+          description: The access token with JWT format issued by ExtremeCloud IQ
+        token_type:
+          type: string
+          description: The type of token, only supports "Bearer" currently
+        expires_in:
+          type: integer
+          format: int32
+          description: The lifetime in seconds of the access token
+    RateLimitPolicy:
+      type: object
+      description: Configuration for API usage quotas and throughput limits.
+      required:
+      - hour
+      properties:
+        hour:
+          type: integer
+          format: int64
+          minimum: 1
+          description: The sustained request quota per hour. Defines the baseline traffic capacity.
+          example: 7500
+        second:
+          type: integer
+          format: int64
+          minimum: 1
+          description: The maximum burst allowance per second. If omitted, no short-term throttling is applied.
+          example: 100
+    XiqErrorParams:
+      type: object
+      description: Error parameters
+      properties:
+        field:
+          type: string
+          description: The error field
+        value:
+          type: string
+          description: The error value
+    XiqLoginRequest:
+      allOf:
+      - type: object
+        required:
+        - username
+        - password
+        properties:
+          username:
+            type: string
+            description: The login username
+          password:
+            type: string
+            description: The login password
+          rate_limit:
+            $ref: '#/components/schemas/RateLimitPolicy'
+  responses:
+    ErrorResponse:
+      description: The generic ExtremeCloud IQ API error response
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/XiqError'
+  securitySchemes:
+    BearerAuth:
+      type: http
+      description: JSON Web Token (JWT) based authentication
+      scheme: bearer
+      bearerFormat: JWT
+externalDocs:
+  description: API Reference
+  url: https://extremecloudiq.com/api-docs/api-reference.html

@@ -1,0 +1,1020 @@
+openapi: 3.0.3
+info:
+  title: ExtremeCloud IQ Account Client API
+  description: 'ExtremeCloud IQ™ API allows customers and partners to create solutions for the management, monitoring, and provisioning
+
+    of any ExtremeCloud IQ™ environment.
+
+
+    All related resources and documentation are available at [ExtremeCloud IQ Developer Portal](https://developer.extremecloudiq.com/).
+
+    Please check [Get Started and Tutorial](https://developer.extremecloudiq.com/documentation/) to understand how to use the APIs.
+
+
+    Get the [latest OpenAPI definition](https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI/blob/main/xcloudiq-openapi.yaml)
+
+    from [ExtremeCloud IQ OpenAPI GitHub repository](https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI).
+
+
+    Please have a valid [ExtremeCloud IQ](https://extremecloudiq.com/) account before getting started.
+
+    If you don''t have one, please [register a new account](https://www.extremenetworks.com/cloud-networking/).'
+  termsOfService: https://www.extremenetworks.com/company/legal/terms-of-use/
+  contact:
+    name: Extreme Networks Support
+    url: https://www.extremenetworks.com/support
+    email: support@extremenetworks.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  version: 25.9.0-36
+servers:
+- url: https://api.extremecloudiq.com
+  description: ExtremeCloud IQ REST API Server
+tags:
+- name: Client
+  description: The clients associate to the devices of ExtremeCloud IQ
+paths:
+  /clients/active:
+    get:
+      tags:
+      - Client
+      summary: List active clients
+      description: List active clients with filters and pagination.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_list_active_clients
+      operationId: getActiveClients
+      parameters:
+      - $ref: '#/components/parameters/page'
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/fields'
+      - $ref: '#/components/parameters/views'
+      - $ref: '#/components/parameters/locationIds'
+      - $ref: '#/components/parameters/deviceIds'
+      - name: vlans
+        in: query
+        description: The associate vlan IDs
+        required: false
+        schema:
+          type: array
+          items:
+            type: integer
+            format: int32
+      - name: userProfileNames
+        in: query
+        description: The user profile names
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: ssids
+        in: query
+        description: The SSIDs
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: clientOsNames
+        in: query
+        description: The client os names
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: clientConnectionTypes
+        in: query
+        description: The client connection types - 1 - WIRELESS, 2 - WIRED, -1 - UNDETERMINED
+        required: false
+        schema:
+          type: array
+          items:
+            type: integer
+      - name: clientHealthStatus
+        in: query
+        description: The client health status - 1 - HEALTHY, 2 - POOR
+        required: false
+        schema:
+          type: integer
+      - name: excludeLocallyManaged
+        in: query
+        description: Return Cloud managed Devices' clients. Default value - false
+        required: false
+        schema:
+          type: boolean
+      - name: userNames
+        in: query
+        description: The user names.
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: searchString
+        in: query
+        description: The SearchString
+        required: false
+        schema:
+          type: string
+      - name: sortField
+        in: query
+        description: Sort field. Available values - AUTH_METHOD, CHANNEL, CONNECTED_VIA, CONNECTION_TYPE, DEVICE_NAME, HOST_NAME, IPV4, IPV6, MAC, NAC_DETAILS, NAC_PROFILE, OS_TYPE, REPORTED_BY, START_TIME, USER_NAME, USER_PROFILE, VLAN
+        required: false
+        schema:
+          type: string
+      - name: sortOrder
+        in: query
+        description: Sort order (ascending by default). Available values - ASC, DESC
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagedXiqClient'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /clients/summary:
+    get:
+      tags:
+      - Client
+      summary: Get client summary metrics
+      description: Get number of connected wireless clients and number of detected wired clients.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_get_client_summary
+      operationId: getClientSummary
+      parameters:
+      - $ref: '#/components/parameters/locationIds'
+      - $ref: '#/components/parameters/deviceIds'
+      - name: vlans
+        in: query
+        description: The associate VLAN IDs
+        required: false
+        schema:
+          type: array
+          items:
+            type: integer
+            format: int32
+      - name: userProfileNames
+        in: query
+        description: The user profile names
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: ssids
+        in: query
+        description: The SSIDs
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: clientOsNames
+        in: query
+        description: The client os names
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: clientHealthStatus
+        in: query
+        description: The client health status - 1 - HEALTHY, 2 - POOR
+        required: false
+        schema:
+          type: integer
+      - name: excludeLocallyManaged
+        in: query
+        description: Return Cloud managed Devices' clients. Default value - false
+        required: false
+        schema:
+          type: boolean
+      - name: searchString
+        in: query
+        description: The SearchString
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XiqClientSummary'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /clients/usage:
+    get:
+      tags:
+      - Client
+      summary: Get usage per client
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_get_client_usage
+      operationId: getClientUsage
+      description: Get the client usage.
+      parameters:
+      - name: clientIds
+        in: query
+        description: The client IDs
+        required: true
+        schema:
+          type: array
+          items:
+            type: integer
+            format: int64
+      - $ref: '#/components/parameters/startTime'
+      - $ref: '#/components/parameters/endTime'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/XiqClientUsage'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /clients/{id}:
+    get:
+      tags:
+      - Client
+      summary: Get client info
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_get_client_details
+      operationId: getClient
+      description: Get client detailed information.
+      parameters:
+      - $ref: '#/components/parameters/id'
+      - $ref: '#/components/parameters/fields'
+      - $ref: '#/components/parameters/views'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XiqClient'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /clients/alias:
+    put:
+      tags:
+      - Client
+      summary: Set the aliases for multiple clients
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_set_aliases_for_multiple_clients
+      operationId: setClientsAliases
+      description: Bulk update the aliases for multiple clients based on the mac addresses. Empty or null alias value deletes the previous client alias.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/XiqClientMacAddressAlias'
+        required: true
+      responses:
+        '200':
+          description: OK
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /clients/active/count:
+    get:
+      tags:
+      - Client
+      summary: Get active clients count
+      description: List active clients count.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_get_count_of_active_clients
+      operationId: getActiveClientsCount
+      parameters:
+      - $ref: '#/components/parameters/page'
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/fields'
+      - $ref: '#/components/parameters/views'
+      - $ref: '#/components/parameters/locationIds'
+      - $ref: '#/components/parameters/deviceIds'
+      - name: vlans
+        in: query
+        description: The associate vlan IDs
+        required: false
+        schema:
+          type: array
+          items:
+            type: integer
+            format: int32
+      - name: userProfileNames
+        in: query
+        description: The user profile names
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: ssids
+        in: query
+        description: The SSIDs
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: clientOsNames
+        in: query
+        description: The client os names
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: clientConnectionTypes
+        in: query
+        description: The client connection types - 1 - WIRELESS, 2 - WIRED, -1 - UNDETERMINED
+        required: false
+        schema:
+          type: array
+          items:
+            type: integer
+      - name: clientHealthStatus
+        in: query
+        description: The client health status - 1 - HEALTHY, 2 - POOR
+        required: false
+        schema:
+          type: integer
+      - name: excludeLocallyManaged
+        in: query
+        description: Return Cloud managed Devices' clients. Default value - false
+        required: false
+        schema:
+          type: boolean
+      - name: searchString
+        in: query
+        description: The SearchString
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetActiveClientsResponse'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /clients/byMac/{clientMac}:
+    delete:
+      tags:
+      - Client
+      summary: Disconnect the client
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_delete_client_by_macaddress
+      operationId: disconnectClient
+      description: Disconnect the client.
+      parameters:
+      - $ref: '#/components/parameters/mac'
+      responses:
+        '200':
+          description: OK
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /clients/getByMac/{clientMac}:
+    get:
+      tags:
+      - Client
+      summary: Get client info by mac
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_get_client_details_for_one_client
+      operationId: getClientByMac
+      description: Get detailed client information by mac.
+      parameters:
+      - $ref: '#/components/parameters/mac'
+      - $ref: '#/components/parameters/fields'
+      - $ref: '#/components/parameters/views'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XiqClient'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /clients/disconnect:
+    post:
+      tags:
+      - Client
+      summary: Disconnect clients
+      description: Disconnect one or more clients by their MAC addresses.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_delete_client_by_macaddress
+      operationId: disconnect_clients
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                mac_addresses:
+                  type: array
+                  description: List of client MAC addresses to disconnect
+                  items:
+                    type: string
+                    format: mac
+      responses:
+        '200':
+          description: OK
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+components:
+  parameters:
+    fields:
+      name: fields
+      in: query
+      description: The client fields to return
+      required: false
+      schema:
+        type: array
+        items:
+          $ref: '#/components/schemas/XiqClientField'
+    startTime:
+      name: startTime
+      in: query
+      description: The start time to query, epoch time in milliseconds since 1/1/1970
+      required: true
+      schema:
+        type: integer
+        format: int64
+    page:
+      name: page
+      in: query
+      description: Page number, min = 1
+      required: false
+      schema:
+        minimum: 1
+        type: integer
+        format: int32
+        default: 1
+    limit:
+      name: limit
+      in: query
+      description: Page Size, min = 1, max = 100
+      required: false
+      schema:
+        maximum: 100
+        minimum: 1
+        type: integer
+        format: int32
+        default: 10
+    views:
+      name: views
+      in: query
+      description: The views to return client fields (Check fields for each view at XiqClientView schema)
+      required: false
+      schema:
+        type: array
+        items:
+          $ref: '#/components/schemas/XiqClientView'
+    endTime:
+      name: endTime
+      in: query
+      description: The end time to query, epoch time in milliseconds since 1/1/1970
+      required: true
+      schema:
+        type: integer
+        format: int64
+    mac:
+      name: clientMac
+      in: path
+      description: The mac address of client
+      required: true
+      schema:
+        type: string
+    id:
+      name: id
+      in: path
+      description: The unique identifier
+      required: true
+      schema:
+        type: integer
+        format: int64
+    locationIds:
+      name: locationIds
+      in: query
+      description: The location IDs
+      required: false
+      schema:
+        type: array
+        items:
+          type: integer
+          format: int64
+    deviceIds:
+      name: deviceIds
+      in: query
+      description: The device IDs
+      required: false
+      schema:
+        type: array
+        items:
+          type: integer
+          format: int64
+  schemas:
+    PagedXiqClient:
+      allOf:
+      - $ref: '#/components/schemas/XiqPage'
+      - type: object
+        properties:
+          data:
+            type: array
+            description: The data in the current page
+            items:
+              $ref: '#/components/schemas/XiqClient'
+    XiqLocationEntity:
+      allOf:
+      - $ref: '#/components/schemas/XiqViqEntity'
+      - type: object
+        properties:
+          location_id:
+            type: integer
+            description: The location identifier
+            format: int64
+        required:
+        - location_id
+    XiqClientField:
+      type: string
+      enum:
+      - ID
+      - CREATE_TIME
+      - UPDATE_TIME
+      - ORG_ID
+      - ORG_NAME
+      - LOCATION_ID
+      - LOCATIONS
+      - HOSTNAME
+      - MAC_ADDRESS
+      - IP_ADDRESS
+      - IPV6_ADDRESS
+      - OS_TYPE
+      - DEVICE_ID
+      - DEVICE_FUNCTION
+      - DEVICE_NAME
+      - USERNAME
+      - USER_PROFILE_NAME
+      - CONNECTED
+      - ONLINE_TIME
+      - OFFLINE_TIME
+      - VLAN
+      - CONNECTION_TYPE
+      - SSID
+      - PORT
+      - BSSID
+      - PORT_TYPE_NAME
+      - INTERFACE_NAME
+      - AUTH
+      - ENCRYPTION_METHOD
+      - CHANNEL
+      - CLIENT_HEALTH
+      - APPLICATION_HEALTH
+      - NETWORK_HEALTH
+      - RADIO_HEALTH
+      - RSSI
+      - SNR
+      - RADIO_TYPE
+      - WING_AP
+      - VENDOR
+      - MOBILITY
+      - CATEGORY
+      - DESCRIPTION
+      - DEVICE_MAC_ADDRESS
+      - ALIAS
+      - PRODUCT_TYPE
+      - MAKE
+      - OS_VERSION
+      - CONNECTED_TO
+      - CONNECTION_DURATION
+      - CAPTIVE_WEB_PORTAL
+    XiqClient:
+      allOf:
+      - $ref: '#/components/schemas/XiqDeviceEntity'
+      - type: object
+        properties:
+          hostname:
+            type: string
+            description: The hostname of the client
+          mac_address:
+            type: string
+            description: The MAC address of the client
+          ip_address:
+            type: string
+            description: The IP address of the client
+          ipv6_address:
+            type: string
+            description: The IPv6 address of the client
+          os_type:
+            type: string
+            description: The OS type of the client
+          username:
+            type: string
+            description: The username of the client.
+          user_profile_name:
+            type: string
+            description: The user profile name of the client
+          connected:
+            type: boolean
+            description: Client is connected or not
+          online_time:
+            type: string
+            description: The online time for the client
+            format: date-time
+          offline_time:
+            type: string
+            description: The offline time for the client
+            format: date-time
+          vlan:
+            type: integer
+            description: The associate VLAN
+            format: int32
+          connection_type:
+            type: integer
+            description: The connection type
+            format: int32
+          ssid:
+            type: string
+            description: The SSID
+          port:
+            type: string
+            description: The associate device port
+          org_name:
+            type: string
+            description: The organization name
+          device_function:
+            type: integer
+            description: The associated device function
+            format: int32
+          device_mac_address:
+            type: string
+            description: The associated device mac address
+          device_name:
+            type: string
+            description: The associated device name
+          auth:
+            type: integer
+            description: The authentication type
+            format: int32
+          channel:
+            type: integer
+            description: The channel value
+            format: int32
+          client_health:
+            type: integer
+            description: The health score of client
+            format: int32
+          application_health:
+            type: integer
+            description: The health score of application
+            format: int32
+          radio_health:
+            type: integer
+            description: The health score of radio
+            format: int32
+          network_health:
+            type: integer
+            description: The health score of network
+            format: int32
+          radio_type:
+            type: integer
+            description: 'The radio type. Represented by an integer code for each standard:
+
+              - 1 - 2.4G
+
+              - 2 - 5G
+
+              - 3 - WIRED
+
+              - 4 - 6G
+
+              - 5 - THREAD'
+            format: int32
+          encryption_method:
+            type: integer
+            description: 'The encryption method, represented by an integer code for each encryption type:
+
+              - -1 - N/A (Not applicable)
+
+              - 0  - AES (Advanced Encryption Standard)
+
+              - 1  - TKIP (Temporal Key Integrity Protocol)
+
+              - 2  - WEP (Wired Equivalent Privacy)
+
+              - 3  - NON (No encryption)
+
+              - 4  - CCMP (Counter Mode with Cipher Block Chaining Message Authentication Code Protocol)
+
+              - 5  - KEYGUARD (Keyguard encryption)
+
+              - 6  - WEP128 (128-bit WEP encryption)
+
+              - 7  - WEP64 (64-bit WEP encryption)
+
+              - 8  - WAPI (WLAN Authentication and Privacy Infrastructure)
+
+              - 9  - GCMP256 (256-bit Galois/Counter Mode Protocol)
+
+              - 10 - NONE (No encryption)
+
+              - 11 - PAP (Password Authentication Protocol)
+
+              - 12 - MsCHAP (Microsoft Challenge Handshake Authentication Protocol)
+
+              - 13 - EAP-MD5 (Extensible Authentication Protocol - MD5)
+
+              - 14 - EAP-TLS (Extensible Authentication Protocol - Transport Layer Security)
+
+              - 15 - PEAP (Protected Extensible Authentication Protocol)
+
+              - 16 - TTLS (Tunneled Transport Layer Security)
+
+              - 17 - TTLS-INNER-TUNNEL (Inner tunnel for TTLS)
+
+              - 18 - PEAP-INNER-TUNNEL (Inner tunnel for PEAP)
+
+              - 19 - EAP-FAST (Extensible Authentication Protocol - Flexible Authentication via Secure Tunneling)
+
+              - 20 - EAP-LEAP (Lightweight Extensible Authentication Protocol)
+
+              - 21 - EAP-RSA (Extensible Authentication Protocol - RSA)
+
+              - 22 - EAP-SIM (Extensible Authentication Protocol - SIM)
+
+              - 23 - EAP-AKA (Extensible Authentication Protocol - AKA)
+
+              - 24 - EAP-TEAP (Extensible Authentication Protocol - Tunneled EAP)'
+            format: int32
+          mac_protocol:
+            type: string
+            description: "The MAC protocol.\n - 'N/A'\n - '802.11a'\n - '802.11b'\n - '802.11g'\n - '802.11na'\n - '802.11ng'\n - '802.11ac'\n - '802.11ax-2.4g'\n - '802.11ax-5g'\n - '802.3'\n - '802.11ax-6g'\n - '802.15.4'\n - '802.11be-2g'\n - '802.11be-5g'\n - '802.11be-6g'"
+          interface_name:
+            type: string
+            description: The interface name
+          bssid:
+            type: string
+            description: The bssid
+          rssi:
+            type: integer
+            description: The RSSI
+            format: int32
+          snr:
+            type: integer
+            description: The SNR
+            format: int32
+          description:
+            type: string
+            description: The description of client
+          category:
+            type: string
+            description: The category of client
+          mobility:
+            type: string
+            description: The client mobility
+          port_type_name:
+            type: string
+            description: The client port type name
+          wing_ap:
+            type: boolean
+            description: Wing ap flag
+          vendor:
+            type: string
+            description: The vendor of client
+          locations:
+            type: array
+            description: The detailed location
+            items:
+              $ref: '#/components/schemas/XiqLocationLegend'
+          productType:
+            type: string
+            description: The Category which describes the Extreme device types(For example:SR_2208P, AP_4000, AP_5010)
+          alias:
+            type: string
+            maxLength: 255
+            description: The alias of the client
+    XiqClientView:
+      type: string
+      description: The logic collections of client fields<br/><br/><b>BASIC:</b> ID, ORG_ID, HOSTNAME, MAC_ADDRESS, IP_ADDRESS, IPV6_ADDRESS, OS_TYPE, DEVICE_ID,CONNECTED, ONLINE_TIME, OFFLINE_TIME, CONNECTION_TYPE, SSID, PORT<br/><b>FULL:</b> All fields<br/><b>STATUS:</b> ID, CONNECTED, ONLINE_TIME, OFFLINE_TIME<br/><b>DETAIL:</b> ID, CREATE_TIME, UPDATE_TIME, ORG_ID, ORG_NAME, LOCATION_ID, HOSTNAME, MAC_ADDRESS, IP_ADDRESS, IPV6_ADDRESS, OS_TYPE, DEVICE_ID, DEVICE_FUNCTION, DEVICE_NAME, DEVICE_MAC_ADDRESS, USERNAME, USER_PROFILE_NAME, CONNECTED, ONLINE_TIME, OFFLINE_TIME, VLAN, CONNECTION_TYPE, SSID, PORT, BSSID, PORT_TYPE_NAME, INTERFACE_NAME, AUTH, ENCRYPTION_METHOD, CHANNEL, RSSI, SNR, WING_AP, VENDOR, RADIO_TYPE, ALIAS, MAC_PROTOCOL, MAKE, OS_VERSION, CONNECTED_TO, CONNECTION_DURATION, CAPTIVE_WEB_PORTAL<br/><b>LOCATION:</b> ID, LOCATION_ID, LOCATIONS<br/><b>METRICS:</b> ID, CLIENT_HEALTH, APPLICATION_HEALTH, NETWORK_HEALTH, RADIO_HEALTH<br/><b>IOT:</b> ID, MOBILITY, CATEGORY, DESCRIPTION
+      enum:
+      - BASIC
+      - FULL
+      - STATUS
+      - DETAIL
+      - LOCATION
+      - METRICS
+      - IOT
+    XiqClientMacAddressAlias:
+      type: object
+      description: The client's mac address and alias
+      required:
+      - mac_address
+      properties:
+        mac_address:
+          type: string
+          minLength: 12
+          maxLength: 12
+          description: The MAC address of the client
+        alias:
+          type: string
+          maxLength: 255
+          description: The alias of the client
+    XiqErrorParams:
+      type: object
+      description: Error parameters
+      properties:
+        field:
+          type: string
+          description: The error field
+        value:
+          type: string
+          description: The error value
+    XiqBaseEntity:
+      required:
+      - id
+      - create_time
+      - update_time
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The unique identifier
+          format: int64
+        create_time:
+          type: string
+          description: The create time
+          format: date-time
+        update_time:
+          type: string
+          description: The last update time
+          format: date-time
+    XiqError:
+      type: object
+      properties:
+        error_code:
+          type: string
+          description: The error code
+        error_id:
+          type: string
+          description: The error ID for internal troubleshooting
+        error_message:
+          type: string
+          description: The error detailed message
+        error_message_code:
+          type: string
+          description: The error message code
+        error_message_description:
+          type: string
+          description: The error message description
+        error_params:
+          $ref: '#/components/schemas/XiqErrorParams'
+      required:
+      - error_code
+      - error_id
+      - error_message
+    XiqClientUsage:
+      type: object
+      description: The client usage over the period
+      properties:
+        client_id:
+          type: integer
+          description: The client ID
+          format: int64
+        usage:
+          type: integer
+          description: The client total usage
+          format: int64
+    GetActiveClientsResponse:
+      type: object
+      properties:
+        count:
+          type: integer
+          description: The connected wireless client count
+          format: int64
+    XiqPage:
+      required:
+      - count
+      - page
+      - total_count
+      - total_pages
+      type: object
+      properties:
+        page:
+          type: integer
+          description: The current page number
+          format: int32
+        count:
+          type: integer
+          description: The element count of the current page
+          format: int32
+        total_pages:
+          type: integer
+          description: The total page number based on request page size
+          format: int32
+        total_count:
+          type: integer
+          description: The total element count
+          format: int64
+    XiqViqEntity:
+      allOf:
+      - $ref: '#/components/schemas/XiqBaseEntity'
+      - type: object
+        properties:
+          org_id:
+            type: integer
+            description: The organization identifier, valid when enabling HIQ feature
+            format: int64
+        required:
+        - org_id
+    XiqClientSummary:
+      type: object
+      description: The summary for clients
+      properties:
+        connected_wireless_client_count:
+          type: integer
+          description: The connected wireless client count
+          format: int64
+        detected_wired_client_count:
+          type: integer
+          description: The detected wired client count
+          format: int64
+    XiqDeviceEntity:
+      allOf:
+      - $ref: '#/components/schemas/XiqLocationEntity'
+      - type: object
+        properties:
+          device_id:
+            type: integer
+            description: The device identifier
+            format: int64
+        required:
+        - device_id
+    XiqLocationLegend:
+      type: object
+      description: The simple location information
+      properties:
+        id:
+          type: integer
+          description: The location ID
+          format: int64
+        name:
+          type: string
+          description: The location name
+  responses:
+    ErrorResponse:
+      description: The generic ExtremeCloud IQ API error response
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/XiqError'
+  securitySchemes:
+    BearerAuth:
+      type: http
+      description: JSON Web Token (JWT) based authentication
+      scheme: bearer
+      bearerFormat: JWT
+externalDocs:
+  description: API Reference
+  url: https://extremecloudiq.com/api-docs/api-reference.html

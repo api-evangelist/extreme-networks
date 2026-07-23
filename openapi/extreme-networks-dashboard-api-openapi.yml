@@ -1,0 +1,1296 @@
+openapi: 3.0.3
+info:
+  title: ExtremeCloud IQ Account Dashboard API
+  description: 'ExtremeCloud IQ™ API allows customers and partners to create solutions for the management, monitoring, and provisioning
+
+    of any ExtremeCloud IQ™ environment.
+
+
+    All related resources and documentation are available at [ExtremeCloud IQ Developer Portal](https://developer.extremecloudiq.com/).
+
+    Please check [Get Started and Tutorial](https://developer.extremecloudiq.com/documentation/) to understand how to use the APIs.
+
+
+    Get the [latest OpenAPI definition](https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI/blob/main/xcloudiq-openapi.yaml)
+
+    from [ExtremeCloud IQ OpenAPI GitHub repository](https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI).
+
+
+    Please have a valid [ExtremeCloud IQ](https://extremecloudiq.com/) account before getting started.
+
+    If you don''t have one, please [register a new account](https://www.extremenetworks.com/cloud-networking/).'
+  termsOfService: https://www.extremenetworks.com/company/legal/terms-of-use/
+  contact:
+    name: Extreme Networks Support
+    url: https://www.extremenetworks.com/support
+    email: support@extremenetworks.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  version: 25.9.0-36
+servers:
+- url: https://api.extremecloudiq.com
+  description: ExtremeCloud IQ REST API Server
+tags:
+- name: Dashboard
+  description: Device and client health and status/dashboard
+paths:
+  /dashboard/alerts:
+    post:
+      tags:
+      - Dashboard
+      summary: Alert statistics
+      description: Returns the count of different types of alerts (critical, warning, information, and total unacknowledged) based on the provided filters. You can filter the results by sites.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_post_alert_diagnostics
+      operationId: alertCountDashboard
+      parameters:
+      - name: alertsTimeRange
+        in: query
+        description: Alerts Time Range in days (defaults to 1 day)
+        required: false
+        schema:
+          type: integer
+          format: int32
+          minimum: 0
+      - name: include_unassigned
+        in: query
+        description: To include unassigned location
+        required: false
+        schema:
+          type: boolean
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                site_ids:
+                  description: List of site IDs to filter the alerts
+                  type: array
+                  items:
+                    type: integer
+                    format: int64
+      responses:
+        '200':
+          description: Returns the counts of various alert types based on the filters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XiqAlertsResponse'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /dashboard/assets:
+    post:
+      tags:
+      - Dashboard
+      summary: Asset statistics
+      description: Returns the count of total devices, total offline devices, wired offline devices, and wireless offline devices based on the provided filters. You can filter the results by sites.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_post_asset_counts
+      operationId: assetCountDashboard
+      parameters:
+      - name: include_unassigned
+        in: query
+        description: To include unassigned location
+        required: false
+        schema:
+          type: boolean
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                site_ids:
+                  description: List of site IDs to filter the assets
+                  type: array
+                  items:
+                    type: integer
+                    format: int64
+      responses:
+        '200':
+          description: Returns the counts of various asset types based on the filters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XiqAssetsResponse'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /dashboard/clients:
+    post:
+      tags:
+      - Dashboard
+      summary: Client health statistics
+      description: Returns the count of total clients, total unhealthy clients, wired unhealthy clients, and wireless unhealthy clients based on the provided filters.You can filter the results by sites.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_post_client_health
+      operationId: clientHealthDashboard
+      parameters:
+      - name: include_unassigned
+        in: query
+        description: To include unassigned location
+        required: false
+        schema:
+          type: boolean
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                site_ids:
+                  description: List of site IDs to filter the client health
+                  type: array
+                  items:
+                    type: integer
+                    format: int64
+      responses:
+        '200':
+          description: Returns the counts of clients, including unhealthy clients
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XiqClientHealthResponse'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /dashboard/devices:
+    post:
+      tags:
+      - Dashboard
+      summary: Device health statistics
+      description: Returns the count of total devices, total unhealthy devices, wired unhealthy devices, and wireless unhealthy devices based on the provided filters. You can filter the results by sites.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_post_device_health
+      operationId: deviceHealthDashboard
+      parameters:
+      - name: include_unassigned
+        in: query
+        description: To include unassigned location
+        required: false
+        schema:
+          type: boolean
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                site_ids:
+                  description: List of site IDs to filter the device health
+                  type: array
+                  items:
+                    type: integer
+                    format: int64
+      responses:
+        '200':
+          description: Returns the counts of devices, including offline devices
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XiqDeviceHealthResponse'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /dashboard/usage-capacity:
+    post:
+      tags:
+      - Dashboard
+      summary: Usage & capacity statistics
+      description: Returns the count of wired, wireless and total usage & capacity issues based on the provided filters. You can filter the results by sites.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_post_usage_and_capacity
+      operationId: usageAndCapacityIssuesDashboard
+      parameters:
+      - name: include_unassigned
+        in: query
+        description: To include unassigned location
+        required: false
+        schema:
+          type: boolean
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                site_ids:
+                  description: List of site IDs to filter the usage & capacity issues
+                  type: array
+                  items:
+                    type: integer
+                    format: int64
+      responses:
+        '200':
+          description: Returns the counts of usage & capacity issues based on the filters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XiqUsageAndCapacityResponse'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /dashboard/sites-with-issues:
+    post:
+      tags:
+      - Dashboard
+      summary: Sites with issues
+      description: Returns the site names along with alerts, usage and capacity, assets, client health, and device health based on the provided filters. You can filter the results by sites.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_post_sites_with_issues
+      operationId: sitesWithIssuesDashboard
+      parameters:
+      - $ref: '#/components/parameters/page'
+      - $ref: '#/components/parameters/limit'
+      - name: keyword
+        in: query
+        description: The site name filter
+        required: false
+        schema:
+          type: string
+      - name: sortField
+        in: query
+        description: The sort field
+        required: false
+        schema:
+          $ref: '#/components/schemas/XiqSiteWithIssuesSortField'
+      - name: sortOrder
+        in: query
+        description: The sort order
+        required: false
+        schema:
+          $ref: '#/components/schemas/XiqSortOrder'
+      - name: alertsTimeRange
+        in: query
+        description: Alerts Time Range in days (defaults to 1 day)
+        required: false
+        schema:
+          type: integer
+          format: int32
+          minimum: 0
+          default: 1
+      - name: include_unassigned
+        in: query
+        description: To include unassigned location
+        required: false
+        schema:
+          type: boolean
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                site_ids:
+                  description: List of site IDs to filter the sites
+                  type: array
+                  items:
+                    type: integer
+                    format: int64
+      responses:
+        '200':
+          description: Returns the details of sites with issues based on the filters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagedXiqSitesWithIssuesResponse'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /dashboard/device_types:
+    get:
+      tags:
+      - Dashboard
+      summary: Dashboard device types
+      description: Returns a list of diagnostics device types.
+      operationId: dashboardDeviceTypes
+      responses:
+        '200':
+          description: A list of diagnostics device types
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  device_types:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/XiqRmDiagnosticsDeviceType'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /dashboard/export:
+    post:
+      tags:
+      - Dashboard
+      summary: Export Sites with issues as CSV File
+      description: Returns the site names along with alerts, usage and capacity, assets, client health, and device health based on the provided filters as CSV File. You can filter the results by sites.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_post_sites_with_issues_export
+      operationId: sitesWithIssuesDashboardExport
+      parameters:
+      - name: keyword
+        in: query
+        description: The site name filter
+        required: false
+        schema:
+          type: string
+      - name: sortField
+        in: query
+        description: The sort field
+        required: false
+        schema:
+          $ref: '#/components/schemas/XiqSiteWithIssuesSortField'
+      - name: sortOrder
+        in: query
+        description: The sort order
+        required: false
+        schema:
+          $ref: '#/components/schemas/XiqSortOrder'
+      - name: alertsTimeRange
+        in: query
+        description: Alerts Time Range in days (defaults to 1 day)
+        required: false
+        schema:
+          type: integer
+          format: int32
+          minimum: 0
+          default: 1
+      - name: include_unassigned
+        in: query
+        description: To include unassigned location
+        required: false
+        schema:
+          type: boolean
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                site_ids:
+                  description: List of site IDs to filter the sites
+                  type: array
+                  items:
+                    type: integer
+                    format: int64
+      responses:
+        '202':
+          description: Accepted - The request has been accepted for processing, but the processing has not been completed.
+          headers:
+            cache-control:
+              description: Cache control directives
+              schema:
+                type: string
+            content-length:
+              description: The length of the response body in octets (8-bit bytes)
+              schema:
+                type: integer
+            date:
+              description: The date and time at which the message was originated
+              schema:
+                type: string
+                format: date-time
+            expires:
+              description: The date/time after which the response is considered stale
+              schema:
+                type: string
+            location:
+              description: The URL to which the client should navigate to check the status of the request
+              schema:
+                type: string
+                format: uri
+            pragma:
+              description: Implementation-specific directives that might apply to any recipient along the request-response chain
+              schema:
+                type: string
+            ratelimit-limit:
+              description: The maximum number of requests that the client is allowed to make in a given time period
+              schema:
+                type: string
+            ratelimit-remaining:
+              description: The number of requests remaining in the current rate limit window
+              schema:
+                type: integer
+            retry-after:
+              description: The amount of time to wait before making a follow-up request
+              schema:
+                type: integer
+            server:
+              description: A name for the server
+              schema:
+                type: string
+                example: nginx
+            x-content-type-options:
+              description: Prevents the browser from interpreting files as a different MIME type
+              schema:
+                type: string
+            x-xss-protection:
+              description: Enables cross-site scripting (XSS) filter
+              schema:
+                type: string
+                format: byte
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /dashboard/wireless/dashboard/criteria:
+    get:
+      tags:
+      - Dashboard
+      summary: Criteria for Wireless Diagnostics Dashboard
+      description: Returns the criteria for wireless diagnostics dashboard, including client health, device health, and usage and capacity issues.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_get_wireless_diagnostics_dashboard_criteria
+      operationId: wirelessDiagnosticsDashboardCriteria
+      responses:
+        '200':
+          description: Returns the criteria for wireless diagnostics dashboard
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  device_health_criteria_param:
+                    $ref: '#/components/schemas/XiqWirelessDeviceHealthCriteria'
+                  client_health_criteria_param:
+                    $ref: '#/components/schemas/XiqWirelessClientHealthCriteria'
+                  usage_capacity_criteria_param:
+                    $ref: '#/components/schemas/XiqWirelessUsageAndCapacityCriteria'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+    post:
+      tags:
+      - Dashboard
+      summary: Create Criteria for Wireless Diagnostics Dashboard
+      description: Returns the criteria for wireless diagnostics dashboard, including client health, device health, and usage and capacity issues.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_post_wireless_diagnostics_dashboard_criteria
+      operationId: createWirelessDiagnosticsDashboardCriteria
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                device_health_criteria:
+                  type: object
+                  properties:
+                    cpu_utilization:
+                      type: integer
+                      format: float
+                      description: CPU Utilization percentage
+                    memory_utilization:
+                      type: integer
+                      format: float
+                      description: Memory Utilization percentage
+                    poe:
+                      type: integer
+                      format: float
+                      description: Power over Ethernet (PoE) usage
+                    wired_port_multicast:
+                      type: integer
+                      format: float
+                      description: Wired Port Multicast traffic percentage
+                    wired_port_broadcast:
+                      type: integer
+                      format: float
+                      description: Wired Port Broadcast traffic percentage
+                client_health_criteria:
+                  type: object
+                  properties:
+                    assoc_param_slow:
+                      type: integer
+                      format: float
+                      description: Association parameter for slow connections
+                    assoc_unit_slow:
+                      type: string
+                      description: Unit for association parameter for slow connections
+                    auth_param_slow:
+                      type: integer
+                      format: float
+                      description: Authentication parameter for slow connections
+                    auth_unit_slow:
+                      type: string
+                      description: Unit for authentication parameter for slow connections
+                    dhcp_param_slow:
+                      type: integer
+                      format: float
+                      description: DHCP parameter for slow connections
+                    dhcp_unit_slow:
+                      type: string
+                      description: Unit for DHCP parameter for slow connections
+                    roams_param_slow:
+                      type: integer
+                      format: float
+                      description: Roaming parameter for slow connections
+                    roams_unit_slow:
+                      type: string
+                      description: Unit for roaming parameter for slow connections
+                    rssi_param:
+                      type: integer
+                      format: float
+                      description: RSSI parameter
+                    rssi_unit:
+                      type: string
+                      description: Unit for RSSI parameter
+                    snr_param:
+                      type: integer
+                      format: float
+                      description: SNR parameter
+                    snr_unit:
+                      type: string
+                      description: Unit for SNR parameter
+                    onboard_param:
+                      type: integer
+                      format: float
+                      description: Onboarding parameter
+                    onboard_unit:
+                      type: string
+                      description: Unit for onboarding parameter
+                usage_capacity_criteria:
+                  type: object
+                  properties:
+                    channel_utilization:
+                      type: integer
+                      format: float
+                      description: Channel Utilization percentage
+                    lnk_err:
+                      type: integer
+                      format: float
+                      description: Link Error percentage
+                    retries:
+                      type: integer
+                      format: float
+                      description: Retries percentage
+                    pkt_loss:
+                      type: integer
+                      format: float
+                      description: Packet Loss percentage
+                    interference:
+                      type: integer
+                      format: float
+                      description: Interference percentage
+                    noise:
+                      type: integer
+                      format: float
+                      description: Noise level
+                    noise_unit:
+                      type: string
+                      description: Unit for Noise level
+      responses:
+        '200':
+          description: Returns the criteria for wireless diagnostics dashboard
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  device_health_criteria_param:
+                    $ref: '#/components/schemas/XiqPostWirelessDeviceHealthCriteria'
+                  client_health_criteria_param:
+                    $ref: '#/components/schemas/XiqPostWirelessClientHealthCriteria'
+                  usage_capacity_criteria_param:
+                    $ref: '#/components/schemas/XiqPostWirelessUsageAndCapacityCriteria'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /dashboard/wireless/dashboard/reports/{id}:
+    get:
+      tags:
+      - Dashboard
+      summary: Download the Export CSV file
+      description: Returns the CSV File of the Site With Issue status based on the provided filters.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_get_site_with_issue_report
+      operationId: siteWithIssueGridExportReport
+      parameters:
+      - name: id
+        in: path
+        description: The report ID
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Returns the CSV File of the Site With Issue grid
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+components:
+  schemas:
+    XiqClientHealthResponse:
+      type: object
+      properties:
+        total_clients:
+          type: integer
+          format: int64
+          description: Total count of clients
+        total_unhealthy_clients:
+          type: integer
+          format: int64
+          description: Total count of unhealthy clients
+        wired_unhealthy_clients:
+          type: integer
+          format: int64
+          description: Count of wired unhealthy clients
+        wireless_unhealthy_clients:
+          type: integer
+          format: int64
+          description: Count of wireless unhealthy clients
+    XiqSortOrder:
+      type: string
+      enum:
+      - ASC
+      - DESC
+    XiqAssetsResponse:
+      type: object
+      properties:
+        total_devices:
+          type: integer
+          format: int64
+          description: Total count of devices
+        total_offline_devices:
+          type: integer
+          format: int64
+          description: Total count of offline devices
+        wired_offline_devices:
+          type: integer
+          format: int64
+          description: Count of wired offline devices
+        wireless_offline_devices:
+          type: integer
+          format: int64
+          description: Count of wireless offline devices
+    XiqSiteWithIssuesSortField:
+      type: string
+      title: XiqSiteWithIssuesSortField
+      description: Pre-defined sort fields for Site with issues
+      enum:
+      - ALERTS
+      - STATUS
+      - DEVICE_HEALTH
+      - CLIENT_HEALTH
+      - USAGE_CAPACITY
+      - SITE_NAME
+      example: ALERTS
+    XiqSitesWithIssuesResponse:
+      type: object
+      properties:
+        site_name:
+          type: string
+          description: The name of the site with diagnostics
+        building_name:
+          type: string
+          description: The name of the building with diagnostics
+        floor_name:
+          type: string
+          description: The name of the floor with diagnostics
+        alerts:
+          $ref: '#/components/schemas/XiqAlertsResponse'
+          description: Alerts diagnostics of the site
+        assets:
+          $ref: '#/components/schemas/XiqAssetsResponse'
+          description: Assets diagnostics of the site
+        client_health:
+          $ref: '#/components/schemas/XiqClientHealthResponse'
+          description: Client Health diagnostics of the site
+        device_health:
+          $ref: '#/components/schemas/XiqDeviceHealthResponse'
+          description: Device Health diagnostics of the site
+        usage_and_capacity:
+          $ref: '#/components/schemas/XiqUsageAndCapacityResponse'
+          description: Usage and Capacity diagnostics of the site
+    XiqUsageAndCapacityResponse:
+      type: object
+      properties:
+        total_usage_and_capacity_issues:
+          type: integer
+          format: int64
+          description: Total count of usage & capacity issues
+        wired_usage_and_capacity_issues:
+          type: integer
+          format: int64
+          description: Count of wired usage & capacity issues which includes switches and client issues
+        wireless_usage_and_capacity_issues:
+          type: integer
+          format: int64
+          description: Count of wireless usage & capacity issues which includes access point issues
+    XiqRmDiagnosticsDeviceType:
+      type: string
+      description: The type of RM diagnostic device
+      enum:
+      - WIRED
+      - WIRELESS
+      - ALL
+    XiqWirelessUsageAndCapacityCriteria:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: Unique ID
+        owner_id:
+          type: integer
+          format: int64
+          description: Owner ID of the Entry
+        org_id:
+          type: integer
+          format: int64
+          description: Organization ID of the Entry
+        radio_24:
+          type: integer
+          format: float
+          description: If 2.4GHz Radio Usage >= 70% issue is raised
+        radio_24_reln:
+          type: string
+          description: Operator for 2.4GHz Radio Usage
+        radio_5:
+          type: integer
+          format: float
+          description: If 5GHz Radio Usage >= 70% issue is raised
+        radio_5_reln:
+          type: string
+          description: Operator for 5GHz Radio Usage
+        radio_6:
+          type: integer
+          format: float
+          description: If 6GHz Radio Usage >= 70% issue is raised
+        radio_6_reln:
+          type: string
+          description: Operator for 6GHz Radio Usage
+        lnk_err_24:
+          type: integer
+          format: float
+          description: If Link Error for 2.4GHz Radio >= 2% issue is raised
+        lnk_err_24_reln:
+          type: string
+          description: Operator for 2.4GHz Link Error
+        lnk_err_5:
+          type: integer
+          format: float
+          description: If Link Error for 5GHz Radio >= 2% issue is raised
+        lnk_err_5_reln:
+          type: string
+          description: Operator for 5GHz Link Error
+        lnk_err_6:
+          type: integer
+          format: float
+          description: If Link Error for 6GHz Radio >= 2% issue is raised
+        lnk_err_6_reln:
+          type: string
+          description: Operator for 6GHz Link Error
+        retries_24:
+          type: integer
+          format: float
+          description: If Retries for 2.4GHz Radio >= 25% issue is raised
+        retries_24_reln:
+          type: string
+          description: Operator for 2.4GHz Retries
+        retries_5:
+          type: integer
+          format: float
+          description: If Retries for 5GHz Radio >= 25% issue is raised
+        retries_5_reln:
+          type: string
+          description: Operator for 5GHz Retries
+        retries_6:
+          type: integer
+          format: float
+          description: If Retries for 6GHz Radio >= 25% issue is raised
+        retries_6_reln:
+          type: string
+          description: Operator for 6GHz Retries
+        pkt_loss_24:
+          type: integer
+          format: float
+          description: If Packet Loss for 2.4GHz Radio >= 5% issue is raised
+        pkt_loss_24_reln:
+          type: string
+          description: Operator for 2.4GHz Packet Loss
+        pkt_loss_5:
+          type: integer
+          format: float
+          description: If Packet Loss for 5GHz Radio >= 5% issue is raised
+        pkt_loss_5_reln:
+          type: string
+          description: Operator for 5GHz Packet Loss
+        pkt_loss_6:
+          type: integer
+          format: float
+          description: If Packet Loss for 6GHz Radio >= 5% issue is raised
+        pkt_loss_6_reln:
+          type: string
+          description: Operator for 6GHz Packet Loss
+        interference_24:
+          type: integer
+          format: float
+          description: If Interference for 2.4GHz Radio >= 50% issue is raised
+        interference_24_reln:
+          type: string
+          description: Operator for 2.4GHz Interference
+        interference_5:
+          type: integer
+          format: float
+          description: If Interference for 5GHz Radio >= 50% issue is raised
+        interference_5_reln:
+          type: string
+          description: Operator for 5GHz Interference
+        interference_6:
+          type: integer
+          format: float
+          description: If Interference for 6GHz Radio >= 50% issue is raised
+        interference_6_reln:
+          type: string
+          description: Operator for 6GHz Interference
+        noise_24:
+          type: integer
+          format: float
+          description: If Noise for 2.4GHz Radio is > -82dBm issue is raised
+        noise_24_reln:
+          type: string
+          description: Operator for 2.4GHz Noise
+        noise_24_unit:
+          type: string
+          description: Unit for 2.4GHz Noise
+        noise_5:
+          type: integer
+          format: float
+          description: If Noise for 5GHz Radio is > -82dBm issue is raised
+        noise_5_reln:
+          type: string
+          description: Operator for 5GHz Noise
+        noise_5_unit:
+          type: string
+          description: Unit for 5GHz Noise
+        noise_6:
+          type: integer
+          format: float
+          description: If Noise for 6GHz Radio is > -82dBm issue is raised
+        noise_6_reln:
+          type: string
+          description: Operator for 6GHz Noise
+        noise_6_unit:
+          type: string
+          description: Unit for 6GHz Noise
+    PagedXiqSitesWithIssuesResponse:
+      allOf:
+      - $ref: '#/components/schemas/XiqPage'
+      - type: object
+        properties:
+          data:
+            type: array
+            description: The data in the current page
+            items:
+              $ref: '#/components/schemas/XiqSitesWithIssuesResponse'
+    XiqErrorParams:
+      type: object
+      description: Error parameters
+      properties:
+        field:
+          type: string
+          description: The error field
+        value:
+          type: string
+          description: The error value
+    XiqPostWirelessClientHealthCriteria:
+      type: object
+      properties:
+        assoc_param_slow:
+          type: integer
+          format: int64
+          description: Association parameter for slow connections
+        assoc_unit_slow:
+          type: string
+          description: Unit for association parameter for slow connections
+        auth_param_slow:
+          type: integer
+          format: int64
+          description: Authentication parameter for slow connections
+        auth_unit_slow:
+          type: string
+          description: Unit for authentication parameter for slow connections
+        dhcp_param_slow:
+          type: integer
+          format: int64
+          description: DHCP parameter for slow connections
+        dhcp_unit_slow:
+          type: string
+          description: Unit for DHCP parameter for slow connections
+        roams_param_slow:
+          type: integer
+          format: int64
+          description: Roaming parameter for slow connections
+        roams_unit_slow:
+          type: string
+          description: Unit for roaming parameter for slow connections
+        rssi_param:
+          type: integer
+          format: int64
+          description: RSSI parameter
+        rssi_unit:
+          type: string
+          description: Unit for RSSI parameter
+        snr_param:
+          type: integer
+          format: int64
+          description: SNR parameter
+        snr_unit:
+          type: string
+          description: Unit for SNR parameter
+        onboard_param:
+          type: integer
+          format: int64
+          description: Onboarding parameter
+        onboard_unit:
+          type: string
+          description: Unit for onboarding parameter
+    XiqWirelessDeviceHealthCriteria:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: Unique ID for Entry
+        owner_id:
+          type: integer
+          format: int64
+          description: Owner ID for entry
+        org_id:
+          type: integer
+          format: int64
+          description: Organization ID of the Entry
+        cpu_utilization:
+          type: integer
+          format: float
+          description: If CPU Utilization => 90% then issue is raised
+        cpu_utilization_reln:
+          type: string
+          description: Operator for CPU utilization
+        memory_utilization:
+          type: integer
+          format: float
+          description: If Memory Utilization => 90% then issue is raised
+        memory_utilization_reln:
+          type: string
+          description: Operator for memory utilization
+        poe:
+          type: integer
+          format: int64
+          description: Device receiving power that allows full functionality (model dependent)
+        wired_port_multicast:
+          type: integer
+          format: float
+          description: If multicast in Wired port => 75% then issue is raised
+        wired_port_multicast_reln:
+          type: string
+          description: Operator for wired port multicast
+        wired_port_broadcast:
+          type: integer
+          format: float
+          description: If broadcast in Wired port => 75% then issue is raised
+        wired_port_broadcast_reln:
+          type: string
+          description: Operator for wired port broadcast
+    XiqError:
+      type: object
+      properties:
+        error_code:
+          type: string
+          description: The error code
+        error_id:
+          type: string
+          description: The error ID for internal troubleshooting
+        error_message:
+          type: string
+          description: The error detailed message
+        error_message_code:
+          type: string
+          description: The error message code
+        error_message_description:
+          type: string
+          description: The error message description
+        error_params:
+          $ref: '#/components/schemas/XiqErrorParams'
+      required:
+      - error_code
+      - error_id
+      - error_message
+    XiqPage:
+      required:
+      - count
+      - page
+      - total_count
+      - total_pages
+      type: object
+      properties:
+        page:
+          type: integer
+          description: The current page number
+          format: int32
+        count:
+          type: integer
+          description: The element count of the current page
+          format: int32
+        total_pages:
+          type: integer
+          description: The total page number based on request page size
+          format: int32
+        total_count:
+          type: integer
+          description: The total element count
+          format: int64
+    XiqPostWirelessDeviceHealthCriteria:
+      type: object
+      properties:
+        cpu_utilization:
+          type: integer
+          format: int64
+          description: CPU Utilization percentage
+        memory_utilization:
+          type: integer
+          format: int64
+          description: Memory Utilization percentage
+        poe:
+          type: integer
+          format: int64
+          description: Power over Ethernet (PoE) usage
+        wired_port_multicast:
+          type: integer
+          format: int64
+          description: Wired Port Multicast traffic percentage
+        wired_port_broadcast:
+          type: integer
+          format: int64
+          description: Wired Port Broadcast traffic percentage
+    XiqWirelessClientHealthCriteria:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: Unique ID
+        owner_id:
+          type: integer
+          format: int64
+          description: Owner ID of the Entry
+        org_id:
+          type: integer
+          format: int64
+          description: Organization ID of the Entry
+        assoc_reln_slow:
+          type: string
+          description: Operator for slow associations
+        assoc_param_slow:
+          type: integer
+          format: int64
+          description: If slow associations. Slow >= 5 sec
+        assoc_unit_slow:
+          type: string
+          description: Unit for slow associations
+        auth_reln_slow:
+          type: string
+          description: Operator for slow Authentications
+        auth_param_slow:
+          type: integer
+          format: int64
+          description: If Authentications is slow. Slow => 5 sec
+        auth_unit_slow:
+          type: string
+          description: Unit for Authentications
+        dhcp_reln_slow:
+          type: string
+          description: Operator for DHCP
+        dhcp_param_slow:
+          type: integer
+          format: int64
+          description: DHCP if failed, Slow => 5 sec
+        dhcp_unit_slow:
+          type: string
+          description: Unit for DHCP
+        roams_reln_slow:
+          type: string
+          description: Operator for Roams
+        roams_param_slow:
+          type: integer
+          format: int64
+          description: If Roams - Failed or slow roams. Slow => 3000 ms
+        roams_unit_slow:
+          type: string
+          description: Unit for Roams
+        rssi_reln:
+          type: string
+          description: Operator for RSSI
+        rssi_param:
+          type: integer
+          format: int64
+          description: If RSSI <= -73dBm
+        rssi_unit:
+          type: string
+          description: Unit for RSSI
+        snr_reln:
+          type: string
+          description: Operator for SNR
+        snr_param:
+          type: integer
+          format: int64
+          description: SNR <= 20dB
+        snr_unit:
+          type: string
+          description: Unit for SNR
+        onboard_reln:
+          type: string
+          description: Operator for onboard timing
+        onboard_param:
+          type: integer
+          format: int64
+          description: 'If Onboarding time: > 10sec'
+        onboard_unit:
+          type: string
+          description: Unit for onboard timing
+    XiqPostWirelessUsageAndCapacityCriteria:
+      type: object
+      properties:
+        channel_utilization:
+          type: integer
+          format: int64
+          description: Channel Utilization percentage
+        lnk_err:
+          type: integer
+          format: int64
+          description: Link Error percentage
+        retries:
+          type: integer
+          format: int64
+          description: Retries percentage
+        pkt_loss:
+          type: integer
+          format: int64
+          description: Packet Loss percentage
+        interference:
+          type: integer
+          format: int64
+          description: Interference percentage
+        noise:
+          type: integer
+          format: int64
+          description: Noise level
+        noise_unit:
+          type: string
+          description: Unit for Noise level
+    XiqDeviceHealthResponse:
+      type: object
+      properties:
+        total_devices:
+          type: integer
+          format: int64
+          description: Total count of devices
+        total_unhealthy_devices:
+          type: integer
+          format: int64
+          description: Total count of unhealthy devices
+        wired_unhealthy_devices:
+          type: integer
+          format: int64
+          description: Count of wired unhealthy devices
+        wireless_unhealthy_devices:
+          type: integer
+          format: int64
+          description: Count of wireless unhealthy devices
+    XiqAlertsResponse:
+      type: object
+      properties:
+        critical:
+          type: integer
+          format: int64
+          description: Count of critical alerts
+        warning:
+          type: integer
+          format: int64
+          description: Count of warning alerts
+        information:
+          type: integer
+          format: int64
+          description: Count of informational alerts
+        total_unacknowledged:
+          type: integer
+          format: int64
+          description: Total count of unacknowledged alerts
+      required:
+      - critical
+      - warning
+      - information
+      - total_unacknowledged
+  parameters:
+    page:
+      name: page
+      in: query
+      description: Page number, min = 1
+      required: false
+      schema:
+        minimum: 1
+        type: integer
+        format: int32
+        default: 1
+    limit:
+      name: limit
+      in: query
+      description: Page Size, min = 1, max = 100
+      required: false
+      schema:
+        maximum: 100
+        minimum: 1
+        type: integer
+        format: int32
+        default: 10
+  responses:
+    ErrorResponse:
+      description: The generic ExtremeCloud IQ API error response
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/XiqError'
+  securitySchemes:
+    BearerAuth:
+      type: http
+      description: JSON Web Token (JWT) based authentication
+      scheme: bearer
+      bearerFormat: JWT
+externalDocs:
+  description: API Reference
+  url: https://extremecloudiq.com/api-docs/api-reference.html

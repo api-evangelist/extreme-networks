@@ -1,0 +1,506 @@
+openapi: 3.0.3
+info:
+  title: ExtremeCloud IQ Account Configuration - Certificate API
+  description: 'ExtremeCloud IQ™ API allows customers and partners to create solutions for the management, monitoring, and provisioning
+
+    of any ExtremeCloud IQ™ environment.
+
+
+    All related resources and documentation are available at [ExtremeCloud IQ Developer Portal](https://developer.extremecloudiq.com/).
+
+    Please check [Get Started and Tutorial](https://developer.extremecloudiq.com/documentation/) to understand how to use the APIs.
+
+
+    Get the [latest OpenAPI definition](https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI/blob/main/xcloudiq-openapi.yaml)
+
+    from [ExtremeCloud IQ OpenAPI GitHub repository](https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI).
+
+
+    Please have a valid [ExtremeCloud IQ](https://extremecloudiq.com/) account before getting started.
+
+    If you don''t have one, please [register a new account](https://www.extremenetworks.com/cloud-networking/).'
+  termsOfService: https://www.extremenetworks.com/company/legal/terms-of-use/
+  contact:
+    name: Extreme Networks Support
+    url: https://www.extremenetworks.com/support
+    email: support@extremenetworks.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  version: 25.9.0-36
+servers:
+- url: https://api.extremecloudiq.com
+  description: ExtremeCloud IQ REST API Server
+tags:
+- name: Configuration - Certificate
+  description: Certificate
+paths:
+  /certificates:
+    get:
+      tags:
+      - Configuration - Certificate
+      summary: List certificates
+      description: List a page of certificates.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_list_certificates
+      operationId: listCertificates
+      parameters:
+      - $ref: '#/components/parameters/page'
+      - $ref: '#/components/parameters/limit'
+      - name: certType
+        in: query
+        description: The certificate type
+        required: false
+        schema:
+          $ref: '#/components/schemas/XiqCertificateType'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagedXiqCertificate'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /certificates/import:
+    post:
+      tags:
+      - Configuration - Certificate
+      summary: Import Certificate
+      description: Import a Certificate.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_import_certificate
+      operationId: importCertificate
+      requestBody:
+        description: The body to import Certificate.
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/XiqImportCertRequest'
+        required: true
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XiqCertificate'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /certificates/{id}:
+    delete:
+      tags:
+      - Configuration - Certificate
+      summary: Delete Certificate
+      description: Delete an existing Certificate by ID.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_delete_certificate
+      operationId: deleteCertificate
+      parameters:
+      - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: OK
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /certificate-bundles:
+    get:
+      tags:
+      - Configuration - Certificate
+      summary: List Certificate Bundles
+      description: List a page of Certificate Bundle configurations.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_list_the_certificate_bundle_configuration
+      operationId: listCertificateBundles
+      parameters:
+      - $ref: '#/components/parameters/page'
+      - $ref: '#/components/parameters/limit'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagedXiqCertificateBundle'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+    post:
+      tags:
+      - Configuration - Certificate
+      summary: Create Certificate Bundle
+      description: Create a new Certificate Bundle configuration.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_create_certificate_bundle
+      operationId: createCertificateBundle
+      requestBody:
+        description: The request body to create a Certificate Bundle.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/XiqCreateCertBundleRequest'
+        required: true
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XiqCertificateBundle'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /certificate-bundles/{id}:
+    get:
+      tags:
+      - Configuration - Certificate
+      summary: Get the Certificate Bundle
+      description: Get an existing Certificate Bundle configuration by ID.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_get_the_certificate_bundle_by_id
+      operationId: getCertificateBundle
+      parameters:
+      - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XiqCertificateBundle'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+    put:
+      tags:
+      - Configuration - Certificate
+      summary: Update Certificate Bundle
+      description: Update Certificate Bundle configuration by ID.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_update_certificate_configuration
+      operationId: updateCertificateBundle
+      parameters:
+      - $ref: '#/components/parameters/id'
+      requestBody:
+        description: The request body to updated Certificate Bundle,
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/XiqUpdateCertBundleRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XiqCertificateBundle'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+    delete:
+      tags:
+      - Configuration - Certificate
+      summary: Delete the Certificate Bundle
+      description: Delete an existing Certificate Bundle configuration by ID.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_delete_certificate_bundle
+      operationId: deleteCertificateBundle
+      parameters:
+      - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: OK
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+components:
+  schemas:
+    XiqCertBundleType:
+      type: string
+      description: The type of Certificate Bundle.
+      enum:
+      - TRUST_POINT
+    XiqErrorParams:
+      type: object
+      description: Error parameters
+      properties:
+        field:
+          type: string
+          description: The error field
+        value:
+          type: string
+          description: The error value
+    XiqCertificate:
+      allOf:
+      - $ref: '#/components/schemas/XiqBaseEntity'
+      - type: object
+        description: The certificate
+        required:
+        - name
+        properties:
+          name:
+            type: string
+            description: The certificate file name
+          cert_type:
+            $ref: '#/components/schemas/XiqCertificateType'
+    XiqCertificateBundle:
+      allOf:
+      - $ref: '#/components/schemas/XiqViqEntity'
+      - type: object
+        description: The configuration of Certificate Bundle
+        required:
+        - bundle_type
+        properties:
+          bundle_type:
+            $ref: '#/components/schemas/XiqCertBundleType'
+          certificates:
+            type: array
+            description: Certificate Bundles certificates.
+            items:
+              $ref: '#/components/schemas/XiqCertificate'
+    XiqBaseEntity:
+      required:
+      - id
+      - create_time
+      - update_time
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The unique identifier
+          format: int64
+        create_time:
+          type: string
+          description: The create time
+          format: date-time
+        update_time:
+          type: string
+          description: The last update time
+          format: date-time
+    XiqImportCertRequest:
+      type: object
+      description: The payload to import a certificate.
+      required:
+      - name
+      - file
+      - file_type
+      properties:
+        name:
+          type: string
+          description: The certificate name.
+        file:
+          type: string
+          format: binary
+          description: The certificate file to import.
+        file_type:
+          $ref: '#/components/schemas/XiqCertificateType'
+        enable_convert_pfx:
+          type: boolean
+          description: Whether to convert the certificate format from PFX to PEM.
+        pfx_password:
+          type: string
+          description: The PFX password.
+        enable_convert_der:
+          type: boolean
+          description: Whether to convert the certificate format from DER to PEM.
+        convert_option_type:
+          $ref: '#/components/schemas/XiqCertConvertOptionType'
+        der_password:
+          type: string
+          description: The DER password, required when the convert option type is 'KEY'.
+    XiqError:
+      type: object
+      properties:
+        error_code:
+          type: string
+          description: The error code
+        error_id:
+          type: string
+          description: The error ID for internal troubleshooting
+        error_message:
+          type: string
+          description: The error detailed message
+        error_message_code:
+          type: string
+          description: The error message code
+        error_message_description:
+          type: string
+          description: The error message description
+        error_params:
+          $ref: '#/components/schemas/XiqErrorParams'
+      required:
+      - error_code
+      - error_id
+      - error_message
+    XiqPage:
+      required:
+      - count
+      - page
+      - total_count
+      - total_pages
+      type: object
+      properties:
+        page:
+          type: integer
+          description: The current page number
+          format: int32
+        count:
+          type: integer
+          description: The element count of the current page
+          format: int32
+        total_pages:
+          type: integer
+          description: The total page number based on request page size
+          format: int32
+        total_count:
+          type: integer
+          description: The total element count
+          format: int64
+    PagedXiqCertificateBundle:
+      allOf:
+      - $ref: '#/components/schemas/XiqPage'
+      - type: object
+        properties:
+          data:
+            type: array
+            description: The data in the current page
+            items:
+              $ref: '#/components/schemas/XiqCertificateBundle'
+    PagedXiqCertificate:
+      allOf:
+      - $ref: '#/components/schemas/XiqPage'
+      - type: object
+        properties:
+          data:
+            type: array
+            description: The data in the current page
+            items:
+              $ref: '#/components/schemas/XiqCertificate'
+    XiqCertificateType:
+      type: string
+      enum:
+      - CERT
+      - KEY
+      - CA
+    XiqViqEntity:
+      allOf:
+      - $ref: '#/components/schemas/XiqBaseEntity'
+      - type: object
+        properties:
+          org_id:
+            type: integer
+            description: The organization identifier, valid when enabling HIQ feature
+            format: int64
+        required:
+        - org_id
+    XiqCreateCertBundleRequest:
+      type: object
+      description: The payload to create a new Certificate Bundle.
+      required:
+      - name
+      - bundle_type
+      properties:
+        name:
+          type: string
+          description: The Certificate Bundle name.
+        description:
+          type: string
+          description: The Certificate Bundle description.
+        bundle_type:
+          $ref: '#/components/schemas/XiqCertBundleType'
+        certificate_ids:
+          type: array
+          description: Collection of Certificate IDs.
+          items:
+            type: integer
+            format: int64
+    XiqCertConvertOptionType:
+      type: string
+      description: The Certificate convert option, required when the convert option type is 'KEY'.
+      enum:
+      - CERTIFICATE
+      - KEY
+    XiqUpdateCertBundleRequest:
+      type: object
+      description: The payload to update a Certificate Bundle.
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          description: The Certificate Bundle name.
+        description:
+          type: string
+          description: The Certificate Bundle description.
+        certificate_ids:
+          type: array
+          description: Collection of Certificate IDs.
+          items:
+            type: integer
+            format: int64
+  parameters:
+    page:
+      name: page
+      in: query
+      description: Page number, min = 1
+      required: false
+      schema:
+        minimum: 1
+        type: integer
+        format: int32
+        default: 1
+    limit:
+      name: limit
+      in: query
+      description: Page Size, min = 1, max = 100
+      required: false
+      schema:
+        maximum: 100
+        minimum: 1
+        type: integer
+        format: int32
+        default: 10
+    id:
+      name: id
+      in: path
+      description: The unique identifier
+      required: true
+      schema:
+        type: integer
+        format: int64
+  responses:
+    ErrorResponse:
+      description: The generic ExtremeCloud IQ API error response
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/XiqError'
+  securitySchemes:
+    BearerAuth:
+      type: http
+      description: JSON Web Token (JWT) based authentication
+      scheme: bearer
+      bearerFormat: JWT
+externalDocs:
+  description: API Reference
+  url: https://extremecloudiq.com/api-docs/api-reference.html

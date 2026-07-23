@@ -1,0 +1,2008 @@
+openapi: 3.0.3
+info:
+  title: ExtremeCloud IQ Account Alert API
+  description: 'ExtremeCloud IQ™ API allows customers and partners to create solutions for the management, monitoring, and provisioning
+
+    of any ExtremeCloud IQ™ environment.
+
+
+    All related resources and documentation are available at [ExtremeCloud IQ Developer Portal](https://developer.extremecloudiq.com/).
+
+    Please check [Get Started and Tutorial](https://developer.extremecloudiq.com/documentation/) to understand how to use the APIs.
+
+
+    Get the [latest OpenAPI definition](https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI/blob/main/xcloudiq-openapi.yaml)
+
+    from [ExtremeCloud IQ OpenAPI GitHub repository](https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI).
+
+
+    Please have a valid [ExtremeCloud IQ](https://extremecloudiq.com/) account before getting started.
+
+    If you don''t have one, please [register a new account](https://www.extremenetworks.com/cloud-networking/).'
+  termsOfService: https://www.extremenetworks.com/company/legal/terms-of-use/
+  contact:
+    name: Extreme Networks Support
+    url: https://www.extremenetworks.com/support
+    email: support@extremenetworks.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  version: 25.9.0-36
+servers:
+- url: https://api.extremecloudiq.com
+  description: ExtremeCloud IQ REST API Server
+tags:
+- name: Alert
+  description: ExtremeCloud IQ generated alerts and events
+paths:
+  /alerts:
+    get:
+      tags:
+      - Alert
+      summary: List the alerts
+      description: List a page of alerts by filter.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_list_the_alerts
+      operationId: listAlerts
+      parameters:
+      - $ref: '#/components/parameters/page'
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/startTime'
+      - $ref: '#/components/parameters/endTime'
+      - $ref: '#/components/parameters/acknowledged'
+      - $ref: '#/components/parameters/categoryIds'
+      - $ref: '#/components/parameters/severityIds'
+      - $ref: '#/components/parameters/messageMetadataIds'
+      - $ref: '#/components/parameters/siteId'
+      - name: sortField
+        in: query
+        description: The sort field
+        required: false
+        schema:
+          $ref: '#/components/schemas/XiqAlertSortField'
+      - $ref: '#/components/parameters/order'
+      - name: keyword
+        in: query
+        description: The keyword to filter, such as summery, severity, source and etc.
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagedXiqAlert'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /alerts/:acknowledge:
+    post:
+      tags:
+      - Alert
+      summary: Acknowledge the alerts
+      description: Acknowledge the alerts by ID list.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_acknowledge_the_alerts
+      operationId: acknowledgeAlerts
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/alertIds'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                description: The data in the current page
+                items:
+                  $ref: '#/components/schemas/XiqAlert'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /alerts/count-by-{group}:
+    get:
+      tags:
+      - Alert
+      summary: Count the alerts by different grouping
+      description: Count the number of alerts and events based on Severity, Category, and Alert Type.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_count_the_alerts_by_group
+      operationId: countAlertsByGroup
+      parameters:
+      - $ref: '#/components/parameters/startTime'
+      - $ref: '#/components/parameters/endTime'
+      - $ref: '#/components/parameters/group'
+      - $ref: '#/components/parameters/acknowledged'
+      - $ref: '#/components/parameters/siteId'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/XiqAlertGroupCount'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /alerts/reports:
+    post:
+      tags:
+      - Alert
+      summary: '[LRO] Create alert event report'
+      description: Creates a report page of alert event. This API can be run at async mode, please follow the Long-Running Operation (LRO) guide to track the progress and the result.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_create_an_alert_report
+      operationId: createAlertReport
+      parameters:
+      - $ref: '#/components/parameters/startTime'
+      - $ref: '#/components/parameters/endTime'
+      - $ref: '#/components/parameters/acknowledged'
+      - $ref: '#/components/parameters/categoryIds'
+      - $ref: '#/components/parameters/severityIds'
+      - $ref: '#/components/parameters/messageMetadataIds'
+      - name: siteId
+        in: query
+        description: The site to filter, return global data if not specified
+        required: false
+        schema:
+          type: integer
+          format: int64
+      - name: timeZoneOffset
+        in: query
+        description: The time zone off set
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortField
+        in: query
+        description: The sort field
+        required: false
+        schema:
+          $ref: '#/components/schemas/XiqAlertSortField'
+      - $ref: '#/components/parameters/order'
+      - name: keyword
+        in: query
+        description: The keyword to filter, such as summery, severity, source and etc.
+        required: false
+        schema:
+          type: string
+      - $ref: '#/components/parameters/async'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XiqAlertReport'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /alerts/reports/{id}:
+    get:
+      tags:
+      - Alert
+      summary: Download an alert event report
+      description: Download report of alert event .
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_download_an_alert_report
+      operationId: downloadAlertReport
+      parameters:
+      - name: id
+        in: path
+        description: The report ID
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: byte
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /alert-subscriptions/emails:
+    get:
+      tags:
+      - Alert
+      summary: List email subscriptions
+      description: List all email subscriptions.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_list_alert_email_subscriptions
+      operationId: listEmailSubscriptions
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/XiqAlertEmailSubscription'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+    post:
+      tags:
+      - Alert
+      summary: Create email subscription
+      description: Create email subscription.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_create_subscription_email
+      operationId: createEmailSubscription
+      requestBody:
+        description: The payload of create email subscription.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/XiqCreateAlertEmailSubscriptionRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XiqAlertEmailSubscription'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /alert-subscriptions/emails/:delete:
+    post:
+      tags:
+      - Alert
+      summary: '[LRO] Delete alert subscription email in bulk'
+      description: Delete alert subscription email by a list of IDs.This API can be run at async mode, please follow the Long-Running Operation (LRO) guide to track the progress and the result.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_bulk_delete_alert_email_subscriptions
+      operationId: deleteBulkAertSubscriptionEmail
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/subscriptionIds'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XiqDeleteBulkAlertSubscriptionEmailResponse'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /alert-subscriptions/emails/{id}:
+    get:
+      tags:
+      - Alert
+      summary: Get email subscription info for a specific email
+      description: Get email subscription info for a specific email.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_get_an_alert_email_subscription
+      operationId: getEmailSubscription
+      parameters:
+      - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XiqAlertEmailSubscription'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+    put:
+      tags:
+      - Alert
+      summary: Update email subscription
+      description: Update email subscription.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_update_an_alert_email_subscription
+      operationId: updateEmailSubscription
+      parameters:
+      - $ref: '#/components/parameters/id'
+      requestBody:
+        description: The payload of update email subscription.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/XiqUpdateAlertEmailSubscriptionRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XiqAlertEmailSubscription'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+    delete:
+      tags:
+      - Alert
+      summary: Delete email subscription
+      description: Delete an exist email subscription.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_delete_an_alert_email_subscription
+      operationId: deleteEmailSubscription
+      parameters:
+      - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: OK
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /alert-subscriptions/emails/{id}/:verify:
+    post:
+      tags:
+      - Alert
+      summary: External email address verification
+      description: User sends a verification email to the specified email address to verify, by clicking the verify link/button in the email.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_verify_an_alert_email_subscription
+      operationId: verifySubscriptionEmail
+      parameters:
+      - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: OK
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /alert-subscriptions/webhooks:
+    get:
+      tags:
+      - Alert
+      summary: List webhook subscriptions
+      description: List webhook subscriptions.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_list_alert_webhook_subscriptions
+      operationId: listWebhookSubscriptions
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/XiqAlertWebhookSubscription'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+    post:
+      tags:
+      - Alert
+      summary: Create webhook subscription
+      description: Create webhook subscription.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_create_an_alert_webhook_subscription
+      operationId: createWebhookSubscription
+      requestBody:
+        description: The payload of create webhook subscription.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/XiqCreateAlertWebhookSubscriptionRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XiqAlertWebhookSubscription'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /alert-subscriptions/webhooks/:delete:
+    post:
+      tags:
+      - Alert
+      summary: '[LRO] Delete alert subscription webhook in bulk'
+      description: Delete alert subscription webhook by a list of IDs.This API can be run at async mode, please follow the Long-Running Operation (LRO) guide to track the progress and the result.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_bulk_delete_alert_webhook_subscriptions
+      operationId: deleteBulkAertSubscriptionWebhook
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/subscriptionIds'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XiqDeleteBulkAlertSubscriptionWebhookResponse'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /alert-subscriptions/webhooks/{id}:
+    get:
+      tags:
+      - Alert
+      summary: Get webhook subscription info for a specific url
+      description: Get webhook subscription info for a specific url.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_get_an_alert_webhook_subscription
+      operationId: getWebhookSubscription
+      parameters:
+      - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XiqAlertWebhookSubscription'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+    put:
+      tags:
+      - Alert
+      summary: Update webhook subscription
+      description: Update webhook subscription.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_update_an_alert_webhook_subscription
+      operationId: updateWebhookSubscription
+      parameters:
+      - $ref: '#/components/parameters/id'
+      requestBody:
+        description: The payload of update webhook subscription.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/XiqUpdateAlertWebhookSubscriptionRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XiqAlertWebhookSubscription'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+    delete:
+      tags:
+      - Alert
+      summary: Delete webhook subscription
+      description: Delete an exist webhook subscription.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_delete_an_alert_webhook_subscription
+      operationId: deleteWebhookSubscription
+      parameters:
+      - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: OK
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /alert-subscriptions/servicenow:
+    get:
+      tags:
+      - Alert
+      summary: List ServiceNow subscriptions
+      description: List all ServiceNow subscriptions.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_list_alert_servicenow_subscription
+      operationId: listServiceNowSubscriptions
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/XiqAlertServiceNowSubscription'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+    post:
+      tags:
+      - Alert
+      summary: Create ServiceNow subscription
+      description: Create ServiceNow subscription.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_create_an_alert_servicenow_subscription
+      operationId: createServiceNowSubscription
+      requestBody:
+        description: The payload of create ServiceNow subscription.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/XiqCreateAlertServiceNowSubscriptionRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XiqAlertServiceNowSubscription'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /alert-subscriptions/servicenow/:delete:
+    post:
+      tags:
+      - Alert
+      summary: Delete alert ServiceNow subscription in bulk
+      description: Delete alert ServiceNow subscription by a list of provided IDs.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_bulk_delete_an_alert_servicenow_subscription
+      operationId: deleteBulkAlertSubscriptionServiceNow
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/subscriptionIds'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XiqDeleteBulkAlertSubscriptionServiceNowResponse'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /alert-subscriptions/servicenow/{id}:
+    get:
+      tags:
+      - Alert
+      summary: Get a specific ServiceNow subscription
+      description: Get ServiceNow subscription info for a specific ServiceNow account.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_get_an_alert_servicenow_subscription
+      operationId: getServiceNowSubscription
+      parameters:
+      - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XiqAlertServiceNowSubscription'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+    put:
+      tags:
+      - Alert
+      summary: Update ServiceNow subscription
+      description: Update ServiceNow subscription.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_update_an_alert_servicenow_subscription
+      operationId: updateServiceNowSubscription
+      parameters:
+      - $ref: '#/components/parameters/id'
+      requestBody:
+        description: The payload of update ServiceNow subscription.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/XiqUpdateAlertServiceNowSubscriptionRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XiqAlertServiceNowSubscription'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+    patch:
+      tags:
+      - Alert
+      summary: Partial or full update ServiceNow subscription
+      description: Partial or full update ServiceNow subscription.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_patch_alert_serviceNow_subscription
+      operationId: patchServiceNowSubscription
+      parameters:
+      - $ref: '#/components/parameters/id'
+      requestBody:
+        description: The payload of ServiceNow subscription.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/XiqPatchAlertServiceNowSubscriptionRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XiqAlertServiceNowSubscription'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+    delete:
+      tags:
+      - Alert
+      summary: Delete ServiceNow subscription
+      description: Delete an exist ServiceNow subscription.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_delete_an_alert_ServiceNow_subscription
+      operationId: deleteServiceNowSubscription
+      parameters:
+      - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: OK
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /alert-policies:
+    get:
+      tags:
+      - Alert
+      summary: List all alert policies
+      description: Get a list of all alert policies belonging to the current user and an overview  of their associated alert rules.  The details for the rules is available from the alert policy rules API.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_list_the_alert_policies
+      operationId: listAlertPolicies
+      security:
+      - BearerAuth: []
+      parameters:
+      - name: keyword
+        in: query
+        description: The keyword to filter, such as policy name or site name
+        required: false
+        schema:
+          type: string
+      - name: policyType
+        in: query
+        description: The policy type to filter, such as SITE or GLOBAL
+        required: false
+        schema:
+          $ref: '#/components/schemas/XiqAlertPolicyType'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                description: The alert policies belonging to this user.
+                properties:
+                  global_policy:
+                    description: The global policy. Empty when includeGlobal is false.
+                    $ref: '#/components/schemas/XiqAlertPolicy'
+                  site_policies:
+                    type: array
+                    description: A list of site policies.
+                    items:
+                      $ref: '#/components/schemas/XiqAlertPolicy'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+    post:
+      tags:
+      - Alert
+      summary: Create a site based alert policy
+      description: Create a new site-based alert policy. The global policy for each account is created automatically.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_create_an_alert_policy
+      operationId: createAlertPolicy
+      security:
+      - BearerAuth: []
+      requestBody:
+        description: The body of create site policy API
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/XiqCreateAlertPolicyRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XiqAlertPolicy'
+                description: The newly created alert policy.
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+  /alert-policies/{policyId}:
+    get:
+      tags:
+      - Alert
+      summary: Get details of an alert policy
+      description: Get the details related to a specific alert policy, given the policy's identifier.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_get_an_alert_policy
+      operationId: getAlertPolicy
+      security:
+      - BearerAuth: []
+      parameters:
+      - $ref: '#/components/parameters/policyId'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XiqAlertPolicy'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+    put:
+      tags:
+      - Alert
+      summary: Update a site-based alert policy
+      description: Modify a site-based alert policy's details, including the policy name and sites. The global policy cannot be updated. The sites can be obtained from the alerts/sites API.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_update_an_alert_policy
+      operationId: updateAlertPolicy
+      security:
+      - BearerAuth: []
+      parameters:
+      - $ref: '#/components/parameters/policyId'
+      requestBody:
+        description: The body of update alert site policy API
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/XiqUpdateAlertPolicyRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XiqAlertPolicy'
+                description: The newly created alert policy.
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+    delete:
+      tags:
+      - Alert
+      summary: Delete a site-based alert policy
+      description: Delete an alert policy. All the associated alert rules will be deleted as well. The global policy cannot be deleted.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_delete_an_alert_policy
+      operationId: deleteAlertPolicy
+      security:
+      - BearerAuth: []
+      parameters:
+      - $ref: '#/components/parameters/policyId'
+      responses:
+        '200':
+          description: OK
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+  /alert-policies/available-sites:
+    get:
+      tags:
+      - Alert
+      summary: The list of current owner's available sites
+      description: List all sites belonging to the current owner. If the site has been configured an alert policy, then the site will not be available.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_list_the_available_sites
+      operationId: listAvailableSites
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/XiqAlertSite'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /alert-policies/{policyId}/rules/{ruleId}:
+    get:
+      tags:
+      - Alert
+      summary: Get details of an alert rule
+      description: Get the full details of an alert rule's state.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_get_an_alert_rule
+      operationId: getAlertRule
+      security:
+      - BearerAuth: []
+      parameters:
+      - $ref: '#/components/parameters/policyId'
+      - $ref: '#/components/parameters/ruleId'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XiqAlertRule'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+    put:
+      tags:
+      - Alert
+      summary: Update an alert rule
+      description: Update the state of an alert rule. The rule's identifier may change as a result of this operation.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_update_an_alert_rule
+      operationId: updateAlertRule
+      security:
+      - BearerAuth: []
+      parameters:
+      - $ref: '#/components/parameters/policyId'
+      - $ref: '#/components/parameters/ruleId'
+      requestBody:
+        description: The body of update alert rule API
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/XiqUpdateAlertRuleRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XiqAlertRule'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+  /alert-policies/{policyId}/rules/{ruleId}/:enable:
+    post:
+      tags:
+      - Alert
+      summary: Enable a rule from an alert policy
+      description: Set the status of a rule to enabled. The rule's identifier may change as a result of this operation.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_enable_an_alert_rule
+      operationId: enableAlertRule
+      security:
+      - BearerAuth: []
+      parameters:
+      - $ref: '#/components/parameters/policyId'
+      - $ref: '#/components/parameters/ruleId'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XiqAlertRule'
+                description: The updated alert rule status.
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+  /alert-policies/{policyId}/rules/{ruleId}/:disable:
+    post:
+      tags:
+      - Alert
+      summary: Disable a rule from an alert policy
+      description: Set the status of a rule to disabled. The rule's identifier may change as a result of this operation.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_disable_an_alert_rule
+      operationId: disableAlertRule
+      security:
+      - BearerAuth: []
+      parameters:
+      - $ref: '#/components/parameters/policyId'
+      - $ref: '#/components/parameters/ruleId'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XiqAlertRule'
+                description: The updated alert rule status.
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+components:
+  parameters:
+    order:
+      name: order
+      in: query
+      description: The sort order (ascending by default)
+      required: false
+      schema:
+        $ref: '#/components/schemas/XiqSortOrder'
+    page:
+      name: page
+      in: query
+      description: Page number, min = 1
+      required: false
+      schema:
+        minimum: 1
+        type: integer
+        format: int32
+        default: 1
+    startTime:
+      name: startTime
+      in: query
+      description: The start time to query, epoch time in milliseconds since 1/1/1970
+      required: true
+      schema:
+        type: integer
+        format: int64
+    siteId:
+      in: query
+      description: The site ID to filter.
+      name: siteId
+      required: false
+      schema:
+        type: integer
+        format: int64
+        description: The site ID
+    async:
+      in: query
+      name: async
+      description: Whether to enable async mode
+      required: false
+      schema:
+        type: boolean
+        default: false
+    limit:
+      name: limit
+      in: query
+      description: Page Size, min = 1, max = 100
+      required: false
+      schema:
+        maximum: 100
+        minimum: 1
+        type: integer
+        format: int32
+        default: 10
+    categoryIds:
+      in: query
+      description: The alert category Ids to filter, use alert/metadata API to get category information.
+      name: categoryIds
+      required: false
+      schema:
+        type: array
+        description: The alert category ID list.
+        items:
+          type: integer
+          format: int64
+          description: The alert category ID.
+    group:
+      name: group
+      in: path
+      description: The group to count from
+      required: true
+      schema:
+        $ref: '#/components/schemas/XiqAlertGroupQuery'
+    acknowledged:
+      in: query
+      name: acknowledged
+      description: Default is null, which will return all alerts. Set it to false to only return unacknowledged alerts. Otherwise, set it to true only return acknowledged alerts.
+      required: false
+      schema:
+        type: boolean
+    endTime:
+      name: endTime
+      in: query
+      description: The end time to query, epoch time in milliseconds since 1/1/1970
+      required: true
+      schema:
+        type: integer
+        format: int64
+    policyId:
+      in: path
+      name: policyId
+      description: The alert policy identifier.
+      schema:
+        type: integer
+        format: int64
+      required: true
+    id:
+      name: id
+      in: path
+      description: The unique identifier
+      required: true
+      schema:
+        type: integer
+        format: int64
+    ruleId:
+      name: ruleId
+      in: path
+      description: The alert rule identifier.
+      required: true
+      schema:
+        type: integer
+        format: int64
+    severityIds:
+      in: query
+      description: The alert severity identifiers to filter. The currently supported severity IDs are 1 for critical, 2 for warning, and 3 for info.
+      name: severityIds
+      required: false
+      schema:
+        type: array
+        description: The alert severity ID list.
+        items:
+          type: integer
+          format: int64
+          description: The alert severity ID.
+    messageMetadataIds:
+      in: query
+      description: The message metadata ID list to filter. Use /alert/metadata/events-by-category or /alert/metadata/metrics-by-metricset APIs to get the message metadata information.
+      name: messageMetadataIds
+      required: false
+      schema:
+        type: array
+        description: The message metadata ID list.
+        items:
+          type: string
+          description: The message metadata ID.
+  schemas:
+    XiqDeleteBulkAlertSubscriptionEmailResponse:
+      type: object
+      description: The result of a bulk delete for alert email subscriptions.
+      required:
+      - result
+      properties:
+        result:
+          type: string
+          description: The result of this bulk deletion (SUCCESS/PARTIAL_SUCCESS).
+          $ref: '#/components/schemas/XiqBulkOperationResult'
+          example: PARTIAL_SUCCESS
+        reason:
+          type: string
+          description: Indicate the reason of unresolved_deletion.
+          example: At least one ID not found.
+        unresolved_deletions:
+          type: array
+          description: This result will be shown when a bulk delete partially succeeds, providing details of unsuccessful delete IDs and associated names.
+          items:
+            $ref: '#/components/schemas/XiqBulkDeleteEmailSubscriptionResult'
+    XiqAlertSortField:
+      type: string
+      description: All available device sort fields TIMESTAMP = Last Detected, SOURCE = Source Name.
+      enum:
+      - TIMESTAMP
+      - SOURCE
+    XiqAlertReport:
+      type: object
+      description: ExtremeCloud IQ alert report
+      properties:
+        id:
+          type: integer
+          description: The alert report ID
+          format: int64
+    XiqSortOrder:
+      type: string
+      enum:
+      - ASC
+      - DESC
+    XiqBulkDeleteWebhookSubscriptionResult:
+      type: object
+      description: The result of bulk delete webhook susbscriptions.
+      properties:
+        ID:
+          type: integer
+          format: int64
+          description: The ID of webhook subscription.
+    XiqAlertWebhookSubscription:
+      allOf:
+      - $ref: '#/components/schemas/XiqBaseEntity'
+      - type: object
+        description: The webhook subscription data model
+        required:
+        - url
+        - is_subscribe_all
+        properties:
+          url:
+            type: string
+            format: uri
+            description: The webhook endpoint URL.
+          secret:
+            type: string
+            description: The auth secret for the webhook endpoint.
+          is_enabled:
+            type: boolean
+            description: Enable/disable alert notifications for a webhook endpoint.
+          is_subscribe_all:
+            type: boolean
+            description: The all alert policy selected flag.
+          alert_policy_ids:
+            type: array
+            items:
+              type: integer
+              format: int64
+            description: The selected alert policy list. This field is optional because it is only needed when is_subscribe_all is false.
+    XiqAlertRuleThresholdOperator:
+      type: string
+      enum:
+      - GT
+      - GE
+      - EQ
+      - LT
+      - LE
+      - NE
+      description: Has value when message_metadata_type is "METRIC". The operator for comparing with the threshold.
+    PagedXiqAlert:
+      allOf:
+      - $ref: '#/components/schemas/XiqPage'
+      - type: object
+        properties:
+          data:
+            type: array
+            description: The data in the current page
+            items:
+              $ref: '#/components/schemas/XiqAlert'
+    XiqAlertTag:
+      type: object
+      description: The tag for the alert
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: The unique identifier for the tag metadata
+        name:
+          type: string
+          description: The tag display name
+        value:
+          type: string
+          description: The tag value
+        is_hidden:
+          type: boolean
+          description: If tag should be hidden from the user
+      required:
+      - id
+      - name
+      - value
+      - is_hidden
+    XiqAlertEmailSubscription:
+      allOf:
+      - $ref: '#/components/schemas/XiqBaseEntity'
+      - type: object
+        description: The email subscription data model
+        required:
+        - email
+        - is_email_verified
+        - is_subscribe_all
+        properties:
+          email:
+            type: string
+            format: email
+            description: The email address.
+          is_enabled:
+            type: boolean
+            description: Enable/disable alert notifications for an email.
+          is_email_verified:
+            type: boolean
+            description: The email address verified flag.
+          is_subscribe_all:
+            type: boolean
+            description: The all alert policy selected flag.
+          alert_policy_ids:
+            type: array
+            items:
+              type: integer
+              format: int64
+            description: The selected alert policy list. This field is optional because it is only needed when is_subscribe_all is false.
+          resend_email_after:
+            type: string
+            format: date-time
+            description: This field represents the time after for the user can resend a new verification email.
+    XiqAlert:
+      type: object
+      description: The Alert Model
+      properties:
+        id:
+          type: string
+          description: The unique identifier
+        owner_id:
+          type: integer
+          description: The owner ID
+          format: int64
+        timestamp:
+          type: string
+          description: The alert create time
+          format: date-time
+        org_id:
+          type: integer
+          description: The organization identifier, valid when enabling HIQ feature
+          format: int64
+        message_metadata_id:
+          type: integer
+          format: int64
+          description: The identifier for the unique message type that corresponds to this rule. If message_metadata_type is "EVENT", then this identifier corresponds to the ID from the alerts metadata events API. If message_metadata_type is "METRIC", then this identifier corresponds to the ID from the alerts metadata metrics API.
+        message_metadata_type:
+          type: string
+          description: The type of the message. Currently "EVENT" and "METRIC". Used for getting the metadata API.
+        summary:
+          type: string
+          description: A high-level, text summary message of the event. Will be used to construct an alert's description.
+        severity_id:
+          type: integer
+          format: int64
+          description: The alert severity ID.
+        severity_name:
+          type: string
+          description: The alert severity name.
+        category_id:
+          type: integer
+          format: int64
+          description: The alert category ID.
+        category_name:
+          type: string
+          description: The alert category name.
+        source:
+          $ref: '#/components/schemas/XiqAlertSource'
+        acknowledged:
+          type: boolean
+          description: Whether or not this alert has been acknowledged.
+        site_id:
+          type: integer
+          description: The site identifier.
+          format: int64
+        site_name:
+          type: string
+          description: The site name.
+        alert_policy_id:
+          type: integer
+          description: The alert policy identifier.
+          format: int64
+        alert_policy_name:
+          type: string
+          description: The alert policy name.
+        alert_rule_id:
+          type: integer
+          description: The alert rule identifier.
+          format: int64
+        acknowledged_username:
+          type: string
+          description: The login name of the user that acknowledged the alert.
+        tags:
+          type: array
+          description: Additional information for the alert. The values correspond to the object from the alerts/metadata/tags API.
+          items:
+            $ref: '#/components/schemas/XiqAlertTag'
+      required:
+      - id
+      - owner_id
+      - timestamp
+      - message_metadata_id
+      - message_metadata_type
+      - summary
+      - severity_id
+      - severity_name
+      - category_id
+      - category_name
+      - source
+      - acknowledged
+      - site_id
+      - site_name
+      - alert_policy_id
+      - alert_policy_name
+      - alert_rule_id
+      - tags
+    XiqAlertRuleOverview:
+      type: object
+      description: The overview for an alert rule. Detailed information is available from the get alert rule API.
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: The unique identifier of this rule.
+        name:
+          type: string
+          description: The human-readable name of this rule. Corresponds to the message_metadata_name from the get alert rule details API.
+        enabled:
+          type: boolean
+          description: Indicates whether this rule is in effect.
+      required:
+      - id
+      - name
+      - enabled
+    XiqCreateAlertPolicyRequest:
+      type: object
+      description: The body of a create alert policy request.
+      properties:
+        name:
+          type: string
+          description: The alert policy name
+        site_ids:
+          type: array
+          description: The list of sites to be included in this policy
+          items:
+            type: integer
+            format: int64
+      required:
+      - name
+      - site_ids
+    XiqBulkDeleteEmailSubscriptionResult:
+      type: object
+      description: The result of bulk detele email susbscriptions.
+      properties:
+        ID:
+          type: integer
+          format: int64
+          description: The ID of email subscription.
+    XiqErrorParams:
+      type: object
+      description: Error parameters
+      properties:
+        field:
+          type: string
+          description: The error field
+        value:
+          type: string
+          description: The error value
+    XiqUpdateAlertWebhookSubscriptionRequest:
+      type: object
+      description: The payload to create webhook subscription
+      required:
+      - alert_policy_ids
+      properties:
+        url:
+          type: string
+          format: uri
+          description: The webhook endpoint URL.
+        secret:
+          type: string
+          description: The auth secret for the webhook endpoint.
+        is_enabled:
+          type: boolean
+          description: Enable/disable alert notifications for a webhook url.
+        is_subscribe_all:
+          type: boolean
+          description: The all alert policy selected flag.
+        alert_policy_ids:
+          type: array
+          items:
+            type: integer
+            format: int64
+          description: The selected alert policy list. This field will be an empty collection when is_subscribe_all is true.
+    XiqCreateAlertEmailSubscriptionRequest:
+      type: object
+      description: The payload to create email subscription
+      required:
+      - email
+      - is_subscribe_all
+      - alert_policy_ids
+      properties:
+        email:
+          type: string
+          format: email
+          description: The email address.
+        is_enabled:
+          type: boolean
+          description: Enable/disable alert notifications for an email.
+        is_subscribe_all:
+          type: boolean
+          description: The all alert policy selected flag.
+        alert_policy_ids:
+          type: array
+          items:
+            type: integer
+            format: int64
+          description: The selected alert policy list. This field will be an empty collection when is_subscribe_all is true.
+    XiqBaseEntity:
+      required:
+      - id
+      - create_time
+      - update_time
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The unique identifier
+          format: int64
+        create_time:
+          type: string
+          description: The create time
+          format: date-time
+        update_time:
+          type: string
+          description: The last update time
+          format: date-time
+    XiqAlertPolicyType:
+      type: string
+      description: All available policy type GLOBAL and SITE.
+      enum:
+      - GLOBAL
+      - SITE
+    XiqCreateAlertWebhookSubscriptionRequest:
+      type: object
+      description: The payload to create webhook subscription
+      required:
+      - url
+      - is_subscribe_all
+      - alert_policy_ids
+      properties:
+        url:
+          type: string
+          format: uri
+          description: The webhook endpoint URL.
+        secret:
+          type: string
+          description: The auth secret for the webhook endpoint.
+        is_enabled:
+          type: boolean
+          description: Enable/disable alert notifications for a webhook url.
+        is_subscribe_all:
+          type: boolean
+          description: The all alert policy selected flag.
+        alert_policy_ids:
+          type: array
+          items:
+            type: integer
+            format: int64
+          description: The selected alert policy list. This field will be an empty collection when is_subscribe_all is true.
+    XiqAlertServiceNowSubscription:
+      allOf:
+      - $ref: '#/components/schemas/XiqBaseEntity'
+      - type: object
+        description: The ServiceNow subscription data model
+        required:
+        - servicenow_account_email
+        - is_subscribe_all
+        properties:
+          servicenow_account_email:
+            type: string
+            format: email
+            description: The ServiceNow account email.
+          is_enabled:
+            type: boolean
+            description: Enable/disable alert notifications for an ServiceNow.
+          is_subscribe_all:
+            type: boolean
+            description: The all alert policies selected flag.
+          alert_policy_ids:
+            type: array
+            items:
+              type: integer
+              format: int64
+            description: The selected alert policy list. This field is optional because it is only needed when is_subscribe_all is false.
+    XiqCreateAlertServiceNowSubscriptionRequest:
+      type: object
+      description: The payload to create ServiceNow subscription
+      required:
+      - servicenow_account_email
+      - is_subscribe_all
+      - alert_policy_ids
+      properties:
+        servicenow_account_email:
+          type: string
+          description: The ServiceNow account email which ends with @service-now.com .
+        is_enabled:
+          type: boolean
+          description: Enable/disable alert notifications for an ServiceNow.
+        is_subscribe_all:
+          type: boolean
+          description: The all alert policies selected flag.
+        alert_policy_ids:
+          type: array
+          items:
+            type: integer
+            format: int64
+          description: The selected alert policy list. This field will be an empty collection when is_subscribe_all is true.
+    XiqError:
+      type: object
+      properties:
+        error_code:
+          type: string
+          description: The error code
+        error_id:
+          type: string
+          description: The error ID for internal troubleshooting
+        error_message:
+          type: string
+          description: The error detailed message
+        error_message_code:
+          type: string
+          description: The error message code
+        error_message_description:
+          type: string
+          description: The error message description
+        error_params:
+          $ref: '#/components/schemas/XiqErrorParams'
+      required:
+      - error_code
+      - error_id
+      - error_message
+    XiqUpdateAlertRuleRequest:
+      type: object
+      properties:
+        description:
+          type: string
+          description: This is a description for the alert rule.
+        severity_id:
+          type: integer
+          format: int64
+          description: The severity identifier. The currently supported severity IDs are 1 for critical, 2 for warning, and 3 for info.
+        trigger_type:
+          type: string
+          description: The configured trigger type of the rule. Currently "DEFERRED", "REPEATED", and "IMMEDIATE". Additional values may be added in the future.
+          example: DEFERRED
+        duration:
+          type: integer
+          format: int32
+          description: Has value when trigger_type is "DEFERRED". The deferred duration, in seconds.
+          example: 1
+        time_window:
+          type: integer
+          format: int32
+          description: Has value when trigger_type is "REPEATED". The time window to count the number of repeated messages, in seconds.
+        count:
+          type: integer
+          format: int32
+          description: Has value when trigger_type is "REPEATED". The lower bound of the number of messages required to trigger this rule.
+          example: 3
+        threshold:
+          type: number
+          format: double
+          description: Has value when type is "METRIC". The threshold for the message.
+        operator:
+          $ref: '#/components/schemas/XiqAlertRuleThresholdOperator'
+    XiqBulkDeleteServiceNowSubscriptionResult:
+      type: object
+      description: The result of bulk delete ServiceNow susbscriptions.
+      properties:
+        ID:
+          type: integer
+          format: int64
+          description: The ID of ServiceNow subscription.
+    XiqBulkOperationResult:
+      type: string
+      enum:
+      - PARTIAL_SUCCESS
+      - SUCCESS
+    XiqPage:
+      required:
+      - count
+      - page
+      - total_count
+      - total_pages
+      type: object
+      properties:
+        page:
+          type: integer
+          description: The current page number
+          format: int32
+        count:
+          type: integer
+          description: The element count of the current page
+          format: int32
+        total_pages:
+          type: integer
+          description: The total page number based on request page size
+          format: int32
+        total_count:
+          type: integer
+          description: The total element count
+          format: int64
+    XiqAlertSource:
+      type: object
+      description: The alert source info
+      properties:
+        source_type_id:
+          type: string
+          description: The alert source type ID.
+        source_name:
+          type: string
+          description: The alert source name
+        source_type:
+          type: string
+          description: The alert source type.
+        source_id:
+          type: string
+          description: The alert source ID.
+      required:
+      - source_type_id
+      - source_name
+      - source_type
+      - source_id
+    XiqAlertGroupCount:
+      type: object
+      properties:
+        group_id:
+          type: integer
+          description: The group unique identifier.
+          format: int64
+        group_name:
+          type: string
+          description: The group display name on GUI.
+        count:
+          type: integer
+          description: The count of the type.
+          format: int64
+      description: The alert group count information. When the group is SEVERITY, the group_id will be severity ID When the group is CATEGORY, the group_id will be category ID When the group is ALERT_TYPE, the group_id will be message metadata ID.
+      required:
+      - group_id
+      - group_name
+      - count
+    subscriptionIds:
+      type: object
+      description: The filter to get alert subscriptions
+      properties:
+        ids:
+          type: array
+          description: The subscription ID list
+          items:
+            type: integer
+            description: The subscription ID list
+            format: int64
+    XiqAlertMetricRulesByMetricset:
+      type: object
+      description: A metricset and overviews of the associated metric-based alert rules.
+      properties:
+        metricset_id:
+          type: integer
+          format: int64
+        metricset_name:
+          type: string
+        rules:
+          type: array
+          items:
+            $ref: '#/components/schemas/XiqAlertRuleOverview'
+      required:
+      - metricset_id
+      - metricset_name
+      - rules
+    XiqAlertRule:
+      type: object
+      description: The state for a configured alert rule.
+      properties:
+        id:
+          type: integer
+          description: The unique identifier of this rule.
+          format: int64
+        message_metadata_id:
+          type: integer
+          format: int64
+          description: The identifier for the unique message type that corresponds to this rule.  If message_metadata_type is "EVENT", then this identifier corresponds to the ID from the alerts metadata events API. If message_metadata_type is "METRIC", then this identifier corresponds to the ID from the alerts metadata metrics API.
+        message_metadata_name:
+          type: string
+          description: The display name for the message. Can also be used as a display name for this rule.
+        message_metadata_type:
+          type: string
+          description: The type of the message. Currently "EVENT" and "METRIC". Used for getting the metadata API.
+        description:
+          type: string
+          description: This is a description for the alert rule.
+        severity_id:
+          type: integer
+          format: int64
+          description: The severity identifier. The currently supported severity IDs are 1 for critical, 2 for warning, and 3 for info.
+        severity_name:
+          type: string
+          description: The display name for the alert severity.
+        trigger_type:
+          type: string
+          description: The configured trigger type of the rule. Currently "DEFERRED", "REPEATED", and "IMMEDIATE". Additional values may be added in the future.
+          example: DEFERRED
+        is_enabled:
+          type: boolean
+          description: True if this rule is active and enabled.
+        duration:
+          type: integer
+          format: int32
+          description: Has value when trigger_type is "DEFERRED". The deferred duration, in seconds.
+          example: 1
+        time_window:
+          type: integer
+          format: int32
+          description: Has value when trigger_type is "REPEATED". The time window to count the number of repeated messages, in seconds.
+        count:
+          type: integer
+          format: int32
+          description: Has value when trigger_type is "REPEATED". The lower bound of the number of messages required to trigger this rule.
+          example: 3
+        threshold:
+          type: number
+          format: double
+          description: Has value when message_metadata_type is "METRIC". The threshold for the metric.
+        unit:
+          type: string
+          description: The unit of this threshold
+        operator:
+          $ref: '#/components/schemas/XiqAlertRuleThresholdOperator'
+      required:
+      - id
+      - message_metadata_id
+      - message_metadata_name
+      - message_metadata_type
+      - description
+      - severity_id
+      - severity_name
+      - trigger_type
+      - is_enabled
+    XiqDeleteBulkAlertSubscriptionWebhookResponse:
+      type: object
+      description: The result of a bulk delete for alert webhook subscriptions.
+      required:
+      - result
+      properties:
+        result:
+          type: string
+          description: The result of this bulk deletion (SUCCESS/PARTIAL_SUCCESS).
+          $ref: '#/components/schemas/XiqBulkOperationResult'
+        reason:
+          type: string
+          description: Indicate the reason of unresolved_deletion.
+          example: At least one ID not found.
+        unresolved_deletions:
+          type: array
+          description: This result will be shown when a bulk delete partially succeeds, providing details of unsuccessful delete IDs and associated names.
+          items:
+            $ref: '#/components/schemas/XiqBulkDeleteWebhookSubscriptionResult'
+    XiqAlertSite:
+      type: object
+      properties:
+        site_id:
+          type: integer
+          description: The location unique identifier
+          format: int64
+        site_name:
+          type: string
+          description: The site name
+      description: The site information.
+      required:
+      - site_id
+      - site_name
+    alertIds:
+      type: object
+      description: The request object to acknowledge.
+      properties:
+        alert_ids:
+          type: array
+          description: The alert ID list
+          items:
+            type: string
+            description: The alert ID
+    XiqAlertGroupQuery:
+      type: string
+      enum:
+      - SEVERITY
+      - CATEGORY
+      - ALERT_TYPE
+    XiqUpdateAlertEmailSubscriptionRequest:
+      type: object
+      description: The payload to create email subscription
+      required:
+      - alert_policy_ids
+      properties:
+        email:
+          type: string
+          format: email
+          description: The email address.
+        is_enabled:
+          type: boolean
+          description: Enable/disable alert notifications for an email.
+        is_subscribe_all:
+          type: boolean
+          description: The all alert policy selected flag.
+        alert_policy_ids:
+          type: array
+          items:
+            type: integer
+            format: int64
+          description: The selected alert policy list. This field will be an empty collection when is_subscribe_all is true.
+    XiqPatchAlertServiceNowSubscriptionRequest:
+      type: object
+      description: The payload to update ServiceNow subscription
+      properties:
+        servicenow_account_email:
+          type: string
+          description: The ServiceNow account email which ends with @service-now.com .
+        is_enabled:
+          type: boolean
+          description: Enable/disable alert notifications for a ServiceNow account.
+        is_subscribe_all:
+          type: boolean
+          description: The all alert policies selected flag.
+        alert_policy_ids:
+          type: array
+          items:
+            type: integer
+            format: int64
+          description: The selected alert policy list. This field will be an empty collection when is_subscribe_all is true.
+    XiqUpdateAlertServiceNowSubscriptionRequest:
+      type: object
+      description: The payload to update ServiceNow subscription
+      required:
+      - alert_policy_ids
+      properties:
+        servicenow_account_email:
+          type: string
+          description: The ServiceNow account email which ends with @service-now.com .
+        is_enabled:
+          type: boolean
+          description: Enable/disable alert notifications for ServiceNow account.
+        is_subscribe_all:
+          type: boolean
+          description: The all alert policies selected flag.
+        alert_policy_ids:
+          type: array
+          items:
+            type: integer
+            format: int64
+          description: The selected alert policy list. This field will be an empty collection when is_subscribe_all is true.
+    XiqAlertPolicy:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The unique identifier
+          format: int64
+        owner_id:
+          type: integer
+          description: The owner ID
+          format: int64
+        org_id:
+          type: integer
+          description: The organization identifier, valid when enabling HIQ feature
+          format: int64
+        name:
+          type: string
+          description: The name of this policy
+        sites:
+          type: array
+          items:
+            $ref: '#/components/schemas/XiqAlertSite'
+        event_rules_overview:
+          type: array
+          description: A list of overviews of the event-based alert rules, grouped by category.
+          items:
+            $ref: '#/components/schemas/XiqAlertEventRulesByCategory'
+        metric_rules_overview:
+          type: array
+          description: A list of overviews of the metric-based alert rules, grouped by metricset.
+          items:
+            $ref: '#/components/schemas/XiqAlertMetricRulesByMetricset'
+      description: The alert policy model. Includes the alert policy and the associated rules.
+      required:
+      - id
+      - owner_id
+      - org_id
+      - name
+      - event_rules_overview
+      - metric_rules_overview
+    XiqDeleteBulkAlertSubscriptionServiceNowResponse:
+      type: object
+      description: The result of a bulk delete for alert ServiceNow subscriptions.
+      required:
+      - result
+      properties:
+        result:
+          type: string
+          description: The result of this bulk deletion (SUCCESS/PARTIAL_SUCCESS).
+          $ref: '#/components/schemas/XiqBulkOperationResult'
+          example: PARTIAL_SUCCESS
+        reason:
+          type: string
+          description: Indicate the reason of unresolved_deletion.
+          example: At least one ID not found.
+        unresolved_deletions:
+          type: array
+          description: This result will be shown when a bulk delete partially succeeds, providing details of unsuccessful delete IDs and associated names.
+          items:
+            $ref: '#/components/schemas/XiqBulkDeleteServiceNowSubscriptionResult'
+    XiqUpdateAlertPolicyRequest:
+      type: object
+      description: The request body for updating an alert policy.
+      required:
+      - site_ids
+      properties:
+        name:
+          type: string
+          description: The alert policy name
+        site_ids:
+          type: array
+          description: The list of sites to be included in this policy
+          items:
+            type: integer
+            format: int64
+    XiqAlertEventRulesByCategory:
+      type: object
+      description: A category and overviews of the associated event-based alert rules.
+      properties:
+        category_id:
+          type: integer
+          format: int64
+        category_name:
+          type: string
+        rules:
+          type: array
+          items:
+            $ref: '#/components/schemas/XiqAlertRuleOverview'
+      required:
+      - category_id
+      - category_name
+      - rules
+  responses:
+    ErrorResponse:
+      description: The generic ExtremeCloud IQ API error response
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/XiqError'
+  securitySchemes:
+    BearerAuth:
+      type: http
+      description: JSON Web Token (JWT) based authentication
+      scheme: bearer
+      bearerFormat: JWT
+externalDocs:
+  description: API Reference
+  url: https://extremecloudiq.com/api-docs/api-reference.html

@@ -1,0 +1,1087 @@
+openapi: 3.0.3
+info:
+  title: ExtremeCloud IQ Account API
+  description: 'ExtremeCloud IQ™ API allows customers and partners to create solutions for the management, monitoring, and provisioning
+
+    of any ExtremeCloud IQ™ environment.
+
+
+    All related resources and documentation are available at [ExtremeCloud IQ Developer Portal](https://developer.extremecloudiq.com/).
+
+    Please check [Get Started and Tutorial](https://developer.extremecloudiq.com/documentation/) to understand how to use the APIs.
+
+
+    Get the [latest OpenAPI definition](https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI/blob/main/xcloudiq-openapi.yaml)
+
+    from [ExtremeCloud IQ OpenAPI GitHub repository](https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI).
+
+
+    Please have a valid [ExtremeCloud IQ](https://extremecloudiq.com/) account before getting started.
+
+    If you don''t have one, please [register a new account](https://www.extremenetworks.com/cloud-networking/).'
+  termsOfService: https://www.extremenetworks.com/company/legal/terms-of-use/
+  contact:
+    name: Extreme Networks Support
+    url: https://www.extremenetworks.com/support
+    email: support@extremenetworks.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  version: 25.9.0-36
+servers:
+- url: https://api.extremecloudiq.com
+  description: ExtremeCloud IQ REST API Server
+tags:
+- name: Account
+  description: ExtremeCloud IQ Account
+paths:
+  /account/home:
+    get:
+      tags:
+      - Account
+      summary: Get home ExtremeCloud IQ account info
+      description: Get home ExtremeCloud IQ account info.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_get_basic_info
+      operationId: getHomeAccount
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XiqAccount'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /account/external:
+    get:
+      tags:
+      - Account
+      summary: List accessible external guest accounts
+      description: List accessible external ExtremeCloud IQ accounts.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_list_external_accounts
+      operationId: listExternalAccounts
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/XiqExternalAccount'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /account/:switch:
+    post:
+      tags:
+      - Account
+      summary: Switch to another ExtremeCloud IQ account
+      description: Switch to external ExtremeCloud IQ account or switch back to home ExtremeCloud IQ account.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_switch_account
+      operationId: switchAccount
+      parameters:
+      - name: id
+        in: query
+        description: The account ID to switch, switch back to home ExtremeCloud IQ account if not provide
+        required: false
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XiqLoginResponse'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /account/viq:
+    get:
+      tags:
+      - Account
+      summary: Get VIQ Info
+      description: Get account VIQ and license info.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_get_viq_info
+      operationId: getViqInfo
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XiqViq'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /account/viq/:backup:
+    post:
+      tags:
+      - Account
+      summary: Backup VIQ
+      description: Backup VIQ in ExtremeCloud IQ.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_viq_backup
+      operationId: backupViq
+      responses:
+        '200':
+          description: OK
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /account/viq/default-device-password:
+    get:
+      tags:
+      - Account
+      summary: Get the default device password in the account
+      description: Get the default device password in the account.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_get_default_device_password
+      operationId: getDefaultDevicePassword
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XiqDefaultDevicePassword'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+    put:
+      tags:
+      - Account
+      summary: Update the default device password in the account
+      description: Update the default device password in the global setting for accessing the console/shell of the devices.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_update_default_device_password
+      operationId: updateDefaultDevicePassword
+      requestBody:
+        description: The new default device password
+        content:
+          application/json:
+            schema:
+              type: string
+        required: true
+      responses:
+        '200':
+          description: OK
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /v1/account/viq/default-device-password:
+    put:
+      tags:
+      - Account
+      summary: Update the default device password with validation
+      description: Update the default device password in the global setting for accessing the console/shell of the devices.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_update_default_device_password_with_validation
+      operationId: updateDefaultDevicePasswordWithValidation
+      requestBody:
+        description: The new default device password
+        content:
+          application/json:
+            schema:
+              type: string
+        required: true
+      responses:
+        '200':
+          description: OK
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /account/export:
+    post:
+      tags:
+      - Account
+      summary: Create VIQ export data
+      description: Export VIQ reports.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_viq_export_report
+      operationId: viqExportReport
+      parameters:
+      - name: timeoutInSeconds
+        in: query
+        description: The maximum export duration
+        required: false
+        schema:
+          type: integer
+          format: int64
+      - name: excludeDeviceFirmware
+        in: query
+        description: Whether exclude device firmwares from VIQ export file or not
+        required: false
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XiqViqExportReport'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /account/import:
+    post:
+      tags:
+      - Account
+      summary: Import VIQ details from a file
+      description: Import Viq details.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_viq_import
+      operationId: viqImport
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              required:
+              - file
+              type: object
+              properties:
+                file:
+                  type: string
+                  description: The import file to import VIQ data(.tar/.tar.gz)
+                  format: binary
+        required: true
+      parameters:
+      - name: timeoutInSeconds
+        in: query
+        description: The maximum import duration
+        required: false
+        schema:
+          type: integer
+          format: int64
+      - name: resendUserNotifications
+        in: query
+        description: Resend Cloud PPSK/RADIUS password through email/SMS.
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XiqViqImportReport'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /account/download:
+    get:
+      tags:
+      - Account
+      summary: Download VIQ reports or logs
+      description: Download VIQ exports reports and export or import logs.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_viq_reports_download
+      operationId: downloadViqReports
+      parameters:
+      - name: reportName
+        in: query
+        description: The name of the report
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: byte
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /account/export-import-status:
+    get:
+      tags:
+      - Account
+      summary: Status of VIQ export/import operation
+      description: Check the current VIQ export or import status.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_viq_export_import_status
+      operationId: exportImportStatus
+      parameters:
+      - name: reportName
+        in: query
+        description: The name of the report
+        required: true
+        schema:
+          type: string
+      - name: statusType
+        in: query
+        description: The operation type- export or import
+        required: true
+        schema:
+          type: string
+          items:
+            $ref: '#/components/schemas/XiqViqStatusType'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XiqViqExportImportResponse'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /account/viq/:reset:
+    post:
+      tags:
+      - Account
+      summary: Resetting VIQ
+      description: Reset VIQ in ExtremeCloud IQ.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_viq_reset
+      operationId: resetViq
+      responses:
+        '200':
+          description: OK
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /account/vhm/setting:
+    get:
+      tags:
+      - Account
+      summary: Get Account VHM Setting
+      description: Get Flag status of CoPilot, SSH Aavailibility, Supplemental CLI, AP Out-of-the-box Wireless Onboarding.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_get_vhm_setting
+      operationId: getVhmSetting
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/XiqVhmSettingInfo'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /account/vhm/setting/{id}:
+    put:
+      tags:
+      - Account
+      summary: Update Account VHM Setting
+      description: Enable/Disable CoPilot, SSH Aavailibility, Supplemental CLI, AP Out-of-the-box Wireless Onboarding.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_update_vhm_setting_by_id
+      operationId: updateVhmSetting
+      parameters:
+      - $ref: '#/components/parameters/id'
+      requestBody:
+        description: The payload of the update Account VHM Setting.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/XiqUpdateVhmSettingRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XiqVhmSetting'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /account/vhm/status:
+    get:
+      tags:
+      - Account
+      summary: Get Account VHM Status
+      description: Check VHM Account status like vhm name, current run status.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_get_vhm_status
+      operationId: getVhmStatus
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XiqVhmStatus'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /backup/history/grid:
+    get:
+      tags:
+      - Account
+      summary: Get Backup History Grid
+      description: Get Backup History Grid to track and restore backed up database.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_backup_history_grid
+      operationId: backupGrid
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagedBackupGrid'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /backup/history/:restore:
+    post:
+      tags:
+      - Account
+      summary: Backup History Restore
+      description: Restore Backup History in ExtremeCloud IQ.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_backup_restore
+      operationId: backupRestore
+      parameters:
+      - name: backup_file
+        in: query
+        description: The backup file that needs to be restored.
+        required: true
+        schema:
+          type: string
+      responses:
+        '201':
+          description: OK
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /backup/history/delete:
+    delete:
+      tags:
+      - Account
+      summary: Backup History Delete
+      description: Delete Backup History by backup files.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_backup_history_delete
+      operationId: backupDelete
+      parameters:
+      - name: backup_files
+        in: query
+        description: The list of backup files (comma-separated) that need to be deleted.
+        required: true
+        schema:
+          type: array
+          items:
+            type: string
+          example:
+          - 24.5.0.28_1719393103615
+          - 24.5.0.28_1719333999741
+        style: form
+        explode: false
+      responses:
+        '200':
+          description: OK
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /third/party/applications:
+    get:
+      tags:
+      - Account
+      summary: Get third party applications
+      description: Get third party applications.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_get_third_party_applications_by_owner_id
+      operationId: getThirdPartyApplications
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/XiqThirdPartyApplications'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+components:
+  schemas:
+    PagedBackupGrid:
+      allOf:
+      - $ref: '#/components/schemas/XiqPage'
+      - type: object
+        properties:
+          data:
+            type: array
+            description: The data in the current page
+            items:
+              $ref: '#/components/schemas/XiqBackupGrid'
+    XiqVhmSettingInfo:
+      allOf:
+      - $ref: '#/components/schemas/XiqBaseEntity'
+      - type: object
+        properties:
+          id:
+            type: integer
+            description: VHM Setting Id
+            format: int64
+          vhm_name:
+            type: string
+            description: The viq name.
+          current_status:
+            type: string
+            description: The viq current status like ACTIVE_STATUS.
+          backed_up_on:
+            type: integer
+            description: The last backup time in milliseconds.
+            format: int64
+          enable_copilot:
+            type: boolean
+            description: Flag indicating whether Co-Pilot should be enabled (true) or disabled (false).
+          enable_ssh:
+            type: boolean
+            description: Flag indicating Ssh Availability.
+          enable_supplemental_cli:
+            type: boolean
+            description: Flag indicating Supplemental CLI.
+          enable_wireless_onboarding:
+            type: boolean
+            description: Flag indicating AP Out-of-the-box Wireless Onboarding.
+          enable_password_for_exos_voss:
+            type: boolean
+            description: Flag to enable device management settings for Switch Engine (EXOS) / Fabric Engine (VOSS) switches.
+          enable_auto_config_push:
+            type: boolean
+            description: Flag to enable auto config push
+          enable_site_isolation:
+            type: boolean
+            description: Flag to enable site isolation
+    XiqExternalAccount:
+      allOf:
+      - $ref: '#/components/schemas/XiqBaseEntity'
+      - type: object
+        required:
+        - name
+        - alias
+        - active
+        - data_center
+        properties:
+          name:
+            type: string
+            description: The external account name
+          alias:
+            type: string
+            description: The external account alias
+          active:
+            type: boolean
+            description: Enable or not
+          data_center:
+            type: string
+            description: The data center to store the VIQ data
+    XiqLicenseStatus:
+      type: string
+      description: The VIQ license status
+      enum:
+      - BUY
+      - PLAN
+      - EVAL
+      - EXPIRED
+      - INVALID
+      - MIGRATED
+    XiqAccount:
+      allOf:
+      - $ref: '#/components/schemas/XiqBaseEntity'
+      - type: object
+        required:
+        - name
+        - account_type
+        - account_mode
+        - quota
+        - data_center
+        properties:
+          name:
+            type: string
+            description: Account name
+          account_type:
+            $ref: '#/components/schemas/XiqAccountType'
+          account_mode:
+            $ref: '#/components/schemas/XiqAccountMode'
+          quota:
+            type: string
+            description: The API quota policy
+          data_center:
+            type: string
+            description: The default Regional Data Center (RDC) to hold data from customer network
+          industry:
+            type: string
+            description: The industry of the account belongs to
+          country:
+            type: string
+            description: The country for the account
+          state:
+            type: string
+            description: The state for the account (if any)
+          city:
+            type: string
+            description: The city for the account
+          address:
+            type: string
+            description: The address for the account
+          zipcode:
+            type: string
+            description: The zipcode of the address
+    XiqAccountMode:
+      type: string
+      description: Account mode
+      enum:
+      - COPILOT
+      - CONNECT
+    XiqThirdPartyApplications:
+      type: object
+      properties:
+        client_id:
+          type: string
+          description: The ID of the application client
+        redirect_url:
+          type: string
+          description: The redirect URL of the application
+        name:
+          type: string
+          description: The name of the application
+        description:
+          type: string
+          description: The description of the application
+        state:
+          type: string
+          description: The state of the application
+    XiqViqLicense:
+      allOf:
+      - $ref: '#/components/schemas/XiqBaseEntity'
+      - type: object
+        properties:
+          status:
+            $ref: '#/components/schemas/XiqLicenseStatus'
+          active_date:
+            type: string
+            description: The active date
+            format: date-time
+          expire_date:
+            type: string
+            description: The expire date
+            format: date-time
+          entitlement_key:
+            type: string
+            description: The entitlement key
+          entitlement_type:
+            $ref: '#/components/schemas/XiqEntitlementType'
+          mode:
+            $ref: '#/components/schemas/XiqLicenseMode'
+          devices:
+            type: integer
+            description: The device number
+            format: int32
+          activated:
+            type: integer
+            description: The activated device number
+            format: int32
+          available:
+            type: integer
+            description: The available device number
+            format: int32
+    XiqVhmStatus:
+      type: object
+      description: VHM Account Status
+      properties:
+        vhm_name:
+          type: string
+          description: The viq name.
+        current_status:
+          type: string
+          description: The viq current status like ACTIVE_STATUS.
+    XiqErrorParams:
+      type: object
+      description: Error parameters
+      properties:
+        field:
+          type: string
+          description: The error field
+        value:
+          type: string
+          description: The error value
+    XiqVhmSetting:
+      allOf:
+      - $ref: '#/components/schemas/XiqBaseEntity'
+      - type: object
+        properties:
+          id:
+            type: integer
+            description: VHM Setting Id
+            format: int64
+          enable_copilot:
+            type: boolean
+            description: Flag indicating whether Co-Pilot should be enabled (true) or disabled (false).
+          enable_ssh:
+            type: boolean
+            description: Flag indicating Ssh Availability.
+          enable_supplemental_cli:
+            type: boolean
+            description: Flag indicating Supplemental CLI.
+          enable_wireless_onboarding:
+            type: boolean
+            description: Flag indicating AP Out-of-the-box Wireless Onboarding.
+          enable_password_for_exos_voss:
+            type: boolean
+            description: Flag to enable device management settings for Switch Engine (EXOS) / Fabric Engine (VOSS) switches.
+          enable_auto_config_push:
+            type: boolean
+            description: Flag to enable auto config push
+          enable_site_isolation:
+            type: boolean
+            description: Flag to enable site isolation
+    XiqDefaultDevicePassword:
+      type: object
+      description: The default device password
+      required:
+      - password
+      properties:
+        password:
+          type: string
+          description: The default device password
+    XiqBaseEntity:
+      required:
+      - id
+      - create_time
+      - update_time
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The unique identifier
+          format: int64
+        create_time:
+          type: string
+          description: The create time
+          format: date-time
+        update_time:
+          type: string
+          description: The last update time
+          format: date-time
+    XiqViqTasks:
+      type: object
+      properties:
+        tesk:
+          type: string
+          description: The name of the task
+        finish_percentage:
+          type: integer
+          description: Task finish percentage
+          format: int64
+        detail:
+          type: string
+          description: Details of task
+        status:
+          type: string
+          description: Status of the task
+    XiqError:
+      type: object
+      properties:
+        error_code:
+          type: string
+          description: The error code
+        error_id:
+          type: string
+          description: The error ID for internal troubleshooting
+        error_message:
+          type: string
+          description: The error detailed message
+        error_message_code:
+          type: string
+          description: The error message code
+        error_message_description:
+          type: string
+          description: The error message description
+        error_params:
+          $ref: '#/components/schemas/XiqErrorParams'
+      required:
+      - error_code
+      - error_id
+      - error_message
+    XiqViqExportImportResponse:
+      type: object
+      properties:
+        user_name:
+          type: string
+          description: The user name of the user
+        vhm_id:
+          type: string
+          description: The VIQ ID
+        operation:
+          type: string
+          description: Type of Operation export/import
+        status:
+          type: string
+          description: Status of the request
+        total_finish_percentage:
+          type: integer
+          description: Total finish percentage of the operation
+          format: int64
+        task_progress:
+          type: array
+          description: The tasks list
+          items:
+            $ref: '#/components/schemas/XiqViqTasks'
+        export_file_name:
+          type: string
+          description: The VIQ export report file name
+        log_file:
+          type: string
+          description: The VIQ export log file name
+        export_time:
+          type: integer
+          description: The last exported time
+          format: int64
+    XiqLicenseMode:
+      type: string
+      description: The license mode
+      enum:
+      - BUY
+      - PLANNER
+      - EVAL
+      - MSP
+      - UNKNOWN
+    XiqPage:
+      required:
+      - count
+      - page
+      - total_count
+      - total_pages
+      type: object
+      properties:
+        page:
+          type: integer
+          description: The current page number
+          format: int32
+        count:
+          type: integer
+          description: The element count of the current page
+          format: int32
+        total_pages:
+          type: integer
+          description: The total page number based on request page size
+          format: int32
+        total_count:
+          type: integer
+          description: The total element count
+          format: int64
+    XiqBackupGrid:
+      type: object
+      description: Backup History Grid
+      properties:
+        backup_date:
+          type: integer
+          format: int64
+          description: The backup date.
+        backup_units:
+          type: string
+          description: The units of the backup.
+        owner_id:
+          type: integer
+          format: int64
+          description: The owner ID.
+        backup_file_name:
+          type: string
+          description: The filename of the backup entry.
+        backup_version:
+          type: string
+          description: The version of the backup.
+        backup_file_suffix:
+          type: string
+          description: The suffix of the backup file.
+        version_matched:
+          type: boolean
+          description: If this flag is true, it indicates that backup can be restored.
+    XiqUpdateVhmSettingRequest:
+      type: object
+      properties:
+        enable_copilot:
+          type: boolean
+          description: Flag indicating whether Co-Pilot should be enabled (true) or disabled (false).
+        enable_ssh:
+          type: boolean
+          description: Flag indicating Ssh Availability.
+        enable_supplemental_cli:
+          type: boolean
+          description: Flag indicating Supplemental CLI.
+        enable_wireless_onboarding:
+          type: boolean
+          description: Flag indicating AP Out-of-the-box Wireless Onboarding.
+        enable_password_for_exos_voss:
+          type: boolean
+          description: Flag to enable device management settings for Switch Engine (EXOS) / Fabric Engine (VOSS) switches.
+        enable_auto_config_push:
+          type: boolean
+          description: Flag to enable auto config push
+        enable_site_isolation:
+          type: boolean
+          description: Flag to enable site isolation
+    XiqLoginResponse:
+      type: object
+      required:
+      - access_token
+      - token_type
+      - expires_in
+      properties:
+        access_token:
+          type: string
+          description: The access token with JWT format issued by ExtremeCloud IQ
+        token_type:
+          type: string
+          description: The type of token, only supports "Bearer" currently
+        expires_in:
+          type: integer
+          format: int32
+          description: The lifetime in seconds of the access token
+    XiqViqImportReport:
+      type: object
+      description: ExtremeCloud IQ Viq Import data
+      properties:
+        import_status:
+          type: string
+          description: The viq import status
+        log_file_name:
+          type: string
+          description: The viq import log file name
+    XiqViqStatusType:
+      type: string
+      enum:
+      - EXPORT
+      - IMPORT
+    XiqAccountType:
+      type: string
+      description: Account type
+      enum:
+      - INTERNAL
+      - CUSTOMER
+      - HIQ
+      - PARTNER
+    XiqViq:
+      type: object
+      properties:
+        devices:
+          type: integer
+          description: Total number of all licensed devices
+          format: int32
+        standalone:
+          type: boolean
+          description: Returns true if HIQ is not enabled, otherwise returns false
+        expired:
+          type: boolean
+          description: Whether VIQ is expired
+        customer_id:
+          type: string
+          description: The customer ID, also known as Salesforce customer ID
+        vhm_id:
+          type: string
+          description: The VIQ ID
+        owner_id:
+          type: integer
+          description: The owner account ID
+          format: int64
+        licenses:
+          type: array
+          description: The license list
+          items:
+            $ref: '#/components/schemas/XiqViqLicense'
+    XiqViqExportReport:
+      type: object
+      description: ExtremeCloud IQ Viq Export data
+      properties:
+        export_status:
+          type: string
+          description: The viq export status
+        export_file_name:
+          type: string
+          description: The viq export report file name
+        log_file_name:
+          type: string
+          description: The viq export log file name
+    XiqEntitlementType:
+      type: string
+      description: The entitlement key type
+      enum:
+      - EVALUATION
+      - PERMANENT
+      - RENEW
+      - UNKNOWN
+  parameters:
+    id:
+      name: id
+      in: path
+      description: The unique identifier
+      required: true
+      schema:
+        type: integer
+        format: int64
+  responses:
+    ErrorResponse:
+      description: The generic ExtremeCloud IQ API error response
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/XiqError'
+  securitySchemes:
+    BearerAuth:
+      type: http
+      description: JSON Web Token (JWT) based authentication
+      scheme: bearer
+      bearerFormat: JWT
+externalDocs:
+  description: API Reference
+  url: https://extremecloudiq.com/api-docs/api-reference.html

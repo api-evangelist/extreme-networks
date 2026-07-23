@@ -1,0 +1,489 @@
+openapi: 3.0.3
+info:
+  title: ExtremeCloud IQ Account Network Policy API
+  description: 'ExtremeCloud IQ™ API allows customers and partners to create solutions for the management, monitoring, and provisioning
+
+    of any ExtremeCloud IQ™ environment.
+
+
+    All related resources and documentation are available at [ExtremeCloud IQ Developer Portal](https://developer.extremecloudiq.com/).
+
+    Please check [Get Started and Tutorial](https://developer.extremecloudiq.com/documentation/) to understand how to use the APIs.
+
+
+    Get the [latest OpenAPI definition](https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI/blob/main/xcloudiq-openapi.yaml)
+
+    from [ExtremeCloud IQ OpenAPI GitHub repository](https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI).
+
+
+    Please have a valid [ExtremeCloud IQ](https://extremecloudiq.com/) account before getting started.
+
+    If you don''t have one, please [register a new account](https://www.extremenetworks.com/cloud-networking/).'
+  termsOfService: https://www.extremenetworks.com/company/legal/terms-of-use/
+  contact:
+    name: Extreme Networks Support
+    url: https://www.extremenetworks.com/support
+    email: support@extremenetworks.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  version: 25.9.0-36
+servers:
+- url: https://api.extremecloudiq.com
+  description: ExtremeCloud IQ REST API Server
+tags:
+- name: Network Policy
+  description: Unified configuration management for wireless and wired network devices
+paths:
+  /network-policies:
+    get:
+      tags:
+      - Network Policy
+      summary: List network policies
+      description: List a page of network policies.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_list_network_policies
+      operationId: listNetworkPolices
+      parameters:
+      - $ref: '#/components/parameters/page'
+      - $ref: '#/components/parameters/limit'
+      - name: policyNames
+        in: query
+        description: The list of policy names
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagedXiqNetworkPolicy'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+    post:
+      tags:
+      - Network Policy
+      summary: Create network policy
+      description: Create a new network policy.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_create_network_policy
+      operationId: createNetworkPolicy
+      requestBody:
+        description: The body of create network policy API
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/XiqCreateNetworkPolicyRequest'
+        required: true
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XiqNetworkPolicy'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /network-policies/{id}:
+    get:
+      tags:
+      - Network Policy
+      summary: Get the network policy
+      description: Get an existing network policy by ID.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_get_network_policy
+      operationId: getNetworkPolicy
+      parameters:
+      - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XiqNetworkPolicy'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+    put:
+      tags:
+      - Network Policy
+      summary: Update the network policy
+      description: Update network policy by ID.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_update_network_policy
+      operationId: updateNetworkPolicy
+      parameters:
+      - $ref: '#/components/parameters/id'
+      requestBody:
+        description: The body of update network policy API
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/XiqUpdateNetworkPolicyRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XiqNetworkPolicy'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+    delete:
+      tags:
+      - Network Policy
+      summary: Delete the network policy
+      description: Delete an existing network policy by ID.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_delete_network_policy
+      operationId: deleteNetworkPolicy
+      parameters:
+      - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: OK
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /network-policies/{id}/ssids:
+    get:
+      tags:
+      - Network Policy
+      summary: List SSIDs for a network policy
+      description: List a page of SSIDs for a specific network policy.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_list_ssid_list_for_the_network_policy
+      operationId: listSsidsByNetworkPolicy
+      parameters:
+      - $ref: '#/components/parameters/id'
+      - $ref: '#/components/parameters/page'
+      - $ref: '#/components/parameters/limit'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagedXiqSsid'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /network-policies/{id}/ssids/:add:
+    post:
+      tags:
+      - Network Policy
+      summary: Add SSIDs to a network policy
+      description: Add SSIDs to a specific network policy.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_adding_multiple_ssids_to_the_network_policy
+      operationId: addSsidsToNetworkPolicy
+      parameters:
+      - $ref: '#/components/parameters/id'
+      requestBody:
+        description: The SSID ids to be added to the network policy
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: integer
+                format: int64
+        required: true
+      responses:
+        '200':
+          description: OK
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /network-policies/{id}/ssids/:remove:
+    post:
+      tags:
+      - Network Policy
+      summary: Removes SSIDs from the network policy
+      description: Removing multiple SSIDs from the network policy.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_removing_multiple_ssids_from_the_network_policy
+      operationId: deleteSsidsFromNetworkPolicy
+      parameters:
+      - $ref: '#/components/parameters/id'
+      requestBody:
+        description: The SSID ids to be removed from the network policy
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: integer
+                format: int64
+        required: true
+      responses:
+        '200':
+          description: OK
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+components:
+  schemas:
+    XiqUpdateNetworkPolicyRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The network policy name
+        description:
+          type: string
+          description: The network policy description
+        type:
+          $ref: '#/components/schemas/XiqNetworkPolicyType'
+    XiqViqEntity:
+      allOf:
+      - $ref: '#/components/schemas/XiqBaseEntity'
+      - type: object
+        properties:
+          org_id:
+            type: integer
+            description: The organization identifier, valid when enabling HIQ feature
+            format: int64
+        required:
+        - org_id
+    XiqNetworkPolicy:
+      allOf:
+      - $ref: '#/components/schemas/XiqViqEntity'
+      - type: object
+        description: The network policy
+        required:
+        - name
+        - predefined
+        - type
+        properties:
+          name:
+            type: string
+            description: The network policy name
+          description:
+            type: string
+            description: The network policy description
+          predefined:
+            type: boolean
+            description: Whether it is a predefined network policy
+          type:
+            type: string
+            description: The network policy type
+    XiqNetworkPolicyType:
+      type: string
+      description: The network policy type
+      enum:
+      - NETWORK_ACCESS_AND_SWITCHING
+      - BRANCH_ROUTING
+      - WIRELESS_ACCESS
+      - SWITCHING
+      - NETWORK_ACCESS_AND_SWITCHING_AND_BR
+      - NETWORK_ACCESS_AND_BRANCH_ROUTING
+      - SWITCHING_AND_BRANCH_ROUTING
+    XiqError:
+      type: object
+      properties:
+        error_code:
+          type: string
+          description: The error code
+        error_id:
+          type: string
+          description: The error ID for internal troubleshooting
+        error_message:
+          type: string
+          description: The error detailed message
+        error_message_code:
+          type: string
+          description: The error message code
+        error_message_description:
+          type: string
+          description: The error message description
+        error_params:
+          $ref: '#/components/schemas/XiqErrorParams'
+      required:
+      - error_code
+      - error_id
+      - error_message
+    XiqCreateNetworkPolicyRequest:
+      type: object
+      required:
+      - name
+      - type
+      properties:
+        name:
+          type: string
+          description: The network policy name
+        description:
+          type: string
+          description: The network policy description
+        type:
+          $ref: '#/components/schemas/XiqNetworkPolicyType'
+    XiqSsid:
+      allOf:
+      - $ref: '#/components/schemas/XiqViqEntity'
+      - type: object
+        description: The SSID
+        required:
+        - name
+        - broadcast_name
+        - predefined
+        properties:
+          name:
+            type: string
+            description: The SSID profile name
+          broadcast_name:
+            type: string
+            description: The SSID broadcast name
+          description:
+            type: string
+            description: The SSID description
+          predefined:
+            type: boolean
+            description: Whether it is predefined
+          advanced_settings_id:
+            type: integer
+            description: The SSID advanced settings ID
+            format: int64
+    PagedXiqSsid:
+      allOf:
+      - $ref: '#/components/schemas/XiqPage'
+      - type: object
+        properties:
+          data:
+            type: array
+            description: The data in the current page
+            items:
+              $ref: '#/components/schemas/XiqSsid'
+    XiqErrorParams:
+      type: object
+      description: Error parameters
+      properties:
+        field:
+          type: string
+          description: The error field
+        value:
+          type: string
+          description: The error value
+    XiqPage:
+      required:
+      - count
+      - page
+      - total_count
+      - total_pages
+      type: object
+      properties:
+        page:
+          type: integer
+          description: The current page number
+          format: int32
+        count:
+          type: integer
+          description: The element count of the current page
+          format: int32
+        total_pages:
+          type: integer
+          description: The total page number based on request page size
+          format: int32
+        total_count:
+          type: integer
+          description: The total element count
+          format: int64
+    XiqBaseEntity:
+      required:
+      - id
+      - create_time
+      - update_time
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The unique identifier
+          format: int64
+        create_time:
+          type: string
+          description: The create time
+          format: date-time
+        update_time:
+          type: string
+          description: The last update time
+          format: date-time
+    PagedXiqNetworkPolicy:
+      allOf:
+      - $ref: '#/components/schemas/XiqPage'
+      - type: object
+        properties:
+          data:
+            type: array
+            description: The data in the current page
+            items:
+              $ref: '#/components/schemas/XiqNetworkPolicy'
+  parameters:
+    page:
+      name: page
+      in: query
+      description: Page number, min = 1
+      required: false
+      schema:
+        minimum: 1
+        type: integer
+        format: int32
+        default: 1
+    id:
+      name: id
+      in: path
+      description: The unique identifier
+      required: true
+      schema:
+        type: integer
+        format: int64
+    limit:
+      name: limit
+      in: query
+      description: Page Size, min = 1, max = 100
+      required: false
+      schema:
+        maximum: 100
+        minimum: 1
+        type: integer
+        format: int32
+        default: 10
+  responses:
+    ErrorResponse:
+      description: The generic ExtremeCloud IQ API error response
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/XiqError'
+  securitySchemes:
+    BearerAuth:
+      type: http
+      description: JSON Web Token (JWT) based authentication
+      scheme: bearer
+      bearerFormat: JWT
+externalDocs:
+  description: API Reference
+  url: https://extremecloudiq.com/api-docs/api-reference.html

@@ -1,0 +1,133 @@
+openapi: 3.0.3
+info:
+  title: ExtremeCloud IQ Account Switch Inspector Panel API
+  description: 'ExtremeCloud IQ™ API allows customers and partners to create solutions for the management, monitoring, and provisioning
+
+    of any ExtremeCloud IQ™ environment.
+
+
+    All related resources and documentation are available at [ExtremeCloud IQ Developer Portal](https://developer.extremecloudiq.com/).
+
+    Please check [Get Started and Tutorial](https://developer.extremecloudiq.com/documentation/) to understand how to use the APIs.
+
+
+    Get the [latest OpenAPI definition](https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI/blob/main/xcloudiq-openapi.yaml)
+
+    from [ExtremeCloud IQ OpenAPI GitHub repository](https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI).
+
+
+    Please have a valid [ExtremeCloud IQ](https://extremecloudiq.com/) account before getting started.
+
+    If you don''t have one, please [register a new account](https://www.extremenetworks.com/cloud-networking/).'
+  termsOfService: https://www.extremenetworks.com/company/legal/terms-of-use/
+  contact:
+    name: Extreme Networks Support
+    url: https://www.extremenetworks.com/support
+    email: support@extremenetworks.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  version: 25.9.0-36
+servers:
+- url: https://api.extremecloudiq.com
+  description: ExtremeCloud IQ REST API Server
+tags:
+- name: Switch Inspector Panel
+  description: Switch Inspector Panel
+paths:
+  /switch-inspector/diagnostics:
+    post:
+      tags:
+      - Switch Inspector Panel
+      summary: Diagnostics Widget for Wired Devices
+      description: Returns the "Device Health", "Usage and Capacity" and "Client Health" current number of issues for wired devices based on the provided device ID.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_get_wired_diagnostics_widget
+      operationId: wiredDiagnosticsWidget
+      parameters:
+      - name: deviceId
+        in: query
+        description: The device ID for which the "Device Health", "Usage and Capacity" and "Client Health" current number of issues needs to be provided
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: Returns the "Device Health", "Usage and Capacity" and "Client Health" current number of issues for the specified device ID
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XiqSwitchInspectorPanelDiagnosticsWidget'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+components:
+  schemas:
+    XiqSwitchInspectorPanelDiagnosticsWidget:
+      type: object
+      properties:
+        device_health_issues:
+          type: integer
+          format: int64
+          description: The number of "Device Health" issues
+        usage_capacity_issues:
+          type: integer
+          format: int64
+          description: The number of "Usage and Capacity" issues
+        client_health_issues:
+          type: integer
+          format: int64
+          description: The number of "Client Health" issues
+    XiqErrorParams:
+      type: object
+      description: Error parameters
+      properties:
+        field:
+          type: string
+          description: The error field
+        value:
+          type: string
+          description: The error value
+    XiqError:
+      type: object
+      properties:
+        error_code:
+          type: string
+          description: The error code
+        error_id:
+          type: string
+          description: The error ID for internal troubleshooting
+        error_message:
+          type: string
+          description: The error detailed message
+        error_message_code:
+          type: string
+          description: The error message code
+        error_message_description:
+          type: string
+          description: The error message description
+        error_params:
+          $ref: '#/components/schemas/XiqErrorParams'
+      required:
+      - error_code
+      - error_id
+      - error_message
+  responses:
+    ErrorResponse:
+      description: The generic ExtremeCloud IQ API error response
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/XiqError'
+  securitySchemes:
+    BearerAuth:
+      type: http
+      description: JSON Web Token (JWT) based authentication
+      scheme: bearer
+      bearerFormat: JWT
+externalDocs:
+  description: API Reference
+  url: https://extremecloudiq.com/api-docs/api-reference.html

@@ -1,0 +1,734 @@
+openapi: 3.0.3
+info:
+  title: ExtremeCloud IQ Account Dashboard - Wireless Device Health API
+  description: 'ExtremeCloud IQ™ API allows customers and partners to create solutions for the management, monitoring, and provisioning
+
+    of any ExtremeCloud IQ™ environment.
+
+
+    All related resources and documentation are available at [ExtremeCloud IQ Developer Portal](https://developer.extremecloudiq.com/).
+
+    Please check [Get Started and Tutorial](https://developer.extremecloudiq.com/documentation/) to understand how to use the APIs.
+
+
+    Get the [latest OpenAPI definition](https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI/blob/main/xcloudiq-openapi.yaml)
+
+    from [ExtremeCloud IQ OpenAPI GitHub repository](https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI).
+
+
+    Please have a valid [ExtremeCloud IQ](https://extremecloudiq.com/) account before getting started.
+
+    If you don''t have one, please [register a new account](https://www.extremenetworks.com/cloud-networking/).'
+  termsOfService: https://www.extremenetworks.com/company/legal/terms-of-use/
+  contact:
+    name: Extreme Networks Support
+    url: https://www.extremenetworks.com/support
+    email: support@extremenetworks.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  version: 25.9.0-36
+servers:
+- url: https://api.extremecloudiq.com
+  description: ExtremeCloud IQ REST API Server
+tags:
+- name: Dashboard - Wireless Device Health
+  description: Device dashboard
+paths:
+  /dashboard/wireless/device-health/grid:
+    post:
+      tags:
+      - Dashboard - Wireless Device Health
+      summary: Wireless device health grid
+      description: Returns the device health grid of wireless devices based on the provided filters. The results can be filtered by sites.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_get_device_health_grid
+      operationId: wirelessDeviceHealthGrid
+      parameters:
+      - $ref: '#/components/parameters/page'
+      - $ref: '#/components/parameters/limit'
+      - name: keyword
+        in: query
+        description: The keyword to search
+        required: false
+        schema:
+          type: string
+      - name: sortField
+        in: query
+        description: The sort field
+        required: false
+        schema:
+          $ref: '#/components/schemas/XiqDeviceHealthGridSortField'
+      - name: sortOrder
+        in: query
+        description: The sort order
+        required: false
+        schema:
+          $ref: '#/components/schemas/XiqSortOrder'
+      - name: includeUnassigned
+        in: query
+        description: To include unassigned devices
+        required: false
+        schema:
+          type: boolean
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                site_ids:
+                  description: List of site IDs to filter the device health grid
+                  type: array
+                  items:
+                    type: integer
+                    format: int64
+                device_ids:
+                  description: List of device IDs to filter the device health grid
+                  type: array
+                  items:
+                    type: integer
+                    format: int64
+                has_device_health_issues:
+                  description: Indicates if the device has a device health issue
+                  type: boolean
+                has_poe_issues:
+                  description: Indicates if the device has a poe issue
+                  type: boolean
+                number_filters:
+                  type: array
+                  description: The number based column filters available(Available columns- cpu_usage_percentage, memory_usage_percentage, eth0_broadcast_score, eth0_multicast_score, eth0_unicast_score, eth1_broadcast_score, eth1_unicast_score, eth1_multicast_score).
+                  items:
+                    $ref: '#/components/schemas/number_filter'
+      responses:
+        '200':
+          description: Returns the response of the device health grid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagedXiqDeviceHealthGridResponse'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /dashboard/wireless/device-health/issues/cpu-usage-issues:
+    post:
+      tags:
+      - Dashboard - Wireless Device Health
+      summary: CPU usage issues for wireless devices
+      description: Returns the count of wireless devices having CPU usage issues (CPU usage >= 95%) based on the provided filters. You can filter the results by sites.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_get_wireless_device_health_issues_cpu_usage
+      operationId: wirelessDeviceHealthCpuUsageIssues
+      parameters:
+      - name: includeUnassigned
+        in: query
+        description: To include unassigned devices
+        required: false
+        schema:
+          type: boolean
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                site_ids:
+                  description: List of site IDs to filter the wireless devices CPU usage issues.
+                  type: array
+                  items:
+                    type: integer
+                    format: int64
+      responses:
+        '200':
+          description: Returns the counts of wirless devices having CPU usage issues.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XiqWirelessDeviceHealthCpuUsageIssues'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /dashboard/wireless/device-health/issues/memory-usage-issues:
+    post:
+      tags:
+      - Dashboard - Wireless Device Health
+      summary: Memory usage issues for wireless devices
+      description: Returns the count of wireless devices having Memory usage issues (CPU usage >= 95%) based on the provided filters. You can filter the results by sites.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_get_wireless_device_health_issues_memory_usage
+      operationId: wirelessDeviceHealthMemoryUsageIssues
+      parameters:
+      - name: includeUnassigned
+        in: query
+        description: To include unassigned devices
+        required: false
+        schema:
+          type: boolean
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                site_ids:
+                  description: List of site IDs to filter the wireless devices Memory usage issues.
+                  type: array
+                  items:
+                    type: integer
+                    format: int64
+      responses:
+        '200':
+          description: Returns the counts of wirless devices having Memory usage issues.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XiqWirelessDeviceHealthMemoryUsageIssues'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /dashboard/wireless/device-health/issues/poe-usage-issues:
+    post:
+      tags:
+      - Dashboard - Wireless Device Health
+      summary: PoE usage issues for wireless devices
+      description: Returns the count of wireless devices having PoE usage issues (Non-adequate power) based on the provided filters. You can filter the results by sites.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_get_wireless_device_health_issues_poe_usage
+      operationId: wirelessDeviceHealthPoEUsageIssues
+      parameters:
+      - name: includeUnassigned
+        in: query
+        description: To include unassigned devices
+        required: false
+        schema:
+          type: boolean
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                site_ids:
+                  description: List of site IDs to filter the wireless devices PoE usage issues.
+                  type: array
+                  items:
+                    type: integer
+                    format: int64
+      responses:
+        '200':
+          description: Returns the counts of wirless devices having PoE usage issues.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XiqWirelessDeviceHealthPoEUsageIssues'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /dashboard/wireless/device-health/summary:
+    post:
+      tags:
+      - Dashboard - Wireless Device Health
+      summary: Device health summary for wireless devices
+      description: Returns the count of total wireless devices and total devices with health issues based on the provided filters. You can filter the results by sites.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_post_device_health_wireless_summary
+      operationId: wirelessDeviceHealthSummary
+      parameters:
+      - name: includeUnassigned
+        in: query
+        description: To include unassigned devices
+        required: false
+        schema:
+          type: boolean
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                site_ids:
+                  description: List of site IDs to filter the wireless devices summary
+                  type: array
+                  items:
+                    type: integer
+                    format: int64
+      responses:
+        '200':
+          description: Returns the counts of wirless devices and devices with health issues
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XiqWirelessDeviceHealthSummary'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /dashboard/wireless/device-health/reboot/summary:
+    get:
+      tags:
+      - Dashboard - Wireless Device Health
+      summary: Wireless device reboot summary
+      description: Returns the device reboot summary of a device.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_get_device_health_grid
+      operationId: wirelessDeviceHealthRebootSummary
+      parameters:
+      - $ref: '#/components/parameters/page'
+      - $ref: '#/components/parameters/limit'
+      - name: deviceId
+        in: query
+        description: The deviceId to collect reboot summary
+        required: false
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: Returns the response of the device reboot summary
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagedXiqDeviceRebootSummaryResponse'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /dashboard/wireless/device-health/export:
+    post:
+      tags:
+      - Dashboard - Wireless Device Health
+      summary: Wireless device health grid Export
+      description: Returns the device health grid export of wireless devices based on the provided filters. The results can be filtered by sites.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_get_device_health_grid_export
+      operationId: wirelessDeviceHealthGridExport
+      parameters:
+      - $ref: '#/components/parameters/page'
+      - $ref: '#/components/parameters/limit'
+      - name: keyword
+        in: query
+        description: The keyword to search
+        required: false
+        schema:
+          type: string
+      - name: sortField
+        in: query
+        description: The sort field
+        required: false
+        schema:
+          $ref: '#/components/schemas/XiqDeviceHealthGridSortField'
+      - name: sortOrder
+        in: query
+        description: The sort order
+        required: false
+        schema:
+          $ref: '#/components/schemas/XiqSortOrder'
+      - name: includeUnassigned
+        in: query
+        description: To include unassigned devices
+        required: false
+        schema:
+          type: boolean
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                site_ids:
+                  description: List of site IDs to filter the device health grid
+                  type: array
+                  items:
+                    type: integer
+                    format: int64
+                device_ids:
+                  description: List of device IDs to filter the device health grid
+                  type: array
+                  items:
+                    type: integer
+                    format: int64
+                has_device_health_issues:
+                  description: Indicates if the device has a device health issue
+                  type: boolean
+                has_poe_issues:
+                  description: Indicates if the device has a poe issue
+                  type: boolean
+                number_filters:
+                  type: array
+                  description: The number based column filters available(Available columns- cpu_usage_percentage, memory_usage_percentage, eth0_broadcast_score, eth0_multicast_score, eth0_unicast_score, eth1_broadcast_score, eth1_unicast_score, eth1_multicast_score).
+                  items:
+                    $ref: '#/components/schemas/number_filter'
+      responses:
+        '202':
+          description: Accepted - The request has been accepted for processing, but the processing has not been completed.
+          headers:
+            cache-control:
+              description: Cache control directives
+              schema:
+                type: string
+            content-length:
+              description: The length of the response body in octets (8-bit bytes)
+              schema:
+                type: integer
+            date:
+              description: The date and time at which the message was originated
+              schema:
+                type: string
+                format: date-time
+            expires:
+              description: The date/time after which the response is considered stale
+              schema:
+                type: string
+            location:
+              description: The URL to which the client should navigate to check the status of the request
+              schema:
+                type: string
+                format: uri
+            pragma:
+              description: Implementation-specific directives that might apply to any recipient along the request-response chain
+              schema:
+                type: string
+            ratelimit-limit:
+              description: The maximum number of requests that the client is allowed to make in a given time period
+              schema:
+                type: string
+            ratelimit-remaining:
+              description: The number of requests remaining in the current rate limit window
+              schema:
+                type: integer
+            retry-after:
+              description: The amount of time to wait before making a follow-up request
+              schema:
+                type: integer
+            server:
+              description: A name for the server
+              schema:
+                type: string
+                example: nginx
+            x-content-type-options:
+              description: Prevents the browser from interpreting files as a different MIME type
+              schema:
+                type: string
+            x-xss-protection:
+              description: Enables cross-site scripting (XSS) filter
+              schema:
+                type: string
+                format: byte
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /dashboard/wireless/device-health/reports/{id}:
+    get:
+      tags:
+      - Dashboard - Wireless Device Health
+      summary: Download the Export CSV file
+      description: Returns the CSV File of the wireless Device Health status based on the provided filters.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_get_device_status_grid_report
+      operationId: wirelessDeviceHealthGridExportReport
+      parameters:
+      - name: id
+        in: path
+        description: The report ID
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Returns the CSV File of the device health grid
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+components:
+  schemas:
+    XiqWirelessDeviceHealthCpuUsageIssues:
+      type: object
+      properties:
+        cpu_usage_issue_device_count:
+          type: integer
+          format: int64
+          description: Count of devices with CPU usage issues.
+    XiqDeviceHealthGridResponse:
+      type: object
+      properties:
+        device_id:
+          type: integer
+          description: The device identifier
+          format: int64
+        hostname:
+          type: string
+          description: The hostname of the client
+        device_ip:
+          type: string
+          description: The IP address of the client
+        site:
+          type: string
+          description: The site where the client is located
+        building:
+          type: string
+          description: The building where the client is located
+        floor:
+          type: string
+          description: The floor where the client is located
+        cpu_usage_percentage:
+          type: integer
+          format: int64
+          description: Percentage of CPU utilisation
+        memory_usage_percentage:
+          type: integer
+          format: int64
+          description: Percentage of memory utilisation
+        poe_usage_indicator:
+          type: boolean
+          description: Indicates whether PoE usage is within acceptable limits (device has adequate power supply).
+        channel_change_count:
+          type: integer
+          format: int64
+          description: The count for channel change for the device
+        wifi_reboots_count:
+          type: integer
+          format: int64
+          description: The count for Wi-Fi reboots for the device
+        eth0_unicast_score:
+          type: integer
+          format: int64
+          description: Unicast score for Eth0 interface
+        eth0_broadcast_score:
+          type: integer
+          format: int64
+          description: Broadcast score for Eth0 interface
+        eth0_multicast_score:
+          type: integer
+          format: int64
+          description: Multicast score for Eth0 interface
+        eth1_unicast_score:
+          type: integer
+          format: int64
+          description: Unicast score for Eth1 interface
+        eth1_broadcast_score:
+          type: integer
+          format: int64
+          description: Broadcast score for Eth1 interface
+        eth1_multicast_score:
+          type: integer
+          format: int64
+          description: Multicast score for Eth1 interface
+        has_device_health_issue:
+          type: boolean
+          description: Indicates where the device has a device health issue
+    XiqError:
+      type: object
+      properties:
+        error_code:
+          type: string
+          description: The error code
+        error_id:
+          type: string
+          description: The error ID for internal troubleshooting
+        error_message:
+          type: string
+          description: The error detailed message
+        error_message_code:
+          type: string
+          description: The error message code
+        error_message_description:
+          type: string
+          description: The error message description
+        error_params:
+          $ref: '#/components/schemas/XiqErrorParams'
+      required:
+      - error_code
+      - error_id
+      - error_message
+    XiqWirelessDeviceHealthMemoryUsageIssues:
+      type: object
+      properties:
+        memory_usage_issue_device_count:
+          type: integer
+          format: int64
+          description: Count of devices with Memory usage issues.
+    XiqWirelessDeviceHealthSummary:
+      type: object
+      properties:
+        wireless_devices:
+          type: integer
+          format: int64
+          description: Total count of devices
+        wireless_unhealthy_devices:
+          type: integer
+          format: int64
+          description: Total count of unhealthy devices
+    XiqSortOrder:
+      type: string
+      enum:
+      - ASC
+      - DESC
+    XiqDeviceHealthGridSortField:
+      type: string
+      title: XiqDeviceHealthGridSortField
+      description: Pre-defined filters for device health filters - HOSTNAME - SITE - CPU_USAGE_PERCENTAGE - MEMORY_USAGE_PERCENTAGE - TOTAL_ETH0_SCORE - TOTAL_ETH1_SCORE
+      example: HOSTNAME
+    XiqErrorParams:
+      type: object
+      description: Error parameters
+      properties:
+        field:
+          type: string
+          description: The error field
+        value:
+          type: string
+          description: The error value
+    PagedXiqDeviceHealthGridResponse:
+      allOf:
+      - $ref: '#/components/schemas/XiqPage'
+      - type: object
+        properties:
+          data:
+            type: array
+            description: The data in the current page
+            items:
+              $ref: '#/components/schemas/XiqDeviceHealthGridResponse'
+    XiqPage:
+      required:
+      - count
+      - page
+      - total_count
+      - total_pages
+      type: object
+      properties:
+        page:
+          type: integer
+          description: The current page number
+          format: int32
+        count:
+          type: integer
+          description: The element count of the current page
+          format: int32
+        total_pages:
+          type: integer
+          description: The total page number based on request page size
+          format: int32
+        total_count:
+          type: integer
+          description: The total element count
+          format: int64
+    number_filter:
+      type: object
+      description: If the filter type is between, only then min and max are to be used, else value is to be used.
+      properties:
+        column_name:
+          description: The name of the column being filtered
+          type: string
+        filter_type:
+          description: The type of number filter
+          type: string
+          enum:
+          - eq
+          - neq
+          - gt
+          - gte
+          - lt
+          - lte
+          - bw
+          - blank
+          - notblank
+        value:
+          description: The value of the number
+          type: integer
+          format: int64
+        min:
+          description: The minimum value of the number
+          type: integer
+          format: int64
+        max:
+          description: The maximum value of the number
+          type: integer
+          format: int64
+    XiqWirelessDeviceHealthPoEUsageIssues:
+      type: object
+      properties:
+        poe_usage_issue_device_count:
+          type: integer
+          format: int64
+          description: Count of devices with PoE usage issues.
+    PagedXiqDeviceRebootSummaryResponse:
+      allOf:
+      - $ref: '#/components/schemas/XiqPage'
+      - type: object
+        description: The response body of wireless device reboot summary.
+        properties:
+          data:
+            type: array
+            description: The data in the current page
+            items:
+              type: object
+              properties:
+                date_time:
+                  description: The timestamp of the device reboot.
+                  type: string
+                  format: date-time
+                description:
+                  description: The reason for the device reboot.
+                  type: string
+  parameters:
+    page:
+      name: page
+      in: query
+      description: Page number, min = 1
+      required: false
+      schema:
+        minimum: 1
+        type: integer
+        format: int32
+        default: 1
+    limit:
+      name: limit
+      in: query
+      description: Page Size, min = 1, max = 100
+      required: false
+      schema:
+        maximum: 100
+        minimum: 1
+        type: integer
+        format: int32
+        default: 10
+  responses:
+    ErrorResponse:
+      description: The generic ExtremeCloud IQ API error response
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/XiqError'
+  securitySchemes:
+    BearerAuth:
+      type: http
+      description: JSON Web Token (JWT) based authentication
+      scheme: bearer
+      bearerFormat: JWT
+externalDocs:
+  description: API Reference
+  url: https://extremecloudiq.com/api-docs/api-reference.html

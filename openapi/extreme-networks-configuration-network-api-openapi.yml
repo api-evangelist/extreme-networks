@@ -1,0 +1,590 @@
+openapi: 3.0.3
+info:
+  title: ExtremeCloud IQ Account Configuration - Network API
+  description: 'ExtremeCloud IQ™ API allows customers and partners to create solutions for the management, monitoring, and provisioning
+
+    of any ExtremeCloud IQ™ environment.
+
+
+    All related resources and documentation are available at [ExtremeCloud IQ Developer Portal](https://developer.extremecloudiq.com/).
+
+    Please check [Get Started and Tutorial](https://developer.extremecloudiq.com/documentation/) to understand how to use the APIs.
+
+
+    Get the [latest OpenAPI definition](https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI/blob/main/xcloudiq-openapi.yaml)
+
+    from [ExtremeCloud IQ OpenAPI GitHub repository](https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI).
+
+
+    Please have a valid [ExtremeCloud IQ](https://extremecloudiq.com/) account before getting started.
+
+    If you don''t have one, please [register a new account](https://www.extremenetworks.com/cloud-networking/).'
+  termsOfService: https://www.extremenetworks.com/company/legal/terms-of-use/
+  contact:
+    name: Extreme Networks Support
+    url: https://www.extremenetworks.com/support
+    email: support@extremenetworks.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  version: 25.9.0-36
+servers:
+- url: https://api.extremecloudiq.com
+  description: ExtremeCloud IQ REST API Server
+tags:
+- name: Configuration - Network
+  description: Tunnel Concentrator Service, Network service
+paths:
+  /tunnel-concentrators:
+    get:
+      tags:
+      - Configuration - Network
+      summary: List Tunnel Concentrator services
+      description: Get a page of Tunnel Concentrator services.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_list_the_tunnel_concentrators
+      operationId: listTunnelConcentrators
+      parameters:
+      - $ref: '#/components/parameters/page'
+      - $ref: '#/components/parameters/limit'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagedXiqTunnelConcentrator'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+    post:
+      tags:
+      - Configuration - Network
+      summary: Create Tunnel Concentrator Service
+      description: Create a new Tunnel Concentrator Service.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_create_tunnel_concentrator_configuration
+      operationId: createTunnelConcentrator
+      requestBody:
+        description: The payload to create new Tunnel Concentrator Service
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/XiqTunnelConcentratorRequest'
+        required: true
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XiqTunnelConcentrator'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /tunnel-concentrators/{id}:
+    get:
+      tags:
+      - Configuration - Network
+      summary: Get a Tunnel Concentrator Service
+      description: Get a specific Tunnel Concentrator Service by ID.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_get_tunnel_concentrator_by_id
+      operationId: getTunnelConcentrator
+      parameters:
+      - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XiqTunnelConcentrator'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+    put:
+      tags:
+      - Configuration - Network
+      summary: Update a Tunnel Concentrator Service
+      description: Update a specific Tunnel Concentrator Service.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_update_tunnel_concentrator_configuration
+      operationId: updateTunnelConcentrator
+      parameters:
+      - $ref: '#/components/parameters/id'
+      requestBody:
+        description: The payload to update Tunnel Concentrator Service
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/XiqTunnelConcentratorRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XiqTunnelConcentrator'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+    delete:
+      tags:
+      - Configuration - Network
+      summary: Delete a Tunnel Concentrator Service
+      description: Delete a specific Tunnel Concentrator Service by ID.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_delete_tunnel_concentrator_configuration
+      operationId: deleteTunnelConcentrator
+      parameters:
+      - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: OK
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /network-services:
+    get:
+      tags:
+      - Configuration - Network
+      summary: List Network Services
+      description: List a page of Network Services.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_list_network_services
+      operationId: listNetworkServices
+      parameters:
+      - $ref: '#/components/parameters/page'
+      - $ref: '#/components/parameters/limit'
+      - name: name
+        in: query
+        description: Network Service name.
+        required: false
+        schema:
+          type: string
+      - name: ipProtocol
+        in: query
+        description: IP Protocol, only for custom Application.
+        required: false
+        schema:
+          $ref: '#/components/schemas/XiqNetworkIpProtocol'
+      - name: algType
+        in: query
+        description: Application Layer Gateway (ALG) type, only for custom Application.
+        required: false
+        schema:
+          $ref: '#/components/schemas/XiqNetworkAlgType'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagedXiqNetworkService'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+    post:
+      tags:
+      - Configuration - Network
+      summary: Create Network Service
+      description: Create a new Network Service.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_create_network_service
+      operationId: createNetworkService
+      requestBody:
+        description: The payload to create new Network Service
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/XiqNetworkServiceRequest'
+        required: true
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XiqNetworkService'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /network-services/{id}:
+    delete:
+      tags:
+      - Configuration - Network
+      summary: Delete a Network Service by ID
+      description: Delete a Network Service by ID.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_delete_network_service
+      operationId: deleteNetworkService
+      parameters:
+      - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: OK
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+components:
+  schemas:
+    XiqTunnelConcentratorRequest:
+      type: object
+      required:
+      - name
+      - redundant
+      - primary_tc
+      - primary_listening_interface
+      - primary_vlan
+      - primary_tagged
+      - primary_bridging_interface
+      - tunnel_address
+      - native_vlan
+      description: "Tunnel Concentrator Service object. Tunnel Concentrator Service can be configured in two modes:\n  - Single\n  - Redundant\n\nIn single mode one instance of Tunnel Concentrator application terminates tunnels. Tunnel destination is defined by \"tunnel_address\" field. Port, VLAN and bridge interface of the \"tunnel_address\" are identified by fields:\n  - primary_listening_interface\n  - primary_vlan\n  - primary_tagged\n  - primary_bridged_interface\nIn case of single Tunnel Concentrator \"backup_*\" fields are not used.\nIn redundant mode a pair of Tunnel Concentrators applications form VRRP cluster. Each of the paired Tunnel Concentrators gets separate configuration via \"primary_*\" and \"backup_*\" fields. IP address of each Tunnel Concentrator is provided in the \"primary_ip\" and \"backup_ip\" fields. Tunnel IP address, provided in the \"tunnel_address\", is VRRP address. \"router_id\" defines VRRP router ID. Router priority is not configurable and assigned automatically, 100 to primary Tunnel Concentrator, 50 to backup."
+      properties:
+        name:
+          type: string
+          description: The Tunnel Concentrator Service name
+          minLength: 1
+          maxLength: 255
+        decription:
+          type: string
+          description: The Tunnel Concentrator Service decription
+          minLength: 0
+          maxLength: 1024
+        primary_tc:
+          type: integer
+          description: The Primary Tunnel Concentrator device ID
+          format: int64
+        backup_tc:
+          type: integer
+          description: The Backup Tunnel Concentrator device ID
+          format: int64
+        redundant:
+          type: boolean
+          description: Indicates if redundant Tunnel Concentrators (primary and backup) are configured
+        primary_listening_interface:
+          type: integer
+          description: Primary Listening Interface ID
+          format: int32
+          minimum: 1
+          maximum: 4
+        backup_listening_interface:
+          type: integer
+          description: Backup Listening Interface ID
+          format: int32
+          minimum: 1
+          maximum: 4
+        primary_bridging_interface:
+          type: integer
+          description: Primary Bridging Interface ID
+          format: int32
+          minimum: 1
+          maximum: 4
+        backup_bridging_interface:
+          type: integer
+          description: Backup Bridging Interface ID
+          format: int32
+          minimum: 1
+          maximum: 4
+        primary_vlan:
+          type: integer
+          description: The VLAN ID for the primary listening interface
+          format: int32
+          minimum: 1
+          maximum: 4094
+        backup_vlan:
+          type: integer
+          description: The VLAN ID for the backup listening interface
+          format: int32
+          minimum: 1
+          maximum: 4094
+        primary_tagged:
+          type: boolean
+          description: Indicates if primary VLAN is tagged.
+        backup_tagged:
+          type: boolean
+          description: Indicates if backup VLAN is tagged.
+        primary_ip:
+          type: string
+          description: The primary IP address of network interface for accepting connections from APs (listening interface).
+          format: ipv4
+        backup_ip:
+          type: string
+          description: The backup IP address of network interface for accepting connections from APs (listening interface).
+          format: ipv4
+        tunnel_address:
+          type: string
+          pattern: ^(([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])/([1-9]|[12][0-9]|3[012])$
+          description: IP address/CIDR of listening interface.
+        router_id:
+          type: integer
+          description: Virtual Router group ID. Routers with the same VR ID cooperate in election of main router and must have the same VRRP IP address.
+          format: int32
+          minimum: 1
+          maximum: 254
+          default: 1
+        native_vlan:
+          type: integer
+          description: Specifies which VLAN ID is transmitted untagged on the bridged interface.
+          format: int32
+          minimum: 1
+          maximum: 4094
+        gateway:
+          type: string
+          description: Default gateway for the listening interface.
+          format: ipv4
+        blockNonEssentialBroadcast:
+          type: boolean
+          description: Indicates if Tunnel Concentrator will block non essential broadcast
+          default: true
+        arpProxy:
+          type: boolean
+          description: Indicates if arp proxy is enabled
+          default: true
+        multicastRules:
+          type: array
+          items:
+            $ref: '#/components/schemas/XiqMulticastRule'
+          description: List of Multicast rules
+    XiqNetworkIpProtocol:
+      type: string
+      enum:
+      - TCP
+      - UDP
+      - SVP
+      - CUSTOM
+    XiqNetworkService:
+      allOf:
+      - $ref: '#/components/schemas/XiqNetwork'
+      - type: object
+        description: Network Service
+        required:
+        - service_type
+        properties:
+          service_type:
+            type: string
+            description: Service type.
+            enum:
+            - NETWORK
+            - APPLICATION
+    PagedXiqTunnelConcentrator:
+      allOf:
+      - $ref: '#/components/schemas/XiqPage'
+      - type: object
+        properties:
+          data:
+            type: array
+            description: The data in the current page
+            items:
+              $ref: '#/components/schemas/XiqTunnelConcentrator'
+    XiqNetworkServiceRequest:
+      type: object
+      description: Network
+      properties:
+        name:
+          type: string
+          description: The network service name.
+        description:
+          type: string
+          description: The network service name.
+        ip_protocol:
+          $ref: '#/components/schemas/XiqNetworkIpProtocol'
+          description: The IP protocol.
+        protocol_number:
+          type: integer
+          format: int32
+          description: The protocol number.
+        port_number:
+          type: integer
+          format: int32
+          description: The port number.
+        alg_type:
+          $ref: '#/components/schemas/XiqNetworkAlgType'
+          description: The Application Layer Gateway (ALG) type.
+    XiqErrorParams:
+      type: object
+      description: Error parameters
+      properties:
+        field:
+          type: string
+          description: The error field
+        value:
+          type: string
+          description: The error value
+    XiqBaseEntity:
+      required:
+      - id
+      - create_time
+      - update_time
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The unique identifier
+          format: int64
+        create_time:
+          type: string
+          description: The create time
+          format: date-time
+        update_time:
+          type: string
+          description: The last update time
+          format: date-time
+    XiqMulticastRule:
+      allOf:
+      - type: object
+        properties:
+          ip:
+            type: string
+            description: IPv4 or IPv6 address with optional CIDR
+    XiqError:
+      type: object
+      properties:
+        error_code:
+          type: string
+          description: The error code
+        error_id:
+          type: string
+          description: The error ID for internal troubleshooting
+        error_message:
+          type: string
+          description: The error detailed message
+        error_message_code:
+          type: string
+          description: The error message code
+        error_message_description:
+          type: string
+          description: The error message description
+        error_params:
+          $ref: '#/components/schemas/XiqErrorParams'
+      required:
+      - error_code
+      - error_id
+      - error_message
+    XiqNetworkAlgType:
+      type: string
+      enum:
+      - NONE
+      - FTP
+      - TFTP
+      - SIP
+      - DNS
+      - HTTP
+    XiqNetwork:
+      allOf:
+      - $ref: '#/components/schemas/XiqViqEntity'
+      - $ref: '#/components/schemas/XiqNetworkServiceRequest'
+    XiqTunnelConcentrator:
+      allOf:
+      - $ref: '#/components/schemas/XiqViqEntity'
+      - $ref: '#/components/schemas/XiqTunnelConcentratorRequest'
+    XiqPage:
+      required:
+      - count
+      - page
+      - total_count
+      - total_pages
+      type: object
+      properties:
+        page:
+          type: integer
+          description: The current page number
+          format: int32
+        count:
+          type: integer
+          description: The element count of the current page
+          format: int32
+        total_pages:
+          type: integer
+          description: The total page number based on request page size
+          format: int32
+        total_count:
+          type: integer
+          description: The total element count
+          format: int64
+    PagedXiqNetworkService:
+      allOf:
+      - $ref: '#/components/schemas/XiqPage'
+      - type: object
+        properties:
+          data:
+            type: array
+            description: The data in the current page
+            items:
+              $ref: '#/components/schemas/XiqNetworkService'
+    XiqViqEntity:
+      allOf:
+      - $ref: '#/components/schemas/XiqBaseEntity'
+      - type: object
+        properties:
+          org_id:
+            type: integer
+            description: The organization identifier, valid when enabling HIQ feature
+            format: int64
+        required:
+        - org_id
+  parameters:
+    page:
+      name: page
+      in: query
+      description: Page number, min = 1
+      required: false
+      schema:
+        minimum: 1
+        type: integer
+        format: int32
+        default: 1
+    limit:
+      name: limit
+      in: query
+      description: Page Size, min = 1, max = 100
+      required: false
+      schema:
+        maximum: 100
+        minimum: 1
+        type: integer
+        format: int32
+        default: 10
+    id:
+      name: id
+      in: path
+      description: The unique identifier
+      required: true
+      schema:
+        type: integer
+        format: int64
+  responses:
+    ErrorResponse:
+      description: The generic ExtremeCloud IQ API error response
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/XiqError'
+  securitySchemes:
+    BearerAuth:
+      type: http
+      description: JSON Web Token (JWT) based authentication
+      scheme: bearer
+      bearerFormat: JWT
+externalDocs:
+  description: API Reference
+  url: https://extremecloudiq.com/api-docs/api-reference.html

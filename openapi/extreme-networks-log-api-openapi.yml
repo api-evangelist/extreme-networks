@@ -1,0 +1,1003 @@
+openapi: 3.0.3
+info:
+  title: ExtremeCloud IQ Account Log API
+  description: 'ExtremeCloud IQ™ API allows customers and partners to create solutions for the management, monitoring, and provisioning
+
+    of any ExtremeCloud IQ™ environment.
+
+
+    All related resources and documentation are available at [ExtremeCloud IQ Developer Portal](https://developer.extremecloudiq.com/).
+
+    Please check [Get Started and Tutorial](https://developer.extremecloudiq.com/documentation/) to understand how to use the APIs.
+
+
+    Get the [latest OpenAPI definition](https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI/blob/main/xcloudiq-openapi.yaml)
+
+    from [ExtremeCloud IQ OpenAPI GitHub repository](https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI).
+
+
+    Please have a valid [ExtremeCloud IQ](https://extremecloudiq.com/) account before getting started.
+
+    If you don''t have one, please [register a new account](https://www.extremenetworks.com/cloud-networking/).'
+  termsOfService: https://www.extremenetworks.com/company/legal/terms-of-use/
+  contact:
+    name: Extreme Networks Support
+    url: https://www.extremenetworks.com/support
+    email: support@extremenetworks.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  version: 25.9.0-36
+servers:
+- url: https://api.extremecloudiq.com
+  description: ExtremeCloud IQ REST API Server
+tags:
+- name: Log
+  description: Access all kinds of logs in ExtremeCloud IQ
+paths:
+  /logs/audit:
+    get:
+      tags:
+      - Log
+      summary: List audit logs
+      description: List a page of audit logs.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_list_audit_log
+      operationId: listAuditLogs
+      parameters:
+      - $ref: '#/components/parameters/page'
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/startTime'
+      - name: categories
+        in: query
+        description: Audit category
+        required: false
+        schema:
+          type: array
+          items:
+            $ref: '#/components/schemas/XiqAuditLogCategory'
+      - name: username
+        in: query
+        description: The user login name
+        required: false
+        schema:
+          type: string
+      - name: endTime
+        in: query
+        description: 'The end time to query, epoch time in milliseconds since 1/1/1970. Note: endTime - startTime must be no greater than 2592000000 (30 days)'
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: keyword
+        in: query
+        description: The case-insensitive keyword to search in description
+        required: false
+        schema:
+          type: string
+      - name: sortField
+        in: query
+        description: The field for sorting
+        required: false
+        schema:
+          $ref: '#/components/schemas/XiqAuditLogSortField'
+      - $ref: '#/components/parameters/order'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagedXiqAuditLog'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /logs/audit/full-descriptions/{id}:
+    get:
+      tags:
+      - Log
+      summary: Get audit log full descriptions
+      description: Get audit log full descriptions by ID.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_get_audit_log_full_descriptions
+      operationId: getAuditLogFullDescriptions
+      parameters:
+      - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XiqAuditLogFullDescriptions'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /logs/audit/reports:
+    post:
+      tags:
+      - Log
+      summary: Create audit logs report
+      description: Creates a report page of audit logs.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_audit_log_report
+      operationId: createAuditLogReport
+      parameters:
+      - name: categories
+        in: query
+        description: Audit category
+        required: false
+        schema:
+          type: array
+          items:
+            $ref: '#/components/schemas/XiqAuditLogCategory'
+      - name: username
+        in: query
+        description: The user login name
+        required: false
+        schema:
+          type: string
+      - name: startTime
+        in: query
+        description: The start time to query, epoch time in milliseconds since 1/1/1970, default is 0 if not specified or is negative
+        required: false
+        schema:
+          type: integer
+          format: int64
+      - name: endTime
+        in: query
+        description: The end time to query, epoch time in milliseconds since 1/1/1970, default is now if not specified or is negative, endTime - startTime must be no greater than 2592000000 (30 days)
+        required: false
+        schema:
+          type: integer
+          format: int64
+      - name: timeZoneOffset
+        in: query
+        description: The time zone off set
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: keyword
+        in: query
+        description: The case-insensitive keyword to search in description
+        required: false
+        schema:
+          type: string
+      - name: sortField
+        in: query
+        description: The field for sorting
+        required: false
+        schema:
+          $ref: '#/components/schemas/XiqAuditLogSortField'
+      - $ref: '#/components/parameters/order'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XiqAuditLogReport'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /logs/audit/reports/{id}:
+    get:
+      tags:
+      - Log
+      summary: Download audit logs
+      description: Download report of audit logs.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_audit_log_download
+      operationId: downloadAuditLogs
+      parameters:
+      - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: byte
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /logs/sms:
+    get:
+      tags:
+      - Log
+      summary: List SMS logs
+      description: List a page of SMS logs.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_list_sms_log
+      operationId: listSmsLogs
+      parameters:
+      - $ref: '#/components/parameters/page'
+      - $ref: '#/components/parameters/limit'
+      - name: phoneNumber
+        in: query
+        description: The phone number
+        required: false
+        schema:
+          type: string
+      - name: startTime
+        in: query
+        description: The start time to query, epoch time in milliseconds since 1/1/1970, default is 0 if not specified or is negative
+        required: false
+        schema:
+          type: integer
+          format: int64
+      - name: endTime
+        in: query
+        description: The end time to query, epoch time in milliseconds since 1/1/1970, default is now if not specified or is negative
+        required: false
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagedXiqSmsLog'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /logs/email:
+    get:
+      tags:
+      - Log
+      summary: List Email logs
+      description: List a page of Email logs.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_list_email_log
+      operationId: listEmailLogs
+      parameters:
+      - $ref: '#/components/parameters/page'
+      - $ref: '#/components/parameters/limit'
+      - name: username
+        in: query
+        description: The user login name
+        required: false
+        schema:
+          type: string
+      - name: startTime
+        in: query
+        description: The start time to query, epoch time in milliseconds since 1/1/1970, default is 0 if not specified or is negative
+        required: false
+        schema:
+          type: integer
+          format: int64
+      - name: endTime
+        in: query
+        description: The end time to query, epoch time in milliseconds since 1/1/1970, default is now if not specified or is negative
+        required: false
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagedXiqEmailLog'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /logs/auth:
+    get:
+      tags:
+      - Log
+      summary: List auth logs
+      description: List a page of auth logs.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_list_authentication_log
+      operationId: listAuthLogs
+      parameters:
+      - $ref: '#/components/parameters/page'
+      - $ref: '#/components/parameters/limit'
+      - name: username
+        in: query
+        description: The user login name
+        required: false
+        schema:
+          type: string
+      - name: callingStationId
+        in: query
+        description: The calling station ID
+        required: false
+        schema:
+          type: string
+      - name: startTime
+        in: query
+        description: The start time to query, epoch time in milliseconds since 1/1/1970, default is 0 if not specified or is negative
+        required: false
+        schema:
+          type: integer
+          format: int64
+      - name: endTime
+        in: query
+        description: The end time to query, epoch time in milliseconds since 1/1/1970, default is now if not specified or is negative
+        required: false
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagedXiqAuthLog'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /logs/credential:
+    get:
+      tags:
+      - Log
+      summary: List credential logs
+      description: List a page of credential logs.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_list_credential_log
+      operationId: listCredentialLogs
+      parameters:
+      - $ref: '#/components/parameters/page'
+      - $ref: '#/components/parameters/limit'
+      - name: username
+        in: query
+        description: The user login name
+        required: false
+        schema:
+          type: string
+      - name: startTime
+        in: query
+        description: The start time to query, epoch time in milliseconds since 1/1/1970, default is 0 if not specified or is negative
+        required: false
+        schema:
+          type: integer
+          format: int64
+      - name: endTime
+        in: query
+        description: The end time to query, epoch time in milliseconds since 1/1/1970, default is now if not specified or is negative
+        required: false
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagedXiqCredentialLog'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /logs/accounting:
+    get:
+      tags:
+      - Log
+      summary: List accounting logs
+      description: List a page of accounting logs.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_list_accounting_log
+      operationId: listAccountingLogs
+      parameters:
+      - $ref: '#/components/parameters/page'
+      - $ref: '#/components/parameters/limit'
+      - name: username
+        in: query
+        description: The user login name
+        required: false
+        schema:
+          type: string
+      - name: callingStationId
+        in: query
+        description: The calling station ID
+        required: false
+        schema:
+          type: string
+      - name: startTime
+        in: query
+        description: The start time to query, epoch time in milliseconds since 1/1/1970, default is 0 if not specified or is negative
+        required: false
+        schema:
+          type: integer
+          format: int64
+      - name: endTime
+        in: query
+        description: The end time to query, epoch time in milliseconds since 1/1/1970, default is now if not specified or is negative
+        required: false
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagedXiqAccountingLog'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+components:
+  parameters:
+    order:
+      name: order
+      in: query
+      description: The sort order (ascending by default)
+      required: false
+      schema:
+        $ref: '#/components/schemas/XiqSortOrder'
+    startTime:
+      name: startTime
+      in: query
+      description: The start time to query, epoch time in milliseconds since 1/1/1970
+      required: true
+      schema:
+        type: integer
+        format: int64
+    page:
+      name: page
+      in: query
+      description: Page number, min = 1
+      required: false
+      schema:
+        minimum: 1
+        type: integer
+        format: int32
+        default: 1
+    limit:
+      name: limit
+      in: query
+      description: Page Size, min = 1, max = 100
+      required: false
+      schema:
+        maximum: 100
+        minimum: 1
+        type: integer
+        format: int32
+        default: 10
+    id:
+      name: id
+      in: path
+      description: The unique identifier
+      required: true
+      schema:
+        type: integer
+        format: int64
+  schemas:
+    PagedXiqEmailLog:
+      allOf:
+      - $ref: '#/components/schemas/XiqPage'
+      - type: object
+        properties:
+          data:
+            type: array
+            description: The data in the current page
+            items:
+              $ref: '#/components/schemas/XiqEmailLog'
+    XiqSmsLogStatus:
+      type: string
+      description: The SMS status
+      enum:
+      - SEND_OUT
+      - COMPLETE
+      - SUCCESS
+      - FAIL
+    XiqAuditLogReport:
+      type: object
+      description: ExtremeCloud IQ Audit Log report
+      properties:
+        id:
+          type: integer
+          description: The audit log report ID
+          format: int64
+    XiqSortOrder:
+      type: string
+      enum:
+      - ASC
+      - DESC
+    XiqSmsLog:
+      type: object
+      description: ExtremeCloud IQ SMS Log
+      required:
+      - id
+      properties:
+        id:
+          type: integer
+          description: The SMS log id
+          format: int64
+        user_id:
+          type: integer
+          description: The user id
+          format: int64
+        customer_id:
+          type: string
+          description: The customer id
+        tel:
+          type: string
+          description: The phone number
+        profile_name:
+          type: string
+          description: The profile name
+        status:
+          $ref: '#/components/schemas/XiqSmsLogStatus'
+        message_id:
+          type: string
+          description: The message id from 3rd provider
+        status_from_provider:
+          type: string
+          description: The status from provider
+        provider_type:
+          type: string
+          description: The provider type
+        org_id:
+          type: integer
+          description: The org id
+          format: int64
+        timestamp:
+          type: integer
+          description: The audit log timestamp
+          format: int64
+    PagedXiqCredentialLog:
+      allOf:
+      - $ref: '#/components/schemas/XiqPage'
+      - type: object
+        properties:
+          data:
+            type: array
+            description: The data in the current page
+            items:
+              $ref: '#/components/schemas/XiqCredentialLog'
+    XiqAuthLog:
+      type: object
+      description: ExtremeCloud IQ Auth Log
+      required:
+      - id
+      properties:
+        id:
+          type: string
+          description: The auth log id
+        auth_type:
+          type: string
+          description: The auth type
+        sn:
+          type: string
+          description: The serial number
+        vhm_id:
+          type: string
+          description: The vhm id
+        username:
+          type: string
+          description: The username
+        reply:
+          type: string
+          description: The reply
+        called_station_id:
+          type: string
+          description: The called station id
+        calling_station_id:
+          type: string
+          description: The calling station id
+        auth_date:
+          type: integer
+          description: The authentication date
+          format: int64
+        ssid:
+          type: string
+          description: The ssid
+        identity:
+          type: string
+          description: The identity
+        nas_port_type:
+          type: string
+          description: The nas port type
+        reject_reason:
+          type: string
+          description: The reject reason
+        nas_identifier:
+          type: string
+          description: The nas identifier
+        mgmt_mac_address:
+          type: string
+          description: The management mac address
+        org_id:
+          type: integer
+          description: The org id
+          format: int64
+        timestamp:
+          type: integer
+          description: The audit log timestamp
+          format: int64
+    XiqAuditLogSortField:
+      type: string
+      description: All fields used to sort the audit logs
+      enum:
+      - TIMESTAMP
+    XiqAuditLog:
+      type: object
+      description: ExtremeCloud IQ Audit Log
+      required:
+      - id
+      properties:
+        id:
+          type: integer
+          description: The audit log id
+          format: int64
+        category:
+          $ref: '#/components/schemas/XiqAuditLogCategory'
+        user_id:
+          type: integer
+          description: The user id
+          format: int64
+        code:
+          type: integer
+          description: The audit log code
+          format: int32
+        username:
+          type: string
+          description: The user name
+        vhm_name:
+          type: string
+          description: The vhm name
+        parameters:
+          type: string
+          description: The audit log parameters
+        org_id:
+          type: integer
+          description: The org id
+          format: int64
+        timestamp:
+          type: integer
+          description: The audit log timestamp
+          format: int64
+        description:
+          type: string
+          description: The audit log summary
+        full_description_id:
+          type: integer
+          description: The audit log full description id
+          format: int64
+    XiqErrorParams:
+      type: object
+      description: Error parameters
+      properties:
+        field:
+          type: string
+          description: The error field
+        value:
+          type: string
+          description: The error value
+    PagedXiqSmsLog:
+      allOf:
+      - $ref: '#/components/schemas/XiqPage'
+      - type: object
+        properties:
+          data:
+            type: array
+            description: The data in the current page
+            items:
+              $ref: '#/components/schemas/XiqSmsLog'
+    PagedXiqAuditLog:
+      allOf:
+      - $ref: '#/components/schemas/XiqPage'
+      - type: object
+        properties:
+          data:
+            type: array
+            description: The data in the current page
+            items:
+              $ref: '#/components/schemas/XiqAuditLog'
+    XiqAuditLogCategory:
+      type: string
+      enum:
+      - ADMIN
+      - SYSTEM
+      - DEPLOYMENT
+      - CONFIG
+      - MONITOR
+      - ALARM
+    XiqError:
+      type: object
+      properties:
+        error_code:
+          type: string
+          description: The error code
+        error_id:
+          type: string
+          description: The error ID for internal troubleshooting
+        error_message:
+          type: string
+          description: The error detailed message
+        error_message_code:
+          type: string
+          description: The error message code
+        error_message_description:
+          type: string
+          description: The error message description
+        error_params:
+          $ref: '#/components/schemas/XiqErrorParams'
+      required:
+      - error_code
+      - error_id
+      - error_message
+    PagedXiqAuthLog:
+      allOf:
+      - $ref: '#/components/schemas/XiqPage'
+      - type: object
+        properties:
+          data:
+            type: array
+            description: The data in the current page
+            items:
+              $ref: '#/components/schemas/XiqAuthLog'
+    XiqPage:
+      required:
+      - count
+      - page
+      - total_count
+      - total_pages
+      type: object
+      properties:
+        page:
+          type: integer
+          description: The current page number
+          format: int32
+        count:
+          type: integer
+          description: The element count of the current page
+          format: int32
+        total_pages:
+          type: integer
+          description: The total page number based on request page size
+          format: int32
+        total_count:
+          type: integer
+          description: The total element count
+          format: int64
+    XiqAccountingLog:
+      type: object
+      description: ExtremeCloud IQ Accounting Log
+      required:
+      - id
+      properties:
+        id:
+          type: integer
+          description: The Accounting log id
+          format: int64
+        username:
+          type: string
+          description: The username
+        org_id:
+          type: integer
+          description: The org id
+          format: int64
+        timestamp:
+          type: integer
+          description: The email log timestamp
+          format: int64
+        vhm_id:
+          type: string
+          description: The vhm id
+        device_serial_number:
+          type: string
+          description: The device serial number
+        acct_session_id:
+          type: string
+          description: The acct session id
+        acct_multi_id:
+          type: string
+          description: The acct multi id
+        group_name:
+          type: string
+          description: The group name
+        nas_ip_address:
+          type: string
+          description: The nas ip address
+        nas_port:
+          type: string
+          description: The nas port
+        nas_port_type:
+          type: string
+          description: The nas port type
+        acct_start_time:
+          type: integer
+          description: The acct start time
+          format: int64
+        acct_stop_time:
+          type: integer
+          description: The acct stop time
+          format: int64
+        acct_session_time:
+          type: integer
+          description: The acct session time
+          format: int64
+        acct_authentic:
+          type: string
+          description: The acct authentic
+        connect_info:
+          type: string
+          description: The connect info
+        acct_input_octets:
+          type: integer
+          description: The acct input octets
+          format: int64
+        acct_output_octets:
+          type: integer
+          description: The acct output octets
+          format: int64
+        called_station_id:
+          type: string
+          description: The called station id
+        calling_station_id:
+          type: string
+          description: The calling station id
+        acct_terminate_cause:
+          type: string
+          description: The acct terminate cause
+        service_type:
+          type: string
+          description: The service type
+        framed_ip_address:
+          type: string
+          description: The framed ip address
+        acct_start_delay:
+          type: integer
+          description: The acct start delay
+          format: int64
+        acct_stop_delay:
+          type: integer
+          description: The acct stop delay
+          format: int64
+        ssid:
+          type: string
+          description: The ssid
+        identity:
+          type: string
+          description: The identity
+        nas_identifier:
+          type: string
+          description: The nas identifier
+        mgmt_mac_address:
+          type: string
+          description: The management mac address
+        attribute_num:
+          type: integer
+          description: The attribute num
+          format: int32
+        event_time:
+          type: integer
+          description: The event time
+          format: int64
+    XiqAuditLogFullDescriptions:
+      type: object
+      description: ExtremeCloud IQ Audit Log full descriptions
+      required:
+      - id
+      - timestamp
+      - device_id
+      - description
+      properties:
+        id:
+          type: integer
+          description: The audit log full description id
+          format: int64
+        timestamp:
+          type: integer
+          description: The full description timestamp
+          format: int64
+        device_id:
+          type: integer
+          description: The device id
+          format: int64
+        description:
+          type: string
+          description: The audit log full description
+    PagedXiqAccountingLog:
+      allOf:
+      - $ref: '#/components/schemas/XiqPage'
+      - type: object
+        properties:
+          data:
+            type: array
+            description: The data in the current page
+            items:
+              $ref: '#/components/schemas/XiqAccountingLog'
+    XiqEmailLog:
+      type: object
+      description: ExtremeCloud IQ Email Log
+      required:
+      - id
+      properties:
+        id:
+          type: integer
+          description: The Email log id
+          format: int64
+        username:
+          type: string
+          description: The username
+        org_id:
+          type: integer
+          description: The org id
+          format: int64
+        timestamp:
+          type: integer
+          description: The email log timestamp
+          format: int64
+        user_id:
+          type: integer
+          description: The user id
+          format: int64
+        customer_id:
+          type: string
+          description: The customer id
+        approver_email:
+          type: string
+          description: The approver Email
+        status:
+          type: string
+          description: The email log status
+    XiqCredentialLog:
+      type: object
+      description: ExtremeCloud IQ Credential Log
+      required:
+      - id
+      properties:
+        id:
+          type: integer
+          description: The Credential log id
+          format: int64
+        username:
+          type: string
+          description: The username
+        vhm_id:
+          type: string
+          description: The vhm id
+        org_id:
+          type: integer
+          description: The org id
+          format: int64
+        timestamp:
+          type: integer
+          description: The credential log timestamp
+          format: int64
+  responses:
+    ErrorResponse:
+      description: The generic ExtremeCloud IQ API error response
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/XiqError'
+  securitySchemes:
+    BearerAuth:
+      type: http
+      description: JSON Web Token (JWT) based authentication
+      scheme: bearer
+      bearerFormat: JWT
+externalDocs:
+  description: API Reference
+  url: https://extremecloudiq.com/api-docs/api-reference.html

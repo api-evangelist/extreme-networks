@@ -1,0 +1,157 @@
+openapi: 3.0.3
+info:
+  title: ExtremeCloud IQ Account RTTS API
+  description: 'ExtremeCloud IQ™ API allows customers and partners to create solutions for the management, monitoring, and provisioning
+
+    of any ExtremeCloud IQ™ environment.
+
+
+    All related resources and documentation are available at [ExtremeCloud IQ Developer Portal](https://developer.extremecloudiq.com/).
+
+    Please check [Get Started and Tutorial](https://developer.extremecloudiq.com/documentation/) to understand how to use the APIs.
+
+
+    Get the [latest OpenAPI definition](https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI/blob/main/xcloudiq-openapi.yaml)
+
+    from [ExtremeCloud IQ OpenAPI GitHub repository](https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI).
+
+
+    Please have a valid [ExtremeCloud IQ](https://extremecloudiq.com/) account before getting started.
+
+    If you don''t have one, please [register a new account](https://www.extremenetworks.com/cloud-networking/).'
+  termsOfService: https://www.extremenetworks.com/company/legal/terms-of-use/
+  contact:
+    name: Extreme Networks Support
+    url: https://www.extremenetworks.com/support
+    email: support@extremenetworks.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  version: 25.9.0-36
+servers:
+- url: https://api.extremecloudiq.com
+  description: ExtremeCloud IQ REST API Server
+tags:
+- name: RTTS
+  description: RTT sessions in ExtremeCloud IQ
+paths:
+  /rtts/supported-devices:
+    post:
+      tags:
+      - RTTS
+      summary: List RTTS supported devices
+      operationId: listRttsSupportedDevices
+      description: List RTTS supported devices for the specified location filter.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_list_rtts_supported_devices
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/XiqRttsSupportedDevicesRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/XiqRttsSupportedDevice'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+components:
+  schemas:
+    XiqError:
+      type: object
+      properties:
+        error_code:
+          type: string
+          description: The error code
+        error_id:
+          type: string
+          description: The error ID for internal troubleshooting
+        error_message:
+          type: string
+          description: The error detailed message
+        error_message_code:
+          type: string
+          description: The error message code
+        error_message_description:
+          type: string
+          description: The error message description
+        error_params:
+          $ref: '#/components/schemas/XiqErrorParams'
+      required:
+      - error_code
+      - error_id
+      - error_message
+    XiqRttsSupportedDevicesRequest:
+      type: object
+      description: Location filters
+      properties:
+        site_ids:
+          type: array
+          description: The Site ID list
+          items:
+            type: integer
+            description: The Site ID
+            format: int64
+        building_ids:
+          type: array
+          description: The Building ID list
+          items:
+            type: integer
+            description: The Building ID
+            format: int64
+        floor_ids:
+          type: array
+          description: The Floor ID list
+          items:
+            type: integer
+            description: The Floor ID
+            format: int64
+    XiqErrorParams:
+      type: object
+      description: Error parameters
+      properties:
+        field:
+          type: string
+          description: The error field
+        value:
+          type: string
+          description: The error value
+    XiqRttsSupportedDevice:
+      type: object
+      description: Device Details
+      properties:
+        device_id:
+          type: integer
+          description: The Device ID
+          format: int64
+        host_name:
+          type: string
+          description: The Hostname of Device
+        serial_number:
+          type: string
+          description: The Serial Number of Device
+  responses:
+    ErrorResponse:
+      description: The generic ExtremeCloud IQ API error response
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/XiqError'
+  securitySchemes:
+    BearerAuth:
+      type: http
+      description: JSON Web Token (JWT) based authentication
+      scheme: bearer
+      bearerFormat: JWT
+externalDocs:
+  description: API Reference
+  url: https://extremecloudiq.com/api-docs/api-reference.html

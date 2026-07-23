@@ -1,0 +1,981 @@
+openapi: 3.0.3
+info:
+  title: ExtremeCloud IQ Account AFC API
+  description: 'ExtremeCloud IQ™ API allows customers and partners to create solutions for the management, monitoring, and provisioning
+
+    of any ExtremeCloud IQ™ environment.
+
+
+    All related resources and documentation are available at [ExtremeCloud IQ Developer Portal](https://developer.extremecloudiq.com/).
+
+    Please check [Get Started and Tutorial](https://developer.extremecloudiq.com/documentation/) to understand how to use the APIs.
+
+
+    Get the [latest OpenAPI definition](https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI/blob/main/xcloudiq-openapi.yaml)
+
+    from [ExtremeCloud IQ OpenAPI GitHub repository](https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI).
+
+
+    Please have a valid [ExtremeCloud IQ](https://extremecloudiq.com/) account before getting started.
+
+    If you don''t have one, please [register a new account](https://www.extremenetworks.com/cloud-networking/).'
+  termsOfService: https://www.extremenetworks.com/company/legal/terms-of-use/
+  contact:
+    name: Extreme Networks Support
+    url: https://www.extremenetworks.com/support
+    email: support@extremenetworks.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  version: 25.9.0-36
+servers:
+- url: https://api.extremecloudiq.com
+  description: ExtremeCloud IQ REST API Server
+tags:
+- name: AFC
+  description: ExtremeCloud IQ AFC Feature.
+paths:
+  /afcserver:
+    get:
+      tags:
+      - AFC
+      summary: Get list of AFC Servers
+      description: Get list of AFC Servers.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_list_afc_servers
+      operationId: listAfcServers
+      parameters:
+      - $ref: '#/components/parameters/ownerId'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XiqListAfcServers'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /afcserver/statistics/{server_id}:
+    get:
+      tags:
+      - AFC
+      summary: Get AFC server Statistics
+      description: Get AFC server Statistics.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_get_afc_server_statistics
+      operationId: getAfcServerStatistics
+      parameters:
+      - name: server_id
+        in: path
+        description: The Id of the server
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: startTime
+        in: query
+        description: Query Start Time
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: endTime
+        in: query
+        description: Query End Time
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: precision
+        in: query
+        description: precision specified in seconds
+        required: false
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XiqAfcServersStatistics'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /ap/afc/interface/details/{sn}:
+    get:
+      tags:
+      - AFC
+      summary: Get AP Interface status
+      description: Get AP Interface status info.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_get_afc_ap_interface_details
+      operationId: getAfcApDetails
+      parameters:
+      - $ref: '#/components/parameters/sn'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XiqAfcApInterfaceDetails'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /afc/recalculateSite/{id}:
+    post:
+      tags:
+      - AFC
+      summary: AFC Recalculate Geolocation
+      description: Recalculate geolocation for site.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_recalculate_afc_site
+      operationId: recalculateSite
+      parameters:
+      - name: id
+        in: path
+        description: The device id
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /afc/aps/reportFtm:
+    post:
+      tags:
+      - AFC
+      summary: Request FTM data for APs
+      description: Request FTM data for a list of Access Points.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_request_ftm_data
+      operationId: requestAfcFtmData
+      requestBody:
+        description: List of APs to request FTM data
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/XiqReportFtmDataRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /afc/aps/status/summary:
+    get:
+      tags:
+      - AFC
+      summary: AFC AP status Summary
+      description: AFC Status summary of AP channels and powers query.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_get_afc_ap_status_stats
+      operationId: getAfcApsStatusSummary
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XiqAfcApStatusSummary'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /floor/afc/details:
+    get:
+      tags:
+      - AFC
+      summary: Get AFC Floor Details
+      description: Retrieve AFC related floor height and accuracy data for a specific floor.
+      operationId: getFloorAfcProperties
+      parameters:
+      - $ref: '#/components/parameters/ownerId'
+      - name: floorId
+        in: query
+        description: The Id of the floor
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XiqAfcFloorDetails'
+      security:
+      - BearerAuth: []
+    post:
+      tags:
+      - AFC
+      summary: Add AFC Floor Details
+      description: Create new AFC related floor height and accuracy data for a floor.
+      operationId: addFloorAfcProperties
+      requestBody:
+        description: Floor AFC related properties body
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/XiqAfcFloorDetails'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XiqAfcFloorDetails'
+      security:
+      - BearerAuth: []
+    put:
+      tags:
+      - AFC
+      summary: Update AFC Floor Details
+      description: Update existing AFC related floor height and accuracy data for a floor.
+      operationId: updateFloorAfcProperties
+      requestBody:
+        description: Floor AFC related properties body
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/XiqAfcFloorDetails'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XiqAfcFloorDetails'
+      security:
+      - BearerAuth: []
+  /aps/afc/query:
+    get:
+      tags:
+      - AFC
+      summary: Query AFC APs
+      description: Retrieve AFC summary information for access points including status, geolocation, and spectrum mismatch data.
+      operationId: getApsAfcSummaryInfo
+      parameters:
+      - $ref: '#/components/parameters/ownerId'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XiqAfcApsInfoElement'
+      security:
+      - BearerAuth: []
+    post:
+      tags:
+      - AFC
+      summary: Query AFC APs
+      description: Retrieve AFC summary information for access points including status, geolocation, and spectrum mismatch data.
+      operationId: getApsAfcSummaryInfoWithFilter
+      parameters:
+      - $ref: '#/components/parameters/ownerId'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                site_ids:
+                  description: List of site IDs to filter the device list
+                  type: array
+                  items:
+                    type: integer
+                    format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XiqAfcApsInfoElement'
+      security:
+      - BearerAuth: []
+  /ap/afc/diagnostics/{id}:
+    get:
+      tags:
+      - AFC
+      summary: Get AFC AP Diagnostics
+      description: Retrieve AFC diagnostics information.
+      operationId: getApsAfcDiagnostics
+      parameters:
+      - $ref: '#/components/parameters/ownerId'
+      - name: id
+        in: path
+        description: device id
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XiqAfcApDiagnostics'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /ap/afc/floorReport/{deviceId}:
+    get:
+      summary: Get AFC Floor Report
+      description: Retrieves the AFC geolocation floor report for a specific device.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_get_afc_geolocation_floor_report
+      operationId: getAfcGeolocationFloorReport
+      tags:
+      - AFC
+      parameters:
+      - name: deviceId
+        in: path
+        description: Device ID
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XiqGetAfcGeolocationFloorReportResponse'
+              example:
+                floor_report: Floor geolocation report data for AFC calculations
+      security:
+      - BearerAuth: []
+  /aps/afc/update:
+    post:
+      tags:
+      - AFC
+      summary: Request Manual Spectrum for device(s)
+      description: Manual Spectrum request for device(s).
+      operationId: postApsManualAfcSpectrum
+      requestBody:
+        description: AFC site schedule request body
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/XiqAfcApManualSpectrum'
+        required: true
+      responses:
+        '200':
+          description: OK
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /site/afc/schedule:
+    get:
+      tags:
+      - AFC
+      summary: Get AFC Site Schedule
+      description: Get AFC site update settings.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_get_afc_site_schedule
+      operationId: getAfcSiteSchedule
+      parameters:
+      - $ref: '#/components/parameters/ownerId'
+      - $ref: '#/components/parameters/folderId'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/XiqAfcSiteScheduleResponse'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+    post:
+      tags:
+      - AFC
+      summary: Create AFC Site Schedule
+      description: Create AFC Site Schedule.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_add_afc_site_schedule
+      operationId: addAfcSiteSchedule
+      requestBody:
+        description: The body of the Site Schedule
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/XiqAfcSiteSchedule'
+        required: true
+      responses:
+        '200':
+          description: OK
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+    put:
+      tags:
+      - AFC
+      summary: Update AFC SiteSchedule
+      description: Update AFC SiteSchedule.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_update_afc_site_schedule
+      operationId: updateAfcSiteSchedule
+      requestBody:
+        description: The body of the Site Schedule
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/XiqAfcSiteSchedule'
+        required: true
+      responses:
+        '200':
+          description: OK
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /afc/mobileapp/apcandidates:
+    post:
+      tags:
+      - AFC
+      summary: Find potential AP candidates to be used as anchor
+      description: Find potential AP candidates to be used as anchor.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_afc_mobileapp_apcandidates
+      operationId: afcMobileappApCandidates
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/XiqAfcMobileappScanInfo'
+      responses:
+        '200':
+          description: List of AP candidates that may be used as anchors
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XiqMobileappAnchorCandidatesResponse'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+components:
+  schemas:
+    XiqAfcApDiagnostics:
+      type: object
+      description: AFC AP Diagnostics containing spectrum details
+      properties:
+        afc_spectrum_details:
+          type: string
+          description: AFC spectrum details for the AP diagnostics
+    XiqListAfcServers:
+      type: object
+      properties:
+        servers:
+          type: array
+          description: List of AFC servers
+          items:
+            $ref: '#/components/schemas/XiqAfcServer'
+    XiqAfcSiteScheduleResponse:
+      allOf:
+      - type: object
+        properties:
+          ownerId:
+            type: integer
+            format: int64
+          folderId:
+            type: integer
+            format: int64
+            description: Site folder ID, retrievable through device inventory API
+            example: 67890
+          siteTimeZone:
+            type: string
+            description: The timezone identifier for the site location, uses TZ database time zones format
+            example: America/New_York
+          siteSchedule:
+            type: integer
+            format: int64
+            description: The time of day in milliseconds since 00:00:00 (midnight) in the specified timezone when AFC spectrum recalculation should be performed for this site. Default is 0 (midnight) for new outdoor sites.
+            example: 7200000
+          default_schedule:
+            type: boolean
+    XiqAfcFloorDetails:
+      type: object
+      description: AFC Floor Details containing floor and AP height information
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: Unique identifier for the floor details record
+        floor_id:
+          type: integer
+          format: int64
+          description: The ID of the floor
+        floor_height:
+          type: number
+          format: float
+          description: Height of the floor
+        floor_height_accuracy:
+          type: integer
+          format: int64
+          description: Accuracy of the floor height measurement
+        ap_height:
+          type: number
+          format: float
+          description: Height of the access point
+        ap_height_accuracy:
+          type: integer
+          format: int64
+          description: Accuracy of the AP height measurement
+    XiqAfcMobileappCoordinates:
+      allOf:
+      - type: object
+        properties:
+          latitude:
+            type: number
+            description: Latitude expressed as a floating point number
+            minimum: -90
+            maximum: 90
+          longitude:
+            type: number
+            description: Longitude expressed as a floating point number
+            minimum: -180
+            maximum: 180
+          source:
+            $ref: '#/components/schemas/XiqAfcCoordinatesSource'
+          ts:
+            type: number
+            description: Timestamp of the acquired geolocation (milliseconds from epoch)
+    XiqAfcAvailableSpectrum:
+      type: object
+      properties:
+        request_id:
+          type: string
+          description: serial number of AP
+        available_channel_info:
+          type: array
+          description: Available channel information for this AP
+          items:
+            $ref: '#/components/schemas/XiqAvailableChannelInfo'
+        availability_expire_time:
+          type: string
+          description: Expiration time for the spectrum availability in ISO 8601 format
+    XiqAfcMobileappAnchorCandidate:
+      allOf:
+      - type: object
+        properties:
+          id:
+            type: integer
+            description: The device unique identifier
+            format: int64
+          serial:
+            type: string
+            description: The device serial number
+          name:
+            type: string
+            description: AP name
+          mac_address:
+            $ref: '#/components/schemas/XiqMacAddress'
+          make:
+            type: string
+            description: 'The product make, such as: WiNG, Aerohive, Extreme etc.'
+          product_type:
+            type: string
+            description: 'The product type, such as: AP_5050U, AP_5050D, AP_5020 etc.'
+          location:
+            type: string
+            description: The location of the device, including floor name
+          bssid:
+            $ref: '#/components/schemas/XiqMacAddress'
+            description: Base radio BSSID
+          gpsAnchor:
+            type: boolean
+            default: false
+            description: Use this AP as GPS anchor to derive geo-coordinates of other APs on the floor
+          coordinates:
+            $ref: '#/components/schemas/XiqAfcMobileappCoordinates'
+          neighbors:
+            type: integer
+            description: Number of neighboring APs.
+    XiqAfcServerState:
+      type: string
+      description: Status of AFC server connection
+      enum:
+      - CONNECTED
+      - DNS_ERROR
+      - UNREACHABLE
+      - CONNECTION_REFUSED
+      - INVALID_CERT
+      - REVOKED_CERT
+      - NOT_FOUND
+      - HTTP_ERROR
+      - INVALID_RESPONSE
+      - CONNECTION_RESET
+      - READ_TIMEOUT
+      - UNKNOWN_ERROR
+    XiqGetAfcGeolocationFloorReportResponse:
+      type: object
+      description: Response containing AFC floor report data
+      properties:
+        floor_report:
+          type: string
+          description: 'Floor geolocation report data used for AFC (Automated Frequency Coordination) calculations.
+
+            '
+      required:
+      - floor_report
+    XiqAfcServersStatistics:
+      allOf:
+      - type: object
+        properties:
+          data:
+            type: array
+            items:
+              $ref: '#/components/schemas/XiqAfcServerStatistics'
+            description: List of AFC server statistics
+    XiqAfcServer:
+      type: object
+      properties:
+        state:
+          $ref: '#/components/schemas/XiqAfcServerState'
+        server_url:
+          type: string
+          description: URL of the AFC server
+          example: https://extremeserver.afc.wi-fi.com/api/9FxgegHdMPWi2sfJ
+        region:
+          type: string
+          description: The country or regulatory region for which the AFC server provides service
+          example: United States
+        server_id:
+          type: integer
+          format: int64
+          description: The unique identifier of the AFC server
+          example: 2
+    XiqAfcServerStatistics:
+      allOf:
+      - type: object
+        properties:
+          id:
+            type: integer
+            format: int64
+            description: The unique identifier
+          create_time:
+            type: string
+            format: date-time
+            description: The create time
+          update_time:
+            type: string
+            format: date-time
+            description: The last update time
+          connection_state:
+            type: string
+            description: The connection state of the AFC server
+            enum:
+            - CONNECTED
+            - DISCONNECTED
+            - CONNECTING
+            - ERROR
+          timestamp:
+            type: integer
+            format: int64
+            description: The timestamp of the statistics data point
+    XiqErrorParams:
+      type: object
+      description: Error parameters
+      properties:
+        field:
+          type: string
+          description: The error field
+        value:
+          type: string
+          description: The error value
+    XiqAfcMobileappScanInfo:
+      allOf:
+      - type: object
+        properties:
+          ownerId:
+            type: integer
+            format: int64
+          bssidList:
+            type: array
+            description: Base radio BSSIDs reported by the mobile application scan
+            items:
+              $ref: '#/components/schemas/XiqMacAddress'
+    XiqAfcApsInfoElement:
+      type: object
+      description: AFC APs Information Element containing status summaries
+      properties:
+        total_devices:
+          type: integer
+          description: Total number of AFC supported APs
+        afc_status:
+          $ref: '#/components/schemas/XiqAfcStatusSummary'
+          description: AFC status summary information
+        geo_location:
+          $ref: '#/components/schemas/XiqAfcGeolocationSummary'
+          description: Geolocation summary information
+        spectrum_mismatch:
+          $ref: '#/components/schemas/XiqSpectrumMismatchSummary'
+          description: Spectrum mismatch summary information
+    XiqAvailableChannelInfo:
+      type: object
+      properties:
+        global_operating_class:
+          type: integer
+          description: "Operating class:\n- 131 = 20MHz bandwidth\n- 132 = 40MHz bandwidth  \n- 133 = 80MHz bandwidth\n- 134 = 160MHz bandwidth\n- 137 = 320MHz bandwidth\n"
+        channel_cfi:
+          type: array
+          description: RF channel numbers
+          items:
+            type: integer
+        max_eirp:
+          type: array
+          description: Maximum RF power in dB
+          items:
+            type: number
+            format: double
+    XiqError:
+      type: object
+      properties:
+        error_code:
+          type: string
+          description: The error code
+        error_id:
+          type: string
+          description: The error ID for internal troubleshooting
+        error_message:
+          type: string
+          description: The error detailed message
+        error_message_code:
+          type: string
+          description: The error message code
+        error_message_description:
+          type: string
+          description: The error message description
+        error_params:
+          $ref: '#/components/schemas/XiqErrorParams'
+      required:
+      - error_code
+      - error_id
+      - error_message
+    XiqAfcApStatus:
+      type: string
+      description: Status of AP AFC.
+      enum:
+      - PENDING
+      - GRACE_PERIOD
+      - AVAILABLE
+      - NA
+    XiqReportFtmDataRequest:
+      type: object
+      properties:
+        owner_id:
+          type: integer
+          format: int64
+          description: The owner ID
+        ids:
+          type: array
+          description: List of Access Point IDs to request FTM data for
+          items:
+            type: integer
+            format: int64
+      required:
+      - owner_id
+      - ids
+    XiqMacAddress:
+      description: Colon separated MAC address in upper or lower case
+      type: string
+      pattern: ^([0-9A-Fa-f]{2}[:]){5}([0-9A-Fa-f]{2})$
+      example: 18:09:F8:61:6B:C0
+    XiqAfcGeolocationSummary:
+      allOf:
+      - type: object
+        properties:
+          total_available:
+            type: integer
+            description: Total number of Aps that have reported their geo location.
+          total_unavailable:
+            type: integer
+            description: Total number of Aps that have not reported their geo location.
+    XiqSpectrumMismatchSummary:
+      type: object
+      description: Spectrum Mismatch Summary information
+      properties:
+        total_backup:
+          type: integer
+          description: Total number of APs in backup mode
+        total_radio_off:
+          type: integer
+          description: Total number of APs with radio off
+        total_reduced:
+          type: integer
+          description: Total number of APs with reduced power
+    XiqAfcStatusSummary:
+      type: object
+      description: AFC Status Summary information
+      properties:
+        total_available:
+          type: integer
+          description: Total number of APs available
+        total_pending:
+          type: integer
+          description: Total number of APs pending
+        total_grace_period:
+          type: integer
+          description: Total number of APs in grace period
+    XiqAfcApStatusSummary:
+      allOf:
+      - type: object
+        properties:
+          totalAvailable:
+            type: integer
+          totalPending:
+            type: integer
+          totalGracePeriod:
+            type: integer
+    XiqAfcCoordinatesSource:
+      type: string
+      description: Source of coordinates:<br/> APP - Mobile Application GPS coordinates,<br/> GPS - AP reported GPS coordinates,<br/> GEO - Geolocation Agent derived coordinates<br/>
+      enum:
+      - APP
+      - GPS
+      - GEO
+    XiqAfcApManualSpectrum:
+      type: object
+      description: Manual spectrum request for AFC AP devices
+      properties:
+        ids:
+          type: array
+          description: List of AP device IDs for manual spectrum request
+          items:
+            type: integer
+            format: int64
+      required:
+      - ids
+    XiqAfcApInterfaceDetails:
+      type: object
+      properties:
+        status:
+          $ref: '#/components/schemas/XiqAfcApStatus'
+        expire:
+          type: integer
+          format: int64
+          description: Timestamp of the next AP channel/power info query (seconds from epoch)
+        received:
+          type: integer
+          format: int64
+          description: Timestamp of the acquired channel/power (seconds from epoch)
+        reason:
+          type: string
+          description: Reason for the current AFC status
+        spectrum:
+          $ref: '#/components/schemas/XiqAfcAvailableSpectrum'
+        band_width:
+          type: integer
+          format: int64
+          description: Bandwidth used by the AP
+    XiqMobileappAnchorCandidatesResponse:
+      type: object
+      properties:
+        candidates:
+          description: List of AP candidates that may be used as anchors
+          type: array
+          items:
+            $ref: '#/components/schemas/XiqAfcMobileappAnchorCandidate'
+      description: The response for afc mobile app anchor candidates
+    XiqAfcSiteSchedule:
+      allOf:
+      - type: object
+        properties:
+          ownerId:
+            type: integer
+            format: int64
+          folderId:
+            type: integer
+            format: int64
+            description: Site folder ID, retrievable through device inventory API
+            example: 67890
+          siteTimeZone:
+            type: string
+            description: The timezone identifier for the site location, uses TZ database time zones format
+            example: America/New_York
+          siteSchedule:
+            type: integer
+            format: int64
+            description: The time of day in milliseconds since 00:00:00 (midnight) in the specified timezone when AFC spectrum recalculation should be performed for this site. Default is 0 (midnight) for new outdoor sites.
+            example: 7200000
+          isDefaultSchedule:
+            type: boolean
+  parameters:
+    folderId:
+      name: folderId
+      in: query
+      description: The folder id for the location
+      required: true
+      schema:
+        type: integer
+        format: int64
+    sn:
+      name: sn
+      in: path
+      description: The serial number of an Ap.
+      required: true
+      schema:
+        type: string
+    ownerId:
+      name: ownerId
+      in: query
+      description: The Owner Id
+      required: true
+      schema:
+        type: integer
+        format: int64
+  responses:
+    ErrorResponse:
+      description: The generic ExtremeCloud IQ API error response
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/XiqError'
+  securitySchemes:
+    BearerAuth:
+      type: http
+      description: JSON Web Token (JWT) based authentication
+      scheme: bearer
+      bearerFormat: JWT
+externalDocs:
+  description: API Reference
+  url: https://extremecloudiq.com/api-docs/api-reference.html

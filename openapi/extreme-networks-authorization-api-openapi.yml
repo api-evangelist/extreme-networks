@@ -1,0 +1,409 @@
+openapi: 3.0.3
+info:
+  title: ExtremeCloud IQ Account Authorization API
+  description: 'ExtremeCloud IQ™ API allows customers and partners to create solutions for the management, monitoring, and provisioning
+
+    of any ExtremeCloud IQ™ environment.
+
+
+    All related resources and documentation are available at [ExtremeCloud IQ Developer Portal](https://developer.extremecloudiq.com/).
+
+    Please check [Get Started and Tutorial](https://developer.extremecloudiq.com/documentation/) to understand how to use the APIs.
+
+
+    Get the [latest OpenAPI definition](https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI/blob/main/xcloudiq-openapi.yaml)
+
+    from [ExtremeCloud IQ OpenAPI GitHub repository](https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI).
+
+
+    Please have a valid [ExtremeCloud IQ](https://extremecloudiq.com/) account before getting started.
+
+    If you don''t have one, please [register a new account](https://www.extremenetworks.com/cloud-networking/).'
+  termsOfService: https://www.extremenetworks.com/company/legal/terms-of-use/
+  contact:
+    name: Extreme Networks Support
+    url: https://www.extremenetworks.com/support
+    email: support@extremenetworks.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  version: 25.9.0-36
+servers:
+- url: https://api.extremecloudiq.com
+  description: ExtremeCloud IQ REST API Server
+tags:
+- name: Authorization
+  description: API token and permissions
+paths:
+  /auth/apitoken:
+    post:
+      tags:
+      - Authorization
+      summary: Generate new API token
+      description: Generate a new API token with given permissions and expiration time.  <p> The available permission list can be found via 'GET /auth/permissions' endpoint. <p> User can also provide an optional rate limits parameter to control the rate limiting for the API token.
+      operationId: generateApiToken
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_generate_api_token
+      requestBody:
+        description: Generate API token request body
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/XiqGenerateApiTokenRequest'
+            examples:
+              Generate_API_token:
+                summary: Generate API token with specific permissions
+                description: Generate API token with a single permission to read account info
+                value:
+                  description: Token for reading account info only
+                  expire_time: 1604737598
+                  permissions:
+                  - account:r
+              Generate_API_token_with_rate_limiting:
+                summary: Generate API token with specific permissions and rate limiting
+                description: Generate API token with a single permission to read account info and rate limiting
+                value:
+                  description: Token for reading account info only
+                  expire_time: 1604737598
+                  permissions:
+                  - account:r
+                  rate_limit:
+                    hour: 7500
+              Generate_API_token_with_multiple_rate_limits:
+                summary: Generate API token with specific permissions and multiple rate limits
+                description: Generate API token with a single permission to read account info and multiple rate limits
+                value:
+                  description: Token for reading account info only
+                  expire_time: 1604737598
+                  permissions:
+                  - account:r
+                  rate_limit:
+                    hour: 7500
+                    second: 100
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XiqGenerateApiTokenResponse'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /auth/apitoken/info:
+    get:
+      tags:
+      - Authorization
+      summary: Get current API token details
+      description: Introspect current API token and get detail information.
+      operationId: getCurrentApiTokenInfo
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_get_api_token_details
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XiqApiTokenInfo'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /auth/apitoken/:validate:
+    post:
+      tags:
+      - Authorization
+      summary: Validate API token
+      description: Validate JWT format API token.
+      operationId: validateApiToken
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_validate_api_token
+      requestBody:
+        content:
+          text/plain:
+            schema:
+              type: string
+              description: The API token to be validated
+        required: true
+      responses:
+        '200':
+          description: The API token is valid
+        '401':
+          description: The API token is invalid or revoked
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+  /auth/permissions:
+    get:
+      tags:
+      - Authorization
+      summary: Get permissions for current login user
+      description: Get permissions for current login user, which are allowed for generating new API tokens.
+      operationId: listPermissions
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_list_permissions
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: string
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /auth/permissions/:check:
+    post:
+      tags:
+      - Authorization
+      summary: Check permissions
+      description: Get required permissions for given HTTP request.
+      operationId: checkPermissions
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_check_permissions
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/XiqCheckPermissionRequest'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XiqCheckPermissionResponse'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+components:
+  schemas:
+    XiqApiTokenInfo:
+      type: object
+      required:
+      - user_name
+      - user_id
+      - role
+      - owner_id
+      - data_center
+      - scopes
+      - issued_at
+      properties:
+        user_name:
+          type: string
+          description: The login username
+        user_id:
+          type: integer
+          description: The login user ID
+          format: int64
+        role:
+          type: string
+          description: The role of login user
+        owner_id:
+          type: integer
+          description: The home ownerId of login user
+          format: int64
+        data_center:
+          type: string
+          description: The home data center of login user
+        scopes:
+          type: array
+          description: The login user permissions
+          items:
+            type: string
+            description: The login user permissions
+        issued_at:
+          type: string
+          description: The time at which the JWT was issued
+          format: date-time
+        expiration_time:
+          type: string
+          description: The expiration time on or after which the JWT MUST NOT be accepted for processing
+          format: date-time
+        expires_in:
+          type: integer
+          description: The expires in seconds
+          format: int64
+    XiqGenerateApiTokenRequest:
+      allOf:
+      - type: object
+        required:
+        - permissions
+        properties:
+          expire_time:
+            type: integer
+            description: The token expire time, format is the number of seconds from epoch of 1970-01-01T00:00:00Z. If null means no expiration, the minimum value is current time plus 300 seconds.
+            format: int64
+          description:
+            type: string
+            description: The token description
+          permissions:
+            type: array
+            description: The token permissions
+            items:
+              type: string
+              description: The token permissions
+          rate_limit:
+            $ref: '#/components/schemas/RateLimitPolicy'
+    XiqError:
+      type: object
+      properties:
+        error_code:
+          type: string
+          description: The error code
+        error_id:
+          type: string
+          description: The error ID for internal troubleshooting
+        error_message:
+          type: string
+          description: The error detailed message
+        error_message_code:
+          type: string
+          description: The error message code
+        error_message_description:
+          type: string
+          description: The error message description
+        error_params:
+          $ref: '#/components/schemas/XiqErrorParams'
+      required:
+      - error_code
+      - error_id
+      - error_message
+    XiqCheckPermissionRequest:
+      type: object
+      required:
+      - uri
+      - method
+      properties:
+        uri:
+          type: string
+          description: The request HTTP URI
+        method:
+          type: string
+          description: The request HTTP method
+    RateLimitPolicy:
+      type: object
+      description: Configuration for API usage quotas and throughput limits.
+      required:
+      - hour
+      properties:
+        hour:
+          type: integer
+          format: int64
+          minimum: 1
+          description: The sustained request quota per hour. Defines the baseline traffic capacity.
+          example: 7500
+        second:
+          type: integer
+          format: int64
+          minimum: 1
+          description: The maximum burst allowance per second. If omitted, no short-term throttling is applied.
+          example: 100
+    XiqCheckPermissionResponse:
+      type: object
+      required:
+      - permissions
+      - roles
+      properties:
+        permissions:
+          type: array
+          description: The permission list
+          items:
+            $ref: '#/components/schemas/XiqPermission'
+        roles:
+          uniqueItems: true
+          type: array
+          description: The role list
+          items:
+            type: string
+            description: The role list
+    XiqGenerateApiTokenResponse:
+      type: object
+      required:
+      - access_token
+      - create_time
+      - creator_id
+      - customer_id
+      - permissions
+      properties:
+        access_token:
+          type: string
+          description: The API access token
+        create_time:
+          type: string
+          description: The create timestamp
+          format: date-time
+        expire_time:
+          type: string
+          description: The expire timestamp, if null means no expiration
+          format: date-time
+        creator_id:
+          type: integer
+          description: The user ID who created the API token
+          format: int64
+        customer_id:
+          type: integer
+          description: The customer ID who owns the API token
+          format: int64
+        description:
+          type: string
+          description: The description for the API token
+        permissions:
+          type: array
+          description: The permissions for the API token
+          items:
+            type: string
+            description: The permissions for the API token
+    XiqErrorParams:
+      type: object
+      description: Error parameters
+      properties:
+        field:
+          type: string
+          description: The error field
+        value:
+          type: string
+          description: The error value
+    XiqPermission:
+      type: object
+      description: The permission
+      required:
+      - name
+      - description
+      - category
+      properties:
+        name:
+          type: string
+          description: The permission name
+        description:
+          type: string
+          description: The description for the permission
+        category:
+          type: string
+          description: The category for the permission
+  responses:
+    ErrorResponse:
+      description: The generic ExtremeCloud IQ API error response
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/XiqError'
+  securitySchemes:
+    BearerAuth:
+      type: http
+      description: JSON Web Token (JWT) based authentication
+      scheme: bearer
+      bearerFormat: JWT
+externalDocs:
+  description: API Reference
+  url: https://extremecloudiq.com/api-docs/api-reference.html

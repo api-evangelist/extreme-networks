@@ -1,0 +1,1185 @@
+openapi: 3.0.3
+info:
+  title: ExtremeCloud IQ Account Dashboard - Wireless Client Health API
+  description: 'ExtremeCloud IQ™ API allows customers and partners to create solutions for the management, monitoring, and provisioning
+
+    of any ExtremeCloud IQ™ environment.
+
+
+    All related resources and documentation are available at [ExtremeCloud IQ Developer Portal](https://developer.extremecloudiq.com/).
+
+    Please check [Get Started and Tutorial](https://developer.extremecloudiq.com/documentation/) to understand how to use the APIs.
+
+
+    Get the [latest OpenAPI definition](https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI/blob/main/xcloudiq-openapi.yaml)
+
+    from [ExtremeCloud IQ OpenAPI GitHub repository](https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI).
+
+
+    Please have a valid [ExtremeCloud IQ](https://extremecloudiq.com/) account before getting started.
+
+    If you don''t have one, please [register a new account](https://www.extremenetworks.com/cloud-networking/).'
+  termsOfService: https://www.extremenetworks.com/company/legal/terms-of-use/
+  contact:
+    name: Extreme Networks Support
+    url: https://www.extremenetworks.com/support
+    email: support@extremenetworks.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  version: 25.9.0-36
+servers:
+- url: https://api.extremecloudiq.com
+  description: ExtremeCloud IQ REST API Server
+tags:
+- name: Dashboard - Wireless Client Health
+  description: Client dashboard
+paths:
+  /dashboard/wireless/client-health/grid:
+    post:
+      tags:
+      - Dashboard - Wireless Client Health
+      summary: Wireless client health grid
+      description: Returns the client health grid of wireless devices based on the provided filters. You can filter the results by sites.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_post_client_health_grid
+      operationId: wirelessClientHealthGrid
+      parameters:
+      - $ref: '#/components/parameters/page'
+      - $ref: '#/components/parameters/limit'
+      - name: keyword
+        in: query
+        description: The keyword to search
+        required: false
+        schema:
+          type: string
+      - name: sortField
+        in: query
+        description: The sort field
+        required: false
+        schema:
+          $ref: '#/components/schemas/XiqClientHealthSortField'
+      - name: sortOrder
+        in: query
+        description: The sort order
+        required: false
+        schema:
+          $ref: '#/components/schemas/XiqSortOrder'
+      - name: connectionStatus
+        in: query
+        description: The current connection status of the client (e.g., connected, disconnected).
+        required: false
+        schema:
+          $ref: '#/components/schemas/XiqClientHealthConnectionStatus'
+      - name: includeUnassigned
+        in: query
+        description: To include unassigned clients
+        required: false
+        schema:
+          type: boolean
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                site_ids:
+                  description: List of site IDs to filter the client health grid
+                  type: array
+                  items:
+                    type: integer
+                    format: int64
+                device_ids:
+                  description: List of device IDs to filter the device health grid
+                  type: array
+                  items:
+                    type: integer
+                    format: int64
+                number_filter:
+                  type: array
+                  description: The number based column filters available(Available columns- dhcp_response_time,snr,rssi, authentication_failures, association_failures,  roaming, onboarding_time).
+                  items:
+                    $ref: '#/components/schemas/number_filter'
+                frequency:
+                  description: The frequency band (e.g., 2.4 GHz, 5 GHz) used by the client device.
+                  $ref: '#/components/schemas/XiqClientHealthFrequencySortField'
+                alias:
+                  description: The aliases available
+                  type: array
+                  items:
+                    type: string
+                auth_methods:
+                  description: The authentication methods available
+                  type: array
+                  items:
+                    type: string
+                encryption_methods:
+                  description: The encryption methods available
+                  type: array
+                  items:
+                    type: string
+                operating_systems:
+                  description: The operating systems available
+                  type: array
+                  items:
+                    type: string
+                ssids:
+                  description: The ssids available
+                  type: array
+                  items:
+                    type: string
+                user_profiles:
+                  description: The user profiles available
+                  type: array
+                  items:
+                    type: string
+                category_assignments:
+                  description: The category assignments available
+                  type: array
+                  items:
+                    type: string
+                has_association_issues:
+                  description: Indicates if the client has an association issue
+                  type: boolean
+                has_authentication_issues:
+                  description: Indicates if the client has an authentication issue
+                  type: boolean
+                has_ip_address_issues:
+                  description: Indicates if the client has an IP address issue
+                  type: boolean
+                has_roaming_issues:
+                  description: Indicates if the client has a roaming issue
+                  type: boolean
+      responses:
+        '200':
+          description: Returns the response of the client health grid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagedXiqClientHealthGridResponse'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /dashboard/wireless/client-health/connectivity-issues:
+    post:
+      tags:
+      - Dashboard - Wireless Client Health
+      summary: Wireless clients count with connectivity issues
+      description: Returns the wireless clients with connectivity issues based on the provided filters. You can filter the results by sites.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_post_wireless_client_health_connectivity_issues
+      operationId: wirelessClientHealthConnectivityIssues
+      parameters:
+      - name: includeUnassigned
+        in: query
+        description: To include unassigned clients
+        required: false
+        schema:
+          type: boolean
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                site_ids:
+                  description: List of site IDs to filter the clients with connectivity issues
+                  type: array
+                  items:
+                    type: integer
+                    format: int64
+      responses:
+        '200':
+          description: Returns the counts of clients with connectivity issues based on the filters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XiqWirelessClientHealthConnectivityIssues'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /dashboard/wireless/client-health/frequency-distribution:
+    post:
+      tags:
+      - Dashboard - Wireless Client Health
+      summary: Wireless clients count with frequency distribution
+      description: Returns the wireless clients with different frequency distribution based on the provided filters. You can filter the results by sites.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_post_wireless_client_health_frequency_distribution
+      operationId: wirelessClientHealthFrequencyDistribution
+      parameters:
+      - name: includeUnassigned
+        in: query
+        description: To include unassigned clients
+        required: false
+        schema:
+          type: boolean
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                site_ids:
+                  description: List of site IDs to filter the clients with different frequency distribution
+                  type: array
+                  items:
+                    type: integer
+                    format: int64
+      responses:
+        '200':
+          description: Returns the counts of clients with different frequency distribution based on the filters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XiqWirelessClientHealthFrequencyDistribution'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /dashboard/wireless/client-health/roaming-issues:
+    post:
+      tags:
+      - Dashboard - Wireless Client Health
+      summary: Count of wireless clients with roaming issues
+      description: Returns the wireless clients with roaming issues based on the provided filters. You can filter the results by sites, device types, and a specific timestamp.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_post_wireless_client_health_roaming_issues
+      operationId: wirelessClientHealthRoamingIssues
+      parameters:
+      - name: includeUnassigned
+        in: query
+        description: To include unassigned clients
+        required: false
+        schema:
+          type: boolean
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                site_ids:
+                  description: List of site IDs to filter the clients with roaming issues
+                  type: array
+                  items:
+                    type: integer
+                    format: int64
+      responses:
+        '200':
+          description: Returns the counts of clients with roaming issues based on the filters
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  total_clients:
+                    type: integer
+                    format: int64
+                    description: The total number of clients
+                  roaming_issues:
+                    type: integer
+                    format: int64
+                    description: The number of failed or slow roams (where slow is defined as >= 3000 milli-seconds)
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /dashboard/wireless/client-health/filter-metadata:
+    post:
+      tags:
+      - Dashboard - Wireless Client Health
+      summary: Wireless client health grid filter metadata
+      description: Returns the client health health grid filter metadata. You can filter the results by sites.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_post_client_health_grid
+      operationId: wirelessClientHealthGridFilterMetada
+      parameters:
+      - name: includeUnassigned
+        in: query
+        description: To include unassigned clients
+        required: false
+        schema:
+          type: boolean
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                site_ids:
+                  type: array
+                  items:
+                    type: integer
+                    format: int64
+                  description: The site ID list to filter
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                description: The filter metadata available for client health grid.
+                properties:
+                  connection_status:
+                    type: array
+                    description: The available connection status
+                    items:
+                      type: string
+                  frequency:
+                    type: array
+                    description: The available frequency bands
+                    items:
+                      type: string
+                  ssid:
+                    type: array
+                    description: The available ssids
+                    items:
+                      type: string
+                  os:
+                    type: array
+                    description: The available operating systems
+                    items:
+                      type: string
+                  authentication:
+                    type: array
+                    description: The available authentication methods
+                    items:
+                      type: string
+                  encryption:
+                    type: array
+                    description: The available encryption methods
+                    items:
+                      type: string
+                  user_profile:
+                    type: array
+                    description: The available user profiles
+                    items:
+                      type: string
+                  category_assignment:
+                    type: array
+                    description: The available category assignments
+                    items:
+                      type: string
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+  /dashboard/wireless/client-health/issue/association:
+    post:
+      tags:
+      - Dashboard - Wireless Client Health
+      summary: Wireless client health association issues
+      description: Returns the client health association issues based on the provided filters. You can filter the results by sites.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_post_client_health_association_issues
+      operationId: wirelessClientHealthAssociationIssues
+      parameters:
+      - $ref: '#/components/parameters/page'
+      - $ref: '#/components/parameters/limit'
+      - name: macAddress
+        in: query
+        description: The macAddress to filter
+        required: false
+        schema:
+          type: string
+      - name: includeUnassigned
+        in: query
+        description: To include unassigned clients
+        required: false
+        schema:
+          type: boolean
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                site_ids:
+                  description: List of site IDs to filter the client health grid
+                  type: array
+                  items:
+                    type: integer
+                    format: int64
+      responses:
+        '200':
+          description: Returns the response of client health grid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RmWirelessClientHealthIssueResponse'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /dashboard/wireless/client-health/issue/authentication:
+    post:
+      tags:
+      - Dashboard - Wireless Client Health
+      summary: Wireless client health authentication issues
+      description: Returns the client health authentication issues based on the provided filters. You can filter the results by sites.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_post_client_health_authentication_issues
+      operationId: wirelessClientHealthAuthenticationIssues
+      parameters:
+      - $ref: '#/components/parameters/page'
+      - $ref: '#/components/parameters/limit'
+      - name: macAddress
+        in: query
+        description: The macAddress to filter
+        required: false
+        schema:
+          type: string
+      - name: includeUnassigned
+        in: query
+        description: To include unassigned clients
+        required: false
+        schema:
+          type: boolean
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                site_ids:
+                  description: List of site IDs to filter the client health grid
+                  type: array
+                  items:
+                    type: integer
+                    format: int64
+      responses:
+        '200':
+          description: Returns the response of client health grid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RmWirelessClientHealthIssueResponse'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /dashboard/wireless/client-health/issue/roaming:
+    post:
+      tags:
+      - Dashboard - Wireless Client Health
+      summary: Wireless client health roaming issues
+      description: Returns the client health roaming issues based on the provided filters. You can filter the results by sites.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_post_client_health_roaming_issues
+      operationId: wirelessClientHealthIssueRoaming
+      parameters:
+      - $ref: '#/components/parameters/page'
+      - $ref: '#/components/parameters/limit'
+      - name: macAddress
+        in: query
+        description: The macAddress to filter
+        required: false
+        schema:
+          type: string
+      - name: includeUnassigned
+        in: query
+        description: To include unassigned clients
+        required: false
+        schema:
+          type: boolean
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                site_ids:
+                  description: List of site IDs to filter the client health grid
+                  type: array
+                  items:
+                    type: integer
+                    format: int64
+      responses:
+        '200':
+          description: Returns the response of client health grid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RmWirelessClientHealthRoamingIssueResponse'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /dashboard/wireless/client-health/issue/ipaddress:
+    post:
+      tags:
+      - Dashboard - Wireless Client Health
+      summary: Wireless client health ip address issues
+      description: Returns the client health ip address issues based on the provided filters. You can filter the results by sites.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_post_client_health_ip_address_issues
+      operationId: wirelessClientHealthIpAddressIssues
+      parameters:
+      - $ref: '#/components/parameters/page'
+      - $ref: '#/components/parameters/limit'
+      - name: macAddress
+        in: query
+        description: The macAddress to filter
+        required: false
+        schema:
+          type: string
+      - name: includeUnassigned
+        in: query
+        description: To include unassigned clients
+        required: false
+        schema:
+          type: boolean
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                site_ids:
+                  description: List of site IDs to filter the client health grid
+                  type: array
+                  items:
+                    type: integer
+                    format: int64
+      responses:
+        '200':
+          description: Returns the response of client health grid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RmWirelessClientHealthIpAddressIssueResponse'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /dashboard/wireless/client-health/export:
+    post:
+      tags:
+      - Dashboard - Wireless Client Health
+      summary: Export Grid as a CSV File
+      description: Returns the CSV File of the client health grid of wireless devices based on the provided filters. You can filter the results by sites.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_post_client_health_grid_export
+      operationId: wirelessClientHealthGridExport
+      parameters:
+      - name: keyword
+        in: query
+        description: The keyword to search
+        required: false
+        schema:
+          type: string
+      - name: sortField
+        in: query
+        description: The sort field
+        required: false
+        schema:
+          $ref: '#/components/schemas/XiqClientHealthSortField'
+      - name: sortOrder
+        in: query
+        description: The sort order
+        required: false
+        schema:
+          $ref: '#/components/schemas/XiqSortOrder'
+      - name: connectionStatus
+        in: query
+        description: The current connection status of the client (e.g., connected, disconnected).
+        required: false
+        schema:
+          $ref: '#/components/schemas/XiqClientHealthConnectionStatus'
+      - name: includeUnassigned
+        in: query
+        description: To include unassigned clients
+        required: false
+        schema:
+          type: boolean
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                site_ids:
+                  description: List of site IDs to filter the client health grid
+                  type: array
+                  items:
+                    type: integer
+                    format: int64
+                device_ids:
+                  description: List of device IDs to filter the device health grid
+                  type: array
+                  items:
+                    type: integer
+                    format: int64
+                number_filter:
+                  type: array
+                  description: The number based column filters available(Available columns- dhcp_response_time,snr,rssi, authentication_failures, association_failures,  roaming, onboarding_time).
+                  items:
+                    $ref: '#/components/schemas/number_filter'
+                frequency:
+                  description: The frequency band (e.g., 2.4 GHz, 5 GHz) used by the client device.
+                  $ref: '#/components/schemas/XiqClientHealthFrequencySortField'
+                alias:
+                  description: The aliases available
+                  type: array
+                  items:
+                    type: string
+                auth_methods:
+                  description: The authentication methods available
+                  type: array
+                  items:
+                    type: string
+                encryption_methods:
+                  description: The encryption methods available
+                  type: array
+                  items:
+                    type: string
+                operating_systems:
+                  description: The operating systems available
+                  type: array
+                  items:
+                    type: string
+                ssids:
+                  description: The ssids available
+                  type: array
+                  items:
+                    type: string
+                user_profiles:
+                  description: The user profiles available
+                  type: array
+                  items:
+                    type: string
+                category_assignments:
+                  description: The category assignments available
+                  type: array
+                  items:
+                    type: string
+                has_association_issues:
+                  description: Indicates if the client has an association issue
+                  type: boolean
+                has_authentication_issues:
+                  description: Indicates if the client has an authentication issue
+                  type: boolean
+                has_ip_address_issues:
+                  description: Indicates if the client has an IP address issue
+                  type: boolean
+                has_roaming_issues:
+                  description: Indicates if the client has a roaming issue
+                  type: boolean
+      responses:
+        '202':
+          description: Accepted - The request has been accepted for processing, but the processing has not been completed.
+          headers:
+            cache-control:
+              description: Cache control directives
+              schema:
+                type: string
+            content-length:
+              description: The length of the response body in octets (8-bit bytes)
+              schema:
+                type: integer
+            date:
+              description: The date and time at which the message was originated
+              schema:
+                type: string
+                format: date-time
+            expires:
+              description: The date/time after which the response is considered stale
+              schema:
+                type: string
+            location:
+              description: The URL to which the client should navigate to check the status of the request
+              schema:
+                type: string
+                format: uri
+            pragma:
+              description: Implementation-specific directives that might apply to any recipient along the request-response chain
+              schema:
+                type: string
+            ratelimit-limit:
+              description: The maximum number of requests that the client is allowed to make in a given time period
+              schema:
+                type: string
+            ratelimit-remaining:
+              description: The number of requests remaining in the current rate limit window
+              schema:
+                type: integer
+            retry-after:
+              description: The amount of time to wait before making a follow-up request
+              schema:
+                type: integer
+            server:
+              description: A name for the server
+              schema:
+                type: string
+                example: nginx
+            x-content-type-options:
+              description: Prevents the browser from interpreting files as a different MIME type
+              schema:
+                type: string
+            x-xss-protection:
+              description: Enables cross-site scripting (XSS) filter
+              schema:
+                type: string
+                format: byte
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /dashboard/wireless/client-health/reports/{id}:
+    get:
+      tags:
+      - Dashboard - Wireless Client Health
+      summary: Download the Export CSV file
+      description: Returns the CSV File of the Wireless Client Health status based on the provided filters.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_get_client_grid_export_report
+      operationId: wirelessClientHealthGridExportReport
+      parameters:
+      - name: id
+        in: path
+        description: The report ID
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Returns the CSV File of the Wireless Client Health
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+components:
+  parameters:
+    page:
+      name: page
+      in: query
+      description: Page number, min = 1
+      required: false
+      schema:
+        minimum: 1
+        type: integer
+        format: int32
+        default: 1
+    limit:
+      name: limit
+      in: query
+      description: Page Size, min = 1, max = 100
+      required: false
+      schema:
+        maximum: 100
+        minimum: 1
+        type: integer
+        format: int32
+        default: 10
+  schemas:
+    RmWirelessClientHealthIpAddressIssueResponse:
+      allOf:
+      - $ref: '#/components/schemas/XiqPage'
+      - type: object
+        description: The response body of wireless client health issues.
+        properties:
+          data:
+            type: array
+            description: The data in the current page
+            items:
+              type: object
+              properties:
+                date_time:
+                  description: The timestamp of the issue.
+                  type: string
+                  format: date-time
+                issue_type:
+                  description: The issue type.
+                  type: string
+                device_name:
+                  type: string
+                  description: The device name.
+    XiqSortOrder:
+      type: string
+      enum:
+      - ASC
+      - DESC
+    RmWirelessClientHealthIssueResponse:
+      allOf:
+      - $ref: '#/components/schemas/XiqPage'
+      - type: object
+        description: The response body of wireless client health issues.
+        properties:
+          data:
+            type: array
+            description: The data in the current page
+            items:
+              type: object
+              properties:
+                date_time:
+                  description: The timestamp of the issue.
+                  type: string
+                  format: date-time
+                reason_code:
+                  description: The reason code for the issue.
+                  type: string
+                device_name:
+                  type: string
+                  description: The device name.
+    XiqWirelessClientHealthFrequencyDistribution:
+      type: object
+      properties:
+        total_clients:
+          type: integer
+          format: int64
+          description: The total number of clients
+        clients_2dot4GHz:
+          type: integer
+          format: int64
+          description: The number of clients using the 2.4 GHz frequency band
+        clients_5GHz:
+          type: integer
+          format: int64
+          description: The number of clients using the 5 GHz frequency band
+        clients_6GHz:
+          type: integer
+          format: int64
+          description: The number of clients using the 6 GHz frequency band
+    XiqWirelessConnectionStatus:
+      type: string
+      enum:
+      - CONNECTED
+      - DISCONNECTED
+    XiqClientHealthConnectionStatus:
+      type: string
+      title: ClientHealthSortField
+      description: Pre-defined filters for warnings in dashboard - CONNECTED - DISCONNECTED
+      example: CONNECTED
+    XiqClientHealthSortField:
+      type: string
+      title: ClientHealthSortField
+      description: Pre-defined filters for warnings in dashboard - OPERATING_SYSTEM - CLIENT_RETRIES - IPV6 - RSSI - SNR - CLIENT_MAC - USER_PROFILE - ENCRYPTION - DEVICE_MAC - IPV4 - CONNECTION_STATUS - ALIAS - CATEGORY_ASSIGNMENT - CLIENT_IP - AIR_TIME - FREQUENCY - RX_CLIENT_RETIRES - AUTHENTICATION - CLIENT_DEVICE_ID - VLAN - TX_CLIENT_RETIRES
+      example: OPERATING_SYSTEM
+    XiqWirelessClientHealthConnectivityIssues:
+      type: object
+      properties:
+        total_clients:
+          type: integer
+          format: int64
+          description: The total number of clients
+        association_failures:
+          type: integer
+          format: int64
+          description: The number of failed or slow associations (where slow is defined as >= 5 seconds)
+        authentication_failures:
+          type: integer
+          format: int64
+          description: The number of failed or slow authentications (where slow is defined as >= 5 seconds)
+        ip_address_issues:
+          type: integer
+          format: int64
+          description: The number of DHCP issues, including private IP address assignments or slow responses (where slow is defined as >= 5 seconds)
+    XiqErrorParams:
+      type: object
+      description: Error parameters
+      properties:
+        field:
+          type: string
+          description: The error field
+        value:
+          type: string
+          description: The error value
+    number_filter:
+      type: object
+      description: If the filter type is between, only then min and max are to be used, else value is to be used.
+      properties:
+        column_name:
+          description: The name of the column being filtered
+          type: string
+        filter_type:
+          description: The type of number filter
+          type: string
+          enum:
+          - eq
+          - neq
+          - gt
+          - gte
+          - lt
+          - lte
+          - bw
+          - blank
+          - notblank
+        value:
+          description: The value of the number
+          type: integer
+          format: int64
+        min:
+          description: The minimum value of the number
+          type: integer
+          format: int64
+        max:
+          description: The maximum value of the number
+          type: integer
+          format: int64
+    PagedXiqClientHealthGridResponse:
+      allOf:
+      - $ref: '#/components/schemas/XiqPage'
+      - type: object
+        properties:
+          data:
+            type: array
+            description: The data in the current page
+            items:
+              $ref: '#/components/schemas/XiqClientHealthGridResponse'
+    XiqError:
+      type: object
+      properties:
+        error_code:
+          type: string
+          description: The error code
+        error_id:
+          type: string
+          description: The error ID for internal troubleshooting
+        error_message:
+          type: string
+          description: The error detailed message
+        error_message_code:
+          type: string
+          description: The error message code
+        error_message_description:
+          type: string
+          description: The error message description
+        error_params:
+          $ref: '#/components/schemas/XiqErrorParams'
+      required:
+      - error_code
+      - error_id
+      - error_message
+    RmWirelessClientHealthRoamingIssueResponse:
+      allOf:
+      - $ref: '#/components/schemas/XiqPage'
+      - type: object
+        description: The response body of wireless client health issues.
+        properties:
+          data:
+            type: array
+            description: The data in the current page
+            items:
+              type: object
+              properties:
+                date_time:
+                  description: The timestamp of the issue.
+                  type: string
+                  format: date-time
+                issue_type:
+                  description: The issue type.
+                  type: string
+                roaming_time:
+                  description: The roaming time.
+                  type: string
+                device_name:
+                  type: string
+                  description: The device name.
+    XiqPage:
+      required:
+      - count
+      - page
+      - total_count
+      - total_pages
+      type: object
+      properties:
+        page:
+          type: integer
+          description: The current page number
+          format: int32
+        count:
+          type: integer
+          description: The element count of the current page
+          format: int32
+        total_pages:
+          type: integer
+          description: The total page number based on request page size
+          format: int32
+        total_count:
+          type: integer
+          description: The total element count
+          format: int64
+    XiqClientHealthFrequencySortField:
+      type: string
+      title: ClientHealthFrequencyField
+      description: Pre-defined filters for client health frequency - 2.4GHz - 5Ghz - 6Ghz
+      example: 2.4GHz
+    XiqClientHealthGridResponse:
+      type: object
+      properties:
+        connectionStatus:
+          $ref: '#/components/schemas/XiqWirelessConnectionStatus'
+          description: The current connection status of the client
+        client_hostname:
+          type: string
+          description: The hostname of the client
+        client_ip:
+          type: string
+          description: The IP address of the client
+        site:
+          type: string
+          description: The site where the client is located
+        building:
+          type: string
+          description: The building where the client is located
+        floor:
+          type: string
+          description: The floor where the client is located
+        has_association_issues:
+          type: boolean
+          description: Indicates if there are association issues
+        has_authentication_issues:
+          type: boolean
+          description: Indicates if there are authentication issues
+        has_ip_address_issues:
+          type: boolean
+          description: Indicates if there are IP address issues
+        has_roaming_issues:
+          type: boolean
+          description: Indicates if there are roaming issues
+        snr:
+          type: number
+          format: float
+          description: Signal-to-noise ratio of the client's connection
+        rssi:
+          type: number
+          format: float
+          description: Received signal strength indicator of the client's connection
+        frequency:
+          type: string
+          description: The frequency band used by the client (e.g., 2.4 GHz, 5 GHz, 6 GHz)
+        air_time:
+          type: number
+          format: float
+          description: The percentage of air time of the client
+        ipv4:
+          type: string
+          description: The IPv4 address assigned to the client
+        connected_device_mac:
+          type: string
+          description: The MAC address of the connected device
+        ssid:
+          type: string
+          description: The SSID of the network
+        vlan:
+          type: integer
+          format: int64
+          description: The VLAN ID
+        last_session_start_time:
+          type: string
+          format: date-time
+          description: The start time of the last session
+        operating_system:
+          type: string
+          description: The operating system of the client device
+        client_mac:
+          type: string
+          description: The MAC address of the client device
+        username:
+          type: string
+          description: The username of the client
+        authentication:
+          type: string
+          description: The authentication method used
+        encryption:
+          type: string
+          description: The encryption method used
+        user_profile:
+          type: string
+          description: The user profile assigned to the client
+        alias:
+          type: string
+          description: The alias of the client
+        category_assignment:
+          type: string
+          description: The category assignment of the client
+        ipv6:
+          type: string
+          description: The IPv6 address assigned to the client
+        device_id:
+          type: integer
+          format: int64
+          description: The device to which client is connected
+        client_device_id:
+          type: integer
+          format: int64
+          description: The client ID
+        slowness:
+          type: number
+          format: float
+          description: The slowness experienced by the client
+        roaming_time:
+          type: number
+          format: float
+          description: The roaming time
+        association_duration:
+          type: number
+          format: float
+          description: The association duration
+        dhcp_ip_assignation_time:
+          type: number
+          format: float
+          description: The DHCP IP assignation time
+        authentication_response_time:
+          type: number
+          format: float
+          description: The authentication response time
+        rx_client_retries:
+          type: integer
+          format: int64
+          description: The number of receive client retries
+        tx_client_retries:
+          type: integer
+          format: int64
+          description: The number of transmit client retries
+        ipv4_warning:
+          type: boolean
+          description: Indicates if the IP is static / self assigned
+        air_time_warning:
+          type: boolean
+          description: Indicates if the air time is exceeding threshold
+        rtts_supported:
+          type: boolean
+          description: Indicates if RTT Session is supported
+  responses:
+    ErrorResponse:
+      description: The generic ExtremeCloud IQ API error response
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/XiqError'
+  securitySchemes:
+    BearerAuth:
+      type: http
+      description: JSON Web Token (JWT) based authentication
+      scheme: bearer
+      bearerFormat: JWT
+externalDocs:
+  description: API Reference
+  url: https://extremecloudiq.com/api-docs/api-reference.html

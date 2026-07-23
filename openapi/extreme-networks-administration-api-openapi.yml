@@ -1,0 +1,849 @@
+openapi: 3.0.3
+info:
+  title: ExtremeCloud IQ Account Administration API
+  description: 'ExtremeCloud IQ™ API allows customers and partners to create solutions for the management, monitoring, and provisioning
+
+    of any ExtremeCloud IQ™ environment.
+
+
+    All related resources and documentation are available at [ExtremeCloud IQ Developer Portal](https://developer.extremecloudiq.com/).
+
+    Please check [Get Started and Tutorial](https://developer.extremecloudiq.com/documentation/) to understand how to use the APIs.
+
+
+    Get the [latest OpenAPI definition](https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI/blob/main/xcloudiq-openapi.yaml)
+
+    from [ExtremeCloud IQ OpenAPI GitHub repository](https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI).
+
+
+    Please have a valid [ExtremeCloud IQ](https://extremecloudiq.com/) account before getting started.
+
+    If you don''t have one, please [register a new account](https://www.extremenetworks.com/cloud-networking/).'
+  termsOfService: https://www.extremenetworks.com/company/legal/terms-of-use/
+  contact:
+    name: Extreme Networks Support
+    url: https://www.extremenetworks.com/support
+    email: support@extremenetworks.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  version: 25.9.0-36
+servers:
+- url: https://api.extremecloudiq.com
+  description: ExtremeCloud IQ REST API Server
+tags:
+- name: Administration
+  description: API Token Management and 3rd Party API Connections
+paths:
+  /acct-api-token:
+    get:
+      tags:
+      - Administration
+      summary: List API Access Tokens
+      description: List tokens to which API Access has been granted.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_list_acct_api_access_tokens
+      operationId: listApiAccessToken
+      parameters:
+      - $ref: '#/components/parameters/page'
+      - $ref: '#/components/parameters/limit'
+      - name: sortField
+        in: query
+        description: The field for sorting
+        required: false
+        schema:
+          type: string
+      - name: searchString
+        in: query
+        description: The SearchString
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagedXiqApiAccessToken'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+    post:
+      tags:
+      - Administration
+      summary: Add API Access token
+      description: Create a API token.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_create_acct_api_access_token
+      operationId: createApiAccessToken
+      requestBody:
+        description: The request body to create new API Access token.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/XiqCreateApiAccessTokenRequest'
+        required: true
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XiqApiAccessTokenResponse'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /acct-api-token/{id}:
+    delete:
+      tags:
+      - Administration
+      summary: Delete API Access Token by ID
+      description: Delete an existing API Access Token by the specified ID.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_delete_acct_api_access_token_by_id
+      operationId: deleteApiAccessToken
+      parameters:
+      - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: OK
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+    patch:
+      tags:
+      - Administration
+      summary: Update API Access token
+      description: Update API token by ID.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_update_acct_api_access_token
+      operationId: updateApiAccessToken
+      parameters:
+      - $ref: '#/components/parameters/id'
+      requestBody:
+        description: The request body to update new API Access token.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/XiqUpdateApiAccessTokenRequest'
+        required: true
+      responses:
+        '201':
+          description: Updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XiqApiAccessToken'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /acct-api-token_:delete:
+    delete:
+      tags:
+      - Administration
+      summary: Bulk Delete API Access Token by ID
+      description: Bulk Delete existing API Access Tokens by the specified IDs.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_bulk_delete_api_access_token_by_id
+      operationId: bulkDeleteApiAccessToken
+      parameters:
+      - name: ids
+        description: The API Access Token ids to delete.
+        in: query
+        required: true
+        schema:
+          uniqueItems: true
+          type: array
+          items:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /third-party-api-connection:
+    get:
+      tags:
+      - Administration
+      summary: List 3rd party API connection
+      description: List the 3rd party API connection.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_list_third_party_api_connections
+      operationId: list1
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/XiqThirdPartyApiConnection'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+    put:
+      tags:
+      - Administration
+      summary: Update 3rd party API connection
+      description: Update the 3rd party API connection.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_update_third_party_api_connection
+      operationId: updateSubscription1
+      requestBody:
+        description: The payload to update 3rd party API connections
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/XiqUpdateThirdPartyApiConnectionRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XiqThirdPartyApiConnection'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+    delete:
+      tags:
+      - Administration
+      summary: Delete 3rd party API connection
+      description: Delete an exist 3rd party API connection.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_delete_third_party_api_connection
+      operationId: deleteSubscription1
+      responses:
+        '200':
+          description: OK
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /credential-distribution-groups:
+    get:
+      tags:
+      - Administration
+      summary: List Credential Distribution Groups
+      description: List a page of Credential Distribution Groups.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_list_credential_distribution_groups
+      operationId: listCredentialDistributionGroups
+      parameters:
+      - $ref: '#/components/parameters/page'
+      - $ref: '#/components/parameters/limit'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagedXiqCredentialDistributionGroup'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+    post:
+      tags:
+      - Administration
+      summary: Create Credential Distribution Group
+      description: Create a new Credential Distribution Groups.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_create_credential_distribution_group
+      operationId: createCredentialDistributionGroup
+      requestBody:
+        description: The request body to create new Credential Distribution Groups.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/XiqCreateCredentialDistributionGroupRequest'
+        required: true
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XiqCredentialDistributionGroup'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /credential-distribution-groups/{id}:
+    put:
+      tags:
+      - Administration
+      summary: Update Credential Distribution Group
+      description: Update a existing Credential Distribution Group by the specified ID.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_update_credential_distribution_group_by_id
+      operationId: updateCredentialDistributionGroup
+      parameters:
+      - $ref: '#/components/parameters/id'
+      requestBody:
+        description: The request body to update new Credential Distribution Groups.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/XiqUpdateCredentialDistributionGroupRequest'
+        required: true
+      responses:
+        '200':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XiqCredentialDistributionGroup'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /credential-distribution-groups_:delete:
+    delete:
+      tags:
+      - Administration
+      summary: Delete Credential Distribution Group by IDs
+      description: Delete an existing Credential Distribution Group by the specified IDs.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_bulk_delete_credential_distribution_group_by_ids
+      operationId: deleteCredentialDistributionGroup
+      parameters:
+      - name: ids
+        description: The API Access Token ids to delete.
+        in: query
+        required: true
+        schema:
+          uniqueItems: true
+          type: array
+          items:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+components:
+  schemas:
+    XiqUpdateCredentialDistributionGroupRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the credential distribution group.
+        owner_id:
+          type: integer
+          description: The owner ID.
+        enable_email_approval:
+          type: boolean
+          description: Flag indicating whether email approval is enabled (true) or disabled (false).
+        enable_user_limitation:
+          type: boolean
+          description: Flag indicating whether user limitation is enabled (true) or disabled (false).
+        employee_group_type:
+          $ref: '#/components/schemas/XiqEmployeeGroup'
+          description: Type of JSON, in this case "ad-employee-group", "admin-employee-group" or "manage-employee-group".
+        employee_group:
+          type: array
+          items:
+            type: object
+            description: The Employee Group
+            oneOf:
+            - $ref: '#/components/schemas/XiqAdEmployeeGroupRequest'
+            - $ref: '#/components/schemas/XiqManageEmployeeGroupRequest'
+            - $ref: '#/components/schemas/XiqAdminEmployeeGroupRequest'
+            discriminator:
+              propertyName: json_type
+              mapping:
+                ad-employee-group: '#/components/schemas/XiqAdEmployeeGroupRequest'
+                manage-employee-group: '#/components/schemas/XiqManageEmployeeGroupRequest'
+                admin-employee-group: '#/components/schemas/XiqAdminEmployeeGroupRequest'
+        restrict_number:
+          type: string
+          description: Number restriction.
+        user_group_ids:
+          type: array
+          items:
+            type: integer
+            description: The list of user group IDs.
+    XiqCreateApiAccessTokenRequest:
+      type: object
+      required:
+      - clientId
+      properties:
+        clientId:
+          type: string
+          description: The ID given to the client
+        tokenExpireInDay:
+          type: string
+          description: The expiry of the token in days
+    XiqAdEmployeeGroup:
+      allOf:
+      - $ref: '#/components/schemas/XiqViqEntity'
+      - type: object
+        properties:
+          name:
+            type: string
+            description: Name of the member group.
+          owner_id:
+            type: integer
+            description: ID of the owner of the member group.
+    PagedXiqCredentialDistributionGroup:
+      allOf:
+      - $ref: '#/components/schemas/XiqPage'
+      - type: object
+        properties:
+          data:
+            type: array
+            description: The data in the current page
+            items:
+              $ref: '#/components/schemas/XiqCredentialDistributionGroup'
+    XiqManageEmployeeGroup:
+      allOf:
+      - $ref: '#/components/schemas/XiqViqEntity'
+      - type: object
+        properties:
+          name:
+            type: string
+            description: Acct User Details name.
+          owner_id:
+            type: integer
+            description: The owner ID.
+    XiqErrorParams:
+      type: object
+      description: Error parameters
+      properties:
+        field:
+          type: string
+          description: The error field
+        value:
+          type: string
+          description: The error value
+    XiqManageEmployeeGroupRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Acct User Details name.
+        owner_id:
+          type: integer
+          description: The owner ID.
+    XiqAdminEmployeeGroupRequest:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The admin member group ID.
+    XiqApiAccessTokenResponse:
+      type: object
+      properties:
+        owner_id:
+          type: integer
+          description: Owner ID
+        vhm_id:
+          type: string
+          description: The VHM ID
+        vpc_url:
+          type: string
+          description: The VPC URL
+        access_token:
+          type: string
+          description: The access token generated
+        expiration:
+          type: integer
+          description: The expiration
+        refresh_token:
+          type: string
+          description: The refresh token generated
+    XiqBaseEntity:
+      required:
+      - id
+      - create_time
+      - update_time
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The unique identifier
+          format: int64
+        create_time:
+          type: string
+          description: The create time
+          format: date-time
+        update_time:
+          type: string
+          description: The last update time
+          format: date-time
+    XiqError:
+      type: object
+      properties:
+        error_code:
+          type: string
+          description: The error code
+        error_id:
+          type: string
+          description: The error ID for internal troubleshooting
+        error_message:
+          type: string
+          description: The error detailed message
+        error_message_code:
+          type: string
+          description: The error message code
+        error_message_description:
+          type: string
+          description: The error message description
+        error_params:
+          $ref: '#/components/schemas/XiqErrorParams'
+      required:
+      - error_code
+      - error_id
+      - error_message
+    XiqEmployeeGroup:
+      type: string
+      description: Employee Group Json Type
+      enum:
+      - EMPLOYEE_GROUP_ADMIN
+      - EMPLOYEE_GROUP_AD
+      - EMPLOYEE_GROUP_MANAGE
+    XiqThirdPartyApiConnection:
+      allOf:
+      - type: object
+        description: The 3rd party API connections data model
+        required:
+        - api_token
+        properties:
+          api_token:
+            type: string
+            description: The api token.
+          created_at:
+            type: integer
+            description: The api token created time in milliseconds.
+    XiqApiAccessToken:
+      type: object
+      description: The API Access Token.
+      properties:
+        id:
+          type: integer
+          description: The unique identifier
+          format: int64
+        create_time:
+          type: string
+          description: The create time
+          format: date-time
+        update_time:
+          type: string
+          description: The last update time
+          format: date-time
+        accessToken:
+          type: string
+          description: The access token granted
+        expireAt:
+          type: integer
+          description: The timestamp at which the token expires
+        refreshToken:
+          type: string
+          description: The refresh token
+        grantor:
+          type: string
+          description: The name of the grantor of API Access Token
+        applicationName:
+          type: string
+          description: The third party application name
+        clientId:
+          type: string
+          description: The client ID
+    XiqPage:
+      required:
+      - count
+      - page
+      - total_count
+      - total_pages
+      type: object
+      properties:
+        page:
+          type: integer
+          description: The current page number
+          format: int32
+        count:
+          type: integer
+          description: The element count of the current page
+          format: int32
+        total_pages:
+          type: integer
+          description: The total page number based on request page size
+          format: int32
+        total_count:
+          type: integer
+          description: The total element count
+          format: int64
+    XiqUserGroups:
+      allOf:
+      - $ref: '#/components/schemas/XiqViqEntity'
+      - type: object
+        description: User Group response object for Credential Distribution Group
+        properties:
+          ownerId:
+            type: integer
+            format: int64
+            description: The ID of the owner of the user group.
+          name:
+            type: string
+            description: The name of the user group.
+          json_type:
+            type: string
+            description: The type of JSON data, e.g., "cloud-ppsk-user-group".
+          description:
+            type: string
+            description: The description of the user group.
+          password_rule_settings_id:
+            type: integer
+            format: int64
+            description: The ID of password rule settings for the user group.
+          delivery_policy_settings_id:
+            type: integer
+            format: int64
+            description: The ID of delivery policy settings for the user group.
+          time_expiration_settings_id:
+            type: integer
+            format: int64
+            description: The ID of time expiration settings for the user group.
+          user_count:
+            type: integer
+            description: The number of users in the user group.
+          ssids:
+            type: array
+            description: List of SSIDs associated with the user group.
+            items:
+              type: string
+          group_type:
+            type: string
+            description: The type of user group, e.g., "CLOUD_PPSK".
+          pcg_use_only:
+            type: boolean
+            description: Indicates if PCG use only is enabled.
+          ppsk_use_only:
+            type: boolean
+            description: Indicates if PPSK use only is enabled.
+          enable_pcg_filter:
+            type: boolean
+            description: Indicates if PCG filter is enabled.
+          enable_self_reg:
+            type: boolean
+            description: Indicates if self-registration is enabled.
+          enable_renew:
+            type: boolean
+            description: Indicates if renewal is enabled.
+    XiqAdEmployeeGroupRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the member group.
+        owner_id:
+          type: integer
+          description: ID of the owner of the member group.
+    XiqViqEntity:
+      allOf:
+      - $ref: '#/components/schemas/XiqBaseEntity'
+      - type: object
+        properties:
+          org_id:
+            type: integer
+            description: The organization identifier, valid when enabling HIQ feature
+            format: int64
+        required:
+        - org_id
+    XiqUpdateThirdPartyApiConnectionRequest:
+      type: object
+      description: The payload to update 3rd party API connection
+      required:
+      - api_token
+      properties:
+        api_token:
+          type: string
+          description: This api token will overwrite the existing api token.
+    XiqCreateCredentialDistributionGroupRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the credential distribution group.
+        owner_id:
+          type: integer
+          description: The owner ID.
+        enable_email_approval:
+          type: boolean
+          description: Flag indicating whether email approval is enabled (true) or disabled (false).
+        enable_user_limitation:
+          type: boolean
+          description: Flag indicating whether user limitation is enabled (true) or disabled (false).
+        employee_group_type:
+          $ref: '#/components/schemas/XiqEmployeeGroup'
+          description: Type of JSON, in this case "ad-employee-group", "admin-employee-group" or "manage-employee-group".
+        employee_group:
+          type: array
+          items:
+            type: object
+            description: The Employee Group
+            oneOf:
+            - $ref: '#/components/schemas/XiqAdEmployeeGroupRequest'
+            - $ref: '#/components/schemas/XiqManageEmployeeGroupRequest'
+            - $ref: '#/components/schemas/XiqAdminEmployeeGroupRequest'
+            discriminator:
+              propertyName: json_type
+              mapping:
+                ad-employee-group: '#/components/schemas/XiqAdEmployeeGroupRequest'
+                manage-employee-group: '#/components/schemas/XiqManageEmployeeGroupRequest'
+                admin-employee-group: '#/components/schemas/XiqAdminEmployeeGroupRequest'
+        restrict_number:
+          type: string
+          description: Number restriction.
+        user_group_ids:
+          type: array
+          items:
+            type: integer
+            description: The list of user group IDs.
+    XiqAdminEmployeeGroup:
+      allOf:
+      - $ref: '#/components/schemas/XiqViqEntity'
+      - type: object
+        properties:
+          id:
+            type: integer
+            description: The admin member group ID.
+    PagedXiqApiAccessToken:
+      allOf:
+      - $ref: '#/components/schemas/XiqPage'
+      - type: object
+        properties:
+          data:
+            type: array
+            description: The data in the current page
+            items:
+              $ref: '#/components/schemas/XiqApiAccessToken'
+    XiqCredentialDistributionGroup:
+      allOf:
+      - $ref: '#/components/schemas/XiqViqEntity'
+      - type: object
+        properties:
+          owner_id:
+            type: integer
+            description: The owner id.
+          group_type:
+            type: string
+            description: The type of credential distribution group which can be "MANAGE" or "AD".
+          enable_email_approval:
+            type: boolean
+            description: Flag indicating whether email approval is enabled (true) or disabled (false).
+          enable_user_limitation:
+            type: boolean
+            description: Flag indicating whether user limitation is enabled (true) or disabled (false).
+          employee_group_type:
+            $ref: '#/components/schemas/XiqEmployeeGroup'
+            description: Type of JSON, in this case "ad-employee-group", "admin-employee-group" or "manage-employee-group".
+          employee_group:
+            type: array
+            items:
+              type: object
+              description: The Employee Group
+              oneOf:
+              - $ref: '#/components/schemas/XiqAdEmployeeGroup'
+              - $ref: '#/components/schemas/XiqManageEmployeeGroup'
+              - $ref: '#/components/schemas/XiqAdminEmployeeGroup'
+              discriminator:
+                propertyName: json_type
+                mapping:
+                  ad-employee-group: '#/components/schemas/XiqAdEmployeeGroup'
+                  manage-employee-group: '#/components/schemas/XiqManageEmployeeGroup'
+                  admin-employee-group: '#/components/schemas/XiqAdminEmployeeGroup'
+          name:
+            type: string
+            description: Name of the entity.
+          restrict_number:
+            type: string
+            description: Number restriction.
+          user_groups:
+            type: array
+            description: The list of User Groups
+            items:
+              $ref: '#/components/schemas/XiqUserGroups'
+    XiqUpdateApiAccessTokenRequest:
+      type: object
+      required:
+      - clientId
+      properties:
+        tokenExpireInDay:
+          type: string
+          description: The expiry of the token in days
+  parameters:
+    page:
+      name: page
+      in: query
+      description: Page number, min = 1
+      required: false
+      schema:
+        minimum: 1
+        type: integer
+        format: int32
+        default: 1
+    limit:
+      name: limit
+      in: query
+      description: Page Size, min = 1, max = 100
+      required: false
+      schema:
+        maximum: 100
+        minimum: 1
+        type: integer
+        format: int32
+        default: 10
+    id:
+      name: id
+      in: path
+      description: The unique identifier
+      required: true
+      schema:
+        type: integer
+        format: int64
+  responses:
+    ErrorResponse:
+      description: The generic ExtremeCloud IQ API error response
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/XiqError'
+  securitySchemes:
+    BearerAuth:
+      type: http
+      description: JSON Web Token (JWT) based authentication
+      scheme: bearer
+      bearerFormat: JWT
+externalDocs:
+  description: API Reference
+  url: https://extremecloudiq.com/api-docs/api-reference.html

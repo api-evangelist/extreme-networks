@@ -1,0 +1,349 @@
+openapi: 3.0.3
+info:
+  title: ExtremeCloud IQ Account Network Scorecard API
+  description: 'ExtremeCloud IQ™ API allows customers and partners to create solutions for the management, monitoring, and provisioning
+
+    of any ExtremeCloud IQ™ environment.
+
+
+    All related resources and documentation are available at [ExtremeCloud IQ Developer Portal](https://developer.extremecloudiq.com/).
+
+    Please check [Get Started and Tutorial](https://developer.extremecloudiq.com/documentation/) to understand how to use the APIs.
+
+
+    Get the [latest OpenAPI definition](https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI/blob/main/xcloudiq-openapi.yaml)
+
+    from [ExtremeCloud IQ OpenAPI GitHub repository](https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI).
+
+
+    Please have a valid [ExtremeCloud IQ](https://extremecloudiq.com/) account before getting started.
+
+    If you don''t have one, please [register a new account](https://www.extremenetworks.com/cloud-networking/).'
+  termsOfService: https://www.extremenetworks.com/company/legal/terms-of-use/
+  contact:
+    name: Extreme Networks Support
+    url: https://www.extremenetworks.com/support
+    email: support@extremenetworks.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  version: 25.9.0-36
+servers:
+- url: https://api.extremecloudiq.com
+  description: ExtremeCloud IQ REST API Server
+tags:
+- name: Network Scorecard
+  description: The network scorecard containing device, client, network, Wi-Fi, services health of the selected location.
+paths:
+  /network-scorecard/locations/{id}/device-health:
+    get:
+      tags:
+      - Network Scorecard
+      summary: Get device's overall health for given location
+      operationId: getDeviceHealth
+      description: Get the device's overall health details for given location.
+      parameters:
+      - $ref: '#/components/parameters/id'
+      - $ref: '#/components/parameters/startTime'
+      - $ref: '#/components/parameters/endTime'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeviceOverallHealth'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /network-scorecard/locations/{id}/client-health:
+    get:
+      tags:
+      - Network Scorecard
+      summary: Get clients' overall health for given location
+      operationId: getClientHealth
+      description: Get the clients' overall health details for given location.
+      parameters:
+      - $ref: '#/components/parameters/id'
+      - $ref: '#/components/parameters/startTime'
+      - $ref: '#/components/parameters/endTime'
+      - name: vlans
+        in: query
+        description: The associate vlan IDs
+        required: false
+        schema:
+          type: array
+          items:
+            type: integer
+            format: int32
+      - name: userProfileNames
+        in: query
+        description: The user profile names
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: ssids
+        in: query
+        description: The SSIDs
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientOverallHealth'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /network-scorecard/locations/{id}/wifi-health:
+    get:
+      tags:
+      - Network Scorecard
+      summary: Get devices' Wi-Fi health for given location
+      operationId: getWifiHealth
+      description: Get the devices' Wi-Fi health details for given location.
+      parameters:
+      - $ref: '#/components/parameters/id'
+      - $ref: '#/components/parameters/startTime'
+      - $ref: '#/components/parameters/endTime'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WiFiOverallHealth'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /network-scorecard/locations/{id}/network-health:
+    get:
+      tags:
+      - Network Scorecard
+      summary: Get devices' network health for given location
+      operationId: getNetworkHealth
+      description: Get the devices' network health details for given location.
+      parameters:
+      - $ref: '#/components/parameters/id'
+      - $ref: '#/components/parameters/startTime'
+      - $ref: '#/components/parameters/endTime'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NetworkOverallHealth'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /network-scorecard/locations/{id}/services-health:
+    get:
+      tags:
+      - Network Scorecard
+      summary: Get devices' services health for given location
+      operationId: getServicesHealth
+      description: Get the devices' services health details for given location.
+      parameters:
+      - $ref: '#/components/parameters/id'
+      - $ref: '#/components/parameters/startTime'
+      - $ref: '#/components/parameters/endTime'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServicesOverallHealth'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+components:
+  schemas:
+    XiqError:
+      type: object
+      properties:
+        error_code:
+          type: string
+          description: The error code
+        error_id:
+          type: string
+          description: The error ID for internal troubleshooting
+        error_message:
+          type: string
+          description: The error detailed message
+        error_message_code:
+          type: string
+          description: The error message code
+        error_message_description:
+          type: string
+          description: The error message description
+        error_params:
+          $ref: '#/components/schemas/XiqErrorParams'
+      required:
+      - error_code
+      - error_id
+      - error_message
+    ServicesOverallHealth:
+      type: object
+      description: The network health score over the period
+      properties:
+        overall_score:
+          type: integer
+          description: The overall health score
+          format: int32
+        network_services_score:
+          type: integer
+          description: The health score of network services
+          format: int32
+        authentication_services_score:
+          type: integer
+          description: The health score of authentication services
+          format: int32
+        management_services_score:
+          type: integer
+          description: The health score of management services
+          format: int32
+    NetworkOverallHealth:
+      type: object
+      description: The network health score over the period
+      properties:
+        overall_score:
+          type: integer
+          description: The overall health score
+          format: int32
+        internet_availability_score:
+          type: integer
+          description: The overall network health score
+          format: int64
+        average_internet_latency:
+          type: integer
+          description: The internet performance value in milli-seconds
+          format: int64
+        network_usage:
+          type: integer
+          description: The network usage value in MB
+          format: int64
+    ClientOverallHealth:
+      type: object
+      description: The clients health score over the period
+      properties:
+        overall_score:
+          type: integer
+          description: The overall health score
+          format: int32
+        wifi_health_score:
+          type: integer
+          description: The health score of Wi-Fi
+          format: int32
+        network_health_score:
+          type: integer
+          description: The health score of network
+          format: int32
+        application_health_score:
+          type: integer
+          description: The health score of application
+          format: int32
+    DeviceOverallHealth:
+      type: object
+      description: The devices health score over the period
+      properties:
+        overall_score:
+          type: integer
+          description: The overall health score
+          format: int32
+        device_availability_score:
+          type: integer
+          description: The device availability score
+          format: int32
+        device_hardware_health_score:
+          type: integer
+          description: The device hardware health score
+          format: int32
+        config_and_firmware_score:
+          type: integer
+          description: The config and firmware score
+          format: int32
+    WiFiOverallHealth:
+      type: object
+      description: The clients health score over the period
+      properties:
+        overall_score:
+          type: integer
+          description: The overall health score
+          format: int32
+        snr_health_score:
+          type: integer
+          description: The health score of snr
+          format: int32
+        utilization_health_score:
+          type: integer
+          description: The health score of utilization
+          format: int32
+        association_health_score:
+          type: integer
+          description: The health score of association
+          format: int32
+    XiqErrorParams:
+      type: object
+      description: Error parameters
+      properties:
+        field:
+          type: string
+          description: The error field
+        value:
+          type: string
+          description: The error value
+  parameters:
+    startTime:
+      name: startTime
+      in: query
+      description: The start time to query, epoch time in milliseconds since 1/1/1970
+      required: true
+      schema:
+        type: integer
+        format: int64
+    endTime:
+      name: endTime
+      in: query
+      description: The end time to query, epoch time in milliseconds since 1/1/1970
+      required: true
+      schema:
+        type: integer
+        format: int64
+    id:
+      name: id
+      in: path
+      description: The unique identifier
+      required: true
+      schema:
+        type: integer
+        format: int64
+  responses:
+    ErrorResponse:
+      description: The generic ExtremeCloud IQ API error response
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/XiqError'
+  securitySchemes:
+    BearerAuth:
+      type: http
+      description: JSON Web Token (JWT) based authentication
+      scheme: bearer
+      bearerFormat: JWT
+externalDocs:
+  description: API Reference
+  url: https://extremecloudiq.com/api-docs/api-reference.html

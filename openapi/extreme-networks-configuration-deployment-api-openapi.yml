@@ -1,0 +1,695 @@
+openapi: 3.0.3
+info:
+  title: ExtremeCloud IQ Account Configuration - Deployment API
+  description: 'ExtremeCloud IQ™ API allows customers and partners to create solutions for the management, monitoring, and provisioning
+
+    of any ExtremeCloud IQ™ environment.
+
+
+    All related resources and documentation are available at [ExtremeCloud IQ Developer Portal](https://developer.extremecloudiq.com/).
+
+    Please check [Get Started and Tutorial](https://developer.extremecloudiq.com/documentation/) to understand how to use the APIs.
+
+
+    Get the [latest OpenAPI definition](https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI/blob/main/xcloudiq-openapi.yaml)
+
+    from [ExtremeCloud IQ OpenAPI GitHub repository](https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI).
+
+
+    Please have a valid [ExtremeCloud IQ](https://extremecloudiq.com/) account before getting started.
+
+    If you don''t have one, please [register a new account](https://www.extremenetworks.com/cloud-networking/).'
+  termsOfService: https://www.extremenetworks.com/company/legal/terms-of-use/
+  contact:
+    name: Extreme Networks Support
+    url: https://www.extremenetworks.com/support
+    email: support@extremenetworks.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  version: 25.9.0-36
+servers:
+- url: https://api.extremecloudiq.com
+  description: ExtremeCloud IQ REST API Server
+tags:
+- name: Configuration - Deployment
+  description: Push configuration to devices
+paths:
+  /deployments:
+    post:
+      tags:
+      - Configuration - Deployment
+      summary: '[LRO] Push configuration and upgrade firmware'
+      description: Push configuration and upgrade firmware to the target devices.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_push_configuration_and_upgrade_firmware_to_devices
+      operationId: deployConfig
+      parameters:
+      - $ref: '#/components/parameters/async'
+      requestBody:
+        description: The device deploy configuration
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/XiqDeploymentRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XiqDeploymentResponse'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+    get:
+      tags:
+      - Configuration - Deployment
+      summary: Get list of deployments
+      description: Get firmware upgrade details across multiple sites and devices.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_get_firmware_upgrade_details
+      operationId: getFirmwareUpgradeDetails
+      parameters:
+      - $ref: '#/components/parameters/page'
+      - $ref: '#/components/parameters/limit'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/XiqPage'
+                - type: object
+                  properties:
+                    data:
+                      type: array
+                      description: The data in the current page
+                      items:
+                        $ref: '#/components/schemas/XiqDeploymentDetailsResponse'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /deployments/overview:
+    get:
+      tags:
+      - Configuration - Deployment
+      summary: Get configuration deployment overview
+      description: Get configuration deployment status overview.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_get_configuration_deployment_overview
+      operationId: getDeployOverview
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XiqDeploymentOverview'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /deployments/status:
+    get:
+      tags:
+      - Configuration - Deployment
+      summary: Get configuration deployment status
+      description: Get configuration deployment status for the target devices.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_get_configuration_deployment_status
+      operationId: getDeployStatus
+      parameters:
+      - name: deviceIds
+        in: query
+        description: The target device IDs
+        required: true
+        schema:
+          uniqueItems: true
+          type: array
+          items:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties:
+                  $ref: '#/components/schemas/XiqDeploymentStatus'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /deployments/firmware-metadatas:
+    post:
+      tags:
+      - Configuration - Deployment
+      summary: Get device firmware metadatas
+      description: Get the compatible firmware metadatas for the devices.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_get_device_firmware_metadatas
+      operationId: getDeviceFirmwareMetadatas
+      requestBody:
+        description: The device details
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                device_ids:
+                  type: array
+                  description: The device IDs
+                  uniqueItems: true
+                  items:
+                    type: integer
+                    format: int64
+                product_types:
+                  type: array
+                  description: The product types
+                  items:
+                    type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  firmware_metadatas:
+                    type: object
+                    description: The compatible firmware metadatas per device
+                    additionalProperties:
+                      $ref: '#/components/schemas/XiqDeviceFirmwareMetadata'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /deployments/{deploymentId}:
+    put:
+      tags:
+      - Configuration - Deployment
+      summary: Update schedule with deployment ID
+      description: Update firmware upgrade across multiple sites.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_update_firmware_upgrade
+      operationId: updateFirmwareUpgrade
+      parameters:
+      - in: path
+        description: The deployment ID
+        name: deploymentId
+        required: true
+        schema:
+          type: integer
+          format: uint64
+      requestBody:
+        description: The device deploy configuration update request
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/XiqDeploymentRequest'
+      responses:
+        '200':
+          description: OK
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+    get:
+      tags:
+      - Configuration - Deployment
+      summary: Get details of the deployment by deployment ID
+      description: Get firmware upgrade schedule details across sites.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_get_firmware_upgrade_schedule_details
+      operationId: getFirmwareUpgradeScheduleDetails
+      parameters:
+      - in: path
+        description: The deployment ID
+        name: deploymentId
+        required: true
+        schema:
+          type: integer
+          format: uint64
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XiqDeploymentDetailsResponse'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+    delete:
+      tags:
+      - Configuration - Deployment
+      summary: Delete the deployment schedule by ID
+      description: Delete firmware upgrade schedule.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#delete_firmware_upgrade_schedule
+      operationId: deleteFirmwareUpgradeSchedule
+      parameters:
+      - in: path
+        description: The deployment ID
+        name: deploymentId
+        required: true
+        schema:
+          type: integer
+          format: uint64
+      responses:
+        '200':
+          description: OK
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /deployments/{deploymentId}/status:
+    get:
+      tags:
+      - Configuration - Deployment
+      summary: '[LRO] Get firmware deployment status by ID'
+      description: Get firmware upgrade schedule status for a site based on deployment ID.
+      externalDocs:
+        description: API Reference
+        url: https://extremecloudiq.com/api-docs/api-reference.html#_get_firmware_upgrade_schedule_status
+      operationId: getFirmwareUpgradeScheduleStatus
+      parameters:
+      - in: path
+        description: The deployment ID
+        name: deploymentId
+        required: true
+        schema:
+          type: integer
+          format: uint64
+      - $ref: '#/components/parameters/async'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XiqDeploymentScheduleStatusResponse'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - BearerAuth: []
+components:
+  schemas:
+    XiqScheduleDetails:
+      type: object
+      description: The deployment schedule details
+      required:
+      - start_time
+      properties:
+        start_time:
+          type: integer
+          description: The start time of the firmware upgrade
+          format: int64
+    XiqDeploymentPolicy:
+      type: object
+      description: Push configuration and upgrade firmware policy
+      properties:
+        enable_complete_configuration_update:
+          type: boolean
+          description: 'true if update complete configuration, otherwise update delta configuration.  Note: ExtremeCloud IQ will neither upgrade device firmware nor reboot device for a delta configuration push.  That means that the other parameters for firmware upgrade and activation are not required when this is false.'
+        firmware_upgrade_policy:
+          $ref: '#/components/schemas/XiqFirmwareUpgradePolicy'
+        firmware_upgrade_versions:
+          type: array
+          description: The firmware upgrade versions
+          items:
+            $ref: '#/components/schemas/XiqFirmwareUpgradeVersion'
+        firmware_activate_option:
+          $ref: '#/components/schemas/XiqFirmwareActivateOption'
+    XiqDeploymentDetailsResponse:
+      type: object
+      description: The deployment details
+      properties:
+        deployment_id:
+          type: integer
+          format: uint64
+        schedule:
+          $ref: '#/components/schemas/XiqScheduleDetails'
+        devices:
+          $ref: '#/components/schemas/XiqDeployDeviceFilter'
+        policy:
+          $ref: '#/components/schemas/XiqDeploymentPolicy'
+        overview:
+          $ref: '#/components/schemas/XiqDeploymentOverviewDetails'
+    XiqDeploymentResponse:
+      type: object
+      description: The configuration deployment response
+      properties:
+        deployment_id:
+          type: integer
+          description: The deployment ID
+          format: uint64
+        deployment_status:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/XiqDeploymentStatus'
+    XiqErrorParams:
+      type: object
+      description: Error parameters
+      properties:
+        field:
+          type: string
+          description: The error field
+        value:
+          type: string
+          description: The error value
+    XiqScheduleStatus:
+      type: string
+      enum:
+      - SCHEDULED
+      - IN_PROGRESS
+      - ABORTED
+      - COMPLETED
+      - FAILED
+      - TIME_OUT
+    XiqDeploymentOverviewDetails:
+      type: object
+      description: The configuration deployment overview
+      required:
+      - total_devices
+      - in_progress_devices
+      - total_progress
+      properties:
+        total_devices:
+          type: integer
+          description: The total device count
+          format: int32
+        in_progress_devices:
+          type: integer
+          description: The device count with in progress deployment
+          format: int32
+        total_progress:
+          type: integer
+          description: The total progress, range from 0 to 100
+          format: int32
+    XiqDeploymentOverview:
+      type: object
+      description: The configuration deployment overview
+      required:
+      - in_progress_devices
+      - total_progress
+      properties:
+        in_progress_devices:
+          type: integer
+          description: The device count with in progress deployment
+          format: int32
+        total_progress:
+          type: integer
+          description: The total progress, range from 0 to 100
+          format: int32
+    XiqError:
+      type: object
+      properties:
+        error_code:
+          type: string
+          description: The error code
+        error_id:
+          type: string
+          description: The error ID for internal troubleshooting
+        error_message:
+          type: string
+          description: The error detailed message
+        error_message_code:
+          type: string
+          description: The error message code
+        error_message_description:
+          type: string
+          description: The error message description
+        error_params:
+          $ref: '#/components/schemas/XiqErrorParams'
+      required:
+      - error_code
+      - error_id
+      - error_message
+    XiqDeploymentStatus:
+      type: object
+      description: The configuration deployment status
+      properties:
+        current_progress:
+          type: integer
+          description: The current deploy progress if not finished, range from 0 to 100
+          format: int32
+        current_step_code:
+          type: string
+          description: The code of the current deploy step if not finished
+        current_step_message:
+          type: string
+          description: The readable message of the current deploy step if not finished
+        is_finished_successful:
+          type: boolean
+          description: Indicates whether the last deployment is successful if finished
+        last_deploy_time:
+          type: integer
+          description: The last deployed time (Only valid when in_progress = false)
+          format: int64
+        finished:
+          type: boolean
+        status_message:
+          type: string
+          description: The status message
+    XiqPage:
+      required:
+      - count
+      - page
+      - total_count
+      - total_pages
+      type: object
+      properties:
+        page:
+          type: integer
+          description: The current page number
+          format: int32
+        count:
+          type: integer
+          description: The element count of the current page
+          format: int32
+        total_pages:
+          type: integer
+          description: The total page number based on request page size
+          format: int32
+        total_count:
+          type: integer
+          description: The total element count
+          format: int64
+    XiqFirmwareUpgradeVersion:
+      type: object
+      description: Upgrade to the specific firmware version
+      required:
+      - firmware_id
+      - device_id
+      - product_type
+      properties:
+        firmware_id:
+          type: integer
+          description: The device compatible firmware metadata ID
+          format: int64
+        device_id:
+          type: integer
+          description: The device ID
+          format: int64
+        product_type:
+          type: string
+          description: The product type
+    XiqFirmwareActivateOption:
+      type: object
+      description: The firmware activate option (Only one of them can be enabled)
+      properties:
+        activation_delay_seconds:
+          type: integer
+          description: Activate after the given seconds
+          format: int64
+        activation_time:
+          type: integer
+          description: Activate at the following time according to the system clock on the updated device
+          format: int64
+        enable_activate_at_next_reboot:
+          type: boolean
+          description: Activate at next reboot (requires rebooting manually)
+    XiqDeployDeviceFilter:
+      type: object
+      description: The filter to get matched devices
+      properties:
+        ids:
+          type: array
+          description: The device ID list
+          items:
+            type: integer
+            description: The device ID list
+            format: int64
+        site_ids:
+          type: array
+          description: The site ID list
+          items:
+            type: integer
+            description: The site ID list
+            format: int64
+    XiqDeviceFirmwareMetadata:
+      type: object
+      description: The device compatible firmware metadata
+      properties:
+        firmware_id:
+          type: integer
+          description: The firmware metadata ID
+          format: int64
+        create_time:
+          type: string
+          description: The create time
+          format: date-time
+        update_time:
+          type: string
+          description: The last update time
+          format: date-time
+        firmware_name:
+          type: string
+          description: The firmware name
+        firmware_type:
+          type: string
+          description: The firmware type
+        scope:
+          type: string
+          description: The firmware availability scope
+        version:
+          type: string
+          description: The firmware version
+        date:
+          type: string
+          description: The firmware release date
+        firmware_size:
+          type: string
+          description: The firmware size
+        display_version:
+          type: string
+          description: The firmware display version
+        supported_platforms:
+          type: string
+          description: The platforms supported by the firmware
+        md5:
+          type: string
+          description: The firmware md5 hash
+    XiqFirmwareUpgradePolicy:
+      type: object
+      description: The firmware upgrade policy
+      required:
+      - enable_enforce_upgrade
+      - enable_distributed_upgrade
+      properties:
+        enable_enforce_upgrade:
+          type: boolean
+          description: Whether enforce firmware upgrade even if the versions are the same
+        enable_distributed_upgrade:
+          type: boolean
+          description: Whether enable distributed firmware upgrade (Only applicable to APs)
+    XiqDeploymentScheduleStatusResponse:
+      type: object
+      description: The status of the firmware upgrade sites/devices
+      properties:
+        schedule_status:
+          $ref: '#/components/schemas/XiqScheduleStatus'
+        schedule_time:
+          type: integer
+          format: uint64
+        created_time:
+          type: integer
+          format: uint64
+        updated_time:
+          type: integer
+          format: uint64
+        site_info:
+          type: object
+          description: The site information
+          properties:
+            site_id:
+              type: integer
+              format: uint64
+            device_ids:
+              type: array
+              description: The device ID list
+              items:
+                type: integer
+                description: The device ID
+                format: uint64
+            overview:
+              $ref: '#/components/schemas/XiqDeploymentOverview'
+        deployment_status:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/XiqDeploymentStatus'
+        overview:
+          $ref: '#/components/schemas/XiqDeploymentOverview'
+    XiqDeploymentRequest:
+      type: object
+      description: The configuration deployment request to devices
+      properties:
+        schedule:
+          $ref: '#/components/schemas/XiqScheduleDetails'
+        devices:
+          $ref: '#/components/schemas/XiqDeployDeviceFilter'
+        policy:
+          $ref: '#/components/schemas/XiqDeploymentPolicy'
+  parameters:
+    page:
+      name: page
+      in: query
+      description: Page number, min = 1
+      required: false
+      schema:
+        minimum: 1
+        type: integer
+        format: int32
+        default: 1
+    async:
+      in: query
+      name: async
+      description: Whether to enable async mode
+      required: false
+      schema:
+        type: boolean
+        default: false
+    limit:
+      name: limit
+      in: query
+      description: Page Size, min = 1, max = 100
+      required: false
+      schema:
+        maximum: 100
+        minimum: 1
+        type: integer
+        format: int32
+        default: 10
+  responses:
+    ErrorResponse:
+      description: The generic ExtremeCloud IQ API error response
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/XiqError'
+  securitySchemes:
+    BearerAuth:
+      type: http
+      description: JSON Web Token (JWT) based authentication
+      scheme: bearer
+      bearerFormat: JWT
+externalDocs:
+  description: API Reference
+  url: https://extremecloudiq.com/api-docs/api-reference.html
