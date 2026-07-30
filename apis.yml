@@ -19,9 +19,21 @@ description: >-
   of on-prem REST gateways for ExtremeCloud IQ Controller (campus wireless
   controller) and Application Manager.
 type: Index
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 position: Provider
 access: 3rd-Party
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/extreme-networks.png
 tags:
   - Networking
   - Wireless
@@ -40,178 +52,1692 @@ created: '2026-05-25'
 modified: '2026-05-25'
 specificationVersion: '0.20'
 apis:
-  - aid: extreme-networks:extremecloud-iq-api
-    name: ExtremeCloud IQ API
-    description: >-
-      The ExtremeCloud IQ REST API enables customers and partners to manage,
-      monitor, and provision any ExtremeCloud IQ environment. It is an
-      OpenAPI 3.0 surface with 460+ operations covering authentication and API
-      tokens, accounts and users, hierarchical organizations (HIQ), locations
-      and floor plans, devices across Cloud Engine / IQ Engine / WiNG / VOSS /
-      EXOS, network policy for wired and wireless, network scorecards, clients,
-      application metrics, alerts, logs, notifications, deployment and
-      configuration management, Copilot anomalies and connectivity experience,
-      packet captures, ExtremeLocation, SD-WAN, AFC, Universal Compute Platform,
-      and dashboards. Hosted at https://api.extremecloudiq.com and licensed
-      under Apache 2.0.
-    humanURL: https://developer.extremecloudiq.com/
-    baseURL: https://api.extremecloudiq.com
-    tags:
-      - Networking
-      - Cloud Management
-      - Wireless
-      - Wired
-      - SD-WAN
-      - Device Management
-      - Network Policy
-    properties:
-      - type: Documentation
-        url: https://developer.extremecloudiq.com/documentation/
-      - type: APIReference
-        url: https://extremecloudiq.com/api-docs/api-reference.html
-      - type: OpenAPI
-        url: openapi/extremecloud-iq-openapi.yml
-      - type: SourceOpenAPI
-        url: https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI-Specification/blob/main/xcloudiq-openapi.yaml
-      - type: SwaggerUI
-        url: https://api.extremecloudiq.com/swagger-ui/index.html
-      - type: SDKs
-        url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Python
-      - type: SDKs
-        url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Java
-      - type: SDKs
-        url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Go
-      - type: SDKs
-        url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Javascript
-      - type: SDKs
-        url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-CSharp
-      - type: PostmanCollection
-        url: https://github.com/extremenetworks/ExtremeCloudIQ-APIs
-      - type: Signup
-        url: https://www.extremenetworks.com/cloud-networking/
-      - type: TermsOfService
-        url: https://www.extremenetworks.com/company/legal/terms-of-use/
-
-  - aid: extreme-networks:extremecloud-iq-controller-rest-api
-    name: ExtremeCloud IQ Controller REST API Gateway
-    description: >-
-      On-premises REST API gateway exposed by the ExtremeCloud IQ Controller
-      (the wired and wireless campus controller). Provides programmatic access
-      to controller configuration, sites, RF management, AP and switch
-      provisioning, RADIUS, NAC, and reporting on locally managed Extreme
-      infrastructure. Version 10.03.01 of the gateway is documented at
-      documentation.extremenetworks.com.
-    humanURL: https://documentation.extremenetworks.com/ExtremeCloud_IQ_Controller/v10.03.01/API/index_gateway_api.html
-    tags:
-      - Networking
-      - Wireless
-      - Controller
-      - On-Premises
-    properties:
-      - type: Documentation
-        url: https://documentation.extremenetworks.com/ExtremeCloud_IQ_Controller/v10.03.01/API/index_gateway_api.html
-
-  - aid: extreme-networks:extremecloud-iq-controller-application-manager-api
-    name: ExtremeCloud IQ Controller Application Manager API
-    description: >-
-      Application Manager REST API for the ExtremeCloud IQ Controller,
-      enabling visibility into Layer 7 application traffic, per-application
-      policy, and per-application reporting on locally managed Extreme
-      wireless and wired networks.
-    humanURL: https://documentation.extremenetworks.com/ExtremeCloud_IQ_Controller/v10.05.02/API/index_apps_manager.html
-    tags:
-      - Networking
-      - Application Visibility
-      - Policy
-      - On-Premises
-    properties:
-      - type: Documentation
-        url: https://documentation.extremenetworks.com/ExtremeCloud_IQ_Controller/v10.05.02/API/index_apps_manager.html
-
-  - aid: extreme-networks:ansible-extreme-exos
-    name: Ansible Network Collection for Extreme EXOS
-    description: >-
-      Ansible collection providing modules and roles to automate configuration
-      and operations of Extreme Networks EXOS switches (e.g. ExtremeSwitching
-      X-Series, Summit). Supports declarative network configuration, fact
-      gathering, and CLI/API access for EXOS-based devices.
-    humanURL: https://github.com/extremenetworks/ansible_collections.extreme.exos
-    tags:
-      - Networking
-      - Automation
-      - Ansible
-      - EXOS
-      - Switching
-    properties:
-      - type: Repository
-        url: https://github.com/extremenetworks/ansible_collections.extreme.exos
-
-  - aid: extreme-networks:ansible-extreme-voss
-    name: Ansible Network Collection for Extreme VOSS
-    description: >-
-      Ansible collection for Extreme Networks VOSS (VSP Operating System)
-      switches, including Fabric Engine devices. Provides modules for
-      declarative configuration of VOSS-based platforms.
-    humanURL: https://github.com/extremenetworks/ansible_collections.extreme.voss
-    tags:
-      - Networking
-      - Automation
-      - Ansible
-      - VOSS
-      - Switching
-    properties:
-      - type: Repository
-        url: https://github.com/extremenetworks/ansible_collections.extreme.voss
-
-  - aid: extreme-networks:ansible-extreme-slxos
-    name: Ansible Network Collection for Extreme SLX-OS
-    description: >-
-      Ansible collection for Extreme Networks SLX-OS data center switches.
-      Provides modules for declarative configuration and operational tasks on
-      SLX platforms.
-    humanURL: https://github.com/extremenetworks/ansible_collections.extreme.slxos
-    tags:
-      - Networking
-      - Automation
-      - Ansible
-      - SLX-OS
-      - Data Center
-    properties:
-      - type: Repository
-        url: https://github.com/extremenetworks/ansible_collections.extreme.slxos
-
-  - aid: extreme-networks:ansible-extreme-nos
-    name: Ansible Network Collection for Extreme NOS
-    description: >-
-      Ansible collection for Extreme Networks NOS (Network Operating System)
-      switches, supporting declarative configuration and automation workflows.
-    humanURL: https://github.com/extremenetworks/ansible_collections.extreme.nos
-    tags:
-      - Networking
-      - Automation
-      - Ansible
-      - NOS
-    properties:
-      - type: Repository
-        url: https://github.com/extremenetworks/ansible_collections.extreme.nos
-
-  - aid: extreme-networks:ansible-extreme-fabric-engine
-    name: Ansible Network Collection for Extreme Fabric Engine
-    description: >-
-      Ansible collection for Extreme Fabric Engine, used to automate Shortest
-      Path Bridging (SPB) fabric configuration across Extreme VSP and ERS
-      platforms.
-    humanURL: https://github.com/extremenetworks/ansible_collections.extreme.fe
-    tags:
-      - Networking
-      - Automation
-      - Ansible
-      - Fabric Engine
-      - SPB
-    properties:
-      - type: Repository
-        url: https://github.com/extremenetworks/ansible_collections.extreme.fe
-
+- aid: extreme-networks:extremecloud-iq-controller-rest-api
+  name: ExtremeCloud IQ Controller REST API Gateway
+  description: >-
+    On-premises REST API gateway exposed by the ExtremeCloud IQ Controller (the wired and wireless campus
+    controller). Provides programmatic access to controller configuration, sites, RF management, AP and
+    switch provisioning, RADIUS, NAC, and reporting on locally managed Extreme infrastructure. Version
+    10.03.01 of the gateway is documented at documentation.extremenetworks.com.
+  humanURL: >-
+    https://documentation.extremenetworks.com/ExtremeCloud_IQ_Controller/v10.03.01/API/index_gateway_api.html
+  tags:
+  - Networking
+  - Wireless
+  - Controller
+  - On-Premises
+  properties:
+  - type: Documentation
+    url: >-
+      https://documentation.extremenetworks.com/ExtremeCloud_IQ_Controller/v10.03.01/API/index_gateway_api.html
+- aid: extreme-networks:extremecloud-iq-controller-application-manager-api
+  name: ExtremeCloud IQ Controller Application Manager API
+  description: >-
+    Application Manager REST API for the ExtremeCloud IQ Controller, enabling visibility into Layer 7
+    application traffic, per-application policy, and per-application reporting on locally managed Extreme
+    wireless and wired networks.
+  humanURL: >-
+    https://documentation.extremenetworks.com/ExtremeCloud_IQ_Controller/v10.05.02/API/index_apps_manager.html
+  tags:
+  - Networking
+  - Application Visibility
+  - Policy
+  - On-Premises
+  properties:
+  - type: Documentation
+    url: >-
+      https://documentation.extremenetworks.com/ExtremeCloud_IQ_Controller/v10.05.02/API/index_apps_manager.html
+- aid: extreme-networks:ansible-extreme-exos
+  name: Ansible Network Collection for Extreme EXOS
+  description: >-
+    Ansible collection providing modules and roles to automate configuration and operations of Extreme
+    Networks EXOS switches (e.g. ExtremeSwitching X-Series, Summit). Supports declarative network configuration,
+    fact gathering, and CLI/API access for EXOS-based devices.
+  humanURL: https://github.com/extremenetworks/ansible_collections.extreme.exos
+  tags:
+  - Networking
+  - Automation
+  - Ansible
+  - EXOS
+  - Switching
+  properties:
+  - type: Repository
+    url: https://github.com/extremenetworks/ansible_collections.extreme.exos
+- aid: extreme-networks:ansible-extreme-voss
+  name: Ansible Network Collection for Extreme VOSS
+  description: >-
+    Ansible collection for Extreme Networks VOSS (VSP Operating System) switches, including Fabric Engine
+    devices. Provides modules for declarative configuration of VOSS-based platforms.
+  humanURL: https://github.com/extremenetworks/ansible_collections.extreme.voss
+  tags:
+  - Networking
+  - Automation
+  - Ansible
+  - VOSS
+  - Switching
+  properties:
+  - type: Repository
+    url: https://github.com/extremenetworks/ansible_collections.extreme.voss
+- aid: extreme-networks:ansible-extreme-slxos
+  name: Ansible Network Collection for Extreme SLX-OS
+  description: >-
+    Ansible collection for Extreme Networks SLX-OS data center switches. Provides modules for declarative
+    configuration and operational tasks on SLX platforms.
+  humanURL: https://github.com/extremenetworks/ansible_collections.extreme.slxos
+  tags:
+  - Networking
+  - Automation
+  - Ansible
+  - SLX-OS
+  - Data Center
+  properties:
+  - type: Repository
+    url: https://github.com/extremenetworks/ansible_collections.extreme.slxos
+- aid: extreme-networks:ansible-extreme-nos
+  name: Ansible Network Collection for Extreme NOS
+  description: >-
+    Ansible collection for Extreme Networks NOS (Network Operating System) switches, supporting declarative
+    configuration and automation workflows.
+  humanURL: https://github.com/extremenetworks/ansible_collections.extreme.nos
+  tags:
+  - Networking
+  - Automation
+  - Ansible
+  - NOS
+  properties:
+  - type: Repository
+    url: https://github.com/extremenetworks/ansible_collections.extreme.nos
+- aid: extreme-networks:ansible-extreme-fabric-engine
+  name: Ansible Network Collection for Extreme Fabric Engine
+  description: >-
+    Ansible collection for Extreme Fabric Engine, used to automate Shortest Path Bridging (SPB) fabric
+    configuration across Extreme VSP and ERS platforms.
+  humanURL: https://github.com/extremenetworks/ansible_collections.extreme.fe
+  tags:
+  - Networking
+  - Automation
+  - Ansible
+  - Fabric Engine
+  - SPB
+  properties:
+  - type: Repository
+    url: https://github.com/extremenetworks/ansible_collections.extreme.fe
+- aid: extreme-networks:extreme-networks-account-api
+  name: Extreme Networks Account API
+  description: ExtremeCloud IQ Account
+  humanURL: https://developer.extremecloudiq.com/
+  baseURL: https://api.extremecloudiq.com
+  tags:
+  - Account
+  properties:
+  - type: OpenAPI
+    url: openapi/extreme-networks-account-api-openapi.yml
+  - type: Documentation
+    url: https://developer.extremecloudiq.com/documentation/
+  - type: APIReference
+    url: https://extremecloudiq.com/api-docs/api-reference.html
+  - type: SourceOpenAPI
+    url: >-
+      https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI-Specification/blob/main/xcloudiq-openapi.yaml
+  - type: SwaggerUI
+    url: https://api.extremecloudiq.com/swagger-ui/index.html
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Python
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Java
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Go
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Javascript
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-CSharp
+  - type: PostmanCollection
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-APIs
+  - type: Signup
+    url: https://www.extremenetworks.com/cloud-networking/
+  - type: TermsOfService
+    url: https://www.extremenetworks.com/company/legal/terms-of-use/
+- aid: extreme-networks:extreme-networks-administration-api
+  name: Extreme Networks Administration API
+  description: API Token Management and 3rd Party API Connections
+  humanURL: https://developer.extremecloudiq.com/
+  baseURL: https://api.extremecloudiq.com
+  tags:
+  - Administration
+  properties:
+  - type: OpenAPI
+    url: openapi/extreme-networks-administration-api-openapi.yml
+  - type: Documentation
+    url: https://developer.extremecloudiq.com/documentation/
+  - type: APIReference
+    url: https://extremecloudiq.com/api-docs/api-reference.html
+  - type: SourceOpenAPI
+    url: >-
+      https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI-Specification/blob/main/xcloudiq-openapi.yaml
+  - type: SwaggerUI
+    url: https://api.extremecloudiq.com/swagger-ui/index.html
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Python
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Java
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Go
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Javascript
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-CSharp
+  - type: PostmanCollection
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-APIs
+  - type: Signup
+    url: https://www.extremenetworks.com/cloud-networking/
+  - type: TermsOfService
+    url: https://www.extremenetworks.com/company/legal/terms-of-use/
+- aid: extreme-networks:extreme-networks-afc-api
+  name: Extreme Networks AFC API
+  description: ExtremeCloud IQ AFC Feature.
+  humanURL: https://developer.extremecloudiq.com/
+  baseURL: https://api.extremecloudiq.com
+  tags:
+  - AFC
+  properties:
+  - type: OpenAPI
+    url: openapi/extreme-networks-afc-api-openapi.yml
+  - type: Documentation
+    url: https://developer.extremecloudiq.com/documentation/
+  - type: APIReference
+    url: https://extremecloudiq.com/api-docs/api-reference.html
+  - type: SourceOpenAPI
+    url: >-
+      https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI-Specification/blob/main/xcloudiq-openapi.yaml
+  - type: SwaggerUI
+    url: https://api.extremecloudiq.com/swagger-ui/index.html
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Python
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Java
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Go
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Javascript
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-CSharp
+  - type: PostmanCollection
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-APIs
+  - type: Signup
+    url: https://www.extremenetworks.com/cloud-networking/
+  - type: TermsOfService
+    url: https://www.extremenetworks.com/company/legal/terms-of-use/
+- aid: extreme-networks:extreme-networks-alert-api
+  name: Extreme Networks Alert API
+  description: ExtremeCloud IQ generated alerts and events
+  humanURL: https://developer.extremecloudiq.com/
+  baseURL: https://api.extremecloudiq.com
+  tags:
+  - Alert
+  properties:
+  - type: OpenAPI
+    url: openapi/extreme-networks-alert-api-openapi.yml
+  - type: Documentation
+    url: https://developer.extremecloudiq.com/documentation/
+  - type: APIReference
+    url: https://extremecloudiq.com/api-docs/api-reference.html
+  - type: SourceOpenAPI
+    url: >-
+      https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI-Specification/blob/main/xcloudiq-openapi.yaml
+  - type: SwaggerUI
+    url: https://api.extremecloudiq.com/swagger-ui/index.html
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Python
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Java
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Go
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Javascript
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-CSharp
+  - type: PostmanCollection
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-APIs
+  - type: Signup
+    url: https://www.extremenetworks.com/cloud-networking/
+  - type: TermsOfService
+    url: https://www.extremenetworks.com/company/legal/terms-of-use/
+- aid: extreme-networks:extreme-networks-application-api
+  name: Extreme Networks Application API
+  description: Application management and application metrics
+  humanURL: https://developer.extremecloudiq.com/
+  baseURL: https://api.extremecloudiq.com
+  tags:
+  - Application
+  properties:
+  - type: OpenAPI
+    url: openapi/extreme-networks-application-api-openapi.yml
+  - type: Documentation
+    url: https://developer.extremecloudiq.com/documentation/
+  - type: APIReference
+    url: https://extremecloudiq.com/api-docs/api-reference.html
+  - type: SourceOpenAPI
+    url: >-
+      https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI-Specification/blob/main/xcloudiq-openapi.yaml
+  - type: SwaggerUI
+    url: https://api.extremecloudiq.com/swagger-ui/index.html
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Python
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Java
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Go
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Javascript
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-CSharp
+  - type: PostmanCollection
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-APIs
+  - type: Signup
+    url: https://www.extremenetworks.com/cloud-networking/
+  - type: TermsOfService
+    url: https://www.extremenetworks.com/company/legal/terms-of-use/
+- aid: extreme-networks:extreme-networks-authentication-api
+  name: Extreme Networks Authentication API
+  description: User login & logout
+  humanURL: https://developer.extremecloudiq.com/
+  baseURL: https://api.extremecloudiq.com
+  tags:
+  - Authentication
+  properties:
+  - type: OpenAPI
+    url: openapi/extreme-networks-authentication-api-openapi.yml
+  - type: Documentation
+    url: https://developer.extremecloudiq.com/documentation/
+  - type: APIReference
+    url: https://extremecloudiq.com/api-docs/api-reference.html
+  - type: SourceOpenAPI
+    url: >-
+      https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI-Specification/blob/main/xcloudiq-openapi.yaml
+  - type: SwaggerUI
+    url: https://api.extremecloudiq.com/swagger-ui/index.html
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Python
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Java
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Go
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Javascript
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-CSharp
+  - type: PostmanCollection
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-APIs
+  - type: Signup
+    url: https://www.extremenetworks.com/cloud-networking/
+  - type: TermsOfService
+    url: https://www.extremenetworks.com/company/legal/terms-of-use/
+- aid: extreme-networks:extreme-networks-authorization-api
+  name: Extreme Networks Authorization API
+  description: API token and permissions
+  humanURL: https://developer.extremecloudiq.com/
+  baseURL: https://api.extremecloudiq.com
+  tags:
+  - Authorization
+  properties:
+  - type: OpenAPI
+    url: openapi/extreme-networks-authorization-api-openapi.yml
+  - type: Documentation
+    url: https://developer.extremecloudiq.com/documentation/
+  - type: APIReference
+    url: https://extremecloudiq.com/api-docs/api-reference.html
+  - type: SourceOpenAPI
+    url: >-
+      https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI-Specification/blob/main/xcloudiq-openapi.yaml
+  - type: SwaggerUI
+    url: https://api.extremecloudiq.com/swagger-ui/index.html
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Python
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Java
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Go
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Javascript
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-CSharp
+  - type: PostmanCollection
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-APIs
+  - type: Signup
+    url: https://www.extremenetworks.com/cloud-networking/
+  - type: TermsOfService
+    url: https://www.extremenetworks.com/company/legal/terms-of-use/
+- aid: extreme-networks:extreme-networks-client-api
+  name: Extreme Networks Client API
+  description: The clients associate to the devices of ExtremeCloud IQ
+  humanURL: https://developer.extremecloudiq.com/
+  baseURL: https://api.extremecloudiq.com
+  tags:
+  - Client
+  properties:
+  - type: OpenAPI
+    url: openapi/extreme-networks-client-api-openapi.yml
+  - type: Documentation
+    url: https://developer.extremecloudiq.com/documentation/
+  - type: APIReference
+    url: https://extremecloudiq.com/api-docs/api-reference.html
+  - type: SourceOpenAPI
+    url: >-
+      https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI-Specification/blob/main/xcloudiq-openapi.yaml
+  - type: SwaggerUI
+    url: https://api.extremecloudiq.com/swagger-ui/index.html
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Python
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Java
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Go
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Javascript
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-CSharp
+  - type: PostmanCollection
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-APIs
+  - type: Signup
+    url: https://www.extremenetworks.com/cloud-networking/
+  - type: TermsOfService
+    url: https://www.extremenetworks.com/company/legal/terms-of-use/
+- aid: extreme-networks:extreme-networks-client-details-api
+  name: Extreme Networks Client - Details API
+  description: The details of client associate to the devices of ExtremeCloud IQ
+  humanURL: https://developer.extremecloudiq.com/
+  baseURL: https://api.extremecloudiq.com
+  tags:
+  - Client - Details
+  properties:
+  - type: OpenAPI
+    url: openapi/extreme-networks-client-details-api-openapi.yml
+  - type: Documentation
+    url: https://developer.extremecloudiq.com/documentation/
+  - type: APIReference
+    url: https://extremecloudiq.com/api-docs/api-reference.html
+  - type: SourceOpenAPI
+    url: >-
+      https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI-Specification/blob/main/xcloudiq-openapi.yaml
+  - type: SwaggerUI
+    url: https://api.extremecloudiq.com/swagger-ui/index.html
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Python
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Java
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Go
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Javascript
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-CSharp
+  - type: PostmanCollection
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-APIs
+  - type: Signup
+    url: https://www.extremenetworks.com/cloud-networking/
+  - type: TermsOfService
+    url: https://www.extremenetworks.com/company/legal/terms-of-use/
+- aid: extreme-networks:extreme-networks-configuration-authentication-api
+  name: Extreme Networks Configuration - Authentication API
+  description: AD/LDAP/RADIUS/RADSEC/CWP/...
+  humanURL: https://developer.extremecloudiq.com/
+  baseURL: https://api.extremecloudiq.com
+  tags:
+  - Configuration - Authentication
+  properties:
+  - type: OpenAPI
+    url: openapi/extreme-networks-configuration-authentication-api-openapi.yml
+  - type: Documentation
+    url: https://developer.extremecloudiq.com/documentation/
+  - type: APIReference
+    url: https://extremecloudiq.com/api-docs/api-reference.html
+  - type: SourceOpenAPI
+    url: >-
+      https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI-Specification/blob/main/xcloudiq-openapi.yaml
+  - type: SwaggerUI
+    url: https://api.extremecloudiq.com/swagger-ui/index.html
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Python
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Java
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Go
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Javascript
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-CSharp
+  - type: PostmanCollection
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-APIs
+  - type: Signup
+    url: https://www.extremenetworks.com/cloud-networking/
+  - type: TermsOfService
+    url: https://www.extremenetworks.com/company/legal/terms-of-use/
+- aid: extreme-networks:extreme-networks-configuration-basic-api
+  name: Extreme Networks Configuration - Basic API
+  description: VLAN Profile/DHCP Server/...
+  humanURL: https://developer.extremecloudiq.com/
+  baseURL: https://api.extremecloudiq.com
+  tags:
+  - Configuration - Basic
+  properties:
+  - type: OpenAPI
+    url: openapi/extreme-networks-configuration-basic-api-openapi.yml
+  - type: Documentation
+    url: https://developer.extremecloudiq.com/documentation/
+  - type: APIReference
+    url: https://extremecloudiq.com/api-docs/api-reference.html
+  - type: SourceOpenAPI
+    url: >-
+      https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI-Specification/blob/main/xcloudiq-openapi.yaml
+  - type: SwaggerUI
+    url: https://api.extremecloudiq.com/swagger-ui/index.html
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Python
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Java
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Go
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Javascript
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-CSharp
+  - type: PostmanCollection
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-APIs
+  - type: Signup
+    url: https://www.extremenetworks.com/cloud-networking/
+  - type: TermsOfService
+    url: https://www.extremenetworks.com/company/legal/terms-of-use/
+- aid: extreme-networks:extreme-networks-configuration-certificate-api
+  name: Extreme Networks Configuration - Certificate API
+  description: Certificate
+  humanURL: https://developer.extremecloudiq.com/
+  baseURL: https://api.extremecloudiq.com
+  tags:
+  - Configuration - Certificate
+  properties:
+  - type: OpenAPI
+    url: openapi/extreme-networks-configuration-certificate-api-openapi.yml
+  - type: Documentation
+    url: https://developer.extremecloudiq.com/documentation/
+  - type: APIReference
+    url: https://extremecloudiq.com/api-docs/api-reference.html
+  - type: SourceOpenAPI
+    url: >-
+      https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI-Specification/blob/main/xcloudiq-openapi.yaml
+  - type: SwaggerUI
+    url: https://api.extremecloudiq.com/swagger-ui/index.html
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Python
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Java
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Go
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Javascript
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-CSharp
+  - type: PostmanCollection
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-APIs
+  - type: Signup
+    url: https://www.extremenetworks.com/cloud-networking/
+  - type: TermsOfService
+    url: https://www.extremenetworks.com/company/legal/terms-of-use/
+- aid: extreme-networks:extreme-networks-configuration-deployment-api
+  name: Extreme Networks Configuration - Deployment API
+  description: Push configuration to devices
+  humanURL: https://developer.extremecloudiq.com/
+  baseURL: https://api.extremecloudiq.com
+  tags:
+  - Configuration - Deployment
+  properties:
+  - type: OpenAPI
+    url: openapi/extreme-networks-configuration-deployment-api-openapi.yml
+  - type: Documentation
+    url: https://developer.extremecloudiq.com/documentation/
+  - type: APIReference
+    url: https://extremecloudiq.com/api-docs/api-reference.html
+  - type: SourceOpenAPI
+    url: >-
+      https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI-Specification/blob/main/xcloudiq-openapi.yaml
+  - type: SwaggerUI
+    url: https://api.extremecloudiq.com/swagger-ui/index.html
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Python
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Java
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Go
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Javascript
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-CSharp
+  - type: PostmanCollection
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-APIs
+  - type: Signup
+    url: https://www.extremenetworks.com/cloud-networking/
+  - type: TermsOfService
+    url: https://www.extremenetworks.com/company/legal/terms-of-use/
+- aid: extreme-networks:extreme-networks-configuration-network-api
+  name: Extreme Networks Configuration - Network API
+  description: Tunnel Concentrator Service, Network service
+  humanURL: https://developer.extremecloudiq.com/
+  baseURL: https://api.extremecloudiq.com
+  tags:
+  - Configuration - Network
+  properties:
+  - type: OpenAPI
+    url: openapi/extreme-networks-configuration-network-api-openapi.yml
+  - type: Documentation
+    url: https://developer.extremecloudiq.com/documentation/
+  - type: APIReference
+    url: https://extremecloudiq.com/api-docs/api-reference.html
+  - type: SourceOpenAPI
+    url: >-
+      https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI-Specification/blob/main/xcloudiq-openapi.yaml
+  - type: SwaggerUI
+    url: https://api.extremecloudiq.com/swagger-ui/index.html
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Python
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Java
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Go
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Javascript
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-CSharp
+  - type: PostmanCollection
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-APIs
+  - type: Signup
+    url: https://www.extremenetworks.com/cloud-networking/
+  - type: TermsOfService
+    url: https://www.extremenetworks.com/company/legal/terms-of-use/
+- aid: extreme-networks:extreme-networks-configuration-policy-api
+  name: Extreme Networks Configuration - Policy API
+  description: SSID/User Profile/Classification Rule/CCG/Radio Profile/...
+  humanURL: https://developer.extremecloudiq.com/
+  baseURL: https://api.extremecloudiq.com
+  tags:
+  - Configuration - Policy
+  properties:
+  - type: OpenAPI
+    url: openapi/extreme-networks-configuration-policy-api-openapi.yml
+  - type: Documentation
+    url: https://developer.extremecloudiq.com/documentation/
+  - type: APIReference
+    url: https://extremecloudiq.com/api-docs/api-reference.html
+  - type: SourceOpenAPI
+    url: >-
+      https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI-Specification/blob/main/xcloudiq-openapi.yaml
+  - type: SwaggerUI
+    url: https://api.extremecloudiq.com/swagger-ui/index.html
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Python
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Java
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Go
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Javascript
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-CSharp
+  - type: PostmanCollection
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-APIs
+  - type: Signup
+    url: https://www.extremenetworks.com/cloud-networking/
+  - type: TermsOfService
+    url: https://www.extremenetworks.com/company/legal/terms-of-use/
+- aid: extreme-networks:extreme-networks-configuration-user-management-api
+  name: Extreme Networks Configuration - User Management API
+  description: User Group/End User/PCG/PPSK Classification
+  humanURL: https://developer.extremecloudiq.com/
+  baseURL: https://api.extremecloudiq.com
+  tags:
+  - Configuration - User Management
+  properties:
+  - type: OpenAPI
+    url: openapi/extreme-networks-configuration-user-management-api-openapi.yml
+  - type: Documentation
+    url: https://developer.extremecloudiq.com/documentation/
+  - type: APIReference
+    url: https://extremecloudiq.com/api-docs/api-reference.html
+  - type: SourceOpenAPI
+    url: >-
+      https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI-Specification/blob/main/xcloudiq-openapi.yaml
+  - type: SwaggerUI
+    url: https://api.extremecloudiq.com/swagger-ui/index.html
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Python
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Java
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Go
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Javascript
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-CSharp
+  - type: PostmanCollection
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-APIs
+  - type: Signup
+    url: https://www.extremenetworks.com/cloud-networking/
+  - type: TermsOfService
+    url: https://www.extremenetworks.com/company/legal/terms-of-use/
+- aid: extreme-networks:extreme-networks-copilot-anomalies-api
+  name: Extreme Networks Copilot - Anomalies API
+  description: The Copilot Anomalies API
+  humanURL: https://developer.extremecloudiq.com/
+  baseURL: https://api.extremecloudiq.com
+  tags:
+  - Copilot - Anomalies
+  properties:
+  - type: OpenAPI
+    url: openapi/extreme-networks-copilot-anomalies-api-openapi.yml
+  - type: Documentation
+    url: https://developer.extremecloudiq.com/documentation/
+  - type: APIReference
+    url: https://extremecloudiq.com/api-docs/api-reference.html
+  - type: SourceOpenAPI
+    url: >-
+      https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI-Specification/blob/main/xcloudiq-openapi.yaml
+  - type: SwaggerUI
+    url: https://api.extremecloudiq.com/swagger-ui/index.html
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Python
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Java
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Go
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Javascript
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-CSharp
+  - type: PostmanCollection
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-APIs
+  - type: Signup
+    url: https://www.extremenetworks.com/cloud-networking/
+  - type: TermsOfService
+    url: https://www.extremenetworks.com/company/legal/terms-of-use/
+- aid: extreme-networks:extreme-networks-copilot-connectivity-experience-api
+  name: Extreme Networks Copilot - Connectivity Experience API
+  description: The Copilot Connectivity Experience API
+  humanURL: https://developer.extremecloudiq.com/
+  baseURL: https://api.extremecloudiq.com
+  tags:
+  - Copilot - Connectivity Experience
+  properties:
+  - type: OpenAPI
+    url: openapi/extreme-networks-copilot-connectivity-experience-api-openapi.yml
+  - type: Documentation
+    url: https://developer.extremecloudiq.com/documentation/
+  - type: APIReference
+    url: https://extremecloudiq.com/api-docs/api-reference.html
+  - type: SourceOpenAPI
+    url: >-
+      https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI-Specification/blob/main/xcloudiq-openapi.yaml
+  - type: SwaggerUI
+    url: https://api.extremecloudiq.com/swagger-ui/index.html
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Python
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Java
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Go
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Javascript
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-CSharp
+  - type: PostmanCollection
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-APIs
+  - type: Signup
+    url: https://www.extremenetworks.com/cloud-networking/
+  - type: TermsOfService
+    url: https://www.extremenetworks.com/company/legal/terms-of-use/
+- aid: extreme-networks:extreme-networks-d360-api
+  name: Extreme Networks D360 API
+  description: Device 360
+  humanURL: https://developer.extremecloudiq.com/
+  baseURL: https://api.extremecloudiq.com
+  tags:
+  - D360
+  properties:
+  - type: OpenAPI
+    url: openapi/extreme-networks-d360-api-openapi.yml
+  - type: Documentation
+    url: https://developer.extremecloudiq.com/documentation/
+  - type: APIReference
+    url: https://extremecloudiq.com/api-docs/api-reference.html
+  - type: SourceOpenAPI
+    url: >-
+      https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI-Specification/blob/main/xcloudiq-openapi.yaml
+  - type: SwaggerUI
+    url: https://api.extremecloudiq.com/swagger-ui/index.html
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Python
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Java
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Go
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Javascript
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-CSharp
+  - type: PostmanCollection
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-APIs
+  - type: Signup
+    url: https://www.extremenetworks.com/cloud-networking/
+  - type: TermsOfService
+    url: https://www.extremenetworks.com/company/legal/terms-of-use/
+- aid: extreme-networks:extreme-networks-dashboard-api
+  name: Extreme Networks Dashboard API
+  description: Device and client health and status/dashboard
+  humanURL: https://developer.extremecloudiq.com/
+  baseURL: https://api.extremecloudiq.com
+  tags:
+  - Dashboard
+  properties:
+  - type: OpenAPI
+    url: openapi/extreme-networks-dashboard-api-openapi.yml
+  - type: Documentation
+    url: https://developer.extremecloudiq.com/documentation/
+  - type: APIReference
+    url: https://extremecloudiq.com/api-docs/api-reference.html
+  - type: SourceOpenAPI
+    url: >-
+      https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI-Specification/blob/main/xcloudiq-openapi.yaml
+  - type: SwaggerUI
+    url: https://api.extremecloudiq.com/swagger-ui/index.html
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Python
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Java
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Go
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Javascript
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-CSharp
+  - type: PostmanCollection
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-APIs
+  - type: Signup
+    url: https://www.extremenetworks.com/cloud-networking/
+  - type: TermsOfService
+    url: https://www.extremenetworks.com/company/legal/terms-of-use/
+- aid: extreme-networks:extreme-networks-dashboard-wired-client-health-api
+  name: Extreme Networks Dashboard - Wired Client Health API
+  description: Client dashboard
+  humanURL: https://developer.extremecloudiq.com/
+  baseURL: https://api.extremecloudiq.com
+  tags:
+  - Dashboard - Wired Client Health
+  properties:
+  - type: OpenAPI
+    url: openapi/extreme-networks-dashboard-wired-client-health-api-openapi.yml
+  - type: Documentation
+    url: https://developer.extremecloudiq.com/documentation/
+  - type: APIReference
+    url: https://extremecloudiq.com/api-docs/api-reference.html
+  - type: SourceOpenAPI
+    url: >-
+      https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI-Specification/blob/main/xcloudiq-openapi.yaml
+  - type: SwaggerUI
+    url: https://api.extremecloudiq.com/swagger-ui/index.html
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Python
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Java
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Go
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Javascript
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-CSharp
+  - type: PostmanCollection
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-APIs
+  - type: Signup
+    url: https://www.extremenetworks.com/cloud-networking/
+  - type: TermsOfService
+    url: https://www.extremenetworks.com/company/legal/terms-of-use/
+- aid: extreme-networks:extreme-networks-dashboard-wired-device-health-api
+  name: Extreme Networks Dashboard - Wired Device Health API
+  description: Device dashboard
+  humanURL: https://developer.extremecloudiq.com/
+  baseURL: https://api.extremecloudiq.com
+  tags:
+  - Dashboard - Wired Device Health
+  properties:
+  - type: OpenAPI
+    url: openapi/extreme-networks-dashboard-wired-device-health-api-openapi.yml
+  - type: Documentation
+    url: https://developer.extremecloudiq.com/documentation/
+  - type: APIReference
+    url: https://extremecloudiq.com/api-docs/api-reference.html
+  - type: SourceOpenAPI
+    url: >-
+      https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI-Specification/blob/main/xcloudiq-openapi.yaml
+  - type: SwaggerUI
+    url: https://api.extremecloudiq.com/swagger-ui/index.html
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Python
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Java
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Go
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Javascript
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-CSharp
+  - type: PostmanCollection
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-APIs
+  - type: Signup
+    url: https://www.extremenetworks.com/cloud-networking/
+  - type: TermsOfService
+    url: https://www.extremenetworks.com/company/legal/terms-of-use/
+- aid: extreme-networks:extreme-networks-dashboard-wired-usage-and-capacity-api
+  name: Extreme Networks Dashboard - Wired Usage and Capacity API
+  description: Wired Usage and Capacity
+  humanURL: https://developer.extremecloudiq.com/
+  baseURL: https://api.extremecloudiq.com
+  tags:
+  - Dashboard - Wired Usage and Capacity
+  properties:
+  - type: OpenAPI
+    url: openapi/extreme-networks-dashboard-wired-usage-and-capacity-api-openapi.yml
+  - type: Documentation
+    url: https://developer.extremecloudiq.com/documentation/
+  - type: APIReference
+    url: https://extremecloudiq.com/api-docs/api-reference.html
+  - type: SourceOpenAPI
+    url: >-
+      https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI-Specification/blob/main/xcloudiq-openapi.yaml
+  - type: SwaggerUI
+    url: https://api.extremecloudiq.com/swagger-ui/index.html
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Python
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Java
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Go
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Javascript
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-CSharp
+  - type: PostmanCollection
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-APIs
+  - type: Signup
+    url: https://www.extremenetworks.com/cloud-networking/
+  - type: TermsOfService
+    url: https://www.extremenetworks.com/company/legal/terms-of-use/
+- aid: extreme-networks:extreme-networks-dashboard-wireless-client-health-api
+  name: Extreme Networks Dashboard - Wireless Client Health API
+  description: Client dashboard
+  humanURL: https://developer.extremecloudiq.com/
+  baseURL: https://api.extremecloudiq.com
+  tags:
+  - Dashboard - Wireless Client Health
+  properties:
+  - type: OpenAPI
+    url: openapi/extreme-networks-dashboard-wireless-client-health-api-openapi.yml
+  - type: Documentation
+    url: https://developer.extremecloudiq.com/documentation/
+  - type: APIReference
+    url: https://extremecloudiq.com/api-docs/api-reference.html
+  - type: SourceOpenAPI
+    url: >-
+      https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI-Specification/blob/main/xcloudiq-openapi.yaml
+  - type: SwaggerUI
+    url: https://api.extremecloudiq.com/swagger-ui/index.html
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Python
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Java
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Go
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Javascript
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-CSharp
+  - type: PostmanCollection
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-APIs
+  - type: Signup
+    url: https://www.extremenetworks.com/cloud-networking/
+  - type: TermsOfService
+    url: https://www.extremenetworks.com/company/legal/terms-of-use/
+- aid: extreme-networks:extreme-networks-dashboard-wireless-device-health-api
+  name: Extreme Networks Dashboard - Wireless Device Health API
+  description: Device dashboard
+  humanURL: https://developer.extremecloudiq.com/
+  baseURL: https://api.extremecloudiq.com
+  tags:
+  - Dashboard - Wireless Device Health
+  properties:
+  - type: OpenAPI
+    url: openapi/extreme-networks-dashboard-wireless-device-health-api-openapi.yml
+  - type: Documentation
+    url: https://developer.extremecloudiq.com/documentation/
+  - type: APIReference
+    url: https://extremecloudiq.com/api-docs/api-reference.html
+  - type: SourceOpenAPI
+    url: >-
+      https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI-Specification/blob/main/xcloudiq-openapi.yaml
+  - type: SwaggerUI
+    url: https://api.extremecloudiq.com/swagger-ui/index.html
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Python
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Java
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Go
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Javascript
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-CSharp
+  - type: PostmanCollection
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-APIs
+  - type: Signup
+    url: https://www.extremenetworks.com/cloud-networking/
+  - type: TermsOfService
+    url: https://www.extremenetworks.com/company/legal/terms-of-use/
+- aid: extreme-networks:extreme-networks-dashboard-wireless-usage-and-capacity-api
+  name: Extreme Networks Dashboard - Wireless Usage and Capacity API
+  description: Usage and capacity dashboard
+  humanURL: https://developer.extremecloudiq.com/
+  baseURL: https://api.extremecloudiq.com
+  tags:
+  - Dashboard - Wireless Usage and Capacity
+  properties:
+  - type: OpenAPI
+    url: openapi/extreme-networks-dashboard-wireless-usage-and-capacity-api-openapi.yml
+  - type: Documentation
+    url: https://developer.extremecloudiq.com/documentation/
+  - type: APIReference
+    url: https://extremecloudiq.com/api-docs/api-reference.html
+  - type: SourceOpenAPI
+    url: >-
+      https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI-Specification/blob/main/xcloudiq-openapi.yaml
+  - type: SwaggerUI
+    url: https://api.extremecloudiq.com/swagger-ui/index.html
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Python
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Java
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Go
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Javascript
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-CSharp
+  - type: PostmanCollection
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-APIs
+  - type: Signup
+    url: https://www.extremenetworks.com/cloud-networking/
+  - type: TermsOfService
+    url: https://www.extremenetworks.com/company/legal/terms-of-use/
+- aid: extreme-networks:extreme-networks-device-api
+  name: Extreme Networks Device API
+  description: 'Supported device platforms: Cloud Engine, IQ Engine, WiNG, VOSS, EXOS...'
+  humanURL: https://developer.extremecloudiq.com/
+  baseURL: https://api.extremecloudiq.com
+  tags:
+  - Device
+  properties:
+  - type: OpenAPI
+    url: openapi/extreme-networks-device-api-openapi.yml
+  - type: Documentation
+    url: https://developer.extremecloudiq.com/documentation/
+  - type: APIReference
+    url: https://extremecloudiq.com/api-docs/api-reference.html
+  - type: SourceOpenAPI
+    url: >-
+      https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI-Specification/blob/main/xcloudiq-openapi.yaml
+  - type: SwaggerUI
+    url: https://api.extremecloudiq.com/swagger-ui/index.html
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Python
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Java
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Go
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Javascript
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-CSharp
+  - type: PostmanCollection
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-APIs
+  - type: Signup
+    url: https://www.extremenetworks.com/cloud-networking/
+  - type: TermsOfService
+    url: https://www.extremenetworks.com/company/legal/terms-of-use/
+- aid: extreme-networks:extreme-networks-essentials-extremelocation-api
+  name: Extreme Networks Essentials - ExtremeLocation API
+  description: The ExtremeLocation and Analytics API
+  humanURL: https://developer.extremecloudiq.com/
+  baseURL: https://api.extremecloudiq.com
+  tags:
+  - Essentials - ExtremeLocation
+  properties:
+  - type: OpenAPI
+    url: openapi/extreme-networks-essentials-extremelocation-api-openapi.yml
+  - type: Documentation
+    url: https://developer.extremecloudiq.com/documentation/
+  - type: APIReference
+    url: https://extremecloudiq.com/api-docs/api-reference.html
+  - type: SourceOpenAPI
+    url: >-
+      https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI-Specification/blob/main/xcloudiq-openapi.yaml
+  - type: SwaggerUI
+    url: https://api.extremecloudiq.com/swagger-ui/index.html
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Python
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Java
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Go
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Javascript
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-CSharp
+  - type: PostmanCollection
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-APIs
+  - type: Signup
+    url: https://www.extremenetworks.com/cloud-networking/
+  - type: TermsOfService
+    url: https://www.extremenetworks.com/company/legal/terms-of-use/
+- aid: extreme-networks:extreme-networks-geo-view-api
+  name: Extreme Networks Geo-View API
+  description: Geo View
+  humanURL: https://developer.extremecloudiq.com/
+  baseURL: https://api.extremecloudiq.com
+  tags:
+  - Geo-View
+  properties:
+  - type: OpenAPI
+    url: openapi/extreme-networks-geo-view-api-openapi.yml
+  - type: Documentation
+    url: https://developer.extremecloudiq.com/documentation/
+  - type: APIReference
+    url: https://extremecloudiq.com/api-docs/api-reference.html
+  - type: SourceOpenAPI
+    url: >-
+      https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI-Specification/blob/main/xcloudiq-openapi.yaml
+  - type: SwaggerUI
+    url: https://api.extremecloudiq.com/swagger-ui/index.html
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Python
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Java
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Go
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Javascript
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-CSharp
+  - type: PostmanCollection
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-APIs
+  - type: Signup
+    url: https://www.extremenetworks.com/cloud-networking/
+  - type: TermsOfService
+    url: https://www.extremenetworks.com/company/legal/terms-of-use/
+- aid: extreme-networks:extreme-networks-hiq-api
+  name: Extreme Networks HIQ API
+  description: Hierarchical ExtremeCloud IQ
+  humanURL: https://developer.extremecloudiq.com/
+  baseURL: https://api.extremecloudiq.com
+  tags:
+  - HIQ
+  properties:
+  - type: OpenAPI
+    url: openapi/extreme-networks-hiq-api-openapi.yml
+  - type: Documentation
+    url: https://developer.extremecloudiq.com/documentation/
+  - type: APIReference
+    url: https://extremecloudiq.com/api-docs/api-reference.html
+  - type: SourceOpenAPI
+    url: >-
+      https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI-Specification/blob/main/xcloudiq-openapi.yaml
+  - type: SwaggerUI
+    url: https://api.extremecloudiq.com/swagger-ui/index.html
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Python
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Java
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Go
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Javascript
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-CSharp
+  - type: PostmanCollection
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-APIs
+  - type: Signup
+    url: https://www.extremenetworks.com/cloud-networking/
+  - type: TermsOfService
+    url: https://www.extremenetworks.com/company/legal/terms-of-use/
+- aid: extreme-networks:extreme-networks-location-api
+  name: Extreme Networks Location API
+  description: Hierarchical locations and floor plan
+  humanURL: https://developer.extremecloudiq.com/
+  baseURL: https://api.extremecloudiq.com
+  tags:
+  - Location
+  properties:
+  - type: OpenAPI
+    url: openapi/extreme-networks-location-api-openapi.yml
+  - type: Documentation
+    url: https://developer.extremecloudiq.com/documentation/
+  - type: APIReference
+    url: https://extremecloudiq.com/api-docs/api-reference.html
+  - type: SourceOpenAPI
+    url: >-
+      https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI-Specification/blob/main/xcloudiq-openapi.yaml
+  - type: SwaggerUI
+    url: https://api.extremecloudiq.com/swagger-ui/index.html
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Python
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Java
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Go
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Javascript
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-CSharp
+  - type: PostmanCollection
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-APIs
+  - type: Signup
+    url: https://www.extremenetworks.com/cloud-networking/
+  - type: TermsOfService
+    url: https://www.extremenetworks.com/company/legal/terms-of-use/
+- aid: extreme-networks:extreme-networks-log-api
+  name: Extreme Networks Log API
+  description: Access all kinds of logs in ExtremeCloud IQ
+  humanURL: https://developer.extremecloudiq.com/
+  baseURL: https://api.extremecloudiq.com
+  tags:
+  - Log
+  properties:
+  - type: OpenAPI
+    url: openapi/extreme-networks-log-api-openapi.yml
+  - type: Documentation
+    url: https://developer.extremecloudiq.com/documentation/
+  - type: APIReference
+    url: https://extremecloudiq.com/api-docs/api-reference.html
+  - type: SourceOpenAPI
+    url: >-
+      https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI-Specification/blob/main/xcloudiq-openapi.yaml
+  - type: SwaggerUI
+    url: https://api.extremecloudiq.com/swagger-ui/index.html
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Python
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Java
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Go
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Javascript
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-CSharp
+  - type: PostmanCollection
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-APIs
+  - type: Signup
+    url: https://www.extremenetworks.com/cloud-networking/
+  - type: TermsOfService
+    url: https://www.extremenetworks.com/company/legal/terms-of-use/
+- aid: extreme-networks:extreme-networks-misc-api
+  name: Extreme Networks Misc API
+  description: Metadata - Country/...
+  humanURL: https://developer.extremecloudiq.com/
+  baseURL: https://api.extremecloudiq.com
+  tags:
+  - Misc
+  properties:
+  - type: OpenAPI
+    url: openapi/extreme-networks-misc-api-openapi.yml
+  - type: Documentation
+    url: https://developer.extremecloudiq.com/documentation/
+  - type: APIReference
+    url: https://extremecloudiq.com/api-docs/api-reference.html
+  - type: SourceOpenAPI
+    url: >-
+      https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI-Specification/blob/main/xcloudiq-openapi.yaml
+  - type: SwaggerUI
+    url: https://api.extremecloudiq.com/swagger-ui/index.html
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Python
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Java
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Go
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Javascript
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-CSharp
+  - type: PostmanCollection
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-APIs
+  - type: Signup
+    url: https://www.extremenetworks.com/cloud-networking/
+  - type: TermsOfService
+    url: https://www.extremenetworks.com/company/legal/terms-of-use/
+- aid: extreme-networks:extreme-networks-network-policy-api
+  name: Extreme Networks Network Policy API
+  description: Unified configuration management for wireless and wired network devices
+  humanURL: https://developer.extremecloudiq.com/
+  baseURL: https://api.extremecloudiq.com
+  tags:
+  - Network Policy
+  properties:
+  - type: OpenAPI
+    url: openapi/extreme-networks-network-policy-api-openapi.yml
+  - type: Documentation
+    url: https://developer.extremecloudiq.com/documentation/
+  - type: APIReference
+    url: https://extremecloudiq.com/api-docs/api-reference.html
+  - type: SourceOpenAPI
+    url: >-
+      https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI-Specification/blob/main/xcloudiq-openapi.yaml
+  - type: SwaggerUI
+    url: https://api.extremecloudiq.com/swagger-ui/index.html
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Python
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Java
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Go
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Javascript
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-CSharp
+  - type: PostmanCollection
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-APIs
+  - type: Signup
+    url: https://www.extremenetworks.com/cloud-networking/
+  - type: TermsOfService
+    url: https://www.extremenetworks.com/company/legal/terms-of-use/
+- aid: extreme-networks:extreme-networks-network-scorecard-api
+  name: Extreme Networks Network Scorecard API
+  description: >-
+    The network scorecard containing device, client, network, Wi-Fi, services health of the selected location.
+  humanURL: https://developer.extremecloudiq.com/
+  baseURL: https://api.extremecloudiq.com
+  tags:
+  - Network Scorecard
+  properties:
+  - type: OpenAPI
+    url: openapi/extreme-networks-network-scorecard-api-openapi.yml
+  - type: Documentation
+    url: https://developer.extremecloudiq.com/documentation/
+  - type: APIReference
+    url: https://extremecloudiq.com/api-docs/api-reference.html
+  - type: SourceOpenAPI
+    url: >-
+      https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI-Specification/blob/main/xcloudiq-openapi.yaml
+  - type: SwaggerUI
+    url: https://api.extremecloudiq.com/swagger-ui/index.html
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Python
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Java
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Go
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Javascript
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-CSharp
+  - type: PostmanCollection
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-APIs
+  - type: Signup
+    url: https://www.extremenetworks.com/cloud-networking/
+  - type: TermsOfService
+    url: https://www.extremenetworks.com/company/legal/terms-of-use/
+- aid: extreme-networks:extreme-networks-ng-reports-api
+  name: Extreme Networks NG Reports API
+  description: The NG Reports - On Demand Analytics and Scheduled Reporting
+  humanURL: https://developer.extremecloudiq.com/
+  baseURL: https://api.extremecloudiq.com
+  tags:
+  - NG Reports
+  properties:
+  - type: OpenAPI
+    url: openapi/extreme-networks-ng-reports-api-openapi.yml
+  - type: Documentation
+    url: https://developer.extremecloudiq.com/documentation/
+  - type: APIReference
+    url: https://extremecloudiq.com/api-docs/api-reference.html
+  - type: SourceOpenAPI
+    url: >-
+      https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI-Specification/blob/main/xcloudiq-openapi.yaml
+  - type: SwaggerUI
+    url: https://api.extremecloudiq.com/swagger-ui/index.html
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Python
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Java
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Go
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Javascript
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-CSharp
+  - type: PostmanCollection
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-APIs
+  - type: Signup
+    url: https://www.extremenetworks.com/cloud-networking/
+  - type: TermsOfService
+    url: https://www.extremenetworks.com/company/legal/terms-of-use/
+- aid: extreme-networks:extreme-networks-ng-scheduled-reports-api
+  name: Extreme Networks NG Scheduled Reports API
+  description: The NG Reports - Scheduled Reporting
+  humanURL: https://developer.extremecloudiq.com/
+  baseURL: https://api.extremecloudiq.com
+  tags:
+  - NG Scheduled Reports
+  properties:
+  - type: OpenAPI
+    url: openapi/extreme-networks-ng-scheduled-reports-api-openapi.yml
+  - type: Documentation
+    url: https://developer.extremecloudiq.com/documentation/
+  - type: APIReference
+    url: https://extremecloudiq.com/api-docs/api-reference.html
+  - type: SourceOpenAPI
+    url: >-
+      https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI-Specification/blob/main/xcloudiq-openapi.yaml
+  - type: SwaggerUI
+    url: https://api.extremecloudiq.com/swagger-ui/index.html
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Python
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Java
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Go
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Javascript
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-CSharp
+  - type: PostmanCollection
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-APIs
+  - type: Signup
+    url: https://www.extremenetworks.com/cloud-networking/
+  - type: TermsOfService
+    url: https://www.extremenetworks.com/company/legal/terms-of-use/
+- aid: extreme-networks:extreme-networks-notification-api
+  name: Extreme Networks Notification API
+  description: Push events/logs to users via Webhook, Email, SMS, etc.
+  humanURL: https://developer.extremecloudiq.com/
+  baseURL: https://api.extremecloudiq.com
+  tags:
+  - Notification
+  properties:
+  - type: OpenAPI
+    url: openapi/extreme-networks-notification-api-openapi.yml
+  - type: Documentation
+    url: https://developer.extremecloudiq.com/documentation/
+  - type: APIReference
+    url: https://extremecloudiq.com/api-docs/api-reference.html
+  - type: SourceOpenAPI
+    url: >-
+      https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI-Specification/blob/main/xcloudiq-openapi.yaml
+  - type: SwaggerUI
+    url: https://api.extremecloudiq.com/swagger-ui/index.html
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Python
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Java
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Go
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Javascript
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-CSharp
+  - type: PostmanCollection
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-APIs
+  - type: Signup
+    url: https://www.extremenetworks.com/cloud-networking/
+  - type: TermsOfService
+    url: https://www.extremenetworks.com/company/legal/terms-of-use/
+- aid: extreme-networks:extreme-networks-operation-api
+  name: Extreme Networks Operation API
+  description: Long-Running Operations (LRO) management for asynchronous APIs
+  humanURL: https://developer.extremecloudiq.com/
+  baseURL: https://api.extremecloudiq.com
+  tags:
+  - Operation
+  properties:
+  - type: OpenAPI
+    url: openapi/extreme-networks-operation-api-openapi.yml
+  - type: Documentation
+    url: https://developer.extremecloudiq.com/documentation/
+  - type: APIReference
+    url: https://extremecloudiq.com/api-docs/api-reference.html
+  - type: SourceOpenAPI
+    url: >-
+      https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI-Specification/blob/main/xcloudiq-openapi.yaml
+  - type: SwaggerUI
+    url: https://api.extremecloudiq.com/swagger-ui/index.html
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Python
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Java
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Go
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Javascript
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-CSharp
+  - type: PostmanCollection
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-APIs
+  - type: Signup
+    url: https://www.extremenetworks.com/cloud-networking/
+  - type: TermsOfService
+    url: https://www.extremenetworks.com/company/legal/terms-of-use/
+- aid: extreme-networks:extreme-networks-packetcaptures-api
+  name: Extreme Networks PacketCaptures API
+  description: Packet capture sessions in ExtremeCloud IQ
+  humanURL: https://developer.extremecloudiq.com/
+  baseURL: https://api.extremecloudiq.com
+  tags:
+  - PacketCaptures
+  properties:
+  - type: OpenAPI
+    url: openapi/extreme-networks-packetcaptures-api-openapi.yml
+  - type: Documentation
+    url: https://developer.extremecloudiq.com/documentation/
+  - type: APIReference
+    url: https://extremecloudiq.com/api-docs/api-reference.html
+  - type: SourceOpenAPI
+    url: >-
+      https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI-Specification/blob/main/xcloudiq-openapi.yaml
+  - type: SwaggerUI
+    url: https://api.extremecloudiq.com/swagger-ui/index.html
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Python
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Java
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Go
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Javascript
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-CSharp
+  - type: PostmanCollection
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-APIs
+  - type: Signup
+    url: https://www.extremenetworks.com/cloud-networking/
+  - type: TermsOfService
+    url: https://www.extremenetworks.com/company/legal/terms-of-use/
+- aid: extreme-networks:extreme-networks-rtts-api
+  name: Extreme Networks RTTS API
+  description: RTT sessions in ExtremeCloud IQ
+  humanURL: https://developer.extremecloudiq.com/
+  baseURL: https://api.extremecloudiq.com
+  tags:
+  - RTTS
+  properties:
+  - type: OpenAPI
+    url: openapi/extreme-networks-rtts-api-openapi.yml
+  - type: Documentation
+    url: https://developer.extremecloudiq.com/documentation/
+  - type: APIReference
+    url: https://extremecloudiq.com/api-docs/api-reference.html
+  - type: SourceOpenAPI
+    url: >-
+      https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI-Specification/blob/main/xcloudiq-openapi.yaml
+  - type: SwaggerUI
+    url: https://api.extremecloudiq.com/swagger-ui/index.html
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Python
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Java
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Go
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Javascript
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-CSharp
+  - type: PostmanCollection
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-APIs
+  - type: Signup
+    url: https://www.extremenetworks.com/cloud-networking/
+  - type: TermsOfService
+    url: https://www.extremenetworks.com/company/legal/terms-of-use/
+- aid: extreme-networks:extreme-networks-switch-inspector-panel-api
+  name: Extreme Networks Switch Inspector Panel API
+  description: Switch Inspector Panel
+  humanURL: https://developer.extremecloudiq.com/
+  baseURL: https://api.extremecloudiq.com
+  tags:
+  - Switch Inspector Panel
+  properties:
+  - type: OpenAPI
+    url: openapi/extreme-networks-switch-inspector-panel-api-openapi.yml
+  - type: Documentation
+    url: https://developer.extremecloudiq.com/documentation/
+  - type: APIReference
+    url: https://extremecloudiq.com/api-docs/api-reference.html
+  - type: SourceOpenAPI
+    url: >-
+      https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI-Specification/blob/main/xcloudiq-openapi.yaml
+  - type: SwaggerUI
+    url: https://api.extremecloudiq.com/swagger-ui/index.html
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Python
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Java
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Go
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Javascript
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-CSharp
+  - type: PostmanCollection
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-APIs
+  - type: Signup
+    url: https://www.extremenetworks.com/cloud-networking/
+  - type: TermsOfService
+    url: https://www.extremenetworks.com/company/legal/terms-of-use/
+- aid: extreme-networks:extreme-networks-thread-api
+  name: Extreme Networks Thread API
+  description: Thread Networks in ExtremeCloud IQ
+  humanURL: https://developer.extremecloudiq.com/
+  baseURL: https://api.extremecloudiq.com
+  tags:
+  - Thread
+  properties:
+  - type: OpenAPI
+    url: openapi/extreme-networks-thread-api-openapi.yml
+  - type: Documentation
+    url: https://developer.extremecloudiq.com/documentation/
+  - type: APIReference
+    url: https://extremecloudiq.com/api-docs/api-reference.html
+  - type: SourceOpenAPI
+    url: >-
+      https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI-Specification/blob/main/xcloudiq-openapi.yaml
+  - type: SwaggerUI
+    url: https://api.extremecloudiq.com/swagger-ui/index.html
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Python
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Java
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Go
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Javascript
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-CSharp
+  - type: PostmanCollection
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-APIs
+  - type: Signup
+    url: https://www.extremenetworks.com/cloud-networking/
+  - type: TermsOfService
+    url: https://www.extremenetworks.com/company/legal/terms-of-use/
+- aid: extreme-networks:extreme-networks-universal-compute-platform-api
+  name: Extreme Networks Universal Compute Platform API
+  description: The Universal Compute Platform (UCP) API
+  humanURL: https://developer.extremecloudiq.com/
+  baseURL: https://api.extremecloudiq.com
+  tags:
+  - Universal Compute Platform
+  properties:
+  - type: OpenAPI
+    url: openapi/extreme-networks-universal-compute-platform-api-openapi.yml
+  - type: Documentation
+    url: https://developer.extremecloudiq.com/documentation/
+  - type: APIReference
+    url: https://extremecloudiq.com/api-docs/api-reference.html
+  - type: SourceOpenAPI
+    url: >-
+      https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI-Specification/blob/main/xcloudiq-openapi.yaml
+  - type: SwaggerUI
+    url: https://api.extremecloudiq.com/swagger-ui/index.html
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Python
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Java
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Go
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Javascript
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-CSharp
+  - type: PostmanCollection
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-APIs
+  - type: Signup
+    url: https://www.extremenetworks.com/cloud-networking/
+  - type: TermsOfService
+    url: https://www.extremenetworks.com/company/legal/terms-of-use/
+- aid: extreme-networks:extreme-networks-user-api
+  name: Extreme Networks User API
+  description: Local and external user management in ExtremeCloud IQ account
+  humanURL: https://developer.extremecloudiq.com/
+  baseURL: https://api.extremecloudiq.com
+  tags:
+  - User
+  properties:
+  - type: OpenAPI
+    url: openapi/extreme-networks-user-api-openapi.yml
+  - type: Documentation
+    url: https://developer.extremecloudiq.com/documentation/
+  - type: APIReference
+    url: https://extremecloudiq.com/api-docs/api-reference.html
+  - type: SourceOpenAPI
+    url: >-
+      https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI-Specification/blob/main/xcloudiq-openapi.yaml
+  - type: SwaggerUI
+    url: https://api.extremecloudiq.com/swagger-ui/index.html
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Python
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Java
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Go
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-Javascript
+  - type: SDKs
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-SDK-CSharp
+  - type: PostmanCollection
+    url: https://github.com/extremenetworks/ExtremeCloudIQ-APIs
+  - type: Signup
+    url: https://www.extremenetworks.com/cloud-networking/
+  - type: TermsOfService
+    url: https://www.extremenetworks.com/company/legal/terms-of-use/
 common:
   - type: AgenticAccess
     url: agentic-access/extreme-networks-agentic-access.yml
