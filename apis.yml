@@ -1739,6 +1739,11 @@ apis:
   - type: TermsOfService
     url: https://www.extremenetworks.com/company/legal/terms-of-use/
 common:
+  - type: IssueTracker
+    url: https://github.com/extremenetworks/ansible_collections.extreme.exos/issues
+  - type: License
+    name: GPL-3.0
+    url: https://github.com/extremenetworks/ansible_collections.extreme.exos/blob/master/LICENSE
   - type: AgenticAccess
     url: agentic-access/extreme-networks-agentic-access.yml
   - type: DomainSecurity
