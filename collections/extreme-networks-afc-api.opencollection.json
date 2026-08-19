@@ -1,0 +1,436 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ExtremeCloud IQ Account AFC API",
+    "version": "25.9.0-36"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "AFC",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get list of AFC Servers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/afcserver",
+            "params": [
+              {
+                "name": "ownerId",
+                "value": "",
+                "type": "query",
+                "description": "The Owner Id"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get list of AFC Servers."
+        },
+        {
+          "info": {
+            "name": "Get AFC server Statistics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/afcserver/statistics/:server_id",
+            "params": [
+              {
+                "name": "server_id",
+                "value": "",
+                "type": "path",
+                "description": "The Id of the server"
+              },
+              {
+                "name": "startTime",
+                "value": "",
+                "type": "query",
+                "description": "Query Start Time"
+              },
+              {
+                "name": "endTime",
+                "value": "",
+                "type": "query",
+                "description": "Query End Time"
+              },
+              {
+                "name": "precision",
+                "value": "",
+                "type": "query",
+                "description": "precision specified in seconds"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get AFC server Statistics."
+        },
+        {
+          "info": {
+            "name": "Get AP Interface status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/ap/afc/interface/details/:sn",
+            "params": [
+              {
+                "name": "sn",
+                "value": "",
+                "type": "path",
+                "description": "The serial number of an Ap."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get AP Interface status info."
+        },
+        {
+          "info": {
+            "name": "AFC Recalculate Geolocation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/afc/recalculateSite/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The device id"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Recalculate geolocation for site."
+        },
+        {
+          "info": {
+            "name": "Request FTM data for APs",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/afc/aps/reportFtm",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Request FTM data for a list of Access Points."
+        },
+        {
+          "info": {
+            "name": "AFC AP status Summary",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/afc/aps/status/summary",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "AFC Status summary of AP channels and powers query."
+        },
+        {
+          "info": {
+            "name": "Get AFC Floor Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/floor/afc/details",
+            "params": [
+              {
+                "name": "ownerId",
+                "value": "",
+                "type": "query",
+                "description": "The Owner Id"
+              },
+              {
+                "name": "floorId",
+                "value": "",
+                "type": "query",
+                "description": "The Id of the floor"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve AFC related floor height and accuracy data for a specific floor."
+        },
+        {
+          "info": {
+            "name": "Add AFC Floor Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/floor/afc/details",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Create new AFC related floor height and accuracy data for a floor."
+        },
+        {
+          "info": {
+            "name": "Update AFC Floor Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.extremecloudiq.com/floor/afc/details",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Update existing AFC related floor height and accuracy data for a floor."
+        },
+        {
+          "info": {
+            "name": "Query AFC APs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/aps/afc/query",
+            "params": [
+              {
+                "name": "ownerId",
+                "value": "",
+                "type": "query",
+                "description": "The Owner Id"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve AFC summary information for access points including status, geolocation, and spectrum mismatch data."
+        },
+        {
+          "info": {
+            "name": "Query AFC APs",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/aps/afc/query",
+            "params": [
+              {
+                "name": "ownerId",
+                "value": "",
+                "type": "query",
+                "description": "The Owner Id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve AFC summary information for access points including status, geolocation, and spectrum mismatch data."
+        },
+        {
+          "info": {
+            "name": "Get AFC AP Diagnostics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/ap/afc/diagnostics/:id",
+            "params": [
+              {
+                "name": "ownerId",
+                "value": "",
+                "type": "query",
+                "description": "The Owner Id"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "device id"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve AFC diagnostics information."
+        },
+        {
+          "info": {
+            "name": "Get AFC Floor Report",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/ap/afc/floorReport/:deviceId",
+            "params": [
+              {
+                "name": "deviceId",
+                "value": "",
+                "type": "path",
+                "description": "Device ID"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieves the AFC geolocation floor report for a specific device."
+        },
+        {
+          "info": {
+            "name": "Request Manual Spectrum for device(s)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/aps/afc/update",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Manual Spectrum request for device(s)."
+        },
+        {
+          "info": {
+            "name": "Get AFC Site Schedule",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/site/afc/schedule",
+            "params": [
+              {
+                "name": "ownerId",
+                "value": "",
+                "type": "query",
+                "description": "The Owner Id"
+              },
+              {
+                "name": "folderId",
+                "value": "",
+                "type": "query",
+                "description": "The folder id for the location"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get AFC site update settings."
+        },
+        {
+          "info": {
+            "name": "Create AFC Site Schedule",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/site/afc/schedule",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Create AFC Site Schedule."
+        },
+        {
+          "info": {
+            "name": "Update AFC SiteSchedule",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.extremecloudiq.com/site/afc/schedule",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Update AFC SiteSchedule."
+        },
+        {
+          "info": {
+            "name": "Find potential AP candidates to be used as anchor",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/afc/mobileapp/apcandidates",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Find potential AP candidates to be used as anchor."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

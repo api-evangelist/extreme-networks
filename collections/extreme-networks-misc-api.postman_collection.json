@@ -1,0 +1,407 @@
+{
+  "item": [
+    {
+      "id": "47a8fd3e-d8fd-4fa1-a6ac-df1dac2b413e",
+      "name": "Misc",
+      "description": {
+        "content": "Metadata - Country/...",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6f53c2d2-851c-44a5-a616-f3a25337695e",
+          "name": "Get country list",
+          "request": {
+            "name": "Get country list",
+            "description": {
+              "content": "Get list of countries and country codes.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "countries"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "08777c06-7e84-455a-86fd-f7ccd0269174",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "countries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"alpha2_code\": \"string\",\n  \"country_code\": 753,\n  \"short_name\": \"string\",\n  \"dial_code\": \"string\",\n  \"internal_country_codes\": [\n    5694,\n    1152\n  ],\n  \"name_en\": \"string\",\n  \"name_jp\": \"string\",\n  \"name_fr\": \"string\",\n  \"name_de\": \"string\",\n  \"name_it\": \"string\",\n  \"name_pt\": \"string\",\n  \"name_zh\": \"string\",\n  \"name_es\": \"string\",\n  \"name_ko\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "241153e6-4428-46d8-912a-ed5fc5ddcf69",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "countries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "20f824fe-eb30-4d3c-8541-13d35db1cbcb",
+          "name": "Validate country code",
+          "request": {
+            "name": "Validate country code",
+            "description": {
+              "content": "Validate whether the country code is a valid code or not.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "countries",
+                ":countryCode",
+                ":validate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "countryCode",
+                  "description": "(Required) The country code."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f1849ff3-0467-43c2-aaa0-820f1a808349",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "countries",
+                    ":countryCode",
+                    ":validate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "countryCode",
+                      "description": "(Required) The country code."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "true",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a4fcd4f2-4fa1-4efb-8fcd-9df5dc278ea4",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "countries",
+                    ":countryCode",
+                    ":validate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "countryCode",
+                      "description": "(Required) The country code."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "dd8e3101-d853-41aa-b66b-7fcc0536c8e8",
+          "name": "Get state list in a country",
+          "request": {
+            "name": "Get state list in a country",
+            "description": {
+              "content": "Get list of states or provinces in a country with country alpha2 code.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "countries",
+                ":countryAlpha2Code",
+                "states"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "countryAlpha2Code",
+                  "description": "(Required) The country ISO 2-letter code."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8fb6ab53-40af-496e-8554-f0cb4b950ddd",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "countries",
+                    ":countryAlpha2Code",
+                    "states"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "countryAlpha2Code",
+                      "description": "(Required) The country ISO 2-letter code."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"country_code\": \"string\",\n  \"code\": \"string\",\n  \"name\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "13f42505-c14f-4e42-b5b9-a3469d3c692b",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "countries",
+                    ":countryAlpha2Code",
+                    "states"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "countryAlpha2Code",
+                      "description": "(Required) The country ISO 2-letter code."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.extremecloudiq.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "8624553a-402d-4db4-bba8-f55dbf30d235",
+    "name": "ExtremeCloud IQ Account Misc API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "ExtremeCloud IQ™ API allows customers and partners to create solutions for the management, monitoring, and provisioning\nof any ExtremeCloud IQ™ environment.\n\nAll related resources and documentation are available at [ExtremeCloud IQ Developer Portal](https://developer.extremecloudiq.com/).\nPlease check [Get Started and Tutorial](https://developer.extremecloudiq.com/documentation/) to understand how to use the APIs.\n\nGet the [latest OpenAPI definition](https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI/blob/main/xcloudiq-openapi.yaml)\nfrom [ExtremeCloud IQ OpenAPI GitHub repository](https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI).\n\nPlease have a valid [ExtremeCloud IQ](https://extremecloudiq.com/) account before getting started.\nIf you don't have one, please [register a new account](https://www.extremenetworks.com/cloud-networking/).\n\nContact Support:\n Name: Extreme Networks Support\n Email: support@extremenetworks.com",
+      "type": "text/plain"
+    }
+  }
+}

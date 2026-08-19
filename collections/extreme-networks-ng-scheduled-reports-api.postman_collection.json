@@ -1,0 +1,2671 @@
+{
+  "item": [
+    {
+      "id": "c26b0ed0-f22e-4916-8185-81a2e4a01927",
+      "name": "NG Scheduled Reports",
+      "description": {
+        "content": "The NG Reports - Scheduled Reporting",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b2bffa1f-5caf-4516-af10-b6e7f78ba121",
+          "name": "Get Scheduled Network Summary Reports",
+          "request": {
+            "name": "Get Scheduled Network Summary Reports",
+            "description": {
+              "content": "Fetches all the scheduled Network Summary Reports.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ng-reports",
+                "scheduled",
+                "network-summary"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "keyword",
+                  "value": "<string>",
+                  "description": "The keyword to search the report file name and recipient email"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "b2a85b93-fb6c-4fa3-8f4c-4186997077cf",
+              "name": "Returns scheduled network summary reports grouped by schedule ID",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ng-reports",
+                    "scheduled",
+                    "network-summary"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "keyword",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"report_id\": 8411,\n  \"report_schedule_id\": 3962,\n  \"enable_schedule\": true,\n  \"report_runs\": [\n    {\n      \"report_run_id\": 2717,\n      \"report_run_timestamp\": 3378,\n      \"recipients_count\": 4436,\n      \"report_name\": \"string\"\n    },\n    {\n      \"report_run_id\": 7838,\n      \"report_run_timestamp\": 1531,\n      \"recipients_count\": 5001,\n      \"report_name\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b4ba4042-e884-4770-a1c7-f6a6131bc43f",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ng-reports",
+                    "scheduled",
+                    "network-summary"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "keyword",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8844ea45-11ba-48ba-aca1-a327d2223965",
+          "name": "Get Scheduled PCI Compliance Reports",
+          "request": {
+            "name": "Get Scheduled PCI Compliance Reports",
+            "description": {
+              "content": "Fetches all the scheduled PCI Compliance Reports.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ng-reports",
+                "scheduled",
+                "pci-compliance"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "keyword",
+                  "value": "<string>",
+                  "description": "The keyword to search the report file name and recipient email"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "7105d42d-e732-4711-8d0e-3940b64c563b",
+              "name": "Returns scheduled PCI compliance reports grouped by schedule ID",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ng-reports",
+                    "scheduled",
+                    "pci-compliance"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "keyword",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"report_id\": 8411,\n  \"report_schedule_id\": 3962,\n  \"enable_schedule\": true,\n  \"report_runs\": [\n    {\n      \"report_run_id\": 2717,\n      \"report_run_timestamp\": 3378,\n      \"recipients_count\": 4436,\n      \"report_name\": \"string\"\n    },\n    {\n      \"report_run_id\": 7838,\n      \"report_run_timestamp\": 1531,\n      \"recipients_count\": 5001,\n      \"report_name\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f0c72aa4-6a1f-4b4a-8078-52a46d370722",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ng-reports",
+                    "scheduled",
+                    "pci-compliance"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "keyword",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2267b42b-b7ee-4113-8d4a-051767621519",
+          "name": "Enable/Disable Report Schedule",
+          "request": {
+            "name": "Enable/Disable Report Schedule",
+            "description": {
+              "content": "Enable/Disable an existing schedule for a Report.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ng-reports",
+                "scheduled",
+                ":reportScheduleId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "enableSchedule",
+                  "value": "true",
+                  "description": "Whether the schedule is enabled"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "reportScheduleId",
+                  "description": "(Required) Unique identifier for the report schedule"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "0b2dc3ec-7031-46aa-8b96-59c668cf0f49",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ng-reports",
+                    "scheduled",
+                    ":reportScheduleId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "enableSchedule",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "reportScheduleId",
+                      "description": "(Required) Unique identifier for the report schedule"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "59aaaf90-3097-46ac-aae7-2ba1b1582cbc",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ng-reports",
+                    "scheduled",
+                    ":reportScheduleId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "enableSchedule",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "reportScheduleId",
+                      "description": "(Required) Unique identifier for the report schedule"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c3d263ed-0846-464a-8fd1-2c886b5b18b5",
+          "name": "Get Scheduled Custom Reports",
+          "request": {
+            "name": "Get Scheduled Custom Reports",
+            "description": {
+              "content": "Fetches all the schedules for Custom Reports based on frequency.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ng-reports",
+                "scheduled",
+                "custom"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number, min = 1"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Page Size, min = 1, max = 100"
+                },
+                {
+                  "disabled": false,
+                  "key": "frequency",
+                  "value": "<string>",
+                  "description": "Frequency of the report (MONTHLY, WEEKLY, DAILY)"
+                },
+                {
+                  "disabled": false,
+                  "key": "frequency",
+                  "value": "<string>",
+                  "description": "Frequency of the report (MONTHLY, WEEKLY, DAILY)"
+                },
+                {
+                  "disabled": false,
+                  "key": "keyword",
+                  "value": "<string>",
+                  "description": "The keyword to search the report name and recipient email"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "44cf6afa-ae85-4851-84a6-f34e22ec0356",
+              "name": "Returns a list of scheduled custom reports",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ng-reports",
+                    "scheduled",
+                    "custom"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "frequency",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "frequency",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "keyword",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 9681,\n  \"page\": 509,\n  \"total_count\": 7376,\n  \"total_pages\": 8029,\n  \"data\": [\n    {\n      \"report_schedule_id\": 7015,\n      \"report_id\": 563,\n      \"report_name\": \"string\",\n      \"report_description\": \"string\",\n      \"recipients_count\": 5046,\n      \"frequency\": \"WEEKLY\",\n      \"enable_schedule\": true\n    },\n    {\n      \"report_schedule_id\": 7943,\n      \"report_id\": 6736,\n      \"report_name\": \"string\",\n      \"report_description\": \"string\",\n      \"recipients_count\": 2529,\n      \"frequency\": \"MONTHLY\",\n      \"enable_schedule\": true\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e6f43276-ed72-404f-9893-697829a74c0d",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ng-reports",
+                    "scheduled",
+                    "custom"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "frequency",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "frequency",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "keyword",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7fb38e34-f0f4-4efe-a9cd-c7b43a78e058",
+          "name": "Create Schedule for Custom Report",
+          "request": {
+            "name": "Create Schedule for Custom Report",
+            "description": {
+              "content": "Creates a schedule for a Custom Report using the provided schedule ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ng-reports",
+                "scheduled",
+                "custom"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"metrics\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"report_name\": \"<string>\",\n  \"report_description\": \"<string>\",\n  \"site_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"building_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"floor_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"ssids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"bands\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"recipients\": [\n    {\n      \"email\": \"<string>\",\n      \"notifier_id\": \"<long>\"\n    },\n    {\n      \"email\": \"<string>\",\n      \"notifier_id\": \"<long>\"\n    }\n  ],\n  \"schedules\": [\n    {\n      \"enable_schedule\": true,\n      \"frequency_type\": \"<string>\",\n      \"schedule_time\": \"<string>\",\n      \"schedule_timezone\": \"<string>\",\n      \"schedule_days\": [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    },\n    {\n      \"enable_schedule\": true,\n      \"frequency_type\": \"<string>\",\n      \"schedule_time\": \"<string>\",\n      \"schedule_timezone\": \"<string>\",\n      \"schedule_days\": [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    }\n  ],\n  \"file_format\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ba3216ce-c6aa-43bb-880e-54affe423cd9",
+              "name": "Schedule created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ng-reports",
+                    "scheduled",
+                    "custom"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"metrics\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"report_name\": \"<string>\",\n  \"report_description\": \"<string>\",\n  \"site_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"building_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"floor_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"ssids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"bands\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"recipients\": [\n    {\n      \"email\": \"<string>\",\n      \"notifier_id\": \"<long>\"\n    },\n    {\n      \"email\": \"<string>\",\n      \"notifier_id\": \"<long>\"\n    }\n  ],\n  \"schedules\": [\n    {\n      \"enable_schedule\": true,\n      \"frequency_type\": \"<string>\",\n      \"schedule_time\": \"<string>\",\n      \"schedule_timezone\": \"Asia/Kolkata\",\n      \"schedule_days\": [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    },\n    {\n      \"enable_schedule\": true,\n      \"frequency_type\": \"<string>\",\n      \"schedule_time\": \"<string>\",\n      \"schedule_timezone\": \"Asia/Kolkata\",\n      \"schedule_days\": [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    }\n  ],\n  \"file_format\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"report_id\": 5383,\n  \"report_name\": \"string\",\n  \"report_description\": \"string\",\n  \"metrics\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"site_ids\": [\n    1741,\n    3954\n  ],\n  \"building_ids\": [\n    6626,\n    2440\n  ],\n  \"floor_ids\": [\n    7881,\n    1080\n  ],\n  \"ssids\": [\n    \"string\",\n    \"string\"\n  ],\n  \"bands\": [\n    \"6GHz\",\n    \"5GHz\"\n  ],\n  \"recipients\": [\n    {\n      \"email\": \"string\",\n      \"notifier_id\": 563\n    },\n    {\n      \"email\": \"string\",\n      \"notifier_id\": 8593\n    }\n  ],\n  \"schedules\": [\n    {\n      \"enable_schedule\": true,\n      \"report_schedule_id\": 7963,\n      \"frequency_type\": \"WEEKLY\",\n      \"schedule_time\": \"09:45:17\",\n      \"schedule_timezone\": \"Asia/Kolkata\",\n      \"schedule_days\": [\n        3198,\n        3178\n      ]\n    },\n    {\n      \"enable_schedule\": true,\n      \"report_schedule_id\": 1950,\n      \"frequency_type\": \"WEEKLY\",\n      \"schedule_time\": \"04:24:52\",\n      \"schedule_timezone\": \"Asia/Kolkata\",\n      \"schedule_days\": [\n        3146,\n        8244\n      ]\n    }\n  ],\n  \"file_format\": [\n    \"XLSX\",\n    \"XLSX\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5741a223-3a89-4532-be04-8ce637239639",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ng-reports",
+                    "scheduled",
+                    "custom"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"metrics\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"report_name\": \"<string>\",\n  \"report_description\": \"<string>\",\n  \"site_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"building_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"floor_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"ssids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"bands\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"recipients\": [\n    {\n      \"email\": \"<string>\",\n      \"notifier_id\": \"<long>\"\n    },\n    {\n      \"email\": \"<string>\",\n      \"notifier_id\": \"<long>\"\n    }\n  ],\n  \"schedules\": [\n    {\n      \"enable_schedule\": true,\n      \"frequency_type\": \"<string>\",\n      \"schedule_time\": \"<string>\",\n      \"schedule_timezone\": \"Asia/Kolkata\",\n      \"schedule_days\": [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    },\n    {\n      \"enable_schedule\": true,\n      \"frequency_type\": \"<string>\",\n      \"schedule_time\": \"<string>\",\n      \"schedule_timezone\": \"Asia/Kolkata\",\n      \"schedule_days\": [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    }\n  ],\n  \"file_format\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6f87f807-7d6a-4f8c-b498-0b2493fa365d",
+          "name": "Delete Report Schedules",
+          "request": {
+            "name": "Delete Report Schedules",
+            "description": {
+              "content": "Deletes an existing schedule for a Report.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ng-reports",
+                "scheduled",
+                "custom"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "reportScheduleIds",
+                  "value": "<long>",
+                  "description": "(Required) Comma-separated list of report schedule IDs to delete"
+                },
+                {
+                  "disabled": false,
+                  "key": "reportScheduleIds",
+                  "value": "<long>",
+                  "description": "(Required) Comma-separated list of report schedule IDs to delete"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "3b02b3e7-a062-49e2-8c0b-d58fe33b9e8b",
+              "name": "Schedule deleted successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ng-reports",
+                    "scheduled",
+                    "custom"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "reportScheduleIds",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "reportScheduleIds",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "94a0eb62-6c6f-42d5-ac0b-645a6c10c40a",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ng-reports",
+                    "scheduled",
+                    "custom"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "reportScheduleIds",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "reportScheduleIds",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "090983d9-80a4-43b0-96e3-fca45d54a043",
+          "name": "Get Custom Report Schedule by ID",
+          "request": {
+            "name": "Get Custom Report Schedule by ID",
+            "description": {
+              "content": "Fetches a specific scheduled custom report using its report ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ng-reports",
+                "scheduled",
+                "custom",
+                ":reportId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "reportId",
+                  "description": "(Required) Unique identifier of the scheduled report"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "81c25bcd-785b-4669-82e1-36987ff48e44",
+              "name": "Returns the report details for the given report ID",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ng-reports",
+                    "scheduled",
+                    "custom",
+                    ":reportId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "reportId",
+                      "description": "(Required) Unique identifier of the scheduled report"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"report_id\": 9393,\n  \"report_name\": \"string\",\n  \"report_description\": \"string\",\n  \"metrics\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"site_ids\": [\n    2761,\n    1517\n  ],\n  \"building_ids\": [\n    5711,\n    8909\n  ],\n  \"floor_ids\": [\n    6744,\n    7563\n  ],\n  \"ssids\": [\n    \"string\",\n    \"string\"\n  ],\n  \"bands\": [\n    \"2.4GHz\",\n    \"5GHz\"\n  ],\n  \"recipients\": [\n    {\n      \"email\": \"string\",\n      \"notifier_id\": 254\n    },\n    {\n      \"email\": \"string\",\n      \"notifier_id\": 9785\n    }\n  ],\n  \"schedules\": [\n    {\n      \"enable_schedule\": true,\n      \"report_schedule_id\": 8820,\n      \"frequency_type\": \"WEEKLY\",\n      \"schedule_time\": \"09:49:50\",\n      \"schedule_timezone\": \"Asia/Kolkata\",\n      \"schedule_days\": [\n        8789,\n        7527\n      ]\n    },\n    {\n      \"enable_schedule\": true,\n      \"report_schedule_id\": 8722,\n      \"frequency_type\": \"MONTHLY\",\n      \"schedule_time\": \"20:06:05\",\n      \"schedule_timezone\": \"Asia/Kolkata\",\n      \"schedule_days\": [\n        5029,\n        1362\n      ]\n    }\n  ],\n  \"file_format\": [\n    \"XLSX\",\n    \"XLSX\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f7e757c6-1295-4783-9808-e83cb11b0183",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ng-reports",
+                    "scheduled",
+                    "custom",
+                    ":reportId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "reportId",
+                      "description": "(Required) Unique identifier of the scheduled report"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ca541c90-b8e3-4bca-836a-b461f19eb1bd",
+          "name": "Edit Schedule for Custom Report",
+          "request": {
+            "name": "Edit Schedule for Custom Report",
+            "description": {
+              "content": "Updates an existing schedule for a Custom Report.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ng-reports",
+                "scheduled",
+                "custom",
+                ":reportId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "reportId",
+                  "description": "(Required) Unique identifier for the report schedule"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"metrics\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"report_name\": \"<string>\",\n  \"report_description\": \"<string>\",\n  \"site_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"building_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"floor_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"ssids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"bands\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"recipients\": [\n    {\n      \"email\": \"<string>\",\n      \"notifier_id\": \"<long>\"\n    },\n    {\n      \"email\": \"<string>\",\n      \"notifier_id\": \"<long>\"\n    }\n  ],\n  \"schedules\": [\n    {\n      \"enable_schedule\": true,\n      \"report_schedule_id\": \"<long>\",\n      \"frequency_type\": \"<string>\",\n      \"schedule_time\": \"<string>\",\n      \"schedule_timezone\": \"<string>\",\n      \"schedule_days\": [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    },\n    {\n      \"enable_schedule\": true,\n      \"report_schedule_id\": \"<long>\",\n      \"frequency_type\": \"<string>\",\n      \"schedule_time\": \"<string>\",\n      \"schedule_timezone\": \"<string>\",\n      \"schedule_days\": [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    }\n  ],\n  \"file_format\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d59d4046-0209-4749-8f93-0cbbef775028",
+              "name": "Schedule updated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ng-reports",
+                    "scheduled",
+                    "custom",
+                    ":reportId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "reportId",
+                      "description": "(Required) Unique identifier for the report schedule"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"metrics\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"report_name\": \"<string>\",\n  \"report_description\": \"<string>\",\n  \"site_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"building_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"floor_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"ssids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"bands\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"recipients\": [\n    {\n      \"email\": \"<string>\",\n      \"notifier_id\": \"<long>\"\n    },\n    {\n      \"email\": \"<string>\",\n      \"notifier_id\": \"<long>\"\n    }\n  ],\n  \"schedules\": [\n    {\n      \"enable_schedule\": true,\n      \"report_schedule_id\": \"<long>\",\n      \"frequency_type\": \"<string>\",\n      \"schedule_time\": \"<string>\",\n      \"schedule_timezone\": \"Asia/Kolkata\",\n      \"schedule_days\": [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    },\n    {\n      \"enable_schedule\": true,\n      \"report_schedule_id\": \"<long>\",\n      \"frequency_type\": \"<string>\",\n      \"schedule_time\": \"<string>\",\n      \"schedule_timezone\": \"Asia/Kolkata\",\n      \"schedule_days\": [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    }\n  ],\n  \"file_format\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"report_id\": 1640,\n  \"report_name\": \"string\",\n  \"report_description\": \"string\",\n  \"metrics\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"site_ids\": [\n    6378,\n    7150\n  ],\n  \"building_ids\": [\n    7902,\n    819\n  ],\n  \"floor_ids\": [\n    3825,\n    8791\n  ],\n  \"ssids\": [\n    \"string\",\n    \"string\"\n  ],\n  \"bands\": [\n    \"5GHz\",\n    \"2.4GHz\"\n  ],\n  \"recipients\": [\n    {\n      \"email\": \"string\",\n      \"notifier_id\": 994\n    },\n    {\n      \"email\": \"string\",\n      \"notifier_id\": 7241\n    }\n  ],\n  \"schedules\": [\n    {\n      \"enable_schedule\": true,\n      \"report_schedule_id\": \"<long>\",\n      \"frequency_type\": \"<string>\",\n      \"schedule_time\": \"<string>\",\n      \"schedule_timezone\": \"Asia/Kolkata\",\n      \"schedule_days\": [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    },\n    {\n      \"enable_schedule\": true,\n      \"report_schedule_id\": \"<long>\",\n      \"frequency_type\": \"<string>\",\n      \"schedule_time\": \"<string>\",\n      \"schedule_timezone\": \"Asia/Kolkata\",\n      \"schedule_days\": [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    }\n  ],\n  \"file_format\": [\n    \"PDF\",\n    \"PDF\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3d677ef5-e6a8-405c-b36f-230525af25d6",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ng-reports",
+                    "scheduled",
+                    "custom",
+                    ":reportId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "reportId",
+                      "description": "(Required) Unique identifier for the report schedule"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"metrics\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"report_name\": \"<string>\",\n  \"report_description\": \"<string>\",\n  \"site_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"building_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"floor_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"ssids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"bands\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"recipients\": [\n    {\n      \"email\": \"<string>\",\n      \"notifier_id\": \"<long>\"\n    },\n    {\n      \"email\": \"<string>\",\n      \"notifier_id\": \"<long>\"\n    }\n  ],\n  \"schedules\": [\n    {\n      \"enable_schedule\": true,\n      \"report_schedule_id\": \"<long>\",\n      \"frequency_type\": \"<string>\",\n      \"schedule_time\": \"<string>\",\n      \"schedule_timezone\": \"Asia/Kolkata\",\n      \"schedule_days\": [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    },\n    {\n      \"enable_schedule\": true,\n      \"report_schedule_id\": \"<long>\",\n      \"frequency_type\": \"<string>\",\n      \"schedule_time\": \"<string>\",\n      \"schedule_timezone\": \"Asia/Kolkata\",\n      \"schedule_days\": [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    }\n  ],\n  \"file_format\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "737599d5-4ad6-4c73-bf91-ac3ecef4abfa",
+          "name": "Get Report Runs for Custom Report Schedule",
+          "request": {
+            "name": "Get Report Runs for Custom Report Schedule",
+            "description": {
+              "content": "Retrieves all report runs for a given custom report schedule.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ng-reports",
+                "scheduled",
+                "custom",
+                ":reportScheduleId",
+                "runs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "frequency",
+                  "value": "<string>",
+                  "description": "Filter by frequency (MONTHLY, WEEKLY, DAILY)"
+                },
+                {
+                  "disabled": false,
+                  "key": "frequency",
+                  "value": "<string>",
+                  "description": "Filter by frequency (MONTHLY, WEEKLY, DAILY)"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "reportScheduleId",
+                  "description": "(Required) Unique identifier for the report schedule"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "25419016-ebb1-42f3-a159-f65b40a1f1de",
+              "name": "List of report runs",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ng-reports",
+                    "scheduled",
+                    "custom",
+                    ":reportScheduleId",
+                    "runs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "frequency",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "frequency",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "reportScheduleId",
+                      "description": "(Required) Unique identifier for the report schedule"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"report_run_id\": 8158,\n    \"report_run_timestamp\": 9622,\n    \"report_name\": \"string\",\n    \"report_id\": 9257\n  },\n  {\n    \"report_run_id\": 5411,\n    \"report_run_timestamp\": 804,\n    \"report_name\": \"string\",\n    \"report_id\": 3957\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dacd7a14-8a8e-42f1-b3c8-f96b066bb853",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ng-reports",
+                    "scheduled",
+                    "custom",
+                    ":reportScheduleId",
+                    "runs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "frequency",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "frequency",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "reportScheduleId",
+                      "description": "(Required) Unique identifier for the report schedule"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "dc68c500-b33c-4b9b-967b-c6a9bde67978",
+          "name": "Delete Report Runs",
+          "request": {
+            "name": "Delete Report Runs",
+            "description": {
+              "content": "Deletes an existing Report schedule run.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ng-reports",
+                "scheduled",
+                "runs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "reportRunIds",
+                  "value": "<long>",
+                  "description": "(Required) Comma-separated list of report run IDs to delete"
+                },
+                {
+                  "disabled": false,
+                  "key": "reportRunIds",
+                  "value": "<long>",
+                  "description": "(Required) Comma-separated list of report run IDs to delete"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "a945b53f-4bfd-4cf2-a810-8c45190bb9ee",
+              "name": "Report Run deleted successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ng-reports",
+                    "scheduled",
+                    "runs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "reportRunIds",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "reportRunIds",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "bd0e64b6-0500-4411-af3f-a2abdcdcac26",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ng-reports",
+                    "scheduled",
+                    "runs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "reportRunIds",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "reportRunIds",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fab08a27-c6bb-4dbd-9924-e76a4cb6a69f",
+          "name": "Get Recipients for given Report Run",
+          "request": {
+            "name": "Get Recipients for given Report Run",
+            "description": {
+              "content": "Retrieves all recipients for a given report run ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ng-reports",
+                "scheduled",
+                "runs",
+                ":reportRunId",
+                "recipients"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "keyword",
+                  "value": "<string>",
+                  "description": "The keyword to search"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "reportRunId",
+                  "description": "(Required) Unique identifier for the report run"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "29189ac2-2ff0-4935-8bb9-9a95197e15cb",
+              "name": "List of recipients for the report",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ng-reports",
+                    "scheduled",
+                    "runs",
+                    ":reportRunId",
+                    "recipients"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "keyword",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "reportRunId",
+                      "description": "(Required) Unique identifier for the report run"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"report_run_id\": 2836,\n  \"report_id\": 1033,\n  \"report_name\": \"string\",\n  \"recipients\": [\n    {\n      \"recipient_id\": \"string\",\n      \"recipient_email\": \"zD5Lg9cI8v@lKIUYxqAglHKXLJblWXa.or\"\n    },\n    {\n      \"recipient_id\": \"string\",\n      \"recipient_email\": \"HlgvqamSDw@wp.jeop\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2d6a3b3c-d835-402f-8f72-a1166e7a49e3",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ng-reports",
+                    "scheduled",
+                    "runs",
+                    ":reportRunId",
+                    "recipients"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "keyword",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "reportRunId",
+                      "description": "(Required) Unique identifier for the report run"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "807d2ca3-04bb-4356-9e13-0ff599131f79",
+          "name": "Get Recipients for given Report",
+          "request": {
+            "name": "Get Recipients for given Report",
+            "description": {
+              "content": "Retrieves all recipients for a given report ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ng-reports",
+                "scheduled",
+                ":reportId",
+                "recipients"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "keyword",
+                  "value": "<string>",
+                  "description": "The keyword to search"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "reportId",
+                  "description": "(Required) Unique identifier for the report"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "cf213df8-cd81-409d-bbce-96b039a396d0",
+              "name": "List of recipients for the report",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ng-reports",
+                    "scheduled",
+                    ":reportId",
+                    "recipients"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "keyword",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "reportId",
+                      "description": "(Required) Unique identifier for the report"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"report_id\": 4187,\n  \"report_name\": \"string\",\n  \"recipients\": [\n    {\n      \"recipient_id\": \"string\",\n      \"recipient_email\": \"oFy9IiV0VbRtEhd@MMRccaaBnygPWftUPJwYfK.tq\"\n    },\n    {\n      \"recipient_id\": \"string\",\n      \"recipient_email\": \"gEytxUqD0g8s@ovUe.koha\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "02e4be3f-b157-477f-afff-d7359af7d429",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ng-reports",
+                    "scheduled",
+                    ":reportId",
+                    "recipients"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "keyword",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "reportId",
+                      "description": "(Required) Unique identifier for the report"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cd2ddbb2-d5e7-4d44-9042-886f19544e5a",
+          "name": "Add Recipients to Report",
+          "request": {
+            "name": "Add Recipients to Report",
+            "description": {
+              "content": "Adds a list of recipient emails to the specified report.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ng-reports",
+                "scheduled",
+                ":reportId",
+                "recipients"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "reportId",
+                  "description": "(Required) Unique identifier for the report"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"recipients\": [\n    {\n      \"email\": \"<string>\",\n      \"notifier_id\": \"<long>\"\n    },\n    {\n      \"email\": \"<string>\",\n      \"notifier_id\": \"<long>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4f096598-feba-4985-8e3a-737005836cdb",
+              "name": "Recipients added successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ng-reports",
+                    "scheduled",
+                    ":reportId",
+                    "recipients"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "reportId",
+                      "description": "(Required) Unique identifier for the report"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"recipients\": [\n    {\n      \"email\": \"<string>\",\n      \"notifier_id\": \"<long>\"\n    },\n    {\n      \"email\": \"<string>\",\n      \"notifier_id\": \"<long>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f6b57b80-0f7e-41fb-8792-74004a90b42a",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ng-reports",
+                    "scheduled",
+                    ":reportId",
+                    "recipients"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "reportId",
+                      "description": "(Required) Unique identifier for the report"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"recipients\": [\n    {\n      \"email\": \"<string>\",\n      \"notifier_id\": \"<long>\"\n    },\n    {\n      \"email\": \"<string>\",\n      \"notifier_id\": \"<long>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ea84d545-6193-40c7-b5b3-727bb2a19ce5",
+          "name": "Delete Recipients from Report",
+          "request": {
+            "name": "Delete Recipients from Report",
+            "description": {
+              "content": "Deletes a list of recipient emails from the specified report.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ng-reports",
+                "scheduled",
+                ":reportId",
+                "recipients"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "reportId",
+                  "description": "(Required) Unique identifier for the report"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"recipient_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7eaf043f-185b-4610-ab9f-b0d6f5a6d08e",
+              "name": "Recipients deleted successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ng-reports",
+                    "scheduled",
+                    ":reportId",
+                    "recipients"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "reportId",
+                      "description": "(Required) Unique identifier for the report"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"recipient_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5a471e67-0ad2-42b2-bd6a-2552367f4e17",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ng-reports",
+                    "scheduled",
+                    ":reportId",
+                    "recipients"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "reportId",
+                      "description": "(Required) Unique identifier for the report"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"recipient_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "667766bd-8c2c-45cb-a91c-f8ac83b068b4",
+          "name": "Download or Preview Scheduled Report File",
+          "request": {
+            "name": "Download or Preview Scheduled Report File",
+            "description": {
+              "content": "Downloads or previews a scheduled report file in PDF or XLSX format.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ng-reports",
+                "scheduled",
+                "reports",
+                "download"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "reportRunId",
+                  "value": "<long>",
+                  "description": "(Required) Unique identifier of the report to download"
+                },
+                {
+                  "disabled": false,
+                  "key": "fileFormat",
+                  "value": "<string>",
+                  "description": "(Required) File format to download (PDF or XLSX)"
+                },
+                {
+                  "disabled": false,
+                  "key": "preview",
+                  "value": "<boolean>",
+                  "description": "Param to view Preview, (applicable only when fileFormat = PDF)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/pdf"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "3a0bafb8-071f-4b1d-b705-85b0a2017dd7",
+              "name": "File download or inline preview response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ng-reports",
+                    "scheduled",
+                    "reports",
+                    "download"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "reportRunId",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "fileFormat",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "preview",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/pdf"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/pdf"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d8453e56-819d-493b-83ff-a4dc7d099a05",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ng-reports",
+                    "scheduled",
+                    "reports",
+                    "download"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "reportRunId",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "fileFormat",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "preview",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.extremecloudiq.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "75cfb5c7-da73-489e-bd4a-de5efa822686",
+    "name": "ExtremeCloud IQ Account NG Scheduled Reports API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "ExtremeCloud IQ™ API allows customers and partners to create solutions for the management, monitoring, and provisioning\nof any ExtremeCloud IQ™ environment.\n\nAll related resources and documentation are available at [ExtremeCloud IQ Developer Portal](https://developer.extremecloudiq.com/).\nPlease check [Get Started and Tutorial](https://developer.extremecloudiq.com/documentation/) to understand how to use the APIs.\n\nGet the [latest OpenAPI definition](https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI/blob/main/xcloudiq-openapi.yaml)\nfrom [ExtremeCloud IQ OpenAPI GitHub repository](https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI).\n\nPlease have a valid [ExtremeCloud IQ](https://extremecloudiq.com/) account before getting started.\nIf you don't have one, please [register a new account](https://www.extremenetworks.com/cloud-networking/).\n\nContact Support:\n Name: Extreme Networks Support\n Email: support@extremenetworks.com",
+      "type": "text/plain"
+    }
+  }
+}

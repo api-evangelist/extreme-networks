@@ -1,0 +1,439 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ExtremeCloud IQ Account Dashboard - Wireless Client Health API",
+    "version": "25.9.0-36"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Dashboard - Wireless Client Health",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Wireless client health grid",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/dashboard/wireless/client-health/grid",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number, min = 1"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page Size, min = 1, max = 100"
+              },
+              {
+                "name": "keyword",
+                "value": "",
+                "type": "query",
+                "description": "The keyword to search"
+              },
+              {
+                "name": "sortField",
+                "value": "",
+                "type": "query",
+                "description": "The sort field"
+              },
+              {
+                "name": "sortOrder",
+                "value": "",
+                "type": "query",
+                "description": "The sort order"
+              },
+              {
+                "name": "connectionStatus",
+                "value": "",
+                "type": "query",
+                "description": "The current connection status of the client (e.g., connected, disconnected)."
+              },
+              {
+                "name": "includeUnassigned",
+                "value": "",
+                "type": "query",
+                "description": "To include unassigned clients"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns the client health grid of wireless devices based on the provided filters. You can filter the results by sites."
+        },
+        {
+          "info": {
+            "name": "Wireless clients count with connectivity issues",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/dashboard/wireless/client-health/connectivity-issues",
+            "params": [
+              {
+                "name": "includeUnassigned",
+                "value": "",
+                "type": "query",
+                "description": "To include unassigned clients"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns the wireless clients with connectivity issues based on the provided filters. You can filter the results by sites."
+        },
+        {
+          "info": {
+            "name": "Wireless clients count with frequency distribution",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/dashboard/wireless/client-health/frequency-distribution",
+            "params": [
+              {
+                "name": "includeUnassigned",
+                "value": "",
+                "type": "query",
+                "description": "To include unassigned clients"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns the wireless clients with different frequency distribution based on the provided filters. You can filter the results by sites."
+        },
+        {
+          "info": {
+            "name": "Count of wireless clients with roaming issues",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/dashboard/wireless/client-health/roaming-issues",
+            "params": [
+              {
+                "name": "includeUnassigned",
+                "value": "",
+                "type": "query",
+                "description": "To include unassigned clients"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns the wireless clients with roaming issues based on the provided filters. You can filter the results by sites, device types, and a specific timestamp."
+        },
+        {
+          "info": {
+            "name": "Wireless client health grid filter metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/dashboard/wireless/client-health/filter-metadata",
+            "params": [
+              {
+                "name": "includeUnassigned",
+                "value": "",
+                "type": "query",
+                "description": "To include unassigned clients"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns the client health health grid filter metadata. You can filter the results by sites."
+        },
+        {
+          "info": {
+            "name": "Wireless client health association issues",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/dashboard/wireless/client-health/issue/association",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number, min = 1"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page Size, min = 1, max = 100"
+              },
+              {
+                "name": "macAddress",
+                "value": "",
+                "type": "query",
+                "description": "The macAddress to filter"
+              },
+              {
+                "name": "includeUnassigned",
+                "value": "",
+                "type": "query",
+                "description": "To include unassigned clients"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns the client health association issues based on the provided filters. You can filter the results by sites."
+        },
+        {
+          "info": {
+            "name": "Wireless client health authentication issues",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/dashboard/wireless/client-health/issue/authentication",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number, min = 1"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page Size, min = 1, max = 100"
+              },
+              {
+                "name": "macAddress",
+                "value": "",
+                "type": "query",
+                "description": "The macAddress to filter"
+              },
+              {
+                "name": "includeUnassigned",
+                "value": "",
+                "type": "query",
+                "description": "To include unassigned clients"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns the client health authentication issues based on the provided filters. You can filter the results by sites."
+        },
+        {
+          "info": {
+            "name": "Wireless client health roaming issues",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/dashboard/wireless/client-health/issue/roaming",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number, min = 1"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page Size, min = 1, max = 100"
+              },
+              {
+                "name": "macAddress",
+                "value": "",
+                "type": "query",
+                "description": "The macAddress to filter"
+              },
+              {
+                "name": "includeUnassigned",
+                "value": "",
+                "type": "query",
+                "description": "To include unassigned clients"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns the client health roaming issues based on the provided filters. You can filter the results by sites."
+        },
+        {
+          "info": {
+            "name": "Wireless client health ip address issues",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/dashboard/wireless/client-health/issue/ipaddress",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number, min = 1"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page Size, min = 1, max = 100"
+              },
+              {
+                "name": "macAddress",
+                "value": "",
+                "type": "query",
+                "description": "The macAddress to filter"
+              },
+              {
+                "name": "includeUnassigned",
+                "value": "",
+                "type": "query",
+                "description": "To include unassigned clients"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns the client health ip address issues based on the provided filters. You can filter the results by sites."
+        },
+        {
+          "info": {
+            "name": "Export Grid as a CSV File",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/dashboard/wireless/client-health/export",
+            "params": [
+              {
+                "name": "keyword",
+                "value": "",
+                "type": "query",
+                "description": "The keyword to search"
+              },
+              {
+                "name": "sortField",
+                "value": "",
+                "type": "query",
+                "description": "The sort field"
+              },
+              {
+                "name": "sortOrder",
+                "value": "",
+                "type": "query",
+                "description": "The sort order"
+              },
+              {
+                "name": "connectionStatus",
+                "value": "",
+                "type": "query",
+                "description": "The current connection status of the client (e.g., connected, disconnected)."
+              },
+              {
+                "name": "includeUnassigned",
+                "value": "",
+                "type": "query",
+                "description": "To include unassigned clients"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns the CSV File of the client health grid of wireless devices based on the provided filters. You can filter the results by sites."
+        },
+        {
+          "info": {
+            "name": "Download the Export CSV file",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/dashboard/wireless/client-health/reports/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The report ID"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns the CSV File of the Wireless Client Health status based on the provided filters."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

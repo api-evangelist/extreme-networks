@@ -1,0 +1,2443 @@
+{
+  "item": [
+    {
+      "id": "5e4f3858-a2bf-4d63-a0f5-f8d34641ed30",
+      "name": "Client",
+      "description": {
+        "content": "The clients associate to the devices of ExtremeCloud IQ",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e6188f35-1d7a-4a4d-8407-17dad9298b45",
+          "name": "List active clients",
+          "request": {
+            "name": "List active clients",
+            "description": {
+              "content": "List active clients with filters and pagination.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "clients",
+                "active"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number, min = 1"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Page Size, min = 1, max = 100"
+                },
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>",
+                  "description": "The client fields to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>",
+                  "description": "The client fields to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "views",
+                  "value": "<string>",
+                  "description": "The views to return client fields (Check fields for each view at XiqClientView schema)"
+                },
+                {
+                  "disabled": false,
+                  "key": "views",
+                  "value": "<string>",
+                  "description": "The views to return client fields (Check fields for each view at XiqClientView schema)"
+                },
+                {
+                  "disabled": false,
+                  "key": "locationIds",
+                  "value": "<long>",
+                  "description": "The location IDs"
+                },
+                {
+                  "disabled": false,
+                  "key": "locationIds",
+                  "value": "<long>",
+                  "description": "The location IDs"
+                },
+                {
+                  "disabled": false,
+                  "key": "deviceIds",
+                  "value": "<long>",
+                  "description": "The device IDs"
+                },
+                {
+                  "disabled": false,
+                  "key": "deviceIds",
+                  "value": "<long>",
+                  "description": "The device IDs"
+                },
+                {
+                  "disabled": false,
+                  "key": "vlans",
+                  "value": "<integer>",
+                  "description": "The associate vlan IDs"
+                },
+                {
+                  "disabled": false,
+                  "key": "vlans",
+                  "value": "<integer>",
+                  "description": "The associate vlan IDs"
+                },
+                {
+                  "disabled": false,
+                  "key": "userProfileNames",
+                  "value": "<string>",
+                  "description": "The user profile names"
+                },
+                {
+                  "disabled": false,
+                  "key": "userProfileNames",
+                  "value": "<string>",
+                  "description": "The user profile names"
+                },
+                {
+                  "disabled": false,
+                  "key": "ssids",
+                  "value": "<string>",
+                  "description": "The SSIDs"
+                },
+                {
+                  "disabled": false,
+                  "key": "ssids",
+                  "value": "<string>",
+                  "description": "The SSIDs"
+                },
+                {
+                  "disabled": false,
+                  "key": "clientOsNames",
+                  "value": "<string>",
+                  "description": "The client os names"
+                },
+                {
+                  "disabled": false,
+                  "key": "clientOsNames",
+                  "value": "<string>",
+                  "description": "The client os names"
+                },
+                {
+                  "disabled": false,
+                  "key": "clientConnectionTypes",
+                  "value": "<integer>",
+                  "description": "The client connection types - 1 - WIRELESS, 2 - WIRED, -1 - UNDETERMINED"
+                },
+                {
+                  "disabled": false,
+                  "key": "clientConnectionTypes",
+                  "value": "<integer>",
+                  "description": "The client connection types - 1 - WIRELESS, 2 - WIRED, -1 - UNDETERMINED"
+                },
+                {
+                  "disabled": false,
+                  "key": "clientHealthStatus",
+                  "value": "<integer>",
+                  "description": "The client health status - 1 - HEALTHY, 2 - POOR"
+                },
+                {
+                  "disabled": false,
+                  "key": "excludeLocallyManaged",
+                  "value": "<boolean>",
+                  "description": "Return Cloud managed Devices' clients. Default value - false"
+                },
+                {
+                  "disabled": false,
+                  "key": "userNames",
+                  "value": "<string>",
+                  "description": "The user names."
+                },
+                {
+                  "disabled": false,
+                  "key": "userNames",
+                  "value": "<string>",
+                  "description": "The user names."
+                },
+                {
+                  "disabled": false,
+                  "key": "searchString",
+                  "value": "<string>",
+                  "description": "The SearchString"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortField",
+                  "value": "<string>",
+                  "description": "Sort field. Available values - AUTH_METHOD, CHANNEL, CONNECTED_VIA, CONNECTION_TYPE, DEVICE_NAME, HOST_NAME, IPV4, IPV6, MAC, NAC_DETAILS, NAC_PROFILE, OS_TYPE, REPORTED_BY, START_TIME, USER_NAME, USER_PROFILE, VLAN"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortOrder",
+                  "value": "<string>",
+                  "description": "Sort order (ascending by default). Available values - ASC, DESC"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "699c75f4-cfa5-4629-9cd4-a1b6e90a656a",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "clients",
+                    "active"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "views",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "views",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "locationIds",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "locationIds",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "deviceIds",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "deviceIds",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "vlans",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "vlans",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "userProfileNames",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "userProfileNames",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ssids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ssids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "clientOsNames",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "clientOsNames",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "clientConnectionTypes",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "clientConnectionTypes",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "clientHealthStatus",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "excludeLocallyManaged",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "userNames",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "userNames",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "searchString",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortField",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortOrder",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 722,\n  \"page\": 7529,\n  \"total_count\": 6489,\n  \"total_pages\": 3295,\n  \"data\": [\n    {\n      \"device_id\": 9959,\n      \"location_id\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"hostname\": \"string\",\n      \"mac_address\": \"string\",\n      \"ip_address\": \"string\",\n      \"ipv6_address\": \"string\",\n      \"os_type\": \"string\",\n      \"username\": \"string\",\n      \"user_profile_name\": \"string\",\n      \"connected\": false,\n      \"online_time\": \"2013-08-04T01:01:21.774Z\",\n      \"offline_time\": \"2002-11-01T10:47:44.656Z\",\n      \"vlan\": 1994,\n      \"connection_type\": 83,\n      \"ssid\": \"string\",\n      \"port\": \"string\",\n      \"org_name\": \"string\",\n      \"device_function\": 2019,\n      \"device_mac_address\": \"string\",\n      \"device_name\": \"string\",\n      \"auth\": 6052,\n      \"channel\": 4260,\n      \"client_health\": 719,\n      \"application_health\": 227,\n      \"radio_health\": 8963,\n      \"network_health\": 8174,\n      \"radio_type\": 6921,\n      \"encryption_method\": 3176,\n      \"mac_protocol\": \"string\",\n      \"interface_name\": \"string\",\n      \"bssid\": \"string\",\n      \"rssi\": 1809,\n      \"snr\": 967,\n      \"description\": \"string\",\n      \"category\": \"string\",\n      \"mobility\": \"string\",\n      \"port_type_name\": \"string\",\n      \"wing_ap\": false,\n      \"vendor\": \"string\",\n      \"locations\": [\n        {\n          \"id\": 9681,\n          \"name\": \"string\"\n        },\n        {\n          \"id\": 5677,\n          \"name\": \"string\"\n        }\n      ],\n      \"productType\": \"string\",\n      \"alias\": \"string\"\n    },\n    {\n      \"device_id\": 3138,\n      \"location_id\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"hostname\": \"string\",\n      \"mac_address\": \"string\",\n      \"ip_address\": \"string\",\n      \"ipv6_address\": \"string\",\n      \"os_type\": \"string\",\n      \"username\": \"string\",\n      \"user_profile_name\": \"string\",\n      \"connected\": false,\n      \"online_time\": \"1953-08-16T15:49:51.200Z\",\n      \"offline_time\": \"2009-07-06T14:27:03.229Z\",\n      \"vlan\": 1312,\n      \"connection_type\": 7902,\n      \"ssid\": \"string\",\n      \"port\": \"string\",\n      \"org_name\": \"string\",\n      \"device_function\": 5059,\n      \"device_mac_address\": \"string\",\n      \"device_name\": \"string\",\n      \"auth\": 6381,\n      \"channel\": 2781,\n      \"client_health\": 4139,\n      \"application_health\": 7112,\n      \"radio_health\": 6812,\n      \"network_health\": 1899,\n      \"radio_type\": 4526,\n      \"encryption_method\": 771,\n      \"mac_protocol\": \"string\",\n      \"interface_name\": \"string\",\n      \"bssid\": \"string\",\n      \"rssi\": 8865,\n      \"snr\": 6936,\n      \"description\": \"string\",\n      \"category\": \"string\",\n      \"mobility\": \"string\",\n      \"port_type_name\": \"string\",\n      \"wing_ap\": true,\n      \"vendor\": \"string\",\n      \"locations\": [\n        {\n          \"id\": 6803,\n          \"name\": \"string\"\n        },\n        {\n          \"id\": 5090,\n          \"name\": \"string\"\n        }\n      ],\n      \"productType\": \"string\",\n      \"alias\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "42d1ffa3-0b8c-4392-8932-c326ffce9134",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "clients",
+                    "active"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "views",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "views",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "locationIds",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "locationIds",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "deviceIds",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "deviceIds",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "vlans",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "vlans",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "userProfileNames",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "userProfileNames",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ssids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ssids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "clientOsNames",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "clientOsNames",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "clientConnectionTypes",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "clientConnectionTypes",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "clientHealthStatus",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "excludeLocallyManaged",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "userNames",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "userNames",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "searchString",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortField",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortOrder",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "699979fd-645d-47db-9409-9b62069c1ded",
+          "name": "Get client summary metrics",
+          "request": {
+            "name": "Get client summary metrics",
+            "description": {
+              "content": "Get number of connected wireless clients and number of detected wired clients.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "clients",
+                "summary"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "locationIds",
+                  "value": "<long>",
+                  "description": "The location IDs"
+                },
+                {
+                  "disabled": false,
+                  "key": "locationIds",
+                  "value": "<long>",
+                  "description": "The location IDs"
+                },
+                {
+                  "disabled": false,
+                  "key": "deviceIds",
+                  "value": "<long>",
+                  "description": "The device IDs"
+                },
+                {
+                  "disabled": false,
+                  "key": "deviceIds",
+                  "value": "<long>",
+                  "description": "The device IDs"
+                },
+                {
+                  "disabled": false,
+                  "key": "vlans",
+                  "value": "<integer>",
+                  "description": "The associate VLAN IDs"
+                },
+                {
+                  "disabled": false,
+                  "key": "vlans",
+                  "value": "<integer>",
+                  "description": "The associate VLAN IDs"
+                },
+                {
+                  "disabled": false,
+                  "key": "userProfileNames",
+                  "value": "<string>",
+                  "description": "The user profile names"
+                },
+                {
+                  "disabled": false,
+                  "key": "userProfileNames",
+                  "value": "<string>",
+                  "description": "The user profile names"
+                },
+                {
+                  "disabled": false,
+                  "key": "ssids",
+                  "value": "<string>",
+                  "description": "The SSIDs"
+                },
+                {
+                  "disabled": false,
+                  "key": "ssids",
+                  "value": "<string>",
+                  "description": "The SSIDs"
+                },
+                {
+                  "disabled": false,
+                  "key": "clientOsNames",
+                  "value": "<string>",
+                  "description": "The client os names"
+                },
+                {
+                  "disabled": false,
+                  "key": "clientOsNames",
+                  "value": "<string>",
+                  "description": "The client os names"
+                },
+                {
+                  "disabled": false,
+                  "key": "clientHealthStatus",
+                  "value": "<integer>",
+                  "description": "The client health status - 1 - HEALTHY, 2 - POOR"
+                },
+                {
+                  "disabled": false,
+                  "key": "excludeLocallyManaged",
+                  "value": "<boolean>",
+                  "description": "Return Cloud managed Devices' clients. Default value - false"
+                },
+                {
+                  "disabled": false,
+                  "key": "searchString",
+                  "value": "<string>",
+                  "description": "The SearchString"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "bbaa3a1a-d0c7-456e-82ec-992d627963ba",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "clients",
+                    "summary"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "locationIds",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "locationIds",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "deviceIds",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "deviceIds",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "vlans",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "vlans",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "userProfileNames",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "userProfileNames",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ssids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ssids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "clientOsNames",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "clientOsNames",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "clientHealthStatus",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "excludeLocallyManaged",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "searchString",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"connected_wireless_client_count\": 1192,\n  \"detected_wired_client_count\": 9224\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b1d2b113-8bcd-49d1-8d9e-81bf38128f70",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "clients",
+                    "summary"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "locationIds",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "locationIds",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "deviceIds",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "deviceIds",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "vlans",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "vlans",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "userProfileNames",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "userProfileNames",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ssids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ssids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "clientOsNames",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "clientOsNames",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "clientHealthStatus",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "excludeLocallyManaged",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "searchString",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ea8444b2-ff54-443d-b5ad-f18700ed74fa",
+          "name": "Get usage per client",
+          "request": {
+            "name": "Get usage per client",
+            "description": {
+              "content": "Get the client usage.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "clients",
+                "usage"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "clientIds",
+                  "value": "<long>",
+                  "description": "(Required) The client IDs"
+                },
+                {
+                  "disabled": false,
+                  "key": "clientIds",
+                  "value": "<long>",
+                  "description": "(Required) The client IDs"
+                },
+                {
+                  "disabled": false,
+                  "key": "startTime",
+                  "value": "<long>",
+                  "description": "(Required) The start time to query, epoch time in milliseconds since 1/1/1970"
+                },
+                {
+                  "disabled": false,
+                  "key": "endTime",
+                  "value": "<long>",
+                  "description": "(Required) The end time to query, epoch time in milliseconds since 1/1/1970"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "ab09fdd4-4c5a-4fe5-8bd9-93d44f224110",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "clients",
+                    "usage"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "clientIds",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "clientIds",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "startTime",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"client_id\": 9322,\n    \"usage\": 8218\n  },\n  {\n    \"client_id\": 2662,\n    \"usage\": 6461\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "60b90c15-9b3e-4ccc-b720-31c6f151257d",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "clients",
+                    "usage"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "clientIds",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "clientIds",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "startTime",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fcef3bd0-f2f0-4380-b3ac-39b858261d21",
+          "name": "Get client info",
+          "request": {
+            "name": "Get client info",
+            "description": {
+              "content": "Get client detailed information.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "clients",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>",
+                  "description": "The client fields to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>",
+                  "description": "The client fields to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "views",
+                  "value": "<string>",
+                  "description": "The views to return client fields (Check fields for each view at XiqClientView schema)"
+                },
+                {
+                  "disabled": false,
+                  "key": "views",
+                  "value": "<string>",
+                  "description": "The views to return client fields (Check fields for each view at XiqClientView schema)"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "id",
+                  "description": "(Required) The unique identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "f1443b5b-cf72-4cd1-ae80-4b7536fad38e",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "clients",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "views",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "views",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"create_time\": \"2019-08-12T15:28:11.289Z\",\n  \"device_id\": 5171,\n  \"id\": 2532,\n  \"location_id\": 3366,\n  \"org_id\": 2595,\n  \"update_time\": \"1964-10-16T09:51:26.430Z\",\n  \"hostname\": \"string\",\n  \"mac_address\": \"string\",\n  \"ip_address\": \"string\",\n  \"ipv6_address\": \"string\",\n  \"os_type\": \"string\",\n  \"username\": \"string\",\n  \"user_profile_name\": \"string\",\n  \"connected\": false,\n  \"online_time\": \"1946-12-13T06:19:23.835Z\",\n  \"offline_time\": \"1948-11-17T15:55:54.668Z\",\n  \"vlan\": 7922,\n  \"connection_type\": 1082,\n  \"ssid\": \"string\",\n  \"port\": \"string\",\n  \"org_name\": \"string\",\n  \"device_function\": 159,\n  \"device_mac_address\": \"string\",\n  \"device_name\": \"string\",\n  \"auth\": 8521,\n  \"channel\": 5539,\n  \"client_health\": 7086,\n  \"application_health\": 3563,\n  \"radio_health\": 5815,\n  \"network_health\": 2258,\n  \"radio_type\": 4113,\n  \"encryption_method\": 9919,\n  \"mac_protocol\": \"string\",\n  \"interface_name\": \"string\",\n  \"bssid\": \"string\",\n  \"rssi\": 8708,\n  \"snr\": 5531,\n  \"description\": \"string\",\n  \"category\": \"string\",\n  \"mobility\": \"string\",\n  \"port_type_name\": \"string\",\n  \"wing_ap\": true,\n  \"vendor\": \"string\",\n  \"locations\": [\n    {\n      \"id\": 7198,\n      \"name\": \"string\"\n    },\n    {\n      \"id\": 746,\n      \"name\": \"string\"\n    }\n  ],\n  \"productType\": \"string\",\n  \"alias\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6395461e-9c5e-4fe7-8511-c2eef6087657",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "clients",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "views",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "views",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "75737e9e-b3f0-4794-9f8a-8a8a0639daad",
+          "name": "Set the aliases for multiple clients",
+          "request": {
+            "name": "Set the aliases for multiple clients",
+            "description": {
+              "content": "Bulk update the aliases for multiple clients based on the mac addresses. Empty or null alias value deletes the previous client alias.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "clients",
+                "alias"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"mac_address\": \"<string>\",\n    \"alias\": \"<string>\"\n  },\n  {\n    \"mac_address\": \"<string>\",\n    \"alias\": \"<string>\"\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f0163100-0b45-4e66-bd4f-d70ec464faf9",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "clients",
+                    "alias"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"mac_address\": \"<string>\",\n    \"alias\": \"<string>\"\n  },\n  {\n    \"mac_address\": \"<string>\",\n    \"alias\": \"<string>\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f7b42d65-3929-4f42-b3fd-11217b596aaa",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "clients",
+                    "alias"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"mac_address\": \"<string>\",\n    \"alias\": \"<string>\"\n  },\n  {\n    \"mac_address\": \"<string>\",\n    \"alias\": \"<string>\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cf602a56-603f-4644-9e94-63a83668662a",
+          "name": "Get active clients count",
+          "request": {
+            "name": "Get active clients count",
+            "description": {
+              "content": "List active clients count.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "clients",
+                "active",
+                "count"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number, min = 1"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Page Size, min = 1, max = 100"
+                },
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>",
+                  "description": "The client fields to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>",
+                  "description": "The client fields to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "views",
+                  "value": "<string>",
+                  "description": "The views to return client fields (Check fields for each view at XiqClientView schema)"
+                },
+                {
+                  "disabled": false,
+                  "key": "views",
+                  "value": "<string>",
+                  "description": "The views to return client fields (Check fields for each view at XiqClientView schema)"
+                },
+                {
+                  "disabled": false,
+                  "key": "locationIds",
+                  "value": "<long>",
+                  "description": "The location IDs"
+                },
+                {
+                  "disabled": false,
+                  "key": "locationIds",
+                  "value": "<long>",
+                  "description": "The location IDs"
+                },
+                {
+                  "disabled": false,
+                  "key": "deviceIds",
+                  "value": "<long>",
+                  "description": "The device IDs"
+                },
+                {
+                  "disabled": false,
+                  "key": "deviceIds",
+                  "value": "<long>",
+                  "description": "The device IDs"
+                },
+                {
+                  "disabled": false,
+                  "key": "vlans",
+                  "value": "<integer>",
+                  "description": "The associate vlan IDs"
+                },
+                {
+                  "disabled": false,
+                  "key": "vlans",
+                  "value": "<integer>",
+                  "description": "The associate vlan IDs"
+                },
+                {
+                  "disabled": false,
+                  "key": "userProfileNames",
+                  "value": "<string>",
+                  "description": "The user profile names"
+                },
+                {
+                  "disabled": false,
+                  "key": "userProfileNames",
+                  "value": "<string>",
+                  "description": "The user profile names"
+                },
+                {
+                  "disabled": false,
+                  "key": "ssids",
+                  "value": "<string>",
+                  "description": "The SSIDs"
+                },
+                {
+                  "disabled": false,
+                  "key": "ssids",
+                  "value": "<string>",
+                  "description": "The SSIDs"
+                },
+                {
+                  "disabled": false,
+                  "key": "clientOsNames",
+                  "value": "<string>",
+                  "description": "The client os names"
+                },
+                {
+                  "disabled": false,
+                  "key": "clientOsNames",
+                  "value": "<string>",
+                  "description": "The client os names"
+                },
+                {
+                  "disabled": false,
+                  "key": "clientConnectionTypes",
+                  "value": "<integer>",
+                  "description": "The client connection types - 1 - WIRELESS, 2 - WIRED, -1 - UNDETERMINED"
+                },
+                {
+                  "disabled": false,
+                  "key": "clientConnectionTypes",
+                  "value": "<integer>",
+                  "description": "The client connection types - 1 - WIRELESS, 2 - WIRED, -1 - UNDETERMINED"
+                },
+                {
+                  "disabled": false,
+                  "key": "clientHealthStatus",
+                  "value": "<integer>",
+                  "description": "The client health status - 1 - HEALTHY, 2 - POOR"
+                },
+                {
+                  "disabled": false,
+                  "key": "excludeLocallyManaged",
+                  "value": "<boolean>",
+                  "description": "Return Cloud managed Devices' clients. Default value - false"
+                },
+                {
+                  "disabled": false,
+                  "key": "searchString",
+                  "value": "<string>",
+                  "description": "The SearchString"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "20626b8a-3975-4a5f-becd-ceea094a2f7c",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "clients",
+                    "active",
+                    "count"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "views",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "views",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "locationIds",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "locationIds",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "deviceIds",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "deviceIds",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "vlans",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "vlans",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "userProfileNames",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "userProfileNames",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ssids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ssids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "clientOsNames",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "clientOsNames",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "clientConnectionTypes",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "clientConnectionTypes",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "clientHealthStatus",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "excludeLocallyManaged",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "searchString",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 2368\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9f294f13-284f-4d88-ba7e-f2271acc2d96",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "clients",
+                    "active",
+                    "count"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "views",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "views",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "locationIds",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "locationIds",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "deviceIds",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "deviceIds",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "vlans",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "vlans",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "userProfileNames",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "userProfileNames",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ssids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ssids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "clientOsNames",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "clientOsNames",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "clientConnectionTypes",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "clientConnectionTypes",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "clientHealthStatus",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "excludeLocallyManaged",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "searchString",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "46b64aa1-1484-4abd-93db-53785e792444",
+          "name": "Disconnect the client",
+          "request": {
+            "name": "Disconnect the client",
+            "description": {
+              "content": "Disconnect the client.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "clients",
+                "byMac",
+                ":clientMac"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "clientMac",
+                  "description": "(Required) The mac address of client"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "06731c6d-5578-48c2-8353-fe2099acc9f0",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "clients",
+                    "byMac",
+                    ":clientMac"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "clientMac",
+                      "description": "(Required) The mac address of client"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8016a176-7d47-47ac-a9cf-a888c1245a17",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "clients",
+                    "byMac",
+                    ":clientMac"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "clientMac",
+                      "description": "(Required) The mac address of client"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f72ed3e3-4494-4c55-834b-9895c746a400",
+          "name": "Get client info by mac",
+          "request": {
+            "name": "Get client info by mac",
+            "description": {
+              "content": "Get detailed client information by mac.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "clients",
+                "getByMac",
+                ":clientMac"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>",
+                  "description": "The client fields to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>",
+                  "description": "The client fields to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "views",
+                  "value": "<string>",
+                  "description": "The views to return client fields (Check fields for each view at XiqClientView schema)"
+                },
+                {
+                  "disabled": false,
+                  "key": "views",
+                  "value": "<string>",
+                  "description": "The views to return client fields (Check fields for each view at XiqClientView schema)"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "clientMac",
+                  "description": "(Required) The mac address of client"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "a87b98bc-23e7-45bb-b69c-e880fce59544",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "clients",
+                    "getByMac",
+                    ":clientMac"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "views",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "views",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "clientMac",
+                      "description": "(Required) The mac address of client"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"create_time\": \"2019-08-12T15:28:11.289Z\",\n  \"device_id\": 5171,\n  \"id\": 2532,\n  \"location_id\": 3366,\n  \"org_id\": 2595,\n  \"update_time\": \"1964-10-16T09:51:26.430Z\",\n  \"hostname\": \"string\",\n  \"mac_address\": \"string\",\n  \"ip_address\": \"string\",\n  \"ipv6_address\": \"string\",\n  \"os_type\": \"string\",\n  \"username\": \"string\",\n  \"user_profile_name\": \"string\",\n  \"connected\": false,\n  \"online_time\": \"1946-12-13T06:19:23.835Z\",\n  \"offline_time\": \"1948-11-17T15:55:54.668Z\",\n  \"vlan\": 7922,\n  \"connection_type\": 1082,\n  \"ssid\": \"string\",\n  \"port\": \"string\",\n  \"org_name\": \"string\",\n  \"device_function\": 159,\n  \"device_mac_address\": \"string\",\n  \"device_name\": \"string\",\n  \"auth\": 8521,\n  \"channel\": 5539,\n  \"client_health\": 7086,\n  \"application_health\": 3563,\n  \"radio_health\": 5815,\n  \"network_health\": 2258,\n  \"radio_type\": 4113,\n  \"encryption_method\": 9919,\n  \"mac_protocol\": \"string\",\n  \"interface_name\": \"string\",\n  \"bssid\": \"string\",\n  \"rssi\": 8708,\n  \"snr\": 5531,\n  \"description\": \"string\",\n  \"category\": \"string\",\n  \"mobility\": \"string\",\n  \"port_type_name\": \"string\",\n  \"wing_ap\": true,\n  \"vendor\": \"string\",\n  \"locations\": [\n    {\n      \"id\": 7198,\n      \"name\": \"string\"\n    },\n    {\n      \"id\": 746,\n      \"name\": \"string\"\n    }\n  ],\n  \"productType\": \"string\",\n  \"alias\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8dc5f8b3-6709-45f9-84fa-fce420dccccc",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "clients",
+                    "getByMac",
+                    ":clientMac"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "views",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "views",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "clientMac",
+                      "description": "(Required) The mac address of client"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4c64e5be-f208-4791-8cc1-ebf58cc18261",
+          "name": "Disconnect clients",
+          "request": {
+            "name": "Disconnect clients",
+            "description": {
+              "content": "Disconnect one or more clients by their MAC addresses.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "clients",
+                "disconnect"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"mac_addresses\": [\n    \"<mac>\",\n    \"<mac>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f9327de0-93d4-45ea-93f2-f0de08214f81",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "clients",
+                    "disconnect"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"mac_addresses\": [\n    \"<mac>\",\n    \"<mac>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4f699f6f-235c-44bf-8089-2033d8bd89d6",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "clients",
+                    "disconnect"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"mac_addresses\": [\n    \"<mac>\",\n    \"<mac>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.extremecloudiq.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "1bee8099-af47-461c-9b0f-cbdeccb7e7b2",
+    "name": "ExtremeCloud IQ Account Client API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "ExtremeCloud IQ™ API allows customers and partners to create solutions for the management, monitoring, and provisioning\nof any ExtremeCloud IQ™ environment.\n\nAll related resources and documentation are available at [ExtremeCloud IQ Developer Portal](https://developer.extremecloudiq.com/).\nPlease check [Get Started and Tutorial](https://developer.extremecloudiq.com/documentation/) to understand how to use the APIs.\n\nGet the [latest OpenAPI definition](https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI/blob/main/xcloudiq-openapi.yaml)\nfrom [ExtremeCloud IQ OpenAPI GitHub repository](https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI).\n\nPlease have a valid [ExtremeCloud IQ](https://extremecloudiq.com/) account before getting started.\nIf you don't have one, please [register a new account](https://www.extremenetworks.com/cloud-networking/).\n\nContact Support:\n Name: Extreme Networks Support\n Email: support@extremenetworks.com",
+      "type": "text/plain"
+    }
+  }
+}

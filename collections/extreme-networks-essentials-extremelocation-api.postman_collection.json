@@ -1,0 +1,228 @@
+{
+  "item": [
+    {
+      "id": "2fe38cdf-c548-462b-87f1-d68d82273b38",
+      "name": "Essentials - ExtremeLocation",
+      "description": {
+        "content": "The ExtremeLocation and Analytics API",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "701cf3bb-90d7-4cbc-bf27-3569f2571a35",
+          "name": "Get the last known location of the client",
+          "request": {
+            "name": "Get the last known location of the client",
+            "description": {
+              "content": "Get the last known location of the client on the floor plan.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "essentials",
+                "eloc",
+                "clients",
+                ":clientMac",
+                "last-known-location"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "floorId",
+                  "value": "<string>",
+                  "description": "(Required) The location ID of the floor"
+                },
+                {
+                  "disabled": false,
+                  "key": "parentId",
+                  "value": "<string>",
+                  "description": "(Required) The location ID of the floor's parent"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "clientMac",
+                  "description": "(Required) The mac address of client"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "67bda50d-0788-4371-9586-2747b63fc529",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "essentials",
+                    "eloc",
+                    "clients",
+                    ":clientMac",
+                    "last-known-location"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "floorId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "parentId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "clientMac",
+                      "description": "(Required) The mac address of client"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"timestamp\": \"2016-04-06T04:00:36.002Z\",\n  \"x\": 1007.7769231903943,\n  \"y\": 9668.285334491831\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2f7911c4-42cc-4a51-8265-ff23148fdfee",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "essentials",
+                    "eloc",
+                    "clients",
+                    ":clientMac",
+                    "last-known-location"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "floorId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "parentId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "clientMac",
+                      "description": "(Required) The mac address of client"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.extremecloudiq.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "8897eab7-e706-4b7b-bc6c-d008c5ef1e12",
+    "name": "ExtremeCloud IQ Account Essentials - ExtremeLocation API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "ExtremeCloud IQ™ API allows customers and partners to create solutions for the management, monitoring, and provisioning\nof any ExtremeCloud IQ™ environment.\n\nAll related resources and documentation are available at [ExtremeCloud IQ Developer Portal](https://developer.extremecloudiq.com/).\nPlease check [Get Started and Tutorial](https://developer.extremecloudiq.com/documentation/) to understand how to use the APIs.\n\nGet the [latest OpenAPI definition](https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI/blob/main/xcloudiq-openapi.yaml)\nfrom [ExtremeCloud IQ OpenAPI GitHub repository](https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI).\n\nPlease have a valid [ExtremeCloud IQ](https://extremecloudiq.com/) account before getting started.\nIf you don't have one, please [register a new account](https://www.extremenetworks.com/cloud-networking/).\n\nContact Support:\n Name: Extreme Networks Support\n Email: support@extremenetworks.com",
+      "type": "text/plain"
+    }
+  }
+}

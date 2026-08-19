@@ -1,0 +1,4689 @@
+{
+  "item": [
+    {
+      "id": "8d1441d6-d97f-45d6-8aaa-b03537a88405",
+      "name": "Copilot - Anomalies",
+      "description": {
+        "content": "The Copilot Anomalies API",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e67cf2cb-ce02-4cff-b804-debaea145df3",
+          "name": "Get POE Flapping Anomaly Device Stats",
+          "request": {
+            "name": "Get POE Flapping Anomaly Device Stats",
+            "description": {
+              "content": "Get all the stats for anomaly device.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "copilot",
+                "anomalies",
+                "poeflapping",
+                "stats"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "anomalyId",
+                  "value": "<string>",
+                  "description": "(Required) The anomaly id"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "68d38714-d1fd-4a2b-9902-e894be5cd0be",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "copilot",
+                    "anomalies",
+                    "poeflapping",
+                    "stats"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "anomalyId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"flap_count_entities\": [\n    {\n      \"timestamp\": 8005,\n      \"flap_count\": 4256,\n      \"sub_optimal_count\": 1810,\n      \"optimal_time_spent\": 9780.121318817412\n    },\n    {\n      \"timestamp\": 6237,\n      \"flap_count\": 9478,\n      \"sub_optimal_count\": 9332,\n      \"optimal_time_spent\": 1214.6902664521197\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6302b32f-13e6-448a-b17a-3af3419df66a",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "copilot",
+                    "anomalies",
+                    "poeflapping",
+                    "stats"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "anomalyId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "53624ed2-4f0b-440c-bd20-564235b6425b",
+          "name": "Get PortEfficiency Device Stats",
+          "request": {
+            "name": "Get PortEfficiency Device Stats",
+            "description": {
+              "content": "Get all the stats for PortEfficiency device.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "copilot",
+                "anomalies",
+                "port-efficiency",
+                "stats"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "anomalyId",
+                  "value": "<string>",
+                  "description": "(Required) The anomaly id"
+                },
+                {
+                  "disabled": false,
+                  "key": "offsetTime",
+                  "value": "<integer>",
+                  "description": "(Required) The offset value"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "c2397703-b470-4114-bf10-ec06804ffaec",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "copilot",
+                    "anomalies",
+                    "port-efficiency",
+                    "stats"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "anomalyId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "offsetTime",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"duplex_data_rate_entities\": [\n    {\n      \"timestamp\": 6851,\n      \"duplex_mode\": 1115,\n      \"datarate_mode\": 8735\n    },\n    {\n      \"timestamp\": 294,\n      \"duplex_mode\": 7489,\n      \"datarate_mode\": 5477\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "52d0b273-19ce-401d-90a8-7240eb3d9291",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "copilot",
+                    "anomalies",
+                    "port-efficiency",
+                    "stats"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "anomalyId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "offsetTime",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9472b806-e8d4-4570-84d1-8084a3c06f89",
+          "name": "Get PortEfficiency Device Speed and Duplex Stats",
+          "request": {
+            "name": "Get PortEfficiency Device Speed and Duplex Stats",
+            "description": {
+              "content": "Get all the speed and duplex for PortEfficiency device.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "copilot",
+                "anomalies",
+                "port-efficiency",
+                "speed-duplex-stats"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "anomalyId",
+                  "value": "<string>",
+                  "description": "(Required) The anomaly id"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "052c5874-0b6f-4274-a784-9424e9667ed7",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "copilot",
+                    "anomalies",
+                    "port-efficiency",
+                    "speed-duplex-stats"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "anomalyId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"speed_duplex_entities\": [\n    {\n      \"timestamp\": 6122,\n      \"value\": 8939\n    },\n    {\n      \"timestamp\": 4007,\n      \"value\": 3227\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1db50d5a-108b-48b5-a6e6-9c8dcfd9541b",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "copilot",
+                    "anomalies",
+                    "port-efficiency",
+                    "speed-duplex-stats"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "anomalyId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2c85a5ee-6624-48c3-9e7a-03d50e95d274",
+          "name": "Get DFSRecurrence Device Channel Count Stats",
+          "request": {
+            "name": "Get DFSRecurrence Device Channel Count Stats",
+            "description": {
+              "content": "Get DFS Recurrence anomaly radar event count stats.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "copilot",
+                "anomalies",
+                "dfs-recurrence",
+                "count-stats"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "anomalyId",
+                  "value": "<string>",
+                  "description": "(Required) The anomaly id"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "56dd0438-c6d3-4dd0-9b2b-9681961e6647",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "copilot",
+                    "anomalies",
+                    "dfs-recurrence",
+                    "count-stats"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "anomalyId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"dfs_channel_changes_entity\": [\n    {\n      \"timestamp\": 8489,\n      \"count\": 2469\n    },\n    {\n      \"timestamp\": 2552,\n      \"count\": 14\n    }\n  ],\n  \"normal\": 1889\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ddd2db2c-6185-4d44-b141-20405b22b57d",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "copilot",
+                    "anomalies",
+                    "dfs-recurrence",
+                    "count-stats"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "anomalyId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3fc19a47-2874-4688-8839-23e34cd41ff2",
+          "name": "Get DFSRecurrence Device Channel Change Stats",
+          "request": {
+            "name": "Get DFSRecurrence Device Channel Change Stats",
+            "description": {
+              "content": "Get DFS Recurrence anomaly device channel change stats.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "copilot",
+                "anomalies",
+                "dfs-recurrence",
+                "channel-stats"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "anomalyId",
+                  "value": "<string>",
+                  "description": "(Required) The anomaly id"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "21ffbbbf-7b4d-4923-85da-eb6ad03a7e9d",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "copilot",
+                    "anomalies",
+                    "dfs-recurrence",
+                    "channel-stats"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "anomalyId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"dfs_channel_stats_entity\": [\n    {\n      \"timestamp\": 7670,\n      \"channel_number\": 3482\n    },\n    {\n      \"timestamp\": 8984,\n      \"channel_number\": 445\n    }\n  ],\n  \"min_channel\": 7790,\n  \"max_channel\": 5549\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "519da396-b9e5-4d19-a618-8f040ce195a9",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "copilot",
+                    "anomalies",
+                    "dfs-recurrence",
+                    "channel-stats"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "anomalyId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "52978042-8009-4ed7-a7e9-d8f9223e52fb",
+          "name": "Get Adverse Traffic Pattern Anomaly Device Stats",
+          "request": {
+            "name": "Get Adverse Traffic Pattern Anomaly Device Stats",
+            "description": {
+              "content": "Get all the stats for anomaly device.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "copilot",
+                "anomalies",
+                "adverse-traffic",
+                "device-stats"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "anomalyId",
+                  "value": "<string>",
+                  "description": "(Required) The anomaly id"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "78a30b1b-ec53-4240-bc8c-2d78df867349",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "copilot",
+                    "anomalies",
+                    "adverse-traffic",
+                    "device-stats"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "anomalyId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"atp_device_stat_entities\": [\n    {\n      \"timestamp\": 8266,\n      \"avg_cpu\": 3460.895008452206,\n      \"avg_memory\": 6882.284188289241,\n      \"avg_client_count\": 962\n    },\n    {\n      \"timestamp\": 2460,\n      \"avg_cpu\": 8725.816459295533,\n      \"avg_memory\": 7093.099306386032,\n      \"avg_client_count\": 6985\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "90536feb-e552-402d-a139-b9ebad02b1e3",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "copilot",
+                    "anomalies",
+                    "adverse-traffic",
+                    "device-stats"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "anomalyId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3af9a453-798a-46aa-b811-3bcb3cc4c39e",
+          "name": "Get Adverse Traffic Pattern Anomaly Packet Counts",
+          "request": {
+            "name": "Get Adverse Traffic Pattern Anomaly Packet Counts",
+            "description": {
+              "content": "Get all the stats for anomaly device.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "copilot",
+                "anomalies",
+                "adverse-traffic",
+                "packet-counts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "anomalyId",
+                  "value": "<string>",
+                  "description": "(Required) The anomaly id"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "87690a3f-31d8-4cc7-bf89-7cdebd792d47",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "copilot",
+                    "anomalies",
+                    "adverse-traffic",
+                    "packet-counts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "anomalyId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"atp_packet_counts_entities\": [\n    {\n      \"timestamp\": 2344,\n      \"unicast_tx\": 852,\n      \"unicast_rx\": 9188,\n      \"multicast_tx\": 8047,\n      \"multicast_rx\": 7168,\n      \"broadcast_tx\": 9098,\n      \"broadcast_rx\": 271\n    },\n    {\n      \"timestamp\": 5581,\n      \"unicast_tx\": 1131,\n      \"unicast_rx\": 5211,\n      \"multicast_tx\": 6393,\n      \"multicast_rx\": 9691,\n      \"broadcast_tx\": 6282,\n      \"broadcast_rx\": 8189\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "74e53c1a-761e-4a58-9ca9-a283df5861a4",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "copilot",
+                    "anomalies",
+                    "adverse-traffic",
+                    "packet-counts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "anomalyId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e4959851-1416-4a2b-b325-adbe008e1a51",
+          "name": "Get WifiEfficiency Device Stats",
+          "request": {
+            "name": "Get WifiEfficiency Device Stats",
+            "description": {
+              "content": "Get all the stats for WifiEfficiency device.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "copilot",
+                "anomalies",
+                "wifi-efficiency",
+                "stats"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "anomalyId",
+                  "value": "<string>",
+                  "description": "(Required) The anomaly id"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "0622f0b8-fbc4-43bb-94bc-0e73ba5ac2ed",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "copilot",
+                    "anomalies",
+                    "wifi-efficiency",
+                    "stats"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "anomalyId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total_client_sessions\": 4405,\n  \"show_tx_data\": false,\n  \"sessions_data\": [\n    {\n      \"timestamp\": 8089,\n      \"data_rate_failure_percent\": 7149.355176951787,\n      \"client_count\": 6990,\n      \"normal_failure_percent\": 5927\n    },\n    {\n      \"timestamp\": 2861,\n      \"data_rate_failure_percent\": 4839.429224341261,\n      \"client_count\": 3889,\n      \"normal_failure_percent\": 9064\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d9e51940-a0bc-4bb8-aa6a-f951dccf7c3e",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "copilot",
+                    "anomalies",
+                    "wifi-efficiency",
+                    "stats"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "anomalyId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a4ab6f26-a1cd-43ca-bfd0-e6ff3e088513",
+          "name": "Get WifiEfficiency contributing client list",
+          "request": {
+            "name": "Get WifiEfficiency contributing client list",
+            "description": {
+              "content": "Get all the client list for WifiEfficiency device.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "copilot",
+                "anomalies",
+                "wifi-efficiency",
+                "client-list"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "deviceId",
+                  "value": "<long>",
+                  "description": "(Required) The device id"
+                },
+                {
+                  "disabled": false,
+                  "key": "channel",
+                  "value": "<integer>",
+                  "description": "(Required) The channel number"
+                },
+                {
+                  "disabled": false,
+                  "key": "timestamp",
+                  "value": "<long>",
+                  "description": "(Required) The timestamp"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "df596840-75b9-4025-a711-66760e8d8c17",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "copilot",
+                    "anomalies",
+                    "wifi-efficiency",
+                    "client-list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "deviceId",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "channel",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "timestamp",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"client_stats_entities\": [\n    {\n      \"client_mac\": \"string\",\n      \"client_name\": \"string\",\n      \"client_host_os\": \"string\",\n      \"avg_snr\": 1047,\n      \"avg_tx_rate\": 5123,\n      \"avg_rx_rate\": 6193,\n      \"client_id\": 9792\n    },\n    {\n      \"client_mac\": \"string\",\n      \"client_name\": \"string\",\n      \"client_host_os\": \"string\",\n      \"avg_snr\": 7557,\n      \"avg_tx_rate\": 7782,\n      \"avg_rx_rate\": 4097,\n      \"client_id\": 1996\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "87d5cb77-f4f4-469e-a8f0-fee58c2d41c3",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "copilot",
+                    "anomalies",
+                    "wifi-efficiency",
+                    "client-list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "deviceId",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "channel",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "timestamp",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ea3389c3-22a7-4d5d-8ff5-3e96a6cb2c18",
+          "name": "Get WifiCapacity Device Stats",
+          "request": {
+            "name": "Get WifiCapacity Device Stats",
+            "description": {
+              "content": "Get all the stats for WifiCapacity device.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "copilot",
+                "anomalies",
+                "wifi-capacity",
+                "stats"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "anomalyId",
+                  "value": "<string>",
+                  "description": "(Required) The anomaly id"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "12011766-7c0e-47d7-b67c-4408b49f310a",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "copilot",
+                    "anomalies",
+                    "wifi-capacity",
+                    "stats"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "anomalyId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"device_stats\": [\n    {\n      \"timestamp\": 5288,\n      \"avg_interference_utilization\": 2376,\n      \"avg_tx_utilization\": 4956,\n      \"avg_rx_utilization\": 5980,\n      \"avg_total_channel_utilization\": 3969,\n      \"avg_num_clients\": 3680,\n      \"normal_interference\": 4735\n    },\n    {\n      \"timestamp\": 9677,\n      \"avg_interference_utilization\": 9392,\n      \"avg_tx_utilization\": 458,\n      \"avg_rx_utilization\": 7488,\n      \"avg_total_channel_utilization\": 8803,\n      \"avg_num_clients\": 4010,\n      \"normal_interference\": 3338\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b8019d5f-f8b6-4234-85d4-ed24730768a1",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "copilot",
+                    "anomalies",
+                    "wifi-capacity",
+                    "stats"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "anomalyId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "81d2c24a-16ba-4193-9f1a-139034696f9a",
+          "name": "Get WifiCapacity contributing client list",
+          "request": {
+            "name": "Get WifiCapacity contributing client list",
+            "description": {
+              "content": "Get all the client list for WifiCapacity device.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "copilot",
+                "anomalies",
+                "wifi-capacity",
+                "client-list"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "deviceId",
+                  "value": "<long>",
+                  "description": "(Required) The device id"
+                },
+                {
+                  "disabled": false,
+                  "key": "channel",
+                  "value": "<integer>",
+                  "description": "(Required) The channel number"
+                },
+                {
+                  "disabled": false,
+                  "key": "timestamp",
+                  "value": "<long>",
+                  "description": "(Required) The timestamp"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "ab3eed20-0665-4c63-a882-8be113b3267f",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "copilot",
+                    "anomalies",
+                    "wifi-capacity",
+                    "client-list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "deviceId",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "channel",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "timestamp",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"client_wifi_stats\": [\n    {\n      \"client_mac\": \"string\",\n      \"client_name\": \"string\",\n      \"client_host_os\": \"string\",\n      \"avg_snr\": 3487,\n      \"avg_rssi\": 7768,\n      \"health_score\": [\n        \"GOOD\",\n        \"POOR\"\n      ],\n      \"client_id\": 8926\n    },\n    {\n      \"client_mac\": \"string\",\n      \"client_name\": \"string\",\n      \"client_host_os\": \"string\",\n      \"avg_snr\": 3575,\n      \"avg_rssi\": 854,\n      \"health_score\": [\n        \"GOOD\",\n        \"POOR\"\n      ],\n      \"client_id\": 716\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "eacf16b8-9163-4ebc-aabf-d76a650c4548",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "copilot",
+                    "anomalies",
+                    "wifi-capacity",
+                    "client-list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "deviceId",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "channel",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "timestamp",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "784dc1eb-6593-416e-918a-bd43a6c6adb8",
+          "name": "Get AssuranceScans for all anomaly devices",
+          "request": {
+            "name": "Get AssuranceScans for all anomaly devices",
+            "description": {
+              "content": "Get all assuranceScans data for a given location.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "copilot",
+                "assurance-scans",
+                "overview"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "d9deb16a-b1ac-4940-a7ba-e69bf62db1d2",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "copilot",
+                    "assurance-scans",
+                    "overview"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"aggregated_scans_count\": 5942,\n  \"anomalies_count\": [\n    {\n      \"timestamp\": 3391,\n      \"total_anomalies_count\": 9931,\n      \"wifi_efficiency_count\": 3404,\n      \"wifi_capacity_count\": 8079,\n      \"poe_count\": 1646,\n      \"pe_count\": 6805,\n      \"dfs_count\": 610,\n      \"mb_cast_count\": 7485,\n      \"hardware_health_count\": 2319,\n      \"missing_vlan_count\": 3197\n    },\n    {\n      \"timestamp\": 6687,\n      \"total_anomalies_count\": 9299,\n      \"wifi_efficiency_count\": 3888,\n      \"wifi_capacity_count\": 4562,\n      \"poe_count\": 753,\n      \"pe_count\": 2509,\n      \"dfs_count\": 6753,\n      \"mb_cast_count\": 9778,\n      \"hardware_health_count\": 316,\n      \"missing_vlan_count\": 6561\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "59bbb59d-560c-4cfb-86ca-3072ac765fe0",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "copilot",
+                    "assurance-scans",
+                    "overview"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "46c0a46e-400d-4a3e-a932-166ea6cdf7ec",
+          "name": "Update Anomalies Feedback",
+          "request": {
+            "name": "Update Anomalies Feedback",
+            "description": {
+              "content": "Update and save Anomaly Feedback.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "copilot",
+                "anomalies",
+                "devices",
+                "feedback"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"anomalyType\": \"<string>\",\n  \"anomalyId\": \"<string>\",\n  \"feedbackType\": \"<string>\",\n  \"feedback\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9644e1de-6195-4c45-9538-ec84c072de31",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "copilot",
+                    "anomalies",
+                    "devices",
+                    "feedback"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"anomalyType\": \"<string>\",\n  \"anomalyId\": \"<string>\",\n  \"feedbackType\": \"<string>\",\n  \"feedback\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "995c503f-8576-4fe8-8e62-3a5791ad0372",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "copilot",
+                    "anomalies",
+                    "devices",
+                    "feedback"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"anomalyType\": \"<string>\",\n  \"anomalyId\": \"<string>\",\n  \"feedbackType\": \"<string>\",\n  \"feedback\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7b2c47e4-28b3-475e-9973-38ea1c935231",
+          "name": "Get Anomalies by Categories",
+          "request": {
+            "name": "Get Anomalies by Categories",
+            "description": {
+              "content": "Get all anomalies for a given viewType.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "copilot",
+                "anomalies",
+                "anomalies-by-category"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "startTime",
+                  "value": "<long>",
+                  "description": "The start time"
+                },
+                {
+                  "disabled": false,
+                  "key": "endTime",
+                  "value": "<long>",
+                  "description": "The end time"
+                },
+                {
+                  "disabled": false,
+                  "key": "buildingId",
+                  "value": "<long>",
+                  "description": "The building id"
+                },
+                {
+                  "disabled": false,
+                  "key": "severity",
+                  "value": "<string>",
+                  "description": "The anomaly severity"
+                },
+                {
+                  "disabled": false,
+                  "key": "anomalyType",
+                  "value": "<string>",
+                  "description": "The anomaly type"
+                },
+                {
+                  "disabled": false,
+                  "key": "excludeMuted",
+                  "value": "false",
+                  "description": "To filter muted anomalies"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "18400ce2-d811-47f5-9a73-5991fafb1e04",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "copilot",
+                    "anomalies",
+                    "anomalies-by-category"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startTime",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "buildingId",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "severity",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "anomalyType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "excludeMuted",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"anomalies_by_location\": [\n    {\n      \"building_id\": 9872,\n      \"location_name\": \"string\",\n      \"anomalies_count_by_location\": 6694\n    },\n    {\n      \"building_id\": 3521,\n      \"location_name\": \"string\",\n      \"anomalies_count_by_location\": 6466\n    }\n  ],\n  \"anomalies_by_severity\": {\n    \"low_severity_anomalies_count\": 5144,\n    \"high_severity_anomalies_count\": 1265,\n    \"anomalies_count_by_severity\": 1789,\n    \"medium_severity_anomalies_count\": 2430\n  },\n  \"anomalies_by_type\": [\n    {\n      \"anomaly_type\": \"<string>\",\n      \"anomalies_count_by_type\": 8391\n    },\n    {\n      \"anomaly_type\": \"<string>\",\n      \"anomalies_count_by_type\": 2656\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "361cced9-4953-4eac-80f7-1ae41f5bdf94",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "copilot",
+                    "anomalies",
+                    "anomalies-by-category"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startTime",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "buildingId",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "severity",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "anomalyType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "excludeMuted",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7724ddc1-8422-4555-81a6-c50017455981",
+          "name": "Devices with Locations",
+          "request": {
+            "name": "Devices with Locations",
+            "description": {
+              "content": "Get all devices for all the anomalies and locations.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "copilot",
+                "anomalies",
+                "devices-with-locations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "startTime",
+                  "value": "<long>",
+                  "description": "The start time"
+                },
+                {
+                  "disabled": false,
+                  "key": "endTime",
+                  "value": "<long>",
+                  "description": "The end time"
+                },
+                {
+                  "disabled": false,
+                  "key": "buildingId",
+                  "value": "<long>",
+                  "description": "The building id"
+                },
+                {
+                  "disabled": false,
+                  "key": "severity",
+                  "value": "<string>",
+                  "description": "The anomaly severity"
+                },
+                {
+                  "disabled": false,
+                  "key": "anomalyType",
+                  "value": "<string>",
+                  "description": "The anomaly type"
+                },
+                {
+                  "disabled": false,
+                  "key": "excludeMuted",
+                  "value": "false",
+                  "description": "To filter muted anomalies"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortField",
+                  "value": "<string>",
+                  "description": "The sort field"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortOrder",
+                  "value": "<string>",
+                  "description": "The sort order (ascending by default)"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number, min = 1"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Page Size, min = 1, max = 100"
+                },
+                {
+                  "disabled": false,
+                  "key": "searchKey",
+                  "value": "<string>",
+                  "description": "The search key"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "27eb1f4e-6e2b-4898-b0a4-3c4bbd90866d",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "copilot",
+                    "anomalies",
+                    "devices-with-locations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startTime",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "buildingId",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "severity",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "anomalyType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "excludeMuted",
+                      "value": "false"
+                    },
+                    {
+                      "key": "sortField",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortOrder",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "searchKey",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"affected_count\": {\n    \"total_anomaly_count\": 9216,\n    \"affected_location_count\": 5217,\n    \"affected_devices_count\": 5073\n  },\n  \"anomaly_details\": [\n    {\n      \"building_id\": 9629,\n      \"location_name\": \"string\",\n      \"muted\": true,\n      \"severity\": \"<string>\",\n      \"anomaly_type\": \"<string>\",\n      \"last_detected_time\": 3111,\n      \"device_id\": 7232,\n      \"device_name\": \"string\",\n      \"device_model\": \"string\",\n      \"device_make\": \"string\",\n      \"switch_stack\": true,\n      \"category\": \"WIRELESS\",\n      \"interface_name\": \"string\",\n      \"location_id\": 2742,\n      \"anomaly_id\": \"string\",\n      \"channel_mode\": \"string\",\n      \"frequency\": \"string\",\n      \"recommended_action\": \"string\",\n      \"issue\": \"string\",\n      \"anomaly_subtypes\": \"string\",\n      \"missing_vlan_info\": {\n        \"lldp_enabled\": false,\n        \"upstream_switch_name\": \"string\",\n        \"floor_name\": \"string\",\n        \"affected_devices_entity\": [\n          {\n            \"ap_device_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"ap_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"upstream_switch_interface\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"missing_vlans\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"ap_device_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"ap_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"upstream_switch_interface\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"missing_vlans\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      }\n    },\n    {\n      \"building_id\": 5662,\n      \"location_name\": \"string\",\n      \"muted\": false,\n      \"severity\": \"<string>\",\n      \"anomaly_type\": \"<string>\",\n      \"last_detected_time\": 2447,\n      \"device_id\": 2917,\n      \"device_name\": \"string\",\n      \"device_model\": \"string\",\n      \"device_make\": \"string\",\n      \"switch_stack\": false,\n      \"category\": \"WIRELESS\",\n      \"interface_name\": \"string\",\n      \"location_id\": 543,\n      \"anomaly_id\": \"string\",\n      \"channel_mode\": \"string\",\n      \"frequency\": \"string\",\n      \"recommended_action\": \"string\",\n      \"issue\": \"string\",\n      \"anomaly_subtypes\": \"string\",\n      \"missing_vlan_info\": {\n        \"lldp_enabled\": false,\n        \"upstream_switch_name\": \"string\",\n        \"floor_name\": \"string\",\n        \"affected_devices_entity\": [\n          {\n            \"ap_device_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"ap_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"upstream_switch_interface\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"missing_vlans\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"ap_device_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"ap_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"upstream_switch_interface\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"missing_vlans\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      }\n    }\n  ],\n  \"count\": 1578,\n  \"page\": 4262,\n  \"total_count\": 6513,\n  \"total_pages\": 2755\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c1db89ae-7d0a-499c-827b-ad5ce461b380",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "copilot",
+                    "anomalies",
+                    "devices-with-locations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startTime",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "buildingId",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "severity",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "anomalyType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "excludeMuted",
+                      "value": "false"
+                    },
+                    {
+                      "key": "sortField",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortOrder",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "searchKey",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8f252e6b-41e9-48d3-b93b-a5e2ca4109d1",
+          "name": "Update Devices Action",
+          "request": {
+            "name": "Update Devices Action",
+            "description": {
+              "content": "Update & save action for Anomaly devices.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "copilot",
+                "anomalies",
+                "update-device-action"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "async",
+                  "value": "false",
+                  "description": "Whether to enable async mode"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"anomalyDetails\": [\n    {\n      \"buildingId\": \"<long>\",\n      \"locationId\": \"<long>\",\n      \"anomalyId\": \"<string>\",\n      \"anomalyType\": \"<string>\"\n    },\n    {\n      \"buildingId\": \"<long>\",\n      \"locationId\": \"<long>\",\n      \"anomalyId\": \"<string>\",\n      \"anomalyType\": \"<string>\"\n    }\n  ],\n  \"actionType\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "cd2e6dcc-f1fd-4d62-8708-1439992103fe",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "copilot",
+                    "anomalies",
+                    "update-device-action"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "async",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"anomalyDetails\": [\n    {\n      \"buildingId\": \"<long>\",\n      \"locationId\": \"<long>\",\n      \"anomalyId\": \"<string>\",\n      \"anomalyType\": \"<string>\"\n    },\n    {\n      \"buildingId\": \"<long>\",\n      \"locationId\": \"<long>\",\n      \"anomalyId\": \"<string>\",\n      \"anomalyType\": \"<string>\"\n    }\n  ],\n  \"actionType\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0abdc689-2004-488f-ba28-4e4a9f7d2c25",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "copilot",
+                    "anomalies",
+                    "update-device-action"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "async",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"anomalyDetails\": [\n    {\n      \"buildingId\": \"<long>\",\n      \"locationId\": \"<long>\",\n      \"anomalyId\": \"<string>\",\n      \"anomalyType\": \"<string>\"\n    },\n    {\n      \"buildingId\": \"<long>\",\n      \"locationId\": \"<long>\",\n      \"anomalyId\": \"<string>\",\n      \"anomalyType\": \"<string>\"\n    }\n  ],\n  \"actionType\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "95b0db91-4988-4672-980d-80cbaf16bcf7",
+          "name": "Download Anomalies Report",
+          "request": {
+            "name": "Download Anomalies Report",
+            "description": {
+              "content": "Download all devices and locations for all the anomalies.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "copilot",
+                "anomalies",
+                "report"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "startTime",
+                  "value": "<long>",
+                  "description": "The start time"
+                },
+                {
+                  "disabled": false,
+                  "key": "endTime",
+                  "value": "<long>",
+                  "description": "The end time"
+                },
+                {
+                  "disabled": false,
+                  "key": "buildingId",
+                  "value": "<long>",
+                  "description": "The building id"
+                },
+                {
+                  "disabled": false,
+                  "key": "severity",
+                  "value": "<string>",
+                  "description": "The anomaly severity"
+                },
+                {
+                  "disabled": false,
+                  "key": "anomalyType",
+                  "value": "<string>",
+                  "description": "The anomaly type"
+                },
+                {
+                  "disabled": false,
+                  "key": "excludeMuted",
+                  "value": "false",
+                  "description": "To filter muted anomalies"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortField",
+                  "value": "<string>",
+                  "description": "The sort field"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortOrder",
+                  "value": "<string>",
+                  "description": "The sort order (ascending by default)"
+                },
+                {
+                  "disabled": false,
+                  "key": "searchKey",
+                  "value": "<string>",
+                  "description": "The search key"
+                },
+                {
+                  "disabled": false,
+                  "key": "fileType",
+                  "value": "<string>",
+                  "description": "The file type"
+                },
+                {
+                  "disabled": false,
+                  "key": "offsetTime",
+                  "value": "<integer>",
+                  "description": "(Required) The offset value"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/csv"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "e12fe572-595c-4533-a071-07ad58ada3cb",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "copilot",
+                    "anomalies",
+                    "report"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startTime",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "buildingId",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "severity",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "anomalyType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "excludeMuted",
+                      "value": "false"
+                    },
+                    {
+                      "key": "sortField",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortOrder",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "searchKey",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fileType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "offsetTime",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/csv"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/csv"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "dc1b1e91-dd3a-4195-8724-32d84df52bdd",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "copilot",
+                    "anomalies",
+                    "report"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startTime",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "buildingId",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "severity",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "anomalyType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "excludeMuted",
+                      "value": "false"
+                    },
+                    {
+                      "key": "sortField",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortOrder",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "searchKey",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fileType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "offsetTime",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8d5f6419-b359-4ba6-9007-e8c1377d95a0",
+          "name": "Get POE Flapping Anomaly Device Power Mode Trends",
+          "request": {
+            "name": "Get POE Flapping Anomaly Device Power Mode Trends",
+            "description": {
+              "content": "Get all the poe trends for anomalous device.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "copilot",
+                "anomalies",
+                "poeflapping",
+                "trends"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "anomalyId",
+                  "value": "<string>",
+                  "description": "(Required) The anomaly id"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "dd18e1d4-1267-42dd-bbe8-d64e8a417ede",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "copilot",
+                    "anomalies",
+                    "poeflapping",
+                    "trends"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "anomalyId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"trend_graph_entities\": [\n    {\n      \"timestamp\": 2379,\n      \"power_mode\": \"string\"\n    },\n    {\n      \"timestamp\": 6673,\n      \"power_mode\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cbae99bc-d45e-49e3-b58d-6fc42e87976a",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "copilot",
+                    "anomalies",
+                    "poeflapping",
+                    "trends"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "anomalyId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2326fa07-9854-4bde-99a9-8270e9d78ab3",
+          "name": "Get anomalous device lldp cdp Info details",
+          "request": {
+            "name": "Get anomalous device lldp cdp Info details",
+            "description": {
+              "content": "Get LLDP-CDP information and location details for anomalous devices.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "copilot",
+                "anomalies",
+                "poeflapping",
+                "lldp-cdp-info"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "anomalyId",
+                  "value": "<string>",
+                  "description": "(Required) The anomaly id"
+                },
+                {
+                  "disabled": false,
+                  "key": "deviceId",
+                  "value": "<long>",
+                  "description": "(Required) The device id"
+                },
+                {
+                  "disabled": false,
+                  "key": "lastDetectedTime",
+                  "value": "<long>",
+                  "description": "The last detected time"
+                },
+                {
+                  "disabled": false,
+                  "key": "anomalyType",
+                  "value": "<string>",
+                  "description": "The anomaly type"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "64d9eb52-faa2-4bcd-bd63-700cf4898ccc",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "copilot",
+                    "anomalies",
+                    "poeflapping",
+                    "lldp-cdp-info"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "anomalyId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "deviceId",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "lastDetectedTime",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "anomalyType",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"lldp_cdp_info\": {\n    \"is_lldp_cdp_enabled\": true,\n    \"affected_downlink_devices\": [\n      {\n        \"host_name\": \"string\",\n        \"product_type\": \"string\",\n        \"interface_name\": \"string\",\n        \"port_id\": \"string\",\n        \"last_detected_time\": 590\n      },\n      {\n        \"host_name\": \"string\",\n        \"product_type\": \"string\",\n        \"interface_name\": \"string\",\n        \"port_id\": \"string\",\n        \"last_detected_time\": 6364\n      }\n    ],\n    \"unaffected_downlink_devices\": [\n      {\n        \"host_name\": \"string\",\n        \"product_type\": \"string\",\n        \"interface_name\": \"string\",\n        \"port_id\": \"string\"\n      },\n      {\n        \"host_name\": \"string\",\n        \"product_type\": \"string\",\n        \"interface_name\": \"string\",\n        \"port_id\": \"string\"\n      }\n    ],\n    \"uplink_switch_system_name\": \"string\",\n    \"uplink_switch_system_id\": \"string\",\n    \"uplink_switch_device_id\": 4096,\n    \"location_name\": \"string\",\n    \"floor_name\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6b176926-3376-4868-b781-cb09a928962e",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "copilot",
+                    "anomalies",
+                    "poeflapping",
+                    "lldp-cdp-info"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "anomalyId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "deviceId",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "lastDetectedTime",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "anomalyType",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b79bf7b2-da90-49bc-9807-cb2ca2e79cdb",
+          "name": "Get Excluded Vlan List",
+          "request": {
+            "name": "Get Excluded Vlan List",
+            "description": {
+              "content": "Get Excluded vlans details with Site details.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "copilot",
+                "anomalies",
+                "excluded-vlans-list"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number, min = 1"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Page Size, min = 1, max = 100"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "adcc8c60-6cb5-4769-9451-e7d691e046ee",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "copilot",
+                    "anomalies",
+                    "excluded-vlans-list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 6844,\n  \"page\": 9708,\n  \"total_count\": 4383,\n  \"total_pages\": 2470,\n  \"excluded_vlan_details_entity\": [\n    {\n      \"vlan_id\": 5196,\n      \"site_details\": [\n        {\n          \"site_name\": \"string\",\n          \"site_id\": 734\n        },\n        {\n          \"site_name\": \"string\",\n          \"site_id\": 2717\n        }\n      ]\n    },\n    {\n      \"vlan_id\": 5937,\n      \"site_details\": [\n        {\n          \"site_name\": \"string\",\n          \"site_id\": 2942\n        },\n        {\n          \"site_name\": \"string\",\n          \"site_id\": 4285\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5bd60fb4-7946-40a9-9c38-b75d7882e0a2",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "copilot",
+                    "anomalies",
+                    "excluded-vlans-list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5498a1da-7149-4cc6-b146-039d60f3aa3c",
+          "name": "Excluding Vlan from Sites",
+          "request": {
+            "name": "Excluding Vlan from Sites",
+            "description": {
+              "content": "Add, Update, Delete excluded vlan from sites.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "copilot",
+                "anomalies",
+                "exclude-vlans"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"excludeSitesVlanRequest\": {\n    \"excluded_vlan_details\": [\n      {\n        \"vlan_ids\": [\n          \"<long>\",\n          \"<long>\"\n        ],\n        \"site_ids\": [\n          \"<long>\",\n          \"<long>\"\n        ]\n      },\n      {\n        \"vlan_ids\": [\n          \"<long>\",\n          \"<long>\"\n        ],\n        \"site_ids\": [\n          \"<long>\",\n          \"<long>\"\n        ]\n      }\n    ]\n  },\n  \"old_vlan_id\": \"<integer>\",\n  \"action_type\": \"<string>\",\n  \"dismiss\": \"<boolean>\"\n}"
+            }
+          },
+          "response": [
+            {
+              "id": "9df11b23-fa1f-4f3c-a7be-6dd40b14a778",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "copilot",
+                    "anomalies",
+                    "exclude-vlans"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"excludeSitesVlanRequest\": {\n    \"excluded_vlan_details\": [\n      {\n        \"vlan_ids\": [\n          \"<long>\",\n          \"<long>\"\n        ],\n        \"site_ids\": [\n          \"<long>\",\n          \"<long>\"\n        ]\n      },\n      {\n        \"vlan_ids\": [\n          \"<long>\",\n          \"<long>\"\n        ],\n        \"site_ids\": [\n          \"<long>\",\n          \"<long>\"\n        ]\n      }\n    ]\n  },\n  \"old_vlan_id\": \"<integer>\",\n  \"action_type\": \"<string>\",\n  \"dismiss\": \"<boolean>\"\n}"
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f74d1659-a1d0-4c96-a4ce-3559c8094cdc",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "copilot",
+                    "anomalies",
+                    "exclude-vlans"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"excludeSitesVlanRequest\": {\n    \"excluded_vlan_details\": [\n      {\n        \"vlan_ids\": [\n          \"<long>\",\n          \"<long>\"\n        ],\n        \"site_ids\": [\n          \"<long>\",\n          \"<long>\"\n        ]\n      },\n      {\n        \"vlan_ids\": [\n          \"<long>\",\n          \"<long>\"\n        ],\n        \"site_ids\": [\n          \"<long>\",\n          \"<long>\"\n        ]\n      }\n    ]\n  },\n  \"old_vlan_id\": \"<integer>\",\n  \"action_type\": \"<string>\",\n  \"dismiss\": \"<boolean>\"\n}"
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6761dbb6-6af1-475d-9582-520408dc7260",
+          "name": "Excluding Vlan from Sites - CSV",
+          "request": {
+            "name": "Excluding Vlan from Sites - CSV",
+            "description": {
+              "content": "Add excluded vlan from sites using CSV.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "copilot",
+                "anomalies",
+                "exclude-vlans-csv"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "action_type",
+                  "value": "<string>",
+                  "description": "(Required) The type of action to perform (add)"
+                },
+                {
+                  "disabled": false,
+                  "key": "dismiss",
+                  "value": "<boolean>",
+                  "description": "(Required) Whether to dismiss the action after execution"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "csv_file",
+                  "type": "file",
+                  "description": "(Required) "
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "d7fbd530-7540-41d8-8259-1ba5d9144478",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "copilot",
+                    "anomalies",
+                    "exclude-vlans-csv"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "action_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dismiss",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "csv_file",
+                      "value": "<binary>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "78cde711-8f7e-48e7-b490-d8c1a57c5b85",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "copilot",
+                    "anomalies",
+                    "exclude-vlans-csv"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "action_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dismiss",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "csv_file",
+                      "value": "<binary>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6dc287bf-321e-4b6d-a722-6adfed9edaf9",
+          "name": "Get MissingVlan Anomalies Count",
+          "request": {
+            "name": "Get MissingVlan Anomalies Count",
+            "description": {
+              "content": "MissingVlan anomaly count for specified vlanIds and siteIds.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "copilot",
+                "anomalies",
+                "missing-vlan",
+                "count"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "startTime",
+                  "value": "<long>",
+                  "description": "(Required) The Start time"
+                },
+                {
+                  "disabled": false,
+                  "key": "endTime",
+                  "value": "<long>",
+                  "description": "(Required) The End time"
+                },
+                {
+                  "disabled": false,
+                  "key": "vlanIds",
+                  "value": "<long>",
+                  "description": "(Required) The vlan ids"
+                },
+                {
+                  "disabled": false,
+                  "key": "vlanIds",
+                  "value": "<long>",
+                  "description": "(Required) The vlan ids"
+                },
+                {
+                  "disabled": false,
+                  "key": "siteIds",
+                  "value": "<long>",
+                  "description": "(Required) The site ids"
+                },
+                {
+                  "disabled": false,
+                  "key": "siteIds",
+                  "value": "<long>",
+                  "description": "(Required) The site ids"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "97d8ce52-ed5e-4b53-a2e7-7006b5a58864",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "copilot",
+                    "anomalies",
+                    "missing-vlan",
+                    "count"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startTime",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "vlanIds",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "vlanIds",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "siteIds",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "siteIds",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total_anomalies_count\": 6214,\n  \"anomalies_count_by_site\": [\n    {\n      \"site_id\": 48,\n      \"site_name\": \"string\",\n      \"anomalies_count\": 9752\n    },\n    {\n      \"site_id\": 7813,\n      \"site_name\": \"string\",\n      \"anomalies_count\": 5351\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d26f30fe-7784-47ba-8f26-294aed3effb0",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "copilot",
+                    "anomalies",
+                    "missing-vlan",
+                    "count"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startTime",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "vlanIds",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "vlanIds",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "siteIds",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "siteIds",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e0a86712-a5e1-4dad-958e-fc8fd71a2c59",
+          "name": "Get HardwareHealth Anomaly Stats",
+          "request": {
+            "name": "Get HardwareHealth Anomaly Stats",
+            "description": {
+              "content": "Get all the stats for anomaly device.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "copilot",
+                "anomalies",
+                "hardware-health",
+                "stats"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "anomalyId",
+                  "value": "<string>",
+                  "description": "(Required) The anomaly id"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "76e8c841-6657-4e9b-a06c-897f55544514",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "copilot",
+                    "anomalies",
+                    "hardware-health",
+                    "stats"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "anomalyId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"hardware-health_device_stats_entities\": [\n    {\n      \"timestamp\": 7541,\n      \"avg_cpu_utilization\": 2716.1831591809705,\n      \"avg_memory_utilization\": 9817.473515271098,\n      \"avg_client_count\": 9932,\n      \"unit_temperature\": 9359.092310424305,\n      \"poe_power_mode\": \"string\"\n    },\n    {\n      \"timestamp\": 1734,\n      \"avg_cpu_utilization\": 5203.419320086081,\n      \"avg_memory_utilization\": 7483.031128577033,\n      \"avg_client_count\": 8662,\n      \"unit_temperature\": 9313.479394695985,\n      \"poe_power_mode\": \"string\"\n    }\n  ],\n  \"hardware-health_packet_counts_entities\": [\n    {\n      \"timestamp\": 2410,\n      \"unicast_tx\": 2982,\n      \"unicast_rx\": 6428,\n      \"multicast_tx\": 5240,\n      \"multicast_rx\": 252,\n      \"broadcast_tx\": 4738,\n      \"broadcast_rx\": 1692,\n      \"throughput\": 3680\n    },\n    {\n      \"timestamp\": 58,\n      \"unicast_tx\": 4953,\n      \"unicast_rx\": 6889,\n      \"multicast_tx\": 361,\n      \"multicast_rx\": 8939,\n      \"broadcast_tx\": 6205,\n      \"broadcast_rx\": 9018,\n      \"throughput\": 5427\n    }\n  ],\n  \"hardware-health_reboot_stats_entities\": [\n    {\n      \"timestamp\": 8013,\n      \"reboot_code\": 8547\n    },\n    {\n      \"timestamp\": 6179,\n      \"reboot_code\": 617\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c06fda8f-33e2-41ae-a0e4-86db90f26514",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "copilot",
+                    "anomalies",
+                    "hardware-health",
+                    "stats"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "anomalyId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b41a384e-a568-4ff5-8825-4915155cf7cb",
+          "name": "Get HardwareHealth contributing client list",
+          "request": {
+            "name": "Get HardwareHealth contributing client list",
+            "description": {
+              "content": "Get all the client list for HardwareHealth device.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "copilot",
+                "anomalies",
+                "hardware-health",
+                "client-list"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "deviceId",
+                  "value": "<long>",
+                  "description": "(Required) The device id"
+                },
+                {
+                  "disabled": false,
+                  "key": "timestamp",
+                  "value": "<long>",
+                  "description": "(Required) The timestamp"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "8edc898b-1bd0-46a9-9151-a2399c4ca724",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "copilot",
+                    "anomalies",
+                    "hardware-health",
+                    "client-list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "deviceId",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "timestamp",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"client_stats_entities\": [\n    {\n      \"client_mac\": \"string\",\n      \"client_name\": \"string\",\n      \"client_host_os\": \"string\",\n      \"avg_snr\": 4914,\n      \"health_score\": [\n        \"POOR\",\n        \"MEDIUM\"\n      ],\n      \"client_id\": 1061\n    },\n    {\n      \"client_mac\": \"string\",\n      \"client_name\": \"string\",\n      \"client_host_os\": \"string\",\n      \"avg_snr\": 2167,\n      \"health_score\": [\n        \"MEDIUM\",\n        \"GOOD\"\n      ],\n      \"client_id\": 1869\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7dfd7716-4118-4177-b4b5-cf863b4e480a",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "copilot",
+                    "anomalies",
+                    "hardware-health",
+                    "client-list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "deviceId",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "timestamp",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "afda716c-37fb-497b-a5ef-3fa94718ad2d",
+          "name": "Get HardwareHealth CPU & Memory Stats",
+          "request": {
+            "name": "Get HardwareHealth CPU & Memory Stats",
+            "description": {
+              "content": "Get CPU or memory details for HardwareHealth device.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "copilot",
+                "anomalies",
+                "hardware-health",
+                "cpu-mem-stats"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "deviceId",
+                  "value": "<long>",
+                  "description": "(Required) The device id"
+                },
+                {
+                  "disabled": false,
+                  "key": "hhStatsFieldType",
+                  "value": "<string>",
+                  "description": "(Required) The Hardware Health anomaly CPU or Memory Stats type"
+                },
+                {
+                  "disabled": false,
+                  "key": "timestamp",
+                  "value": "<long>",
+                  "description": "(Required) The timestamp"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "7c6c2a42-e49b-4869-bb02-e32b30da51f9",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "copilot",
+                    "anomalies",
+                    "hardware-health",
+                    "cpu-mem-stats"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "deviceId",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "hhStatsFieldType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "timestamp",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"cpu_memory_stats_entity\": [\n    {\n      \"timestamp\": 7324,\n      \"stats_ten_secs\": \"string\",\n      \"stats_twenty_secs\": \"string\",\n      \"stats_thirty_secs\": \"string\"\n    },\n    {\n      \"timestamp\": 8885,\n      \"stats_ten_secs\": \"string\",\n      \"stats_twenty_secs\": \"string\",\n      \"stats_thirty_secs\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "382d79f5-d6f4-46a8-907c-0778ddf3f553",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "copilot",
+                    "anomalies",
+                    "hardware-health",
+                    "cpu-mem-stats"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "deviceId",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "hhStatsFieldType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "timestamp",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.extremecloudiq.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "6cee5b5b-3d9a-4612-aa4e-9772e4dca45d",
+    "name": "ExtremeCloud IQ Account Copilot - Anomalies API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "ExtremeCloud IQ™ API allows customers and partners to create solutions for the management, monitoring, and provisioning\nof any ExtremeCloud IQ™ environment.\n\nAll related resources and documentation are available at [ExtremeCloud IQ Developer Portal](https://developer.extremecloudiq.com/).\nPlease check [Get Started and Tutorial](https://developer.extremecloudiq.com/documentation/) to understand how to use the APIs.\n\nGet the [latest OpenAPI definition](https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI/blob/main/xcloudiq-openapi.yaml)\nfrom [ExtremeCloud IQ OpenAPI GitHub repository](https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI).\n\nPlease have a valid [ExtremeCloud IQ](https://extremecloudiq.com/) account before getting started.\nIf you don't have one, please [register a new account](https://www.extremenetworks.com/cloud-networking/).\n\nContact Support:\n Name: Extreme Networks Support\n Email: support@extremenetworks.com",
+      "type": "text/plain"
+    }
+  }
+}

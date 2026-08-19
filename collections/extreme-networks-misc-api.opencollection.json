@@ -1,0 +1,67 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ExtremeCloud IQ Account Misc API",
+    "version": "25.9.0-36"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Misc",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get country list",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/countries"
+          },
+          "docs": "Get list of countries and country codes."
+        },
+        {
+          "info": {
+            "name": "Validate country code",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/countries/:countryCode/:validate",
+            "params": [
+              {
+                "name": "countryCode",
+                "value": "",
+                "type": "path",
+                "description": "The country code."
+              }
+            ]
+          },
+          "docs": "Validate whether the country code is a valid code or not."
+        },
+        {
+          "info": {
+            "name": "Get state list in a country",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/countries/:countryAlpha2Code/states",
+            "params": [
+              {
+                "name": "countryAlpha2Code",
+                "value": "",
+                "type": "path",
+                "description": "The country ISO 2-letter code."
+              }
+            ]
+          },
+          "docs": "Get list of states or provinces in a country with country alpha2 code."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,234 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ExtremeCloud IQ Account Network Policy API",
+    "version": "25.9.0-36"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Network Policy",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List network policies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/network-policies",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number, min = 1"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page Size, min = 1, max = 100"
+              },
+              {
+                "name": "policyNames",
+                "value": "",
+                "type": "query",
+                "description": "The list of policy names"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "List a page of network policies."
+        },
+        {
+          "info": {
+            "name": "Create network policy",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/network-policies",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Create a new network policy."
+        },
+        {
+          "info": {
+            "name": "Get the network policy",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/network-policies/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get an existing network policy by ID."
+        },
+        {
+          "info": {
+            "name": "Update the network policy",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.extremecloudiq.com/network-policies/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Update network policy by ID."
+        },
+        {
+          "info": {
+            "name": "Delete the network policy",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.extremecloudiq.com/network-policies/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Delete an existing network policy by ID."
+        },
+        {
+          "info": {
+            "name": "List SSIDs for a network policy",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/network-policies/:id/ssids",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number, min = 1"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page Size, min = 1, max = 100"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "List a page of SSIDs for a specific network policy."
+        },
+        {
+          "info": {
+            "name": "Add SSIDs to a network policy",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/network-policies/:id/ssids/:add",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Add SSIDs to a specific network policy."
+        },
+        {
+          "info": {
+            "name": "Removes SSIDs from the network policy",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/network-policies/:id/ssids/:remove",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Removing multiple SSIDs from the network policy."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,48 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ExtremeCloud IQ Account Authentication API",
+    "version": "25.9.0-36"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Authentication",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "User login with username and password",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/login",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get access token via username and password authentication. <p> The client must present Bearer token to access the protected API endpoints.The Bearer token should be present in the \"Authorization\" request header field and use the \"Bearer\" HTTP authentication scheme to transmit the access token. <p> User can also provide an optional rate limits parameter to control the rate limiting for the current session."
+        },
+        {
+          "info": {
+            "name": "User logout (Revoke the current access token)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/logout",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "User logout, the current access token will be revoked and the following access with the same token will be immediately denied."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

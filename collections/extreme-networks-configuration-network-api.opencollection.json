@@ -1,0 +1,228 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ExtremeCloud IQ Account Configuration - Network API",
+    "version": "25.9.0-36"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Configuration - Network",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Tunnel Concentrator services",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/tunnel-concentrators",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number, min = 1"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page Size, min = 1, max = 100"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get a page of Tunnel Concentrator services."
+        },
+        {
+          "info": {
+            "name": "Create Tunnel Concentrator Service",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/tunnel-concentrators",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Create a new Tunnel Concentrator Service."
+        },
+        {
+          "info": {
+            "name": "Get a Tunnel Concentrator Service",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/tunnel-concentrators/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get a specific Tunnel Concentrator Service by ID."
+        },
+        {
+          "info": {
+            "name": "Update a Tunnel Concentrator Service",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.extremecloudiq.com/tunnel-concentrators/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Update a specific Tunnel Concentrator Service."
+        },
+        {
+          "info": {
+            "name": "Delete a Tunnel Concentrator Service",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.extremecloudiq.com/tunnel-concentrators/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Delete a specific Tunnel Concentrator Service by ID."
+        },
+        {
+          "info": {
+            "name": "List Network Services",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/network-services",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number, min = 1"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page Size, min = 1, max = 100"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Network Service name."
+              },
+              {
+                "name": "ipProtocol",
+                "value": "",
+                "type": "query",
+                "description": "IP Protocol, only for custom Application."
+              },
+              {
+                "name": "algType",
+                "value": "",
+                "type": "query",
+                "description": "Application Layer Gateway (ALG) type, only for custom Application."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "List a page of Network Services."
+        },
+        {
+          "info": {
+            "name": "Create Network Service",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/network-services",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Create a new Network Service."
+        },
+        {
+          "info": {
+            "name": "Delete a Network Service by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.extremecloudiq.com/network-services/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Delete a Network Service by ID."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

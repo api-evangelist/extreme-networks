@@ -1,0 +1,678 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ExtremeCloud IQ Account D360 API",
+    "version": "25.9.0-36"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "D360",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Surrounding APs",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/d360/wireless/surrounding-aps",
+            "params": [
+              {
+                "name": "deviceId",
+                "value": "",
+                "type": "query",
+                "description": "The device ID"
+              },
+              {
+                "name": "startTime",
+                "value": "",
+                "type": "query",
+                "description": "The start time to query, epoch time in milliseconds since 1/1/1970"
+              },
+              {
+                "name": "endTime",
+                "value": "",
+                "type": "query",
+                "description": "The end time to query, epoch time in milliseconds since 1/1/1970"
+              },
+              {
+                "name": "selectedTime",
+                "value": "",
+                "type": "query",
+                "description": "The selected time to query, epoch time in milliseconds since 1/1/1970"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number, min = 1"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page Size, min = 1, max = 100"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get a list of surrounding APs."
+        },
+        {
+          "info": {
+            "name": "Wireless Interfaces Stats",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/d360/wireless/interfaces-stats",
+            "params": [
+              {
+                "name": "deviceId",
+                "value": "",
+                "type": "query",
+                "description": "The device ID"
+              },
+              {
+                "name": "startTime",
+                "value": "",
+                "type": "query",
+                "description": "The start time to query, epoch time in milliseconds since 1/1/1970"
+              },
+              {
+                "name": "endTime",
+                "value": "",
+                "type": "query",
+                "description": "The end time to query, epoch time in milliseconds since 1/1/1970"
+              },
+              {
+                "name": "selectedTime",
+                "value": "",
+                "type": "query",
+                "description": "The selected time to query, epoch time in milliseconds since 1/1/1970"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get Statistics of wireless interfaces of a device."
+        },
+        {
+          "info": {
+            "name": "Get Device Summary",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/d360/overview/devices-summary",
+            "params": [
+              {
+                "name": "deviceId",
+                "value": "",
+                "type": "query",
+                "description": "The device ID"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "List the summary of device details."
+        },
+        {
+          "info": {
+            "name": "Get Device Geo Location",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/d360/overview/devices-location",
+            "params": [
+              {
+                "name": "deviceId",
+                "value": "",
+                "type": "query",
+                "description": "The device ID"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get the geographical location of device."
+        },
+        {
+          "info": {
+            "name": "Alerts Graph",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/d360/alert/graph",
+            "params": [
+              {
+                "name": "startTime",
+                "value": "",
+                "type": "query",
+                "description": "The start time to query, epoch time in milliseconds since 1/1/1970"
+              },
+              {
+                "name": "endTime",
+                "value": "",
+                "type": "query",
+                "description": "The end time to query, epoch time in milliseconds since 1/1/1970"
+              }
+            ]
+          },
+          "docs": "List a list of alerts for Graphing API."
+        },
+        {
+          "info": {
+            "name": "Client Graph",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/d360/client/graph",
+            "params": [
+              {
+                "name": "deviceId",
+                "value": "",
+                "type": "query",
+                "description": "The device ID"
+              },
+              {
+                "name": "startTime",
+                "value": "",
+                "type": "query",
+                "description": "The start time to query, epoch time in milliseconds since 1/1/1970"
+              },
+              {
+                "name": "endTime",
+                "value": "",
+                "type": "query",
+                "description": "The end time to query, epoch time in milliseconds since 1/1/1970"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "List a list of connected clients for Graphing API of D360."
+        },
+        {
+          "info": {
+            "name": "Device metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/d360/device-metadata",
+            "params": [
+              {
+                "name": "deviceId",
+                "value": "",
+                "type": "query",
+                "description": "The device ID"
+              },
+              {
+                "name": "deviceType",
+                "value": "",
+                "type": "query",
+                "description": "The device type (wired/wireless)"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "The device metadata like timestamp from which device is online and location."
+        },
+        {
+          "info": {
+            "name": "Installation Media-upload",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/d360/installation/media",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Upload installation media."
+        },
+        {
+          "info": {
+            "name": "Installation Media-delete",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.extremecloudiq.com/d360/installation/media",
+            "params": [
+              {
+                "name": "mediaId",
+                "value": "",
+                "type": "query",
+                "description": "The id of the media file"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Delete installation media."
+        },
+        {
+          "info": {
+            "name": "Wired Interfaces",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/d360/wired/interface-grid",
+            "params": [
+              {
+                "name": "deviceId",
+                "value": "",
+                "type": "query",
+                "description": "The device ID"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Wired Interfaces -Grid."
+        },
+        {
+          "info": {
+            "name": "Device Location",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/d360/device/location",
+            "params": [
+              {
+                "name": "deviceId",
+                "value": "",
+                "type": "query",
+                "description": "The device ID"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieves the device location details on the map for the device."
+        },
+        {
+          "info": {
+            "name": "Device Issues",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/d360/device/issues",
+            "params": [
+              {
+                "name": "deviceId",
+                "value": "",
+                "type": "query",
+                "description": "The device ID"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieves the various issues for device."
+        },
+        {
+          "info": {
+            "name": "Device Stats",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/d360/device/stats",
+            "params": [
+              {
+                "name": "deviceId",
+                "value": "",
+                "type": "query",
+                "description": "The device ID"
+              },
+              {
+                "name": "startTime",
+                "value": "",
+                "type": "query",
+                "description": "The start time to query, epoch time in milliseconds since 1/1/1970"
+              },
+              {
+                "name": "endTime",
+                "value": "",
+                "type": "query",
+                "description": "The end time to query, epoch time in milliseconds since 1/1/1970"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Grid of Device Stats."
+        },
+        {
+          "info": {
+            "name": "Wireless Interfaces Graph",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/d360/wireless/interfaces-graph",
+            "params": [
+              {
+                "name": "deviceId",
+                "value": "",
+                "type": "query",
+                "description": "The device ID"
+              },
+              {
+                "name": "startTime",
+                "value": "",
+                "type": "query",
+                "description": "The start time to query, epoch time in milliseconds since 1/1/1970"
+              },
+              {
+                "name": "endTime",
+                "value": "",
+                "type": "query",
+                "description": "The end time to query, epoch time in milliseconds since 1/1/1970"
+              },
+              {
+                "name": "channel",
+                "value": "",
+                "type": "query",
+                "description": "The channel filters."
+              },
+              {
+                "name": "source",
+                "value": "",
+                "type": "query",
+                "description": "The source filters."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "List a list of wireless interfaces metrics for Graphing API."
+        },
+        {
+          "info": {
+            "name": "Client Stats",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/d360/client/stats",
+            "params": [
+              {
+                "name": "deviceId",
+                "value": "",
+                "type": "query",
+                "description": "The device ID"
+              },
+              {
+                "name": "startTime",
+                "value": "",
+                "type": "query",
+                "description": "The start time to query, epoch time in milliseconds since 1/1/1970"
+              },
+              {
+                "name": "endTime",
+                "value": "",
+                "type": "query",
+                "description": "The end time to query, epoch time in milliseconds since 1/1/1970"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Client statistics."
+        },
+        {
+          "info": {
+            "name": "Wireless Interfaces per device",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/d360/device/interfaces",
+            "params": [
+              {
+                "name": "deviceModel",
+                "value": "",
+                "type": "query",
+                "description": "The model of device"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "List available wifi interfaces on device model."
+        },
+        {
+          "info": {
+            "name": "Client Grid",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/d360/client/grid",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number, min = 1"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page Size, min = 1, max = 100"
+              },
+              {
+                "name": "keyword",
+                "value": "",
+                "type": "query",
+                "description": "The keyword to search"
+              },
+              {
+                "name": "deviceId",
+                "value": "",
+                "type": "query",
+                "description": "The device ID"
+              },
+              {
+                "name": "startTime",
+                "value": "",
+                "type": "query",
+                "description": "The start time to query, epoch time in milliseconds since 1/1/1970"
+              },
+              {
+                "name": "endTime",
+                "value": "",
+                "type": "query",
+                "description": "The end time to query, epoch time in milliseconds since 1/1/1970"
+              },
+              {
+                "name": "selectedTime",
+                "value": "",
+                "type": "query",
+                "description": "The selected time to query, epoch time in milliseconds since 1/1/1970"
+              },
+              {
+                "name": "clientStatus",
+                "value": "",
+                "type": "query",
+                "description": "The client statistics filter."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "List a list of connected clients for Graphing API of D360."
+        },
+        {
+          "info": {
+            "name": "SSID metadata of surrounding APs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/d360/wireless/surrounding-aps/ssid-metadata",
+            "params": [
+              {
+                "name": "deviceId",
+                "value": "",
+                "type": "query",
+                "description": "The device ID"
+              },
+              {
+                "name": "startTime",
+                "value": "",
+                "type": "query",
+                "description": "The start time to query, epoch time in milliseconds since 1/1/1970"
+              },
+              {
+                "name": "endTime",
+                "value": "",
+                "type": "query",
+                "description": "The end time to query, epoch time in milliseconds since 1/1/1970"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Grid of Device Stats."
+        },
+        {
+          "info": {
+            "name": "Events Graph",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/d360/event/graph",
+            "params": [
+              {
+                "name": "startTime",
+                "value": "",
+                "type": "query",
+                "description": "The start time to query, epoch time in milliseconds since 1/1/1970"
+              },
+              {
+                "name": "endTime",
+                "value": "",
+                "type": "query",
+                "description": "The end time to query, epoch time in milliseconds since 1/1/1970"
+              },
+              {
+                "name": "deviceId",
+                "value": "",
+                "type": "query",
+                "description": "The device ID"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "Filter events by type. Only selected event types will be included in the response. Valid values: `CRITICAL`, `MAJOR`, `MINOR`, `INFO`, `ACTIVE`, `CLEARED`, `ALL`.\n"
+              }
+            ]
+          },
+          "docs": "Retrieve a time-series graph of event metrics. Each timestamp includes an array of event types with their respective counts. Only selected filters will be included in the response."
+        },
+        {
+          "info": {
+            "name": "Wired QOS queue grid",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/d360/wired/queue-grid",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number, min = 1"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page Size, min = 1, max = 100"
+              },
+              {
+                "name": "deviceId",
+                "value": "",
+                "type": "query",
+                "description": "The unique device identifier. It can be virtual slot id and all stack ports will be returned or a member slot id and only that slot ports will be returned."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns all QOS queue statistics for a wired device."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

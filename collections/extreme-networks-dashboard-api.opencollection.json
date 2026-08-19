@@ -1,0 +1,345 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ExtremeCloud IQ Account Dashboard API",
+    "version": "25.9.0-36"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Dashboard",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Alert statistics",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/dashboard/alerts",
+            "params": [
+              {
+                "name": "alertsTimeRange",
+                "value": "",
+                "type": "query",
+                "description": "Alerts Time Range in days (defaults to 1 day)"
+              },
+              {
+                "name": "include_unassigned",
+                "value": "",
+                "type": "query",
+                "description": "To include unassigned location"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns the count of different types of alerts (critical, warning, information, and total unacknowledged) based on the provided filters. You can filter the results by sites."
+        },
+        {
+          "info": {
+            "name": "Asset statistics",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/dashboard/assets",
+            "params": [
+              {
+                "name": "include_unassigned",
+                "value": "",
+                "type": "query",
+                "description": "To include unassigned location"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns the count of total devices, total offline devices, wired offline devices, and wireless offline devices based on the provided filters. You can filter the results by sites."
+        },
+        {
+          "info": {
+            "name": "Client health statistics",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/dashboard/clients",
+            "params": [
+              {
+                "name": "include_unassigned",
+                "value": "",
+                "type": "query",
+                "description": "To include unassigned location"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns the count of total clients, total unhealthy clients, wired unhealthy clients, and wireless unhealthy clients based on the provided filters.You can filter the results by sites."
+        },
+        {
+          "info": {
+            "name": "Device health statistics",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/dashboard/devices",
+            "params": [
+              {
+                "name": "include_unassigned",
+                "value": "",
+                "type": "query",
+                "description": "To include unassigned location"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns the count of total devices, total unhealthy devices, wired unhealthy devices, and wireless unhealthy devices based on the provided filters. You can filter the results by sites."
+        },
+        {
+          "info": {
+            "name": "Usage & capacity statistics",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/dashboard/usage-capacity",
+            "params": [
+              {
+                "name": "include_unassigned",
+                "value": "",
+                "type": "query",
+                "description": "To include unassigned location"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns the count of wired, wireless and total usage & capacity issues based on the provided filters. You can filter the results by sites."
+        },
+        {
+          "info": {
+            "name": "Sites with issues",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/dashboard/sites-with-issues",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number, min = 1"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page Size, min = 1, max = 100"
+              },
+              {
+                "name": "keyword",
+                "value": "",
+                "type": "query",
+                "description": "The site name filter"
+              },
+              {
+                "name": "sortField",
+                "value": "",
+                "type": "query",
+                "description": "The sort field"
+              },
+              {
+                "name": "sortOrder",
+                "value": "",
+                "type": "query",
+                "description": "The sort order"
+              },
+              {
+                "name": "alertsTimeRange",
+                "value": "",
+                "type": "query",
+                "description": "Alerts Time Range in days (defaults to 1 day)"
+              },
+              {
+                "name": "include_unassigned",
+                "value": "",
+                "type": "query",
+                "description": "To include unassigned location"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns the site names along with alerts, usage and capacity, assets, client health, and device health based on the provided filters. You can filter the results by sites."
+        },
+        {
+          "info": {
+            "name": "Dashboard device types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/dashboard/device_types",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns a list of diagnostics device types."
+        },
+        {
+          "info": {
+            "name": "Export Sites with issues as CSV File",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/dashboard/export",
+            "params": [
+              {
+                "name": "keyword",
+                "value": "",
+                "type": "query",
+                "description": "The site name filter"
+              },
+              {
+                "name": "sortField",
+                "value": "",
+                "type": "query",
+                "description": "The sort field"
+              },
+              {
+                "name": "sortOrder",
+                "value": "",
+                "type": "query",
+                "description": "The sort order"
+              },
+              {
+                "name": "alertsTimeRange",
+                "value": "",
+                "type": "query",
+                "description": "Alerts Time Range in days (defaults to 1 day)"
+              },
+              {
+                "name": "include_unassigned",
+                "value": "",
+                "type": "query",
+                "description": "To include unassigned location"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns the site names along with alerts, usage and capacity, assets, client health, and device health based on the provided filters as CSV File. You can filter the results by sites."
+        },
+        {
+          "info": {
+            "name": "Criteria for Wireless Diagnostics Dashboard",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/dashboard/wireless/dashboard/criteria",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns the criteria for wireless diagnostics dashboard, including client health, device health, and usage and capacity issues."
+        },
+        {
+          "info": {
+            "name": "Create Criteria for Wireless Diagnostics Dashboard",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/dashboard/wireless/dashboard/criteria",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns the criteria for wireless diagnostics dashboard, including client health, device health, and usage and capacity issues."
+        },
+        {
+          "info": {
+            "name": "Download the Export CSV file",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/dashboard/wireless/dashboard/reports/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The report ID"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns the CSV File of the Site With Issue status based on the provided filters."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

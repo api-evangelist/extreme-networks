@@ -1,0 +1,715 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ExtremeCloud IQ Account Copilot - Connectivity Experience API",
+    "version": "25.9.0-36"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Copilot - Connectivity Experience",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Wireless Connectivity Experiences",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/copilot/connectivity/wireless/experience",
+            "params": [
+              {
+                "name": "viewType",
+                "value": "",
+                "type": "query",
+                "description": "The wireless experience view type"
+              },
+              {
+                "name": "startTime",
+                "value": "",
+                "type": "query",
+                "description": "The start time to query, epoch time in milliseconds since 1/1/1970"
+              },
+              {
+                "name": "endTime",
+                "value": "",
+                "type": "query",
+                "description": "The end time to query, epoch time in milliseconds since 1/1/1970"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number, min = 1"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page Size, min = 1, max = 100"
+              },
+              {
+                "name": "sortField",
+                "value": "",
+                "type": "query",
+                "description": "The sort field"
+              },
+              {
+                "name": "sortOrder",
+                "value": "",
+                "type": "query",
+                "description": "The sort order (ascending by default)"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "List a page of Quality-Index trends by selected view type."
+        },
+        {
+          "info": {
+            "name": "List Wired Connectivity Experiences",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/copilot/connectivity/wired/experience",
+            "params": [
+              {
+                "name": "viewType",
+                "value": "",
+                "type": "query",
+                "description": "The wired experience view type"
+              },
+              {
+                "name": "startTime",
+                "value": "",
+                "type": "query",
+                "description": "The start time to query, epoch time in milliseconds since 1/1/1970"
+              },
+              {
+                "name": "endTime",
+                "value": "",
+                "type": "query",
+                "description": "The end time to query, epoch time in milliseconds since 1/1/1970"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number, min = 1"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page Size, min = 1, max = 100"
+              },
+              {
+                "name": "sortField",
+                "value": "",
+                "type": "query",
+                "description": "The sort field"
+              },
+              {
+                "name": "sortOrder",
+                "value": "",
+                "type": "query",
+                "description": "The sort order (ascending by default)"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "List a page of Quality-Index trends by selected view type."
+        },
+        {
+          "info": {
+            "name": "Get Wired Connectivity QualityIndex",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/copilot/connectivity/wired/quality-index",
+            "params": [
+              {
+                "name": "viewType",
+                "value": "",
+                "type": "query",
+                "description": "The wired experience view type"
+              },
+              {
+                "name": "viewId",
+                "value": "",
+                "type": "query",
+                "description": "The view identifier based on selected view type"
+              },
+              {
+                "name": "forensicBucket",
+                "value": "",
+                "type": "query",
+                "description": "The historical period bucket"
+              },
+              {
+                "name": "startTime",
+                "value": "",
+                "type": "query",
+                "description": "The start time to query, epoch time in milliseconds since 1/1/1970"
+              },
+              {
+                "name": "endTime",
+                "value": "",
+                "type": "query",
+                "description": "The end time to query, epoch time in milliseconds since 1/1/1970"
+              },
+              {
+                "name": "locationId",
+                "value": "",
+                "type": "query",
+                "description": "The location id"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get Quality-Index for a specific view type."
+        },
+        {
+          "info": {
+            "name": "List Wired Connectivity Events",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/copilot/connectivity/wired/events",
+            "params": [
+              {
+                "name": "viewType",
+                "value": "",
+                "type": "query",
+                "description": "The wired experience view type"
+              },
+              {
+                "name": "viewId",
+                "value": "",
+                "type": "query",
+                "description": "The view identifier based on selected view type"
+              },
+              {
+                "name": "scoreType",
+                "value": "",
+                "type": "query",
+                "description": "The wired score type"
+              },
+              {
+                "name": "forensicBucket",
+                "value": "",
+                "type": "query",
+                "description": "The historical period bucket"
+              },
+              {
+                "name": "startTime",
+                "value": "",
+                "type": "query",
+                "description": "The start time to query, epoch time in milliseconds since 1/1/1970"
+              },
+              {
+                "name": "endTime",
+                "value": "",
+                "type": "query",
+                "description": "The end time to query, epoch time in milliseconds since 1/1/1970"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number, min = 1"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page Size, min = 1, max = 100"
+              },
+              {
+                "name": "sortField",
+                "value": "",
+                "type": "query",
+                "description": "The sort field"
+              },
+              {
+                "name": "sortOrder",
+                "value": "",
+                "type": "query",
+                "description": "The sort order (ascending by default)"
+              },
+              {
+                "name": "searchKey",
+                "value": "",
+                "type": "query",
+                "description": "The search key"
+              },
+              {
+                "name": "timestamp",
+                "value": "",
+                "type": "query",
+                "description": "The timestamp to query, epoch time in milliseconds since 1/1/1970"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "List a page of wired events over a selected period of time."
+        },
+        {
+          "info": {
+            "name": "Get Connectivity By Locations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/copilot/connectivity/locations",
+            "params": [
+              {
+                "name": "startTime",
+                "value": "",
+                "type": "query",
+                "description": "The start time to query, epoch time in milliseconds since 1/1/1970"
+              },
+              {
+                "name": "endTime",
+                "value": "",
+                "type": "query",
+                "description": "The end time to query, epoch time in milliseconds since 1/1/1970"
+              },
+              {
+                "name": "locationId",
+                "value": "",
+                "type": "query",
+                "description": "The location id"
+              },
+              {
+                "name": "searchKey",
+                "value": "",
+                "type": "query",
+                "description": "The search key"
+              },
+              {
+                "name": "clientType",
+                "value": "",
+                "type": "query",
+                "description": "The client type"
+              },
+              {
+                "name": "qualityIndex",
+                "value": "",
+                "type": "query",
+                "description": "The quality index score"
+              },
+              {
+                "name": "forensicBucket",
+                "value": "",
+                "type": "query",
+                "description": "The historical period bucket"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number, min = 1"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page Size, min = 1, max = 100"
+              },
+              {
+                "name": "sortField",
+                "value": "",
+                "type": "query",
+                "description": "The sort field"
+              },
+              {
+                "name": "sortOrder",
+                "value": "",
+                "type": "query",
+                "description": "The sort order (ascending by default)"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get Connectivity details by Locations in a Table with pagination & sorting."
+        },
+        {
+          "info": {
+            "name": "Get Connectivity By Client Type",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/copilot/connectivity/client-type",
+            "params": [
+              {
+                "name": "startTime",
+                "value": "",
+                "type": "query",
+                "description": "The start time to query, epoch time in milliseconds since 1/1/1970"
+              },
+              {
+                "name": "endTime",
+                "value": "",
+                "type": "query",
+                "description": "The end time to query, epoch time in milliseconds since 1/1/1970"
+              },
+              {
+                "name": "locationId",
+                "value": "",
+                "type": "query",
+                "description": "The location id"
+              },
+              {
+                "name": "clientType",
+                "value": "",
+                "type": "query",
+                "description": "The client type"
+              },
+              {
+                "name": "qualityIndex",
+                "value": "",
+                "type": "query",
+                "description": "The quality index score"
+              },
+              {
+                "name": "forensicBucket",
+                "value": "",
+                "type": "query",
+                "description": "The historical period bucket"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get Connectivity details by client type in the widgets."
+        },
+        {
+          "info": {
+            "name": "Get Wireless QualityIndex By Locations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/copilot/connectivity/wireless/locations/quality-index",
+            "params": [
+              {
+                "name": "startTime",
+                "value": "",
+                "type": "query",
+                "description": "The start time to query, epoch time in milliseconds since 1/1/1970"
+              },
+              {
+                "name": "endTime",
+                "value": "",
+                "type": "query",
+                "description": "The end time to query, epoch time in milliseconds since 1/1/1970"
+              },
+              {
+                "name": "forensicBucket",
+                "value": "",
+                "type": "query",
+                "description": "The historical period bucket"
+              },
+              {
+                "name": "locationId",
+                "value": "",
+                "type": "query",
+                "description": "The location id"
+              },
+              {
+                "name": "ssid",
+                "value": "",
+                "type": "query",
+                "description": "The ssid value"
+              },
+              {
+                "name": "osType",
+                "value": "",
+                "type": "query",
+                "description": "The os type value"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get Quality-Index for a specific view type."
+        },
+        {
+          "info": {
+            "name": "Get Wireless Time-To-Connect By Locations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/copilot/connectivity/wireless/locations/time-to-connect",
+            "params": [
+              {
+                "name": "startTime",
+                "value": "",
+                "type": "query",
+                "description": "The start time to query, epoch time in milliseconds since 1/1/1970"
+              },
+              {
+                "name": "endTime",
+                "value": "",
+                "type": "query",
+                "description": "The end time to query, epoch time in milliseconds since 1/1/1970"
+              },
+              {
+                "name": "forensicBucket",
+                "value": "",
+                "type": "query",
+                "description": "The historical period bucket"
+              },
+              {
+                "name": "locationId",
+                "value": "",
+                "type": "query",
+                "description": "The location id"
+              },
+              {
+                "name": "ssid",
+                "value": "",
+                "type": "query",
+                "description": "The ssid value"
+              },
+              {
+                "name": "osType",
+                "value": "",
+                "type": "query",
+                "description": "The os type value"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "List a page of Time-To-Connect score data over a selected period of time."
+        },
+        {
+          "info": {
+            "name": "Get Wireless Connectivity Performance By Locations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/copilot/connectivity/wireless/locations/performance",
+            "params": [
+              {
+                "name": "startTime",
+                "value": "",
+                "type": "query",
+                "description": "The start time to query, epoch time in milliseconds since 1/1/1970"
+              },
+              {
+                "name": "endTime",
+                "value": "",
+                "type": "query",
+                "description": "The end time to query, epoch time in milliseconds since 1/1/1970"
+              },
+              {
+                "name": "forensicBucket",
+                "value": "",
+                "type": "query",
+                "description": "The historical period bucket"
+              },
+              {
+                "name": "locationId",
+                "value": "",
+                "type": "query",
+                "description": "The location id"
+              },
+              {
+                "name": "ssid",
+                "value": "",
+                "type": "query",
+                "description": "The ssid value"
+              },
+              {
+                "name": "osType",
+                "value": "",
+                "type": "query",
+                "description": "The os type value"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "List a page of Performance score data over a selected period of time."
+        },
+        {
+          "info": {
+            "name": "List Wireless Connectivity Events By Locations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/copilot/connectivity/wireless/locations/events",
+            "params": [
+              {
+                "name": "startTime",
+                "value": "",
+                "type": "query",
+                "description": "The start time to query, epoch time in milliseconds since 1/1/1970"
+              },
+              {
+                "name": "endTime",
+                "value": "",
+                "type": "query",
+                "description": "The end time to query, epoch time in milliseconds since 1/1/1970"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number, min = 1"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page Size, min = 1, max = 100"
+              },
+              {
+                "name": "sortField",
+                "value": "",
+                "type": "query",
+                "description": "The sort field"
+              },
+              {
+                "name": "sortOrder",
+                "value": "",
+                "type": "query",
+                "description": "The sort order (ascending by default)"
+              },
+              {
+                "name": "scoreType",
+                "value": "",
+                "type": "query",
+                "description": "The wireless score type"
+              },
+              {
+                "name": "forensicBucket",
+                "value": "",
+                "type": "query",
+                "description": "The historical period bucket"
+              },
+              {
+                "name": "searchKey",
+                "value": "",
+                "type": "query",
+                "description": "The search key"
+              },
+              {
+                "name": "locationId",
+                "value": "",
+                "type": "query",
+                "description": "The location id"
+              },
+              {
+                "name": "timestamp",
+                "value": "",
+                "type": "query",
+                "description": "The timestamp to query, epoch time in milliseconds since 1/1/1970"
+              },
+              {
+                "name": "ssid",
+                "value": "",
+                "type": "query",
+                "description": "The ssid value"
+              },
+              {
+                "name": "osType",
+                "value": "",
+                "type": "query",
+                "description": "The os type value"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "List a page of wireless events over a selected period of time."
+        },
+        {
+          "info": {
+            "name": "Get Wired - Hardware By Locations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/copilot/connectivity/wired/locations/hardware",
+            "params": [
+              {
+                "name": "viewType",
+                "value": "",
+                "type": "query",
+                "description": "The wired experience view type"
+              },
+              {
+                "name": "viewId",
+                "value": "",
+                "type": "query",
+                "description": "The view identifier based on selected view type"
+              },
+              {
+                "name": "forensicBucket",
+                "value": "",
+                "type": "query",
+                "description": "The historical period bucket"
+              },
+              {
+                "name": "startTime",
+                "value": "",
+                "type": "query",
+                "description": "The start time to query, epoch time in milliseconds since 1/1/1970"
+              },
+              {
+                "name": "endTime",
+                "value": "",
+                "type": "query",
+                "description": "The end time to query, epoch time in milliseconds since 1/1/1970"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "List a page of hardware score data over a selected period of time and total ports with affected."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,425 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ExtremeCloud IQ Account NG Scheduled Reports API",
+    "version": "25.9.0-36"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "NG Scheduled Reports",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Scheduled Network Summary Reports",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/ng-reports/scheduled/network-summary",
+            "params": [
+              {
+                "name": "keyword",
+                "value": "",
+                "type": "query",
+                "description": "The keyword to search the report file name and recipient email"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Fetches all the scheduled Network Summary Reports."
+        },
+        {
+          "info": {
+            "name": "Get Scheduled PCI Compliance Reports",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/ng-reports/scheduled/pci-compliance",
+            "params": [
+              {
+                "name": "keyword",
+                "value": "",
+                "type": "query",
+                "description": "The keyword to search the report file name and recipient email"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Fetches all the scheduled PCI Compliance Reports."
+        },
+        {
+          "info": {
+            "name": "Enable/Disable Report Schedule",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.extremecloudiq.com/ng-reports/scheduled/:reportScheduleId",
+            "params": [
+              {
+                "name": "reportScheduleId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the report schedule"
+              },
+              {
+                "name": "enableSchedule",
+                "value": "",
+                "type": "query",
+                "description": "Whether the schedule is enabled"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Enable/Disable an existing schedule for a Report."
+        },
+        {
+          "info": {
+            "name": "Get Scheduled Custom Reports",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/ng-reports/scheduled/custom",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number, min = 1"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page Size, min = 1, max = 100"
+              },
+              {
+                "name": "frequency",
+                "value": "",
+                "type": "query",
+                "description": "Frequency of the report (MONTHLY, WEEKLY, DAILY)"
+              },
+              {
+                "name": "keyword",
+                "value": "",
+                "type": "query",
+                "description": "The keyword to search the report name and recipient email"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Fetches all the schedules for Custom Reports based on frequency."
+        },
+        {
+          "info": {
+            "name": "Create Schedule for Custom Report",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/ng-reports/scheduled/custom",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Creates a schedule for a Custom Report using the provided schedule ID."
+        },
+        {
+          "info": {
+            "name": "Delete Report Schedules",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.extremecloudiq.com/ng-reports/scheduled/custom",
+            "params": [
+              {
+                "name": "reportScheduleIds",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of report schedule IDs to delete"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Deletes an existing schedule for a Report."
+        },
+        {
+          "info": {
+            "name": "Get Custom Report Schedule by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/ng-reports/scheduled/custom/:reportId",
+            "params": [
+              {
+                "name": "reportId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the scheduled report"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Fetches a specific scheduled custom report using its report ID."
+        },
+        {
+          "info": {
+            "name": "Edit Schedule for Custom Report",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.extremecloudiq.com/ng-reports/scheduled/custom/:reportId",
+            "params": [
+              {
+                "name": "reportId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the report schedule"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Updates an existing schedule for a Custom Report."
+        },
+        {
+          "info": {
+            "name": "Get Report Runs for Custom Report Schedule",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/ng-reports/scheduled/custom/:reportScheduleId/runs",
+            "params": [
+              {
+                "name": "reportScheduleId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the report schedule"
+              },
+              {
+                "name": "frequency",
+                "value": "",
+                "type": "query",
+                "description": "Filter by frequency (MONTHLY, WEEKLY, DAILY)"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieves all report runs for a given custom report schedule."
+        },
+        {
+          "info": {
+            "name": "Delete Report Runs",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.extremecloudiq.com/ng-reports/scheduled/runs",
+            "params": [
+              {
+                "name": "reportRunIds",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of report run IDs to delete"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Deletes an existing Report schedule run."
+        },
+        {
+          "info": {
+            "name": "Get Recipients for given Report Run",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/ng-reports/scheduled/runs/:reportRunId/recipients",
+            "params": [
+              {
+                "name": "reportRunId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the report run"
+              },
+              {
+                "name": "keyword",
+                "value": "",
+                "type": "query",
+                "description": "The keyword to search"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieves all recipients for a given report run ID."
+        },
+        {
+          "info": {
+            "name": "Get Recipients for given Report",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/ng-reports/scheduled/:reportId/recipients",
+            "params": [
+              {
+                "name": "reportId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the report"
+              },
+              {
+                "name": "keyword",
+                "value": "",
+                "type": "query",
+                "description": "The keyword to search"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieves all recipients for a given report ID."
+        },
+        {
+          "info": {
+            "name": "Delete Recipients from Report",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/ng-reports/scheduled/:reportId/recipients",
+            "params": [
+              {
+                "name": "reportId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the report"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Deletes a list of recipient emails from the specified report."
+        },
+        {
+          "info": {
+            "name": "Add Recipients to Report",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.extremecloudiq.com/ng-reports/scheduled/:reportId/recipients",
+            "params": [
+              {
+                "name": "reportId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the report"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Adds a list of recipient emails to the specified report."
+        },
+        {
+          "info": {
+            "name": "Download or Preview Scheduled Report File",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/ng-reports/scheduled/reports/download",
+            "params": [
+              {
+                "name": "reportRunId",
+                "value": "",
+                "type": "query",
+                "description": "Unique identifier of the report to download"
+              },
+              {
+                "name": "fileFormat",
+                "value": "",
+                "type": "query",
+                "description": "File format to download (PDF or XLSX)"
+              },
+              {
+                "name": "preview",
+                "value": "",
+                "type": "query",
+                "description": "Param to view Preview, (applicable only when fileFormat = PDF)"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Downloads or previews a scheduled report file in PDF or XLSX format."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

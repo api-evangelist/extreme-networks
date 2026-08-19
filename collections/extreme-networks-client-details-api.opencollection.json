@@ -1,0 +1,76 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ExtremeCloud IQ Account Client - Details API",
+    "version": "25.9.0-36"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Client - Details",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Client Trail Topology",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/client-details/topology/client-trail/:macAddress",
+            "params": [
+              {
+                "name": "macAddress",
+                "value": "",
+                "type": "path",
+                "description": "The Mac Address of Client"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Return the Nodes and Links to draw the topology for client."
+        },
+        {
+          "info": {
+            "name": "Client Details Overview",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/client-details/overview/info/:clientId",
+            "params": [
+              {
+                "name": "clientId",
+                "value": "",
+                "type": "path",
+                "description": "The Id of Client"
+              },
+              {
+                "name": "startTime",
+                "value": "",
+                "type": "query",
+                "description": "The start time for the data to be returned (in milliseconds since epoch)"
+              },
+              {
+                "name": "endTime",
+                "value": "",
+                "type": "query",
+                "description": "The end time for the data to be returned (in milliseconds since epoch)"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Return the Details for the clients."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

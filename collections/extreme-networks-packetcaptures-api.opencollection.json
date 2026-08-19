@@ -1,0 +1,215 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ExtremeCloud IQ Account PacketCaptures API",
+    "version": "25.9.0-36"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "PacketCaptures",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List packet capture sessions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/packetcaptures",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number, min = 1"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page Size, min = 1, max = 100"
+              },
+              {
+                "name": "searchString",
+                "value": "",
+                "type": "query",
+                "description": "The string to be searched in capture session name, interface name and device host name"
+              },
+              {
+                "name": "sortField",
+                "value": "",
+                "type": "query",
+                "description": "Sort field. Available values - NAME, START_TIME and STATUS"
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "The sort order (ascending by default)"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "The packet capture fields to return"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "List packet capture sessions with filters and pagination."
+        },
+        {
+          "info": {
+            "name": "Create a new packet capture session",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/packetcaptures",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Create and start a new packet capture session with requested capture location and filter criteria."
+        },
+        {
+          "info": {
+            "name": "Get a packet capture session by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/packetcaptures/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "The packet capture fields to return"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get a packet capture session by id."
+        },
+        {
+          "info": {
+            "name": "Delete a packet capture session",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.extremecloudiq.com/packetcaptures/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Delete an existing packet capture session and capture files by ID."
+        },
+        {
+          "info": {
+            "name": "Stop a packet capture session",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/packetcaptures/:id/:stop",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Stop an active packet capture session."
+        },
+        {
+          "info": {
+            "name": "Upload a packet capture session's capture files",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/packetcaptures/:id/:upload",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Upload the capture files from a packet capture session, if files previously failed to be uploaded to XIQ cloud."
+        },
+        {
+          "info": {
+            "name": "Get an AP packet capture file",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/packetcaptures/files",
+            "params": [
+              {
+                "name": "cloudFileUrl",
+                "value": "",
+                "type": "query",
+                "description": "The packet capture file path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get an AP packet capture file from XIQ cloud storage."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

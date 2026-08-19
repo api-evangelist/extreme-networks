@@ -1,0 +1,126 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ExtremeCloud IQ Account Dashboard - Wired Usage and Capacity API",
+    "version": "25.9.0-36"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Dashboard - Wired Usage and Capacity",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Wired Usage and Capacity grid",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/dashboard/wired/usage-capacity/grid",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number, min = 1"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page Size, min = 1, max = 100"
+              },
+              {
+                "name": "keyword",
+                "value": "",
+                "type": "query",
+                "description": "The keyword to search (hostname, IP or site)"
+              },
+              {
+                "name": "sortField",
+                "value": "",
+                "type": "query",
+                "description": "The field used for sorting."
+              },
+              {
+                "name": "sortOrder",
+                "value": "",
+                "type": "query",
+                "description": "The sort order"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns information related to usage and capacity for wired devices based on the provided filters. The result can be filtered by sites."
+        },
+        {
+          "info": {
+            "name": "Wired devices total utilized bandwidth",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/dashboard/wired/usage-capacity/usage-utilization",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns total bandwidth utilized by wired devices based on the provided filters. The result can be filtered by sites."
+        },
+        {
+          "info": {
+            "name": "Wired devices throughput",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/dashboard/wired/usage-capacity/wired-throughput",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns the throughput for wired devices based on the provided filters. The result can be filtered by sites."
+        },
+        {
+          "info": {
+            "name": "Wired devices congestion",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/dashboard/wired/usage-capacity/wired-congestion",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns the congestion for wired devices based on the provided filters. The result can be filtered by sites."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

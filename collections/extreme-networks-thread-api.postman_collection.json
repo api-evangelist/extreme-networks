@@ -1,0 +1,815 @@
+{
+  "item": [
+    {
+      "id": "69930c59-2a05-4bd9-aea9-2ead5c005f87",
+      "name": "Thread",
+      "description": {
+        "content": "Thread Networks in ExtremeCloud IQ",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "42a44651-6acf-4cdc-aa6f-6aff0c4bd9f8",
+          "name": "Get active thread networks",
+          "request": {
+            "name": "Get active thread networks",
+            "description": {
+              "content": "Get thread networks with atleast one device.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "thread",
+                "networks"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number, min = 1"
+                },
+                {
+                  "disabled": false,
+                  "key": "folderId",
+                  "value": "<long>",
+                  "description": "(Required) Thread network config folder id"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Page Size, min = 1, max = 100"
+                },
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>",
+                  "description": "The thread network config fields to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>",
+                  "description": "The thread network config fields to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "views",
+                  "value": "<string>",
+                  "description": "The views to return thread network config fields"
+                },
+                {
+                  "disabled": false,
+                  "key": "views",
+                  "value": "<string>",
+                  "description": "The views to return thread network config fields"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "d1d29c04-6645-4f00-858a-417ad8855a65",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "thread",
+                    "networks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "folderId",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "views",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "views",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"networks\": [\n    {\n      \"id\": 1398,\n      \"channel\": 7749,\n      \"channel_mask\": \"string\",\n      \"ext_pan_id\": \"string\",\n      \"mesh_local_prefix\": \"string\",\n      \"network_key\": \"string\",\n      \"network_name\": \"string\",\n      \"pan_id\": \"string\",\n      \"pskc\": \"string\",\n      \"obtain_network_key_enabled\": true,\n      \"native_commissioning_enabled\": false,\n      \"routers_enabled\": true,\n      \"external_commissioning_enabled\": false,\n      \"beacons_enabled\": false,\n      \"commercial_commissioning_enabled\": true,\n      \"autonomous_enrollment_enabled\": false,\n      \"network_key_provisioning_enabled\": true,\n      \"non_ccm_routers_enabled\": false,\n      \"active_timestamp\": 9805\n    },\n    {\n      \"id\": 4964,\n      \"channel\": 9323,\n      \"channel_mask\": \"string\",\n      \"ext_pan_id\": \"string\",\n      \"mesh_local_prefix\": \"string\",\n      \"network_key\": \"string\",\n      \"network_name\": \"string\",\n      \"pan_id\": \"string\",\n      \"pskc\": \"string\",\n      \"obtain_network_key_enabled\": false,\n      \"native_commissioning_enabled\": false,\n      \"routers_enabled\": false,\n      \"external_commissioning_enabled\": false,\n      \"beacons_enabled\": false,\n      \"commercial_commissioning_enabled\": false,\n      \"autonomous_enrollment_enabled\": true,\n      \"network_key_provisioning_enabled\": false,\n      \"non_ccm_routers_enabled\": true,\n      \"active_timestamp\": 5649\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f4ff79a7-268e-4202-b4b2-677697649fbd",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "thread",
+                    "networks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "folderId",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "views",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "views",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "08aa2e08-161d-447f-abba-1e1c4d80a165",
+          "name": "Get thread network topology",
+          "request": {
+            "name": "Get thread network topology",
+            "description": {
+              "content": "Get thread routers, neighboring routers and end-devices.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "thread",
+                "topology"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "networkConfigIds",
+                  "value": "<long>",
+                  "description": "(Required) Thread network config id"
+                },
+                {
+                  "disabled": false,
+                  "key": "networkConfigIds",
+                  "value": "<long>",
+                  "description": "(Required) Thread network config id"
+                },
+                {
+                  "disabled": false,
+                  "key": "routerFields",
+                  "value": "<string>",
+                  "description": "The thread router fields to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "routerFields",
+                  "value": "<string>",
+                  "description": "The thread router fields to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "routerViews",
+                  "value": "<string>",
+                  "description": "The views to return thread router fields"
+                },
+                {
+                  "disabled": false,
+                  "key": "routerViews",
+                  "value": "<string>",
+                  "description": "The views to return thread router fields"
+                },
+                {
+                  "disabled": false,
+                  "key": "clientViews",
+                  "value": "<string>",
+                  "description": "The views to return client fields (Check fields for each view at XiqClientView schema)"
+                },
+                {
+                  "disabled": false,
+                  "key": "clientViews",
+                  "value": "<string>",
+                  "description": "The views to return client fields (Check fields for each view at XiqClientView schema)"
+                },
+                {
+                  "disabled": false,
+                  "key": "clientFields",
+                  "value": "<string>",
+                  "description": "The client fields to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "clientFields",
+                  "value": "<string>",
+                  "description": "The client fields to return"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "394137b5-775d-4192-a3ed-77f4ca7a7163",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "thread",
+                    "topology"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "networkConfigIds",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "networkConfigIds",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "routerFields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "routerFields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "routerViews",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "routerViews",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "clientViews",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "clientViews",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "clientFields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "clientFields",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"neighbors\": [\n    {\n      \"parent_device_id\": 3798,\n      \"child_device_id\": 9983,\n      \"connection_status\": 8019,\n      \"last_reported_time\": 6807\n    },\n    {\n      \"parent_device_id\": 8223,\n      \"child_device_id\": 3186,\n      \"connection_status\": 7227,\n      \"last_reported_time\": 1531\n    }\n  ],\n  \"routers\": [\n    {\n      \"id\": 4682,\n      \"create_time\": \"1947-03-24T01:05:36.748Z\",\n      \"update_time\": \"2018-01-12T08:30:23.662Z\",\n      \"org_id\": 1732,\n      \"owner_id\": 9588,\n      \"device_id\": 631,\n      \"serial_number\": \"string\",\n      \"eui64\": \"string\",\n      \"ext_mac\": \"string\",\n      \"rloc16\": \"string\",\n      \"global_ipv6\": \"string\",\n      \"tx_power\": 3523,\n      \"region\": \"string\",\n      \"thread_platform\": \"string\",\n      \"device_role\": \"string\",\n      \"router_interface\": {\n        \"interface_name\": \"string\",\n        \"is_active\": true,\n        \"is_broadcast\": false,\n        \"is_loopback\": true,\n        \"is_point_to_point\": false,\n        \"is_running\": false,\n        \"is_arp\": false,\n        \"is_promisc\": false,\n        \"is_all_multi\": true,\n        \"is_multicast\": false,\n        \"is_dynamic\": true,\n        \"mtu\": 5268,\n        \"hw_mac_address\": \"string\",\n        \"ipv4\": \"string\",\n        \"ipv4_mask\": \"string\",\n        \"ipv4_broadcast\": \"string\",\n        \"ipv6_settings\": [\n          {\n            \"address\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"scope\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"cast\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"address\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"scope\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"cast\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"veth0\": {\n        \"interface_name\": \"string\",\n        \"is_active\": true,\n        \"is_broadcast\": true,\n        \"is_loopback\": true,\n        \"is_point_to_point\": false,\n        \"is_running\": true,\n        \"is_arp\": true,\n        \"is_promisc\": true,\n        \"is_all_multi\": false,\n        \"is_multicast\": true,\n        \"is_dynamic\": false,\n        \"mtu\": 590,\n        \"hw_mac_address\": \"string\",\n        \"ipv4\": \"string\",\n        \"ipv4_mask\": \"string\",\n        \"ipv4_broadcast\": \"string\",\n        \"ipv6_settings\": [\n          {\n            \"address\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"scope\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"cast\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"address\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"scope\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"cast\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"network_data\": {\n        \"length\": 5322,\n        \"max_length\": 4571,\n        \"net_data_on_mesh_prefixes\": [\n          {\n            \"prefix\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"route_preference\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"added_by_rloc16\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"added_by_ext_mac\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"preferred\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"slaac\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"dhcp\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"configure\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"default_route\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"on_mesh\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"stable\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"nd_dns\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"dp\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"prefix\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"route_preference\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"added_by_rloc16\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"added_by_ext_mac\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"preferred\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"slaac\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"dhcp\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"configure\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"default_route\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"on_mesh\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"stable\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"nd_dns\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"dp\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"net_data_routes\": [\n          {\n            \"prefix\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"nat64\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"stable\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"route_preference\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"added_by_rloc16\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"added_by_ext_mac\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"prefix\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"nat64\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"stable\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"route_preference\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"added_by_rloc16\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"added_by_ext_mac\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"net_data_services\": [\n          {\n            \"enterprise_number\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"service_data\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"server_data\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"stable\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"added_by_rloc16\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"added_by_ext_mac\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"enterprise_number\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"service_data\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"server_data\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"stable\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"added_by_rloc16\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"added_by_ext_mac\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"thread_mle_link_mode\": {\n        \"rx_on_when_idle\": false,\n        \"full_thread_device\": true,\n        \"full_network_data\": true\n      },\n      \"thread_version\": {\n        \"thread_version\": \"string\",\n        \"build_version\": \"string\",\n        \"api_version\": \"string\",\n        \"rcp_version\": \"string\"\n      },\n      \"leader_service\": {\n        \"partition_id\": 8751,\n        \"weighting\": 7584,\n        \"full_network_data_version\": 3412,\n        \"stable_network_data_version\": 9653\n      },\n      \"border_router_service\": {\n        \"state\": \"string\",\n        \"nat64_local_prefix\": \"string\",\n        \"nat64_favored_prefix\": \"string\",\n        \"nat64_favored_preference\": \"string\",\n        \"nat64_omr_local_prefix\": \"string\",\n        \"nat64_omr_favored_prefix\": \"string\",\n        \"nat64_omr_favored_preference\": \"string\",\n        \"nat64_onlink_local_prefix\": \"string\",\n        \"nat64_onlink_favored_prefix\": \"string\",\n        \"nat64_onlink_favored_preference\": \"string\"\n      },\n      \"backbone_border_router_service\": {\n        \"state\": \"string\"\n      },\n      \"border_agent_service\": {\n        \"state\": \"string\",\n        \"udp_port\": 4293\n      },\n      \"commissioner_service\": {\n        \"state\": \"string\"\n      },\n      \"nat64_service\": {\n        \"prefix_manager_state\": \"string\",\n        \"translator_state\": \"string\",\n        \"translator_cidr\": \"string\"\n      },\n      \"network_config\": {\n        \"id\": 2425,\n        \"channel\": 6497,\n        \"channel_mask\": \"string\",\n        \"ext_pan_id\": \"string\",\n        \"mesh_local_prefix\": \"string\",\n        \"network_key\": \"string\",\n        \"network_name\": \"string\",\n        \"pan_id\": \"string\",\n        \"pskc\": \"string\",\n        \"obtain_network_key_enabled\": true,\n        \"native_commissioning_enabled\": false,\n        \"routers_enabled\": false,\n        \"external_commissioning_enabled\": true,\n        \"beacons_enabled\": false,\n        \"commercial_commissioning_enabled\": false,\n        \"autonomous_enrollment_enabled\": false,\n        \"network_key_provisioning_enabled\": true,\n        \"non_ccm_routers_enabled\": true,\n        \"active_timestamp\": 2920\n      },\n      \"active_clients\": 195,\n      \"hostname\": \"string\",\n      \"last_reported\": \"1975-04-29T15:42:41.461Z\",\n      \"thread_connected\": false\n    },\n    {\n      \"id\": 2344,\n      \"create_time\": \"2024-03-15T11:44:12.010Z\",\n      \"update_time\": \"2003-12-10T20:38:51.095Z\",\n      \"org_id\": 594,\n      \"owner_id\": 5290,\n      \"device_id\": 6370,\n      \"serial_number\": \"string\",\n      \"eui64\": \"string\",\n      \"ext_mac\": \"string\",\n      \"rloc16\": \"string\",\n      \"global_ipv6\": \"string\",\n      \"tx_power\": 6738,\n      \"region\": \"string\",\n      \"thread_platform\": \"string\",\n      \"device_role\": \"string\",\n      \"router_interface\": {\n        \"interface_name\": \"string\",\n        \"is_active\": true,\n        \"is_broadcast\": false,\n        \"is_loopback\": true,\n        \"is_point_to_point\": false,\n        \"is_running\": false,\n        \"is_arp\": false,\n        \"is_promisc\": false,\n        \"is_all_multi\": true,\n        \"is_multicast\": true,\n        \"is_dynamic\": true,\n        \"mtu\": 4202,\n        \"hw_mac_address\": \"string\",\n        \"ipv4\": \"string\",\n        \"ipv4_mask\": \"string\",\n        \"ipv4_broadcast\": \"string\",\n        \"ipv6_settings\": [\n          {\n            \"address\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"scope\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"cast\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"address\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"scope\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"cast\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"veth0\": {\n        \"interface_name\": \"string\",\n        \"is_active\": false,\n        \"is_broadcast\": true,\n        \"is_loopback\": false,\n        \"is_point_to_point\": true,\n        \"is_running\": false,\n        \"is_arp\": false,\n        \"is_promisc\": true,\n        \"is_all_multi\": false,\n        \"is_multicast\": false,\n        \"is_dynamic\": true,\n        \"mtu\": 7684,\n        \"hw_mac_address\": \"string\",\n        \"ipv4\": \"string\",\n        \"ipv4_mask\": \"string\",\n        \"ipv4_broadcast\": \"string\",\n        \"ipv6_settings\": [\n          {\n            \"address\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"scope\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"cast\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"address\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"scope\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"cast\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"network_data\": {\n        \"length\": 9681,\n        \"max_length\": 4623,\n        \"net_data_on_mesh_prefixes\": [\n          {\n            \"prefix\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"route_preference\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"added_by_rloc16\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"added_by_ext_mac\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"preferred\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"slaac\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"dhcp\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"configure\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"default_route\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"on_mesh\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"stable\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"nd_dns\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"dp\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"prefix\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"route_preference\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"added_by_rloc16\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"added_by_ext_mac\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"preferred\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"slaac\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"dhcp\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"configure\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"default_route\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"on_mesh\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"stable\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"nd_dns\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"dp\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"net_data_routes\": [\n          {\n            \"prefix\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"nat64\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"stable\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"route_preference\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"added_by_rloc16\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"added_by_ext_mac\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"prefix\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"nat64\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"stable\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"route_preference\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"added_by_rloc16\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"added_by_ext_mac\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"net_data_services\": [\n          {\n            \"enterprise_number\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"service_data\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"server_data\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"stable\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"added_by_rloc16\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"added_by_ext_mac\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"enterprise_number\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"service_data\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"server_data\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"stable\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"added_by_rloc16\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"added_by_ext_mac\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"thread_mle_link_mode\": {\n        \"rx_on_when_idle\": false,\n        \"full_thread_device\": true,\n        \"full_network_data\": true\n      },\n      \"thread_version\": {\n        \"thread_version\": \"string\",\n        \"build_version\": \"string\",\n        \"api_version\": \"string\",\n        \"rcp_version\": \"string\"\n      },\n      \"leader_service\": {\n        \"partition_id\": 6017,\n        \"weighting\": 5275,\n        \"full_network_data_version\": 8099,\n        \"stable_network_data_version\": 1244\n      },\n      \"border_router_service\": {\n        \"state\": \"string\",\n        \"nat64_local_prefix\": \"string\",\n        \"nat64_favored_prefix\": \"string\",\n        \"nat64_favored_preference\": \"string\",\n        \"nat64_omr_local_prefix\": \"string\",\n        \"nat64_omr_favored_prefix\": \"string\",\n        \"nat64_omr_favored_preference\": \"string\",\n        \"nat64_onlink_local_prefix\": \"string\",\n        \"nat64_onlink_favored_prefix\": \"string\",\n        \"nat64_onlink_favored_preference\": \"string\"\n      },\n      \"backbone_border_router_service\": {\n        \"state\": \"string\"\n      },\n      \"border_agent_service\": {\n        \"state\": \"string\",\n        \"udp_port\": 5044\n      },\n      \"commissioner_service\": {\n        \"state\": \"string\"\n      },\n      \"nat64_service\": {\n        \"prefix_manager_state\": \"string\",\n        \"translator_state\": \"string\",\n        \"translator_cidr\": \"string\"\n      },\n      \"network_config\": {\n        \"id\": 7065,\n        \"channel\": 5329,\n        \"channel_mask\": \"string\",\n        \"ext_pan_id\": \"string\",\n        \"mesh_local_prefix\": \"string\",\n        \"network_key\": \"string\",\n        \"network_name\": \"string\",\n        \"pan_id\": \"string\",\n        \"pskc\": \"string\",\n        \"obtain_network_key_enabled\": false,\n        \"native_commissioning_enabled\": true,\n        \"routers_enabled\": false,\n        \"external_commissioning_enabled\": false,\n        \"beacons_enabled\": false,\n        \"commercial_commissioning_enabled\": false,\n        \"autonomous_enrollment_enabled\": false,\n        \"network_key_provisioning_enabled\": true,\n        \"non_ccm_routers_enabled\": true,\n        \"active_timestamp\": 1564\n      },\n      \"active_clients\": 3493,\n      \"hostname\": \"string\",\n      \"last_reported\": \"1968-05-11T11:11:48.737Z\",\n      \"thread_connected\": true\n    }\n  ],\n  \"clients\": [\n    {\n      \"device_id\": 783,\n      \"location_id\": 1842,\n      \"hostname\": \"string\",\n      \"mac_address\": \"string\",\n      \"ip_address\": \"string\",\n      \"ipv6_address\": \"string\",\n      \"os_type\": \"string\",\n      \"username\": \"string\",\n      \"user_profile_name\": \"string\",\n      \"connected\": false,\n      \"online_time\": \"2017-12-16T16:58:45.760Z\",\n      \"offline_time\": \"1967-05-23T02:20:32.819Z\",\n      \"vlan\": 8287,\n      \"connection_type\": 3560,\n      \"ssid\": \"string\",\n      \"port\": \"string\",\n      \"org_name\": \"string\",\n      \"device_function\": 5415,\n      \"device_mac_address\": \"string\",\n      \"device_name\": \"string\",\n      \"auth\": 9323,\n      \"channel\": 5553,\n      \"client_health\": 4307,\n      \"application_health\": 9408,\n      \"radio_health\": 9920,\n      \"network_health\": 8144,\n      \"radio_type\": 820,\n      \"encryption_method\": 9128,\n      \"mac_protocol\": \"string\",\n      \"interface_name\": \"string\",\n      \"bssid\": \"string\",\n      \"rssi\": 330,\n      \"snr\": 8478,\n      \"description\": \"string\",\n      \"category\": \"string\",\n      \"mobility\": \"string\",\n      \"port_type_name\": \"string\",\n      \"wing_ap\": true,\n      \"vendor\": \"string\",\n      \"locations\": [\n        {\n          \"id\": 7482,\n          \"name\": \"string\"\n        },\n        {\n          \"id\": 8591,\n          \"name\": \"string\"\n        }\n      ],\n      \"productType\": \"string\",\n      \"alias\": \"string\"\n    },\n    {\n      \"device_id\": 709,\n      \"location_id\": 5248,\n      \"hostname\": \"string\",\n      \"mac_address\": \"string\",\n      \"ip_address\": \"string\",\n      \"ipv6_address\": \"string\",\n      \"os_type\": \"string\",\n      \"username\": \"string\",\n      \"user_profile_name\": \"string\",\n      \"connected\": false,\n      \"online_time\": \"1957-10-02T16:08:12.704Z\",\n      \"offline_time\": \"1964-08-01T11:55:48.022Z\",\n      \"vlan\": 9164,\n      \"connection_type\": 2370,\n      \"ssid\": \"string\",\n      \"port\": \"string\",\n      \"org_name\": \"string\",\n      \"device_function\": 417,\n      \"device_mac_address\": \"string\",\n      \"device_name\": \"string\",\n      \"auth\": 6171,\n      \"channel\": 903,\n      \"client_health\": 970,\n      \"application_health\": 808,\n      \"radio_health\": 155,\n      \"network_health\": 3092,\n      \"radio_type\": 8042,\n      \"encryption_method\": 8204,\n      \"mac_protocol\": \"string\",\n      \"interface_name\": \"string\",\n      \"bssid\": \"string\",\n      \"rssi\": 1343,\n      \"snr\": 7470,\n      \"description\": \"string\",\n      \"category\": \"string\",\n      \"mobility\": \"string\",\n      \"port_type_name\": \"string\",\n      \"wing_ap\": true,\n      \"vendor\": \"string\",\n      \"locations\": [\n        {\n          \"id\": 9818,\n          \"name\": \"string\"\n        },\n        {\n          \"id\": 8323,\n          \"name\": \"string\"\n        }\n      ],\n      \"productType\": \"string\",\n      \"alias\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "eb8fb6fc-6d42-4fe1-bd98-555ff19627cf",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "thread",
+                    "topology"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "networkConfigIds",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "networkConfigIds",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "routerFields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "routerFields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "routerViews",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "routerViews",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "clientViews",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "clientViews",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "clientFields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "clientFields",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a500c2f5-897b-4d5c-816e-21736ff4548f",
+          "name": "List thread routers",
+          "request": {
+            "name": "List thread routers",
+            "description": {
+              "content": "List thread routers with pagination.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "thread",
+                "routers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "ids",
+                  "value": "<long>",
+                  "description": "(Required) The thread router IDs"
+                },
+                {
+                  "disabled": false,
+                  "key": "ids",
+                  "value": "<long>",
+                  "description": "(Required) The thread router IDs"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number, min = 1"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Page Size, min = 1, max = 100"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortField",
+                  "value": "<string>",
+                  "description": "The sort field"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortOrder",
+                  "value": "<string>",
+                  "description": "The sort order (ascending by default)"
+                },
+                {
+                  "disabled": false,
+                  "key": "views",
+                  "value": "<string>",
+                  "description": "The views to return thread router fields"
+                },
+                {
+                  "disabled": false,
+                  "key": "views",
+                  "value": "<string>",
+                  "description": "The views to return thread router fields"
+                },
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>",
+                  "description": "The thread router fields to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>",
+                  "description": "The thread router fields to return"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "b2f350fa-3b7b-49f9-856a-739e8a7c0fbd",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "thread",
+                    "routers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ids",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "ids",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "sortField",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortOrder",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "views",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "views",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 6389,\n  \"page\": 6043,\n  \"total_count\": 4172,\n  \"total_pages\": 3291,\n  \"data\": [\n    {\n      \"id\": 8979,\n      \"create_time\": \"2017-11-03T02:06:33.594Z\",\n      \"update_time\": \"1997-11-25T00:33:55.116Z\",\n      \"org_id\": 8394,\n      \"owner_id\": 6838,\n      \"device_id\": 3126,\n      \"serial_number\": \"string\",\n      \"eui64\": \"string\",\n      \"ext_mac\": \"string\",\n      \"rloc16\": \"string\",\n      \"global_ipv6\": \"string\",\n      \"tx_power\": 104,\n      \"region\": \"string\",\n      \"thread_platform\": \"string\",\n      \"device_role\": \"string\",\n      \"router_interface\": {\n        \"interface_name\": \"string\",\n        \"is_active\": false,\n        \"is_broadcast\": true,\n        \"is_loopback\": true,\n        \"is_point_to_point\": true,\n        \"is_running\": true,\n        \"is_arp\": true,\n        \"is_promisc\": false,\n        \"is_all_multi\": true,\n        \"is_multicast\": false,\n        \"is_dynamic\": true,\n        \"mtu\": 5445,\n        \"hw_mac_address\": \"string\",\n        \"ipv4\": \"string\",\n        \"ipv4_mask\": \"string\",\n        \"ipv4_broadcast\": \"string\",\n        \"ipv6_settings\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      },\n      \"veth0\": {\n        \"interface_name\": \"string\",\n        \"is_active\": true,\n        \"is_broadcast\": true,\n        \"is_loopback\": true,\n        \"is_point_to_point\": true,\n        \"is_running\": false,\n        \"is_arp\": true,\n        \"is_promisc\": true,\n        \"is_all_multi\": false,\n        \"is_multicast\": true,\n        \"is_dynamic\": false,\n        \"mtu\": 1366,\n        \"hw_mac_address\": \"string\",\n        \"ipv4\": \"string\",\n        \"ipv4_mask\": \"string\",\n        \"ipv4_broadcast\": \"string\",\n        \"ipv6_settings\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      },\n      \"network_data\": {\n        \"length\": 5034,\n        \"max_length\": 7729,\n        \"net_data_on_mesh_prefixes\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"net_data_routes\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"net_data_services\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      },\n      \"thread_mle_link_mode\": {\n        \"rx_on_when_idle\": false,\n        \"full_thread_device\": false,\n        \"full_network_data\": true\n      },\n      \"thread_version\": {\n        \"thread_version\": \"string\",\n        \"build_version\": \"string\",\n        \"api_version\": \"string\",\n        \"rcp_version\": \"string\"\n      },\n      \"leader_service\": {\n        \"partition_id\": 9137,\n        \"weighting\": 134,\n        \"full_network_data_version\": 4372,\n        \"stable_network_data_version\": 9977\n      },\n      \"border_router_service\": {\n        \"state\": \"string\",\n        \"nat64_local_prefix\": \"string\",\n        \"nat64_favored_prefix\": \"string\",\n        \"nat64_favored_preference\": \"string\",\n        \"nat64_omr_local_prefix\": \"string\",\n        \"nat64_omr_favored_prefix\": \"string\",\n        \"nat64_omr_favored_preference\": \"string\",\n        \"nat64_onlink_local_prefix\": \"string\",\n        \"nat64_onlink_favored_prefix\": \"string\",\n        \"nat64_onlink_favored_preference\": \"string\"\n      },\n      \"backbone_border_router_service\": {\n        \"state\": \"string\"\n      },\n      \"border_agent_service\": {\n        \"state\": \"string\",\n        \"udp_port\": 9354\n      },\n      \"commissioner_service\": {\n        \"state\": \"string\"\n      },\n      \"nat64_service\": {\n        \"prefix_manager_state\": \"string\",\n        \"translator_state\": \"string\",\n        \"translator_cidr\": \"string\"\n      },\n      \"network_config\": {\n        \"id\": 4521,\n        \"channel\": 9854,\n        \"channel_mask\": \"string\",\n        \"ext_pan_id\": \"string\",\n        \"mesh_local_prefix\": \"string\",\n        \"network_key\": \"string\",\n        \"network_name\": \"string\",\n        \"pan_id\": \"string\",\n        \"pskc\": \"string\",\n        \"obtain_network_key_enabled\": false,\n        \"native_commissioning_enabled\": false,\n        \"routers_enabled\": false,\n        \"external_commissioning_enabled\": true,\n        \"beacons_enabled\": false,\n        \"commercial_commissioning_enabled\": true,\n        \"autonomous_enrollment_enabled\": true,\n        \"network_key_provisioning_enabled\": true,\n        \"non_ccm_routers_enabled\": false,\n        \"active_timestamp\": 7629\n      },\n      \"active_clients\": 2039,\n      \"hostname\": \"string\",\n      \"last_reported\": \"1999-04-12T23:25:53.595Z\",\n      \"thread_connected\": true\n    },\n    {\n      \"id\": 1798,\n      \"create_time\": \"2011-10-04T06:34:19.481Z\",\n      \"update_time\": \"1998-12-07T13:34:35.957Z\",\n      \"org_id\": 483,\n      \"owner_id\": 2309,\n      \"device_id\": 2491,\n      \"serial_number\": \"string\",\n      \"eui64\": \"string\",\n      \"ext_mac\": \"string\",\n      \"rloc16\": \"string\",\n      \"global_ipv6\": \"string\",\n      \"tx_power\": 8986,\n      \"region\": \"string\",\n      \"thread_platform\": \"string\",\n      \"device_role\": \"string\",\n      \"router_interface\": {\n        \"interface_name\": \"string\",\n        \"is_active\": true,\n        \"is_broadcast\": false,\n        \"is_loopback\": true,\n        \"is_point_to_point\": true,\n        \"is_running\": false,\n        \"is_arp\": false,\n        \"is_promisc\": true,\n        \"is_all_multi\": false,\n        \"is_multicast\": true,\n        \"is_dynamic\": false,\n        \"mtu\": 112,\n        \"hw_mac_address\": \"string\",\n        \"ipv4\": \"string\",\n        \"ipv4_mask\": \"string\",\n        \"ipv4_broadcast\": \"string\",\n        \"ipv6_settings\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      },\n      \"veth0\": {\n        \"interface_name\": \"string\",\n        \"is_active\": true,\n        \"is_broadcast\": false,\n        \"is_loopback\": true,\n        \"is_point_to_point\": false,\n        \"is_running\": true,\n        \"is_arp\": true,\n        \"is_promisc\": false,\n        \"is_all_multi\": true,\n        \"is_multicast\": true,\n        \"is_dynamic\": false,\n        \"mtu\": 3747,\n        \"hw_mac_address\": \"string\",\n        \"ipv4\": \"string\",\n        \"ipv4_mask\": \"string\",\n        \"ipv4_broadcast\": \"string\",\n        \"ipv6_settings\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      },\n      \"network_data\": {\n        \"length\": 3922,\n        \"max_length\": 7369,\n        \"net_data_on_mesh_prefixes\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"net_data_routes\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"net_data_services\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      },\n      \"thread_mle_link_mode\": {\n        \"rx_on_when_idle\": true,\n        \"full_thread_device\": true,\n        \"full_network_data\": true\n      },\n      \"thread_version\": {\n        \"thread_version\": \"string\",\n        \"build_version\": \"string\",\n        \"api_version\": \"string\",\n        \"rcp_version\": \"string\"\n      },\n      \"leader_service\": {\n        \"partition_id\": 2279,\n        \"weighting\": 6089,\n        \"full_network_data_version\": 5556,\n        \"stable_network_data_version\": 259\n      },\n      \"border_router_service\": {\n        \"state\": \"string\",\n        \"nat64_local_prefix\": \"string\",\n        \"nat64_favored_prefix\": \"string\",\n        \"nat64_favored_preference\": \"string\",\n        \"nat64_omr_local_prefix\": \"string\",\n        \"nat64_omr_favored_prefix\": \"string\",\n        \"nat64_omr_favored_preference\": \"string\",\n        \"nat64_onlink_local_prefix\": \"string\",\n        \"nat64_onlink_favored_prefix\": \"string\",\n        \"nat64_onlink_favored_preference\": \"string\"\n      },\n      \"backbone_border_router_service\": {\n        \"state\": \"string\"\n      },\n      \"border_agent_service\": {\n        \"state\": \"string\",\n        \"udp_port\": 3609\n      },\n      \"commissioner_service\": {\n        \"state\": \"string\"\n      },\n      \"nat64_service\": {\n        \"prefix_manager_state\": \"string\",\n        \"translator_state\": \"string\",\n        \"translator_cidr\": \"string\"\n      },\n      \"network_config\": {\n        \"id\": 2478,\n        \"channel\": 7769,\n        \"channel_mask\": \"string\",\n        \"ext_pan_id\": \"string\",\n        \"mesh_local_prefix\": \"string\",\n        \"network_key\": \"string\",\n        \"network_name\": \"string\",\n        \"pan_id\": \"string\",\n        \"pskc\": \"string\",\n        \"obtain_network_key_enabled\": false,\n        \"native_commissioning_enabled\": false,\n        \"routers_enabled\": true,\n        \"external_commissioning_enabled\": true,\n        \"beacons_enabled\": true,\n        \"commercial_commissioning_enabled\": false,\n        \"autonomous_enrollment_enabled\": false,\n        \"network_key_provisioning_enabled\": true,\n        \"non_ccm_routers_enabled\": true,\n        \"active_timestamp\": 8641\n      },\n      \"active_clients\": 1578,\n      \"hostname\": \"string\",\n      \"last_reported\": \"2006-11-10T07:56:02.044Z\",\n      \"thread_connected\": true\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bb053f6a-d8f1-4767-91da-e8cb93bc91ca",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "thread",
+                    "routers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ids",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "ids",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "sortField",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortOrder",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "views",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "views",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.extremecloudiq.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "61c33ee0-8767-4e6c-87f6-9fa723ee7439",
+    "name": "ExtremeCloud IQ Account Thread API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "ExtremeCloud IQ™ API allows customers and partners to create solutions for the management, monitoring, and provisioning\nof any ExtremeCloud IQ™ environment.\n\nAll related resources and documentation are available at [ExtremeCloud IQ Developer Portal](https://developer.extremecloudiq.com/).\nPlease check [Get Started and Tutorial](https://developer.extremecloudiq.com/documentation/) to understand how to use the APIs.\n\nGet the [latest OpenAPI definition](https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI/blob/main/xcloudiq-openapi.yaml)\nfrom [ExtremeCloud IQ OpenAPI GitHub repository](https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI).\n\nPlease have a valid [ExtremeCloud IQ](https://extremecloudiq.com/) account before getting started.\nIf you don't have one, please [register a new account](https://www.extremenetworks.com/cloud-networking/).\n\nContact Support:\n Name: Extreme Networks Support\n Email: support@extremenetworks.com",
+      "type": "text/plain"
+    }
+  }
+}

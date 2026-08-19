@@ -1,0 +1,2401 @@
+{
+  "item": [
+    {
+      "id": "2cda65b7-3d37-415c-9199-ab92d2036dc6",
+      "name": "Dashboard - Wireless Client Health",
+      "description": {
+        "content": "Client dashboard",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "34cd6340-e163-4942-91d1-507f75576040",
+          "name": "Wireless client health grid",
+          "request": {
+            "name": "Wireless client health grid",
+            "description": {
+              "content": "Returns the client health grid of wireless devices based on the provided filters. You can filter the results by sites.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "dashboard",
+                "wireless",
+                "client-health",
+                "grid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number, min = 1"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Page Size, min = 1, max = 100"
+                },
+                {
+                  "disabled": false,
+                  "key": "keyword",
+                  "value": "<string>",
+                  "description": "The keyword to search"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortField",
+                  "value": "<string>",
+                  "description": "The sort field"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortOrder",
+                  "value": "<string>",
+                  "description": "The sort order"
+                },
+                {
+                  "disabled": false,
+                  "key": "connectionStatus",
+                  "value": "<string>",
+                  "description": "The current connection status of the client (e.g., connected, disconnected)."
+                },
+                {
+                  "disabled": false,
+                  "key": "includeUnassigned",
+                  "value": "<boolean>",
+                  "description": "To include unassigned clients"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"site_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"device_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"number_filter\": [\n    {\n      \"column_name\": \"<string>\",\n      \"filter_type\": \"<string>\",\n      \"value\": \"<long>\",\n      \"min\": \"<long>\",\n      \"max\": \"<long>\"\n    },\n    {\n      \"column_name\": \"<string>\",\n      \"filter_type\": \"<string>\",\n      \"value\": \"<long>\",\n      \"min\": \"<long>\",\n      \"max\": \"<long>\"\n    }\n  ],\n  \"frequency\": \"<string>\",\n  \"alias\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"auth_methods\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"encryption_methods\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"operating_systems\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"ssids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"user_profiles\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"category_assignments\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"has_association_issues\": \"<boolean>\",\n  \"has_authentication_issues\": \"<boolean>\",\n  \"has_ip_address_issues\": \"<boolean>\",\n  \"has_roaming_issues\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "54517e3b-eb80-427b-b330-035811fc15a5",
+              "name": "Returns the response of the client health grid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dashboard",
+                    "wireless",
+                    "client-health",
+                    "grid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "keyword",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortField",
+                      "value": "OPERATING_SYSTEM"
+                    },
+                    {
+                      "key": "sortOrder",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "connectionStatus",
+                      "value": "CONNECTED"
+                    },
+                    {
+                      "key": "includeUnassigned",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"site_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"device_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"number_filter\": [\n    {\n      \"column_name\": \"<string>\",\n      \"filter_type\": \"<string>\",\n      \"value\": \"<long>\",\n      \"min\": \"<long>\",\n      \"max\": \"<long>\"\n    },\n    {\n      \"column_name\": \"<string>\",\n      \"filter_type\": \"<string>\",\n      \"value\": \"<long>\",\n      \"min\": \"<long>\",\n      \"max\": \"<long>\"\n    }\n  ],\n  \"frequency\": \"2.4GHz\",\n  \"alias\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"auth_methods\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"encryption_methods\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"operating_systems\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"ssids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"user_profiles\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"category_assignments\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"has_association_issues\": \"<boolean>\",\n  \"has_authentication_issues\": \"<boolean>\",\n  \"has_ip_address_issues\": \"<boolean>\",\n  \"has_roaming_issues\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 633,\n  \"page\": 2353,\n  \"total_count\": 8593,\n  \"total_pages\": 9233,\n  \"data\": [\n    {\n      \"connectionStatus\": \"DISCONNECTED\",\n      \"client_hostname\": \"string\",\n      \"client_ip\": \"string\",\n      \"site\": \"string\",\n      \"building\": \"string\",\n      \"floor\": \"string\",\n      \"has_association_issues\": false,\n      \"has_authentication_issues\": true,\n      \"has_ip_address_issues\": true,\n      \"has_roaming_issues\": true,\n      \"snr\": 5910.096426640001,\n      \"rssi\": 8654.572500892737,\n      \"frequency\": \"string\",\n      \"air_time\": 7970.375541140334,\n      \"ipv4\": \"string\",\n      \"connected_device_mac\": \"string\",\n      \"ssid\": \"string\",\n      \"vlan\": 1392,\n      \"last_session_start_time\": \"1947-08-23T10:47:46.303Z\",\n      \"operating_system\": \"string\",\n      \"client_mac\": \"string\",\n      \"username\": \"string\",\n      \"authentication\": \"string\",\n      \"encryption\": \"string\",\n      \"user_profile\": \"string\",\n      \"alias\": \"string\",\n      \"category_assignment\": \"string\",\n      \"ipv6\": \"string\",\n      \"device_id\": 6692,\n      \"client_device_id\": 8996,\n      \"slowness\": 2229.224298156398,\n      \"roaming_time\": 4716.502368259843,\n      \"association_duration\": 969.8459353856981,\n      \"dhcp_ip_assignation_time\": 7691.691555158056,\n      \"authentication_response_time\": 9000.431488782475,\n      \"rx_client_retries\": 4824,\n      \"tx_client_retries\": 200,\n      \"ipv4_warning\": false,\n      \"air_time_warning\": false,\n      \"rtts_supported\": false\n    },\n    {\n      \"connectionStatus\": \"CONNECTED\",\n      \"client_hostname\": \"string\",\n      \"client_ip\": \"string\",\n      \"site\": \"string\",\n      \"building\": \"string\",\n      \"floor\": \"string\",\n      \"has_association_issues\": true,\n      \"has_authentication_issues\": false,\n      \"has_ip_address_issues\": true,\n      \"has_roaming_issues\": false,\n      \"snr\": 8300.330155117488,\n      \"rssi\": 806.404047599627,\n      \"frequency\": \"string\",\n      \"air_time\": 9286.033870768344,\n      \"ipv4\": \"string\",\n      \"connected_device_mac\": \"string\",\n      \"ssid\": \"string\",\n      \"vlan\": 9027,\n      \"last_session_start_time\": \"1980-11-21T04:56:45.422Z\",\n      \"operating_system\": \"string\",\n      \"client_mac\": \"string\",\n      \"username\": \"string\",\n      \"authentication\": \"string\",\n      \"encryption\": \"string\",\n      \"user_profile\": \"string\",\n      \"alias\": \"string\",\n      \"category_assignment\": \"string\",\n      \"ipv6\": \"string\",\n      \"device_id\": 9515,\n      \"client_device_id\": 5172,\n      \"slowness\": 8388.578593804696,\n      \"roaming_time\": 1484.9037681777577,\n      \"association_duration\": 8663.058407126346,\n      \"dhcp_ip_assignation_time\": 265.6556275675215,\n      \"authentication_response_time\": 5540.902763182082,\n      \"rx_client_retries\": 2860,\n      \"tx_client_retries\": 8355,\n      \"ipv4_warning\": true,\n      \"air_time_warning\": false,\n      \"rtts_supported\": false\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c0f85979-93d5-4f98-995c-88cbc77bed25",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dashboard",
+                    "wireless",
+                    "client-health",
+                    "grid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "keyword",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortField",
+                      "value": "OPERATING_SYSTEM"
+                    },
+                    {
+                      "key": "sortOrder",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "connectionStatus",
+                      "value": "CONNECTED"
+                    },
+                    {
+                      "key": "includeUnassigned",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"site_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"device_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"number_filter\": [\n    {\n      \"column_name\": \"<string>\",\n      \"filter_type\": \"<string>\",\n      \"value\": \"<long>\",\n      \"min\": \"<long>\",\n      \"max\": \"<long>\"\n    },\n    {\n      \"column_name\": \"<string>\",\n      \"filter_type\": \"<string>\",\n      \"value\": \"<long>\",\n      \"min\": \"<long>\",\n      \"max\": \"<long>\"\n    }\n  ],\n  \"frequency\": \"2.4GHz\",\n  \"alias\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"auth_methods\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"encryption_methods\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"operating_systems\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"ssids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"user_profiles\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"category_assignments\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"has_association_issues\": \"<boolean>\",\n  \"has_authentication_issues\": \"<boolean>\",\n  \"has_ip_address_issues\": \"<boolean>\",\n  \"has_roaming_issues\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a67669dc-f3db-4fc1-b51b-94c4649bac94",
+          "name": "Wireless clients count with connectivity issues",
+          "request": {
+            "name": "Wireless clients count with connectivity issues",
+            "description": {
+              "content": "Returns the wireless clients with connectivity issues based on the provided filters. You can filter the results by sites.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "dashboard",
+                "wireless",
+                "client-health",
+                "connectivity-issues"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "includeUnassigned",
+                  "value": "<boolean>",
+                  "description": "To include unassigned clients"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"site_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "39201783-54ce-41f5-8f1f-089c5694b1d6",
+              "name": "Returns the counts of clients with connectivity issues based on the filters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dashboard",
+                    "wireless",
+                    "client-health",
+                    "connectivity-issues"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "includeUnassigned",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"site_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total_clients\": 2931,\n  \"association_failures\": 3274,\n  \"authentication_failures\": 4458,\n  \"ip_address_issues\": 9228\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "41c2a38a-d3cc-4978-aaef-e97aa30c50c5",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dashboard",
+                    "wireless",
+                    "client-health",
+                    "connectivity-issues"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "includeUnassigned",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"site_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9c7a6079-0461-4441-91b6-c2cf6181c01a",
+          "name": "Wireless clients count with frequency distribution",
+          "request": {
+            "name": "Wireless clients count with frequency distribution",
+            "description": {
+              "content": "Returns the wireless clients with different frequency distribution based on the provided filters. You can filter the results by sites.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "dashboard",
+                "wireless",
+                "client-health",
+                "frequency-distribution"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "includeUnassigned",
+                  "value": "<boolean>",
+                  "description": "To include unassigned clients"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"site_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a4b7d4a5-7070-49d9-83bb-eede24382267",
+              "name": "Returns the counts of clients with different frequency distribution based on the filters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dashboard",
+                    "wireless",
+                    "client-health",
+                    "frequency-distribution"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "includeUnassigned",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"site_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total_clients\": 9891,\n  \"clients_2dot4GHz\": 1409,\n  \"clients_5GHz\": 3218,\n  \"clients_6GHz\": 1031\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cd19cde0-7cd7-491f-a9b0-27e56522c9cd",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dashboard",
+                    "wireless",
+                    "client-health",
+                    "frequency-distribution"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "includeUnassigned",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"site_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5c9f1bda-7d93-4eeb-af1e-60abc9a65ded",
+          "name": "Count of wireless clients with roaming issues",
+          "request": {
+            "name": "Count of wireless clients with roaming issues",
+            "description": {
+              "content": "Returns the wireless clients with roaming issues based on the provided filters. You can filter the results by sites, device types, and a specific timestamp.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "dashboard",
+                "wireless",
+                "client-health",
+                "roaming-issues"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "includeUnassigned",
+                  "value": "<boolean>",
+                  "description": "To include unassigned clients"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"site_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b64b3117-6606-49d2-b860-5147f0cf1cc4",
+              "name": "Returns the counts of clients with roaming issues based on the filters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dashboard",
+                    "wireless",
+                    "client-health",
+                    "roaming-issues"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "includeUnassigned",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"site_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total_clients\": 5384,\n  \"roaming_issues\": 8021\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5e80e2bb-324f-4e5f-a857-c44a9be0c552",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dashboard",
+                    "wireless",
+                    "client-health",
+                    "roaming-issues"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "includeUnassigned",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"site_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e3c5ba8e-9dd1-4e64-be36-d4edfcaf90bc",
+          "name": "Wireless client health grid filter metadata",
+          "request": {
+            "name": "Wireless client health grid filter metadata",
+            "description": {
+              "content": "Returns the client health health grid filter metadata. You can filter the results by sites.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "dashboard",
+                "wireless",
+                "client-health",
+                "filter-metadata"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "includeUnassigned",
+                  "value": "<boolean>",
+                  "description": "To include unassigned clients"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"site_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "cbfcef3b-140d-4f4a-9a30-b3b3705d7909",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dashboard",
+                    "wireless",
+                    "client-health",
+                    "filter-metadata"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "includeUnassigned",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"site_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"connection_status\": [\n    \"string\",\n    \"string\"\n  ],\n  \"frequency\": [\n    \"string\",\n    \"string\"\n  ],\n  \"ssid\": [\n    \"string\",\n    \"string\"\n  ],\n  \"os\": [\n    \"string\",\n    \"string\"\n  ],\n  \"authentication\": [\n    \"string\",\n    \"string\"\n  ],\n  \"encryption\": [\n    \"string\",\n    \"string\"\n  ],\n  \"user_profile\": [\n    \"string\",\n    \"string\"\n  ],\n  \"category_assignment\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f2ced9fc-e094-4638-b319-54371ff1b880",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dashboard",
+                    "wireless",
+                    "client-health",
+                    "filter-metadata"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "includeUnassigned",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"site_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "028f7fbd-4bff-4964-8577-343a928a7051",
+          "name": "Wireless client health association issues",
+          "request": {
+            "name": "Wireless client health association issues",
+            "description": {
+              "content": "Returns the client health association issues based on the provided filters. You can filter the results by sites.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "dashboard",
+                "wireless",
+                "client-health",
+                "issue",
+                "association"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number, min = 1"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Page Size, min = 1, max = 100"
+                },
+                {
+                  "disabled": false,
+                  "key": "macAddress",
+                  "value": "<string>",
+                  "description": "The macAddress to filter"
+                },
+                {
+                  "disabled": false,
+                  "key": "includeUnassigned",
+                  "value": "<boolean>",
+                  "description": "To include unassigned clients"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"site_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b9f3d3bc-8e2c-48ee-86c1-65c1207fea76",
+              "name": "Returns the response of client health grid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dashboard",
+                    "wireless",
+                    "client-health",
+                    "issue",
+                    "association"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "macAddress",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includeUnassigned",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"site_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 8671,\n  \"page\": 5509,\n  \"total_count\": 1837,\n  \"total_pages\": 420,\n  \"data\": [\n    {\n      \"date_time\": \"1951-06-05T15:06:25.255Z\",\n      \"reason_code\": \"string\",\n      \"device_name\": \"string\"\n    },\n    {\n      \"date_time\": \"2026-07-03T19:41:51.169Z\",\n      \"reason_code\": \"string\",\n      \"device_name\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "23855fdb-4944-409b-9a75-37c34a07a98e",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dashboard",
+                    "wireless",
+                    "client-health",
+                    "issue",
+                    "association"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "macAddress",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includeUnassigned",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"site_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c2641054-a4d1-40dc-8f83-0b6984c5d0ec",
+          "name": "Wireless client health authentication issues",
+          "request": {
+            "name": "Wireless client health authentication issues",
+            "description": {
+              "content": "Returns the client health authentication issues based on the provided filters. You can filter the results by sites.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "dashboard",
+                "wireless",
+                "client-health",
+                "issue",
+                "authentication"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number, min = 1"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Page Size, min = 1, max = 100"
+                },
+                {
+                  "disabled": false,
+                  "key": "macAddress",
+                  "value": "<string>",
+                  "description": "The macAddress to filter"
+                },
+                {
+                  "disabled": false,
+                  "key": "includeUnassigned",
+                  "value": "<boolean>",
+                  "description": "To include unassigned clients"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"site_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "424d77f4-2871-4d98-80a6-aeaa77c89e49",
+              "name": "Returns the response of client health grid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dashboard",
+                    "wireless",
+                    "client-health",
+                    "issue",
+                    "authentication"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "macAddress",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includeUnassigned",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"site_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 9414,\n  \"page\": 5491,\n  \"total_count\": 1617,\n  \"total_pages\": 6931,\n  \"data\": [\n    {\n      \"date_time\": \"2024-12-12T14:11:20.720Z\",\n      \"reason_code\": \"string\",\n      \"device_name\": \"string\"\n    },\n    {\n      \"date_time\": \"2023-02-25T01:06:12.870Z\",\n      \"reason_code\": \"string\",\n      \"device_name\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c2693993-0233-477f-8ff6-1ad3f3f68ce4",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dashboard",
+                    "wireless",
+                    "client-health",
+                    "issue",
+                    "authentication"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "macAddress",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includeUnassigned",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"site_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "81d8c6f3-abf1-4330-afd5-9de2c5833049",
+          "name": "Wireless client health roaming issues",
+          "request": {
+            "name": "Wireless client health roaming issues",
+            "description": {
+              "content": "Returns the client health roaming issues based on the provided filters. You can filter the results by sites.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "dashboard",
+                "wireless",
+                "client-health",
+                "issue",
+                "roaming"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number, min = 1"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Page Size, min = 1, max = 100"
+                },
+                {
+                  "disabled": false,
+                  "key": "macAddress",
+                  "value": "<string>",
+                  "description": "The macAddress to filter"
+                },
+                {
+                  "disabled": false,
+                  "key": "includeUnassigned",
+                  "value": "<boolean>",
+                  "description": "To include unassigned clients"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"site_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c3dc15c2-14f5-435e-952a-720d2d6da0bf",
+              "name": "Returns the response of client health grid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dashboard",
+                    "wireless",
+                    "client-health",
+                    "issue",
+                    "roaming"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "macAddress",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includeUnassigned",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"site_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 7485,\n  \"page\": 7528,\n  \"total_count\": 5261,\n  \"total_pages\": 589,\n  \"data\": [\n    {\n      \"date_time\": \"2023-04-14T00:33:05.898Z\",\n      \"issue_type\": \"string\",\n      \"roaming_time\": \"string\",\n      \"device_name\": \"string\"\n    },\n    {\n      \"date_time\": \"2013-01-16T07:18:45.992Z\",\n      \"issue_type\": \"string\",\n      \"roaming_time\": \"string\",\n      \"device_name\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6cec05b4-dec5-4754-828c-8042a8cb0138",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dashboard",
+                    "wireless",
+                    "client-health",
+                    "issue",
+                    "roaming"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "macAddress",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includeUnassigned",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"site_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8a632594-04c1-4935-98e7-3f8992799b52",
+          "name": "Wireless client health ip address issues",
+          "request": {
+            "name": "Wireless client health ip address issues",
+            "description": {
+              "content": "Returns the client health ip address issues based on the provided filters. You can filter the results by sites.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "dashboard",
+                "wireless",
+                "client-health",
+                "issue",
+                "ipaddress"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number, min = 1"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Page Size, min = 1, max = 100"
+                },
+                {
+                  "disabled": false,
+                  "key": "macAddress",
+                  "value": "<string>",
+                  "description": "The macAddress to filter"
+                },
+                {
+                  "disabled": false,
+                  "key": "includeUnassigned",
+                  "value": "<boolean>",
+                  "description": "To include unassigned clients"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"site_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "beb2b2cc-0ff6-4035-acbe-c726e60ada12",
+              "name": "Returns the response of client health grid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dashboard",
+                    "wireless",
+                    "client-health",
+                    "issue",
+                    "ipaddress"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "macAddress",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includeUnassigned",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"site_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 5763,\n  \"page\": 6103,\n  \"total_count\": 619,\n  \"total_pages\": 6480,\n  \"data\": [\n    {\n      \"date_time\": \"2016-11-25T08:43:32.220Z\",\n      \"issue_type\": \"string\",\n      \"device_name\": \"string\"\n    },\n    {\n      \"date_time\": \"2023-03-19T16:33:11.443Z\",\n      \"issue_type\": \"string\",\n      \"device_name\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "90281e96-085e-4ee0-8b02-753276b070c5",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dashboard",
+                    "wireless",
+                    "client-health",
+                    "issue",
+                    "ipaddress"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "macAddress",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includeUnassigned",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"site_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5a501cc6-7ad7-4b30-9fda-3b16b4fcb7ed",
+          "name": "Export Grid as a CSV File",
+          "request": {
+            "name": "Export Grid as a CSV File",
+            "description": {
+              "content": "Returns the CSV File of the client health grid of wireless devices based on the provided filters. You can filter the results by sites.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "dashboard",
+                "wireless",
+                "client-health",
+                "export"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "keyword",
+                  "value": "<string>",
+                  "description": "The keyword to search"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortField",
+                  "value": "<string>",
+                  "description": "The sort field"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortOrder",
+                  "value": "<string>",
+                  "description": "The sort order"
+                },
+                {
+                  "disabled": false,
+                  "key": "connectionStatus",
+                  "value": "<string>",
+                  "description": "The current connection status of the client (e.g., connected, disconnected)."
+                },
+                {
+                  "disabled": false,
+                  "key": "includeUnassigned",
+                  "value": "<boolean>",
+                  "description": "To include unassigned clients"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"site_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"device_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"number_filter\": [\n    {\n      \"column_name\": \"<string>\",\n      \"filter_type\": \"<string>\",\n      \"value\": \"<long>\",\n      \"min\": \"<long>\",\n      \"max\": \"<long>\"\n    },\n    {\n      \"column_name\": \"<string>\",\n      \"filter_type\": \"<string>\",\n      \"value\": \"<long>\",\n      \"min\": \"<long>\",\n      \"max\": \"<long>\"\n    }\n  ],\n  \"frequency\": \"<string>\",\n  \"alias\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"auth_methods\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"encryption_methods\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"operating_systems\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"ssids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"user_profiles\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"category_assignments\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"has_association_issues\": \"<boolean>\",\n  \"has_authentication_issues\": \"<boolean>\",\n  \"has_ip_address_issues\": \"<boolean>\",\n  \"has_roaming_issues\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3d707204-a7fb-4b1e-95cc-0e408d344056",
+              "name": "Accepted - The request has been accepted for processing, but the processing has not been completed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dashboard",
+                    "wireless",
+                    "client-health",
+                    "export"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "keyword",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortField",
+                      "value": "OPERATING_SYSTEM"
+                    },
+                    {
+                      "key": "sortOrder",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "connectionStatus",
+                      "value": "CONNECTED"
+                    },
+                    {
+                      "key": "includeUnassigned",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"site_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"device_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"number_filter\": [\n    {\n      \"column_name\": \"<string>\",\n      \"filter_type\": \"<string>\",\n      \"value\": \"<long>\",\n      \"min\": \"<long>\",\n      \"max\": \"<long>\"\n    },\n    {\n      \"column_name\": \"<string>\",\n      \"filter_type\": \"<string>\",\n      \"value\": \"<long>\",\n      \"min\": \"<long>\",\n      \"max\": \"<long>\"\n    }\n  ],\n  \"frequency\": \"2.4GHz\",\n  \"alias\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"auth_methods\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"encryption_methods\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"operating_systems\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"ssids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"user_profiles\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"category_assignments\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"has_association_issues\": \"<boolean>\",\n  \"has_authentication_issues\": \"<boolean>\",\n  \"has_ip_address_issues\": \"<boolean>\",\n  \"has_roaming_issues\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Cache control directives",
+                  "key": "cache-control",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "The length of the response body in octets (8-bit bytes)",
+                  "key": "content-length",
+                  "value": "4854"
+                },
+                {
+                  "disabled": false,
+                  "description": "The date and time at which the message was originated",
+                  "key": "date",
+                  "value": "1980-06-07T04:23:24.270Z"
+                },
+                {
+                  "disabled": false,
+                  "description": "The date/time after which the response is considered stale",
+                  "key": "expires",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "The URL to which the client should navigate to check the status of the request",
+                  "key": "location",
+                  "value": "https://gNJxfdSvfcFOXkUnhnI.wrehLbKQVQJ9I8drT4UwiKP2OxmoHIEm,kjCa7NugSnbIvoHu0trSV34o+8oLaO"
+                },
+                {
+                  "disabled": false,
+                  "description": "Implementation-specific directives that might apply to any recipient along the request-response chain",
+                  "key": "pragma",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the client is allowed to make in a given time period",
+                  "key": "ratelimit-limit",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window",
+                  "key": "ratelimit-remaining",
+                  "value": "4854"
+                },
+                {
+                  "disabled": false,
+                  "description": "The amount of time to wait before making a follow-up request",
+                  "key": "retry-after",
+                  "value": "4854"
+                },
+                {
+                  "disabled": false,
+                  "description": "A name for the server",
+                  "key": "server",
+                  "value": "nginx"
+                },
+                {
+                  "disabled": false,
+                  "description": "Prevents the browser from interpreting files as a different MIME type",
+                  "key": "x-content-type-options",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "Enables cross-site scripting (XSS) filter",
+                  "key": "x-xss-protection",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6b4e2b57-b353-45f7-a009-d636a3d68dc0",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dashboard",
+                    "wireless",
+                    "client-health",
+                    "export"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "keyword",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortField",
+                      "value": "OPERATING_SYSTEM"
+                    },
+                    {
+                      "key": "sortOrder",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "connectionStatus",
+                      "value": "CONNECTED"
+                    },
+                    {
+                      "key": "includeUnassigned",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"site_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"device_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"number_filter\": [\n    {\n      \"column_name\": \"<string>\",\n      \"filter_type\": \"<string>\",\n      \"value\": \"<long>\",\n      \"min\": \"<long>\",\n      \"max\": \"<long>\"\n    },\n    {\n      \"column_name\": \"<string>\",\n      \"filter_type\": \"<string>\",\n      \"value\": \"<long>\",\n      \"min\": \"<long>\",\n      \"max\": \"<long>\"\n    }\n  ],\n  \"frequency\": \"2.4GHz\",\n  \"alias\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"auth_methods\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"encryption_methods\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"operating_systems\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"ssids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"user_profiles\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"category_assignments\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"has_association_issues\": \"<boolean>\",\n  \"has_authentication_issues\": \"<boolean>\",\n  \"has_ip_address_issues\": \"<boolean>\",\n  \"has_roaming_issues\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "26a02e0b-17e3-4984-b400-4b4ff1dec59a",
+          "name": "Download the Export CSV file",
+          "request": {
+            "name": "Download the Export CSV file",
+            "description": {
+              "content": "Returns the CSV File of the Wireless Client Health status based on the provided filters.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "dashboard",
+                "wireless",
+                "client-health",
+                "reports",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The report ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/octet-stream"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "f58275a9-efe2-4ded-a35e-6cf98139597d",
+              "name": "Returns the CSV File of the Wireless Client Health",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dashboard",
+                    "wireless",
+                    "client-health",
+                    "reports",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The report ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/octet-stream"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/octet-stream"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a2319642-85a7-4f57-ad0a-dc9f2f22effc",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dashboard",
+                    "wireless",
+                    "client-health",
+                    "reports",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The report ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.extremecloudiq.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "df1d22db-9349-489d-8e70-e37164c7c7b5",
+    "name": "ExtremeCloud IQ Account Dashboard - Wireless Client Health API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "ExtremeCloud IQ™ API allows customers and partners to create solutions for the management, monitoring, and provisioning\nof any ExtremeCloud IQ™ environment.\n\nAll related resources and documentation are available at [ExtremeCloud IQ Developer Portal](https://developer.extremecloudiq.com/).\nPlease check [Get Started and Tutorial](https://developer.extremecloudiq.com/documentation/) to understand how to use the APIs.\n\nGet the [latest OpenAPI definition](https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI/blob/main/xcloudiq-openapi.yaml)\nfrom [ExtremeCloud IQ OpenAPI GitHub repository](https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI).\n\nPlease have a valid [ExtremeCloud IQ](https://extremecloudiq.com/) account before getting started.\nIf you don't have one, please [register a new account](https://www.extremenetworks.com/cloud-networking/).\n\nContact Support:\n Name: Extreme Networks Support\n Email: support@extremenetworks.com",
+      "type": "text/plain"
+    }
+  }
+}

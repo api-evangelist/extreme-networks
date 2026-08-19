@@ -1,0 +1,2684 @@
+{
+  "item": [
+    {
+      "id": "73c76f4f-4303-4cdb-a5a0-8603f62ce5a7",
+      "name": "NG Reports",
+      "description": {
+        "content": "The NG Reports - On Demand Analytics and Scheduled Reporting",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d1391716-0d0f-4fca-8c38-314c187f4483",
+          "name": "Get scheduled reports",
+          "request": {
+            "name": "Get scheduled reports",
+            "description": {
+              "content": "Retrieve scheduled reports based on frequency and keyword search.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ng-reports",
+                "reports"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "request",
+                  "value": "<string>",
+                  "description": "(Required) Type of report to retrieve"
+                },
+                {
+                  "disabled": false,
+                  "key": "keyword",
+                  "value": "<string>",
+                  "description": "Keyword to search reports"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "3891a9c2-5961-4b65-95d5-4f5695a18d64",
+              "name": "A list of scheduled reports",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ng-reports",
+                    "reports"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "request",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "keyword",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"report_name\": \"string\",\n    \"recipients\": [\n      \"string\",\n      \"string\"\n    ],\n    \"latest_report_pdf\": \"http://zHOkwJOgexjybdRroI.lrmwvAp8.w9FjHakNAvF7Ts,vukUL.-SnazeSLohoxNMSjRFGT\",\n    \"enable_report\": true\n  },\n  {\n    \"report_name\": \"string\",\n    \"recipients\": [\n      \"string\",\n      \"string\"\n    ],\n    \"latest_report_pdf\": \"https://fSosLatwZVk.uuvxnTng5OLO1r1hcoN2SVNY0iRBw.0JvilWfoJ6YSCOGGE5\",\n    \"enable_report\": true\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a17716cb-5826-42a8-81b1-084da9f39a59",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ng-reports",
+                    "reports"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "request",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "keyword",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f07b5721-022c-48e5-9a4f-47265e11bc86",
+          "name": "Create a new scheduled report",
+          "request": {
+            "name": "Create a new scheduled report",
+            "description": {
+              "content": "Create a new scheduled report with specified details.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ng-reports",
+                "reports"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"report_name\": \"<string>\",\n  \"recipients\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"enable_report\": \"<boolean>\",\n  \"frequency\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1a7018cd-819f-4863-b909-fb5d9b53f371",
+              "name": "Report successfully created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ng-reports",
+                    "reports"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"report_name\": \"<string>\",\n  \"recipients\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"enable_report\": \"<boolean>\",\n  \"frequency\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e8d71442-c2fd-429a-8681-cc56f0278c7b",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ng-reports",
+                    "reports"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"report_name\": \"<string>\",\n  \"recipients\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"enable_report\": \"<boolean>\",\n  \"frequency\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "33e37699-cdc9-428a-9e8d-4a3e2075c987",
+          "name": "Delete a scheduled report",
+          "request": {
+            "name": "Delete a scheduled report",
+            "description": {
+              "content": "Delete a scheduled report by its unique identifier.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ng-reports",
+                "reports",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "id",
+                  "description": "(Required) The unique identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "6093eccd-dca3-4506-9dbf-42cb7f3af375",
+              "name": "Report successfully deleted (No Content)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ng-reports",
+                    "reports",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0a0e8e15-a0ec-45c5-9802-64e2c4af8c43",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ng-reports",
+                    "reports",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "be86c3a9-2353-4a49-9802-3891c9b9b474",
+          "name": "Update an existing scheduled report",
+          "request": {
+            "name": "Update an existing scheduled report",
+            "description": {
+              "content": "Update the details of a scheduled report by its ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ng-reports",
+                "reports",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "id",
+                  "description": "(Required) The unique identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"report_name\": \"<string>\",\n  \"recipients\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"enable_report\": \"<boolean>\",\n  \"frequency\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2d294c08-0d7a-4bce-8899-6bc4c75ca6c3",
+              "name": "Report successfully updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ng-reports",
+                    "reports",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"report_name\": \"<string>\",\n  \"recipients\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"enable_report\": \"<boolean>\",\n  \"frequency\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2adfe748-105e-405a-acc5-a2401f0a2937",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ng-reports",
+                    "reports",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"report_name\": \"<string>\",\n  \"recipients\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"enable_report\": \"<boolean>\",\n  \"frequency\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e313adf5-b78f-4857-87b2-d651b1bdbd83",
+          "name": "Time Series data in NG Reports Metrics",
+          "request": {
+            "name": "Time Series data in NG Reports Metrics",
+            "description": {
+              "content": "This API returns the data for the graph widgets.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ng-reports",
+                "metrics",
+                "timeseries.yaml"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"metrics\": \"<string>\",\n  \"sort_field\": \"<string>\",\n  \"sort_order\": \"<string>\",\n  \"site_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"building_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"floor_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"connTypes\": \"<string>\",\n  \"ssids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"bands\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"device_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"start_time\": \"<long>\",\n  \"end_time\": \"<long>\",\n  \"pageno\": \"<int>\",\n  \"limit\": \"<int>\",\n  \"async\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b0231bcf-ba06-4b03-94f6-b432d162fcd2",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ng-reports",
+                    "metrics",
+                    "timeseries.yaml"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"metrics\": \"<string>\",\n  \"sort_field\": \"<string>\",\n  \"sort_order\": \"<string>\",\n  \"site_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"building_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"floor_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"connTypes\": \"<string>\",\n  \"ssids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"bands\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"device_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"start_time\": \"<long>\",\n  \"end_time\": \"<long>\",\n  \"pageno\": \"<int>\",\n  \"limit\": \"<int>\",\n  \"async\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Response Body ( Select Metrics )\": {\n    \"metrics\": \"<string>\",\n    \"name\": \"string\",\n    \"timeRange\": {\n      \"startTime\": 2525,\n      \"endTime\": 3790\n    },\n    \"data\": [\n      {\n        \"timestamp\": 8062,\n        \"value\": 218\n      },\n      {\n        \"timestamp\": 5941,\n        \"value\": 5518\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6a906614-c10b-4b74-bb18-d809852b9ec2",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ng-reports",
+                    "metrics",
+                    "timeseries.yaml"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"metrics\": \"<string>\",\n  \"sort_field\": \"<string>\",\n  \"sort_order\": \"<string>\",\n  \"site_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"building_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"floor_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"connTypes\": \"<string>\",\n  \"ssids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"bands\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"device_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"start_time\": \"<long>\",\n  \"end_time\": \"<long>\",\n  \"pageno\": \"<int>\",\n  \"limit\": \"<int>\",\n  \"async\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1806815c-8ef7-40db-bb82-473543ec91ac",
+          "name": "Table Data data in NG Reports Metrics",
+          "request": {
+            "name": "Table Data data in NG Reports Metrics",
+            "description": {
+              "content": "This API returns the table (raw) Data data in NG Reports Metrics.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ng-reports",
+                "metrics",
+                "tabledata.yaml"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"METRICS\": \"<string>\",\n  \"sortField\": \"<string>\",\n  \"sortOrder\": \"<string>\",\n  \"siteIds\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"buildingIds\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"floorIds\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"connTypes\": \"<string>\",\n  \"ssids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"band\": \"<string>\",\n  \"deviceIds\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"startTime\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"endTime\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"export\": \"<boolean>\",\n  \"pageno\": \"<int>\",\n  \"limit\": \"<int>\",\n  \"async\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "269372ac-e69c-4519-baec-2fa9e9f1678d",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ng-reports",
+                    "metrics",
+                    "tabledata.yaml"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"METRICS\": \"<string>\",\n  \"sortField\": \"<string>\",\n  \"sortOrder\": \"<string>\",\n  \"siteIds\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"buildingIds\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"floorIds\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"connTypes\": \"<string>\",\n  \"ssids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"band\": \"<string>\",\n  \"deviceIds\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"startTime\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"endTime\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"export\": \"<boolean>\",\n  \"pageno\": \"<int>\",\n  \"limit\": \"<int>\",\n  \"async\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 2825,\n  \"page\": 6749,\n  \"total_count\": 460,\n  \"total_pages\": 4766,\n  \"data\": [\n    {\n      \"Response Body ( Select Metrics )\": {\n        \"metrics\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"time_stamp\": 1477,\n        \"user_name\": \"string\",\n        \"user_profile_name\": \"string\",\n        \"os_name\": \"string\",\n        \"ssid\": \"string\"\n      }\n    },\n    {\n      \"Response Body ( Select Metrics )\": {\n        \"metrics\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"time_stamp\": 7175,\n        \"user_name\": \"string\",\n        \"user_profile_name\": \"string\",\n        \"os_name\": \"string\",\n        \"ssid\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "23ff5945-910d-4b2e-96b6-8289c579a168",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ng-reports",
+                    "metrics",
+                    "tabledata.yaml"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"METRICS\": \"<string>\",\n  \"sortField\": \"<string>\",\n  \"sortOrder\": \"<string>\",\n  \"siteIds\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"buildingIds\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"floorIds\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"connTypes\": \"<string>\",\n  \"ssids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"band\": \"<string>\",\n  \"deviceIds\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"startTime\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"endTime\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"export\": \"<boolean>\",\n  \"pageno\": \"<int>\",\n  \"limit\": \"<int>\",\n  \"async\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e06bd0b6-2260-4d9a-9369-5b88c6ca45f9",
+          "name": "Ssid filter metadata",
+          "request": {
+            "name": "Ssid filter metadata",
+            "description": {
+              "content": "Returns the Ssid filter metadata. You can filter the results by sites,buildings,floor.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ng-reports",
+                "metrics",
+                "metadata",
+                "ssid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"site_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"building_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"floor_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6f30cea2-acdd-4599-8edc-5bbe96621dc9",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ng-reports",
+                    "metrics",
+                    "metadata",
+                    "ssid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"site_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"building_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"floor_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  \"string\",\n  \"string\"\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7559bed2-472a-4863-97a7-1cda2733a129",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ng-reports",
+                    "metrics",
+                    "metadata",
+                    "ssid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"site_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"building_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"floor_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "adfa23c2-62e2-4e9d-99e5-02ad3f777e88",
+          "name": "Client Os filter metadata",
+          "request": {
+            "name": "Client Os filter metadata",
+            "description": {
+              "content": "Returns the Client Os filter metadata. You can filter the results by sites,buildings,floor,ssid,band.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ng-reports",
+                "metrics",
+                "metadata",
+                "os"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"site_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"building_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"floor_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"ssids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"bands\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b5ebd35a-1dd6-45fc-8f53-c9007cee01dd",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ng-reports",
+                    "metrics",
+                    "metadata",
+                    "os"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"site_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"building_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"floor_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"ssids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"bands\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  \"string\",\n  \"string\"\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7d6ebae6-1668-465b-b661-411e58de397f",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ng-reports",
+                    "metrics",
+                    "metadata",
+                    "os"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"site_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"building_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"floor_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"ssids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"bands\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6929c39f-c1bb-4d5d-bf39-64355349c6e6",
+          "name": "Band filter metadata",
+          "request": {
+            "name": "Band filter metadata",
+            "description": {
+              "content": "Returns the Band filter metadata. You can filter the results by sites,buildings,floor,ssid.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ng-reports",
+                "metrics",
+                "metadata",
+                "band"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"site_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"building_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"floor_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"ssids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7d1cf84b-e0e8-4ea8-84af-58d5e2d9f6f8",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ng-reports",
+                    "metrics",
+                    "metadata",
+                    "band"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"site_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"building_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"floor_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"ssids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  \"string\",\n  \"string\"\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5fef765d-d3f4-4bad-b9fd-d33e454694a1",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ng-reports",
+                    "metrics",
+                    "metadata",
+                    "band"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"site_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"building_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"floor_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"ssids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f1a6bece-ff95-419b-8047-84db41db11d1",
+          "name": "Client filter metadata",
+          "request": {
+            "name": "Client filter metadata",
+            "description": {
+              "content": "Returns the Client filter metadata. You can filter the results by sites,buildings,floor,usernames.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ng-reports",
+                "metrics",
+                "metadata",
+                "client"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"site_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"building_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"floor_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"usernames\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "171dba38-79a5-4f3e-a3bd-f4f9e45cfae4",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ng-reports",
+                    "metrics",
+                    "metadata",
+                    "client"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"site_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"building_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"floor_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"usernames\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 6234,\n    \"hostname\": \"string\",\n    \"mac_address\": \"string\"\n  },\n  {\n    \"id\": 3636,\n    \"hostname\": \"string\",\n    \"mac_address\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ea8c6206-9938-4eec-ac1e-1dfa040c3253",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ng-reports",
+                    "metrics",
+                    "metadata",
+                    "client"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"site_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"building_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"floor_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"usernames\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3cb40a86-4b93-4901-8da5-cd3bb694a1c5",
+          "name": "User filter metadata",
+          "request": {
+            "name": "User filter metadata",
+            "description": {
+              "content": "Returns the user filter metadata. You can filter the results by sites,buildings,floor.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ng-reports",
+                "metrics",
+                "metadata",
+                "user"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"site_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"building_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"floor_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "26df9c41-083d-4073-a71f-d600ffd457ac",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ng-reports",
+                    "metrics",
+                    "metadata",
+                    "user"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"site_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"building_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"floor_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 4196,\n    \"username\": \"string\"\n  },\n  {\n    \"id\": 9373,\n    \"username\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a608cc1c-6ee1-46cf-af06-d9ad2da48b1c",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ng-reports",
+                    "metrics",
+                    "metadata",
+                    "user"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"site_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"building_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"floor_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "105842cf-2cfd-4875-8350-592d3c4cdd9c",
+          "name": "Application filter metadata",
+          "request": {
+            "name": "Application filter metadata",
+            "description": {
+              "content": "Returns the Application filter metadata. You can filter the results by sites, buildings, floor, usernames, and client MAC addresses.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ng-reports",
+                "metrics",
+                "metadata",
+                "applications"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"site_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"building_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"floor_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"usernames\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"client_macs\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2053ad16-5967-4b95-be72-2f702328d86b",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ng-reports",
+                    "metrics",
+                    "metadata",
+                    "applications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"site_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"building_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"floor_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"usernames\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"client_macs\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 9970,\n    \"name\": \"string\"\n  },\n  {\n    \"id\": 8302,\n    \"name\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e5d28af8-d639-47da-9d1f-eb2cc6c22d55",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ng-reports",
+                    "metrics",
+                    "metadata",
+                    "applications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"site_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"building_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"floor_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"usernames\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"client_macs\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b684886f-1ded-454a-adb0-ccd09e1e19d2",
+          "name": "Devices filter metadata",
+          "request": {
+            "name": "Devices filter metadata",
+            "description": {
+              "content": "Returns the Channel filter metadata. You can filter the results by sites,buildings,floor,channel,band.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ng-reports",
+                "metrics",
+                "metadata",
+                "devices"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"site_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"building_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"floor_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"bands\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"channel\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"ostype\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e47d2de7-6df7-4fc1-9c2f-39b961d45c2e",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ng-reports",
+                    "metrics",
+                    "metadata",
+                    "devices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"site_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"building_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"floor_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"bands\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"channel\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"ostype\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 3280,\n    \"hostname\": \"string\"\n  },\n  {\n    \"id\": 901,\n    \"hostname\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7848ade7-07aa-4ca9-afae-ad0f8dfeb965",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ng-reports",
+                    "metrics",
+                    "metadata",
+                    "devices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"site_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"building_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"floor_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"bands\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"channel\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"ostype\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b2d9e5a2-e0b0-49e6-8ba2-8410eb4a2633",
+          "name": "Grouping of Metrics",
+          "request": {
+            "name": "Grouping of Metrics",
+            "description": {
+              "content": "Provides detailed information about the grouping of different metrics.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ng-reports",
+                "metrics",
+                "get-metrics-grouping"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8ada00c2-5eaf-48f0-889c-e73a5e30bf79",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ng-reports",
+                    "metrics",
+                    "get-metrics-grouping"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"clientsAnalytics\": [\n    \"- maxConcurrentClientsOverTime\\n- uniqueClientsOverTimeBySsid\\n- uniqueWiFiClientsOverTime\\n- clientQualityScopeOverTime\\n- clientSessionsOverTime\\n- clientAirtimeUsageOverTime\\n- wirelessClientsByOs\\n- uniqueClientsByOs\\n\",\n    \"- maxConcurrentClientsOverTime\\n- uniqueClientsOverTimeBySsid\\n- uniqueWiFiClientsOverTime\\n- clientQualityScopeOverTime\\n- clientSessionsOverTime\\n- clientAirtimeUsageOverTime\\n- wirelessClientsByOs\\n- uniqueClientsByOs\\n\"\n  ],\n  \"applicationUsageAnalytics\": [\n    \"- applicationUsage\\n\",\n    \"- applicationUsage\\n\"\n  ],\n  \"deviceAnalytics\": [\n    \"- devicesByClientsOverTime\\n- switchSummary\\n\",\n    \"- devicesByClientsOverTime\\n- switchSummary\\n\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a5637683-580f-4705-88d0-bbe2911222cd",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ng-reports",
+                    "metrics",
+                    "get-metrics-grouping"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6a558cb8-a3eb-4ba7-a5d8-e4a16e2fc3dd",
+          "name": "Download NG reports",
+          "request": {
+            "name": "Download NG reports",
+            "description": {
+              "content": "Returns the Xlsx/pdf for provided metrics on the provided filters.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ng-reports",
+                "download",
+                "reports"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"metrics\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"site_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"building_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"floor_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"ssids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"bands\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"channel_nums\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"device_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"start_time\": \"<long>\",\n  \"end_time\": \"<long>\",\n  \"mode\": \"<string>\",\n  \"download_type\": \"<string>\",\n  \"connTypes\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "72c00b5f-3186-4b7e-ae70-967c858ec696",
+              "name": "Accepted - The request has been accepted for processing, but processing has not been completed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ng-reports",
+                    "download",
+                    "reports"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"metrics\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"site_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"building_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"floor_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"ssids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"bands\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"channel_nums\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"device_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"start_time\": \"<long>\",\n  \"end_time\": \"<long>\",\n  \"mode\": \"<string>\",\n  \"download_type\": \"<string>\",\n  \"connTypes\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Cache control directives",
+                  "key": "cache-control",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "The length of the response body in octets (8-bit bytes)",
+                  "key": "content-length",
+                  "value": "8950"
+                },
+                {
+                  "disabled": false,
+                  "description": "The date and time at which the message was originated",
+                  "key": "date",
+                  "value": "2012-01-18T17:01:37.024Z"
+                },
+                {
+                  "disabled": false,
+                  "description": "The date/time after which the response is considered stale",
+                  "key": "expires",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "The URL to check the request status",
+                  "key": "location",
+                  "value": "http://TtTPixAMVXYmggonJaMhnhdGEAJjmO.sqkwBV0T1GgedHSKX-xeNeodFilGT5fGatNOEGuZElizFDiBbrkj.AzRa1eykM"
+                },
+                {
+                  "disabled": false,
+                  "description": "Implementation-specific directives that might apply to any recipient",
+                  "key": "pragma",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests allowed in a given time period",
+                  "key": "ratelimit-limit",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window",
+                  "key": "ratelimit-remaining",
+                  "value": "8950"
+                },
+                {
+                  "disabled": false,
+                  "description": "Time to wait before making a follow-up request",
+                  "key": "retry-after",
+                  "value": "8950"
+                },
+                {
+                  "disabled": false,
+                  "description": "Server name",
+                  "key": "server",
+                  "value": "nginx"
+                },
+                {
+                  "disabled": false,
+                  "description": "Prevents browser from interpreting files as a different MIME type",
+                  "key": "x-content-type-options",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "Enables cross-site scripting (XSS) filter",
+                  "key": "x-xss-protection",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b8d4e0a9-5e3a-4c4e-8f94-15521b52d762",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ng-reports",
+                    "download",
+                    "reports"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"metrics\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"site_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"building_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"floor_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"ssids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"bands\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"channel_nums\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"device_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"start_time\": \"<long>\",\n  \"end_time\": \"<long>\",\n  \"mode\": \"<string>\",\n  \"download_type\": \"<string>\",\n  \"connTypes\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "edddad20-b958-436b-9350-a9999de9c013",
+          "name": "Download the file",
+          "request": {
+            "name": "Download the file",
+            "description": {
+              "content": "Returns the file for the given metrics based on the provided filters.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ng-reports",
+                "download",
+                "reports",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The file name"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/octet-stream"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "860fd6e9-2d36-41cd-b23b-53911b21d6c1",
+              "name": "Returns the file for the given metrics",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ng-reports",
+                    "download",
+                    "reports",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The file name"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/octet-stream"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/octet-stream"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "71be4029-d306-4dae-9e85-a5bf4c9d7a6f",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ng-reports",
+                    "download",
+                    "reports",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The file name"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7d0c132e-2295-45e2-a9a7-7603140a063d",
+          "name": "Information of filters",
+          "request": {
+            "name": "Information of filters",
+            "description": {
+              "content": "Returns the filter for the given metrics.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ng-reports",
+                "information",
+                ":metrics"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "metrics",
+                  "description": "(Required) **The below table defines the different REPORT_METRICS values and their descriptions**\n\n| Metric Identifier           | Description                                                                 |\n|-----------------------------|-----------------------------------------------------------------------------|\n| MAX_CONCURRENT_CLIENTS      | Maximum concurrent clients over time                                        |\n| UNIQUE_CLIENTS_BY_SSID      | Unique clients over time by SSID                                            |\n| UNIQUE_WIFI_CLIENTS         | Unique WiFi clients over time                                               |\n| CLIENT_QUALITY_SCORE        | Client quality score over time                                              |\n| CLIENT_SESSIONS             | Client sessions over time                                                   |\n| CLIENT_AIRTIME_USAGE        | Client airtime usage over time                                              |\n| WIRELESS_CLIENTS_BY_OS      | Wireless clients categorized by OS                                          |\n| UNIQUE_CLIENTS_BY_OS        | Unique clients categorized by OS                                            |\n| TRAFFIC_VOLUME_PER_APP      | Traffic volume per application                                              |\n| APP_TRAFFIC_PERCENTAGE      | Percentage of total traffic per application                                 |\n| DEVICES_BY_CLIENTS          | Devices used by clients over time                                           |\n| SWITCH_SUMMARY              | Summary of switch-related metrics                                           |\n"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "b760acd5-ab4c-4504-aff9-033a859c28bf",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ng-reports",
+                    "information",
+                    ":metrics"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "metrics",
+                      "description": "(Required) **The below table defines the different REPORT_METRICS values and their descriptions**\n\n| Metric Identifier           | Description                                                                 |\n|-----------------------------|-----------------------------------------------------------------------------|\n| MAX_CONCURRENT_CLIENTS      | Maximum concurrent clients over time                                        |\n| UNIQUE_CLIENTS_BY_SSID      | Unique clients over time by SSID                                            |\n| UNIQUE_WIFI_CLIENTS         | Unique WiFi clients over time                                               |\n| CLIENT_QUALITY_SCORE        | Client quality score over time                                              |\n| CLIENT_SESSIONS             | Client sessions over time                                                   |\n| CLIENT_AIRTIME_USAGE        | Client airtime usage over time                                              |\n| WIRELESS_CLIENTS_BY_OS      | Wireless clients categorized by OS                                          |\n| UNIQUE_CLIENTS_BY_OS        | Unique clients categorized by OS                                            |\n| TRAFFIC_VOLUME_PER_APP      | Traffic volume per application                                              |\n| APP_TRAFFIC_PERCENTAGE      | Percentage of total traffic per application                                 |\n| DEVICES_BY_CLIENTS          | Devices used by clients over time                                           |\n| SWITCH_SUMMARY              | Summary of switch-related metrics                                           |\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"metrics\": \"string\",\n    \"description\": \"string\",\n    \"filters_supported\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  {\n    \"metrics\": \"string\",\n    \"description\": \"string\",\n    \"filters_supported\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "aa2195e1-ffc8-4e4c-b2ed-1a470804d4e4",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ng-reports",
+                    "information",
+                    ":metrics"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "metrics",
+                      "description": "(Required) **The below table defines the different REPORT_METRICS values and their descriptions**\n\n| Metric Identifier           | Description                                                                 |\n|-----------------------------|-----------------------------------------------------------------------------|\n| MAX_CONCURRENT_CLIENTS      | Maximum concurrent clients over time                                        |\n| UNIQUE_CLIENTS_BY_SSID      | Unique clients over time by SSID                                            |\n| UNIQUE_WIFI_CLIENTS         | Unique WiFi clients over time                                               |\n| CLIENT_QUALITY_SCORE        | Client quality score over time                                              |\n| CLIENT_SESSIONS             | Client sessions over time                                                   |\n| CLIENT_AIRTIME_USAGE        | Client airtime usage over time                                              |\n| WIRELESS_CLIENTS_BY_OS      | Wireless clients categorized by OS                                          |\n| UNIQUE_CLIENTS_BY_OS        | Unique clients categorized by OS                                            |\n| TRAFFIC_VOLUME_PER_APP      | Traffic volume per application                                              |\n| APP_TRAFFIC_PERCENTAGE      | Percentage of total traffic per application                                 |\n| DEVICES_BY_CLIENTS          | Devices used by clients over time                                           |\n| SWITCH_SUMMARY              | Summary of switch-related metrics                                           |\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.extremecloudiq.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "354e8985-8780-40dc-a615-59b2c659469a",
+    "name": "ExtremeCloud IQ Account NG Reports API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "ExtremeCloud IQ™ API allows customers and partners to create solutions for the management, monitoring, and provisioning\nof any ExtremeCloud IQ™ environment.\n\nAll related resources and documentation are available at [ExtremeCloud IQ Developer Portal](https://developer.extremecloudiq.com/).\nPlease check [Get Started and Tutorial](https://developer.extremecloudiq.com/documentation/) to understand how to use the APIs.\n\nGet the [latest OpenAPI definition](https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI/blob/main/xcloudiq-openapi.yaml)\nfrom [ExtremeCloud IQ OpenAPI GitHub repository](https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI).\n\nPlease have a valid [ExtremeCloud IQ](https://extremecloudiq.com/) account before getting started.\nIf you don't have one, please [register a new account](https://www.extremenetworks.com/cloud-networking/).\n\nContact Support:\n Name: Extreme Networks Support\n Email: support@extremenetworks.com",
+      "type": "text/plain"
+    }
+  }
+}

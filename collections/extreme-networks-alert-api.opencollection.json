@@ -1,0 +1,969 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ExtremeCloud IQ Account Alert API",
+    "version": "25.9.0-36"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Alert",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List the alerts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/alerts",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number, min = 1"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page Size, min = 1, max = 100"
+              },
+              {
+                "name": "startTime",
+                "value": "",
+                "type": "query",
+                "description": "The start time to query, epoch time in milliseconds since 1/1/1970"
+              },
+              {
+                "name": "endTime",
+                "value": "",
+                "type": "query",
+                "description": "The end time to query, epoch time in milliseconds since 1/1/1970"
+              },
+              {
+                "name": "acknowledged",
+                "value": "",
+                "type": "query",
+                "description": "Default is null, which will return all alerts. Set it to false to only return unacknowledged alerts. Otherwise, set it to true only return acknowledged alerts."
+              },
+              {
+                "name": "categoryIds",
+                "value": "",
+                "type": "query",
+                "description": "The alert category Ids to filter, use alert/metadata API to get category information."
+              },
+              {
+                "name": "severityIds",
+                "value": "",
+                "type": "query",
+                "description": "The alert severity identifiers to filter. The currently supported severity IDs are 1 for critical, 2 for warning, and 3 for info."
+              },
+              {
+                "name": "messageMetadataIds",
+                "value": "",
+                "type": "query",
+                "description": "The message metadata ID list to filter. Use /alert/metadata/events-by-category or /alert/metadata/metrics-by-metricset APIs to get the message metadata information."
+              },
+              {
+                "name": "siteId",
+                "value": "",
+                "type": "query",
+                "description": "The site ID to filter."
+              },
+              {
+                "name": "sortField",
+                "value": "",
+                "type": "query",
+                "description": "The sort field"
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "The sort order (ascending by default)"
+              },
+              {
+                "name": "keyword",
+                "value": "",
+                "type": "query",
+                "description": "The keyword to filter, such as summery, severity, source and etc."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "List a page of alerts by filter."
+        },
+        {
+          "info": {
+            "name": "Acknowledge the alerts",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/alerts/:acknowledge",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Acknowledge the alerts by ID list."
+        },
+        {
+          "info": {
+            "name": "Count the alerts by different grouping",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/alerts/count-by-:group",
+            "params": [
+              {
+                "name": "startTime",
+                "value": "",
+                "type": "query",
+                "description": "The start time to query, epoch time in milliseconds since 1/1/1970"
+              },
+              {
+                "name": "endTime",
+                "value": "",
+                "type": "query",
+                "description": "The end time to query, epoch time in milliseconds since 1/1/1970"
+              },
+              {
+                "name": "group",
+                "value": "",
+                "type": "path",
+                "description": "The group to count from"
+              },
+              {
+                "name": "acknowledged",
+                "value": "",
+                "type": "query",
+                "description": "Default is null, which will return all alerts. Set it to false to only return unacknowledged alerts. Otherwise, set it to true only return acknowledged alerts."
+              },
+              {
+                "name": "siteId",
+                "value": "",
+                "type": "query",
+                "description": "The site ID to filter."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Count the number of alerts and events based on Severity, Category, and Alert Type."
+        },
+        {
+          "info": {
+            "name": "[LRO] Create alert event report",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/alerts/reports",
+            "params": [
+              {
+                "name": "startTime",
+                "value": "",
+                "type": "query",
+                "description": "The start time to query, epoch time in milliseconds since 1/1/1970"
+              },
+              {
+                "name": "endTime",
+                "value": "",
+                "type": "query",
+                "description": "The end time to query, epoch time in milliseconds since 1/1/1970"
+              },
+              {
+                "name": "acknowledged",
+                "value": "",
+                "type": "query",
+                "description": "Default is null, which will return all alerts. Set it to false to only return unacknowledged alerts. Otherwise, set it to true only return acknowledged alerts."
+              },
+              {
+                "name": "categoryIds",
+                "value": "",
+                "type": "query",
+                "description": "The alert category Ids to filter, use alert/metadata API to get category information."
+              },
+              {
+                "name": "severityIds",
+                "value": "",
+                "type": "query",
+                "description": "The alert severity identifiers to filter. The currently supported severity IDs are 1 for critical, 2 for warning, and 3 for info."
+              },
+              {
+                "name": "messageMetadataIds",
+                "value": "",
+                "type": "query",
+                "description": "The message metadata ID list to filter. Use /alert/metadata/events-by-category or /alert/metadata/metrics-by-metricset APIs to get the message metadata information."
+              },
+              {
+                "name": "siteId",
+                "value": "",
+                "type": "query",
+                "description": "The site to filter, return global data if not specified"
+              },
+              {
+                "name": "timeZoneOffset",
+                "value": "",
+                "type": "query",
+                "description": "The time zone off set"
+              },
+              {
+                "name": "sortField",
+                "value": "",
+                "type": "query",
+                "description": "The sort field"
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "The sort order (ascending by default)"
+              },
+              {
+                "name": "keyword",
+                "value": "",
+                "type": "query",
+                "description": "The keyword to filter, such as summery, severity, source and etc."
+              },
+              {
+                "name": "async",
+                "value": "",
+                "type": "query",
+                "description": "Whether to enable async mode"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Creates a report page of alert event. This API can be run at async mode, please follow the Long-Running Operation (LRO) guide to track the progress and the result."
+        },
+        {
+          "info": {
+            "name": "Download an alert event report",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/alerts/reports/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The report ID"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Download report of alert event ."
+        },
+        {
+          "info": {
+            "name": "List email subscriptions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/alert-subscriptions/emails",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "List all email subscriptions."
+        },
+        {
+          "info": {
+            "name": "Create email subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/alert-subscriptions/emails",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Create email subscription."
+        },
+        {
+          "info": {
+            "name": "[LRO] Delete alert subscription email in bulk",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/alert-subscriptions/emails/:delete",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Delete alert subscription email by a list of IDs.This API can be run at async mode, please follow the Long-Running Operation (LRO) guide to track the progress and the result."
+        },
+        {
+          "info": {
+            "name": "Get email subscription info for a specific email",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/alert-subscriptions/emails/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get email subscription info for a specific email."
+        },
+        {
+          "info": {
+            "name": "Update email subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.extremecloudiq.com/alert-subscriptions/emails/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Update email subscription."
+        },
+        {
+          "info": {
+            "name": "Delete email subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.extremecloudiq.com/alert-subscriptions/emails/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Delete an exist email subscription."
+        },
+        {
+          "info": {
+            "name": "External email address verification",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/alert-subscriptions/emails/:id/:verify",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "User sends a verification email to the specified email address to verify, by clicking the verify link/button in the email."
+        },
+        {
+          "info": {
+            "name": "List webhook subscriptions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/alert-subscriptions/webhooks",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "List webhook subscriptions."
+        },
+        {
+          "info": {
+            "name": "Create webhook subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/alert-subscriptions/webhooks",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Create webhook subscription."
+        },
+        {
+          "info": {
+            "name": "[LRO] Delete alert subscription webhook in bulk",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/alert-subscriptions/webhooks/:delete",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Delete alert subscription webhook by a list of IDs.This API can be run at async mode, please follow the Long-Running Operation (LRO) guide to track the progress and the result."
+        },
+        {
+          "info": {
+            "name": "Get webhook subscription info for a specific url",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/alert-subscriptions/webhooks/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get webhook subscription info for a specific url."
+        },
+        {
+          "info": {
+            "name": "Update webhook subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.extremecloudiq.com/alert-subscriptions/webhooks/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Update webhook subscription."
+        },
+        {
+          "info": {
+            "name": "Delete webhook subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.extremecloudiq.com/alert-subscriptions/webhooks/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Delete an exist webhook subscription."
+        },
+        {
+          "info": {
+            "name": "List ServiceNow subscriptions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/alert-subscriptions/servicenow",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "List all ServiceNow subscriptions."
+        },
+        {
+          "info": {
+            "name": "Create ServiceNow subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/alert-subscriptions/servicenow",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Create ServiceNow subscription."
+        },
+        {
+          "info": {
+            "name": "Delete alert ServiceNow subscription in bulk",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/alert-subscriptions/servicenow/:delete",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Delete alert ServiceNow subscription by a list of provided IDs."
+        },
+        {
+          "info": {
+            "name": "Get a specific ServiceNow subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/alert-subscriptions/servicenow/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get ServiceNow subscription info for a specific ServiceNow account."
+        },
+        {
+          "info": {
+            "name": "Update ServiceNow subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.extremecloudiq.com/alert-subscriptions/servicenow/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Update ServiceNow subscription."
+        },
+        {
+          "info": {
+            "name": "Partial or full update ServiceNow subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.extremecloudiq.com/alert-subscriptions/servicenow/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Partial or full update ServiceNow subscription."
+        },
+        {
+          "info": {
+            "name": "Delete ServiceNow subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.extremecloudiq.com/alert-subscriptions/servicenow/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Delete an exist ServiceNow subscription."
+        },
+        {
+          "info": {
+            "name": "List all alert policies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/alert-policies",
+            "params": [
+              {
+                "name": "keyword",
+                "value": "",
+                "type": "query",
+                "description": "The keyword to filter, such as policy name or site name"
+              },
+              {
+                "name": "policyType",
+                "value": "",
+                "type": "query",
+                "description": "The policy type to filter, such as SITE or GLOBAL"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get a list of all alert policies belonging to the current user and an overview  of their associated alert rules.  The details for the rules is available from the alert policy rules API."
+        },
+        {
+          "info": {
+            "name": "Create a site based alert policy",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/alert-policies",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Create a new site-based alert policy. The global policy for each account is created automatically."
+        },
+        {
+          "info": {
+            "name": "Get details of an alert policy",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/alert-policies/:policyId",
+            "params": [
+              {
+                "name": "policyId",
+                "value": "",
+                "type": "path",
+                "description": "The alert policy identifier."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get the details related to a specific alert policy, given the policy's identifier."
+        },
+        {
+          "info": {
+            "name": "Update a site-based alert policy",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.extremecloudiq.com/alert-policies/:policyId",
+            "params": [
+              {
+                "name": "policyId",
+                "value": "",
+                "type": "path",
+                "description": "The alert policy identifier."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Modify a site-based alert policy's details, including the policy name and sites. The global policy cannot be updated. The sites can be obtained from the alerts/sites API."
+        },
+        {
+          "info": {
+            "name": "Delete a site-based alert policy",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.extremecloudiq.com/alert-policies/:policyId",
+            "params": [
+              {
+                "name": "policyId",
+                "value": "",
+                "type": "path",
+                "description": "The alert policy identifier."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Delete an alert policy. All the associated alert rules will be deleted as well. The global policy cannot be deleted."
+        },
+        {
+          "info": {
+            "name": "The list of current owner's available sites",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/alert-policies/available-sites",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "List all sites belonging to the current owner. If the site has been configured an alert policy, then the site will not be available."
+        },
+        {
+          "info": {
+            "name": "Get details of an alert rule",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/alert-policies/:policyId/rules/:ruleId",
+            "params": [
+              {
+                "name": "policyId",
+                "value": "",
+                "type": "path",
+                "description": "The alert policy identifier."
+              },
+              {
+                "name": "ruleId",
+                "value": "",
+                "type": "path",
+                "description": "The alert rule identifier."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get the full details of an alert rule's state."
+        },
+        {
+          "info": {
+            "name": "Update an alert rule",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.extremecloudiq.com/alert-policies/:policyId/rules/:ruleId",
+            "params": [
+              {
+                "name": "policyId",
+                "value": "",
+                "type": "path",
+                "description": "The alert policy identifier."
+              },
+              {
+                "name": "ruleId",
+                "value": "",
+                "type": "path",
+                "description": "The alert rule identifier."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Update the state of an alert rule. The rule's identifier may change as a result of this operation."
+        },
+        {
+          "info": {
+            "name": "Enable a rule from an alert policy",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/alert-policies/:policyId/rules/:ruleId/:enable",
+            "params": [
+              {
+                "name": "policyId",
+                "value": "",
+                "type": "path",
+                "description": "The alert policy identifier."
+              },
+              {
+                "name": "ruleId",
+                "value": "",
+                "type": "path",
+                "description": "The alert rule identifier."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Set the status of a rule to enabled. The rule's identifier may change as a result of this operation."
+        },
+        {
+          "info": {
+            "name": "Disable a rule from an alert policy",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/alert-policies/:policyId/rules/:ruleId/:disable",
+            "params": [
+              {
+                "name": "policyId",
+                "value": "",
+                "type": "path",
+                "description": "The alert policy identifier."
+              },
+              {
+                "name": "ruleId",
+                "value": "",
+                "type": "path",
+                "description": "The alert rule identifier."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Set the status of a rule to disabled. The rule's identifier may change as a result of this operation."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

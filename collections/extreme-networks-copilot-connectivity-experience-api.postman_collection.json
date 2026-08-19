@@ -1,0 +1,2782 @@
+{
+  "item": [
+    {
+      "id": "bfeb9339-fd1c-42f5-b028-746138201741",
+      "name": "Copilot - Connectivity Experience",
+      "description": {
+        "content": "The Copilot Connectivity Experience API",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "40a255e6-fc30-4378-92af-3c27d82b8a8a",
+          "name": "List Wireless Connectivity Experiences",
+          "request": {
+            "name": "List Wireless Connectivity Experiences",
+            "description": {
+              "content": "List a page of Quality-Index trends by selected view type.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "copilot",
+                "connectivity",
+                "wireless",
+                "experience"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "viewType",
+                  "value": "<string>",
+                  "description": "(Required) The wireless experience view type"
+                },
+                {
+                  "disabled": false,
+                  "key": "startTime",
+                  "value": "<long>",
+                  "description": "(Required) The start time to query, epoch time in milliseconds since 1/1/1970"
+                },
+                {
+                  "disabled": false,
+                  "key": "endTime",
+                  "value": "<long>",
+                  "description": "(Required) The end time to query, epoch time in milliseconds since 1/1/1970"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number, min = 1"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Page Size, min = 1, max = 100"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortField",
+                  "value": "<string>",
+                  "description": "The sort field"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortOrder",
+                  "value": "<string>",
+                  "description": "The sort order (ascending by default)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "9709ac19-703a-4c77-bc2e-a95b0b098223",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "copilot",
+                    "connectivity",
+                    "wireless",
+                    "experience"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "viewType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startTime",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "sortField",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortOrder",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 4638,\n  \"page\": 7250,\n  \"total_count\": 9305,\n  \"total_pages\": 1304,\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"info\": \"string\",\n      \"quality_index\": 4,\n      \"trend_indicator\": \"EQUAL\",\n      \"client_type\": \"WIRED\",\n      \"quality_index_graph\": [\n        {\n          \"timestamp\": 4286,\n          \"value\": 7\n        },\n        {\n          \"timestamp\": 5914,\n          \"value\": 8\n        }\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"info\": \"string\",\n      \"quality_index\": 8,\n      \"trend_indicator\": \"EQUAL\",\n      \"client_type\": \"WIRED\",\n      \"quality_index_graph\": [\n        {\n          \"timestamp\": 6788,\n          \"value\": 3\n        },\n        {\n          \"timestamp\": 4818,\n          \"value\": 3\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a952997d-0d4f-4a1c-b83d-7aefe6c26ae2",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "copilot",
+                    "connectivity",
+                    "wireless",
+                    "experience"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "viewType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startTime",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "sortField",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortOrder",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "42702c20-4254-458e-a401-90c085c8c1f3",
+          "name": "List Wired Connectivity Experiences",
+          "request": {
+            "name": "List Wired Connectivity Experiences",
+            "description": {
+              "content": "List a page of Quality-Index trends by selected view type.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "copilot",
+                "connectivity",
+                "wired",
+                "experience"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "viewType",
+                  "value": "<string>",
+                  "description": "The wired experience view type"
+                },
+                {
+                  "disabled": false,
+                  "key": "startTime",
+                  "value": "<long>",
+                  "description": "(Required) The start time to query, epoch time in milliseconds since 1/1/1970"
+                },
+                {
+                  "disabled": false,
+                  "key": "endTime",
+                  "value": "<long>",
+                  "description": "(Required) The end time to query, epoch time in milliseconds since 1/1/1970"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number, min = 1"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Page Size, min = 1, max = 100"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortField",
+                  "value": "<string>",
+                  "description": "The sort field"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortOrder",
+                  "value": "<string>",
+                  "description": "The sort order (ascending by default)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "88f0f2ac-377c-4538-98d7-ed8e8f878c54",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "copilot",
+                    "connectivity",
+                    "wired",
+                    "experience"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "viewType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startTime",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "sortField",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortOrder",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 9175,\n  \"page\": 7506,\n  \"total_count\": 5896,\n  \"total_pages\": 9196,\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"info\": \"string\",\n      \"quality_index\": 7,\n      \"trend_indicator\": \"NA\",\n      \"client_type\": \"WIRED\",\n      \"quality_index_graph\": [\n        {\n          \"timestamp\": 1580,\n          \"value\": 1\n        },\n        {\n          \"timestamp\": 3265,\n          \"value\": 1\n        }\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"info\": \"string\",\n      \"quality_index\": 1,\n      \"trend_indicator\": \"EQUAL\",\n      \"client_type\": \"WIRELESS\",\n      \"quality_index_graph\": [\n        {\n          \"timestamp\": 1709,\n          \"value\": 5\n        },\n        {\n          \"timestamp\": 1124,\n          \"value\": 2\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3132bd94-d005-4d3e-aa09-55da577e51b0",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "copilot",
+                    "connectivity",
+                    "wired",
+                    "experience"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "viewType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startTime",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "sortField",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortOrder",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d0387b5f-0bec-47c0-b3a5-628d677a2536",
+          "name": "Get Wired Connectivity QualityIndex",
+          "request": {
+            "name": "Get Wired Connectivity QualityIndex",
+            "description": {
+              "content": "Get Quality-Index for a specific view type.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "copilot",
+                "connectivity",
+                "wired",
+                "quality-index"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "viewType",
+                  "value": "<string>",
+                  "description": "The wired experience view type"
+                },
+                {
+                  "disabled": false,
+                  "key": "viewId",
+                  "value": "<string>",
+                  "description": "(Required) The view identifier based on selected view type"
+                },
+                {
+                  "disabled": false,
+                  "key": "forensicBucket",
+                  "value": "<string>",
+                  "description": "(Required) The historical period bucket"
+                },
+                {
+                  "disabled": false,
+                  "key": "startTime",
+                  "value": "<long>",
+                  "description": "(Required) The start time to query, epoch time in milliseconds since 1/1/1970"
+                },
+                {
+                  "disabled": false,
+                  "key": "endTime",
+                  "value": "<long>",
+                  "description": "(Required) The end time to query, epoch time in milliseconds since 1/1/1970"
+                },
+                {
+                  "disabled": false,
+                  "key": "locationId",
+                  "value": "<long>",
+                  "description": "The location id"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "98bbc980-fe46-444b-ac54-faf798a8ee6d",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "copilot",
+                    "connectivity",
+                    "wired",
+                    "quality-index"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "viewType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "viewId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "forensicBucket",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startTime",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "locationId",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"quality_index\": 4,\n  \"hardware_score\": 7\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "459f1d85-44ab-4657-84dd-d2b71d28ce1c",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "copilot",
+                    "connectivity",
+                    "wired",
+                    "quality-index"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "viewType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "viewId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "forensicBucket",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startTime",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "locationId",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3183a1be-7cb8-4814-9a92-9c64e671ae6e",
+          "name": "List Wired Connectivity Events",
+          "request": {
+            "name": "List Wired Connectivity Events",
+            "description": {
+              "content": "List a page of wired events over a selected period of time.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "copilot",
+                "connectivity",
+                "wired",
+                "events"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "viewType",
+                  "value": "<string>",
+                  "description": "The wired experience view type"
+                },
+                {
+                  "disabled": false,
+                  "key": "viewId",
+                  "value": "<string>",
+                  "description": "(Required) The view identifier based on selected view type"
+                },
+                {
+                  "disabled": false,
+                  "key": "scoreType",
+                  "value": "<string>",
+                  "description": "(Required) The wired score type"
+                },
+                {
+                  "disabled": false,
+                  "key": "forensicBucket",
+                  "value": "<string>",
+                  "description": "(Required) The historical period bucket"
+                },
+                {
+                  "disabled": false,
+                  "key": "startTime",
+                  "value": "<long>",
+                  "description": "(Required) The start time to query, epoch time in milliseconds since 1/1/1970"
+                },
+                {
+                  "disabled": false,
+                  "key": "endTime",
+                  "value": "<long>",
+                  "description": "(Required) The end time to query, epoch time in milliseconds since 1/1/1970"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number, min = 1"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Page Size, min = 1, max = 100"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortField",
+                  "value": "<string>",
+                  "description": "The sort field"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortOrder",
+                  "value": "<string>",
+                  "description": "The sort order (ascending by default)"
+                },
+                {
+                  "disabled": false,
+                  "key": "searchKey",
+                  "value": "<string>",
+                  "description": "The search key"
+                },
+                {
+                  "disabled": false,
+                  "key": "timestamp",
+                  "value": "<long>",
+                  "description": "The timestamp to query, epoch time in milliseconds since 1/1/1970"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "93350aca-dd9f-413d-8e4b-02a98db45233",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "copilot",
+                    "connectivity",
+                    "wired",
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "viewType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "viewId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "scoreType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "forensicBucket",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startTime",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "sortField",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortOrder",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "searchKey",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "timestamp",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 1743,\n  \"page\": 742,\n  \"total_count\": 2506,\n  \"total_pages\": 4873,\n  \"data\": [\n    {\n      \"device_id\": \"string\",\n      \"hostname\": \"string\",\n      \"interface_errors\": 6535.394895131371,\n      \"maximum_errors\": 6839.665363837296,\n      \"mgmt_ip\": \"string\",\n      \"port\": \"string\",\n      \"serial_number\": \"string\"\n    },\n    {\n      \"device_id\": \"string\",\n      \"hostname\": \"string\",\n      \"interface_errors\": 7260.550880024668,\n      \"maximum_errors\": 8393.004156745184,\n      \"mgmt_ip\": \"string\",\n      \"port\": \"string\",\n      \"serial_number\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7279eb90-5c42-474e-8124-84b071b34947",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "copilot",
+                    "connectivity",
+                    "wired",
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "viewType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "viewId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "scoreType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "forensicBucket",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startTime",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "sortField",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortOrder",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "searchKey",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "timestamp",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e882cd80-ba9c-4347-8f0b-56c7a9b48bce",
+          "name": "Get Connectivity By Locations",
+          "request": {
+            "name": "Get Connectivity By Locations",
+            "description": {
+              "content": "Get Connectivity details by Locations in a Table with pagination & sorting.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "copilot",
+                "connectivity",
+                "locations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "startTime",
+                  "value": "<long>",
+                  "description": "(Required) The start time to query, epoch time in milliseconds since 1/1/1970"
+                },
+                {
+                  "disabled": false,
+                  "key": "endTime",
+                  "value": "<long>",
+                  "description": "(Required) The end time to query, epoch time in milliseconds since 1/1/1970"
+                },
+                {
+                  "disabled": false,
+                  "key": "locationId",
+                  "value": "<long>",
+                  "description": "The location id"
+                },
+                {
+                  "disabled": false,
+                  "key": "searchKey",
+                  "value": "<string>",
+                  "description": "The search key"
+                },
+                {
+                  "disabled": false,
+                  "key": "clientType",
+                  "value": "<string>",
+                  "description": "The client type"
+                },
+                {
+                  "disabled": false,
+                  "key": "qualityIndex",
+                  "value": "<string>",
+                  "description": "The quality index score"
+                },
+                {
+                  "disabled": false,
+                  "key": "forensicBucket",
+                  "value": "<string>",
+                  "description": "(Required) The historical period bucket"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number, min = 1"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Page Size, min = 1, max = 100"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortField",
+                  "value": "<string>",
+                  "description": "The sort field"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortOrder",
+                  "value": "<string>",
+                  "description": "The sort order (ascending by default)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "1d4952f6-c3cb-477a-8014-406b9b0441de",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "copilot",
+                    "connectivity",
+                    "locations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startTime",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "locationId",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "searchKey",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "clientType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "qualityIndex",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "forensicBucket",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "sortField",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortOrder",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 3062,\n  \"page\": 6400,\n  \"total_count\": 3766,\n  \"total_pages\": 8189,\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"quality_index\": 8,\n      \"quality_index_value\": \"<string>\",\n      \"client_type\": \"<string>\",\n      \"quality_index_graph\": [\n        {\n          \"timestamp\": 9724,\n          \"value\": 3\n        },\n        {\n          \"timestamp\": 228,\n          \"value\": 8\n        }\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"quality_index\": 3,\n      \"quality_index_value\": \"<string>\",\n      \"client_type\": \"<string>\",\n      \"quality_index_graph\": [\n        {\n          \"timestamp\": 1249,\n          \"value\": 4\n        },\n        {\n          \"timestamp\": 1563,\n          \"value\": 2\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "02babe0a-049a-4937-b4ef-39b5f6283cf8",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "copilot",
+                    "connectivity",
+                    "locations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startTime",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "locationId",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "searchKey",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "clientType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "qualityIndex",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "forensicBucket",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "sortField",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortOrder",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "151a697e-47d0-494e-8893-7c2796b4100e",
+          "name": "Get Connectivity By Client Type",
+          "request": {
+            "name": "Get Connectivity By Client Type",
+            "description": {
+              "content": "Get Connectivity details by client type in the widgets.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "copilot",
+                "connectivity",
+                "client-type"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "startTime",
+                  "value": "<long>",
+                  "description": "(Required) The start time to query, epoch time in milliseconds since 1/1/1970"
+                },
+                {
+                  "disabled": false,
+                  "key": "endTime",
+                  "value": "<long>",
+                  "description": "(Required) The end time to query, epoch time in milliseconds since 1/1/1970"
+                },
+                {
+                  "disabled": false,
+                  "key": "locationId",
+                  "value": "<long>",
+                  "description": "The location id"
+                },
+                {
+                  "disabled": false,
+                  "key": "clientType",
+                  "value": "<string>",
+                  "description": "The client type"
+                },
+                {
+                  "disabled": false,
+                  "key": "qualityIndex",
+                  "value": "<string>",
+                  "description": "The quality index score"
+                },
+                {
+                  "disabled": false,
+                  "key": "forensicBucket",
+                  "value": "<string>",
+                  "description": "(Required) The historical period bucket"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "8e8cd331-4e44-4f0d-8236-ecca70bcc9fc",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "copilot",
+                    "connectivity",
+                    "client-type"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startTime",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "locationId",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "clientType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "qualityIndex",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "forensicBucket",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"sites_by_wireless\": {\n    \"low_quality_score_count\": 1767,\n    \"medium_quality_score_count\": 4989,\n    \"high_quality_score_count\": 2569,\n    \"total_quality_score_count\": 9918\n  },\n  \"sites_by_wired\": {\n    \"low_quality_score_count\": 4380,\n    \"medium_quality_score_count\": 9426,\n    \"high_quality_score_count\": 5430,\n    \"total_quality_score_count\": 3312\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "79f78fb1-66e5-4fce-9e91-85299624d7e7",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "copilot",
+                    "connectivity",
+                    "client-type"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startTime",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "locationId",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "clientType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "qualityIndex",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "forensicBucket",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "dfea0c2d-282b-420b-8e8b-51362afcb597",
+          "name": "Get Wireless QualityIndex By Locations",
+          "request": {
+            "name": "Get Wireless QualityIndex By Locations",
+            "description": {
+              "content": "Get Quality-Index for a specific view type.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "copilot",
+                "connectivity",
+                "wireless",
+                "locations",
+                "quality-index"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "startTime",
+                  "value": "<long>",
+                  "description": "(Required) The start time to query, epoch time in milliseconds since 1/1/1970"
+                },
+                {
+                  "disabled": false,
+                  "key": "endTime",
+                  "value": "<long>",
+                  "description": "(Required) The end time to query, epoch time in milliseconds since 1/1/1970"
+                },
+                {
+                  "disabled": false,
+                  "key": "forensicBucket",
+                  "value": "<string>",
+                  "description": "(Required) The historical period bucket"
+                },
+                {
+                  "disabled": false,
+                  "key": "locationId",
+                  "value": "<long>",
+                  "description": "(Required) The location id"
+                },
+                {
+                  "disabled": false,
+                  "key": "ssid",
+                  "value": "<string>",
+                  "description": "The ssid value"
+                },
+                {
+                  "disabled": false,
+                  "key": "osType",
+                  "value": "<string>",
+                  "description": "The os type value"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "b7fc24c1-2957-4333-814e-4509f74cd7d0",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "copilot",
+                    "connectivity",
+                    "wireless",
+                    "locations",
+                    "quality-index"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startTime",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "forensicBucket",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "locationId",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "ssid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "osType",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"quality_index\": 9,\n  \"time_to_connect_score\": 5,\n  \"performance_score\": 1,\n  \"total_clients\": 6434\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ad2dc08f-709d-4768-9e17-ee8b029f42c5",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "copilot",
+                    "connectivity",
+                    "wireless",
+                    "locations",
+                    "quality-index"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startTime",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "forensicBucket",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "locationId",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "ssid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "osType",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "347afeb3-e378-4458-ad09-af8ffe32cb4b",
+          "name": "Get Wireless Time-To-Connect By Locations",
+          "request": {
+            "name": "Get Wireless Time-To-Connect By Locations",
+            "description": {
+              "content": "List a page of Time-To-Connect score data over a selected period of time.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "copilot",
+                "connectivity",
+                "wireless",
+                "locations",
+                "time-to-connect"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "startTime",
+                  "value": "<long>",
+                  "description": "(Required) The start time to query, epoch time in milliseconds since 1/1/1970"
+                },
+                {
+                  "disabled": false,
+                  "key": "endTime",
+                  "value": "<long>",
+                  "description": "(Required) The end time to query, epoch time in milliseconds since 1/1/1970"
+                },
+                {
+                  "disabled": false,
+                  "key": "forensicBucket",
+                  "value": "<string>",
+                  "description": "(Required) The historical period bucket"
+                },
+                {
+                  "disabled": false,
+                  "key": "locationId",
+                  "value": "<long>",
+                  "description": "(Required) The location id"
+                },
+                {
+                  "disabled": false,
+                  "key": "ssid",
+                  "value": "<string>",
+                  "description": "The ssid value"
+                },
+                {
+                  "disabled": false,
+                  "key": "osType",
+                  "value": "<string>",
+                  "description": "The os type value"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "8ad76fcb-ecea-4230-92e7-e9ff7f08a694",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "copilot",
+                    "connectivity",
+                    "wireless",
+                    "locations",
+                    "time-to-connect"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startTime",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "forensicBucket",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "locationId",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "ssid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "osType",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"quality_index_graph\": [\n    {\n      \"timestamp\": 5771,\n      \"quality_index\": 1,\n      \"total_clients\": 8111,\n      \"time_to_connect_score\": 7,\n      \"above_assoc_threshold\": 1619.2534926454305,\n      \"above_auth_threshold\": 1439.0993964962406,\n      \"above_dhcp_threshold\": 724.2547755847651,\n      \"time_to_assoc\": 131,\n      \"time_to_auth\": 5658,\n      \"time_to_dhcp\": 8924,\n      \"performance_score\": 7\n    },\n    {\n      \"timestamp\": 5759,\n      \"quality_index\": 9,\n      \"total_clients\": 857,\n      \"time_to_connect_score\": 4,\n      \"above_assoc_threshold\": 4192.3033133880235,\n      \"above_auth_threshold\": 7436.237951410649,\n      \"above_dhcp_threshold\": 2991.0371145090953,\n      \"time_to_assoc\": 525,\n      \"time_to_auth\": 9531,\n      \"time_to_dhcp\": 7203,\n      \"performance_score\": 2\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bc7f09dc-26cc-4757-aa6b-cb8939d64f62",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "copilot",
+                    "connectivity",
+                    "wireless",
+                    "locations",
+                    "time-to-connect"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startTime",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "forensicBucket",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "locationId",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "ssid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "osType",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "35cc8800-2ffe-4612-819c-8ddb38f1c325",
+          "name": "Get Wireless Connectivity Performance By Locations",
+          "request": {
+            "name": "Get Wireless Connectivity Performance By Locations",
+            "description": {
+              "content": "List a page of Performance score data over a selected period of time.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "copilot",
+                "connectivity",
+                "wireless",
+                "locations",
+                "performance"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "startTime",
+                  "value": "<long>",
+                  "description": "(Required) The start time to query, epoch time in milliseconds since 1/1/1970"
+                },
+                {
+                  "disabled": false,
+                  "key": "endTime",
+                  "value": "<long>",
+                  "description": "(Required) The end time to query, epoch time in milliseconds since 1/1/1970"
+                },
+                {
+                  "disabled": false,
+                  "key": "forensicBucket",
+                  "value": "<string>",
+                  "description": "(Required) The historical period bucket"
+                },
+                {
+                  "disabled": false,
+                  "key": "locationId",
+                  "value": "<long>",
+                  "description": "(Required) The location id"
+                },
+                {
+                  "disabled": false,
+                  "key": "ssid",
+                  "value": "<string>",
+                  "description": "The ssid value"
+                },
+                {
+                  "disabled": false,
+                  "key": "osType",
+                  "value": "<string>",
+                  "description": "The os type value"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "90dd0e58-cbd0-4a5f-b9ad-c97c6ef6d61c",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "copilot",
+                    "connectivity",
+                    "wireless",
+                    "locations",
+                    "performance"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startTime",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "forensicBucket",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "locationId",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "ssid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "osType",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"quality_index_graph\": [\n    {\n      \"timestamp\": 7413,\n      \"quality_index\": 7,\n      \"total_clients\": 2018,\n      \"time_to_connect_score\": 5,\n      \"performance_score\": 1,\n      \"snr\": 22,\n      \"retries_data\": {\n        \"rx_retry\": 1402.3658652698634,\n        \"tx_retry\": 9612.821896786696,\n        \"above_retry_threshold\": 6282.438771773695\n      }\n    },\n    {\n      \"timestamp\": 3828,\n      \"quality_index\": 9,\n      \"total_clients\": 1135,\n      \"time_to_connect_score\": 3,\n      \"performance_score\": 5,\n      \"snr\": 70,\n      \"retries_data\": {\n        \"rx_retry\": 3321.919888379736,\n        \"tx_retry\": 9178.320817291034,\n        \"above_retry_threshold\": 3832.916489475963\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3ce87966-9c6f-493b-a170-0ac5482d898f",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "copilot",
+                    "connectivity",
+                    "wireless",
+                    "locations",
+                    "performance"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startTime",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "forensicBucket",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "locationId",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "ssid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "osType",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "91e5813f-770f-414a-b441-70a09640eeb7",
+          "name": "List Wireless Connectivity Events By Locations",
+          "request": {
+            "name": "List Wireless Connectivity Events By Locations",
+            "description": {
+              "content": "List a page of wireless events over a selected period of time.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "copilot",
+                "connectivity",
+                "wireless",
+                "locations",
+                "events"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "startTime",
+                  "value": "<long>",
+                  "description": "(Required) The start time to query, epoch time in milliseconds since 1/1/1970"
+                },
+                {
+                  "disabled": false,
+                  "key": "endTime",
+                  "value": "<long>",
+                  "description": "(Required) The end time to query, epoch time in milliseconds since 1/1/1970"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number, min = 1"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Page Size, min = 1, max = 100"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortField",
+                  "value": "<string>",
+                  "description": "The sort field"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortOrder",
+                  "value": "<string>",
+                  "description": "The sort order (ascending by default)"
+                },
+                {
+                  "disabled": false,
+                  "key": "scoreType",
+                  "value": "<string>",
+                  "description": "(Required) The wireless score type"
+                },
+                {
+                  "disabled": false,
+                  "key": "forensicBucket",
+                  "value": "<string>",
+                  "description": "(Required) The historical period bucket"
+                },
+                {
+                  "disabled": false,
+                  "key": "searchKey",
+                  "value": "<string>",
+                  "description": "The search key"
+                },
+                {
+                  "disabled": false,
+                  "key": "locationId",
+                  "value": "<long>",
+                  "description": "(Required) The location id"
+                },
+                {
+                  "disabled": false,
+                  "key": "timestamp",
+                  "value": "<long>",
+                  "description": "The timestamp to query, epoch time in milliseconds since 1/1/1970"
+                },
+                {
+                  "disabled": false,
+                  "key": "ssid",
+                  "value": "<string>",
+                  "description": "The ssid value"
+                },
+                {
+                  "disabled": false,
+                  "key": "osType",
+                  "value": "<string>",
+                  "description": "The os type value"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "6daf0133-4593-4aac-9d59-2adf98968195",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "copilot",
+                    "connectivity",
+                    "wireless",
+                    "locations",
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startTime",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "sortField",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortOrder",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "scoreType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "forensicBucket",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "searchKey",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "locationId",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "timestamp",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "ssid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "osType",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 6875,\n  \"page\": 4546,\n  \"total_count\": 7410,\n  \"total_pages\": 8444,\n  \"data\": [\n    {\n      \"client_id\": \"string\",\n      \"hostname\": \"string\",\n      \"mac\": \"string\",\n      \"average_value\": 4357.9262828853,\n      \"maximum_value\": 9928.4090634981,\n      \"os_type\": \"string\",\n      \"threshold\": 4400.974148178969,\n      \"ssid\": \"string\",\n      \"retries_data\": {\n        \"avg_rx_retry\": 9880.143707359703,\n        \"max_rx_retry\": 1839.9180169372498,\n        \"avg_tx_retry\": 9529.25678518394,\n        \"max_tx_retry\": 2222.776937544052,\n        \"rx_retry_threshold\": 7081.3402634571585,\n        \"tx_retry_threshold\": 5278.708163279667\n      }\n    },\n    {\n      \"client_id\": \"string\",\n      \"hostname\": \"string\",\n      \"mac\": \"string\",\n      \"average_value\": 5764.234218671279,\n      \"maximum_value\": 4189.066076380909,\n      \"os_type\": \"string\",\n      \"threshold\": 6193.722025301209,\n      \"ssid\": \"string\",\n      \"retries_data\": {\n        \"avg_rx_retry\": 5970.829947296199,\n        \"max_rx_retry\": 5242.49767376019,\n        \"avg_tx_retry\": 9034.320810542267,\n        \"max_tx_retry\": 3333.486543843435,\n        \"rx_retry_threshold\": 5574.631063599871,\n        \"tx_retry_threshold\": 8004.797304799745\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "df02cf1d-6c88-4c7d-8c0a-86984e3153a1",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "copilot",
+                    "connectivity",
+                    "wireless",
+                    "locations",
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startTime",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "sortField",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortOrder",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "scoreType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "forensicBucket",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "searchKey",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "locationId",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "timestamp",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "ssid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "osType",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1c935b83-2a6a-4f2b-baff-9920b0852f16",
+          "name": "Get Wired - Hardware By Locations",
+          "request": {
+            "name": "Get Wired - Hardware By Locations",
+            "description": {
+              "content": "List a page of hardware score data over a selected period of time and total ports with affected.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "copilot",
+                "connectivity",
+                "wired",
+                "locations",
+                "hardware"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "viewType",
+                  "value": "<string>",
+                  "description": "The wired experience view type"
+                },
+                {
+                  "disabled": false,
+                  "key": "viewId",
+                  "value": "<string>",
+                  "description": "(Required) The view identifier based on selected view type"
+                },
+                {
+                  "disabled": false,
+                  "key": "forensicBucket",
+                  "value": "<string>",
+                  "description": "(Required) The historical period bucket"
+                },
+                {
+                  "disabled": false,
+                  "key": "startTime",
+                  "value": "<long>",
+                  "description": "(Required) The start time to query, epoch time in milliseconds since 1/1/1970"
+                },
+                {
+                  "disabled": false,
+                  "key": "endTime",
+                  "value": "<long>",
+                  "description": "(Required) The end time to query, epoch time in milliseconds since 1/1/1970"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "cd217c30-3049-4684-b81e-869ff64706dc",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "copilot",
+                    "connectivity",
+                    "wired",
+                    "locations",
+                    "hardware"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "viewType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "viewId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "forensicBucket",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startTime",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"quality_index_graph\": [\n    {\n      \"timestamp\": 9401,\n      \"quality_index\": 9,\n      \"total_switches\": 3866,\n      \"affected_ratio\": 54\n    },\n    {\n      \"timestamp\": 3226,\n      \"quality_index\": 1,\n      \"total_switches\": 8088,\n      \"affected_ratio\": 27\n    }\n  ],\n  \"total_ports\": 6423,\n  \"total_affected_ports\": 2436\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "294cc120-dd60-4ee9-8349-895d192fb16c",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "copilot",
+                    "connectivity",
+                    "wired",
+                    "locations",
+                    "hardware"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "viewType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "viewId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "forensicBucket",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startTime",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.extremecloudiq.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "b9e6c565-367a-413f-811b-9dc2fcebc474",
+    "name": "ExtremeCloud IQ Account Copilot - Connectivity Experience API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "ExtremeCloud IQ™ API allows customers and partners to create solutions for the management, monitoring, and provisioning\nof any ExtremeCloud IQ™ environment.\n\nAll related resources and documentation are available at [ExtremeCloud IQ Developer Portal](https://developer.extremecloudiq.com/).\nPlease check [Get Started and Tutorial](https://developer.extremecloudiq.com/documentation/) to understand how to use the APIs.\n\nGet the [latest OpenAPI definition](https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI/blob/main/xcloudiq-openapi.yaml)\nfrom [ExtremeCloud IQ OpenAPI GitHub repository](https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI).\n\nPlease have a valid [ExtremeCloud IQ](https://extremecloudiq.com/) account before getting started.\nIf you don't have one, please [register a new account](https://www.extremenetworks.com/cloud-networking/).\n\nContact Support:\n Name: Extreme Networks Support\n Email: support@extremenetworks.com",
+      "type": "text/plain"
+    }
+  }
+}

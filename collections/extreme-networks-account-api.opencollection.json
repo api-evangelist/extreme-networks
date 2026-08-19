@@ -1,0 +1,422 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ExtremeCloud IQ Account API",
+    "version": "25.9.0-36"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Account",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get home ExtremeCloud IQ account info",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/account/home",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get home ExtremeCloud IQ account info."
+        },
+        {
+          "info": {
+            "name": "List accessible external guest accounts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/account/external",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "List accessible external ExtremeCloud IQ accounts."
+        },
+        {
+          "info": {
+            "name": "Switch to another ExtremeCloud IQ account",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/account/:switch",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "The account ID to switch, switch back to home ExtremeCloud IQ account if not provide"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Switch to external ExtremeCloud IQ account or switch back to home ExtremeCloud IQ account."
+        },
+        {
+          "info": {
+            "name": "Get VIQ Info",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/account/viq",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get account VIQ and license info."
+        },
+        {
+          "info": {
+            "name": "Backup VIQ",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/account/viq/:backup",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Backup VIQ in ExtremeCloud IQ."
+        },
+        {
+          "info": {
+            "name": "Get the default device password in the account",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/account/viq/default-device-password",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get the default device password in the account."
+        },
+        {
+          "info": {
+            "name": "Update the default device password in the account",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.extremecloudiq.com/account/viq/default-device-password",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Update the default device password in the global setting for accessing the console/shell of the devices."
+        },
+        {
+          "info": {
+            "name": "Update the default device password with validation",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.extremecloudiq.com/v1/account/viq/default-device-password",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Update the default device password in the global setting for accessing the console/shell of the devices."
+        },
+        {
+          "info": {
+            "name": "Create VIQ export data",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/account/export",
+            "params": [
+              {
+                "name": "timeoutInSeconds",
+                "value": "",
+                "type": "query",
+                "description": "The maximum export duration"
+              },
+              {
+                "name": "excludeDeviceFirmware",
+                "value": "",
+                "type": "query",
+                "description": "Whether exclude device firmwares from VIQ export file or not"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Export VIQ reports."
+        },
+        {
+          "info": {
+            "name": "Import VIQ details from a file",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/account/import",
+            "params": [
+              {
+                "name": "timeoutInSeconds",
+                "value": "",
+                "type": "query",
+                "description": "The maximum import duration"
+              },
+              {
+                "name": "resendUserNotifications",
+                "value": "",
+                "type": "query",
+                "description": "Resend Cloud PPSK/RADIUS password through email/SMS."
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "file",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Import Viq details."
+        },
+        {
+          "info": {
+            "name": "Download VIQ reports or logs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/account/download",
+            "params": [
+              {
+                "name": "reportName",
+                "value": "",
+                "type": "query",
+                "description": "The name of the report"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Download VIQ exports reports and export or import logs."
+        },
+        {
+          "info": {
+            "name": "Status of VIQ export/import operation",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/account/export-import-status",
+            "params": [
+              {
+                "name": "reportName",
+                "value": "",
+                "type": "query",
+                "description": "The name of the report"
+              },
+              {
+                "name": "statusType",
+                "value": "",
+                "type": "query",
+                "description": "The operation type- export or import"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Check the current VIQ export or import status."
+        },
+        {
+          "info": {
+            "name": "Resetting VIQ",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/account/viq/:reset",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Reset VIQ in ExtremeCloud IQ."
+        },
+        {
+          "info": {
+            "name": "Get Account VHM Setting",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/account/vhm/setting",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get Flag status of CoPilot, SSH Aavailibility, Supplemental CLI, AP Out-of-the-box Wireless Onboarding."
+        },
+        {
+          "info": {
+            "name": "Update Account VHM Setting",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.extremecloudiq.com/account/vhm/setting/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Enable/Disable CoPilot, SSH Aavailibility, Supplemental CLI, AP Out-of-the-box Wireless Onboarding."
+        },
+        {
+          "info": {
+            "name": "Get Account VHM Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/account/vhm/status",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Check VHM Account status like vhm name, current run status."
+        },
+        {
+          "info": {
+            "name": "Get Backup History Grid",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/backup/history/grid",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get Backup History Grid to track and restore backed up database."
+        },
+        {
+          "info": {
+            "name": "Backup History Restore",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/backup/history/:restore",
+            "params": [
+              {
+                "name": "backup_file",
+                "value": "",
+                "type": "query",
+                "description": "The backup file that needs to be restored."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Restore Backup History in ExtremeCloud IQ."
+        },
+        {
+          "info": {
+            "name": "Backup History Delete",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.extremecloudiq.com/backup/history/delete",
+            "params": [
+              {
+                "name": "backup_files",
+                "value": "",
+                "type": "query",
+                "description": "The list of backup files (comma-separated) that need to be deleted."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Delete Backup History by backup files."
+        },
+        {
+          "info": {
+            "name": "Get third party applications",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/third/party/applications",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get third party applications."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

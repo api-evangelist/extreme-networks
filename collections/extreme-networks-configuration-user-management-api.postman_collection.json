@@ -1,0 +1,3832 @@
+{
+  "item": [
+    {
+      "id": "c099257d-3daf-44c3-b3cc-c76cf1d27a32",
+      "name": "Configuration - User Management",
+      "description": {
+        "content": "User Group/End User/PCG/PPSK Classification",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1a9d12a2-0e3b-4ea3-b32d-ab5077b18034",
+          "name": "List Email templates",
+          "request": {
+            "name": "List Email templates",
+            "description": {
+              "content": "List all Email notification templates.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "email-templates"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "passwordType",
+                  "value": "<string>",
+                  "description": "The password type"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "7f819bfb-5db9-4198-ab9e-5383ecbb7df1",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "email-templates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "passwordType",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"create_time\": \"2022-10-28T01:48:40.712Z\",\n    \"id\": 9292,\n    \"name\": \"string\",\n    \"org_id\": 7373,\n    \"password_type\": \"<string>\",\n    \"predefined\": true,\n    \"update_time\": \"2017-12-08T04:10:32.062Z\",\n    \"description\": \"string\",\n    \"content\": \"string\",\n    \"enable_preview\": false,\n    \"logo_url\": \"string\",\n    \"icon_url\": \"string\"\n  },\n  {\n    \"create_time\": \"2015-05-25T07:39:07.714Z\",\n    \"id\": 4468,\n    \"name\": \"string\",\n    \"org_id\": 271,\n    \"password_type\": \"<string>\",\n    \"predefined\": false,\n    \"update_time\": \"1994-03-25T19:28:03.691Z\",\n    \"description\": \"string\",\n    \"content\": \"string\",\n    \"enable_preview\": true,\n    \"logo_url\": \"string\",\n    \"icon_url\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4aa28bd7-55d5-4f07-874e-56e4680246db",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "email-templates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "passwordType",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1ea6fb55-127c-4101-ba71-20abcc5ca6ee",
+          "name": "List SMS templates",
+          "request": {
+            "name": "List SMS templates",
+            "description": {
+              "content": "List all SMS notification templates.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sms-templates"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "passwordType",
+                  "value": "<string>",
+                  "description": "The password type"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "cdde4307-3800-4624-80e9-650893264f3f",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sms-templates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "passwordType",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"create_time\": \"1975-12-24T16:37:48.760Z\",\n    \"id\": 1234,\n    \"name\": \"string\",\n    \"org_id\": 2421,\n    \"password_type\": \"<string>\",\n    \"predefined\": false,\n    \"update_time\": \"2001-08-15T03:31:22.720Z\",\n    \"description\": \"string\",\n    \"content\": \"string\"\n  },\n  {\n    \"create_time\": \"2018-12-08T14:25:10.314Z\",\n    \"id\": 1185,\n    \"name\": \"string\",\n    \"org_id\": 9547,\n    \"password_type\": \"<string>\",\n    \"predefined\": true,\n    \"update_time\": \"2017-03-22T18:22:21.968Z\",\n    \"description\": \"string\",\n    \"content\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "feb53710-4bb2-41bd-9af4-2268cd1e1224",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sms-templates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "passwordType",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "20c6210a-8793-4762-ae20-06991c2cfd33",
+          "name": "List end users",
+          "request": {
+            "name": "List end users",
+            "description": {
+              "content": "List a page of end users.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "endusers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number, min = 1"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Page Size, min = 1, max = 100"
+                },
+                {
+                  "disabled": false,
+                  "key": "user_group_ids",
+                  "value": "<long>",
+                  "description": "The user group IDs"
+                },
+                {
+                  "disabled": false,
+                  "key": "user_group_ids",
+                  "value": "<long>",
+                  "description": "The user group IDs"
+                },
+                {
+                  "disabled": false,
+                  "key": "usernames",
+                  "value": "<string>",
+                  "description": "The list of username"
+                },
+                {
+                  "disabled": false,
+                  "key": "usernames",
+                  "value": "<string>",
+                  "description": "The list of username"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "9d2f6b32-9b36-491f-bce2-b3e20f74d199",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "endusers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "user_group_ids",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "user_group_ids",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "usernames",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "usernames",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 929,\n  \"page\": 9436,\n  \"total_count\": 7478,\n  \"total_pages\": 5387,\n  \"data\": [\n    {\n      \"create_time\": \"1998-03-27T13:38:07.223Z\",\n      \"email_address\": \"string\",\n      \"expired_time\": 429,\n      \"id\": 9325,\n      \"name\": \"string\",\n      \"org_id\": 3892,\n      \"phone_number\": \"string\",\n      \"update_time\": \"2017-10-15T21:27:21.455Z\",\n      \"user_group_id\": 1844,\n      \"user_name\": \"string\",\n      \"description\": \"string\",\n      \"password\": \"string\",\n      \"organization\": \"string\",\n      \"visit_purpose\": \"string\",\n      \"email_password_delivery\": \"string\",\n      \"sms_password_delivery\": \"string\",\n      \"vlan_override\": 3215\n    },\n    {\n      \"create_time\": \"1989-09-12T16:11:00.054Z\",\n      \"email_address\": \"string\",\n      \"expired_time\": 1463,\n      \"id\": 6692,\n      \"name\": \"string\",\n      \"org_id\": 9178,\n      \"phone_number\": \"string\",\n      \"update_time\": \"1997-10-10T03:02:01.675Z\",\n      \"user_group_id\": 2341,\n      \"user_name\": \"string\",\n      \"description\": \"string\",\n      \"password\": \"string\",\n      \"organization\": \"string\",\n      \"visit_purpose\": \"string\",\n      \"email_password_delivery\": \"string\",\n      \"sms_password_delivery\": \"string\",\n      \"vlan_override\": 370\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8dac81bf-6842-461a-9cc1-052d414b10df",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "endusers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "user_group_ids",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "user_group_ids",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "usernames",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "usernames",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "87e211cb-4dce-4d80-9876-1bae5b1a3421",
+          "name": "Create an end user",
+          "request": {
+            "name": "Create an end user",
+            "description": {
+              "content": "Create a new end user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "endusers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"user_group_id\": \"<long>\",\n  \"user_name\": \"<string>\",\n  \"name\": \"<string>\",\n  \"organization\": \"<string>\",\n  \"visit_purpose\": \"<string>\",\n  \"description\": \"<string>\",\n  \"email_address\": \"<string>\",\n  \"phone_number\": \"<string>\",\n  \"password\": \"<string>\",\n  \"email_password_delivery\": \"<string>\",\n  \"sms_password_delivery\": \"<string>\",\n  \"vlan_override\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1dc5c184-8e78-48b8-841a-db49b92dd2dc",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "endusers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"user_group_id\": \"<long>\",\n  \"user_name\": \"<string>\",\n  \"name\": \"<string>\",\n  \"organization\": \"<string>\",\n  \"visit_purpose\": \"<string>\",\n  \"description\": \"<string>\",\n  \"email_address\": \"<string>\",\n  \"phone_number\": \"<string>\",\n  \"password\": \"<string>\",\n  \"email_password_delivery\": \"<string>\",\n  \"sms_password_delivery\": \"<string>\",\n  \"vlan_override\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"create_time\": \"2000-09-04T15:19:04.003Z\",\n  \"email_address\": \"string\",\n  \"expired_time\": 3434,\n  \"id\": 2179,\n  \"name\": \"string\",\n  \"org_id\": 6592,\n  \"phone_number\": \"string\",\n  \"update_time\": \"2024-11-26T22:30:53.114Z\",\n  \"user_group_id\": 106,\n  \"user_name\": \"string\",\n  \"description\": \"string\",\n  \"password\": \"string\",\n  \"organization\": \"string\",\n  \"visit_purpose\": \"string\",\n  \"email_password_delivery\": \"string\",\n  \"sms_password_delivery\": \"string\",\n  \"vlan_override\": 2091\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3c0caed2-3813-49ed-82fd-c4fb3d5e7858",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "endusers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"user_group_id\": \"<long>\",\n  \"user_name\": \"<string>\",\n  \"name\": \"<string>\",\n  \"organization\": \"<string>\",\n  \"visit_purpose\": \"<string>\",\n  \"description\": \"<string>\",\n  \"email_address\": \"<string>\",\n  \"phone_number\": \"<string>\",\n  \"password\": \"<string>\",\n  \"email_password_delivery\": \"<string>\",\n  \"sms_password_delivery\": \"<string>\",\n  \"vlan_override\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "46de0b64-7c75-42ae-bb9c-792499913c80",
+          "name": "Update an end user",
+          "request": {
+            "name": "Update an end user",
+            "description": {
+              "content": "Update a specific end user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "endusers",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "id",
+                  "description": "(Required) The unique identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"organization\": \"<string>\",\n  \"visit_purpose\": \"<string>\",\n  \"description\": \"<string>\",\n  \"email_address\": \"<string>\",\n  \"phone_number\": \"<string>\",\n  \"password\": \"<string>\",\n  \"email_password_delivery\": \"<string>\",\n  \"sms_password_delivery\": \"<string>\",\n  \"vlan_override\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "06e8828d-54a2-4d7c-85fd-eec247e08b26",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "endusers",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"organization\": \"<string>\",\n  \"visit_purpose\": \"<string>\",\n  \"description\": \"<string>\",\n  \"email_address\": \"<string>\",\n  \"phone_number\": \"<string>\",\n  \"password\": \"<string>\",\n  \"email_password_delivery\": \"<string>\",\n  \"sms_password_delivery\": \"<string>\",\n  \"vlan_override\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"create_time\": \"2000-09-04T15:19:04.003Z\",\n  \"email_address\": \"string\",\n  \"expired_time\": 3434,\n  \"id\": 2179,\n  \"name\": \"string\",\n  \"org_id\": 6592,\n  \"phone_number\": \"string\",\n  \"update_time\": \"2024-11-26T22:30:53.114Z\",\n  \"user_group_id\": 106,\n  \"user_name\": \"string\",\n  \"description\": \"string\",\n  \"password\": \"string\",\n  \"organization\": \"string\",\n  \"visit_purpose\": \"string\",\n  \"email_password_delivery\": \"string\",\n  \"sms_password_delivery\": \"string\",\n  \"vlan_override\": 2091\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dc6c14e8-fc89-4c37-aa29-deba6fe46ca2",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "endusers",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"organization\": \"<string>\",\n  \"visit_purpose\": \"<string>\",\n  \"description\": \"<string>\",\n  \"email_address\": \"<string>\",\n  \"phone_number\": \"<string>\",\n  \"password\": \"<string>\",\n  \"email_password_delivery\": \"<string>\",\n  \"sms_password_delivery\": \"<string>\",\n  \"vlan_override\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c85dc948-0f1a-4600-ac36-96916d1075f9",
+          "name": "Delete end user by ID",
+          "request": {
+            "name": "Delete end user by ID",
+            "description": {
+              "content": "Delete a specific end user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "endusers",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "id",
+                  "description": "(Required) The unique identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "7aed5415-e8a9-40d3-a145-992e30b41c69",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "endusers",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0988777d-4a39-49ca-882e-59e34979f3f6",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "endusers",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "532f7a6d-da8e-4b3d-9046-d83904fe2843",
+          "name": "Regenerate a new password for the end user",
+          "request": {
+            "name": "Regenerate a new password for the end user",
+            "description": {
+              "content": "Update the end user's password with a system generated password.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "endusers",
+                ":id",
+                ":regenerate-password"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "id",
+                  "description": "(Required) The unique identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "f1a1fa9a-5a7a-4059-85ba-6334da9789ad",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "endusers",
+                    ":id",
+                    ":regenerate-password"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"password\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "52607ee9-4028-438c-8b82-067a50f3a94f",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "endusers",
+                    ":id",
+                    ":regenerate-password"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e6ece6e4-4f99-4e28-b4e7-eecd4785b65b",
+          "name": "List user groups",
+          "request": {
+            "name": "List user groups",
+            "description": {
+              "content": "List a page of user groups.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "usergroups"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number, min = 1"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Page Size, min = 1, max = 100"
+                },
+                {
+                  "disabled": false,
+                  "key": "password_db_location",
+                  "value": "<string>",
+                  "description": "The password DB location"
+                },
+                {
+                  "disabled": false,
+                  "key": "password_type",
+                  "value": "<string>",
+                  "description": "The password type"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "60cd3c3f-8541-4d13-aefa-90c144bdcecf",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "usergroups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "password_db_location",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "password_type",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 7330,\n  \"page\": 1705,\n  \"total_count\": 3708,\n  \"total_pages\": 7051,\n  \"data\": [\n    {\n      \"create_time\": \"1980-06-29T11:26:04.701Z\",\n      \"delivery_settings\": {\n        \"email_template_id\": 2436,\n        \"sms_template_id\": 5810\n      },\n      \"expiration_settings\": {\n        \"expiration_type\": \"NEVER_EXPIRE\",\n        \"valid_during_dates\": {\n          \"start_date_time\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"end_date_time\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"time_zone\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"valid_for_time_period\": {\n          \"valid_time_period_after\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"after_id_creation_settings\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"after_first_login_settings\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"valid_daily\": {\n          \"daily_end_hour\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"daily_end_minute\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"daily_start_hour\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"daily_start_minute\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"expiration_action\": \"SHOW_MESSAGE\",\n        \"post_expiration_action\": {\n          \"enable_credentials_renewal\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"enable_delete_immediately\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"delete_after_value\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"delete_after_unit\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"id\": 433,\n      \"name\": \"string\",\n      \"org_id\": 2757,\n      \"password_db_location\": \"<string>\",\n      \"password_settings\": {\n        \"psk_generation_method\": \"USER_STRING_PASSWORD\",\n        \"password_character_types\": \"INCLUDE_ONLY_ONE_CHARACTER_TYPE_ENABLED\",\n        \"password_length\": 4052,\n        \"enable_letters\": false,\n        \"enable_numbers\": true,\n        \"enable_special_characters\": true,\n        \"password_concat_string\": \"string\"\n      },\n      \"password_type\": \"<string>\",\n      \"predefined\": true,\n      \"update_time\": \"1981-03-22T00:58:10.752Z\",\n      \"description\": \"string\",\n      \"pcg_use_only\": false,\n      \"pcg_type\": \"AP_BASED\",\n      \"ppsk_use_only\": true,\n      \"enable_cwp_reg\": true\n    },\n    {\n      \"create_time\": \"1998-05-13T14:56:48.109Z\",\n      \"delivery_settings\": {\n        \"email_template_id\": 1110,\n        \"sms_template_id\": 6586\n      },\n      \"expiration_settings\": {\n        \"expiration_type\": \"NEVER_EXPIRE\",\n        \"valid_during_dates\": {\n          \"start_date_time\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"end_date_time\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"time_zone\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"valid_for_time_period\": {\n          \"valid_time_period_after\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"after_id_creation_settings\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"after_first_login_settings\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"valid_daily\": {\n          \"daily_end_hour\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"daily_end_minute\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"daily_start_hour\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"daily_start_minute\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"expiration_action\": \"REJECT_ACCESS\",\n        \"post_expiration_action\": {\n          \"enable_credentials_renewal\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"enable_delete_immediately\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"delete_after_value\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"delete_after_unit\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"id\": 5219,\n      \"name\": \"string\",\n      \"org_id\": 6165,\n      \"password_db_location\": \"<string>\",\n      \"password_settings\": {\n        \"psk_generation_method\": \"PASSWORD_ONLY\",\n        \"password_character_types\": \"INCLUDE_ONLY_ONE_CHARACTER_TYPE_ENABLED\",\n        \"password_length\": 1687,\n        \"enable_letters\": true,\n        \"enable_numbers\": true,\n        \"enable_special_characters\": false,\n        \"password_concat_string\": \"string\"\n      },\n      \"password_type\": \"<string>\",\n      \"predefined\": false,\n      \"update_time\": \"1955-05-16T03:04:31.177Z\",\n      \"description\": \"string\",\n      \"pcg_use_only\": true,\n      \"pcg_type\": \"KEY_BASED\",\n      \"ppsk_use_only\": true,\n      \"enable_cwp_reg\": true\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e4eb27ed-d071-4e6e-9450-7b222fb51f42",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "usergroups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "password_db_location",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "password_type",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d6510071-75fa-4e6f-abfe-237ecf44bedd",
+          "name": "Create user group",
+          "request": {
+            "name": "Create user group",
+            "description": {
+              "content": "Create a new user group.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "usergroups"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"password_db_location\": \"<string>\",\n  \"password_type\": \"<string>\",\n  \"password_settings\": {\n    \"psk_generation_method\": \"<string>\",\n    \"password_character_types\": \"<string>\",\n    \"password_length\": \"<integer>\",\n    \"enable_letters\": \"<boolean>\",\n    \"enable_numbers\": \"<boolean>\",\n    \"enable_special_characters\": \"<boolean>\",\n    \"password_concat_string\": \"<string>\"\n  },\n  \"expiration_settings\": {\n    \"expiration_type\": \"<string>\",\n    \"valid_during_dates\": {\n      \"start_date_time\": {\n        \"day_of_month\": \"<integer>\",\n        \"month\": \"<integer>\",\n        \"year\": \"<integer>\",\n        \"hour_of_day\": \"<integer>\",\n        \"minute_of_hour\": \"<integer>\"\n      },\n      \"end_date_time\": {\n        \"day_of_month\": \"<integer>\",\n        \"month\": \"<integer>\",\n        \"year\": \"<integer>\",\n        \"hour_of_day\": \"<integer>\",\n        \"minute_of_hour\": \"<integer>\"\n      },\n      \"time_zone\": \"<string>\"\n    },\n    \"valid_for_time_period\": {\n      \"valid_time_period_after\": \"<string>\",\n      \"after_id_creation_settings\": {\n        \"valid_time_period\": \"<integer>\",\n        \"valid_time_period_unit\": \"<string>\"\n      },\n      \"after_first_login_settings\": {\n        \"valid_time_period\": \"<integer>\",\n        \"valid_time_period_unit\": \"<string>\",\n        \"first_login_within\": \"<integer>\",\n        \"first_login_within_unit\": \"<string>\"\n      }\n    },\n    \"valid_daily\": {\n      \"daily_end_hour\": \"<integer>\",\n      \"daily_end_minute\": \"<integer>\",\n      \"daily_start_hour\": \"<integer>\",\n      \"daily_start_minute\": \"<integer>\"\n    },\n    \"expiration_action\": \"<string>\",\n    \"post_expiration_action\": {\n      \"enable_credentials_renewal\": \"<boolean>\",\n      \"enable_delete_immediately\": \"<boolean>\",\n      \"delete_after_value\": \"<integer>\",\n      \"delete_after_unit\": \"<string>\"\n    }\n  },\n  \"delivery_settings\": {\n    \"email_template_id\": \"<long>\",\n    \"sms_template_id\": \"<long>\"\n  },\n  \"description\": \"<string>\",\n  \"ppsk_use_only\": \"<boolean>\",\n  \"enable_max_clients_per_ppsk\": \"<boolean>\",\n  \"max_clients_per_ppsk\": \"<integer>\",\n  \"pcg_use_only\": \"<boolean>\",\n  \"pcg_type\": \"<string>\",\n  \"enable_cwp_reg\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "168886dc-aa91-4205-89d1-d9e47f4ec6e8",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "usergroups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"password_db_location\": \"<string>\",\n  \"password_type\": \"<string>\",\n  \"password_settings\": {\n    \"psk_generation_method\": \"<string>\",\n    \"password_character_types\": \"<string>\",\n    \"password_length\": \"<integer>\",\n    \"enable_letters\": \"<boolean>\",\n    \"enable_numbers\": \"<boolean>\",\n    \"enable_special_characters\": \"<boolean>\",\n    \"password_concat_string\": \"<string>\"\n  },\n  \"expiration_settings\": {\n    \"expiration_type\": \"<string>\",\n    \"valid_during_dates\": {\n      \"start_date_time\": {\n        \"day_of_month\": \"<integer>\",\n        \"month\": \"<integer>\",\n        \"year\": \"<integer>\",\n        \"hour_of_day\": \"<integer>\",\n        \"minute_of_hour\": \"<integer>\"\n      },\n      \"end_date_time\": {\n        \"day_of_month\": \"<integer>\",\n        \"month\": \"<integer>\",\n        \"year\": \"<integer>\",\n        \"hour_of_day\": \"<integer>\",\n        \"minute_of_hour\": \"<integer>\"\n      },\n      \"time_zone\": \"<string>\"\n    },\n    \"valid_for_time_period\": {\n      \"valid_time_period_after\": \"<string>\",\n      \"after_id_creation_settings\": {\n        \"valid_time_period\": \"<integer>\",\n        \"valid_time_period_unit\": \"<string>\"\n      },\n      \"after_first_login_settings\": {\n        \"valid_time_period\": \"<integer>\",\n        \"valid_time_period_unit\": \"<string>\",\n        \"first_login_within\": \"<integer>\",\n        \"first_login_within_unit\": \"<string>\"\n      }\n    },\n    \"valid_daily\": {\n      \"daily_end_hour\": \"<integer>\",\n      \"daily_end_minute\": \"<integer>\",\n      \"daily_start_hour\": \"<integer>\",\n      \"daily_start_minute\": \"<integer>\"\n    },\n    \"expiration_action\": \"<string>\",\n    \"post_expiration_action\": {\n      \"enable_credentials_renewal\": \"<boolean>\",\n      \"enable_delete_immediately\": \"<boolean>\",\n      \"delete_after_value\": \"<integer>\",\n      \"delete_after_unit\": \"<string>\"\n    }\n  },\n  \"delivery_settings\": {\n    \"email_template_id\": \"<long>\",\n    \"sms_template_id\": \"<long>\"\n  },\n  \"description\": \"<string>\",\n  \"ppsk_use_only\": \"<boolean>\",\n  \"enable_max_clients_per_ppsk\": \"<boolean>\",\n  \"max_clients_per_ppsk\": \"<integer>\",\n  \"pcg_use_only\": \"<boolean>\",\n  \"pcg_type\": \"<string>\",\n  \"enable_cwp_reg\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"create_time\": \"1974-09-25T05:27:58.334Z\",\n  \"delivery_settings\": {\n    \"email_template_id\": \"<long>\",\n    \"sms_template_id\": \"<long>\"\n  },\n  \"expiration_settings\": {\n    \"expiration_type\": \"<string>\",\n    \"valid_during_dates\": {\n      \"start_date_time\": {\n        \"day_of_month\": \"<integer>\",\n        \"month\": \"<integer>\",\n        \"year\": \"<integer>\",\n        \"hour_of_day\": \"<integer>\",\n        \"minute_of_hour\": \"<integer>\"\n      },\n      \"end_date_time\": {\n        \"day_of_month\": \"<integer>\",\n        \"month\": \"<integer>\",\n        \"year\": \"<integer>\",\n        \"hour_of_day\": \"<integer>\",\n        \"minute_of_hour\": \"<integer>\"\n      },\n      \"time_zone\": \"<string>\"\n    },\n    \"valid_for_time_period\": {\n      \"valid_time_period_after\": \"<string>\",\n      \"after_id_creation_settings\": {\n        \"valid_time_period\": \"<integer>\",\n        \"valid_time_period_unit\": \"<string>\"\n      },\n      \"after_first_login_settings\": {\n        \"valid_time_period\": \"<integer>\",\n        \"valid_time_period_unit\": \"<string>\",\n        \"first_login_within\": \"<integer>\",\n        \"first_login_within_unit\": \"<string>\"\n      }\n    },\n    \"valid_daily\": {\n      \"daily_end_hour\": \"<integer>\",\n      \"daily_end_minute\": \"<integer>\",\n      \"daily_start_hour\": \"<integer>\",\n      \"daily_start_minute\": \"<integer>\"\n    },\n    \"expiration_action\": \"<string>\",\n    \"post_expiration_action\": {\n      \"enable_credentials_renewal\": \"<boolean>\",\n      \"enable_delete_immediately\": \"<boolean>\",\n      \"delete_after_value\": \"<integer>\",\n      \"delete_after_unit\": \"<string>\"\n    }\n  },\n  \"id\": 6078,\n  \"name\": \"string\",\n  \"org_id\": 6100,\n  \"password_db_location\": \"<string>\",\n  \"password_settings\": {\n    \"psk_generation_method\": \"<string>\",\n    \"password_character_types\": \"<string>\",\n    \"password_length\": \"<integer>\",\n    \"enable_letters\": \"<boolean>\",\n    \"enable_numbers\": \"<boolean>\",\n    \"enable_special_characters\": \"<boolean>\",\n    \"password_concat_string\": \"<string>\"\n  },\n  \"password_type\": \"<string>\",\n  \"predefined\": true,\n  \"update_time\": \"2018-11-27T09:11:00.371Z\",\n  \"description\": \"string\",\n  \"pcg_use_only\": false,\n  \"pcg_type\": \"<string>\",\n  \"ppsk_use_only\": false,\n  \"enable_cwp_reg\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e8b30cf5-50e8-4779-a0dc-558d2872e3d4",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "usergroups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"password_db_location\": \"<string>\",\n  \"password_type\": \"<string>\",\n  \"password_settings\": {\n    \"psk_generation_method\": \"<string>\",\n    \"password_character_types\": \"<string>\",\n    \"password_length\": \"<integer>\",\n    \"enable_letters\": \"<boolean>\",\n    \"enable_numbers\": \"<boolean>\",\n    \"enable_special_characters\": \"<boolean>\",\n    \"password_concat_string\": \"<string>\"\n  },\n  \"expiration_settings\": {\n    \"expiration_type\": \"<string>\",\n    \"valid_during_dates\": {\n      \"start_date_time\": {\n        \"day_of_month\": \"<integer>\",\n        \"month\": \"<integer>\",\n        \"year\": \"<integer>\",\n        \"hour_of_day\": \"<integer>\",\n        \"minute_of_hour\": \"<integer>\"\n      },\n      \"end_date_time\": {\n        \"day_of_month\": \"<integer>\",\n        \"month\": \"<integer>\",\n        \"year\": \"<integer>\",\n        \"hour_of_day\": \"<integer>\",\n        \"minute_of_hour\": \"<integer>\"\n      },\n      \"time_zone\": \"<string>\"\n    },\n    \"valid_for_time_period\": {\n      \"valid_time_period_after\": \"<string>\",\n      \"after_id_creation_settings\": {\n        \"valid_time_period\": \"<integer>\",\n        \"valid_time_period_unit\": \"<string>\"\n      },\n      \"after_first_login_settings\": {\n        \"valid_time_period\": \"<integer>\",\n        \"valid_time_period_unit\": \"<string>\",\n        \"first_login_within\": \"<integer>\",\n        \"first_login_within_unit\": \"<string>\"\n      }\n    },\n    \"valid_daily\": {\n      \"daily_end_hour\": \"<integer>\",\n      \"daily_end_minute\": \"<integer>\",\n      \"daily_start_hour\": \"<integer>\",\n      \"daily_start_minute\": \"<integer>\"\n    },\n    \"expiration_action\": \"<string>\",\n    \"post_expiration_action\": {\n      \"enable_credentials_renewal\": \"<boolean>\",\n      \"enable_delete_immediately\": \"<boolean>\",\n      \"delete_after_value\": \"<integer>\",\n      \"delete_after_unit\": \"<string>\"\n    }\n  },\n  \"delivery_settings\": {\n    \"email_template_id\": \"<long>\",\n    \"sms_template_id\": \"<long>\"\n  },\n  \"description\": \"<string>\",\n  \"ppsk_use_only\": \"<boolean>\",\n  \"enable_max_clients_per_ppsk\": \"<boolean>\",\n  \"max_clients_per_ppsk\": \"<integer>\",\n  \"pcg_use_only\": \"<boolean>\",\n  \"pcg_type\": \"<string>\",\n  \"enable_cwp_reg\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1df8b8ff-3bc3-4d60-b864-46bda477ae8a",
+          "name": "Update user group",
+          "request": {
+            "name": "Update user group",
+            "description": {
+              "content": "Update existing user group information.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "usergroups",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "id",
+                  "description": "(Required) The unique identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"password_db_location\": \"<string>\",\n  \"password_type\": \"<string>\",\n  \"delivery_settings\": {\n    \"email_template_id\": \"<long>\",\n    \"sms_template_id\": \"<long>\"\n  },\n  \"password_settings\": {\n    \"psk_generation_method\": \"<string>\",\n    \"password_character_types\": \"<string>\",\n    \"password_length\": \"<integer>\",\n    \"enable_letters\": \"<boolean>\",\n    \"enable_numbers\": \"<boolean>\",\n    \"enable_special_characters\": \"<boolean>\",\n    \"password_concat_string\": \"<string>\"\n  },\n  \"expiration_settings\": {\n    \"expiration_type\": \"<string>\",\n    \"valid_during_dates\": {\n      \"start_date_time\": {\n        \"day_of_month\": \"<integer>\",\n        \"month\": \"<integer>\",\n        \"year\": \"<integer>\",\n        \"hour_of_day\": \"<integer>\",\n        \"minute_of_hour\": \"<integer>\"\n      },\n      \"end_date_time\": {\n        \"day_of_month\": \"<integer>\",\n        \"month\": \"<integer>\",\n        \"year\": \"<integer>\",\n        \"hour_of_day\": \"<integer>\",\n        \"minute_of_hour\": \"<integer>\"\n      },\n      \"time_zone\": \"<string>\"\n    },\n    \"valid_for_time_period\": {\n      \"valid_time_period_after\": \"<string>\",\n      \"after_id_creation_settings\": {\n        \"valid_time_period\": \"<integer>\",\n        \"valid_time_period_unit\": \"<string>\"\n      },\n      \"after_first_login_settings\": {\n        \"valid_time_period\": \"<integer>\",\n        \"valid_time_period_unit\": \"<string>\",\n        \"first_login_within\": \"<integer>\",\n        \"first_login_within_unit\": \"<string>\"\n      }\n    },\n    \"valid_daily\": {\n      \"daily_end_hour\": \"<integer>\",\n      \"daily_end_minute\": \"<integer>\",\n      \"daily_start_hour\": \"<integer>\",\n      \"daily_start_minute\": \"<integer>\"\n    },\n    \"expiration_action\": \"<string>\",\n    \"post_expiration_action\": {\n      \"enable_credentials_renewal\": \"<boolean>\",\n      \"enable_delete_immediately\": \"<boolean>\",\n      \"delete_after_value\": \"<integer>\",\n      \"delete_after_unit\": \"<string>\"\n    }\n  },\n  \"description\": \"<string>\",\n  \"ppsk_use_only\": \"<boolean>\",\n  \"enable_max_clients_per_ppsk\": \"<boolean>\",\n  \"max_clients_per_ppsk\": \"<integer>\",\n  \"pcg_use_only\": \"<boolean>\",\n  \"pcg_type\": \"<string>\",\n  \"enable_cwp_reg\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "669547e4-00b4-4867-bfc8-68137e1fbcc3",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "usergroups",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"password_db_location\": \"<string>\",\n  \"password_type\": \"<string>\",\n  \"delivery_settings\": {\n    \"email_template_id\": \"<long>\",\n    \"sms_template_id\": \"<long>\"\n  },\n  \"password_settings\": {\n    \"psk_generation_method\": \"<string>\",\n    \"password_character_types\": \"<string>\",\n    \"password_length\": \"<integer>\",\n    \"enable_letters\": \"<boolean>\",\n    \"enable_numbers\": \"<boolean>\",\n    \"enable_special_characters\": \"<boolean>\",\n    \"password_concat_string\": \"<string>\"\n  },\n  \"expiration_settings\": {\n    \"expiration_type\": \"<string>\",\n    \"valid_during_dates\": {\n      \"start_date_time\": {\n        \"day_of_month\": \"<integer>\",\n        \"month\": \"<integer>\",\n        \"year\": \"<integer>\",\n        \"hour_of_day\": \"<integer>\",\n        \"minute_of_hour\": \"<integer>\"\n      },\n      \"end_date_time\": {\n        \"day_of_month\": \"<integer>\",\n        \"month\": \"<integer>\",\n        \"year\": \"<integer>\",\n        \"hour_of_day\": \"<integer>\",\n        \"minute_of_hour\": \"<integer>\"\n      },\n      \"time_zone\": \"<string>\"\n    },\n    \"valid_for_time_period\": {\n      \"valid_time_period_after\": \"<string>\",\n      \"after_id_creation_settings\": {\n        \"valid_time_period\": \"<integer>\",\n        \"valid_time_period_unit\": \"<string>\"\n      },\n      \"after_first_login_settings\": {\n        \"valid_time_period\": \"<integer>\",\n        \"valid_time_period_unit\": \"<string>\",\n        \"first_login_within\": \"<integer>\",\n        \"first_login_within_unit\": \"<string>\"\n      }\n    },\n    \"valid_daily\": {\n      \"daily_end_hour\": \"<integer>\",\n      \"daily_end_minute\": \"<integer>\",\n      \"daily_start_hour\": \"<integer>\",\n      \"daily_start_minute\": \"<integer>\"\n    },\n    \"expiration_action\": \"<string>\",\n    \"post_expiration_action\": {\n      \"enable_credentials_renewal\": \"<boolean>\",\n      \"enable_delete_immediately\": \"<boolean>\",\n      \"delete_after_value\": \"<integer>\",\n      \"delete_after_unit\": \"<string>\"\n    }\n  },\n  \"description\": \"<string>\",\n  \"ppsk_use_only\": \"<boolean>\",\n  \"enable_max_clients_per_ppsk\": \"<boolean>\",\n  \"max_clients_per_ppsk\": \"<integer>\",\n  \"pcg_use_only\": \"<boolean>\",\n  \"pcg_type\": \"<string>\",\n  \"enable_cwp_reg\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"create_time\": \"1974-09-25T05:27:58.334Z\",\n  \"delivery_settings\": {\n    \"email_template_id\": \"<long>\",\n    \"sms_template_id\": \"<long>\"\n  },\n  \"expiration_settings\": {\n    \"expiration_type\": \"<string>\",\n    \"valid_during_dates\": {\n      \"start_date_time\": {\n        \"day_of_month\": \"<integer>\",\n        \"month\": \"<integer>\",\n        \"year\": \"<integer>\",\n        \"hour_of_day\": \"<integer>\",\n        \"minute_of_hour\": \"<integer>\"\n      },\n      \"end_date_time\": {\n        \"day_of_month\": \"<integer>\",\n        \"month\": \"<integer>\",\n        \"year\": \"<integer>\",\n        \"hour_of_day\": \"<integer>\",\n        \"minute_of_hour\": \"<integer>\"\n      },\n      \"time_zone\": \"<string>\"\n    },\n    \"valid_for_time_period\": {\n      \"valid_time_period_after\": \"<string>\",\n      \"after_id_creation_settings\": {\n        \"valid_time_period\": \"<integer>\",\n        \"valid_time_period_unit\": \"<string>\"\n      },\n      \"after_first_login_settings\": {\n        \"valid_time_period\": \"<integer>\",\n        \"valid_time_period_unit\": \"<string>\",\n        \"first_login_within\": \"<integer>\",\n        \"first_login_within_unit\": \"<string>\"\n      }\n    },\n    \"valid_daily\": {\n      \"daily_end_hour\": \"<integer>\",\n      \"daily_end_minute\": \"<integer>\",\n      \"daily_start_hour\": \"<integer>\",\n      \"daily_start_minute\": \"<integer>\"\n    },\n    \"expiration_action\": \"<string>\",\n    \"post_expiration_action\": {\n      \"enable_credentials_renewal\": \"<boolean>\",\n      \"enable_delete_immediately\": \"<boolean>\",\n      \"delete_after_value\": \"<integer>\",\n      \"delete_after_unit\": \"<string>\"\n    }\n  },\n  \"id\": 6078,\n  \"name\": \"string\",\n  \"org_id\": 6100,\n  \"password_db_location\": \"<string>\",\n  \"password_settings\": {\n    \"psk_generation_method\": \"<string>\",\n    \"password_character_types\": \"<string>\",\n    \"password_length\": \"<integer>\",\n    \"enable_letters\": \"<boolean>\",\n    \"enable_numbers\": \"<boolean>\",\n    \"enable_special_characters\": \"<boolean>\",\n    \"password_concat_string\": \"<string>\"\n  },\n  \"password_type\": \"<string>\",\n  \"predefined\": true,\n  \"update_time\": \"2018-11-27T09:11:00.371Z\",\n  \"description\": \"string\",\n  \"pcg_use_only\": false,\n  \"pcg_type\": \"<string>\",\n  \"ppsk_use_only\": false,\n  \"enable_cwp_reg\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ff2dcfa5-fea8-486e-bec2-3c01cc3f5e3c",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "usergroups",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"password_db_location\": \"<string>\",\n  \"password_type\": \"<string>\",\n  \"delivery_settings\": {\n    \"email_template_id\": \"<long>\",\n    \"sms_template_id\": \"<long>\"\n  },\n  \"password_settings\": {\n    \"psk_generation_method\": \"<string>\",\n    \"password_character_types\": \"<string>\",\n    \"password_length\": \"<integer>\",\n    \"enable_letters\": \"<boolean>\",\n    \"enable_numbers\": \"<boolean>\",\n    \"enable_special_characters\": \"<boolean>\",\n    \"password_concat_string\": \"<string>\"\n  },\n  \"expiration_settings\": {\n    \"expiration_type\": \"<string>\",\n    \"valid_during_dates\": {\n      \"start_date_time\": {\n        \"day_of_month\": \"<integer>\",\n        \"month\": \"<integer>\",\n        \"year\": \"<integer>\",\n        \"hour_of_day\": \"<integer>\",\n        \"minute_of_hour\": \"<integer>\"\n      },\n      \"end_date_time\": {\n        \"day_of_month\": \"<integer>\",\n        \"month\": \"<integer>\",\n        \"year\": \"<integer>\",\n        \"hour_of_day\": \"<integer>\",\n        \"minute_of_hour\": \"<integer>\"\n      },\n      \"time_zone\": \"<string>\"\n    },\n    \"valid_for_time_period\": {\n      \"valid_time_period_after\": \"<string>\",\n      \"after_id_creation_settings\": {\n        \"valid_time_period\": \"<integer>\",\n        \"valid_time_period_unit\": \"<string>\"\n      },\n      \"after_first_login_settings\": {\n        \"valid_time_period\": \"<integer>\",\n        \"valid_time_period_unit\": \"<string>\",\n        \"first_login_within\": \"<integer>\",\n        \"first_login_within_unit\": \"<string>\"\n      }\n    },\n    \"valid_daily\": {\n      \"daily_end_hour\": \"<integer>\",\n      \"daily_end_minute\": \"<integer>\",\n      \"daily_start_hour\": \"<integer>\",\n      \"daily_start_minute\": \"<integer>\"\n    },\n    \"expiration_action\": \"<string>\",\n    \"post_expiration_action\": {\n      \"enable_credentials_renewal\": \"<boolean>\",\n      \"enable_delete_immediately\": \"<boolean>\",\n      \"delete_after_value\": \"<integer>\",\n      \"delete_after_unit\": \"<string>\"\n    }\n  },\n  \"description\": \"<string>\",\n  \"ppsk_use_only\": \"<boolean>\",\n  \"enable_max_clients_per_ppsk\": \"<boolean>\",\n  \"max_clients_per_ppsk\": \"<integer>\",\n  \"pcg_use_only\": \"<boolean>\",\n  \"pcg_type\": \"<string>\",\n  \"enable_cwp_reg\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "921ccccf-80f4-4e02-9612-67429fe2df4e",
+          "name": "Delete user group by ID",
+          "request": {
+            "name": "Delete user group by ID",
+            "description": {
+              "content": "Delete the user-group for the specified ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "usergroups",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "id",
+                  "description": "(Required) The unique identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "54eb7c46-605b-419c-abe1-11d50259a6dd",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "usergroups",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "43089b16-2758-4c73-9aba-32d405eea23b",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "usergroups",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f8b7d7f4-0210-4222-814f-d85ce06846dc",
+          "name": "List Key-based Private Client Groups",
+          "request": {
+            "name": "List Key-based Private Client Groups",
+            "description": {
+              "content": "List all Key-based Private Client Groups.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "pcgs",
+                "key-based"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "2cb30178-9c46-4426-a076-3860e06f23fa",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pcgs",
+                    "key-based"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"create_time\": \"2019-02-14T08:02:23.457Z\",\n    \"enabled\": false,\n    \"id\": 8221,\n    \"org_id\": 5694,\n    \"policy_id\": 1467,\n    \"policy_name\": \"string\",\n    \"ssid_name\": \"string\",\n    \"update_time\": \"1987-11-18T18:24:19.885Z\",\n    \"users\": [\n      {\n        \"email\": \"string\",\n        \"name\": \"string\",\n        \"org_id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"user_group_name\": \"string\"\n      },\n      {\n        \"email\": \"string\",\n        \"name\": \"string\",\n        \"org_id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"user_group_name\": \"string\"\n      }\n    ]\n  },\n  {\n    \"create_time\": \"2011-08-26T08:05:20.971Z\",\n    \"enabled\": false,\n    \"id\": 5400,\n    \"org_id\": 1767,\n    \"policy_id\": 4899,\n    \"policy_name\": \"string\",\n    \"ssid_name\": \"string\",\n    \"update_time\": \"1987-10-29T05:15:57.695Z\",\n    \"users\": [\n      {\n        \"email\": \"string\",\n        \"name\": \"string\",\n        \"org_id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"user_group_name\": \"string\"\n      },\n      {\n        \"email\": \"string\",\n        \"name\": \"string\",\n        \"org_id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"user_group_name\": \"string\"\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "59cc3de4-3331-48dd-93a9-fc600d516b2d",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pcgs",
+                    "key-based"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c86775e9-d5a1-4406-a5a6-0c64c336ed4e",
+          "name": " [LRO] Create a Key-based Private Client Group",
+          "request": {
+            "name": " [LRO] Create a Key-based Private Client Group",
+            "description": {
+              "content": "Setup a Key-based Private Client Group, including network policy, user, user group, SSID, etc.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "pcgs",
+                "key-based"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "async",
+                  "value": "false",
+                  "description": "Whether to enable async mode"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"policy_name\": \"<string>\",\n  \"ssid_name\": \"<string>\",\n  \"users\": [\n    {\n      \"email\": \"<string>\",\n      \"name\": \"<string>\",\n      \"user_group_name\": \"<string>\"\n    },\n    {\n      \"email\": \"<string>\",\n      \"name\": \"<string>\",\n      \"user_group_name\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e58b412f-0f45-4030-ad84-56dec2b72a4f",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pcgs",
+                    "key-based"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "async",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"policy_name\": \"<string>\",\n  \"ssid_name\": \"<string>\",\n  \"users\": [\n    {\n      \"email\": \"<string>\",\n      \"name\": \"<string>\",\n      \"user_group_name\": \"<string>\"\n    },\n    {\n      \"email\": \"<string>\",\n      \"name\": \"<string>\",\n      \"user_group_name\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"create_time\": \"2015-10-08T16:54:29.279Z\",\n  \"id\": 2614,\n  \"org_id\": 7834,\n  \"policy_id\": 1558,\n  \"policy_name\": \"string\",\n  \"ssid_name\": \"string\",\n  \"update_time\": \"2007-02-19T02:19:00.597Z\",\n  \"users\": [\n    {\n      \"create_time\": \"1997-06-04T20:21:21.336Z\",\n      \"email\": \"string\",\n      \"id\": 2787,\n      \"name\": \"string\",\n      \"org_id\": 2947,\n      \"update_time\": \"2002-05-23T04:28:48.896Z\",\n      \"user_group_name\": \"string\"\n    },\n    {\n      \"create_time\": \"2008-11-20T15:12:56.084Z\",\n      \"email\": \"string\",\n      \"id\": 2546,\n      \"name\": \"string\",\n      \"org_id\": 2163,\n      \"update_time\": \"1976-08-08T12:55:46.935Z\",\n      \"user_group_name\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e65c0a9a-1c2c-4efc-a8a1-ce5e89b8a543",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pcgs",
+                    "key-based"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "async",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"policy_name\": \"<string>\",\n  \"ssid_name\": \"<string>\",\n  \"users\": [\n    {\n      \"email\": \"<string>\",\n      \"name\": \"<string>\",\n      \"user_group_name\": \"<string>\"\n    },\n    {\n      \"email\": \"<string>\",\n      \"name\": \"<string>\",\n      \"user_group_name\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d5ad9a86-1cd3-4a4c-b266-71d197b52bdd",
+          "name": " [LRO] Create Key-based PCG in network policy",
+          "request": {
+            "name": " [LRO] Create Key-based PCG in network policy",
+            "description": {
+              "content": "Create a Key-based Private Client Group for a specific network policy.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "pcgs",
+                "key-based",
+                "network-policy-{{policyId}}",
+                ":onboard"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "async",
+                  "value": "false",
+                  "description": "Whether to enable async mode"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ssid_name\": \"<string>\",\n  \"enabled\": \"<boolean>\",\n  \"user_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f1f21a1a-ff32-4ce2-b696-d9d09af852d4",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pcgs",
+                    "key-based",
+                    "network-policy-{{policyId}}",
+                    ":onboard"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "async",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ssid_name\": \"<string>\",\n  \"enabled\": \"<boolean>\",\n  \"user_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"policy_name\": \"string\",\n  \"ssid_name\": \"string\",\n  \"status\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5bc62f87-1994-43b0-b7b2-56d0735251db",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pcgs",
+                    "key-based",
+                    "network-policy-{{policyId}}",
+                    ":onboard"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "async",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ssid_name\": \"<string>\",\n  \"enabled\": \"<boolean>\",\n  \"user_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bf15ee23-64f9-4048-b303-60194b59a024",
+          "name": "Delete Private Client Group from a network policy",
+          "request": {
+            "name": "Delete Private Client Group from a network policy",
+            "description": {
+              "content": "Delete Private Client Group settings from a network policy.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "pcgs",
+                "key-based",
+                "network-policy-{{policyId}}"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "ids",
+                  "value": "<long>",
+                  "description": "(Required) The IDs of the Key-based PCG entity to be deleted from network policy"
+                },
+                {
+                  "disabled": false,
+                  "key": "ids",
+                  "value": "<long>",
+                  "description": "(Required) The IDs of the Key-based PCG entity to be deleted from network policy"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "8e80ad78-1bba-402a-aaba-38f0a8ed4a73",
+              "name": "Accepted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pcgs",
+                    "key-based",
+                    "network-policy-{{policyId}}"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ids",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "ids",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "53aa445c-0425-4511-b3dc-66eb588e63ad",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pcgs",
+                    "key-based",
+                    "network-policy-{{policyId}}"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ids",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "ids",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8642adfa-16bf-4ce6-b1b8-2c9322306421",
+          "name": "Get users for a PCG-enabled network policy",
+          "request": {
+            "name": "Get users for a PCG-enabled network policy",
+            "description": {
+              "content": "Get users for a specific PCG-enabled network policy.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "pcgs",
+                "key-based",
+                "network-policy-{{policyId}}",
+                "users"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "d932f359-0cc4-4f49-8802-7fca17d0bb7b",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pcgs",
+                    "key-based",
+                    "network-policy-{{policyId}}",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"create_time\": \"1972-10-22T03:35:03.482Z\",\n    \"email\": \"string\",\n    \"id\": 3345,\n    \"name\": \"string\",\n    \"org_id\": 8333,\n    \"update_time\": \"1966-03-03T21:15:32.354Z\",\n    \"user_group_name\": \"string\"\n  },\n  {\n    \"create_time\": \"1958-04-11T07:00:34.022Z\",\n    \"email\": \"string\",\n    \"id\": 7188,\n    \"name\": \"string\",\n    \"org_id\": 2379,\n    \"update_time\": \"2012-11-18T20:40:26.101Z\",\n    \"user_group_name\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b746f254-5ab1-4e8f-a149-e7d9ca851902",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pcgs",
+                    "key-based",
+                    "network-policy-{{policyId}}",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0a18acc5-d14c-4d4e-aecc-580025eaea05",
+          "name": " [LRO] Add users to a PCG-enabled network policy",
+          "request": {
+            "name": " [LRO] Add users to a PCG-enabled network policy",
+            "description": {
+              "content": "Add users to a PCG-enabled network policy.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "pcgs",
+                "key-based",
+                "network-policy-{{policyId}}",
+                "users"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "async",
+                  "value": "false",
+                  "description": "Whether to enable async mode"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"users\": [\n    {\n      \"email\": \"<string>\",\n      \"name\": \"<string>\",\n      \"user_group_name\": \"<string>\"\n    },\n    {\n      \"email\": \"<string>\",\n      \"name\": \"<string>\",\n      \"user_group_name\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2a4d71d6-a1fc-409d-ae5c-5a4fe0ec1e0d",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pcgs",
+                    "key-based",
+                    "network-policy-{{policyId}}",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "async",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"users\": [\n    {\n      \"email\": \"<string>\",\n      \"name\": \"<string>\",\n      \"user_group_name\": \"<string>\"\n    },\n    {\n      \"email\": \"<string>\",\n      \"name\": \"<string>\",\n      \"user_group_name\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"policy_id\": 3006,\n  \"status\": \"string\",\n  \"users\": [\n    {\n      \"create_time\": \"1947-12-10T01:14:02.088Z\",\n      \"email\": \"string\",\n      \"id\": 4260,\n      \"name\": \"string\",\n      \"org_id\": 5341,\n      \"update_time\": \"1996-01-26T06:29:45.754Z\",\n      \"user_group_name\": \"string\"\n    },\n    {\n      \"create_time\": \"1950-06-25T19:39:50.344Z\",\n      \"email\": \"string\",\n      \"id\": 4,\n      \"name\": \"string\",\n      \"org_id\": 994,\n      \"update_time\": \"1979-10-24T00:33:36.778Z\",\n      \"user_group_name\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "786a414c-9a71-4cac-b278-ce0511e6bc6f",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pcgs",
+                    "key-based",
+                    "network-policy-{{policyId}}",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "async",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"users\": [\n    {\n      \"email\": \"<string>\",\n      \"name\": \"<string>\",\n      \"user_group_name\": \"<string>\"\n    },\n    {\n      \"email\": \"<string>\",\n      \"name\": \"<string>\",\n      \"user_group_name\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0a8df906-e28b-4a20-b23b-089094f8c41e",
+          "name": "Replace all users in a PCG-enabled network policy",
+          "request": {
+            "name": "Replace all users in a PCG-enabled network policy",
+            "description": {
+              "content": "Replace all users in a specific PCG-enabled network policy.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "pcgs",
+                "key-based",
+                "network-policy-{{policyId}}",
+                "users"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"users\": [\n    {\n      \"email\": \"<string>\",\n      \"name\": \"<string>\",\n      \"user_group_name\": \"<string>\"\n    },\n    {\n      \"email\": \"<string>\",\n      \"name\": \"<string>\",\n      \"user_group_name\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "839d04cb-55e4-4a9d-b171-1696ec95c605",
+              "name": "Accepted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pcgs",
+                    "key-based",
+                    "network-policy-{{policyId}}",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"users\": [\n    {\n      \"email\": \"<string>\",\n      \"name\": \"<string>\",\n      \"user_group_name\": \"<string>\"\n    },\n    {\n      \"email\": \"<string>\",\n      \"name\": \"<string>\",\n      \"user_group_name\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "312d36ed-eb55-4a40-beb3-2bc5bc113020",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pcgs",
+                    "key-based",
+                    "network-policy-{{policyId}}",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"users\": [\n    {\n      \"email\": \"<string>\",\n      \"name\": \"<string>\",\n      \"user_group_name\": \"<string>\"\n    },\n    {\n      \"email\": \"<string>\",\n      \"name\": \"<string>\",\n      \"user_group_name\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "56879f7c-1dac-44cb-a9f7-d58214dcc5fd",
+          "name": "Delete users from a PCG-enabled network policy",
+          "request": {
+            "name": "Delete users from a PCG-enabled network policy",
+            "description": {
+              "content": "Delete users from a PCG-enabled network policy.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "pcgs",
+                "key-based",
+                "network-policy-{{policyId}}",
+                "users"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"user_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f1ae7fae-5f44-4408-8325-b64b4bad0474",
+              "name": "Accepted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pcgs",
+                    "key-based",
+                    "network-policy-{{policyId}}",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"user_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "22d20b05-a3d4-4e8d-8b47-a4991fc9851e",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pcgs",
+                    "key-based",
+                    "network-policy-{{policyId}}",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"user_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8daf7346-9e06-4f40-bfca-9c68b276e8d0",
+          "name": "Get device port assignments in network policy",
+          "request": {
+            "name": "Get device port assignments in network policy",
+            "description": {
+              "content": "Get port assignments for devices (only support AP150W now) in a network policy.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "pcgs",
+                "key-based",
+                "network-policy-{{policyId}}",
+                "port-assignments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "a73ac1dc-a165-4fcf-a486-01ed24ed3789",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pcgs",
+                    "key-based",
+                    "network-policy-{{policyId}}",
+                    "port-assignments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"policy_id\": 5885,\n  \"policy_name\": \"string\",\n  \"pcg_port_assignment_entry_details\": [\n    {\n      \"create_time\": \"1955-01-15T23:25:52.360Z\",\n      \"id\": 841,\n      \"org_id\": 4472,\n      \"update_time\": \"1986-12-02T00:59:11.197Z\",\n      \"device\": {\n        \"mac_address\": \"string\",\n        \"org_id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"product_type\": \"string\",\n        \"serial_number\": \"string\"\n      },\n      \"eth1\": {\n        \"name\": \"string\",\n        \"org_id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"password\": \"string\",\n        \"ssids\": [\n          \"string\",\n          \"string\"\n        ],\n        \"user_group_name\": \"string\",\n        \"user_type\": \"string\"\n      },\n      \"eth2\": {\n        \"name\": \"string\",\n        \"org_id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"password\": \"string\",\n        \"ssids\": [\n          \"string\",\n          \"string\"\n        ],\n        \"user_group_name\": \"string\",\n        \"user_type\": \"string\"\n      },\n      \"eth3\": {\n        \"name\": \"string\",\n        \"org_id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"password\": \"string\",\n        \"ssids\": [\n          \"string\",\n          \"string\"\n        ],\n        \"user_group_name\": \"string\",\n        \"user_type\": \"string\"\n      }\n    },\n    {\n      \"create_time\": \"1984-11-03T02:28:06.181Z\",\n      \"id\": 8148,\n      \"org_id\": 4417,\n      \"update_time\": \"1959-08-24T06:18:35.816Z\",\n      \"device\": {\n        \"mac_address\": \"string\",\n        \"org_id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"product_type\": \"string\",\n        \"serial_number\": \"string\"\n      },\n      \"eth1\": {\n        \"name\": \"string\",\n        \"org_id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"password\": \"string\",\n        \"ssids\": [\n          \"string\",\n          \"string\"\n        ],\n        \"user_group_name\": \"string\",\n        \"user_type\": \"string\"\n      },\n      \"eth2\": {\n        \"name\": \"string\",\n        \"org_id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"password\": \"string\",\n        \"ssids\": [\n          \"string\",\n          \"string\"\n        ],\n        \"user_group_name\": \"string\",\n        \"user_type\": \"string\"\n      },\n      \"eth3\": {\n        \"name\": \"string\",\n        \"org_id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"password\": \"string\",\n        \"ssids\": [\n          \"string\",\n          \"string\"\n        ],\n        \"user_group_name\": \"string\",\n        \"user_type\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f84d5064-fe23-47ad-b5af-8022211c1257",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pcgs",
+                    "key-based",
+                    "network-policy-{{policyId}}",
+                    "port-assignments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5b5e2a58-9fd4-454a-be79-06ec69b2f52f",
+          "name": "Assign ports to devices in network policy",
+          "request": {
+            "name": "Assign ports to devices in network policy",
+            "description": {
+              "content": "Assign ports for devices (only support AP150W now) in a network policy.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "pcgs",
+                "key-based",
+                "network-policy-{{policyId}}",
+                "port-assignments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"port_assignments\": [\n    {\n      \"device_id\": \"<long>\",\n      \"eth1_user_id\": \"<long>\",\n      \"eth2_user_id\": \"<long>\",\n      \"eth3_user_id\": \"<long>\"\n    },\n    {\n      \"device_id\": \"<long>\",\n      \"eth1_user_id\": \"<long>\",\n      \"eth2_user_id\": \"<long>\",\n      \"eth3_user_id\": \"<long>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2c6ab1a5-dfc5-45c6-b05a-06dd42649cac",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pcgs",
+                    "key-based",
+                    "network-policy-{{policyId}}",
+                    "port-assignments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"port_assignments\": [\n    {\n      \"device_id\": \"<long>\",\n      \"eth1_user_id\": \"<long>\",\n      \"eth2_user_id\": \"<long>\",\n      \"eth3_user_id\": \"<long>\"\n    },\n    {\n      \"device_id\": \"<long>\",\n      \"eth1_user_id\": \"<long>\",\n      \"eth2_user_id\": \"<long>\",\n      \"eth3_user_id\": \"<long>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"policy_id\": 9887,\n  \"policy_name\": \"string\",\n  \"pcg_port_assignment_entries\": [\n    {\n      \"create_time\": \"1968-09-17T04:41:29.178Z\",\n      \"device_id\": 5044,\n      \"id\": 3076,\n      \"org_id\": 4273,\n      \"update_time\": \"1990-07-31T07:41:46.976Z\",\n      \"eth1_user_id\": 248,\n      \"eth2_user_id\": 8870,\n      \"eth3_user_id\": 4606\n    },\n    {\n      \"create_time\": \"1991-08-21T07:08:25.920Z\",\n      \"device_id\": 1206,\n      \"id\": 9713,\n      \"org_id\": 1020,\n      \"update_time\": \"1985-11-12T01:43:27.253Z\",\n      \"eth1_user_id\": 3952,\n      \"eth2_user_id\": 4525,\n      \"eth3_user_id\": 9036\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7ba25cd7-e68c-44e8-a8d4-59e17d2396e1",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pcgs",
+                    "key-based",
+                    "network-policy-{{policyId}}",
+                    "port-assignments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"port_assignments\": [\n    {\n      \"device_id\": \"<long>\",\n      \"eth1_user_id\": \"<long>\",\n      \"eth2_user_id\": \"<long>\",\n      \"eth3_user_id\": \"<long>\"\n    },\n    {\n      \"device_id\": \"<long>\",\n      \"eth1_user_id\": \"<long>\",\n      \"eth2_user_id\": \"<long>\",\n      \"eth3_user_id\": \"<long>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "19c7f034-5ac7-4c75-a5f9-94a905b277ed",
+          "name": "Generate shared keys for users in network policy",
+          "request": {
+            "name": "Generate shared keys for users in network policy",
+            "description": {
+              "content": "Generate/regenerate shared keys for specified users in a specific PCG-enable network policy.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "pcgs",
+                "key-based",
+                "network-policy-{{policyId}}",
+                "keys",
+                ":generate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "userIds",
+                  "value": "<long>",
+                  "description": "(Required) The user IDs"
+                },
+                {
+                  "disabled": false,
+                  "key": "userIds",
+                  "value": "<long>",
+                  "description": "(Required) The user IDs"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "e35c532a-c83e-49db-b0ac-682f89078725",
+              "name": "Accepted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pcgs",
+                    "key-based",
+                    "network-policy-{{policyId}}",
+                    "keys",
+                    ":generate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "userIds",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "userIds",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a259531d-b5b8-4acd-bad1-db58664a90a1",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pcgs",
+                    "key-based",
+                    "network-policy-{{policyId}}",
+                    "keys",
+                    ":generate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "userIds",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "userIds",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bfb1eeb0-0f22-4220-8def-ad872d4a60d4",
+          "name": "Send keys to users in network policy via Email",
+          "request": {
+            "name": "Send keys to users in network policy via Email",
+            "description": {
+              "content": "Send keys to specified users in PCG-enabled network policy via Email.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "pcgs",
+                "key-based",
+                "network-policy-{{policyId}}",
+                "keys",
+                ":email"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "userIds",
+                  "value": "<long>",
+                  "description": "(Required) The user IDs"
+                },
+                {
+                  "disabled": false,
+                  "key": "userIds",
+                  "value": "<long>",
+                  "description": "(Required) The user IDs"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "a0167ec6-500a-4c62-adc3-4df67321aaa0",
+              "name": "Accepted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pcgs",
+                    "key-based",
+                    "network-policy-{{policyId}}",
+                    "keys",
+                    ":email"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "userIds",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "userIds",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f1acc757-1343-4142-8a14-d4c21072f6d3",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pcgs",
+                    "key-based",
+                    "network-policy-{{policyId}}",
+                    "keys",
+                    ":email"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "userIds",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "userIds",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.extremecloudiq.com",
+      "key": "baseUrl"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required) The network policy ID",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "<long>",
+      "key": "policyId"
+    }
+  ],
+  "info": {
+    "_postman_id": "14a3085d-8aee-4e3d-814a-3d03f047134e",
+    "name": "ExtremeCloud IQ Account Configuration - User Management API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "ExtremeCloud IQ™ API allows customers and partners to create solutions for the management, monitoring, and provisioning\nof any ExtremeCloud IQ™ environment.\n\nAll related resources and documentation are available at [ExtremeCloud IQ Developer Portal](https://developer.extremecloudiq.com/).\nPlease check [Get Started and Tutorial](https://developer.extremecloudiq.com/documentation/) to understand how to use the APIs.\n\nGet the [latest OpenAPI definition](https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI/blob/main/xcloudiq-openapi.yaml)\nfrom [ExtremeCloud IQ OpenAPI GitHub repository](https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI).\n\nPlease have a valid [ExtremeCloud IQ](https://extremecloudiq.com/) account before getting started.\nIf you don't have one, please [register a new account](https://www.extremenetworks.com/cloud-networking/).\n\nContact Support:\n Name: Extreme Networks Support\n Email: support@extremenetworks.com",
+      "type": "text/plain"
+    }
+  }
+}

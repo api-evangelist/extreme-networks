@@ -1,0 +1,171 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ExtremeCloud IQ Account Thread API",
+    "version": "25.9.0-36"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Thread",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get active thread networks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/thread/networks",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number, min = 1"
+              },
+              {
+                "name": "folderId",
+                "value": "",
+                "type": "query",
+                "description": "Thread network config folder id"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page Size, min = 1, max = 100"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "The thread network config fields to return"
+              },
+              {
+                "name": "views",
+                "value": "",
+                "type": "query",
+                "description": "The views to return thread network config fields"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get thread networks with atleast one device."
+        },
+        {
+          "info": {
+            "name": "Get thread network topology",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/thread/topology",
+            "params": [
+              {
+                "name": "networkConfigIds",
+                "value": "",
+                "type": "query",
+                "description": "Thread network config id"
+              },
+              {
+                "name": "routerFields",
+                "value": "",
+                "type": "query",
+                "description": "The thread router fields to return"
+              },
+              {
+                "name": "routerViews",
+                "value": "",
+                "type": "query",
+                "description": "The views to return thread router fields"
+              },
+              {
+                "name": "clientViews",
+                "value": "",
+                "type": "query",
+                "description": "The views to return client fields (Check fields for each view at XiqClientView schema)"
+              },
+              {
+                "name": "clientFields",
+                "value": "",
+                "type": "query",
+                "description": "The client fields to return"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get thread routers, neighboring routers and end-devices."
+        },
+        {
+          "info": {
+            "name": "List thread routers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/thread/routers",
+            "params": [
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query",
+                "description": "The thread router IDs"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number, min = 1"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page Size, min = 1, max = 100"
+              },
+              {
+                "name": "sortField",
+                "value": "",
+                "type": "query",
+                "description": "The sort field"
+              },
+              {
+                "name": "sortOrder",
+                "value": "",
+                "type": "query",
+                "description": "The sort order (ascending by default)"
+              },
+              {
+                "name": "views",
+                "value": "",
+                "type": "query",
+                "description": "The views to return thread router fields"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "The thread router fields to return"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "List thread routers with pagination."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

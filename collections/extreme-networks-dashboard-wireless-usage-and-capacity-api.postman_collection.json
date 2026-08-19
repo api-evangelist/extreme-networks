@@ -1,0 +1,1297 @@
+{
+  "item": [
+    {
+      "id": "74029ab9-527e-4235-ab07-3dcbdb9989bf",
+      "name": "Dashboard - Wireless Usage and Capacity",
+      "description": {
+        "content": "Usage and capacity dashboard",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f2bd65eb-dd84-4494-914b-6f36438a1600",
+          "name": "Wireless usage & capacity grid",
+          "request": {
+            "name": "Wireless usage & capacity grid",
+            "description": {
+              "content": "Returns the usage & capacity grid of wireless devices based on the provided filters. You can filter the results by sites.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "dashboard",
+                "wireless",
+                "usage-capacity",
+                "grid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number, min = 1"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Page Size, min = 1, max = 100"
+                },
+                {
+                  "disabled": false,
+                  "key": "keyword",
+                  "value": "<string>",
+                  "description": "The keyword to search"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortField",
+                  "value": "<string>",
+                  "description": "The sort order"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortOrder",
+                  "value": "<string>",
+                  "description": "The sort order"
+                },
+                {
+                  "disabled": false,
+                  "key": "includeUnassigned",
+                  "value": "<boolean>",
+                  "description": "To include unassigned devices"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"site_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"device_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"building_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"buildings\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"floors\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"has_usage_capacity_issues\": \"<boolean>\",\n  \"has_packet_loss_issues\": \"<boolean>\",\n  \"has_retries_issues\": \"<boolean>\",\n  \"number_filters\": [\n    {\n      \"column_name\": \"<string>\",\n      \"filter_type\": \"<string>\",\n      \"value\": \"<long>\",\n      \"min\": \"<long>\",\n      \"max\": \"<long>\"\n    },\n    {\n      \"column_name\": \"<string>\",\n      \"filter_type\": \"<string>\",\n      \"value\": \"<long>\",\n      \"min\": \"<long>\",\n      \"max\": \"<long>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5238231f-7c5c-47ed-995a-b89575fcd8a9",
+              "name": "Returns the response of usage & capacity grid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dashboard",
+                    "wireless",
+                    "usage-capacity",
+                    "grid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "keyword",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortField",
+                      "value": "HOSTNAME"
+                    },
+                    {
+                      "key": "sortOrder",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includeUnassigned",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"site_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"device_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"building_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"buildings\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"floors\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"has_usage_capacity_issues\": \"<boolean>\",\n  \"has_packet_loss_issues\": \"<boolean>\",\n  \"has_retries_issues\": \"<boolean>\",\n  \"number_filters\": [\n    {\n      \"column_name\": \"<string>\",\n      \"filter_type\": \"<string>\",\n      \"value\": \"<long>\",\n      \"min\": \"<long>\",\n      \"max\": \"<long>\"\n    },\n    {\n      \"column_name\": \"<string>\",\n      \"filter_type\": \"<string>\",\n      \"value\": \"<long>\",\n      \"min\": \"<long>\",\n      \"max\": \"<long>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 7529,\n  \"page\": 6518,\n  \"total_count\": 5265,\n  \"total_pages\": 1641,\n  \"data\": [\n    {\n      \"hostname\": \"string\",\n      \"device_ip\": \"string\",\n      \"site\": \"string\",\n      \"building\": \"string\",\n      \"floor\": \"string\",\n      \"mac_address\": \"string\",\n      \"device_id\": 9797,\n      \"healthy_clients\": 6828,\n      \"unhealthy_clients\": 2928,\n      \"radio_2dot4g_utilization_score\": 9597,\n      \"radio_5g_utilization_score\": 1729,\n      \"radio_6g_utilization_score\": 2342,\n      \"wifi0_retry_score\": 225,\n      \"wifi1_retry_score\": 4047,\n      \"wifi2_retry_score\": 5376,\n      \"wifi0_packet_loss\": 9488,\n      \"wifi1_packet_loss\": 5211,\n      \"wifi2_packet_loss\": 1807,\n      \"wifi0_interference_score\": 3560,\n      \"wifi1_interference_score\": 9948,\n      \"wifi2_interference_score\": 3557,\n      \"wifi0_noise\": 7589,\n      \"wifi1_noise\": 3771,\n      \"wifi2_noise\": 7914,\n      \"link_error_2dot4g\": 4349,\n      \"link_error_5g\": 8126,\n      \"link_error_6g\": 838,\n      \"eth0_unicast_score\": 4342,\n      \"eth0_broadcast_score\": 1205,\n      \"eth0_multicast_score\": 6208,\n      \"eth1_unicast_score\": 8929,\n      \"eth1_broadcast_score\": 6333,\n      \"eth1_multicast_score\": 4918,\n      \"has_usage_capacity_issue\": true\n    },\n    {\n      \"hostname\": \"string\",\n      \"device_ip\": \"string\",\n      \"site\": \"string\",\n      \"building\": \"string\",\n      \"floor\": \"string\",\n      \"mac_address\": \"string\",\n      \"device_id\": 4050,\n      \"healthy_clients\": 7890,\n      \"unhealthy_clients\": 5834,\n      \"radio_2dot4g_utilization_score\": 5707,\n      \"radio_5g_utilization_score\": 4107,\n      \"radio_6g_utilization_score\": 9405,\n      \"wifi0_retry_score\": 3781,\n      \"wifi1_retry_score\": 4025,\n      \"wifi2_retry_score\": 9209,\n      \"wifi0_packet_loss\": 7721,\n      \"wifi1_packet_loss\": 6392,\n      \"wifi2_packet_loss\": 5627,\n      \"wifi0_interference_score\": 5727,\n      \"wifi1_interference_score\": 951,\n      \"wifi2_interference_score\": 8390,\n      \"wifi0_noise\": 8863,\n      \"wifi1_noise\": 2682,\n      \"wifi2_noise\": 7733,\n      \"link_error_2dot4g\": 4559,\n      \"link_error_5g\": 7761,\n      \"link_error_6g\": 825,\n      \"eth0_unicast_score\": 4882,\n      \"eth0_broadcast_score\": 3015,\n      \"eth0_multicast_score\": 2001,\n      \"eth1_unicast_score\": 7116,\n      \"eth1_broadcast_score\": 7810,\n      \"eth1_multicast_score\": 262,\n      \"has_usage_capacity_issue\": false\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e4a2b12c-c066-4d05-977a-739e79afa46d",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dashboard",
+                    "wireless",
+                    "usage-capacity",
+                    "grid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "keyword",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortField",
+                      "value": "HOSTNAME"
+                    },
+                    {
+                      "key": "sortOrder",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includeUnassigned",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"site_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"device_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"building_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"buildings\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"floors\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"has_usage_capacity_issues\": \"<boolean>\",\n  \"has_packet_loss_issues\": \"<boolean>\",\n  \"has_retries_issues\": \"<boolean>\",\n  \"number_filters\": [\n    {\n      \"column_name\": \"<string>\",\n      \"filter_type\": \"<string>\",\n      \"value\": \"<long>\",\n      \"min\": \"<long>\",\n      \"max\": \"<long>\"\n    },\n    {\n      \"column_name\": \"<string>\",\n      \"filter_type\": \"<string>\",\n      \"value\": \"<long>\",\n      \"min\": \"<long>\",\n      \"max\": \"<long>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "39f2d5f7-d916-4ee5-ac98-7faf3483a4ba",
+          "name": "Count of APs with excessive packet loss",
+          "request": {
+            "name": "Count of APs with excessive packet loss",
+            "description": {
+              "content": "Returns the count of wireless devices having excessive packet loss based on the provided filters. You can filter the results by sites.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "dashboard",
+                "wireless",
+                "usage-capacity",
+                "excessive-packet-loss"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "includeUnassigned",
+                  "value": "<boolean>",
+                  "description": "To include unassigned devices"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"site_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "aec2de41-c553-4baa-9bb4-c1410d45463f",
+              "name": "Returns the counts of APs with excessive packet loss based on the filters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dashboard",
+                    "wireless",
+                    "usage-capacity",
+                    "excessive-packet-loss"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "includeUnassigned",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"site_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"excessive_packet_loss_ap_count\": 9982\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4828a750-1c87-4a82-8baf-cc2c09c936ef",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dashboard",
+                    "wireless",
+                    "usage-capacity",
+                    "excessive-packet-loss"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "includeUnassigned",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"site_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "19932773-5f28-4c26-9f83-286552bb42fe",
+          "name": "Count of APs with excessive utilization",
+          "request": {
+            "name": "Count of APs with excessive utilization",
+            "description": {
+              "content": "Returns the count of wireless devices having excessive channel utilization based on the provided filters. You can filter the results by sites.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "dashboard",
+                "wireless",
+                "usage-capacity",
+                "excessive-utilization"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "includeUnassigned",
+                  "value": "<boolean>",
+                  "description": "To include unassigned devices"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"site_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "54f44a0e-0569-44d7-9f7f-4d82c2267c18",
+              "name": "Returns the counts of APs with excessive channel utilization based on the filters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dashboard",
+                    "wireless",
+                    "usage-capacity",
+                    "excessive-utilization"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "includeUnassigned",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"site_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total_ap_count\": 1806,\n  \"radio2_dot4g_utilization_issue_ap_count\": 6115,\n  \"radio5g_utilization_issue_ap_count\": 8807,\n  \"radio6g_utilization_issue_ap_count\": 2334\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ea176007-c39a-4e9a-8895-33a625a9aa48",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dashboard",
+                    "wireless",
+                    "usage-capacity",
+                    "excessive-utilization"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "includeUnassigned",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"site_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d98773f0-722e-42da-bdfb-8f6ee857e7c2",
+          "name": "Count of APs with excessive retries",
+          "request": {
+            "name": "Count of APs with excessive retries",
+            "description": {
+              "content": "Returns the count of wireless devices having excessive retries based on the provided filters. You can filter the results by sites.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "dashboard",
+                "wireless",
+                "usage-capacity",
+                "excessive-retries"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "includeUnassigned",
+                  "value": "<boolean>",
+                  "description": "To include unassigned devices"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"site_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2f30d30b-613a-4c62-a771-94c884e47d3b",
+              "name": "Returns the counts of APs with excessive retries based on the filters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dashboard",
+                    "wireless",
+                    "usage-capacity",
+                    "excessive-retries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "includeUnassigned",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"site_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"excessive_retries_ap_count\": 5562\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8508ef1c-2279-4f0c-b2a6-fd502ef5f87e",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dashboard",
+                    "wireless",
+                    "usage-capacity",
+                    "excessive-retries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "includeUnassigned",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"site_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a4100d42-63b0-412b-8213-c18838fc6cfe",
+          "name": "Export Wireless usage & capacity grid as CSV File ",
+          "request": {
+            "name": "Export Wireless usage & capacity grid as CSV File ",
+            "description": {
+              "content": "Returns the CSV File of the usage & capacity grid of wireless devices based on the provided filters. You can filter the results by sites.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "dashboard",
+                "wireless",
+                "usage-capacity",
+                "export"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "keyword",
+                  "value": "<string>",
+                  "description": "The keyword to search"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortField",
+                  "value": "<string>",
+                  "description": "The sort field"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortOrder",
+                  "value": "<string>",
+                  "description": "The sort order"
+                },
+                {
+                  "disabled": false,
+                  "key": "includeUnassigned",
+                  "value": "<boolean>",
+                  "description": "To include unassigned devices"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"site_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"device_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"building_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"buildings\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"floors\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"has_usage_capacity_issues\": \"<boolean>\",\n  \"number_filters\": [\n    {\n      \"column_name\": \"<string>\",\n      \"filter_type\": \"<string>\",\n      \"value\": \"<long>\",\n      \"min\": \"<long>\",\n      \"max\": \"<long>\"\n    },\n    {\n      \"column_name\": \"<string>\",\n      \"filter_type\": \"<string>\",\n      \"value\": \"<long>\",\n      \"min\": \"<long>\",\n      \"max\": \"<long>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4f5c290d-9bb8-4cab-8eb1-4a2d5163d1b7",
+              "name": "Accepted - The request has been accepted for processing, but the processing has not been completed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dashboard",
+                    "wireless",
+                    "usage-capacity",
+                    "export"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "keyword",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortField",
+                      "value": "HOSTNAME"
+                    },
+                    {
+                      "key": "sortOrder",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includeUnassigned",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"site_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"device_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"building_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"buildings\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"floors\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"has_usage_capacity_issues\": \"<boolean>\",\n  \"number_filters\": [\n    {\n      \"column_name\": \"<string>\",\n      \"filter_type\": \"<string>\",\n      \"value\": \"<long>\",\n      \"min\": \"<long>\",\n      \"max\": \"<long>\"\n    },\n    {\n      \"column_name\": \"<string>\",\n      \"filter_type\": \"<string>\",\n      \"value\": \"<long>\",\n      \"min\": \"<long>\",\n      \"max\": \"<long>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Cache control directives",
+                  "key": "cache-control",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "The length of the response body in octets (8-bit bytes)",
+                  "key": "content-length",
+                  "value": "2272"
+                },
+                {
+                  "disabled": false,
+                  "description": "The date and time at which the message was originated",
+                  "key": "date",
+                  "value": "1966-10-20T13:45:07.819Z"
+                },
+                {
+                  "disabled": false,
+                  "description": "The date/time after which the response is considered stale",
+                  "key": "expires",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "The URL to which the client should navigate to check the status of the request",
+                  "key": "location",
+                  "value": "http://kJGqAhCtpLyA.vpddY2FCS.Yhe0EEW4OY0M7dcBp.rCOvx"
+                },
+                {
+                  "disabled": false,
+                  "description": "Implementation-specific directives that might apply to any recipient along the request-response chain",
+                  "key": "pragma",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the client is allowed to make in a given time period",
+                  "key": "ratelimit-limit",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window",
+                  "key": "ratelimit-remaining",
+                  "value": "2272"
+                },
+                {
+                  "disabled": false,
+                  "description": "The amount of time to wait before making a follow-up request",
+                  "key": "retry-after",
+                  "value": "2272"
+                },
+                {
+                  "disabled": false,
+                  "description": "A name for the server",
+                  "key": "server",
+                  "value": "nginx"
+                },
+                {
+                  "disabled": false,
+                  "description": "Prevents the browser from interpreting files as a different MIME type",
+                  "key": "x-content-type-options",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "Enables cross-site scripting (XSS) filter",
+                  "key": "x-xss-protection",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "63a4c3e5-b7a5-47a3-99d6-6325d018ac63",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dashboard",
+                    "wireless",
+                    "usage-capacity",
+                    "export"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "keyword",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortField",
+                      "value": "HOSTNAME"
+                    },
+                    {
+                      "key": "sortOrder",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includeUnassigned",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"site_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"device_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"building_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"buildings\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"floors\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"has_usage_capacity_issues\": \"<boolean>\",\n  \"number_filters\": [\n    {\n      \"column_name\": \"<string>\",\n      \"filter_type\": \"<string>\",\n      \"value\": \"<long>\",\n      \"min\": \"<long>\",\n      \"max\": \"<long>\"\n    },\n    {\n      \"column_name\": \"<string>\",\n      \"filter_type\": \"<string>\",\n      \"value\": \"<long>\",\n      \"min\": \"<long>\",\n      \"max\": \"<long>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "210ba43f-4d1b-4607-9274-4ddca09614a0",
+          "name": "Download the Export CSV file",
+          "request": {
+            "name": "Download the Export CSV file",
+            "description": {
+              "content": "Returns the CSV File of the Wireless Usage And Capacity status based on the provided filters.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "dashboard",
+                "wireless",
+                "usage-capacity",
+                "reports",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The report ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/octet-stream"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "0798cfff-b7d1-46f5-a5a6-c0f2f2248b2b",
+              "name": "Returns the CSV File of the usage and capacity grid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dashboard",
+                    "wireless",
+                    "usage-capacity",
+                    "reports",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The report ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/octet-stream"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/octet-stream"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "91c302f5-018e-4f61-b3f4-c175ea5af14f",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dashboard",
+                    "wireless",
+                    "usage-capacity",
+                    "reports",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The report ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.extremecloudiq.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "850a845f-9c73-4e35-b340-9dbe56d63a89",
+    "name": "ExtremeCloud IQ Account Dashboard - Wireless Usage and Capacity API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "ExtremeCloud IQ™ API allows customers and partners to create solutions for the management, monitoring, and provisioning\nof any ExtremeCloud IQ™ environment.\n\nAll related resources and documentation are available at [ExtremeCloud IQ Developer Portal](https://developer.extremecloudiq.com/).\nPlease check [Get Started and Tutorial](https://developer.extremecloudiq.com/documentation/) to understand how to use the APIs.\n\nGet the [latest OpenAPI definition](https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI/blob/main/xcloudiq-openapi.yaml)\nfrom [ExtremeCloud IQ OpenAPI GitHub repository](https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI).\n\nPlease have a valid [ExtremeCloud IQ](https://extremecloudiq.com/) account before getting started.\nIf you don't have one, please [register a new account](https://www.extremenetworks.com/cloud-networking/).\n\nContact Support:\n Name: Extreme Networks Support\n Email: support@extremenetworks.com",
+      "type": "text/plain"
+    }
+  }
+}

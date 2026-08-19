@@ -1,0 +1,294 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ExtremeCloud IQ Account Dashboard - Wired Device Health API",
+    "version": "25.9.0-36"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Dashboard - Wired Device Health",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Device health summary for wired devices",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/dashboard/wired/device-health/summary",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns the count of total wired devices and total devices with health issues based on the provided filters. You can filter the results by sites."
+        },
+        {
+          "info": {
+            "name": "CPU usage issues for wired devices",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/dashboard/wired/device-health/cpu-usage-issues",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns the count of wired devices having CPU usage issues (CPU usage >= 95%) based on the provided filters. You can filter the results by sites."
+        },
+        {
+          "info": {
+            "name": "Memory usage issues for wired devices",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/dashboard/wired/device-health/memory-usage-issues",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns the count of wired devices having memory usage issues (memory usage >= 95%) based on the provided filters. You can filter the results by sites."
+        },
+        {
+          "info": {
+            "name": "Temperature issues for wired devices",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/dashboard/wired/device-health/temperature-issues",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns the count of wired devices having temperature issues based on the provided filters. You can filter the results by sites."
+        },
+        {
+          "info": {
+            "name": "PoE usage issues for wired devices",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/dashboard/wired/device-health/poe-usage-issues",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns the count of wired devices having PoE usage issues based on the provided filters. You can filter the results by sites."
+        },
+        {
+          "info": {
+            "name": "Fan status issues for wired devices",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/dashboard/wired/device-health/fan-issues",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns the count of wired devices having fan status issues based on the provided filters. You can filter the results by sites."
+        },
+        {
+          "info": {
+            "name": "PSU status issues for wired devices",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/dashboard/wired/device-health/psu-issues",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns the count of wired devices having PSU status issues based on the provided filters. You can filter the results by sites."
+        },
+        {
+          "info": {
+            "name": "Wired Device Health Grid",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/dashboard/wired/device-health/grid",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number, min = 1"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page Size, min = 1, max = 100"
+              },
+              {
+                "name": "keyword",
+                "value": "",
+                "type": "query",
+                "description": "The keyword to search"
+              },
+              {
+                "name": "sortField",
+                "value": "",
+                "type": "query",
+                "description": "The sort field"
+              },
+              {
+                "name": "sortOrder",
+                "value": "",
+                "type": "query",
+                "description": "The sort order"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns the device health grid of wired devices based on the provided filters. The results can be filtered by sites."
+        },
+        {
+          "info": {
+            "name": "PoE usage status for wired devices",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/dashboard/wired/device-health/poe-usage-status",
+            "params": [
+              {
+                "name": "deviceId",
+                "value": "",
+                "type": "query",
+                "description": "The device ID to provide the PoE usage (all the slots will be provided for a stack)"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns the PoE usage for wired devices based on the provided device ID."
+        },
+        {
+          "info": {
+            "name": "Temperature status for wired devices",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/dashboard/wired/device-health/temperature-status",
+            "params": [
+              {
+                "name": "deviceId",
+                "value": "",
+                "type": "query",
+                "description": "The device ID to provide the temperature (all the slots will be provided for a stack)"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns the temperature for wired devices based on the provided device ID."
+        },
+        {
+          "info": {
+            "name": "Fan status for wired devices",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/dashboard/wired/device-health/fan-status",
+            "params": [
+              {
+                "name": "deviceId",
+                "value": "",
+                "type": "query",
+                "description": "The device ID to provide the fan health status (all the slots will be provided for a stack)"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns the fan health status for wired devices based on the provided device ID."
+        },
+        {
+          "info": {
+            "name": "PSU status for wired devices",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/dashboard/wired/device-health/psu-status",
+            "params": [
+              {
+                "name": "deviceId",
+                "value": "",
+                "type": "query",
+                "description": "The device ID to provide the fan health status (all the slots will be provided for a stack)"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns the PSU health status for wired devices based on the provided device ID."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

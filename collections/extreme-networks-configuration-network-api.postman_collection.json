@@ -1,0 +1,1355 @@
+{
+  "item": [
+    {
+      "id": "165f57c8-37d9-434b-8681-834ef696e954",
+      "name": "Configuration - Network",
+      "description": {
+        "content": "Tunnel Concentrator Service, Network service",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e54dbd2b-7534-4ae3-955f-13fff00b3a3d",
+          "name": "List Tunnel Concentrator services",
+          "request": {
+            "name": "List Tunnel Concentrator services",
+            "description": {
+              "content": "Get a page of Tunnel Concentrator services.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tunnel-concentrators"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number, min = 1"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Page Size, min = 1, max = 100"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "3dc310b1-de09-4a10-b153-a6ef0bd5f6a3",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tunnel-concentrators"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 7748,\n  \"page\": 6050,\n  \"total_count\": 4685,\n  \"total_pages\": 2036,\n  \"data\": [\n    {\n      \"create_time\": \"1985-12-31T03:16:37.424Z\",\n      \"id\": 8551,\n      \"name\": \"string\",\n      \"native_vlan\": 3466,\n      \"org_id\": 3860,\n      \"primary_bridging_interface\": 3,\n      \"primary_listening_interface\": 3,\n      \"primary_tagged\": false,\n      \"primary_tc\": 2099,\n      \"primary_vlan\": 1366,\n      \"redundant\": true,\n      \"tunnel_address\": \"81.221.202.207/30\",\n      \"update_time\": \"1992-04-01T04:35:22.712Z\",\n      \"decription\": \"string\",\n      \"backup_tc\": 6130,\n      \"backup_listening_interface\": 2,\n      \"backup_bridging_interface\": 2,\n      \"backup_vlan\": 687,\n      \"backup_tagged\": true,\n      \"primary_ip\": \"114.170.220.137\",\n      \"backup_ip\": \"202.151.79.174\",\n      \"router_id\": 1,\n      \"gateway\": \"81.189.0.179\",\n      \"blockNonEssentialBroadcast\": true,\n      \"arpProxy\": true,\n      \"multicastRules\": [\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      ]\n    },\n    {\n      \"create_time\": \"2012-03-11T01:09:06.847Z\",\n      \"id\": 9334,\n      \"name\": \"string\",\n      \"native_vlan\": 790,\n      \"org_id\": 6741,\n      \"primary_bridging_interface\": 3,\n      \"primary_listening_interface\": 1,\n      \"primary_tagged\": false,\n      \"primary_tc\": 3550,\n      \"primary_vlan\": 2752,\n      \"redundant\": true,\n      \"tunnel_address\": \"65.251.8.227/19\",\n      \"update_time\": \"1994-03-12T10:17:59.746Z\",\n      \"decription\": \"string\",\n      \"backup_tc\": 5644,\n      \"backup_listening_interface\": 2,\n      \"backup_bridging_interface\": 2,\n      \"backup_vlan\": 1210,\n      \"backup_tagged\": false,\n      \"primary_ip\": \"132.78.192.166\",\n      \"backup_ip\": \"114.246.224.158\",\n      \"router_id\": 1,\n      \"gateway\": \"101.19.151.46\",\n      \"blockNonEssentialBroadcast\": true,\n      \"arpProxy\": true,\n      \"multicastRules\": [\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "86536faa-8d37-43ac-9b06-79ae5d7c5422",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tunnel-concentrators"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1edfac69-efda-41a6-a633-b7e91bd868fa",
+          "name": "Create Tunnel Concentrator Service",
+          "request": {
+            "name": "Create Tunnel Concentrator Service",
+            "description": {
+              "content": "Create a new Tunnel Concentrator Service.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tunnel-concentrators"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"redundant\": \"<boolean>\",\n  \"primary_tc\": \"<long>\",\n  \"primary_listening_interface\": \"<integer>\",\n  \"primary_vlan\": \"<integer>\",\n  \"primary_tagged\": \"<boolean>\",\n  \"primary_bridging_interface\": \"<integer>\",\n  \"tunnel_address\": \"<string>\",\n  \"native_vlan\": \"<integer>\",\n  \"decription\": \"<string>\",\n  \"backup_tc\": \"<long>\",\n  \"backup_listening_interface\": \"<integer>\",\n  \"backup_bridging_interface\": \"<integer>\",\n  \"backup_vlan\": \"<integer>\",\n  \"backup_tagged\": \"<boolean>\",\n  \"primary_ip\": \"<ipv4>\",\n  \"backup_ip\": \"<ipv4>\",\n  \"router_id\": 1,\n  \"gateway\": \"<ipv4>\",\n  \"blockNonEssentialBroadcast\": true,\n  \"arpProxy\": true,\n  \"multicastRules\": [\n    {\n      \"ip\": \"<string>\"\n    },\n    {\n      \"ip\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6121d9d6-ab77-4499-ab37-a05f27ca2918",
+              "name": "Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tunnel-concentrators"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"redundant\": \"<boolean>\",\n  \"primary_tc\": \"<long>\",\n  \"primary_listening_interface\": \"<integer>\",\n  \"primary_vlan\": \"<integer>\",\n  \"primary_tagged\": \"<boolean>\",\n  \"primary_bridging_interface\": \"<integer>\",\n  \"tunnel_address\": \"<string>\",\n  \"native_vlan\": \"<integer>\",\n  \"decription\": \"<string>\",\n  \"backup_tc\": \"<long>\",\n  \"backup_listening_interface\": \"<integer>\",\n  \"backup_bridging_interface\": \"<integer>\",\n  \"backup_vlan\": \"<integer>\",\n  \"backup_tagged\": \"<boolean>\",\n  \"primary_ip\": \"<ipv4>\",\n  \"backup_ip\": \"<ipv4>\",\n  \"router_id\": 1,\n  \"gateway\": \"<ipv4>\",\n  \"blockNonEssentialBroadcast\": true,\n  \"arpProxy\": true,\n  \"multicastRules\": [\n    {\n      \"ip\": \"<string>\"\n    },\n    {\n      \"ip\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"create_time\": \"1955-08-03T06:39:27.549Z\",\n  \"id\": 9286,\n  \"name\": \"<string>\",\n  \"native_vlan\": \"<integer>\",\n  \"org_id\": 873,\n  \"primary_bridging_interface\": \"<integer>\",\n  \"primary_listening_interface\": \"<integer>\",\n  \"primary_tagged\": \"<boolean>\",\n  \"primary_tc\": \"<long>\",\n  \"primary_vlan\": \"<integer>\",\n  \"redundant\": \"<boolean>\",\n  \"tunnel_address\": \"<string>\",\n  \"update_time\": \"1982-10-25T18:02:27.375Z\",\n  \"decription\": \"<string>\",\n  \"backup_tc\": \"<long>\",\n  \"backup_listening_interface\": \"<integer>\",\n  \"backup_bridging_interface\": \"<integer>\",\n  \"backup_vlan\": \"<integer>\",\n  \"backup_tagged\": \"<boolean>\",\n  \"primary_ip\": \"<ipv4>\",\n  \"backup_ip\": \"<ipv4>\",\n  \"router_id\": 1,\n  \"gateway\": \"<ipv4>\",\n  \"blockNonEssentialBroadcast\": true,\n  \"arpProxy\": true,\n  \"multicastRules\": [\n    {\n      \"ip\": \"<string>\"\n    },\n    {\n      \"ip\": \"<string>\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "32ab5189-355e-4135-8601-8ee824f34291",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tunnel-concentrators"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"redundant\": \"<boolean>\",\n  \"primary_tc\": \"<long>\",\n  \"primary_listening_interface\": \"<integer>\",\n  \"primary_vlan\": \"<integer>\",\n  \"primary_tagged\": \"<boolean>\",\n  \"primary_bridging_interface\": \"<integer>\",\n  \"tunnel_address\": \"<string>\",\n  \"native_vlan\": \"<integer>\",\n  \"decription\": \"<string>\",\n  \"backup_tc\": \"<long>\",\n  \"backup_listening_interface\": \"<integer>\",\n  \"backup_bridging_interface\": \"<integer>\",\n  \"backup_vlan\": \"<integer>\",\n  \"backup_tagged\": \"<boolean>\",\n  \"primary_ip\": \"<ipv4>\",\n  \"backup_ip\": \"<ipv4>\",\n  \"router_id\": 1,\n  \"gateway\": \"<ipv4>\",\n  \"blockNonEssentialBroadcast\": true,\n  \"arpProxy\": true,\n  \"multicastRules\": [\n    {\n      \"ip\": \"<string>\"\n    },\n    {\n      \"ip\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2eecb087-f225-421b-b1de-27df03bac155",
+          "name": "Get a Tunnel Concentrator Service",
+          "request": {
+            "name": "Get a Tunnel Concentrator Service",
+            "description": {
+              "content": "Get a specific Tunnel Concentrator Service by ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tunnel-concentrators",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "id",
+                  "description": "(Required) The unique identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "9c6bab7c-35ff-4ac9-8fc7-69027887d0c7",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tunnel-concentrators",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"create_time\": \"1955-08-03T06:39:27.549Z\",\n  \"id\": 9286,\n  \"name\": \"<string>\",\n  \"native_vlan\": \"<integer>\",\n  \"org_id\": 873,\n  \"primary_bridging_interface\": \"<integer>\",\n  \"primary_listening_interface\": \"<integer>\",\n  \"primary_tagged\": \"<boolean>\",\n  \"primary_tc\": \"<long>\",\n  \"primary_vlan\": \"<integer>\",\n  \"redundant\": \"<boolean>\",\n  \"tunnel_address\": \"<string>\",\n  \"update_time\": \"1982-10-25T18:02:27.375Z\",\n  \"decription\": \"<string>\",\n  \"backup_tc\": \"<long>\",\n  \"backup_listening_interface\": \"<integer>\",\n  \"backup_bridging_interface\": \"<integer>\",\n  \"backup_vlan\": \"<integer>\",\n  \"backup_tagged\": \"<boolean>\",\n  \"primary_ip\": \"<ipv4>\",\n  \"backup_ip\": \"<ipv4>\",\n  \"router_id\": 1,\n  \"gateway\": \"<ipv4>\",\n  \"blockNonEssentialBroadcast\": true,\n  \"arpProxy\": true,\n  \"multicastRules\": [\n    {\n      \"ip\": \"<string>\"\n    },\n    {\n      \"ip\": \"<string>\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "75418417-41e4-49e1-b84b-79cd60c5cf71",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tunnel-concentrators",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b4e1e086-bd14-4de0-88dc-d5c4451cbb3e",
+          "name": "Update a Tunnel Concentrator Service",
+          "request": {
+            "name": "Update a Tunnel Concentrator Service",
+            "description": {
+              "content": "Update a specific Tunnel Concentrator Service.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tunnel-concentrators",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "id",
+                  "description": "(Required) The unique identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"redundant\": \"<boolean>\",\n  \"primary_tc\": \"<long>\",\n  \"primary_listening_interface\": \"<integer>\",\n  \"primary_vlan\": \"<integer>\",\n  \"primary_tagged\": \"<boolean>\",\n  \"primary_bridging_interface\": \"<integer>\",\n  \"tunnel_address\": \"<string>\",\n  \"native_vlan\": \"<integer>\",\n  \"decription\": \"<string>\",\n  \"backup_tc\": \"<long>\",\n  \"backup_listening_interface\": \"<integer>\",\n  \"backup_bridging_interface\": \"<integer>\",\n  \"backup_vlan\": \"<integer>\",\n  \"backup_tagged\": \"<boolean>\",\n  \"primary_ip\": \"<ipv4>\",\n  \"backup_ip\": \"<ipv4>\",\n  \"router_id\": 1,\n  \"gateway\": \"<ipv4>\",\n  \"blockNonEssentialBroadcast\": true,\n  \"arpProxy\": true,\n  \"multicastRules\": [\n    {\n      \"ip\": \"<string>\"\n    },\n    {\n      \"ip\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "cfb39407-299e-4df4-98e8-a9bf6df2957e",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tunnel-concentrators",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"redundant\": \"<boolean>\",\n  \"primary_tc\": \"<long>\",\n  \"primary_listening_interface\": \"<integer>\",\n  \"primary_vlan\": \"<integer>\",\n  \"primary_tagged\": \"<boolean>\",\n  \"primary_bridging_interface\": \"<integer>\",\n  \"tunnel_address\": \"<string>\",\n  \"native_vlan\": \"<integer>\",\n  \"decription\": \"<string>\",\n  \"backup_tc\": \"<long>\",\n  \"backup_listening_interface\": \"<integer>\",\n  \"backup_bridging_interface\": \"<integer>\",\n  \"backup_vlan\": \"<integer>\",\n  \"backup_tagged\": \"<boolean>\",\n  \"primary_ip\": \"<ipv4>\",\n  \"backup_ip\": \"<ipv4>\",\n  \"router_id\": 1,\n  \"gateway\": \"<ipv4>\",\n  \"blockNonEssentialBroadcast\": true,\n  \"arpProxy\": true,\n  \"multicastRules\": [\n    {\n      \"ip\": \"<string>\"\n    },\n    {\n      \"ip\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"create_time\": \"1955-08-03T06:39:27.549Z\",\n  \"id\": 9286,\n  \"name\": \"<string>\",\n  \"native_vlan\": \"<integer>\",\n  \"org_id\": 873,\n  \"primary_bridging_interface\": \"<integer>\",\n  \"primary_listening_interface\": \"<integer>\",\n  \"primary_tagged\": \"<boolean>\",\n  \"primary_tc\": \"<long>\",\n  \"primary_vlan\": \"<integer>\",\n  \"redundant\": \"<boolean>\",\n  \"tunnel_address\": \"<string>\",\n  \"update_time\": \"1982-10-25T18:02:27.375Z\",\n  \"decription\": \"<string>\",\n  \"backup_tc\": \"<long>\",\n  \"backup_listening_interface\": \"<integer>\",\n  \"backup_bridging_interface\": \"<integer>\",\n  \"backup_vlan\": \"<integer>\",\n  \"backup_tagged\": \"<boolean>\",\n  \"primary_ip\": \"<ipv4>\",\n  \"backup_ip\": \"<ipv4>\",\n  \"router_id\": 1,\n  \"gateway\": \"<ipv4>\",\n  \"blockNonEssentialBroadcast\": true,\n  \"arpProxy\": true,\n  \"multicastRules\": [\n    {\n      \"ip\": \"<string>\"\n    },\n    {\n      \"ip\": \"<string>\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "79d28525-160e-48f2-8e7c-4e85b4de53d1",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tunnel-concentrators",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"redundant\": \"<boolean>\",\n  \"primary_tc\": \"<long>\",\n  \"primary_listening_interface\": \"<integer>\",\n  \"primary_vlan\": \"<integer>\",\n  \"primary_tagged\": \"<boolean>\",\n  \"primary_bridging_interface\": \"<integer>\",\n  \"tunnel_address\": \"<string>\",\n  \"native_vlan\": \"<integer>\",\n  \"decription\": \"<string>\",\n  \"backup_tc\": \"<long>\",\n  \"backup_listening_interface\": \"<integer>\",\n  \"backup_bridging_interface\": \"<integer>\",\n  \"backup_vlan\": \"<integer>\",\n  \"backup_tagged\": \"<boolean>\",\n  \"primary_ip\": \"<ipv4>\",\n  \"backup_ip\": \"<ipv4>\",\n  \"router_id\": 1,\n  \"gateway\": \"<ipv4>\",\n  \"blockNonEssentialBroadcast\": true,\n  \"arpProxy\": true,\n  \"multicastRules\": [\n    {\n      \"ip\": \"<string>\"\n    },\n    {\n      \"ip\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fe402935-1740-4008-86d4-513b3ee3cd31",
+          "name": "Delete a Tunnel Concentrator Service",
+          "request": {
+            "name": "Delete a Tunnel Concentrator Service",
+            "description": {
+              "content": "Delete a specific Tunnel Concentrator Service by ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tunnel-concentrators",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "id",
+                  "description": "(Required) The unique identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "f55ee66c-045c-473d-a19b-5ae1916d2d5e",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tunnel-concentrators",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e87013ee-6dfd-4869-b876-50f1853da80c",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tunnel-concentrators",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3716a493-9cb2-4f77-bc73-74baa752ead5",
+          "name": "List Network Services",
+          "request": {
+            "name": "List Network Services",
+            "description": {
+              "content": "List a page of Network Services.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "network-services"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number, min = 1"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Page Size, min = 1, max = 100"
+                },
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>",
+                  "description": "Network Service name."
+                },
+                {
+                  "disabled": false,
+                  "key": "ipProtocol",
+                  "value": "<string>",
+                  "description": "IP Protocol, only for custom Application."
+                },
+                {
+                  "disabled": false,
+                  "key": "algType",
+                  "value": "<string>",
+                  "description": "Application Layer Gateway (ALG) type, only for custom Application."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "f6e9ab92-18e8-4d68-96c2-d8c8edaa069d",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "network-services"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ipProtocol",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "algType",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 4530,\n  \"page\": 3960,\n  \"total_count\": 482,\n  \"total_pages\": 9927,\n  \"data\": [\n    {\n      \"org_id\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"service_type\": \"NETWORK\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"ip_protocol\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"protocol_number\": 5861,\n      \"port_number\": 1034,\n      \"alg_type\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    },\n    {\n      \"org_id\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"service_type\": \"NETWORK\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"ip_protocol\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"protocol_number\": 3987,\n      \"port_number\": 9761,\n      \"alg_type\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4d65b592-43a9-48ae-890a-ad098b75e6b0",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "network-services"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ipProtocol",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "algType",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a4aaae2f-9bd1-45d4-9d9c-1b2194782223",
+          "name": "Create Network Service",
+          "request": {
+            "name": "Create Network Service",
+            "description": {
+              "content": "Create a new Network Service.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "network-services"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"ip_protocol\": \"<string>\",\n  \"protocol_number\": \"<integer>\",\n  \"port_number\": \"<integer>\",\n  \"alg_type\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5d14e05e-1121-496f-907a-6b7c72ce3f59",
+              "name": "Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "network-services"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"ip_protocol\": \"<string>\",\n  \"protocol_number\": \"<integer>\",\n  \"port_number\": \"<integer>\",\n  \"alg_type\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"create_time\": \"1992-12-03T05:38:44.626Z\",\n  \"id\": 2099,\n  \"org_id\": 7829,\n  \"service_type\": \"NETWORK\",\n  \"update_time\": \"1978-05-01T15:51:21.599Z\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"ip_protocol\": \"<string>\",\n  \"protocol_number\": \"<integer>\",\n  \"port_number\": \"<integer>\",\n  \"alg_type\": \"<string>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c04dfb53-678d-4414-bdc0-1b4a235f9d89",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "network-services"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"ip_protocol\": \"<string>\",\n  \"protocol_number\": \"<integer>\",\n  \"port_number\": \"<integer>\",\n  \"alg_type\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f6609b38-0804-44fc-bbda-f88ece8050f3",
+          "name": "Delete a Network Service by ID",
+          "request": {
+            "name": "Delete a Network Service by ID",
+            "description": {
+              "content": "Delete a Network Service by ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "network-services",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "id",
+                  "description": "(Required) The unique identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "dd016f7e-38cb-4c6f-b0a4-6324c303e73a",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "network-services",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "075550b2-248b-4539-9aa1-d1ae3e03d37d",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "network-services",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.extremecloudiq.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "247e9a41-e3d6-402d-a5a1-7226443e0ad4",
+    "name": "ExtremeCloud IQ Account Configuration - Network API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "ExtremeCloud IQ™ API allows customers and partners to create solutions for the management, monitoring, and provisioning\nof any ExtremeCloud IQ™ environment.\n\nAll related resources and documentation are available at [ExtremeCloud IQ Developer Portal](https://developer.extremecloudiq.com/).\nPlease check [Get Started and Tutorial](https://developer.extremecloudiq.com/documentation/) to understand how to use the APIs.\n\nGet the [latest OpenAPI definition](https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI/blob/main/xcloudiq-openapi.yaml)\nfrom [ExtremeCloud IQ OpenAPI GitHub repository](https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI).\n\nPlease have a valid [ExtremeCloud IQ](https://extremecloudiq.com/) account before getting started.\nIf you don't have one, please [register a new account](https://www.extremenetworks.com/cloud-networking/).\n\nContact Support:\n Name: Extreme Networks Support\n Email: support@extremenetworks.com",
+      "type": "text/plain"
+    }
+  }
+}

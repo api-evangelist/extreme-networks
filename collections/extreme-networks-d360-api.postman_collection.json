@@ -1,0 +1,3490 @@
+{
+  "item": [
+    {
+      "id": "c63b4ba3-ffeb-4216-b1ee-1ae83447733f",
+      "name": "D360",
+      "description": {
+        "content": "Device 360",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b583df9c-bc7b-4962-b297-e34701c25e96",
+          "name": "Surrounding APs",
+          "request": {
+            "name": "Surrounding APs",
+            "description": {
+              "content": "Get a list of surrounding APs.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "d360",
+                "wireless",
+                "surrounding-aps"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "deviceId",
+                  "value": "<long>",
+                  "description": "(Required) The device ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "startTime",
+                  "value": "<long>",
+                  "description": "(Required) The start time to query, epoch time in milliseconds since 1/1/1970"
+                },
+                {
+                  "disabled": false,
+                  "key": "endTime",
+                  "value": "<long>",
+                  "description": "(Required) The end time to query, epoch time in milliseconds since 1/1/1970"
+                },
+                {
+                  "disabled": false,
+                  "key": "selectedTime",
+                  "value": "<long>",
+                  "description": "The selected time to query, epoch time in milliseconds since 1/1/1970"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number, min = 1"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Page Size, min = 1, max = 100"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"numberFilters\": {\n    \"data\": [\n      {\n        \"column_name\": \"<string>\",\n        \"filter_type\": \"<string>\",\n        \"value\": \"<long>\",\n        \"min\": \"<long>\",\n        \"max\": \"<long>\"\n      },\n      {\n        \"column_name\": \"<string>\",\n        \"filter_type\": \"<string>\",\n        \"value\": \"<long>\",\n        \"min\": \"<long>\",\n        \"max\": \"<long>\"\n      }\n    ]\n  },\n  \"ssids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9adf8295-0c7f-478e-bc11-19e37e35dc6b",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "d360",
+                    "wireless",
+                    "surrounding-aps"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "deviceId",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "startTime",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "selectedTime",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"numberFilters\": {\n    \"data\": [\n      {\n        \"column_name\": \"<string>\",\n        \"filter_type\": \"<string>\",\n        \"value\": \"<long>\",\n        \"min\": \"<long>\",\n        \"max\": \"<long>\"\n      },\n      {\n        \"column_name\": \"<string>\",\n        \"filter_type\": \"<string>\",\n        \"value\": \"<long>\",\n        \"min\": \"<long>\",\n        \"max\": \"<long>\"\n      }\n    ]\n  },\n  \"ssids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 6214,\n  \"page\": 8520,\n  \"total_count\": 9478,\n  \"total_pages\": 3076,\n  \"data\": [\n    {\n      \"mac\": \"string\",\n      \"ssid\": \"string\",\n      \"channelWidth\": \"string\",\n      \"rssi\": 3455,\n      \"mode\": \"string\",\n      \"apType\": 1177,\n      \"isExtremeDevice\": \"string\",\n      \"channelUtilization\": \"string\",\n      \"channelCrcRate\": \"string\",\n      \"clientNum\": 7912\n    },\n    {\n      \"mac\": \"string\",\n      \"ssid\": \"string\",\n      \"channelWidth\": \"string\",\n      \"rssi\": 6025,\n      \"mode\": \"string\",\n      \"apType\": 4087,\n      \"isExtremeDevice\": \"string\",\n      \"channelUtilization\": \"string\",\n      \"channelCrcRate\": \"string\",\n      \"clientNum\": 2212\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7ac21ed1-aa4b-4901-b6ef-57edea67de94",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "d360",
+                    "wireless",
+                    "surrounding-aps"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "deviceId",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "startTime",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "selectedTime",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"numberFilters\": {\n    \"data\": [\n      {\n        \"column_name\": \"<string>\",\n        \"filter_type\": \"<string>\",\n        \"value\": \"<long>\",\n        \"min\": \"<long>\",\n        \"max\": \"<long>\"\n      },\n      {\n        \"column_name\": \"<string>\",\n        \"filter_type\": \"<string>\",\n        \"value\": \"<long>\",\n        \"min\": \"<long>\",\n        \"max\": \"<long>\"\n      }\n    ]\n  },\n  \"ssids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d93b3dc8-a8a9-4aaf-a8af-63d0d8136264",
+          "name": "Wireless Interfaces Stats",
+          "request": {
+            "name": "Wireless Interfaces Stats",
+            "description": {
+              "content": "Get Statistics of wireless interfaces of a device.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "d360",
+                "wireless",
+                "interfaces-stats"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "deviceId",
+                  "value": "<long>",
+                  "description": "(Required) The device ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "startTime",
+                  "value": "<long>",
+                  "description": "(Required) The start time to query, epoch time in milliseconds since 1/1/1970"
+                },
+                {
+                  "disabled": false,
+                  "key": "endTime",
+                  "value": "<long>",
+                  "description": "(Required) The end time to query, epoch time in milliseconds since 1/1/1970"
+                },
+                {
+                  "disabled": false,
+                  "key": "selectedTime",
+                  "value": "<long>",
+                  "description": "The selected time to query, epoch time in milliseconds since 1/1/1970"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "11a7d7ad-5dfd-4766-add0-d6b4274a5dc4",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "d360",
+                    "wireless",
+                    "interfaces-stats"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "deviceId",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "startTime",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "selectedTime",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"wifi0\": {\n      \"ssid_count\": 7597,\n      \"ssids\": [\n        \"string\",\n        \"string\"\n      ],\n      \"number_of_clients\": 5327,\n      \"channel_utilization\": 1763,\n      \"channel\": 130,\n      \"channel_width\": 6610,\n      \"load_balancing\": false,\n      \"band_steering\": true,\n      \"channel_utilization_details\": {\n        \"interference_percentage\": 3374,\n        \"tx_retries_percentage\": 9186,\n        \"rx_retries_percentage\": 3761\n      }\n    },\n    \"wifi1\": {\n      \"ssid_count\": 492,\n      \"ssids\": [\n        \"string\",\n        \"string\"\n      ],\n      \"number_of_clients\": 66,\n      \"channel_utilization\": 456,\n      \"channel\": 4605,\n      \"channel_width\": 6341,\n      \"load_balancing\": true,\n      \"band_steering\": true,\n      \"channel_utilization_details\": {\n        \"interference_percentage\": 8984,\n        \"tx_retries_percentage\": 1404,\n        \"rx_retries_percentage\": 4711\n      }\n    },\n    \"wifi2\": {\n      \"ssid_count\": 9884,\n      \"ssids\": [\n        \"string\",\n        \"string\"\n      ],\n      \"number_of_clients\": 589,\n      \"channel_utilization\": 8626,\n      \"channel\": 7891,\n      \"channel_width\": 821,\n      \"load_balancing\": false,\n      \"band_steering\": true,\n      \"channel_utilization_details\": {\n        \"interference_percentage\": 6243,\n        \"tx_retries_percentage\": 7828,\n        \"rx_retries_percentage\": 1501\n      },\n      \"afc_status\": \"AVAILABLE\"\n    }\n  },\n  {\n    \"wifi0\": {\n      \"ssid_count\": 1768,\n      \"ssids\": [\n        \"string\",\n        \"string\"\n      ],\n      \"number_of_clients\": 7825,\n      \"channel_utilization\": 4868,\n      \"channel\": 7406,\n      \"channel_width\": 2536,\n      \"load_balancing\": false,\n      \"band_steering\": false,\n      \"channel_utilization_details\": {\n        \"interference_percentage\": 4556,\n        \"tx_retries_percentage\": 1579,\n        \"rx_retries_percentage\": 7959\n      }\n    },\n    \"wifi1\": {\n      \"ssid_count\": 7283,\n      \"ssids\": [\n        \"string\",\n        \"string\"\n      ],\n      \"number_of_clients\": 3994,\n      \"channel_utilization\": 6379,\n      \"channel\": 3873,\n      \"channel_width\": 5773,\n      \"load_balancing\": false,\n      \"band_steering\": true,\n      \"channel_utilization_details\": {\n        \"interference_percentage\": 7636,\n        \"tx_retries_percentage\": 5164,\n        \"rx_retries_percentage\": 2085\n      }\n    },\n    \"wifi2\": {\n      \"ssid_count\": 8803,\n      \"ssids\": [\n        \"string\",\n        \"string\"\n      ],\n      \"number_of_clients\": 4993,\n      \"channel_utilization\": 2361,\n      \"channel\": 5980,\n      \"channel_width\": 5867,\n      \"load_balancing\": false,\n      \"band_steering\": false,\n      \"channel_utilization_details\": {\n        \"interference_percentage\": 5167,\n        \"tx_retries_percentage\": 8674,\n        \"rx_retries_percentage\": 9593\n      },\n      \"afc_status\": \"PENDING\"\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f9da9035-8484-4eea-97dc-dd1da75f0c7e",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "d360",
+                    "wireless",
+                    "interfaces-stats"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "deviceId",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "startTime",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "selectedTime",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7df73980-ee80-43ed-b040-be4fe5aeddda",
+          "name": "Get Device Summary",
+          "request": {
+            "name": "Get Device Summary",
+            "description": {
+              "content": "List the summary of device details.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "d360",
+                "overview",
+                "devices-summary"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "deviceId",
+                  "value": "<long>",
+                  "description": "(Required) The device ID"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "55b6a97d-5ad6-4ad5-8e94-58521beb8235",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "d360",
+                    "overview",
+                    "devices-summary"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "deviceId",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"connected_status\": false,\n  \"active_since\": 246,\n  \"device_health_issues\": 7807,\n  \"usage_and_capacity_issues\": 96,\n  \"client_health_issues\": 4716,\n  \"device_details\": {\n    \"system_name\": \"string\",\n    \"ip_address\": \"string\",\n    \"model\": \"string\",\n    \"sys_up_time\": \"string\",\n    \"os_version\": \"string\",\n    \"location\": \"string\",\n    \"system_mac\": \"string\",\n    \"serial_number\": \"string\",\n    \"system_description\": \"string\",\n    \"software_version\": \"string\",\n    \"device_license_tier\": \"TIER_C\",\n    \"device_license_type\": \"COPILOT\"\n  },\n  \"system_information\": {\n    \"host_name\": \"string\",\n    \"network_policy\": \"string\",\n    \"ssid\": [\n      \"string\",\n      \"string\"\n    ],\n    \"device_model\": \"string\",\n    \"function\": \"SWITCH_DELL\",\n    \"device_template\": \"string\",\n    \"alias\": \"string\",\n    \"configuration_type\": \"string\",\n    \"serial_number\": \"string\",\n    \"iq_engine\": \"string\",\n    \"device_status\": \"UNMANAGED\",\n    \"mgt0_ipv4_address\": \"string\",\n    \"mgt0_ipv6_address\": \"string\",\n    \"ipv4_subnet_mask\": \"string\",\n    \"ipv6_subnet_mask\": \"string\",\n    \"ipv4_default_gateway\": \"string\",\n    \"ipv6_default_gateway\": \"string\",\n    \"mgt0_macaddress\": \"string\",\n    \"dns\": \"string\",\n    \"ntp\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e63ecc47-1a0f-4001-a08b-8f74b60a4919",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "d360",
+                    "overview",
+                    "devices-summary"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "deviceId",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bb9d7293-51c0-4bd0-a7d9-94d7d95bed3a",
+          "name": "Get Device Geo Location",
+          "request": {
+            "name": "Get Device Geo Location",
+            "description": {
+              "content": "Get the geographical location of device.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "d360",
+                "overview",
+                "devices-location"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "deviceId",
+                  "value": "<long>",
+                  "description": "(Required) The device ID"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "ee98d4bb-a4b4-4fda-894b-6eb627381cce",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "d360",
+                    "overview",
+                    "devices-location"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "deviceId",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"gps_last_reported\": 9057,\n  \"latitude\": 4250,\n  \"longitude\": 9451,\n  \"elevation\": 942\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "216c2fa0-fc53-4a68-9b5f-8cd784d15133",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "d360",
+                    "overview",
+                    "devices-location"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "deviceId",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a273b796-cec2-4ae1-a50e-ba42a78c8975",
+          "name": "Alerts Graph",
+          "request": {
+            "name": "Alerts Graph",
+            "description": {
+              "content": "List a list of alerts for Graphing API.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "d360",
+                "alert",
+                "graph"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "startTime",
+                  "value": "<long>",
+                  "description": "(Required) The start time to query, epoch time in milliseconds since 1/1/1970"
+                },
+                {
+                  "disabled": false,
+                  "key": "endTime",
+                  "value": "<long>",
+                  "description": "(Required) The end time to query, epoch time in milliseconds since 1/1/1970"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "47158859-1d34-40ad-99ac-62a77f2ffed8",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "d360",
+                    "alert",
+                    "graph"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startTime",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"value\": 3930,\n      \"timestamp\": 404\n    },\n    {\n      \"value\": 3704,\n      \"timestamp\": 2308\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "dc957faf-b9dd-408f-9858-04654b668096",
+          "name": "Client Graph",
+          "request": {
+            "name": "Client Graph",
+            "description": {
+              "content": "List a list of connected clients for Graphing API of D360.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "d360",
+                "client",
+                "graph"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "deviceId",
+                  "value": "<long>",
+                  "description": "(Required) The device ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "startTime",
+                  "value": "<long>",
+                  "description": "(Required) The start time to query, epoch time in milliseconds since 1/1/1970"
+                },
+                {
+                  "disabled": false,
+                  "key": "endTime",
+                  "value": "<long>",
+                  "description": "(Required) The end time to query, epoch time in milliseconds since 1/1/1970"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"filter_name\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9bd92283-c804-4ab7-9973-e062367dfdc1",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "d360",
+                    "client",
+                    "graph"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "deviceId",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "startTime",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"filter_name\": [\n    \"CONNECTED_CLIENTS\",\n    \"CONNECTED_CLIENTS\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"timestamp\": 840,\n    \"connected_clients\": 7559,\n    \"unique_clients\": 9556,\n    \"poor_health_clients\": 2341\n  },\n  {\n    \"timestamp\": 587,\n    \"connected_clients\": 7058,\n    \"unique_clients\": 9054,\n    \"poor_health_clients\": 7765\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "99995a68-5c58-4cb4-a290-c67ef6d318e3",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "d360",
+                    "client",
+                    "graph"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "deviceId",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "startTime",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"filter_name\": [\n    \"CONNECTED_CLIENTS\",\n    \"CONNECTED_CLIENTS\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5b2105d4-9faa-4b91-bbea-1f112ae254f5",
+          "name": "Device metadata",
+          "request": {
+            "name": "Device metadata",
+            "description": {
+              "content": "The device metadata like timestamp from which device is online and location.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "d360",
+                "device-metadata"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "deviceId",
+                  "value": "<long>",
+                  "description": "(Required) The device ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "deviceType",
+                  "value": "<string>",
+                  "description": "The device type (wired/wireless)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "7d876a8f-11ac-4a82-9517-329e602b3aae",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "d360",
+                    "device-metadata"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "deviceId",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "deviceType",
+                      "value": "WIRED"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"device_data\": {\n    \"folder_id\": 8421,\n    \"device_id\": 2892,\n    \"device_mac_address\": \"string\",\n    \"device_type\": \"string\",\n    \"device_function\": \"string\",\n    \"device_model\": \"string\",\n    \"host_name\": \"string\",\n    \"image_base_url\": \"string\",\n    \"image_file_name\": \"string\",\n    \"image_width\": 1675,\n    \"image_height\": 1166,\n    \"connected_since\": 5553,\n    \"xaxis\": 41,\n    \"yaxis\": 6916\n  },\n  \"device_path\": {\n    \"folder_path_info\": [\n      {\n        \"folder_id\": 1403,\n        \"parent_id\": 2738,\n        \"name\": \"string\",\n        \"folder_type\": \"string\"\n      },\n      {\n        \"folder_id\": 3216,\n        \"parent_id\": 1064,\n        \"name\": \"string\",\n        \"folder_type\": \"string\"\n      }\n    ]\n  },\n  \"network_policy\": {\n    \"policy_id\": 3183,\n    \"policy_name\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "02049961-c3ea-46e8-a7e1-75799f3af713",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "d360",
+                    "device-metadata"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "deviceId",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "deviceType",
+                      "value": "WIRED"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6a397dd9-3cb2-47c9-b7f1-2005bac11d63",
+          "name": "Installation Media-upload",
+          "request": {
+            "name": "Installation Media-upload",
+            "description": {
+              "content": "Upload installation media.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "d360",
+                "installation",
+                "media"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"filePath\": \"<string>\",\n  \"title\": \"<string>\",\n  \"fileDescription\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "37bb7c0c-48f8-4e5e-9d66-d293b31c4f65",
+              "name": "Returns the response of the client health grid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "d360",
+                    "installation",
+                    "media"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"filePath\": \"<string>\",\n  \"title\": \"<string>\",\n  \"fileDescription\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 8906,\n  \"createdAt\": 8370,\n  \"updatedAt\": 9742,\n  \"ownerId\": 5412,\n  \"orgId\": 5133,\n  \"deviceId\": 9013,\n  \"title\": \"string\",\n  \"type\": \"string\",\n  \"size\": 6040,\n  \"height\": 8393,\n  \"width\": 7060,\n  \"originalUrl\": \"string\",\n  \"thumbnailUrl\": \"string\",\n  \"description\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "837d006a-22aa-43a4-9a60-5519f0af5e98",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "d360",
+                    "installation",
+                    "media"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"filePath\": \"<string>\",\n  \"title\": \"<string>\",\n  \"fileDescription\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2376883d-e174-467e-93e1-b27d415943c0",
+          "name": "Installation Media-delete",
+          "request": {
+            "name": "Installation Media-delete",
+            "description": {
+              "content": "Delete installation media.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "d360",
+                "installation",
+                "media"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "mediaId",
+                  "value": "<long>",
+                  "description": "(Required) The id of the media file"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "a8fa6dc7-c119-4024-a2b1-9525bf5de609",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "d360",
+                    "installation",
+                    "media"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "mediaId",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5c797371-9cb1-4a20-9dd6-6f75c758c715",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "d360",
+                    "installation",
+                    "media"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "mediaId",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1668f6b4-90ce-44f4-ba1f-8e7db23b7828",
+          "name": "Wired Interfaces",
+          "request": {
+            "name": "Wired Interfaces",
+            "description": {
+              "content": "Wired Interfaces -Grid.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "d360",
+                "wired",
+                "interface-grid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "deviceId",
+                  "value": "<long>",
+                  "description": "(Required) The device ID"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "7c5e4fa8-8542-4858-bdef-b7c7b849c9f1",
+              "name": "Returns the response of the wired interfaces grid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "d360",
+                    "wired",
+                    "interface-grid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "deviceId",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"status\": \"offline\",\n    \"interface\": \"eth1\",\n    \"poe_usage\": false,\n    \"port\": \"string\",\n    \"speed\": 2858,\n    \"tx_bytes\": 4360,\n    \"rx_bytes\": 8195,\n    \"tx_errors\": 3824,\n    \"rx_errors\": 1637,\n    \"tx_drops\": 4697,\n    \"rx_drops\": 5129\n  },\n  {\n    \"status\": \"online\",\n    \"interface\": \"eth0\",\n    \"poe_usage\": false,\n    \"port\": \"string\",\n    \"speed\": 6019,\n    \"tx_bytes\": 7088,\n    \"rx_bytes\": 877,\n    \"tx_errors\": 7340,\n    \"rx_errors\": 1261,\n    \"tx_drops\": 3081,\n    \"rx_drops\": 3080\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0ba693a2-15aa-4e26-84d9-9b66ddee28d1",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "d360",
+                    "wired",
+                    "interface-grid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "deviceId",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ffaff4fa-9766-47a3-9016-04498fff483e",
+          "name": "Device Location",
+          "request": {
+            "name": "Device Location",
+            "description": {
+              "content": "Retrieves the device location details on the map for the device.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "d360",
+                "device",
+                "location"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "deviceId",
+                  "value": "<long>",
+                  "description": "(Required) The device ID"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "948f5d70-77c1-4c6f-8b7b-723a6fe539de",
+              "name": "Returns the response of the device location",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "d360",
+                    "device",
+                    "location"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "deviceId",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"folder_id\": 8782,\n  \"device_id\": 5857,\n  \"device_mac_address\": \"string\",\n  \"device_hostname\": \"string\",\n  \"device_type\": \"string\",\n  \"device_function\": \"string\",\n  \"x\": 3356.330620444582,\n  \"y\": 6392.313496610394\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "70b29294-3064-49ea-9641-a9afbb3ecee7",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "d360",
+                    "device",
+                    "location"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "deviceId",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e3544498-5e1f-4193-94f5-df25f1a140ac",
+          "name": "Device Issues",
+          "request": {
+            "name": "Device Issues",
+            "description": {
+              "content": "Retrieves the various issues for device.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "d360",
+                "device",
+                "issues"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "deviceId",
+                  "value": "<long>",
+                  "description": "(Required) The device ID"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "d06c30bd-a032-4279-b4ce-4afabffd0c53",
+              "name": "Returns the response of the device issues",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "d360",
+                    "device",
+                    "issues"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "deviceId",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"association_failures\": 694,\n  \"authentication_failures\": 3724,\n  \"ip_address_issues\": 4539,\n  \"excessive_packet_loss_ap_count\": 4978\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c89bf9a6-25b2-4dd6-9964-1f6f6fcf7064",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "d360",
+                    "device",
+                    "issues"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "deviceId",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "adceda8e-18c3-4007-a528-e1fd7e8e0253",
+          "name": "Device Stats",
+          "request": {
+            "name": "Device Stats",
+            "description": {
+              "content": "Grid of Device Stats.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "d360",
+                "device",
+                "stats"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "deviceId",
+                  "value": "<long>",
+                  "description": "(Required) The device ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "startTime",
+                  "value": "<long>",
+                  "description": "(Required) The start time to query, epoch time in milliseconds since 1/1/1970"
+                },
+                {
+                  "disabled": false,
+                  "key": "endTime",
+                  "value": "<long>",
+                  "description": "(Required) The end time to query, epoch time in milliseconds since 1/1/1970"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "12fabc4a-3521-49cd-9812-bf343130e2b7",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "d360",
+                    "device",
+                    "stats"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "deviceId",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "startTime",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"device_id\": 1948,\n    \"hostname\": \"string\",\n    \"device_ip\": \"string\",\n    \"site\": \"string\",\n    \"building\": \"string\",\n    \"floor\": \"string\",\n    \"cpu_usage_percentage\": 3777,\n    \"memory_usage_percentage\": 4915,\n    \"poe_usage_indicator\": true,\n    \"channel_change_count\": 3262,\n    \"wifi_reboots_count\": 586,\n    \"eth0_unicast_score\": 5694,\n    \"eth0_broadcast_score\": 6384,\n    \"eth0_multicast_score\": 3699,\n    \"eth1_unicast_score\": 4228,\n    \"eth1_broadcast_score\": 6234,\n    \"eth1_multicast_score\": 929,\n    \"has_device_health_issue\": false\n  },\n  {\n    \"device_id\": 5013,\n    \"hostname\": \"string\",\n    \"device_ip\": \"string\",\n    \"site\": \"string\",\n    \"building\": \"string\",\n    \"floor\": \"string\",\n    \"cpu_usage_percentage\": 3784,\n    \"memory_usage_percentage\": 6114,\n    \"poe_usage_indicator\": true,\n    \"channel_change_count\": 1010,\n    \"wifi_reboots_count\": 132,\n    \"eth0_unicast_score\": 9127,\n    \"eth0_broadcast_score\": 7284,\n    \"eth0_multicast_score\": 6164,\n    \"eth1_unicast_score\": 1397,\n    \"eth1_broadcast_score\": 2096,\n    \"eth1_multicast_score\": 82,\n    \"has_device_health_issue\": false\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "966c7cf5-5ed5-4838-9610-ce0a207b91ee",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "d360",
+                    "device",
+                    "stats"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "deviceId",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "startTime",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "923f5da1-74f0-43a6-9a89-958aaa7d9de0",
+          "name": "Wireless Interfaces Graph",
+          "request": {
+            "name": "Wireless Interfaces Graph",
+            "description": {
+              "content": "List a list of wireless interfaces metrics for Graphing API.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "d360",
+                "wireless",
+                "interfaces-graph"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "deviceId",
+                  "value": "<long>",
+                  "description": "(Required) The device ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "startTime",
+                  "value": "<long>",
+                  "description": "(Required) The start time to query, epoch time in milliseconds since 1/1/1970"
+                },
+                {
+                  "disabled": false,
+                  "key": "endTime",
+                  "value": "<long>",
+                  "description": "(Required) The end time to query, epoch time in milliseconds since 1/1/1970"
+                },
+                {
+                  "disabled": false,
+                  "key": "channel",
+                  "value": "<string>",
+                  "description": "(Required) The channel filters."
+                },
+                {
+                  "disabled": false,
+                  "key": "source",
+                  "value": "<string>",
+                  "description": "(Required) The source filters."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "a7c25961-6e07-4acb-b2b4-ccfed73fdeb8",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "d360",
+                    "wireless",
+                    "interfaces-graph"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "deviceId",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "startTime",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "channel",
+                      "value": "WIFI0"
+                    },
+                    {
+                      "key": "source",
+                      "value": "CHANNEL_UTILIZATION"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"timestamp\": 1055,\n    \"channel_utilization\": 8050,\n    \"connected_clients\": 6350\n  },\n  {\n    \"timestamp\": 6528,\n    \"channel_utilization\": 6310,\n    \"connected_clients\": 7689\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9a170efd-64c6-4670-9695-7a70deee5038",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "d360",
+                    "wireless",
+                    "interfaces-graph"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "deviceId",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "startTime",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "channel",
+                      "value": "WIFI0"
+                    },
+                    {
+                      "key": "source",
+                      "value": "CHANNEL_UTILIZATION"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f9515ef4-5dac-49ad-96d0-f5f29a299d61",
+          "name": "Client Stats",
+          "request": {
+            "name": "Client Stats",
+            "description": {
+              "content": "Client statistics.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "d360",
+                "client",
+                "stats"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "deviceId",
+                  "value": "<long>",
+                  "description": "(Required) The device ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "startTime",
+                  "value": "<long>",
+                  "description": "(Required) The start time to query, epoch time in milliseconds since 1/1/1970"
+                },
+                {
+                  "disabled": false,
+                  "key": "endTime",
+                  "value": "<long>",
+                  "description": "(Required) The end time to query, epoch time in milliseconds since 1/1/1970"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "78391117-8d43-4c7d-b936-6cc393091e68",
+              "name": "Returns the client statistics.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "d360",
+                    "client",
+                    "stats"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "deviceId",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "startTime",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total_clients\": 2165,\n  \"poor_health_clients\": 1615,\n  \"unique_clients\": 4289\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "891cabbd-cf61-4ec5-ba66-8d73fd2b7f04",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "d360",
+                    "client",
+                    "stats"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "deviceId",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "startTime",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ca3e4e55-e31a-4299-a2dc-ac489846f015",
+          "name": "Wireless Interfaces per device",
+          "request": {
+            "name": "Wireless Interfaces per device",
+            "description": {
+              "content": "List available wifi interfaces on device model.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "d360",
+                "device",
+                "interfaces"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "deviceModel",
+                  "value": "<string>",
+                  "description": "(Required) The model of device"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "bfe0bc5c-fc45-46f1-873b-4f791ae9990a",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "d360",
+                    "device",
+                    "interfaces"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "deviceModel",
+                      "value": "AP_650"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  \"WIFI0\",\n  \"WIFI0\"\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4ea672a7-804d-4a76-9782-e92e0fcaa711",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "d360",
+                    "device",
+                    "interfaces"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "deviceModel",
+                      "value": "AP_650"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e0d791a7-b6c8-4f78-8584-9297a97585f3",
+          "name": "Client Grid",
+          "request": {
+            "name": "Client Grid",
+            "description": {
+              "content": "List a list of connected clients for Graphing API of D360.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "d360",
+                "client",
+                "grid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number, min = 1"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Page Size, min = 1, max = 100"
+                },
+                {
+                  "disabled": false,
+                  "key": "keyword",
+                  "value": "<string>",
+                  "description": "The keyword to search"
+                },
+                {
+                  "disabled": false,
+                  "key": "deviceId",
+                  "value": "<long>",
+                  "description": "(Required) The device ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "startTime",
+                  "value": "<long>",
+                  "description": "(Required) The start time to query, epoch time in milliseconds since 1/1/1970"
+                },
+                {
+                  "disabled": false,
+                  "key": "endTime",
+                  "value": "<long>",
+                  "description": "(Required) The end time to query, epoch time in milliseconds since 1/1/1970"
+                },
+                {
+                  "disabled": false,
+                  "key": "selectedTime",
+                  "value": "<long>",
+                  "description": "The selected time to query, epoch time in milliseconds since 1/1/1970"
+                },
+                {
+                  "disabled": false,
+                  "key": "clientStatus",
+                  "value": "<string>",
+                  "description": "The client statistics filter."
+                },
+                {
+                  "disabled": false,
+                  "key": "clientStatus",
+                  "value": "<string>",
+                  "description": "The client statistics filter."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "b995fc24-dd8a-4b9c-a594-eaf0ee13a2c9",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "d360",
+                    "client",
+                    "grid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "keyword",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "deviceId",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "startTime",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "selectedTime",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "clientStatus",
+                      "value": "POOR_HEALTH"
+                    },
+                    {
+                      "key": "clientStatus",
+                      "value": "POOR_HEALTH"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 9093,\n  \"page\": 1876,\n  \"total_count\": 7421,\n  \"total_pages\": 305,\n  \"data\": [\n    {\n      \"connection_status\": false,\n      \"client_hostname\": \"string\",\n      \"client_ip\": \"string\",\n      \"site\": \"string\",\n      \"building\": \"string\",\n      \"floor\": \"string\",\n      \"association_issues\": 4315,\n      \"authentication_issues\": 8273,\n      \"ip_address_issues\": 6899,\n      \"snr\": 1461,\n      \"rssi\": 7434,\n      \"channel_utilization_score\": 2597,\n      \"frequency\": \"string\",\n      \"roaming_issues\": 728,\n      \"ipv4\": \"string\",\n      \"connected_device_mac\": \"string\",\n      \"ssid\": \"string\",\n      \"vlan\": 4891,\n      \"username\": \"string\",\n      \"authentication\": \"string\",\n      \"encryption\": \"string\",\n      \"user_profile\": \"string\",\n      \"alias\": \"string\",\n      \"category_assignment\": \"string\",\n      \"ipv6\": \"string\",\n      \"client_device_id\": 6814,\n      \"device_id\": 6656,\n      \"last_session_start_time\": 5366,\n      \"operating_system\": \"string\",\n      \"client_mac\": \"string\"\n    },\n    {\n      \"connection_status\": false,\n      \"client_hostname\": \"string\",\n      \"client_ip\": \"string\",\n      \"site\": \"string\",\n      \"building\": \"string\",\n      \"floor\": \"string\",\n      \"association_issues\": 2125,\n      \"authentication_issues\": 8337,\n      \"ip_address_issues\": 8941,\n      \"snr\": 3024,\n      \"rssi\": 2045,\n      \"channel_utilization_score\": 6203,\n      \"frequency\": \"string\",\n      \"roaming_issues\": 3068,\n      \"ipv4\": \"string\",\n      \"connected_device_mac\": \"string\",\n      \"ssid\": \"string\",\n      \"vlan\": 9618,\n      \"username\": \"string\",\n      \"authentication\": \"string\",\n      \"encryption\": \"string\",\n      \"user_profile\": \"string\",\n      \"alias\": \"string\",\n      \"category_assignment\": \"string\",\n      \"ipv6\": \"string\",\n      \"client_device_id\": 1782,\n      \"device_id\": 5189,\n      \"last_session_start_time\": 5379,\n      \"operating_system\": \"string\",\n      \"client_mac\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2014ebff-50a8-4766-9c01-9f606d2ae662",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "d360",
+                    "client",
+                    "grid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "keyword",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "deviceId",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "startTime",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "selectedTime",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "clientStatus",
+                      "value": "POOR_HEALTH"
+                    },
+                    {
+                      "key": "clientStatus",
+                      "value": "POOR_HEALTH"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b619e9da-bb81-49c3-a645-c32f534287ad",
+          "name": "SSID metadata of surrounding APs",
+          "request": {
+            "name": "SSID metadata of surrounding APs",
+            "description": {
+              "content": "Grid of Device Stats.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "d360",
+                "wireless",
+                "surrounding-aps",
+                "ssid-metadata"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "deviceId",
+                  "value": "<long>",
+                  "description": "(Required) The device ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "startTime",
+                  "value": "<long>",
+                  "description": "(Required) The start time to query, epoch time in milliseconds since 1/1/1970"
+                },
+                {
+                  "disabled": false,
+                  "key": "endTime",
+                  "value": "<long>",
+                  "description": "(Required) The end time to query, epoch time in milliseconds since 1/1/1970"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "5d62b57b-6169-4fb2-8823-93c86cd872af",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "d360",
+                    "wireless",
+                    "surrounding-aps",
+                    "ssid-metadata"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "deviceId",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "startTime",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  \"string\",\n  \"string\"\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3ff9d71d-4a12-4f77-b8b2-b80ba57d5cb9",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "d360",
+                    "wireless",
+                    "surrounding-aps",
+                    "ssid-metadata"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "deviceId",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "startTime",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "33df02b5-5794-4589-9f45-930ad0c8ed8b",
+          "name": "Events Graph",
+          "request": {
+            "name": "Events Graph",
+            "description": {
+              "content": "Retrieve a time-series graph of event metrics. Each timestamp includes an array of event types with their respective counts. Only selected filters will be included in the response.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "d360",
+                "event",
+                "graph"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "startTime",
+                  "value": "<long>",
+                  "description": "(Required) The start time to query, epoch time in milliseconds since 1/1/1970"
+                },
+                {
+                  "disabled": false,
+                  "key": "endTime",
+                  "value": "<long>",
+                  "description": "(Required) The end time to query, epoch time in milliseconds since 1/1/1970"
+                },
+                {
+                  "disabled": false,
+                  "key": "deviceId",
+                  "value": "<long>",
+                  "description": "(Required) The device ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>",
+                  "description": "Filter events by type. Only selected event types will be included in the response. Valid values: `CRITICAL`, `MAJOR`, `MINOR`, `INFO`, `ACTIVE`, `CLEARED`, `ALL`.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>",
+                  "description": "Filter events by type. Only selected event types will be included in the response. Valid values: `CRITICAL`, `MAJOR`, `MINOR`, `INFO`, `ACTIVE`, `CLEARED`, `ALL`.\n"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f6876015-ba77-4d1f-bec2-b94e2accf7f3",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "d360",
+                    "event",
+                    "graph"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startTime",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "deviceId",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "CRITICAL"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "MAJOR"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"timestamp\": 1293,\n      \"events\": [\n        {\n          \"event_name\": \"ALL\",\n          \"count\": 3211\n        },\n        {\n          \"event_name\": \"MINOR\",\n          \"count\": 8861\n        }\n      ]\n    },\n    {\n      \"timestamp\": 4720,\n      \"events\": [\n        {\n          \"event_name\": \"MINOR\",\n          \"count\": 4449\n        },\n        {\n          \"event_name\": \"MINOR\",\n          \"count\": 9039\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d0ad0637-ac30-4a07-94c8-204a8ac34fca",
+          "name": "Wired QOS queue grid",
+          "request": {
+            "name": "Wired QOS queue grid",
+            "description": {
+              "content": "Returns all QOS queue statistics for a wired device.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "d360",
+                "wired",
+                "queue-grid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number, min = 1"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Page Size, min = 1, max = 100"
+                },
+                {
+                  "disabled": false,
+                  "key": "deviceId",
+                  "value": "<long>",
+                  "description": "(Required) The unique device identifier. It can be virtual slot id and all stack ports will be returned or a member slot id and only that slot ports will be returned."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "590d5b43-b4c5-4f1e-b8ee-8b44dc9f2450",
+              "name": "Returns all QOS queue statistics for a wired device",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "d360",
+                    "wired",
+                    "queue-grid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "deviceId",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 3838,\n  \"page\": 9841,\n  \"total_count\": 2867,\n  \"total_pages\": 1180,\n  \"data\": [\n    [\n      {\n        \"value\": \"<Error: Could not resolve allOf schema\"\n      },\n      {\n        \"value\": \"<Error: Could not resolve allOf schema\"\n      }\n    ],\n    [\n      {\n        \"value\": \"<Error: Could not resolve allOf schema\"\n      },\n      {\n        \"value\": \"<Error: Could not resolve allOf schema\"\n      }\n    ]\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "49e45a00-0d80-4330-ba27-e9165503f857",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "d360",
+                    "wired",
+                    "queue-grid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "deviceId",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.extremecloudiq.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "f395d900-e4f0-483a-9de9-ef7e4e5ae5fc",
+    "name": "ExtremeCloud IQ Account D360 API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "ExtremeCloud IQ™ API allows customers and partners to create solutions for the management, monitoring, and provisioning\nof any ExtremeCloud IQ™ environment.\n\nAll related resources and documentation are available at [ExtremeCloud IQ Developer Portal](https://developer.extremecloudiq.com/).\nPlease check [Get Started and Tutorial](https://developer.extremecloudiq.com/documentation/) to understand how to use the APIs.\n\nGet the [latest OpenAPI definition](https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI/blob/main/xcloudiq-openapi.yaml)\nfrom [ExtremeCloud IQ OpenAPI GitHub repository](https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI).\n\nPlease have a valid [ExtremeCloud IQ](https://extremecloudiq.com/) account before getting started.\nIf you don't have one, please [register a new account](https://www.extremenetworks.com/cloud-networking/).\n\nContact Support:\n Name: Extreme Networks Support\n Email: support@extremenetworks.com",
+      "type": "text/plain"
+    }
+  }
+}

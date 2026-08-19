@@ -1,0 +1,97 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ExtremeCloud IQ Account Authorization API",
+    "version": "25.9.0-36"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Authorization",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Generate new API token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/auth/apitoken",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Generate a new API token with given permissions and expiration time.  <p> The available permission list can be found via 'GET /auth/permissions' endpoint. <p> User can also provide an optional rate limits parameter to control the rate limiting for the API token."
+        },
+        {
+          "info": {
+            "name": "Get current API token details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/auth/apitoken/info",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Introspect current API token and get detail information."
+        },
+        {
+          "info": {
+            "name": "Validate API token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/auth/apitoken/:validate"
+          },
+          "docs": "Validate JWT format API token."
+        },
+        {
+          "info": {
+            "name": "Get permissions for current login user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/auth/permissions",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get permissions for current login user, which are allowed for generating new API tokens."
+        },
+        {
+          "info": {
+            "name": "Check permissions",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/auth/permissions/:check",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get required permissions for given HTTP request."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

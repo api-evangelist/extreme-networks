@@ -1,0 +1,298 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ExtremeCloud IQ Account Dashboard - Wireless Device Health API",
+    "version": "25.9.0-36"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Dashboard - Wireless Device Health",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Wireless device health grid",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/dashboard/wireless/device-health/grid",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number, min = 1"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page Size, min = 1, max = 100"
+              },
+              {
+                "name": "keyword",
+                "value": "",
+                "type": "query",
+                "description": "The keyword to search"
+              },
+              {
+                "name": "sortField",
+                "value": "",
+                "type": "query",
+                "description": "The sort field"
+              },
+              {
+                "name": "sortOrder",
+                "value": "",
+                "type": "query",
+                "description": "The sort order"
+              },
+              {
+                "name": "includeUnassigned",
+                "value": "",
+                "type": "query",
+                "description": "To include unassigned devices"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns the device health grid of wireless devices based on the provided filters. The results can be filtered by sites."
+        },
+        {
+          "info": {
+            "name": "CPU usage issues for wireless devices",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/dashboard/wireless/device-health/issues/cpu-usage-issues",
+            "params": [
+              {
+                "name": "includeUnassigned",
+                "value": "",
+                "type": "query",
+                "description": "To include unassigned devices"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns the count of wireless devices having CPU usage issues (CPU usage >= 95%) based on the provided filters. You can filter the results by sites."
+        },
+        {
+          "info": {
+            "name": "Memory usage issues for wireless devices",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/dashboard/wireless/device-health/issues/memory-usage-issues",
+            "params": [
+              {
+                "name": "includeUnassigned",
+                "value": "",
+                "type": "query",
+                "description": "To include unassigned devices"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns the count of wireless devices having Memory usage issues (CPU usage >= 95%) based on the provided filters. You can filter the results by sites."
+        },
+        {
+          "info": {
+            "name": "PoE usage issues for wireless devices",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/dashboard/wireless/device-health/issues/poe-usage-issues",
+            "params": [
+              {
+                "name": "includeUnassigned",
+                "value": "",
+                "type": "query",
+                "description": "To include unassigned devices"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns the count of wireless devices having PoE usage issues (Non-adequate power) based on the provided filters. You can filter the results by sites."
+        },
+        {
+          "info": {
+            "name": "Device health summary for wireless devices",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/dashboard/wireless/device-health/summary",
+            "params": [
+              {
+                "name": "includeUnassigned",
+                "value": "",
+                "type": "query",
+                "description": "To include unassigned devices"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns the count of total wireless devices and total devices with health issues based on the provided filters. You can filter the results by sites."
+        },
+        {
+          "info": {
+            "name": "Wireless device reboot summary",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/dashboard/wireless/device-health/reboot/summary",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number, min = 1"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page Size, min = 1, max = 100"
+              },
+              {
+                "name": "deviceId",
+                "value": "",
+                "type": "query",
+                "description": "The deviceId to collect reboot summary"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns the device reboot summary of a device."
+        },
+        {
+          "info": {
+            "name": "Wireless device health grid Export",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/dashboard/wireless/device-health/export",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number, min = 1"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page Size, min = 1, max = 100"
+              },
+              {
+                "name": "keyword",
+                "value": "",
+                "type": "query",
+                "description": "The keyword to search"
+              },
+              {
+                "name": "sortField",
+                "value": "",
+                "type": "query",
+                "description": "The sort field"
+              },
+              {
+                "name": "sortOrder",
+                "value": "",
+                "type": "query",
+                "description": "The sort order"
+              },
+              {
+                "name": "includeUnassigned",
+                "value": "",
+                "type": "query",
+                "description": "To include unassigned devices"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns the device health grid export of wireless devices based on the provided filters. The results can be filtered by sites."
+        },
+        {
+          "info": {
+            "name": "Download the Export CSV file",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/dashboard/wireless/device-health/reports/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The report ID"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns the CSV File of the wireless Device Health status based on the provided filters."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,219 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ExtremeCloud IQ Account HIQ API",
+    "version": "25.9.0-36"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "HIQ",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get HIQ status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/hiq/status",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get Hierarchical ExtremeCloud IQ (HIQ) status."
+        },
+        {
+          "info": {
+            "name": "Get HIQ context",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/hiq/context",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get the current effective HIQ context for reading or creating data in organizations.\nAppliable when HIQ is enabled."
+        },
+        {
+          "info": {
+            "name": "Set HIQ context",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.extremecloudiq.com/hiq/context",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Set the current effective HIQ context for reading or creating data in organizations.\nOnly HIQ Admin can performance this operation when HIQ is enabled."
+        },
+        {
+          "info": {
+            "name": "Get organizations for reading data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/hiq/context/reading",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get organizations for reading data (Empty list means reading data from all organizations in the HIQ).\nAppliable when HIQ is enabled."
+        },
+        {
+          "info": {
+            "name": "Set organizations for reading data",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.extremecloudiq.com/hiq/context/reading",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Set organization for reading data (Empty list means reading data from all organizations in the HIQ).\nOnly HIQ Admin can performance this operation."
+        },
+        {
+          "info": {
+            "name": "Get organization for creating new data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/hiq/context/creating",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get organization for creating new data (Only one organization is active for creating new data).\nAppliable when HIQ is enabled."
+        },
+        {
+          "info": {
+            "name": "Set organization for creating new data",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.extremecloudiq.com/hiq/context/creating",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Set organization for creating new data (Only one organization is active for creating new data).\nOnly HIQ Admin can performance this operation when HIQ is enabled."
+        },
+        {
+          "info": {
+            "name": "List all organizations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/hiq/organizations",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "List all organizations in current HIQ (Available when HIQ is enabled)."
+        },
+        {
+          "info": {
+            "name": "Create a new organization",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/hiq/organizations",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Create a new organization in current HIQ (Available when HIQ is enabled)."
+        },
+        {
+          "info": {
+            "name": "Delete an existing organization",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.extremecloudiq.com/hiq/organizations/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Delete an existing organization (Available when HIQ is enabled)."
+        },
+        {
+          "info": {
+            "name": "Rename an existing organization",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/hiq/organizations/:id/:rename",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Rename an existing organization (Available when HIQ is enabled)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

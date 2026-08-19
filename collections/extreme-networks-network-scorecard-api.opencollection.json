@@ -1,0 +1,211 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ExtremeCloud IQ Account Network Scorecard API",
+    "version": "25.9.0-36"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Network Scorecard",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get device's overall health for given location",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/network-scorecard/locations/:id/device-health",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier"
+              },
+              {
+                "name": "startTime",
+                "value": "",
+                "type": "query",
+                "description": "The start time to query, epoch time in milliseconds since 1/1/1970"
+              },
+              {
+                "name": "endTime",
+                "value": "",
+                "type": "query",
+                "description": "The end time to query, epoch time in milliseconds since 1/1/1970"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get the device's overall health details for given location."
+        },
+        {
+          "info": {
+            "name": "Get clients' overall health for given location",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/network-scorecard/locations/:id/client-health",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier"
+              },
+              {
+                "name": "startTime",
+                "value": "",
+                "type": "query",
+                "description": "The start time to query, epoch time in milliseconds since 1/1/1970"
+              },
+              {
+                "name": "endTime",
+                "value": "",
+                "type": "query",
+                "description": "The end time to query, epoch time in milliseconds since 1/1/1970"
+              },
+              {
+                "name": "vlans",
+                "value": "",
+                "type": "query",
+                "description": "The associate vlan IDs"
+              },
+              {
+                "name": "userProfileNames",
+                "value": "",
+                "type": "query",
+                "description": "The user profile names"
+              },
+              {
+                "name": "ssids",
+                "value": "",
+                "type": "query",
+                "description": "The SSIDs"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get the clients' overall health details for given location."
+        },
+        {
+          "info": {
+            "name": "Get devices' Wi-Fi health for given location",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/network-scorecard/locations/:id/wifi-health",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier"
+              },
+              {
+                "name": "startTime",
+                "value": "",
+                "type": "query",
+                "description": "The start time to query, epoch time in milliseconds since 1/1/1970"
+              },
+              {
+                "name": "endTime",
+                "value": "",
+                "type": "query",
+                "description": "The end time to query, epoch time in milliseconds since 1/1/1970"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get the devices' Wi-Fi health details for given location."
+        },
+        {
+          "info": {
+            "name": "Get devices' network health for given location",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/network-scorecard/locations/:id/network-health",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier"
+              },
+              {
+                "name": "startTime",
+                "value": "",
+                "type": "query",
+                "description": "The start time to query, epoch time in milliseconds since 1/1/1970"
+              },
+              {
+                "name": "endTime",
+                "value": "",
+                "type": "query",
+                "description": "The end time to query, epoch time in milliseconds since 1/1/1970"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get the devices' network health details for given location."
+        },
+        {
+          "info": {
+            "name": "Get devices' services health for given location",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/network-scorecard/locations/:id/services-health",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier"
+              },
+              {
+                "name": "startTime",
+                "value": "",
+                "type": "query",
+                "description": "The start time to query, epoch time in milliseconds since 1/1/1970"
+              },
+              {
+                "name": "endTime",
+                "value": "",
+                "type": "query",
+                "description": "The end time to query, epoch time in milliseconds since 1/1/1970"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get the devices' services health details for given location."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

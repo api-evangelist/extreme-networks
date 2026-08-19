@@ -1,0 +1,475 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ExtremeCloud IQ Account Client API",
+    "version": "25.9.0-36"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Client",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List active clients",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/clients/active",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number, min = 1"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page Size, min = 1, max = 100"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "The client fields to return"
+              },
+              {
+                "name": "views",
+                "value": "",
+                "type": "query",
+                "description": "The views to return client fields (Check fields for each view at XiqClientView schema)"
+              },
+              {
+                "name": "locationIds",
+                "value": "",
+                "type": "query",
+                "description": "The location IDs"
+              },
+              {
+                "name": "deviceIds",
+                "value": "",
+                "type": "query",
+                "description": "The device IDs"
+              },
+              {
+                "name": "vlans",
+                "value": "",
+                "type": "query",
+                "description": "The associate vlan IDs"
+              },
+              {
+                "name": "userProfileNames",
+                "value": "",
+                "type": "query",
+                "description": "The user profile names"
+              },
+              {
+                "name": "ssids",
+                "value": "",
+                "type": "query",
+                "description": "The SSIDs"
+              },
+              {
+                "name": "clientOsNames",
+                "value": "",
+                "type": "query",
+                "description": "The client os names"
+              },
+              {
+                "name": "clientConnectionTypes",
+                "value": "",
+                "type": "query",
+                "description": "The client connection types - 1 - WIRELESS, 2 - WIRED, -1 - UNDETERMINED"
+              },
+              {
+                "name": "clientHealthStatus",
+                "value": "",
+                "type": "query",
+                "description": "The client health status - 1 - HEALTHY, 2 - POOR"
+              },
+              {
+                "name": "excludeLocallyManaged",
+                "value": "",
+                "type": "query",
+                "description": "Return Cloud managed Devices' clients. Default value - false"
+              },
+              {
+                "name": "userNames",
+                "value": "",
+                "type": "query",
+                "description": "The user names."
+              },
+              {
+                "name": "searchString",
+                "value": "",
+                "type": "query",
+                "description": "The SearchString"
+              },
+              {
+                "name": "sortField",
+                "value": "",
+                "type": "query",
+                "description": "Sort field. Available values - AUTH_METHOD, CHANNEL, CONNECTED_VIA, CONNECTION_TYPE, DEVICE_NAME, HOST_NAME, IPV4, IPV6, MAC, NAC_DETAILS, NAC_PROFILE, OS_TYPE, REPORTED_BY, START_TIME, USER_NAME, USER_PROFILE, VLAN"
+              },
+              {
+                "name": "sortOrder",
+                "value": "",
+                "type": "query",
+                "description": "Sort order (ascending by default). Available values - ASC, DESC"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "List active clients with filters and pagination."
+        },
+        {
+          "info": {
+            "name": "Get client summary metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/clients/summary",
+            "params": [
+              {
+                "name": "locationIds",
+                "value": "",
+                "type": "query",
+                "description": "The location IDs"
+              },
+              {
+                "name": "deviceIds",
+                "value": "",
+                "type": "query",
+                "description": "The device IDs"
+              },
+              {
+                "name": "vlans",
+                "value": "",
+                "type": "query",
+                "description": "The associate VLAN IDs"
+              },
+              {
+                "name": "userProfileNames",
+                "value": "",
+                "type": "query",
+                "description": "The user profile names"
+              },
+              {
+                "name": "ssids",
+                "value": "",
+                "type": "query",
+                "description": "The SSIDs"
+              },
+              {
+                "name": "clientOsNames",
+                "value": "",
+                "type": "query",
+                "description": "The client os names"
+              },
+              {
+                "name": "clientHealthStatus",
+                "value": "",
+                "type": "query",
+                "description": "The client health status - 1 - HEALTHY, 2 - POOR"
+              },
+              {
+                "name": "excludeLocallyManaged",
+                "value": "",
+                "type": "query",
+                "description": "Return Cloud managed Devices' clients. Default value - false"
+              },
+              {
+                "name": "searchString",
+                "value": "",
+                "type": "query",
+                "description": "The SearchString"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get number of connected wireless clients and number of detected wired clients."
+        },
+        {
+          "info": {
+            "name": "Get usage per client",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/clients/usage",
+            "params": [
+              {
+                "name": "clientIds",
+                "value": "",
+                "type": "query",
+                "description": "The client IDs"
+              },
+              {
+                "name": "startTime",
+                "value": "",
+                "type": "query",
+                "description": "The start time to query, epoch time in milliseconds since 1/1/1970"
+              },
+              {
+                "name": "endTime",
+                "value": "",
+                "type": "query",
+                "description": "The end time to query, epoch time in milliseconds since 1/1/1970"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get the client usage."
+        },
+        {
+          "info": {
+            "name": "Get client info",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/clients/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "The client fields to return"
+              },
+              {
+                "name": "views",
+                "value": "",
+                "type": "query",
+                "description": "The views to return client fields (Check fields for each view at XiqClientView schema)"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get client detailed information."
+        },
+        {
+          "info": {
+            "name": "Set the aliases for multiple clients",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.extremecloudiq.com/clients/alias",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Bulk update the aliases for multiple clients based on the mac addresses. Empty or null alias value deletes the previous client alias."
+        },
+        {
+          "info": {
+            "name": "Get active clients count",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/clients/active/count",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number, min = 1"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page Size, min = 1, max = 100"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "The client fields to return"
+              },
+              {
+                "name": "views",
+                "value": "",
+                "type": "query",
+                "description": "The views to return client fields (Check fields for each view at XiqClientView schema)"
+              },
+              {
+                "name": "locationIds",
+                "value": "",
+                "type": "query",
+                "description": "The location IDs"
+              },
+              {
+                "name": "deviceIds",
+                "value": "",
+                "type": "query",
+                "description": "The device IDs"
+              },
+              {
+                "name": "vlans",
+                "value": "",
+                "type": "query",
+                "description": "The associate vlan IDs"
+              },
+              {
+                "name": "userProfileNames",
+                "value": "",
+                "type": "query",
+                "description": "The user profile names"
+              },
+              {
+                "name": "ssids",
+                "value": "",
+                "type": "query",
+                "description": "The SSIDs"
+              },
+              {
+                "name": "clientOsNames",
+                "value": "",
+                "type": "query",
+                "description": "The client os names"
+              },
+              {
+                "name": "clientConnectionTypes",
+                "value": "",
+                "type": "query",
+                "description": "The client connection types - 1 - WIRELESS, 2 - WIRED, -1 - UNDETERMINED"
+              },
+              {
+                "name": "clientHealthStatus",
+                "value": "",
+                "type": "query",
+                "description": "The client health status - 1 - HEALTHY, 2 - POOR"
+              },
+              {
+                "name": "excludeLocallyManaged",
+                "value": "",
+                "type": "query",
+                "description": "Return Cloud managed Devices' clients. Default value - false"
+              },
+              {
+                "name": "searchString",
+                "value": "",
+                "type": "query",
+                "description": "The SearchString"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "List active clients count."
+        },
+        {
+          "info": {
+            "name": "Disconnect the client",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.extremecloudiq.com/clients/byMac/:clientMac",
+            "params": [
+              {
+                "name": "clientMac",
+                "value": "",
+                "type": "path",
+                "description": "The mac address of client"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Disconnect the client."
+        },
+        {
+          "info": {
+            "name": "Get client info by mac",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/clients/getByMac/:clientMac",
+            "params": [
+              {
+                "name": "clientMac",
+                "value": "",
+                "type": "path",
+                "description": "The mac address of client"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "The client fields to return"
+              },
+              {
+                "name": "views",
+                "value": "",
+                "type": "query",
+                "description": "The views to return client fields (Check fields for each view at XiqClientView schema)"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get detailed client information by mac."
+        },
+        {
+          "info": {
+            "name": "Disconnect clients",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/clients/disconnect",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Disconnect one or more clients by their MAC addresses."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

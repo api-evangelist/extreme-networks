@@ -1,0 +1,335 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ExtremeCloud IQ Account NG Reports API",
+    "version": "25.9.0-36"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "NG Reports",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get scheduled reports",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/ng-reports/reports",
+            "params": [
+              {
+                "name": "request",
+                "value": "",
+                "type": "query",
+                "description": "Type of report to retrieve"
+              },
+              {
+                "name": "keyword",
+                "value": "",
+                "type": "query",
+                "description": "Keyword to search reports"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve scheduled reports based on frequency and keyword search."
+        },
+        {
+          "info": {
+            "name": "Create a new scheduled report",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/ng-reports/reports",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Create a new scheduled report with specified details."
+        },
+        {
+          "info": {
+            "name": "Update an existing scheduled report",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.extremecloudiq.com/ng-reports/reports/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Update the details of a scheduled report by its ID."
+        },
+        {
+          "info": {
+            "name": "Delete a scheduled report",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.extremecloudiq.com/ng-reports/reports/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Delete a scheduled report by its unique identifier."
+        },
+        {
+          "info": {
+            "name": "Time Series data in NG Reports Metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/ng-reports/metrics/timeseries.yaml",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "This API returns the data for the graph widgets."
+        },
+        {
+          "info": {
+            "name": "Table Data data in NG Reports Metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/ng-reports/metrics/tabledata.yaml",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "This API returns the table (raw) Data data in NG Reports Metrics."
+        },
+        {
+          "info": {
+            "name": "Ssid filter metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/ng-reports/metrics/metadata/ssid",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns the Ssid filter metadata. You can filter the results by sites,buildings,floor."
+        },
+        {
+          "info": {
+            "name": "Client Os filter metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/ng-reports/metrics/metadata/os",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns the Client Os filter metadata. You can filter the results by sites,buildings,floor,ssid,band."
+        },
+        {
+          "info": {
+            "name": "Band filter metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/ng-reports/metrics/metadata/band",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns the Band filter metadata. You can filter the results by sites,buildings,floor,ssid."
+        },
+        {
+          "info": {
+            "name": "Client filter metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/ng-reports/metrics/metadata/client",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns the Client filter metadata. You can filter the results by sites,buildings,floor,usernames."
+        },
+        {
+          "info": {
+            "name": "User filter metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/ng-reports/metrics/metadata/user",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns the user filter metadata. You can filter the results by sites,buildings,floor."
+        },
+        {
+          "info": {
+            "name": "Application filter metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/ng-reports/metrics/metadata/applications",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns the Application filter metadata. You can filter the results by sites, buildings, floor, usernames, and client MAC addresses."
+        },
+        {
+          "info": {
+            "name": "Devices filter metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/ng-reports/metrics/metadata/devices",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns the Channel filter metadata. You can filter the results by sites,buildings,floor,channel,band."
+        },
+        {
+          "info": {
+            "name": "Grouping of Metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/ng-reports/metrics/get-metrics-grouping"
+          },
+          "docs": "Provides detailed information about the grouping of different metrics."
+        },
+        {
+          "info": {
+            "name": "Download NG reports",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/ng-reports/download/reports",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns the Xlsx/pdf for provided metrics on the provided filters."
+        },
+        {
+          "info": {
+            "name": "Download the file",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/ng-reports/download/reports/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The file name"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns the file for the given metrics based on the provided filters."
+        },
+        {
+          "info": {
+            "name": "Information of filters",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/ng-reports/information/:metrics",
+            "params": [
+              {
+                "name": "metrics",
+                "value": "",
+                "type": "path",
+                "description": "**The below table defines the different REPORT_METRICS values and their descriptions**\n\n| Metric Identifier           | Description                                                                 |\n|-----------------------------|-----------------------------------------------------------------------------|\n| MAX_CONCURRENT_CLIENTS      | Maximum concurrent clients over time                                        |\n| UNIQUE_CLIENTS_BY_SSID      | Unique clients over time by SSID                                            |\n| UNIQUE_WIFI_CLIENTS         | Unique WiFi clients over time                                               |\n| CLIENT_QUALITY_SCORE        | Client quality score over time                                              |\n| CLIENT_SESSIONS             | Client sessions over time                                                   |\n| CLIENT_AIRTIME_USAGE        | Client airtime usage over time                                              |\n| WIRELESS_CLIENTS_BY_OS      | Wireless clients categorized by OS                                          |\n| UNIQUE_CLIENTS_BY_OS        | Unique clients categorized by OS                                            |\n| TRAFFIC_VOLUME_PER_APP      | Traffic volume per application                                              |\n| APP_TRAFFIC_PERCENTAGE      | Percentage of total traffic per application                                 |\n| DEVICES_BY_CLIENTS          | Devices used by clients over time                                           |\n| SWITCH_SUMMARY              | Summary of switch-related metrics                                           |\n"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns the filter for the given metrics."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

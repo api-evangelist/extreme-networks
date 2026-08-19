@@ -1,0 +1,224 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ExtremeCloud IQ Account Dashboard - Wireless Usage and Capacity API",
+    "version": "25.9.0-36"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Dashboard - Wireless Usage and Capacity",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Wireless usage & capacity grid",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/dashboard/wireless/usage-capacity/grid",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number, min = 1"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page Size, min = 1, max = 100"
+              },
+              {
+                "name": "keyword",
+                "value": "",
+                "type": "query",
+                "description": "The keyword to search"
+              },
+              {
+                "name": "sortField",
+                "value": "",
+                "type": "query",
+                "description": "The sort order"
+              },
+              {
+                "name": "sortOrder",
+                "value": "",
+                "type": "query",
+                "description": "The sort order"
+              },
+              {
+                "name": "includeUnassigned",
+                "value": "",
+                "type": "query",
+                "description": "To include unassigned devices"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns the usage & capacity grid of wireless devices based on the provided filters. You can filter the results by sites."
+        },
+        {
+          "info": {
+            "name": "Count of APs with excessive packet loss",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/dashboard/wireless/usage-capacity/excessive-packet-loss",
+            "params": [
+              {
+                "name": "includeUnassigned",
+                "value": "",
+                "type": "query",
+                "description": "To include unassigned devices"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns the count of wireless devices having excessive packet loss based on the provided filters. You can filter the results by sites."
+        },
+        {
+          "info": {
+            "name": "Count of APs with excessive utilization",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/dashboard/wireless/usage-capacity/excessive-utilization",
+            "params": [
+              {
+                "name": "includeUnassigned",
+                "value": "",
+                "type": "query",
+                "description": "To include unassigned devices"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns the count of wireless devices having excessive channel utilization based on the provided filters. You can filter the results by sites."
+        },
+        {
+          "info": {
+            "name": "Count of APs with excessive retries",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/dashboard/wireless/usage-capacity/excessive-retries",
+            "params": [
+              {
+                "name": "includeUnassigned",
+                "value": "",
+                "type": "query",
+                "description": "To include unassigned devices"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns the count of wireless devices having excessive retries based on the provided filters. You can filter the results by sites."
+        },
+        {
+          "info": {
+            "name": "Export Wireless usage & capacity grid as CSV File ",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/dashboard/wireless/usage-capacity/export",
+            "params": [
+              {
+                "name": "keyword",
+                "value": "",
+                "type": "query",
+                "description": "The keyword to search"
+              },
+              {
+                "name": "sortField",
+                "value": "",
+                "type": "query",
+                "description": "The sort field"
+              },
+              {
+                "name": "sortOrder",
+                "value": "",
+                "type": "query",
+                "description": "The sort order"
+              },
+              {
+                "name": "includeUnassigned",
+                "value": "",
+                "type": "query",
+                "description": "To include unassigned devices"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns the CSV File of the usage & capacity grid of wireless devices based on the provided filters. You can filter the results by sites."
+        },
+        {
+          "info": {
+            "name": "Download the Export CSV file",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/dashboard/wireless/usage-capacity/reports/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The report ID"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns the CSV File of the Wireless Usage And Capacity status based on the provided filters."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

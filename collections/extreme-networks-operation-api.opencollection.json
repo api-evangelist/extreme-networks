@@ -1,0 +1,87 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ExtremeCloud IQ Account Operation API",
+    "version": "25.9.0-36"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Operation",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Long-Running Operation (LRO) status and result",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/operations/:operationId",
+            "params": [
+              {
+                "name": "operationId",
+                "value": "",
+                "type": "path",
+                "description": "The operation ID"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get the Long-Running Operation (LRO) status and result.\nThe response will include either result or error if the operation is done."
+        },
+        {
+          "info": {
+            "name": "Delete Long-Running Operation (LRO)",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.extremecloudiq.com/operations/:operationId",
+            "params": [
+              {
+                "name": "operationId",
+                "value": "",
+                "type": "path",
+                "description": "The operation ID"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "The Long-Running Operation (LRO) can be deleted when the operation is done or in PENDING status."
+        },
+        {
+          "info": {
+            "name": "Cancel Long-Running Operation (LRO)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/operations/:operationId/:cancel",
+            "params": [
+              {
+                "name": "operationId",
+                "value": "",
+                "type": "path",
+                "description": "The operation ID"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "When the cancelable is true in operation metadata the clients are allowed to send a cancel request to ask the backend to cancel the operation.\nThe server makes its best effort to cancel the operation, but success is not guaranteed."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

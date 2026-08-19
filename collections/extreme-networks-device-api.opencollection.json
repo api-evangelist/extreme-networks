@@ -1,0 +1,2131 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ExtremeCloud IQ Account Device API",
+    "version": "25.9.0-36"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Device",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "[LRO] List devices",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/devices",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number, min = 1"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page Size, min = 1, max = 100"
+              },
+              {
+                "name": "locationIds",
+                "value": "",
+                "type": "query",
+                "description": "The location IDs"
+              },
+              {
+                "name": "locationId",
+                "value": "",
+                "type": "query",
+                "description": "Location Id"
+              },
+              {
+                "name": "connected",
+                "value": "",
+                "type": "query",
+                "description": "The device connect status"
+              },
+              {
+                "name": "adminStates",
+                "value": "",
+                "type": "query",
+                "description": "The device admin states"
+              },
+              {
+                "name": "macAddresses",
+                "value": "",
+                "type": "query",
+                "description": "The device mac addresses"
+              },
+              {
+                "name": "sns",
+                "value": "",
+                "type": "query",
+                "description": "The device serial numbers"
+              },
+              {
+                "name": "hostnames",
+                "value": "",
+                "type": "query",
+                "description": "The device host names"
+              },
+              {
+                "name": "sortField",
+                "value": "",
+                "type": "query",
+                "description": "The sort field"
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "The sort order (ascending by default)"
+              },
+              {
+                "name": "views",
+                "value": "",
+                "type": "query",
+                "description": "The views to return device fields (Check fields for each view at XiqDeviceView schema)"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "The device fields to return"
+              },
+              {
+                "name": "nullField",
+                "value": "",
+                "type": "query",
+                "description": "The device empty field, only returns the selected field that is null"
+              },
+              {
+                "name": "async",
+                "value": "",
+                "type": "query",
+                "description": "Whether to enable async mode"
+              },
+              {
+                "name": "configMismatch",
+                "value": "",
+                "type": "query",
+                "description": "Config audit status(MATCHED(false) or UNMATCHED(true))"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "List devices with filters and pagination."
+        },
+        {
+          "info": {
+            "name": "Onboard Devices",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/devices/:onboard",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Onboard devices for all devices, such as Extreme/Aerohive, EXOS, VOSS, WiNG, Dell, and Digital Twin.\nThis is asynchronized operation to support massive device onboarding."
+        },
+        {
+          "info": {
+            "name": "[LRO] Advanced Onboard Devices",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/devices/:advanced-onboard",
+            "params": [
+              {
+                "name": "async",
+                "value": "",
+                "type": "query",
+                "description": "Whether to enable async mode"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Advanced onboard devices for all devices, such as Extreme/Aerohive, EXOS, VOSS, WiNG, and Dell. Advanced onboard devices will allow the user to set the device hostname,  attach the device location, associate network policy, etc. in a single API request. To avoid API timeout when onboarding a large number of devices, please make sure to  enable async mode (set async=true in query parameter) and use long-running operation  API to query the result."
+        },
+        {
+          "info": {
+            "name": "Change status to Managed",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/devices/:manage",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Change device management status to Managed for the target devices."
+        },
+        {
+          "info": {
+            "name": "Change status to Unmanaged",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/devices/:unmanage",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Change device management status to Unmanaged for the target devices."
+        },
+        {
+          "info": {
+            "name": "[LRO] Send CLI to devices",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/devices/:cli",
+            "params": [
+              {
+                "name": "async",
+                "value": "",
+                "type": "query",
+                "description": "Whether to enable async mode"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Send CLI commands to the target devices. This API can be run at async mode, please follow the Long-Running Operation (LRO) guide to track the progress and the result."
+        },
+        {
+          "info": {
+            "name": "Reboot devices",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/devices/:reboot",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Reboot the target devices."
+        },
+        {
+          "info": {
+            "name": "Delete devices",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/devices/:delete",
+            "params": [
+              {
+                "name": "force_delete",
+                "value": "",
+                "type": "query",
+                "description": "Force deletion of devices"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Bulk delete the devices matching the filter criteria."
+        },
+        {
+          "info": {
+            "name": "[LRO] Reset devices to factory default",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/devices/:reset",
+            "params": [
+              {
+                "name": "async",
+                "value": "",
+                "type": "query",
+                "description": "Whether to enable async mode"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Reset multiple devices to factory default settings."
+        },
+        {
+          "info": {
+            "name": "Query location for multiple devices",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/devices/location/:query",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Query the location for the target devices."
+        },
+        {
+          "info": {
+            "name": "Assign location to multiple devices",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/devices/location/:assign",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Assign the location to the target devices."
+        },
+        {
+          "info": {
+            "name": "Revoke location for multiple devices",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/devices/location/:revoke",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Revoke the location from the target devices."
+        },
+        {
+          "info": {
+            "name": "Query network policy for multiple devices",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/devices/network-policy/:query",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Query the network policy for the target devices."
+        },
+        {
+          "info": {
+            "name": "Assign RADIUS proxy to devices",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.extremecloudiq.com/devices/radius-proxy/:assign",
+            "params": [
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query",
+                "description": "The device IDs"
+              },
+              {
+                "name": "radiusProxyId",
+                "value": "",
+                "type": "query",
+                "description": "The RADIUS proxy ID to assign"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Assign a RADIUS proxy to multiple devices."
+        },
+        {
+          "info": {
+            "name": "Assign network policy to multiple devices",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/devices/network-policy/:assign",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Assign the network policy to the target devices."
+        },
+        {
+          "info": {
+            "name": "Revoke network policy for multiple devices",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/devices/network-policy/:revoke",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Revoke the network policy from the target devices."
+        },
+        {
+          "info": {
+            "name": "List assigned devices for network policy",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/devices/network-policy/:policyId",
+            "params": [
+              {
+                "name": "policyId",
+                "value": "",
+                "type": "path",
+                "description": "The network policy ID"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number, min = 1"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page Size, min = 1, max = 100"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "List assigned devices for the network policy with pagination."
+        },
+        {
+          "info": {
+            "name": "Assign a country code to devices",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/devices/country-code/:assign",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Assign the country code to one or more devices."
+        },
+        {
+          "info": {
+            "name": "Change device OS mode",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/devices/os/:change",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Change OS mode for AP or Switch."
+        },
+        {
+          "info": {
+            "name": "Change iBeacon settings for devices",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.extremecloudiq.com/devices/ibeacon",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Update the existing or create new iBeacon settings for multiple devices."
+        },
+        {
+          "info": {
+            "name": "Get device stats",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/devices/stats",
+            "params": [
+              {
+                "name": "locationId",
+                "value": "",
+                "type": "query",
+                "description": "The location ID"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get device stats, such as total device count, managed device count, connected device count, etc."
+        },
+        {
+          "info": {
+            "name": "Get device info for a specific device",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/devices/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier"
+              },
+              {
+                "name": "views",
+                "value": "",
+                "type": "query",
+                "description": "The views to return device fields (Check details at XiqDeviceView schema)"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "The device fields to return"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get device info for a specific device."
+        },
+        {
+          "info": {
+            "name": "Delete a device",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.extremecloudiq.com/devices/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier"
+              },
+              {
+                "name": "force_delete",
+                "value": "",
+                "type": "query",
+                "description": "Force deletion of device"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Delete a specific device."
+        },
+        {
+          "info": {
+            "name": "Change admin state to 'Managed' for a device",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/devices/:id/:manage",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Change device management status to Managed for a specific device."
+        },
+        {
+          "info": {
+            "name": "Change admin state to 'Unmanaged' for a device",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/devices/:id/:unmanage",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Change device admin state to 'Unmanaged' for a specific device."
+        },
+        {
+          "info": {
+            "name": "Send CLI to a device",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/devices/:id/:cli",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Send CLI commands to a specific device."
+        },
+        {
+          "info": {
+            "name": "Reboot a device",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/devices/:id/:reboot",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Reboot a specific device."
+        },
+        {
+          "info": {
+            "name": "[LRO] Reset a device to factory default",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/devices/:id/:reset",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier"
+              },
+              {
+                "name": "async",
+                "value": "",
+                "type": "query",
+                "description": "Whether to enable async mode"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Reset a device to factory default settings."
+        },
+        {
+          "info": {
+            "name": "Change hostname for a device",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.extremecloudiq.com/devices/:id/hostname",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier"
+              },
+              {
+                "name": "hostname",
+                "value": "",
+                "type": "query",
+                "description": "The new hostname"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Change hostname for a specific device."
+        },
+        {
+          "info": {
+            "name": "Change description for a device",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.extremecloudiq.com/devices/:id/description",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Change description for a specific device."
+        },
+        {
+          "info": {
+            "name": "Get location for a device",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/devices/:id/location",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get the location info for a specific device."
+        },
+        {
+          "info": {
+            "name": "Assign location to a device",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.extremecloudiq.com/devices/:id/location",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Assign a location to a specific device with extra map and geographical properties."
+        },
+        {
+          "info": {
+            "name": "Revoke location for a device",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.extremecloudiq.com/devices/:id/location",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Revoke the assigned location for a specific device."
+        },
+        {
+          "info": {
+            "name": "Get network policy for a device",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/devices/:id/network-policy",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get the network policy for a specific device."
+        },
+        {
+          "info": {
+            "name": "Assign network policy to a device",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.extremecloudiq.com/devices/:id/network-policy",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier"
+              },
+              {
+                "name": "networkPolicyId",
+                "value": "",
+                "type": "query",
+                "description": "The network policy ID to assign"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Assign a network policy to a specific device."
+        },
+        {
+          "info": {
+            "name": "Revoke network policy for a device",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.extremecloudiq.com/devices/:id/network-policy",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Revoke the assigned network policy for a specific device."
+        },
+        {
+          "info": {
+            "name": "Override SSID for a device",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/devices/:id/ssid/:override",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Override SSID broadcast name/passphrase for a specific device."
+        },
+        {
+          "info": {
+            "name": "Get SSID status for a device",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/devices/:id/ssid/status",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get the SSIDs status on each wifi interface for a specific device."
+        },
+        {
+          "info": {
+            "name": "Enable or disable SSID for a device",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/devices/:id/ssid/status/:change",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Enable or disable SSIDs on the given wifi interfaces for a specific device."
+        },
+        {
+          "info": {
+            "name": "List alarms for a device",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/devices/:id/alarms",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number, min = 1"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page Size, min = 1, max = 100"
+              },
+              {
+                "name": "startTime",
+                "value": "",
+                "type": "query",
+                "description": "The start time to query, epoch time in milliseconds since 1/1/1970"
+              },
+              {
+                "name": "endTime",
+                "value": "",
+                "type": "query",
+                "description": "The end time to query, epoch time in milliseconds since 1/1/1970"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "List alarms for a specific device."
+        },
+        {
+          "info": {
+            "name": "Get device CPU/memory usage history",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/devices/:id/history/cpu-mem",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier"
+              },
+              {
+                "name": "startTime",
+                "value": "",
+                "type": "query",
+                "description": "The start time to query, epoch time in milliseconds since 1/1/1970"
+              },
+              {
+                "name": "endTime",
+                "value": "",
+                "type": "query",
+                "description": "The end time to query, epoch time in milliseconds since 1/1/1970"
+              },
+              {
+                "name": "interval",
+                "value": "",
+                "type": "query",
+                "description": "The aggregate interval in milliseconds"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get average device CPU and memory usage history."
+        },
+        {
+          "info": {
+            "name": "Get the device iBeacon setting",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/devices/:id/ibeacon",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get the device iBeacon setting by device ID."
+        },
+        {
+          "info": {
+            "name": "Get the device IoT Wireless Interface settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/devices/:id/iot",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get the device IoT profile Wireless Interface settings by device ID."
+        },
+        {
+          "info": {
+            "name": "Enable IoT Wireless Interface settings on device",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/devices/:id/iot/:enable",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Enable and attach IoT profile Wireless Interface settings by device ID and IoT profile ID."
+        },
+        {
+          "info": {
+            "name": "Disable IoT Wireless Interface settings on device",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/devices/:id/iot/:disable",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Disable and detach IoT profile Wireless Interface settings by device ID and IoT profile ID."
+        },
+        {
+          "info": {
+            "name": "List Digital Twin product information",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/devices/digital-twin",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number, min = 1"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page Size, min = 1, max = 100"
+              },
+              {
+                "name": "makes",
+                "value": "",
+                "type": "query",
+                "description": "List by makes or any with null/empty makes."
+              },
+              {
+                "name": "models",
+                "value": "",
+                "type": "query",
+                "description": "List by makes or any with null/empty models."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "List of Digital Twin product information with pagination."
+        },
+        {
+          "info": {
+            "name": "Bounce port of a device",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/devices/:id/bounce-port",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Bounce port for the given device id."
+        },
+        {
+          "info": {
+            "name": "Monitor refresh device information",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/devices/:id/monitor/:refresh",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier"
+              },
+              {
+                "name": "function",
+                "value": "",
+                "type": "query",
+                "description": "The function to refresh.  ROUTE, MAC"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "The request monitor refresh the device information."
+        },
+        {
+          "info": {
+            "name": "Monitor refresh device information status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/devices/:id/monitor/refresh/status",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier"
+              },
+              {
+                "name": "taskKey",
+                "value": "",
+                "type": "query",
+                "description": "Key for the device refresh"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "The request monitor refresh the device information status."
+        },
+        {
+          "info": {
+            "name": "Get Installation devices",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/devices/installation-report",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Unique id"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "List the device installation report."
+        },
+        {
+          "info": {
+            "name": "Start the Thread Commissioner",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/devices/:id/thread/commissioner/:start",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Start the Thread Commissioner."
+        },
+        {
+          "info": {
+            "name": "Stop the Thread Commissioner",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/devices/:id/thread/commissioner/:stop",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Stop the Thread Commissioner."
+        },
+        {
+          "info": {
+            "name": "List radio information",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/devices/radio-information",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number, min = 1"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page Size, min = 1, max = 100"
+              },
+              {
+                "name": "deviceIds",
+                "value": "",
+                "type": "query",
+                "description": "The device IDs"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "List radio and BSS information associated to a device."
+        },
+        {
+          "info": {
+            "name": "Download device gallery image",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/devices/:id/gallery-image",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier"
+              },
+              {
+                "name": "imageName",
+                "value": "",
+                "type": "query",
+                "description": "The image name"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Download the image file from the device media gallery."
+        },
+        {
+          "info": {
+            "name": "Get client monitor setting of a device",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/devices/:id/client-monitor",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get the device-specific client monitor setting that override SSID's client monitor profile."
+        },
+        {
+          "info": {
+            "name": "Configure client monitor setting of a device",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.extremecloudiq.com/devices/:id/client-monitor",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Configure the device-specific client monitor setting that override SSID's client monitor profile."
+        },
+        {
+          "info": {
+            "name": "Delete client monitor setting for a device",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.extremecloudiq.com/devices/:id/client-monitor",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Delete the device-specific client monitor setting that override SSID's client monitor profile."
+        },
+        {
+          "info": {
+            "name": "Get FTM Settings by device ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/devices/:id/ftm-settings",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get FTM Settings for the specified device ID."
+        },
+        {
+          "info": {
+            "name": "Configure (create / update) device FTM Settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.extremecloudiq.com/devices/:id/ftm-settings",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Configure (create / update) device FTM Settings."
+        },
+        {
+          "info": {
+            "name": "Delete FTM Settings by device ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.extremecloudiq.com/devices/:id/ftm-settings",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Delete FTM Settings by device ID."
+        },
+        {
+          "info": {
+            "name": "Get device radio operating modes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/devices/:id/radio-operating-mode",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get the device radio operating mode by device ID at device level."
+        },
+        {
+          "info": {
+            "name": "Configure radio operating mode of a device",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.extremecloudiq.com/devices/:id/radio-operating-mode",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Configure the device-specific radio operating mode setting at device level and set the radio profiles to the default radio profiles.<br/> If the radio profile ID is not provided for a wifi interface in the request, the default Radio Profile will be added to device."
+        },
+        {
+          "info": {
+            "name": "Get the status of devices (online/offline)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/devices/status",
+            "params": [
+              {
+                "name": "startTime",
+                "value": "",
+                "type": "query",
+                "description": "The start time to query, epoch time in milliseconds since 1/1/1970"
+              },
+              {
+                "name": "endTime",
+                "value": "",
+                "type": "query",
+                "description": "The end time to query, epoch time in milliseconds since 1/1/1970"
+              },
+              {
+                "name": "locationId",
+                "value": "",
+                "type": "query",
+                "description": "The location ID"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get the connection status of the devices."
+        },
+        {
+          "info": {
+            "name": "Get Device connection status",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/devices/rm-devices-connection-status",
+            "params": [
+              {
+                "name": "deviceCategory",
+                "value": "",
+                "type": "query",
+                "description": "The device category - wired, wireless (Defaults to \"ALL\" if not selected)"
+              },
+              {
+                "name": "deviceTypes",
+                "value": "",
+                "type": "query",
+                "description": "The device types to return (REAL by default)"
+              },
+              {
+                "name": "includeUnassigned",
+                "value": "",
+                "type": "query",
+                "description": "To include unassigned location"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns the count of total devices, offline devices, online devices for both wired and wireless devices based on the provided siteIds filters."
+        },
+        {
+          "info": {
+            "name": "[LRO] List RM Devices Page",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/devices/rm-devices-page",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number, min = 1"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page Size, min = 1, max = 100"
+              },
+              {
+                "name": "keyword",
+                "value": "",
+                "type": "query",
+                "description": "The keyword to search"
+              },
+              {
+                "name": "connected",
+                "value": "",
+                "type": "query",
+                "description": "The device connect status"
+              },
+              {
+                "name": "configMismatch",
+                "value": "",
+                "type": "query",
+                "description": "Config audit status(MATCHED(false) or UNMATCHED(true))"
+              },
+              {
+                "name": "adminStates",
+                "value": "",
+                "type": "query",
+                "description": "The device admin states"
+              },
+              {
+                "name": "deviceCategory",
+                "value": "",
+                "type": "query",
+                "description": "The device category - wired, wireless (Defaults to \"ALL\" if not selected)"
+              },
+              {
+                "name": "deviceTypes",
+                "value": "",
+                "type": "query",
+                "description": "The device types to return"
+              },
+              {
+                "name": "stackedView",
+                "value": "",
+                "type": "query",
+                "description": "Whether to include only virtual stack (when set to true) or also the stack members (when set to false)"
+              },
+              {
+                "name": "sortField",
+                "value": "",
+                "type": "query",
+                "description": "The sort field"
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "The sort order (ascending by default)"
+              },
+              {
+                "name": "async",
+                "value": "",
+                "type": "query",
+                "description": "Whether to enable async mode"
+              },
+              {
+                "name": "includeUnassigned",
+                "value": "",
+                "type": "query",
+                "description": "To include unassigned location"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "List RM Devices Page with filters and pagination."
+        },
+        {
+          "info": {
+            "name": "Get Metadata Information for given Device",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/devices/rm-devices-metadata",
+            "params": [
+              {
+                "name": "deviceCategory",
+                "value": "",
+                "type": "query",
+                "description": "The device category - wired, wireless (Defaults to \"ALL\" if not selected)"
+              },
+              {
+                "name": "adminStates",
+                "value": "",
+                "type": "query",
+                "description": "The device admin states"
+              },
+              {
+                "name": "deviceTypes",
+                "value": "",
+                "type": "query",
+                "description": "The device types to return"
+              },
+              {
+                "name": "includeUnassigned",
+                "value": "",
+                "type": "query",
+                "description": "To include unassigned location"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get metadata info for RM Device Page with site ID filter."
+        },
+        {
+          "info": {
+            "name": "Get Stack Member Info for given Stack",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/devices/rm-devices-stack/:stackId",
+            "params": [
+              {
+                "name": "stackId",
+                "value": "",
+                "type": "path",
+                "description": "The stack ID"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get Stack Member Information for given stack ID."
+        },
+        {
+          "info": {
+            "name": "[LRO] Export RM devices page",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/devices/rm-devices-page/export",
+            "params": [
+              {
+                "name": "keyword",
+                "value": "",
+                "type": "query",
+                "description": "The keyword to search"
+              },
+              {
+                "name": "connected",
+                "value": "",
+                "type": "query",
+                "description": "The device connect status"
+              },
+              {
+                "name": "configMismatch",
+                "value": "",
+                "type": "query",
+                "description": "Config audit status(MATCHED(false) or UNMATCHED(true))"
+              },
+              {
+                "name": "adminStates",
+                "value": "",
+                "type": "query",
+                "description": "The device admin states"
+              },
+              {
+                "name": "deviceCategory",
+                "value": "",
+                "type": "query",
+                "description": "The device category - wired, wireless (Defaults to \"ALL\" if not selected)"
+              },
+              {
+                "name": "deviceTypes",
+                "value": "",
+                "type": "query",
+                "description": "The device types to return"
+              },
+              {
+                "name": "sortField",
+                "value": "",
+                "type": "query",
+                "description": "The sort field"
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "The sort order (ascending by default)"
+              },
+              {
+                "name": "async",
+                "value": "",
+                "type": "query",
+                "description": "Whether to enable async mode"
+              },
+              {
+                "name": "includeUnassigned",
+                "value": "",
+                "type": "query",
+                "description": "To include unassigned location"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Export RM devices page as a csv file."
+        },
+        {
+          "info": {
+            "name": "Download the Export CSV file for Device Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/devices/reports/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The report ID"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns the CSV File of the device status based on the provided filters."
+        },
+        {
+          "info": {
+            "name": "Get metadata for supported device actions",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/devices/actions-support-metadata",
+            "params": [
+              {
+                "name": "deviceActions",
+                "value": "",
+                "type": "query",
+                "description": "List of device actions to retrieve metadata info"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve metadata information about supported device actions for a given product type."
+        },
+        {
+          "info": {
+            "name": "List SSH active sessions",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/devices/:ssh-active-sessions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "List active SSH sessions for devices."
+        },
+        {
+          "info": {
+            "name": "Start the Thread Commissioner by Building IDs",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/devices/thread/commissioner/start",
+            "params": [
+              {
+                "name": "ownerId",
+                "value": "",
+                "type": "query",
+                "description": "The Owner Id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Start the Thread Commissioner by Building IDs."
+        },
+        {
+          "info": {
+            "name": "Stop the Thread Commissioner by Building IDs",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/devices/thread/commissioner/stop",
+            "params": [
+              {
+                "name": "ownerId",
+                "value": "",
+                "type": "query",
+                "description": "The Owner Id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Stop the Thread Commissioner by Building IDs."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

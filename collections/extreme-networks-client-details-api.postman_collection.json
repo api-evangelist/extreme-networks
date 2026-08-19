@@ -1,0 +1,387 @@
+{
+  "item": [
+    {
+      "id": "9cf6dc51-844c-4000-8324-1744dbeb0121",
+      "name": "Client - Details",
+      "description": {
+        "content": "The details of client associate to the devices of ExtremeCloud IQ",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "36ecfe13-9286-41d1-8ee4-230133bc72cc",
+          "name": "Client Trail Topology",
+          "request": {
+            "name": "Client Trail Topology",
+            "description": {
+              "content": "Return the Nodes and Links to draw the topology for client.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "client-details",
+                "topology",
+                "client-trail",
+                ":macAddress"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "macAddress",
+                  "description": "(Required) The Mac Address of Client"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "f3af754d-2a72-4264-a5ae-54775ec862c4",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "client-details",
+                    "topology",
+                    "client-trail",
+                    ":macAddress"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "macAddress",
+                      "description": "(Required) The Mac Address of Client"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"links\": [\n    {\n      \"source\": 3839,\n      \"source_port_id\": \"string\",\n      \"source_lag\": \"string\",\n      \"destination\": 3259,\n      \"destination_port_id\": \"string\",\n      \"destination_lag\": \"string\",\n      \"index\": 7816,\n      \"connected\": true,\n      \"connection_mode\": \"FAKEGATEWAY\"\n    },\n    {\n      \"source\": 6704,\n      \"source_port_id\": \"string\",\n      \"source_lag\": \"string\",\n      \"destination\": 8285,\n      \"destination_port_id\": \"string\",\n      \"destination_lag\": \"string\",\n      \"index\": 1144,\n      \"connected\": true,\n      \"connection_mode\": \"FAKEGATEWAY\"\n    }\n  ],\n  \"nodes\": [\n    {\n      \"id\": 7008,\n      \"hostname\": \"string\",\n      \"mac_address\": \"string\",\n      \"ip_address\": \"string\",\n      \"port_number\": \"string\",\n      \"radio_info\": \"string\",\n      \"health_score\": 1846,\n      \"client_count\": 6094,\n      \"last_node\": true,\n      \"topology_start_node\": false,\n      \"connected\": false,\n      \"vlan_info\": {\n        \"mgmt_vlan\": 9278,\n        \"native_vlan\": 9382,\n        \"access_port_vlans\": [\n          7890,\n          297\n        ],\n        \"trunk_port_vlans\": [\n          6865,\n          7209\n        ],\n        \"user_profile_vlans\": [\n          8308,\n          7404\n        ]\n      },\n      \"type\": \"ROUTER\",\n      \"critical_alarms\": 923,\n      \"not_current_location_node\": false,\n      \"unknown_device\": {\n        \"mac_address\": \"string\",\n        \"hostname\": \"string\",\n        \"type\": \"string\",\n        \"ip_address\": \"string\"\n      },\n      \"wired_interface_name\": \"string\",\n      \"connected_port\": \"string\",\n      \"stack_member_info\": [\n        {\n          \"stack_member_id\": 8724,\n          \"device_id\": 2694,\n          \"serial_number\": \"string\",\n          \"unit_number\": 4659,\n          \"member_type\": \"string\",\n          \"poe_info\": {\n            \"powerState\": {},\n            \"unit_power_available\": 2676.44613138407,\n            \"unit_power_consumed\": 1138.1602866642104,\n            \"unit_power_threshold\": 9582.415400275786,\n            \"poe_power_available\": 1595.7244319566944,\n            \"poe_power_consumed\": 9851.1836242934,\n            \"poe_power_threshold\": 5245.134369155109\n          }\n        },\n        {\n          \"stack_member_id\": 3469,\n          \"device_id\": 6926,\n          \"serial_number\": \"string\",\n          \"unit_number\": 5248,\n          \"member_type\": \"string\",\n          \"poe_info\": {\n            \"powerState\": {},\n            \"unit_power_available\": 87.53446501764017,\n            \"unit_power_consumed\": 329.1908906244745,\n            \"unit_power_threshold\": 3913.489342394498,\n            \"poe_power_available\": 6519.714805636765,\n            \"poe_power_consumed\": 9969.88323813047,\n            \"poe_power_threshold\": 8632.232057328936\n          }\n        }\n      ],\n      \"make\": \"string\",\n      \"position\": {\n        \"x\": 8057,\n        \"y\": 632\n      },\n      \"poe_info\": {\n        \"powerState\": {},\n        \"unit_power_available\": 3551.5619395468557,\n        \"unit_power_consumed\": 7815.058813923399,\n        \"unit_power_threshold\": 1251.264052038561,\n        \"poe_power_available\": 1516.1363819638407,\n        \"poe_power_consumed\": 6732.859664370704,\n        \"poe_power_threshold\": 601.3259655156322\n      },\n      \"product_type\": \"string\",\n      \"is_locally_managed\": true,\n      \"sim_type\": \"string\"\n    },\n    {\n      \"id\": 8150,\n      \"hostname\": \"string\",\n      \"mac_address\": \"string\",\n      \"ip_address\": \"string\",\n      \"port_number\": \"string\",\n      \"radio_info\": \"string\",\n      \"health_score\": 1956,\n      \"client_count\": 4845,\n      \"last_node\": false,\n      \"topology_start_node\": true,\n      \"connected\": true,\n      \"vlan_info\": {\n        \"mgmt_vlan\": 6094,\n        \"native_vlan\": 9494,\n        \"access_port_vlans\": [\n          9777,\n          1345\n        ],\n        \"trunk_port_vlans\": [\n          3760,\n          1872\n        ],\n        \"user_profile_vlans\": [\n          9332,\n          1467\n        ]\n      },\n      \"type\": \"MESHAP\",\n      \"critical_alarms\": 1008,\n      \"not_current_location_node\": true,\n      \"unknown_device\": {\n        \"mac_address\": \"string\",\n        \"hostname\": \"string\",\n        \"type\": \"string\",\n        \"ip_address\": \"string\"\n      },\n      \"wired_interface_name\": \"string\",\n      \"connected_port\": \"string\",\n      \"stack_member_info\": [\n        {\n          \"stack_member_id\": 3115,\n          \"device_id\": 7187,\n          \"serial_number\": \"string\",\n          \"unit_number\": 1485,\n          \"member_type\": \"string\",\n          \"poe_info\": {\n            \"powerState\": {},\n            \"unit_power_available\": 2181.779244233928,\n            \"unit_power_consumed\": 179.91224080439295,\n            \"unit_power_threshold\": 6349.952072932183,\n            \"poe_power_available\": 2430.814690787172,\n            \"poe_power_consumed\": 3694.39524837329,\n            \"poe_power_threshold\": 7914.524206663599\n          }\n        },\n        {\n          \"stack_member_id\": 9777,\n          \"device_id\": 5561,\n          \"serial_number\": \"string\",\n          \"unit_number\": 3793,\n          \"member_type\": \"string\",\n          \"poe_info\": {\n            \"powerState\": {},\n            \"unit_power_available\": 3585.659965376871,\n            \"unit_power_consumed\": 4965.967275067279,\n            \"unit_power_threshold\": 5651.613146773417,\n            \"poe_power_available\": 1863.4008024677873,\n            \"poe_power_consumed\": 1747.5159704637988,\n            \"poe_power_threshold\": 7906.204304816789\n          }\n        }\n      ],\n      \"make\": \"string\",\n      \"position\": {\n        \"x\": 9382,\n        \"y\": 4294\n      },\n      \"poe_info\": {\n        \"powerState\": {},\n        \"unit_power_available\": 3698.3755195500835,\n        \"unit_power_consumed\": 2558.459118198223,\n        \"unit_power_threshold\": 1009.5465227457046,\n        \"poe_power_available\": 9246.76552604191,\n        \"poe_power_consumed\": 1585.6632510818813,\n        \"poe_power_threshold\": 7917.345976053095\n      },\n      \"product_type\": \"string\",\n      \"is_locally_managed\": false,\n      \"sim_type\": \"string\"\n    }\n  ],\n  \"baseline\": true,\n  \"user_initiated\": false,\n  \"created_at\": 8321,\n  \"zoom\": 6118,\n  \"pan\": {\n    \"x\": 7190,\n    \"y\": 365\n  },\n  \"neighbors\": [\n    {\n      \"device_id\": 4924,\n      \"hostname\": \"string\",\n      \"ip_address\": \"string\",\n      \"mac_address\": \"string\",\n      \"rssi\": 6356,\n      \"connection_failure_reason\": \"DEASSOC_FROM_AP\"\n    },\n    {\n      \"device_id\": 5217,\n      \"hostname\": \"string\",\n      \"ip_address\": \"string\",\n      \"mac_address\": \"string\",\n      \"rssi\": 8367,\n      \"connection_failure_reason\": \"DEAUTH_FROM_AP\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3e6a9ee1-aa51-4b82-a78b-20dd8d703325",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "client-details",
+                    "topology",
+                    "client-trail",
+                    ":macAddress"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "macAddress",
+                      "description": "(Required) The Mac Address of Client"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d629f4e6-6350-4a70-baed-9fff45ccf27d",
+          "name": "Client Details Overview",
+          "request": {
+            "name": "Client Details Overview",
+            "description": {
+              "content": "Return the Details for the clients.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "client-details",
+                "overview",
+                "info",
+                ":clientId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "startTime",
+                  "value": "<long>",
+                  "description": "The start time for the data to be returned (in milliseconds since epoch)"
+                },
+                {
+                  "disabled": false,
+                  "key": "endTime",
+                  "value": "<long>",
+                  "description": "The end time for the data to be returned (in milliseconds since epoch)"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "clientId",
+                  "description": "(Required) The Id of Client"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "479c5441-18b7-4ca4-8581-1b3a7dea65a4",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "client-details",
+                    "overview",
+                    "info",
+                    ":clientId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startTime",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "clientId",
+                      "description": "(Required) The Id of Client"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"device_connected\": true,\n  \"device_id\": 1381,\n  \"os_type\": \"string\",\n  \"ip_address\": \"string\",\n  \"mac_address\": \"string\",\n  \"device_location_names\": \"string\",\n  \"device_location_id\": 8196,\n  \"alias\": \"string\",\n  \"user\": \"string\",\n  \"connection_to\": \"string\",\n  \"connection_time\": 1979,\n  \"vlan\": 6643,\n  \"cwp_used\": 5417,\n  \"user_profile\": \"string\",\n  \"ssid\": \"string\",\n  \"radio\": \"string\",\n  \"wifi_protocol\": \"string\",\n  \"channel\": 8961,\n  \"client_hostname\": \"string\",\n  \"client_type\": \"string\",\n  \"rtts_supported\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bbfd1e4b-408d-40b6-b4e4-5b8681366c60",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "client-details",
+                    "overview",
+                    "info",
+                    ":clientId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startTime",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "clientId",
+                      "description": "(Required) The Id of Client"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.extremecloudiq.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "d8328e2a-4fdc-44a8-968e-cf57429b7eb8",
+    "name": "ExtremeCloud IQ Account Client - Details API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "ExtremeCloud IQ™ API allows customers and partners to create solutions for the management, monitoring, and provisioning\nof any ExtremeCloud IQ™ environment.\n\nAll related resources and documentation are available at [ExtremeCloud IQ Developer Portal](https://developer.extremecloudiq.com/).\nPlease check [Get Started and Tutorial](https://developer.extremecloudiq.com/documentation/) to understand how to use the APIs.\n\nGet the [latest OpenAPI definition](https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI/blob/main/xcloudiq-openapi.yaml)\nfrom [ExtremeCloud IQ OpenAPI GitHub repository](https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI).\n\nPlease have a valid [ExtremeCloud IQ](https://extremecloudiq.com/) account before getting started.\nIf you don't have one, please [register a new account](https://www.extremenetworks.com/cloud-networking/).\n\nContact Support:\n Name: Extreme Networks Support\n Email: support@extremenetworks.com",
+      "type": "text/plain"
+    }
+  }
+}

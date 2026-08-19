@@ -1,0 +1,1480 @@
+{
+  "item": [
+    {
+      "id": "38d3665a-1ec1-4a95-b28a-dcfa0f85e9ac",
+      "name": "Configuration - Deployment",
+      "description": {
+        "content": "Push configuration to devices",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "41816324-59ce-4841-a05e-2cf2839832c8",
+          "name": "[LRO] Push configuration and upgrade firmware",
+          "request": {
+            "name": "[LRO] Push configuration and upgrade firmware",
+            "description": {
+              "content": "Push configuration and upgrade firmware to the target devices.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "deployments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "async",
+                  "value": "false",
+                  "description": "Whether to enable async mode"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"schedule\": {\n    \"start_time\": \"<long>\"\n  },\n  \"devices\": {\n    \"ids\": [\n      \"<long>\",\n      \"<long>\"\n    ],\n    \"site_ids\": [\n      \"<long>\",\n      \"<long>\"\n    ]\n  },\n  \"policy\": {\n    \"enable_complete_configuration_update\": \"<boolean>\",\n    \"firmware_upgrade_policy\": {\n      \"enable_enforce_upgrade\": \"<boolean>\",\n      \"enable_distributed_upgrade\": \"<boolean>\"\n    },\n    \"firmware_upgrade_versions\": [\n      {\n        \"firmware_id\": \"<long>\",\n        \"device_id\": \"<long>\",\n        \"product_type\": \"<string>\"\n      },\n      {\n        \"firmware_id\": \"<long>\",\n        \"device_id\": \"<long>\",\n        \"product_type\": \"<string>\"\n      }\n    ],\n    \"firmware_activate_option\": {\n      \"activation_delay_seconds\": \"<long>\",\n      \"activation_time\": \"<long>\",\n      \"enable_activate_at_next_reboot\": \"<boolean>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f30f9f24-9b3b-4e4d-a7a8-1e3618c62403",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "deployments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "async",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"schedule\": {\n    \"start_time\": \"<long>\"\n  },\n  \"devices\": {\n    \"ids\": [\n      \"<long>\",\n      \"<long>\"\n    ],\n    \"site_ids\": [\n      \"<long>\",\n      \"<long>\"\n    ]\n  },\n  \"policy\": {\n    \"enable_complete_configuration_update\": \"<boolean>\",\n    \"firmware_upgrade_policy\": {\n      \"enable_enforce_upgrade\": \"<boolean>\",\n      \"enable_distributed_upgrade\": \"<boolean>\"\n    },\n    \"firmware_upgrade_versions\": [\n      {\n        \"firmware_id\": \"<long>\",\n        \"device_id\": \"<long>\",\n        \"product_type\": \"<string>\"\n      },\n      {\n        \"firmware_id\": \"<long>\",\n        \"device_id\": \"<long>\",\n        \"product_type\": \"<string>\"\n      }\n    ],\n    \"firmware_activate_option\": {\n      \"activation_delay_seconds\": \"<long>\",\n      \"activation_time\": \"<long>\",\n      \"enable_activate_at_next_reboot\": \"<boolean>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"deployment_id\": 6707,\n  \"deployment_status\": {\n    \"key_0\": {\n      \"current_progress\": 5137,\n      \"current_step_code\": \"string\",\n      \"current_step_message\": \"string\",\n      \"is_finished_successful\": false,\n      \"last_deploy_time\": 453,\n      \"finished\": false,\n      \"status_message\": \"string\"\n    },\n    \"key_1\": {\n      \"current_progress\": 4780,\n      \"current_step_code\": \"string\",\n      \"current_step_message\": \"string\",\n      \"is_finished_successful\": false,\n      \"last_deploy_time\": 2402,\n      \"finished\": false,\n      \"status_message\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1d84acf3-f99b-4874-8d3a-10fb944097f6",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "deployments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "async",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"schedule\": {\n    \"start_time\": \"<long>\"\n  },\n  \"devices\": {\n    \"ids\": [\n      \"<long>\",\n      \"<long>\"\n    ],\n    \"site_ids\": [\n      \"<long>\",\n      \"<long>\"\n    ]\n  },\n  \"policy\": {\n    \"enable_complete_configuration_update\": \"<boolean>\",\n    \"firmware_upgrade_policy\": {\n      \"enable_enforce_upgrade\": \"<boolean>\",\n      \"enable_distributed_upgrade\": \"<boolean>\"\n    },\n    \"firmware_upgrade_versions\": [\n      {\n        \"firmware_id\": \"<long>\",\n        \"device_id\": \"<long>\",\n        \"product_type\": \"<string>\"\n      },\n      {\n        \"firmware_id\": \"<long>\",\n        \"device_id\": \"<long>\",\n        \"product_type\": \"<string>\"\n      }\n    ],\n    \"firmware_activate_option\": {\n      \"activation_delay_seconds\": \"<long>\",\n      \"activation_time\": \"<long>\",\n      \"enable_activate_at_next_reboot\": \"<boolean>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "218935b9-3f3a-4965-a40d-8d0d2f18da45",
+          "name": "Get list of deployments",
+          "request": {
+            "name": "Get list of deployments",
+            "description": {
+              "content": "Get firmware upgrade details across multiple sites and devices.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "deployments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number, min = 1"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Page Size, min = 1, max = 100"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "5ee15e26-4b19-4912-a609-7531b78deed4",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "deployments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 8186,\n  \"page\": 2524,\n  \"total_count\": 7302,\n  \"total_pages\": 2284,\n  \"data\": [\n    {\n      \"deployment_id\": 3104,\n      \"schedule\": {\n        \"start_time\": \"<long>\"\n      },\n      \"devices\": {\n        \"ids\": [\n          \"<long>\",\n          \"<long>\"\n        ],\n        \"site_ids\": [\n          \"<long>\",\n          \"<long>\"\n        ]\n      },\n      \"policy\": {\n        \"enable_complete_configuration_update\": \"<boolean>\",\n        \"firmware_upgrade_policy\": {\n          \"enable_enforce_upgrade\": \"<boolean>\",\n          \"enable_distributed_upgrade\": \"<boolean>\"\n        },\n        \"firmware_upgrade_versions\": [\n          {\n            \"firmware_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"device_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"product_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"firmware_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"device_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"product_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"firmware_activate_option\": {\n          \"activation_delay_seconds\": \"<long>\",\n          \"activation_time\": \"<long>\",\n          \"enable_activate_at_next_reboot\": \"<boolean>\"\n        }\n      },\n      \"overview\": {\n        \"total_devices\": 6421,\n        \"in_progress_devices\": 9612,\n        \"total_progress\": 5042\n      }\n    },\n    {\n      \"deployment_id\": 2866,\n      \"schedule\": {\n        \"start_time\": \"<long>\"\n      },\n      \"devices\": {\n        \"ids\": [\n          \"<long>\",\n          \"<long>\"\n        ],\n        \"site_ids\": [\n          \"<long>\",\n          \"<long>\"\n        ]\n      },\n      \"policy\": {\n        \"enable_complete_configuration_update\": \"<boolean>\",\n        \"firmware_upgrade_policy\": {\n          \"enable_enforce_upgrade\": \"<boolean>\",\n          \"enable_distributed_upgrade\": \"<boolean>\"\n        },\n        \"firmware_upgrade_versions\": [\n          {\n            \"firmware_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"device_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"product_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"firmware_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"device_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"product_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"firmware_activate_option\": {\n          \"activation_delay_seconds\": \"<long>\",\n          \"activation_time\": \"<long>\",\n          \"enable_activate_at_next_reboot\": \"<boolean>\"\n        }\n      },\n      \"overview\": {\n        \"total_devices\": 5689,\n        \"in_progress_devices\": 5693,\n        \"total_progress\": 5863\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c8b08f96-9791-44de-801d-741ca48bebf4",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "deployments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fde17f46-9395-4be0-bd45-a59c42e00d6d",
+          "name": "Get configuration deployment overview",
+          "request": {
+            "name": "Get configuration deployment overview",
+            "description": {
+              "content": "Get configuration deployment status overview.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "deployments",
+                "overview"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "12d91365-fddc-4b9d-b42b-f8ba3ccd3457",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "deployments",
+                    "overview"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"in_progress_devices\": 4915,\n  \"total_progress\": 409\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b66832f7-b14f-4e4c-beb9-02328a7adb5d",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "deployments",
+                    "overview"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a6902948-f939-495e-87a5-cb975cbab92d",
+          "name": "Get configuration deployment status",
+          "request": {
+            "name": "Get configuration deployment status",
+            "description": {
+              "content": "Get configuration deployment status for the target devices.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "deployments",
+                "status"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "deviceIds",
+                  "value": "<long>",
+                  "description": "(Required) The target device IDs"
+                },
+                {
+                  "disabled": false,
+                  "key": "deviceIds",
+                  "value": "<long>",
+                  "description": "(Required) The target device IDs"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "0e5b4b57-fc25-4253-99ef-dee38d2b9ca5",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "deployments",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "deviceIds",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": {\n    \"current_progress\": 7938,\n    \"current_step_code\": \"string\",\n    \"current_step_message\": \"string\",\n    \"is_finished_successful\": true,\n    \"last_deploy_time\": 3037,\n    \"finished\": false,\n    \"status_message\": \"string\"\n  },\n  \"key_1\": {\n    \"current_progress\": 7382,\n    \"current_step_code\": \"string\",\n    \"current_step_message\": \"string\",\n    \"is_finished_successful\": false,\n    \"last_deploy_time\": 9555,\n    \"finished\": false,\n    \"status_message\": \"string\"\n  },\n  \"key_2\": {\n    \"current_progress\": 5863,\n    \"current_step_code\": \"string\",\n    \"current_step_message\": \"string\",\n    \"is_finished_successful\": false,\n    \"last_deploy_time\": 1868,\n    \"finished\": true,\n    \"status_message\": \"string\"\n  },\n  \"key_3\": {\n    \"current_progress\": 1872,\n    \"current_step_code\": \"string\",\n    \"current_step_message\": \"string\",\n    \"is_finished_successful\": false,\n    \"last_deploy_time\": 5767,\n    \"finished\": true,\n    \"status_message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fff956ef-213e-4221-b4d6-30caf1118273",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "deployments",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "deviceIds",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4c7f8a20-53b7-4bf1-8bef-6c158085dbda",
+          "name": "Get device firmware metadatas",
+          "request": {
+            "name": "Get device firmware metadatas",
+            "description": {
+              "content": "Get the compatible firmware metadatas for the devices.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "deployments",
+                "firmware-metadatas"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"device_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"product_types\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3ece78a3-628a-469b-b240-4bc2d7fa6f5f",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "deployments",
+                    "firmware-metadatas"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"device_ids\": [\n    \"<long>\"\n  ],\n  \"product_types\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"firmware_metadatas\": {\n    \"key_0\": {\n      \"firmware_id\": 3856,\n      \"create_time\": \"2011-09-02T06:52:21.893Z\",\n      \"update_time\": \"1995-10-01T04:50:27.820Z\",\n      \"firmware_name\": \"string\",\n      \"firmware_type\": \"string\",\n      \"scope\": \"string\",\n      \"version\": \"string\",\n      \"date\": \"string\",\n      \"firmware_size\": \"string\",\n      \"display_version\": \"string\",\n      \"supported_platforms\": \"string\",\n      \"md5\": \"string\"\n    },\n    \"key_1\": {\n      \"firmware_id\": 6121,\n      \"create_time\": \"1996-12-29T10:26:25.931Z\",\n      \"update_time\": \"1972-08-01T04:04:40.067Z\",\n      \"firmware_name\": \"string\",\n      \"firmware_type\": \"string\",\n      \"scope\": \"string\",\n      \"version\": \"string\",\n      \"date\": \"string\",\n      \"firmware_size\": \"string\",\n      \"display_version\": \"string\",\n      \"supported_platforms\": \"string\",\n      \"md5\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "60779c2c-6a8b-476f-9425-a7b2a0a82e9c",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "deployments",
+                    "firmware-metadatas"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"device_ids\": [\n    \"<long>\"\n  ],\n  \"product_types\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2ddad101-e02f-4681-a407-f8e6454c4df5",
+          "name": "Update schedule with deployment ID",
+          "request": {
+            "name": "Update schedule with deployment ID",
+            "description": {
+              "content": "Update firmware upgrade across multiple sites.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "deployments",
+                ":deploymentId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uint64>",
+                  "key": "deploymentId",
+                  "description": "(Required) The deployment ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"schedule\": {\n    \"start_time\": \"<long>\"\n  },\n  \"devices\": {\n    \"ids\": [\n      \"<long>\",\n      \"<long>\"\n    ],\n    \"site_ids\": [\n      \"<long>\",\n      \"<long>\"\n    ]\n  },\n  \"policy\": {\n    \"enable_complete_configuration_update\": \"<boolean>\",\n    \"firmware_upgrade_policy\": {\n      \"enable_enforce_upgrade\": \"<boolean>\",\n      \"enable_distributed_upgrade\": \"<boolean>\"\n    },\n    \"firmware_upgrade_versions\": [\n      {\n        \"firmware_id\": \"<long>\",\n        \"device_id\": \"<long>\",\n        \"product_type\": \"<string>\"\n      },\n      {\n        \"firmware_id\": \"<long>\",\n        \"device_id\": \"<long>\",\n        \"product_type\": \"<string>\"\n      }\n    ],\n    \"firmware_activate_option\": {\n      \"activation_delay_seconds\": \"<long>\",\n      \"activation_time\": \"<long>\",\n      \"enable_activate_at_next_reboot\": \"<boolean>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e91b9a51-2a5a-4491-b4a8-3d0fa03f523a",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "deployments",
+                    ":deploymentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uint64>",
+                      "key": "deploymentId",
+                      "description": "(Required) The deployment ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"schedule\": {\n    \"start_time\": \"<long>\"\n  },\n  \"devices\": {\n    \"ids\": [\n      \"<long>\",\n      \"<long>\"\n    ],\n    \"site_ids\": [\n      \"<long>\",\n      \"<long>\"\n    ]\n  },\n  \"policy\": {\n    \"enable_complete_configuration_update\": \"<boolean>\",\n    \"firmware_upgrade_policy\": {\n      \"enable_enforce_upgrade\": \"<boolean>\",\n      \"enable_distributed_upgrade\": \"<boolean>\"\n    },\n    \"firmware_upgrade_versions\": [\n      {\n        \"firmware_id\": \"<long>\",\n        \"device_id\": \"<long>\",\n        \"product_type\": \"<string>\"\n      },\n      {\n        \"firmware_id\": \"<long>\",\n        \"device_id\": \"<long>\",\n        \"product_type\": \"<string>\"\n      }\n    ],\n    \"firmware_activate_option\": {\n      \"activation_delay_seconds\": \"<long>\",\n      \"activation_time\": \"<long>\",\n      \"enable_activate_at_next_reboot\": \"<boolean>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5f9dd158-1460-49d7-a0b5-33cd8f5b0ec5",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "deployments",
+                    ":deploymentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uint64>",
+                      "key": "deploymentId",
+                      "description": "(Required) The deployment ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"schedule\": {\n    \"start_time\": \"<long>\"\n  },\n  \"devices\": {\n    \"ids\": [\n      \"<long>\",\n      \"<long>\"\n    ],\n    \"site_ids\": [\n      \"<long>\",\n      \"<long>\"\n    ]\n  },\n  \"policy\": {\n    \"enable_complete_configuration_update\": \"<boolean>\",\n    \"firmware_upgrade_policy\": {\n      \"enable_enforce_upgrade\": \"<boolean>\",\n      \"enable_distributed_upgrade\": \"<boolean>\"\n    },\n    \"firmware_upgrade_versions\": [\n      {\n        \"firmware_id\": \"<long>\",\n        \"device_id\": \"<long>\",\n        \"product_type\": \"<string>\"\n      },\n      {\n        \"firmware_id\": \"<long>\",\n        \"device_id\": \"<long>\",\n        \"product_type\": \"<string>\"\n      }\n    ],\n    \"firmware_activate_option\": {\n      \"activation_delay_seconds\": \"<long>\",\n      \"activation_time\": \"<long>\",\n      \"enable_activate_at_next_reboot\": \"<boolean>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9c98e9c6-090e-4f72-aeda-60f8819ed20b",
+          "name": "Get details of the deployment by deployment ID",
+          "request": {
+            "name": "Get details of the deployment by deployment ID",
+            "description": {
+              "content": "Get firmware upgrade schedule details across sites.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "deployments",
+                ":deploymentId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uint64>",
+                  "key": "deploymentId",
+                  "description": "(Required) The deployment ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "fc4e7970-8b17-4024-af18-1c21621fa2eb",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "deployments",
+                    ":deploymentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uint64>",
+                      "key": "deploymentId",
+                      "description": "(Required) The deployment ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"deployment_id\": 4295,\n  \"schedule\": {\n    \"start_time\": \"<long>\"\n  },\n  \"devices\": {\n    \"ids\": [\n      \"<long>\",\n      \"<long>\"\n    ],\n    \"site_ids\": [\n      \"<long>\",\n      \"<long>\"\n    ]\n  },\n  \"policy\": {\n    \"enable_complete_configuration_update\": \"<boolean>\",\n    \"firmware_upgrade_policy\": {\n      \"enable_enforce_upgrade\": \"<boolean>\",\n      \"enable_distributed_upgrade\": \"<boolean>\"\n    },\n    \"firmware_upgrade_versions\": [\n      {\n        \"firmware_id\": \"<long>\",\n        \"device_id\": \"<long>\",\n        \"product_type\": \"<string>\"\n      },\n      {\n        \"firmware_id\": \"<long>\",\n        \"device_id\": \"<long>\",\n        \"product_type\": \"<string>\"\n      }\n    ],\n    \"firmware_activate_option\": {\n      \"activation_delay_seconds\": \"<long>\",\n      \"activation_time\": \"<long>\",\n      \"enable_activate_at_next_reboot\": \"<boolean>\"\n    }\n  },\n  \"overview\": {\n    \"total_devices\": 7630,\n    \"in_progress_devices\": 3708,\n    \"total_progress\": 1233\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "374d3edd-c8db-4b6b-8bb9-324265621721",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "deployments",
+                    ":deploymentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uint64>",
+                      "key": "deploymentId",
+                      "description": "(Required) The deployment ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6eb01c52-e147-4d7b-a027-f1d0e2a3b6d0",
+          "name": "Delete the deployment schedule by ID",
+          "request": {
+            "name": "Delete the deployment schedule by ID",
+            "description": {
+              "content": "Delete firmware upgrade schedule.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "deployments",
+                ":deploymentId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uint64>",
+                  "key": "deploymentId",
+                  "description": "(Required) The deployment ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "d66a12a2-d27f-489b-9b36-fd55c888a74b",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "deployments",
+                    ":deploymentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uint64>",
+                      "key": "deploymentId",
+                      "description": "(Required) The deployment ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a86cb61d-9dd4-4723-9c68-f49d478323ae",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "deployments",
+                    ":deploymentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uint64>",
+                      "key": "deploymentId",
+                      "description": "(Required) The deployment ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b402df83-78b9-4d29-91c2-e1f302f817af",
+          "name": "[LRO] Get firmware deployment status by ID",
+          "request": {
+            "name": "[LRO] Get firmware deployment status by ID",
+            "description": {
+              "content": "Get firmware upgrade schedule status for a site based on deployment ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "deployments",
+                ":deploymentId",
+                "status"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "async",
+                  "value": "false",
+                  "description": "Whether to enable async mode"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uint64>",
+                  "key": "deploymentId",
+                  "description": "(Required) The deployment ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "2ef53022-d71b-407d-bb61-348cd5fa3dfe",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "deployments",
+                    ":deploymentId",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "async",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uint64>",
+                      "key": "deploymentId",
+                      "description": "(Required) The deployment ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"schedule_status\": \"COMPLETED\",\n  \"schedule_time\": 330,\n  \"created_time\": 3122,\n  \"updated_time\": 1773,\n  \"site_info\": {\n    \"site_id\": 8911,\n    \"device_ids\": [\n      4737,\n      2713\n    ],\n    \"overview\": {\n      \"in_progress_devices\": 9705,\n      \"total_progress\": 8492\n    }\n  },\n  \"deployment_status\": {\n    \"key_0\": {\n      \"current_progress\": 1301,\n      \"current_step_code\": \"string\",\n      \"current_step_message\": \"string\",\n      \"is_finished_successful\": true,\n      \"last_deploy_time\": 1684,\n      \"finished\": false,\n      \"status_message\": \"string\"\n    },\n    \"key_1\": {\n      \"current_progress\": 705,\n      \"current_step_code\": \"string\",\n      \"current_step_message\": \"string\",\n      \"is_finished_successful\": true,\n      \"last_deploy_time\": 9326,\n      \"finished\": true,\n      \"status_message\": \"string\"\n    }\n  },\n  \"overview\": {\n    \"in_progress_devices\": 5409,\n    \"total_progress\": 6595\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6235554a-e001-4d12-8784-208d1d39e8bc",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "deployments",
+                    ":deploymentId",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "async",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uint64>",
+                      "key": "deploymentId",
+                      "description": "(Required) The deployment ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.extremecloudiq.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "1938446b-14c4-46af-867f-de6de00c44ca",
+    "name": "ExtremeCloud IQ Account Configuration - Deployment API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "ExtremeCloud IQ™ API allows customers and partners to create solutions for the management, monitoring, and provisioning\nof any ExtremeCloud IQ™ environment.\n\nAll related resources and documentation are available at [ExtremeCloud IQ Developer Portal](https://developer.extremecloudiq.com/).\nPlease check [Get Started and Tutorial](https://developer.extremecloudiq.com/documentation/) to understand how to use the APIs.\n\nGet the [latest OpenAPI definition](https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI/blob/main/xcloudiq-openapi.yaml)\nfrom [ExtremeCloud IQ OpenAPI GitHub repository](https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI).\n\nPlease have a valid [ExtremeCloud IQ](https://extremecloudiq.com/) account before getting started.\nIf you don't have one, please [register a new account](https://www.extremenetworks.com/cloud-networking/).\n\nContact Support:\n Name: Extreme Networks Support\n Email: support@extremenetworks.com",
+      "type": "text/plain"
+    }
+  }
+}

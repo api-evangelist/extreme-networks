@@ -1,0 +1,860 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ExtremeCloud IQ Account Copilot - Anomalies API",
+    "version": "25.9.0-36"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Copilot - Anomalies",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get POE Flapping Anomaly Device Stats",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/copilot/anomalies/poeflapping/stats",
+            "params": [
+              {
+                "name": "anomalyId",
+                "value": "",
+                "type": "query",
+                "description": "The anomaly id"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get all the stats for anomaly device."
+        },
+        {
+          "info": {
+            "name": "Get PortEfficiency Device Stats",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/copilot/anomalies/port-efficiency/stats",
+            "params": [
+              {
+                "name": "anomalyId",
+                "value": "",
+                "type": "query",
+                "description": "The anomaly id"
+              },
+              {
+                "name": "offsetTime",
+                "value": "",
+                "type": "query",
+                "description": "The offset value"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get all the stats for PortEfficiency device."
+        },
+        {
+          "info": {
+            "name": "Get PortEfficiency Device Speed and Duplex Stats",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/copilot/anomalies/port-efficiency/speed-duplex-stats",
+            "params": [
+              {
+                "name": "anomalyId",
+                "value": "",
+                "type": "query",
+                "description": "The anomaly id"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get all the speed and duplex for PortEfficiency device."
+        },
+        {
+          "info": {
+            "name": "Get DFSRecurrence Device Channel Count Stats",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/copilot/anomalies/dfs-recurrence/count-stats",
+            "params": [
+              {
+                "name": "anomalyId",
+                "value": "",
+                "type": "query",
+                "description": "The anomaly id"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get DFS Recurrence anomaly radar event count stats."
+        },
+        {
+          "info": {
+            "name": "Get DFSRecurrence Device Channel Change Stats",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/copilot/anomalies/dfs-recurrence/channel-stats",
+            "params": [
+              {
+                "name": "anomalyId",
+                "value": "",
+                "type": "query",
+                "description": "The anomaly id"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get DFS Recurrence anomaly device channel change stats."
+        },
+        {
+          "info": {
+            "name": "Get Adverse Traffic Pattern Anomaly Device Stats",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/copilot/anomalies/adverse-traffic/device-stats",
+            "params": [
+              {
+                "name": "anomalyId",
+                "value": "",
+                "type": "query",
+                "description": "The anomaly id"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get all the stats for anomaly device."
+        },
+        {
+          "info": {
+            "name": "Get Adverse Traffic Pattern Anomaly Packet Counts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/copilot/anomalies/adverse-traffic/packet-counts",
+            "params": [
+              {
+                "name": "anomalyId",
+                "value": "",
+                "type": "query",
+                "description": "The anomaly id"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get all the stats for anomaly device."
+        },
+        {
+          "info": {
+            "name": "Get WifiEfficiency Device Stats",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/copilot/anomalies/wifi-efficiency/stats",
+            "params": [
+              {
+                "name": "anomalyId",
+                "value": "",
+                "type": "query",
+                "description": "The anomaly id"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get all the stats for WifiEfficiency device."
+        },
+        {
+          "info": {
+            "name": "Get WifiEfficiency contributing client list",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/copilot/anomalies/wifi-efficiency/client-list",
+            "params": [
+              {
+                "name": "deviceId",
+                "value": "",
+                "type": "query",
+                "description": "The device id"
+              },
+              {
+                "name": "channel",
+                "value": "",
+                "type": "query",
+                "description": "The channel number"
+              },
+              {
+                "name": "timestamp",
+                "value": "",
+                "type": "query",
+                "description": "The timestamp"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get all the client list for WifiEfficiency device."
+        },
+        {
+          "info": {
+            "name": "Get WifiCapacity Device Stats",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/copilot/anomalies/wifi-capacity/stats",
+            "params": [
+              {
+                "name": "anomalyId",
+                "value": "",
+                "type": "query",
+                "description": "The anomaly id"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get all the stats for WifiCapacity device."
+        },
+        {
+          "info": {
+            "name": "Get WifiCapacity contributing client list",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/copilot/anomalies/wifi-capacity/client-list",
+            "params": [
+              {
+                "name": "deviceId",
+                "value": "",
+                "type": "query",
+                "description": "The device id"
+              },
+              {
+                "name": "channel",
+                "value": "",
+                "type": "query",
+                "description": "The channel number"
+              },
+              {
+                "name": "timestamp",
+                "value": "",
+                "type": "query",
+                "description": "The timestamp"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get all the client list for WifiCapacity device."
+        },
+        {
+          "info": {
+            "name": "Get AssuranceScans for all anomaly devices",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/copilot/assurance-scans/overview",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get all assuranceScans data for a given location."
+        },
+        {
+          "info": {
+            "name": "Update Anomalies Feedback",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.extremecloudiq.com/copilot/anomalies/devices/feedback",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Update and save Anomaly Feedback."
+        },
+        {
+          "info": {
+            "name": "Get Anomalies by Categories",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/copilot/anomalies/anomalies-by-category",
+            "params": [
+              {
+                "name": "startTime",
+                "value": "",
+                "type": "query",
+                "description": "The start time"
+              },
+              {
+                "name": "endTime",
+                "value": "",
+                "type": "query",
+                "description": "The end time"
+              },
+              {
+                "name": "buildingId",
+                "value": "",
+                "type": "query",
+                "description": "The building id"
+              },
+              {
+                "name": "severity",
+                "value": "",
+                "type": "query",
+                "description": "The anomaly severity"
+              },
+              {
+                "name": "anomalyType",
+                "value": "",
+                "type": "query",
+                "description": "The anomaly type"
+              },
+              {
+                "name": "excludeMuted",
+                "value": "",
+                "type": "query",
+                "description": "To filter muted anomalies"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get all anomalies for a given viewType."
+        },
+        {
+          "info": {
+            "name": "Devices with Locations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/copilot/anomalies/devices-with-locations",
+            "params": [
+              {
+                "name": "startTime",
+                "value": "",
+                "type": "query",
+                "description": "The start time"
+              },
+              {
+                "name": "endTime",
+                "value": "",
+                "type": "query",
+                "description": "The end time"
+              },
+              {
+                "name": "buildingId",
+                "value": "",
+                "type": "query",
+                "description": "The building id"
+              },
+              {
+                "name": "severity",
+                "value": "",
+                "type": "query",
+                "description": "The anomaly severity"
+              },
+              {
+                "name": "anomalyType",
+                "value": "",
+                "type": "query",
+                "description": "The anomaly type"
+              },
+              {
+                "name": "excludeMuted",
+                "value": "",
+                "type": "query",
+                "description": "To filter muted anomalies"
+              },
+              {
+                "name": "sortField",
+                "value": "",
+                "type": "query",
+                "description": "The sort field"
+              },
+              {
+                "name": "sortOrder",
+                "value": "",
+                "type": "query",
+                "description": "The sort order (ascending by default)"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number, min = 1"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page Size, min = 1, max = 100"
+              },
+              {
+                "name": "searchKey",
+                "value": "",
+                "type": "query",
+                "description": "The search key"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get all devices for all the anomalies and locations."
+        },
+        {
+          "info": {
+            "name": "Update Devices Action",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.extremecloudiq.com/copilot/anomalies/update-device-action",
+            "params": [
+              {
+                "name": "async",
+                "value": "",
+                "type": "query",
+                "description": "Whether to enable async mode"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Update & save action for Anomaly devices."
+        },
+        {
+          "info": {
+            "name": "Download Anomalies Report",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/copilot/anomalies/report",
+            "params": [
+              {
+                "name": "startTime",
+                "value": "",
+                "type": "query",
+                "description": "The start time"
+              },
+              {
+                "name": "endTime",
+                "value": "",
+                "type": "query",
+                "description": "The end time"
+              },
+              {
+                "name": "buildingId",
+                "value": "",
+                "type": "query",
+                "description": "The building id"
+              },
+              {
+                "name": "severity",
+                "value": "",
+                "type": "query",
+                "description": "The anomaly severity"
+              },
+              {
+                "name": "anomalyType",
+                "value": "",
+                "type": "query",
+                "description": "The anomaly type"
+              },
+              {
+                "name": "excludeMuted",
+                "value": "",
+                "type": "query",
+                "description": "To filter muted anomalies"
+              },
+              {
+                "name": "sortField",
+                "value": "",
+                "type": "query",
+                "description": "The sort field"
+              },
+              {
+                "name": "sortOrder",
+                "value": "",
+                "type": "query",
+                "description": "The sort order (ascending by default)"
+              },
+              {
+                "name": "searchKey",
+                "value": "",
+                "type": "query",
+                "description": "The search key"
+              },
+              {
+                "name": "fileType",
+                "value": "",
+                "type": "query",
+                "description": "The file type"
+              },
+              {
+                "name": "offsetTime",
+                "value": "",
+                "type": "query",
+                "description": "The offset value"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Download all devices and locations for all the anomalies."
+        },
+        {
+          "info": {
+            "name": "Get POE Flapping Anomaly Device Power Mode Trends",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/copilot/anomalies/poeflapping/trends",
+            "params": [
+              {
+                "name": "anomalyId",
+                "value": "",
+                "type": "query",
+                "description": "The anomaly id"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get all the poe trends for anomalous device."
+        },
+        {
+          "info": {
+            "name": "Get anomalous device lldp cdp Info details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/copilot/anomalies/poeflapping/lldp-cdp-info",
+            "params": [
+              {
+                "name": "anomalyId",
+                "value": "",
+                "type": "query",
+                "description": "The anomaly id"
+              },
+              {
+                "name": "deviceId",
+                "value": "",
+                "type": "query",
+                "description": "The device id"
+              },
+              {
+                "name": "lastDetectedTime",
+                "value": "",
+                "type": "query",
+                "description": "The last detected time"
+              },
+              {
+                "name": "anomalyType",
+                "value": "",
+                "type": "query",
+                "description": "The anomaly type"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get LLDP-CDP information and location details for anomalous devices."
+        },
+        {
+          "info": {
+            "name": "Get Excluded Vlan List",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/copilot/anomalies/excluded-vlans-list",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number, min = 1"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page Size, min = 1, max = 100"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get Excluded vlans details with Site details."
+        },
+        {
+          "info": {
+            "name": "Excluding Vlan from Sites",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/copilot/anomalies/exclude-vlans",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Add, Update, Delete excluded vlan from sites."
+        },
+        {
+          "info": {
+            "name": "Excluding Vlan from Sites - CSV",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.extremecloudiq.com/copilot/anomalies/exclude-vlans-csv",
+            "params": [
+              {
+                "name": "action_type",
+                "value": "",
+                "type": "query",
+                "description": "The type of action to perform (add)"
+              },
+              {
+                "name": "dismiss",
+                "value": "",
+                "type": "query",
+                "description": "Whether to dismiss the action after execution"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "csv_file",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Add excluded vlan from sites using CSV."
+        },
+        {
+          "info": {
+            "name": "Get MissingVlan Anomalies Count",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/copilot/anomalies/missing-vlan/count",
+            "params": [
+              {
+                "name": "startTime",
+                "value": "",
+                "type": "query",
+                "description": "The Start time"
+              },
+              {
+                "name": "endTime",
+                "value": "",
+                "type": "query",
+                "description": "The End time"
+              },
+              {
+                "name": "vlanIds",
+                "value": "",
+                "type": "query",
+                "description": "The vlan ids"
+              },
+              {
+                "name": "siteIds",
+                "value": "",
+                "type": "query",
+                "description": "The site ids"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "MissingVlan anomaly count for specified vlanIds and siteIds."
+        },
+        {
+          "info": {
+            "name": "Get HardwareHealth Anomaly Stats",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/copilot/anomalies/hardware-health/stats",
+            "params": [
+              {
+                "name": "anomalyId",
+                "value": "",
+                "type": "query",
+                "description": "The anomaly id"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get all the stats for anomaly device."
+        },
+        {
+          "info": {
+            "name": "Get HardwareHealth contributing client list",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/copilot/anomalies/hardware-health/client-list",
+            "params": [
+              {
+                "name": "deviceId",
+                "value": "",
+                "type": "query",
+                "description": "The device id"
+              },
+              {
+                "name": "timestamp",
+                "value": "",
+                "type": "query",
+                "description": "The timestamp"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get all the client list for HardwareHealth device."
+        },
+        {
+          "info": {
+            "name": "Get HardwareHealth CPU & Memory Stats",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/copilot/anomalies/hardware-health/cpu-mem-stats",
+            "params": [
+              {
+                "name": "deviceId",
+                "value": "",
+                "type": "query",
+                "description": "The device id"
+              },
+              {
+                "name": "hhStatsFieldType",
+                "value": "",
+                "type": "query",
+                "description": "The Hardware Health anomaly CPU or Memory Stats type"
+              },
+              {
+                "name": "timestamp",
+                "value": "",
+                "type": "query",
+                "description": "The timestamp"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get CPU or memory details for HardwareHealth device."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,33 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ExtremeCloud IQ Account Geo-View API",
+    "version": "25.9.0-36"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Geo-View",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Geo View Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.extremecloudiq.com/geo-view",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Geo View hierarchical data."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,1247 @@
+{
+  "item": [
+    {
+      "id": "fb11b8b7-fcaf-4d9c-9c26-3b9b5f4b0a35",
+      "name": "PacketCaptures",
+      "description": {
+        "content": "Packet capture sessions in ExtremeCloud IQ",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "34695f93-e328-44c5-8612-8df634223f13",
+          "name": "List packet capture sessions",
+          "request": {
+            "name": "List packet capture sessions",
+            "description": {
+              "content": "List packet capture sessions with filters and pagination.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "packetcaptures"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number, min = 1"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Page Size, min = 1, max = 100"
+                },
+                {
+                  "disabled": false,
+                  "key": "searchString",
+                  "value": "<string>",
+                  "description": "The string to be searched in capture session name, interface name and device host name"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortField",
+                  "value": "<string>",
+                  "description": "Sort field. Available values - NAME, START_TIME and STATUS"
+                },
+                {
+                  "disabled": false,
+                  "key": "order",
+                  "value": "<string>",
+                  "description": "The sort order (ascending by default)"
+                },
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>",
+                  "description": "The packet capture fields to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>",
+                  "description": "The packet capture fields to return"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "ad180359-75f9-4e15-9579-707a665644ed",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "packetcaptures"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "searchString",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortField",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 2356,\n  \"page\": 8008,\n  \"total_count\": 2478,\n  \"total_pages\": 5672,\n  \"data\": [\n    {\n      \"ap_serial_number\": \";]]]]]]]\",\n      \"id\": 565,\n      \"org_id\": 9069,\n      \"name\": \"KBIX1IEL0B.=^R?;[[A[>:=K<\\\\S[DL=QNG\\\\NQ;UQD:UCIMYDTD741P;H\",\n      \"duration\": 371237,\n      \"destination\": \"CLOUD\",\n      \"filter\": {\n        \"mac_addr\": [\n          \"...\",\n          \"...\"\n        ],\n        \"ip_addr\": [\n          \"...\",\n          \"...\"\n        ],\n        \"protocol\": \"any\",\n        \"port\": 12345,\n        \"vlan\": \"2,4,5-10\"\n      },\n      \"capture_if\": {\n        \"direction\": \"Both\",\n        \"wired_interface\": \"ETH0\",\n        \"wireless_band\": \"2.4GHZ\",\n        \"wireless_filters\": [\n          \"MANAGEMENT\",\n          \"CONTROL\"\n        ]\n      },\n      \"start_time\": \"2004-02-11T21:58:24.028Z\",\n      \"end_time\": \"1955-04-16T21:32:55.796Z\",\n      \"status\": \"ACTIVE\",\n      \"cloud_storage\": \"string\",\n      \"results\": [\n        {\n          \"id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"start_time\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"end_time\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"org_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"device_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"interface\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"hostname\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"mac_address\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"location_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"locations\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"status\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"error_message\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"storage\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"start_time\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"end_time\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"org_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"device_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"interface\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"hostname\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"mac_address\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"location_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"locations\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"status\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"error_message\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"storage\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ]\n    },\n    {\n      \"ap_serial_number\": \"']\",\n      \"id\": 9204,\n      \"org_id\": 9782,\n      \"name\": \"BK7:F5HP0?2^R=Q>81EEOE8KM:VDF5HVEZ3E;ZY>9FYWYG8H8BIS7MR@PG438QD:RZ2HKJGE]W<H1.4M_?1IVUFZP<P[RVFTDJN\\\\Q5U]B54T\\\\1ES]E\",\n      \"duration\": 137268,\n      \"destination\": \"CLOUD\",\n      \"filter\": {\n        \"mac_addr\": [\n          \"...\",\n          \"...\"\n        ],\n        \"ip_addr\": [\n          \"...\",\n          \"...\"\n        ],\n        \"protocol\": \"any\",\n        \"port\": 12345,\n        \"vlan\": \"2,4,5-10\"\n      },\n      \"capture_if\": {\n        \"direction\": \"Both\",\n        \"wired_interface\": \"ETH0\",\n        \"wireless_band\": \"2.4GHZ\",\n        \"wireless_filters\": [\n          \"MANAGEMENT\",\n          \"CONTROL\"\n        ]\n      },\n      \"start_time\": \"1971-05-16T14:39:43.135Z\",\n      \"end_time\": \"2010-05-01T12:37:44.145Z\",\n      \"status\": \"ACTIVE\",\n      \"cloud_storage\": \"string\",\n      \"results\": [\n        {\n          \"id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"start_time\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"end_time\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"org_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"device_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"interface\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"hostname\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"mac_address\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"location_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"locations\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"status\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"error_message\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"storage\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"start_time\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"end_time\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"org_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"device_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"interface\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"hostname\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"mac_address\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"location_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"locations\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"status\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"error_message\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"storage\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "508cec56-5af6-4250-95d1-6737aa1d7502",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "packetcaptures"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "searchString",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortField",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8aa6f73c-466b-4c17-8dde-71569451ac02",
+          "name": "Create a new packet capture session",
+          "request": {
+            "name": "Create a new packet capture session",
+            "description": {
+              "content": "Create and start a new packet capture session with requested capture location and filter criteria.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "packetcaptures"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ap_serial_number\": \"<string>\",\n  \"id\": \"<long>\",\n  \"org_id\": \"<long>\",\n  \"name\": \"<string>\",\n  \"duration\": \"<integer>\",\n  \"destination\": \"<string>\",\n  \"filter\": {\n    \"mac_addr\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"ip_addr\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"protocol\": \"ANY\",\n    \"protocol_number\": \"<integer>\",\n    \"port\": \"<integer>\",\n    \"vlan\": \"<string>\",\n    \"wlan\": \"<string>\"\n  },\n  \"capture_if\": {\n    \"direction\": \"BOTH\",\n    \"wired_interface\": \"<string>\",\n    \"wired_filters\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"radio\": \"<string>\",\n    \"wireless_band\": \"ALL\",\n    \"wireless_filters\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"cloud_storage\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "64b77c7e-7dd0-40d3-8b5c-a75fa893f398",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "packetcaptures"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ap_serial_number\": \"<string>\",\n  \"id\": \"<long>\",\n  \"org_id\": \"<long>\",\n  \"name\": \"<string>\",\n  \"duration\": \"<integer>\",\n  \"destination\": \"CLOUD\",\n  \"filter\": {\n    \"mac_addr\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"ip_addr\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"protocol\": \"ANY\",\n    \"protocol_number\": \"<integer>\",\n    \"port\": \"<integer>\",\n    \"vlan\": \"<string>\",\n    \"wlan\": \"<string>\"\n  },\n  \"capture_if\": {\n    \"direction\": \"BOTH\",\n    \"wired_interface\": \"ETH0\",\n    \"wired_filters\": [\n      \"DHCP\",\n      \"DHCP\"\n    ],\n    \"radio\": \"RADIO1\",\n    \"wireless_band\": \"2.4GHZ\",\n    \"wireless_filters\": [\n      \"DATA\",\n      \"DATA\"\n    ]\n  },\n  \"cloud_storage\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ap_serial_number\": \"<string>\",\n  \"id\": \"<long>\",\n  \"org_id\": \"<long>\",\n  \"name\": \"<string>\",\n  \"duration\": \"<integer>\",\n  \"destination\": \"CLOUD\",\n  \"filter\": {\n    \"mac_addr\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"ip_addr\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"protocol\": \"ANY\",\n    \"protocol_number\": \"<integer>\",\n    \"port\": \"<integer>\",\n    \"vlan\": \"<string>\",\n    \"wlan\": \"<string>\"\n  },\n  \"capture_if\": {\n    \"direction\": \"BOTH\",\n    \"wired_interface\": \"ETH0\",\n    \"wired_filters\": [\n      \"DHCP\",\n      \"DHCP\"\n    ],\n    \"radio\": \"RADIO1\",\n    \"wireless_band\": \"2.4GHZ\",\n    \"wireless_filters\": [\n      \"DATA\",\n      \"DATA\"\n    ]\n  },\n  \"start_time\": \"2019-08-15T19:00:55.606Z\",\n  \"end_time\": \"1959-10-05T11:42:39.874Z\",\n  \"status\": \"ACTIVE\",\n  \"cloud_storage\": \"<string>\",\n  \"results\": [\n    {\n      \"id\": 7254,\n      \"start_time\": \"2021-03-15T20:31:06.402Z\",\n      \"end_time\": \"1969-09-01T12:21:29.993Z\",\n      \"org_id\": 430,\n      \"device_id\": 5334,\n      \"interface\": \"string\",\n      \"hostname\": \"string\",\n      \"mac_address\": \"string\",\n      \"location_id\": 3566,\n      \"locations\": [\n        {\n          \"id\": 7490,\n          \"name\": \"string\"\n        },\n        {\n          \"id\": 5958,\n          \"name\": \"string\"\n        }\n      ],\n      \"status\": \"ACTIVE\",\n      \"error_message\": \"string\",\n      \"storage\": {\n        \"cloud_shark_storage\": {\n          \"file_name\": \"2023051105924UTC-241FBD8FEDC0-wifi0.pcap\",\n          \"file_url\": \"https://www.cloudshark.org/captures/f27d1494400c\"\n        },\n        \"cloud_storage\": \"string\"\n      }\n    },\n    {\n      \"id\": 5102,\n      \"start_time\": \"1983-10-29T08:22:34.466Z\",\n      \"end_time\": \"2001-05-06T01:05:20.238Z\",\n      \"org_id\": 1007,\n      \"device_id\": 6293,\n      \"interface\": \"string\",\n      \"hostname\": \"string\",\n      \"mac_address\": \"string\",\n      \"location_id\": 3040,\n      \"locations\": [\n        {\n          \"id\": 9882,\n          \"name\": \"string\"\n        },\n        {\n          \"id\": 5449,\n          \"name\": \"string\"\n        }\n      ],\n      \"status\": \"ACTIVE\",\n      \"error_message\": \"string\",\n      \"storage\": {\n        \"cloud_shark_storage\": {\n          \"file_name\": \"2023051105924UTC-241FBD8FEDC0-wifi0.pcap\",\n          \"file_url\": \"https://www.cloudshark.org/captures/f27d1494400c\"\n        },\n        \"cloud_storage\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cf041604-938b-4455-a572-6ee1531a6519",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "packetcaptures"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ap_serial_number\": \"<string>\",\n  \"id\": \"<long>\",\n  \"org_id\": \"<long>\",\n  \"name\": \"<string>\",\n  \"duration\": \"<integer>\",\n  \"destination\": \"CLOUD\",\n  \"filter\": {\n    \"mac_addr\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"ip_addr\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"protocol\": \"ANY\",\n    \"protocol_number\": \"<integer>\",\n    \"port\": \"<integer>\",\n    \"vlan\": \"<string>\",\n    \"wlan\": \"<string>\"\n  },\n  \"capture_if\": {\n    \"direction\": \"BOTH\",\n    \"wired_interface\": \"ETH0\",\n    \"wired_filters\": [\n      \"DHCP\",\n      \"DHCP\"\n    ],\n    \"radio\": \"RADIO1\",\n    \"wireless_band\": \"2.4GHZ\",\n    \"wireless_filters\": [\n      \"DATA\",\n      \"DATA\"\n    ]\n  },\n  \"cloud_storage\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8367a5d3-f03d-4a41-8c86-7c98da5086ad",
+          "name": "Get a packet capture session by ID",
+          "request": {
+            "name": "Get a packet capture session by ID",
+            "description": {
+              "content": "Get a packet capture session by id.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "packetcaptures",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>",
+                  "description": "The packet capture fields to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>",
+                  "description": "The packet capture fields to return"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "id",
+                  "description": "(Required) The unique identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "71b2340b-1884-44c6-8237-05579e122667",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "packetcaptures",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ap_serial_number\": \"<string>\",\n  \"id\": \"<long>\",\n  \"org_id\": \"<long>\",\n  \"name\": \"<string>\",\n  \"duration\": \"<integer>\",\n  \"destination\": \"CLOUD\",\n  \"filter\": {\n    \"mac_addr\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"ip_addr\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"protocol\": \"ANY\",\n    \"protocol_number\": \"<integer>\",\n    \"port\": \"<integer>\",\n    \"vlan\": \"<string>\",\n    \"wlan\": \"<string>\"\n  },\n  \"capture_if\": {\n    \"direction\": \"BOTH\",\n    \"wired_interface\": \"ETH0\",\n    \"wired_filters\": [\n      \"DHCP\",\n      \"DHCP\"\n    ],\n    \"radio\": \"RADIO1\",\n    \"wireless_band\": \"2.4GHZ\",\n    \"wireless_filters\": [\n      \"DATA\",\n      \"DATA\"\n    ]\n  },\n  \"start_time\": \"2002-10-12T19:28:28.717Z\",\n  \"end_time\": \"1991-08-25T07:34:04.400Z\",\n  \"status\": \"ACTIVE\",\n  \"cloud_storage\": \"<string>\",\n  \"results\": [\n    {\n      \"id\": 564,\n      \"start_time\": \"1951-05-16T17:02:41.400Z\",\n      \"end_time\": \"2006-10-30T07:34:46.412Z\",\n      \"org_id\": 913,\n      \"device_id\": 2662,\n      \"interface\": \"string\",\n      \"hostname\": \"string\",\n      \"mac_address\": \"string\",\n      \"location_id\": 8305,\n      \"locations\": [\n        {\n          \"id\": 3998,\n          \"name\": \"string\"\n        },\n        {\n          \"id\": 3483,\n          \"name\": \"string\"\n        }\n      ],\n      \"status\": \"ACTIVE\",\n      \"error_message\": \"string\",\n      \"storage\": {\n        \"cloud_shark_storage\": {\n          \"file_name\": \"2023051105924UTC-241FBD8FEDC0-wifi0.pcap\",\n          \"file_url\": \"https://www.cloudshark.org/captures/f27d1494400c\"\n        },\n        \"cloud_storage\": \"string\"\n      }\n    },\n    {\n      \"id\": 1339,\n      \"start_time\": \"1947-09-26T17:02:54.567Z\",\n      \"end_time\": \"1994-10-13T20:20:25.662Z\",\n      \"org_id\": 6417,\n      \"device_id\": 1931,\n      \"interface\": \"string\",\n      \"hostname\": \"string\",\n      \"mac_address\": \"string\",\n      \"location_id\": 8601,\n      \"locations\": [\n        {\n          \"id\": 4747,\n          \"name\": \"string\"\n        },\n        {\n          \"id\": 9613,\n          \"name\": \"string\"\n        }\n      ],\n      \"status\": \"ACTIVE\",\n      \"error_message\": \"string\",\n      \"storage\": {\n        \"cloud_shark_storage\": {\n          \"file_name\": \"2023051105924UTC-241FBD8FEDC0-wifi0.pcap\",\n          \"file_url\": \"https://www.cloudshark.org/captures/f27d1494400c\"\n        },\n        \"cloud_storage\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "591d62a1-6c6d-4467-9f57-5e03a9f09258",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "packetcaptures",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "21b0adef-4afb-4fc4-8cad-8c9b31b532f7",
+          "name": "Delete a packet capture session",
+          "request": {
+            "name": "Delete a packet capture session",
+            "description": {
+              "content": "Delete an existing packet capture session and capture files by ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "packetcaptures",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "id",
+                  "description": "(Required) The unique identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "5f66fb8d-a24e-4265-8f54-57ebe77b0a90",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "packetcaptures",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a26fb5d6-1d14-4dd1-8e91-21e747390f9f",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "packetcaptures",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3c861497-352a-44cf-a9b0-b57326e56602",
+          "name": "Stop a packet capture session",
+          "request": {
+            "name": "Stop a packet capture session",
+            "description": {
+              "content": "Stop an active packet capture session.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "packetcaptures",
+                ":id",
+                ":stop"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "id",
+                  "description": "(Required) The unique identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"device_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "fa7aeffa-8c70-4484-8fc2-9c3b3e576d74",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "packetcaptures",
+                    ":id",
+                    ":stop"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"device_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d90d80b3-17bf-4da4-8ece-63ea6a2ad709",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "packetcaptures",
+                    ":id",
+                    ":stop"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"device_ids\": [\n    \"<long>\",\n    \"<long>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0b0e257d-4237-4727-ad9c-cf49ff3a3b38",
+          "name": "Upload a packet capture session's capture files",
+          "request": {
+            "name": "Upload a packet capture session's capture files",
+            "description": {
+              "content": "Upload the capture files from a packet capture session, if files previously failed to be uploaded to XIQ cloud.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "packetcaptures",
+                ":id",
+                ":upload"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "id",
+                  "description": "(Required) The unique identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "ea2b9f93-e416-4276-bdbc-5c1f31ed43e7",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "packetcaptures",
+                    ":id",
+                    ":upload"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7f0fc84a-fb24-4681-9f8e-4670d9185bbb",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "packetcaptures",
+                    ":id",
+                    ":upload"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b3fb2d68-0836-4b57-bd1b-5912863b0a83",
+          "name": "Get an AP packet capture file",
+          "request": {
+            "name": "Get an AP packet capture file",
+            "description": {
+              "content": "Get an AP packet capture file from XIQ cloud storage.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "packetcaptures",
+                "files"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "cloudFileUrl",
+                  "value": "<string>",
+                  "description": "(Required) The packet capture file path"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/octet-stream"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "b065136d-c787-45a0-8afb-ab538eb63bc2",
+              "name": "Returns requested packet capture file.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "packetcaptures",
+                    "files"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cloudFileUrl",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/octet-stream"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/octet-stream"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3b37c609-3c4f-4e52-ac42-e77fbebc99a1",
+              "name": "The generic ExtremeCloud IQ API error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "packetcaptures",
+                    "files"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cloudFileUrl",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"error_id\": \"string\",\n  \"error_message\": \"string\",\n  \"error_message_code\": \"string\",\n  \"error_message_description\": \"string\",\n  \"error_params\": {\n    \"field\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.extremecloudiq.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "85181feb-bd43-4795-bc88-d89034e322f4",
+    "name": "ExtremeCloud IQ Account PacketCaptures API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "ExtremeCloud IQ™ API allows customers and partners to create solutions for the management, monitoring, and provisioning\nof any ExtremeCloud IQ™ environment.\n\nAll related resources and documentation are available at [ExtremeCloud IQ Developer Portal](https://developer.extremecloudiq.com/).\nPlease check [Get Started and Tutorial](https://developer.extremecloudiq.com/documentation/) to understand how to use the APIs.\n\nGet the [latest OpenAPI definition](https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI/blob/main/xcloudiq-openapi.yaml)\nfrom [ExtremeCloud IQ OpenAPI GitHub repository](https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI).\n\nPlease have a valid [ExtremeCloud IQ](https://extremecloudiq.com/) account before getting started.\nIf you don't have one, please [register a new account](https://www.extremenetworks.com/cloud-networking/).\n\nContact Support:\n Name: Extreme Networks Support\n Email: support@extremenetworks.com",
+      "type": "text/plain"
+    }
+  }
+}
