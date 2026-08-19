@@ -50,7 +50,7 @@ tags:
 url: https://raw.githubusercontent.com/api-evangelist/extreme-networks/refs/heads/main/apis.yml
 created: '2026-05-25'
 modified: '2026-05-25'
-specificationVersion: '0.20'
+specificationVersion: '0.23'
 apis:
 - aid: extreme-networks:extremecloud-iq-controller-rest-api
   name: ExtremeCloud IQ Controller REST API Gateway
