@@ -129,6 +129,12 @@ apis:
   - Automation
   - Ansible
   - SLX-OS
+  - Data-Center
+  tags_raw:
+  - Networking
+  - Automation
+  - Ansible
+  - SLX-OS
   - Data Center
   properties:
   - type: Repository
@@ -413,6 +419,8 @@ apis:
   humanURL: https://developer.extremecloudiq.com/
   baseURL: https://api.extremecloudiq.com
   tags:
+  - Clients
+  tags_raw:
   - Client
   properties:
   - type: OpenAPI
@@ -1287,7 +1295,8 @@ apis:
   description: Metadata - Country/...
   humanURL: https://developer.extremecloudiq.com/
   baseURL: https://api.extremecloudiq.com
-  tags:
+  tags: []
+  tags_raw:
   - Misc
   properties:
   - type: OpenAPI
