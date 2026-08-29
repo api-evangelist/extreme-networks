@@ -1,0 +1,218 @@
+slug: extreme-networks
+provider: Extreme Networks
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 20
+edges:
+- tag: Dashboard - Wired Device Health
+  spec_file: extreme-networks-dashboard-wired-device-health-api-openapi.yml
+  capability_id: BC-600.40
+  capability_id_l1: BC-600
+  capability_name: IT Operations Management
+  confidence: 0.82
+  evidence: POST /dashboard/wired/device-health/cpu-usage-issues  CPU usage issues for wired devices;
+    POST /dashboard/wired/device-health/psu-status  PSU status for wired devices
+  reason: Health telemetry (CPU, memory, temperature, fan, PSU, PoE) for switching hardware — operational
+    monitoring of IT infrastructure.
+- tag: Dashboard - Wireless Device Health
+  spec_file: extreme-networks-dashboard-wireless-device-health-api-openapi.yml
+  capability_id: BC-600.40
+  capability_id_l1: BC-600
+  capability_name: IT Operations Management
+  confidence: 0.82
+  evidence: POST /dashboard/wireless/device-health/issues/cpu-usage-issues  CPU usage issues for wireless
+    devices; GET /dashboard/wireless/device-health/reboot/summary  Wireless device reboot summary
+  reason: Access-point health and reboot telemetry — operational monitoring of network infrastructure.
+- tag: Device
+  spec_file: extreme-networks-device-api-openapi.yml
+  capability_id: BC-600.50
+  capability_id_l1: BC-600
+  capability_name: IT Infrastructure Management
+  confidence: 0.82
+  evidence: POST /devices/:onboard  onboardDevices  Onboard Devices; POST /devices/:reboot  rebootDevices  Reboot
+    devices; POST /devices/:reset  Reset devices to factory default
+  reason: Lifecycle and provisioning operations on network hardware (onboard, manage/unmanage, CLI push,
+    reboot, factory reset, location assignment) — management of network infrastructure assets.
+- tag: Configuration - Basic
+  spec_file: extreme-networks-configuration-basic-api-openapi.yml
+  capability_id: BC-600.50
+  capability_id_l1: BC-600
+  capability_name: IT Infrastructure Management
+  confidence: 0.8
+  evidence: GET /vlan-profiles listVlanProfiles List VLAN profiles; createVlanProfile Create VLAN profile
+  reason: VLAN profile CRUD is configuration of network infrastructure elements — IT infrastructure (network)
+    management.
+- tag: Configuration - Network
+  spec_file: extreme-networks-configuration-network-api-openapi.yml
+  capability_id: BC-600.50
+  capability_id_l1: BC-600
+  capability_name: IT Infrastructure Management
+  confidence: 0.8
+  evidence: POST /tunnel-concentrators createTunnelConcentrator Create Tunnel Concentrator Service; GET
+    /network-services listNetworkServices List Network Services
+  reason: CRUD over tunnel concentrators and network services — configuration of network infrastructure
+    components.
+- tag: D360
+  spec_file: extreme-networks-d360-api-openapi.yml
+  capability_id: BC-600.40
+  capability_id_l1: BC-600
+  capability_name: IT Operations Management
+  confidence: 0.8
+  evidence: GET /d360/device/issues  deviceIssues  Device Issues; GET /d360/alert/graph  alertsGraph  Alerts
+    Graph; GET /d360/overview/devices-summary  Get Device Summary
+  reason: Operations return device summaries, wireless/wired interface statistics, alert graphs and device
+    issues for a cloud-managed network — day-to-day monitoring of IT/network operations, not a business-domain
+    capability.
+- tag: Dashboard
+  spec_file: extreme-networks-dashboard-api-openapi.yml
+  capability_id: BC-600.40
+  capability_id_l1: BC-600
+  capability_name: IT Operations Management
+  confidence: 0.8
+  evidence: POST /dashboard/devices  deviceHealthDashboard  Device health statistics; POST /dashboard/sites-with-issues  sitesWithIssuesDashboard  Sites
+    with issues
+  reason: Aggregated network device/client health and alert statistics dashboards — IT operations monitoring
+    of the managed network estate.
+- tag: Dashboard - Wired Client Health
+  spec_file: extreme-networks-dashboard-wired-client-health-api-openapi.yml
+  capability_id: BC-600.40
+  capability_id_l1: BC-600
+  capability_name: IT Operations Management
+  confidence: 0.8
+  evidence: POST /dashboard/wired/client-health/port-congestion  Wired clients count with port congestion
+    issues
+  reason: Monitoring of wired network client connectivity issues (IP connectivity, port errors, traffic
+    anomalies) — network/IT operations monitoring.
+- tag: Dashboard - Wireless Client Health
+  spec_file: extreme-networks-dashboard-wireless-client-health-api-openapi.yml
+  capability_id: BC-600.40
+  capability_id_l1: BC-600
+  capability_name: IT Operations Management
+  confidence: 0.8
+  evidence: POST /dashboard/wireless/client-health/roaming-issues  Count of wireless clients with roaming
+    issues
+  reason: Wi-Fi client connectivity, association, authentication and roaming issue monitoring — day-to-day
+    network operations monitoring.
+- tag: AFC
+  spec_file: extreme-networks-afc-api-openapi.yml
+  capability_id: BC-600.50
+  capability_id_l1: BC-600
+  capability_name: IT Infrastructure Management
+  confidence: 0.75
+  evidence: GET /afcserver listAfcServers  Get list of AFC Servers; GET /ap/afc/interface/details/{sn}
+    getAfcApDetails  Get AP Interface status; POST /afc/recalculateSite/{id} AFC Recalculate Geolocation
+  reason: Automated Frequency Coordination for 6 GHz access points — provisioning, spectrum and status
+    management of wireless network infrastructure elements. Maps to IT Infrastructure Management (network);
+    no industry-specific reading applies to a networking devtool.
+- tag: Copilot - Anomalies
+  spec_file: extreme-networks-copilot-anomalies-api-openapi.yml
+  capability_id: BC-600.40
+  capability_id_l1: BC-600
+  capability_name: IT Operations Management
+  confidence: 0.75
+  evidence: GET /copilot/anomalies/poeflapping/stats getCopilotAnomalyDeviceStats Get POE Flapping Anomaly
+    Device Stats
+  reason: AI-driven detection of network device anomalies (PoE flapping, DFS recurrence, WiFi capacity)
+    — network monitoring within IT operations management; 'anomalies' here are infrastructure faults,
+    not fraud alerts.
+- tag: Dashboard - Wired Usage and Capacity
+  spec_file: extreme-networks-dashboard-wired-usage-and-capacity-api-openapi.yml
+  capability_id: BC-600.40
+  capability_id_l1: BC-600
+  capability_name: IT Operations Management
+  confidence: 0.75
+  evidence: POST /dashboard/wired/usage-capacity/usage-utilization  Wired devices total utilized bandwidth
+  reason: Bandwidth utilisation, throughput and congestion reporting for wired network devices — network
+    capacity monitoring within IT operations.
+- tag: Dashboard - Wireless Usage and Capacity
+  spec_file: extreme-networks-dashboard-wireless-usage-and-capacity-api-openapi.yml
+  capability_id: BC-600.40
+  capability_id_l1: BC-600
+  capability_name: IT Operations Management
+  confidence: 0.75
+  evidence: POST /dashboard/wireless/usage-capacity/excessive-utilization  Count of APs with excessive
+    utilization
+  reason: AP airtime utilisation, packet loss and retry monitoring — network capacity/performance monitoring
+    under IT operations.
+- tag: Network Scorecard
+  spec_file: extreme-networks-network-scorecard-api-openapi.yml
+  capability_id: BC-600.40
+  capability_id_l1: BC-600
+  capability_name: IT Operations Management
+  confidence: 0.75
+  evidence: GET /network-scorecard/locations/{id}/device-health  getDeviceHealth  Get device's overall
+    health for given location; schemas WiFiOverallHealth, NetworkOverallHealth
+  reason: Read-only health scoring of devices, clients, Wi-Fi and services per location — infrastructure
+    monitoring, squarely IT Operations Management. 'Health' here is device/network health, not customer
+    health.
+- tag: User
+  spec_file: extreme-networks-user-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.72
+  evidence: POST /users/external grantExternalUser 'Grant external access'; DELETE /users/external/{id}
+    revokeExternalUser 'Revoke external access'; schema XiqUserRole
+  reason: Administration of platform user accounts, roles and granting/revoking external access — identity
+    and access management for the management console. Not HR employee records.
+- tag: Alert
+  spec_file: extreme-networks-alert-api-openapi.yml
+  capability_id: BC-600.40
+  capability_id_l1: BC-600
+  capability_name: IT Operations Management
+  confidence: 0.7
+  evidence: GET /alerts listAlerts  List the alerts; POST /alerts/:acknowledge acknowledgeAlerts  Acknowledge
+    the alerts; XiqAlertWebhookSubscription
+  reason: Network monitoring alerts with acknowledgement, policies, thresholds and email/webhook/ServiceNow
+    subscriptions — IT operations monitoring, NOT financial-crime or other business alerting. Could alternatively
+    be read as IT Service Management incident intake, hence 0.7.
+- tag: Copilot - Connectivity Experience
+  spec_file: extreme-networks-copilot-connectivity-experience-api-openapi.yml
+  capability_id: BC-600.40
+  capability_id_l1: BC-600
+  capability_name: IT Operations Management
+  confidence: 0.7
+  evidence: GET /copilot/connectivity/wired/quality-index getWiredQualityIndex Get Wired Connectivity
+    QualityIndex
+  reason: Measures wired/wireless connectivity quality, time-to-connect and events by location — network
+    service performance monitoring under IT operations management.
+- tag: Network Policy
+  spec_file: extreme-networks-network-policy-api-openapi.yml
+  capability_id: BC-600.50
+  capability_id_l1: BC-600
+  capability_name: IT Infrastructure Management
+  confidence: 0.7
+  evidence: POST /network-policies  createNetworkPolicy  Create network policy; POST /network-policies/{id}/ssids/:add  addSsidsToNetworkPolicy  Add
+    SSIDs to a network policy
+  reason: Configuration of network policies and their associated SSIDs pushed to cloud-managed wired/wireless
+    devices — network configuration under IT Infrastructure Management. 'Policy' here is device network
+    configuration, not corporate policy management.
+- tag: PacketCaptures
+  spec_file: extreme-networks-packetcaptures-api-openapi.yml
+  capability_id: BC-600.40
+  capability_id_l1: BC-600
+  capability_name: IT Operations Management
+  confidence: 0.7
+  evidence: POST /packetcaptures  createPacketCapture  Create a new packet capture session; POST /packetcaptures/{id}/:stop  stopPacketCapture
+  reason: Packet capture session lifecycle on access points and wired ports for network troubleshooting/diagnostics
+    — day-to-day IT operations and monitoring of the network estate.
+- tag: Thread
+  spec_file: extreme-networks-thread-api-openapi.yml
+  capability_id: BC-600.50
+  capability_id_l1: BC-600
+  capability_name: IT Infrastructure Management
+  confidence: 0.7
+  evidence: GET /thread/topology getThreadNetworkTopology 'Get thread network topology'; 'List thread
+    routers'; schema XiqThreadBorderRouterService
+  reason: Read-only visibility into Thread mesh networks, routers and topology within a cloud network-management
+    platform — network infrastructure monitoring/management, i.e. IT Infrastructure Management. No business-domain
+    reading fits.

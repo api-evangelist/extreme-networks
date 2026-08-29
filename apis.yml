@@ -1762,6 +1762,9 @@ apis:
   - type: TermsOfService
     url: https://www.extremenetworks.com/company/legal/terms-of-use/
 common:
+  - type: CapabilityMap
+    url: capabilities/extreme-networks-capability-edges.yml
+    name: Extreme Networks Business Capability Map
   - type: IssueTracker
     url: https://github.com/extremenetworks/ansible_collections.extreme.exos/issues
   - type: License
