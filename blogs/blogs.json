@@ -13,7 +13,9 @@
       "feed_url": "https://community.extremenetworks.com/zxxfm75553/rss/Community?interaction.style=blog&feeds.replies=true",
       "title": "",
       "saved": 0,
-      "method": "feed"
+      "method": "feed",
+      "nature": "vendor-blog",
+      "nature_basis": "khoros_blog"
     },
     {
       "source": "https://community.extremenetworks.com/",
@@ -21,5 +23,8 @@
     }
   ],
   "post_count": 28,
-  "fetched": "2026-08-30T22:33:40Z"
+  "fetched": "2026-08-30T22:33:40Z",
+  "feed_nature": "support-community",
+  "feed_nature_basis": "khoros_thread",
+  "feed_nature_note": "Whether these posts are the vendor publishing or its support community, decided on the URL path grammar of the saved posts -- not the hostname, which carries both on Khoros, and not author diversity, which flags large vendor blogs as forums. 'undetermined' means undetermined."
 }
