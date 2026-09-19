@@ -856,6 +856,8 @@ apis:
   humanURL: https://developer.extremecloudiq.com/
   baseURL: https://api.extremecloudiq.com
   tags:
+  - Dashboards
+  tags_raw:
   - Dashboard
   properties:
   - type: OpenAPI
@@ -1663,6 +1665,8 @@ apis:
   humanURL: https://developer.extremecloudiq.com/
   baseURL: https://api.extremecloudiq.com
   tags:
+  - Threads
+  tags_raw:
   - Thread
   properties:
   - type: OpenAPI
