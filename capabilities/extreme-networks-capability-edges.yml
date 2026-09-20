@@ -11,8 +11,20 @@ capability_model:
   attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
     CC BY 4.0
   notice: NOTICE
-edge_count: 15
+edge_count: 21
 edges:
+- tag: D360
+  spec_file: extreme-networks-d360-api-openapi.yml
+  capability_id: BC-600.40
+  capability_id_l1: BC-600
+  capability_name: IT Operations Management
+  confidence: 0.8
+  evidence: GET /d360/device/issues  deviceIssues  Device Issues; GET /d360/alert/graph  alertsGraph  Alerts
+    Graph; GET /d360/overview/devices-summary  Get Device Summary
+  reason: Operations return device summaries, wireless/wired interface statistics, alert graphs and device
+    issues for a cloud-managed network — day-to-day monitoring of IT/network operations, not a business-domain
+    capability.
+  recovered_from: sweep-20260829T005356Z-edges.json
 - tag: User
   spec_file: extreme-networks-user-api-openapi.yml
   capability_id: BC-620.20
@@ -46,6 +58,18 @@ edges:
   reason: Defines network-level services (tunnel concentrators, multicast rules, IP protocol services)
     on the managed enterprise network — network infrastructure configuration, a Cross-Industry IT capability
     for this devtool/infrastructure vendor.
+- tag: Copilot - Anomalies
+  spec_file: extreme-networks-copilot-anomalies-api-openapi.yml
+  capability_id: BC-600.40
+  capability_id_l1: BC-600
+  capability_name: IT Operations Management
+  confidence: 0.75
+  evidence: GET /copilot/anomalies/poeflapping/stats getCopilotAnomalyDeviceStats Get POE Flapping Anomaly
+    Device Stats
+  reason: AI-driven detection of network device anomalies (PoE flapping, DFS recurrence, WiFi capacity)
+    — network monitoring within IT operations management; 'anomalies' here are infrastructure faults,
+    not fraud alerts.
+  recovered_from: sweep-20260829T005356Z-edges.json
 - tag: Dashboard - Wired Device Health
   spec_file: extreme-networks-dashboard-wired-device-health-api-openapi.yml
   capability_id: BC-600.40
@@ -99,6 +123,29 @@ edges:
     available channels/power per access point and reconciling spectrum mismatches. That is frequency coordination
     / shared-spectrum access operation; L2 left null because the surface straddles channel-allocation
     coordination and shared-access regime operation.
+- tag: Alert
+  spec_file: extreme-networks-alert-api-openapi.yml
+  capability_id: BC-600.40
+  capability_id_l1: BC-600
+  capability_name: IT Operations Management
+  confidence: 0.7
+  evidence: GET /alerts listAlerts  List the alerts; POST /alerts/:acknowledge acknowledgeAlerts  Acknowledge
+    the alerts; XiqAlertWebhookSubscription
+  reason: Network monitoring alerts with acknowledgement, policies, thresholds and email/webhook/ServiceNow
+    subscriptions — IT operations monitoring, NOT financial-crime or other business alerting. Could alternatively
+    be read as IT Service Management incident intake, hence 0.7.
+  recovered_from: sweep-20260829T005356Z-edges.json
+- tag: Copilot - Connectivity Experience
+  spec_file: extreme-networks-copilot-connectivity-experience-api-openapi.yml
+  capability_id: BC-600.40
+  capability_id_l1: BC-600
+  capability_name: IT Operations Management
+  confidence: 0.7
+  evidence: GET /copilot/connectivity/wired/quality-index getWiredQualityIndex Get Wired Connectivity
+    QualityIndex
+  reason: Measures wired/wireless connectivity quality, time-to-connect and events by location — network
+    service performance monitoring under IT operations management.
+  recovered_from: sweep-20260829T005356Z-edges.json
 - tag: Dashboard
   spec_file: extreme-networks-dashboard-api-openapi.yml
   capability_id: BC-600.40
@@ -174,3 +221,25 @@ edges:
     health for given location
   reason: Health/KPI monitoring of devices, clients, Wi-Fi and services per location — day-to-day monitoring
     of enterprise network operations.
+- tag: PacketCaptures
+  spec_file: extreme-networks-packetcaptures-api-openapi.yml
+  capability_id: BC-600.40
+  capability_id_l1: BC-600
+  capability_name: IT Operations Management
+  confidence: 0.7
+  evidence: POST /packetcaptures  createPacketCapture  Create a new packet capture session; POST /packetcaptures/{id}/:stop  stopPacketCapture
+  reason: Packet capture session lifecycle on access points and wired ports for network troubleshooting/diagnostics
+    — day-to-day IT operations and monitoring of the network estate.
+  recovered_from: sweep-20260829T005356Z-edges.json
+- tag: Thread
+  spec_file: extreme-networks-thread-api-openapi.yml
+  capability_id: BC-600.50
+  capability_id_l1: BC-600
+  capability_name: IT Infrastructure Management
+  confidence: 0.7
+  evidence: GET /thread/topology getThreadNetworkTopology 'Get thread network topology'; 'List thread
+    routers'; schema XiqThreadBorderRouterService
+  reason: Read-only visibility into Thread mesh networks, routers and topology within a cloud network-management
+    platform — network infrastructure monitoring/management, i.e. IT Infrastructure Management. No business-domain
+    reading fits.
+  recovered_from: sweep-20260829T005356Z-edges.json
