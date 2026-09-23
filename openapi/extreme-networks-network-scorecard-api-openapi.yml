@@ -1,24 +1,9 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: ExtremeCloud IQ Account Network Scorecard API
+  title: ExtremeCloud IQ Network Scorecard API
   description: 'ExtremeCloud IQ™ API allows customers and partners to create solutions for the management, monitoring, and provisioning
 
-    of any ExtremeCloud IQ™ environment.
-
-
-    All related resources and documentation are available at [ExtremeCloud IQ Developer Portal](https://developer.extremecloudiq.com/).
-
-    Please check [Get Started and Tutorial](https://developer.extremecloudiq.com/documentation/) to understand how to use the APIs.
-
-
-    Get the [latest OpenAPI definition](https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI/blob/main/xcloudiq-openapi.yaml)
-
-    from [ExtremeCloud IQ OpenAPI GitHub repository](https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI).
-
-
-    Please have a valid [ExtremeCloud IQ](https://extremecloudiq.com/) account before getting started.
-
-    If you don''t have one, please [register a new account](https://www.extremenetworks.com/cloud-networking/).'
+    of any ExtremeCloud IQ™ environment.'
   termsOfService: https://www.extremenetworks.com/company/legal/terms-of-use/
   contact:
     name: Extreme Networks Support
@@ -172,50 +157,6 @@ paths:
       - BearerAuth: []
 components:
   schemas:
-    XiqError:
-      type: object
-      properties:
-        error_code:
-          type: string
-          description: The error code
-        error_id:
-          type: string
-          description: The error ID for internal troubleshooting
-        error_message:
-          type: string
-          description: The error detailed message
-        error_message_code:
-          type: string
-          description: The error message code
-        error_message_description:
-          type: string
-          description: The error message description
-        error_params:
-          $ref: '#/components/schemas/XiqErrorParams'
-      required:
-      - error_code
-      - error_id
-      - error_message
-    ServicesOverallHealth:
-      type: object
-      description: The network health score over the period
-      properties:
-        overall_score:
-          type: integer
-          description: The overall health score
-          format: int32
-        network_services_score:
-          type: integer
-          description: The health score of network services
-          format: int32
-        authentication_services_score:
-          type: integer
-          description: The health score of authentication services
-          format: int32
-        management_services_score:
-          type: integer
-          description: The health score of management services
-          format: int32
     NetworkOverallHealth:
       type: object
       description: The network health score over the period
@@ -236,26 +177,6 @@ components:
           type: integer
           description: The network usage value in MB
           format: int64
-    ClientOverallHealth:
-      type: object
-      description: The clients health score over the period
-      properties:
-        overall_score:
-          type: integer
-          description: The overall health score
-          format: int32
-        wifi_health_score:
-          type: integer
-          description: The health score of Wi-Fi
-          format: int32
-        network_health_score:
-          type: integer
-          description: The health score of network
-          format: int32
-        application_health_score:
-          type: integer
-          description: The health score of application
-          format: int32
     DeviceOverallHealth:
       type: object
       description: The devices health score over the period
@@ -306,6 +227,70 @@ components:
         value:
           type: string
           description: The error value
+    ServicesOverallHealth:
+      type: object
+      description: The network health score over the period
+      properties:
+        overall_score:
+          type: integer
+          description: The overall health score
+          format: int32
+        network_services_score:
+          type: integer
+          description: The health score of network services
+          format: int32
+        authentication_services_score:
+          type: integer
+          description: The health score of authentication services
+          format: int32
+        management_services_score:
+          type: integer
+          description: The health score of management services
+          format: int32
+    XiqError:
+      type: object
+      properties:
+        error_code:
+          type: string
+          description: The error code
+        error_id:
+          type: string
+          description: The error ID for internal troubleshooting
+        error_message:
+          type: string
+          description: The error detailed message
+        error_message_code:
+          type: string
+          description: The error message code
+        error_message_description:
+          type: string
+          description: The error message description
+        error_params:
+          $ref: '#/components/schemas/XiqErrorParams'
+      required:
+      - error_code
+      - error_id
+      - error_message
+    ClientOverallHealth:
+      type: object
+      description: The clients health score over the period
+      properties:
+        overall_score:
+          type: integer
+          description: The overall health score
+          format: int32
+        wifi_health_score:
+          type: integer
+          description: The health score of Wi-Fi
+          format: int32
+        network_health_score:
+          type: integer
+          description: The health score of network
+          format: int32
+        application_health_score:
+          type: integer
+          description: The health score of application
+          format: int32
   parameters:
     startTime:
       name: startTime
@@ -315,18 +300,18 @@ components:
       schema:
         type: integer
         format: int64
-    endTime:
-      name: endTime
-      in: query
-      description: The end time to query, epoch time in milliseconds since 1/1/1970
-      required: true
-      schema:
-        type: integer
-        format: int64
     id:
       name: id
       in: path
       description: The unique identifier
+      required: true
+      schema:
+        type: integer
+        format: int64
+    endTime:
+      name: endTime
+      in: query
+      description: The end time to query, epoch time in milliseconds since 1/1/1970
       required: true
       schema:
         type: integer

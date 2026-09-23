@@ -1,24 +1,9 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: ExtremeCloud IQ Account Dashboard - Wired Client Health API
+  title: ExtremeCloud IQ Dashboard - Wired Client Health API
   description: 'ExtremeCloud IQ™ API allows customers and partners to create solutions for the management, monitoring, and provisioning
 
-    of any ExtremeCloud IQ™ environment.
-
-
-    All related resources and documentation are available at [ExtremeCloud IQ Developer Portal](https://developer.extremecloudiq.com/).
-
-    Please check [Get Started and Tutorial](https://developer.extremecloudiq.com/documentation/) to understand how to use the APIs.
-
-
-    Get the [latest OpenAPI definition](https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI/blob/main/xcloudiq-openapi.yaml)
-
-    from [ExtremeCloud IQ OpenAPI GitHub repository](https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI).
-
-
-    Please have a valid [ExtremeCloud IQ](https://extremecloudiq.com/) account before getting started.
-
-    If you don''t have one, please [register a new account](https://www.extremenetworks.com/cloud-networking/).'
+    of any ExtremeCloud IQ™ environment.'
   termsOfService: https://www.extremenetworks.com/company/legal/terms-of-use/
   contact:
     name: Extreme Networks Support
@@ -283,6 +268,146 @@ paths:
       - BearerAuth: []
 components:
   schemas:
+    XiqSortOrder:
+      type: string
+      enum:
+      - ASC
+      - DESC
+    XiqWiredClientHealthConnectionStatus:
+      type: string
+      enum:
+      - CONNECTED
+      - DISCONNECTED
+    XiqWiredClientHealthPortErrors:
+      type: object
+      properties:
+        total_clients:
+          type: integer
+          format: int64
+          description: The total number of clients
+        port_errors:
+          type: integer
+          format: int64
+          description: The number of clients with port errors
+        healthy:
+          type: integer
+          format: int64
+          description: The number of healthy client that do not have port errors
+    XiqPage:
+      required:
+      - count
+      - page
+      - total_count
+      - total_pages
+      type: object
+      properties:
+        page:
+          type: integer
+          description: The current page number
+          format: int32
+        count:
+          type: integer
+          description: The element count of the current page
+          format: int32
+        total_pages:
+          type: integer
+          description: The total page number based on request page size
+          format: int32
+        total_count:
+          type: integer
+          description: The total element count
+          format: int64
+    PagedXiqWiredClientHealthGridResponse:
+      allOf:
+      - $ref: '#/components/schemas/XiqPage'
+      - type: object
+        properties:
+          data:
+            type: array
+            description: The data in the current page
+            items:
+              $ref: '#/components/schemas/XiqWiredClientHealthGridResponse'
+    XiqErrorParams:
+      type: object
+      description: Error parameters
+      properties:
+        field:
+          type: string
+          description: The error field
+        value:
+          type: string
+          description: The error value
+    XiqWiredClientHealthIpConnectivityIssues:
+      type: object
+      properties:
+        total_clients:
+          type: integer
+          format: int64
+          description: The total number of clients
+        unassigned_ip:
+          type: integer
+          format: int64
+          description: The number of clients with unassigned IPs
+        self_assigned_ip:
+          type: integer
+          format: int64
+          description: The number of clients with self assigned IPs
+        valid_ip:
+          type: integer
+          format: int64
+          description: The number of clients with self assigned IPs
+    XiqWiredClientHealthTrafficAnomalies:
+      type: object
+      properties:
+        total_clients:
+          type: integer
+          format: int64
+          description: The total number of clients
+        anomalies:
+          type: integer
+          format: int64
+          description: The number of clients with traffic anomalies
+        healthy:
+          type: integer
+          format: int64
+          description: The number of healthy client that do not have traffic anomalies
+    XiqWiredClientHealthSortField:
+      type: string
+      title: WiredClientHealthSortField
+      description: Pre-defined filters for client health sorting - CONNECTION_STATUS - CLIENT_HOSTNAME - SITE - BUILDING - FLOOR - IPV4 - IPV6 - PORT_NUMBER - PORT_NUMBER_SWITCH_NAME - VLAN - OPERATING_SYSTEM - MAC - USERNAME - INSTANT_PORT_PROFILE - TOTAL_CONGESTION - TOTAL_UNICAST - TOTAL_MULTICAST - TOTAL_BROADCAST - TOTAL_PORT_ERRORS
+      example: CONNECTION_STATUS
+    number_filter:
+      type: object
+      description: If the filter type is between, only then min and max are to be used, else value is to be used.
+      properties:
+        column_name:
+          description: The name of the column being filtered
+          type: string
+        filter_type:
+          description: The type of number filter
+          type: string
+          enum:
+          - eq
+          - neq
+          - gt
+          - gte
+          - lt
+          - lte
+          - bw
+          - blank
+          - notblank
+        value:
+          description: The value of the number
+          type: integer
+          format: int64
+        min:
+          description: The minimum value of the number
+          type: integer
+          format: int64
+        max:
+          description: The maximum value of the number
+          type: integer
+          format: int64
     XiqWiredClientHealthGridResponse:
       type: object
       properties:
@@ -387,21 +512,6 @@ components:
       - error_code
       - error_id
       - error_message
-    PagedXiqWiredClientHealthGridResponse:
-      allOf:
-      - $ref: '#/components/schemas/XiqPage'
-      - type: object
-        properties:
-          data:
-            type: array
-            description: The data in the current page
-            items:
-              $ref: '#/components/schemas/XiqWiredClientHealthGridResponse'
-    XiqWiredClientHealthConnectionStatus:
-      type: string
-      enum:
-      - CONNECTED
-      - DISCONNECTED
     XiqWiredClientHealthPortCongestionIssues:
       type: object
       properties:
@@ -417,142 +527,7 @@ components:
           type: integer
           format: int64
           description: The number of healthy client that do not have port congestion issues
-    XiqSortOrder:
-      type: string
-      enum:
-      - ASC
-      - DESC
-    XiqWiredClientHealthTrafficAnomalies:
-      type: object
-      properties:
-        total_clients:
-          type: integer
-          format: int64
-          description: The total number of clients
-        anomalies:
-          type: integer
-          format: int64
-          description: The number of clients with traffic anomalies
-        healthy:
-          type: integer
-          format: int64
-          description: The number of healthy client that do not have traffic anomalies
-    XiqErrorParams:
-      type: object
-      description: Error parameters
-      properties:
-        field:
-          type: string
-          description: The error field
-        value:
-          type: string
-          description: The error value
-    XiqPage:
-      required:
-      - count
-      - page
-      - total_count
-      - total_pages
-      type: object
-      properties:
-        page:
-          type: integer
-          description: The current page number
-          format: int32
-        count:
-          type: integer
-          description: The element count of the current page
-          format: int32
-        total_pages:
-          type: integer
-          description: The total page number based on request page size
-          format: int32
-        total_count:
-          type: integer
-          description: The total element count
-          format: int64
-    number_filter:
-      type: object
-      description: If the filter type is between, only then min and max are to be used, else value is to be used.
-      properties:
-        column_name:
-          description: The name of the column being filtered
-          type: string
-        filter_type:
-          description: The type of number filter
-          type: string
-          enum:
-          - eq
-          - neq
-          - gt
-          - gte
-          - lt
-          - lte
-          - bw
-          - blank
-          - notblank
-        value:
-          description: The value of the number
-          type: integer
-          format: int64
-        min:
-          description: The minimum value of the number
-          type: integer
-          format: int64
-        max:
-          description: The maximum value of the number
-          type: integer
-          format: int64
-    XiqWiredClientHealthIpConnectivityIssues:
-      type: object
-      properties:
-        total_clients:
-          type: integer
-          format: int64
-          description: The total number of clients
-        unassigned_ip:
-          type: integer
-          format: int64
-          description: The number of clients with unassigned IPs
-        self_assigned_ip:
-          type: integer
-          format: int64
-          description: The number of clients with self assigned IPs
-        valid_ip:
-          type: integer
-          format: int64
-          description: The number of clients with self assigned IPs
-    XiqWiredClientHealthPortErrors:
-      type: object
-      properties:
-        total_clients:
-          type: integer
-          format: int64
-          description: The total number of clients
-        port_errors:
-          type: integer
-          format: int64
-          description: The number of clients with port errors
-        healthy:
-          type: integer
-          format: int64
-          description: The number of healthy client that do not have port errors
-    XiqWiredClientHealthSortField:
-      type: string
-      title: WiredClientHealthSortField
-      description: Pre-defined filters for client health sorting - CONNECTION_STATUS - CLIENT_HOSTNAME - SITE - BUILDING - FLOOR - IPV4 - IPV6 - PORT_NUMBER - PORT_NUMBER_SWITCH_NAME - VLAN - OPERATING_SYSTEM - MAC - USERNAME - INSTANT_PORT_PROFILE - TOTAL_CONGESTION - TOTAL_UNICAST - TOTAL_MULTICAST - TOTAL_BROADCAST - TOTAL_PORT_ERRORS
-      example: CONNECTION_STATUS
   parameters:
-    page:
-      name: page
-      in: query
-      description: Page number, min = 1
-      required: false
-      schema:
-        minimum: 1
-        type: integer
-        format: int32
-        default: 1
     limit:
       name: limit
       in: query
@@ -564,6 +539,16 @@ components:
         type: integer
         format: int32
         default: 10
+    page:
+      name: page
+      in: query
+      description: Page number, min = 1
+      required: false
+      schema:
+        minimum: 1
+        type: integer
+        format: int32
+        default: 1
   responses:
     ErrorResponse:
       description: The generic ExtremeCloud IQ API error response

@@ -1,24 +1,9 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: ExtremeCloud IQ Account Dashboard - Wired Usage and Capacity API
+  title: ExtremeCloud IQ Dashboard - Wired Usage and Capacity API
   description: 'ExtremeCloud IQ™ API allows customers and partners to create solutions for the management, monitoring, and provisioning
 
-    of any ExtremeCloud IQ™ environment.
-
-
-    All related resources and documentation are available at [ExtremeCloud IQ Developer Portal](https://developer.extremecloudiq.com/).
-
-    Please check [Get Started and Tutorial](https://developer.extremecloudiq.com/documentation/) to understand how to use the APIs.
-
-
-    Get the [latest OpenAPI definition](https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI/blob/main/xcloudiq-openapi.yaml)
-
-    from [ExtremeCloud IQ OpenAPI GitHub repository](https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI).
-
-
-    Please have a valid [ExtremeCloud IQ](https://extremecloudiq.com/) account before getting started.
-
-    If you don''t have one, please [register a new account](https://www.extremenetworks.com/cloud-networking/).'
+    of any ExtremeCloud IQ™ environment.'
   termsOfService: https://www.extremenetworks.com/company/legal/terms-of-use/
   contact:
     name: Extreme Networks Support
@@ -217,6 +202,88 @@ components:
             description: The data in the current page
             items:
               $ref: '#/components/schemas/XiqWiredUsageCapacityGridResponse'
+    XiqSortOrder:
+      type: string
+      enum:
+      - ASC
+      - DESC
+    XiqWiredUsageCapacityThroughput:
+      type: object
+      properties:
+        total_packets_count:
+          type: integer
+          format: int64
+          description: Total number of packets
+        unicast_utilization_percentage:
+          type: integer
+          format: int32
+          description: Percentage of unicast packets from total number of packets
+        multicast_utilization_percentage:
+          type: integer
+          format: int32
+          description: Percentage of multicast packets from total number of packets
+        broadcast_utilization_percentage:
+          type: integer
+          format: int32
+          description: Percentage of broadcast packets from total number of packets
+    XiqWiredUsageCapacitySortField:
+      type: string
+      title: WiredUsageAndCapacitySortField
+      description: Pre-defined fields for usage and capacity sorting - DEVICE_HOSTNAME - DEVICE_IP - SITE - TOTAL_CLIENTS_COUNT - TOTAL_ISSUE_CLIENTS_COUNT - TOTAL_BANDWIDTH_UTILIZED - TOTAL_THROUGHPUT_RX - TOTAL_THROUGHPUT_TX - TOTAL_UNICAST_PACKETS - TOTAL_MULTICAST_PACKETS - TOTAL_BROADCAST_PACKETS - TOTAL_QUEUE_TX_PKTS - TOTAL_QUEUE_CONGESTION_PKTS
+      example: TOTAL_BANDWIDTH_UTILIZED
+    XiqWiredUsageCapacityFilter:
+      description: The filters available for usage and capacity grid
+      enum:
+      - TOTAL_QUEUE_CONGESTION_PKTS
+    XiqPage:
+      required:
+      - count
+      - page
+      - total_count
+      - total_pages
+      type: object
+      properties:
+        page:
+          type: integer
+          description: The current page number
+          format: int32
+        count:
+          type: integer
+          description: The element count of the current page
+          format: int32
+        total_pages:
+          type: integer
+          description: The total page number based on request page size
+          format: int32
+        total_count:
+          type: integer
+          description: The total element count
+          format: int64
+    XiqErrorParams:
+      type: object
+      description: Error parameters
+      properties:
+        field:
+          type: string
+          description: The error field
+        value:
+          type: string
+          description: The error value
+    XiqWiredUsageCapacityCongestion:
+      type: object
+      properties:
+        total_queue_tx_packets:
+          type: integer
+          format: int64
+          description: Total number of transmitted packets on all QOS queues
+        total_queue_congestion_packets:
+          type: integer
+          format: int64
+          description: Total number of packets dropped due to congestion on all QOS queues
+        total_congestion_percentage:
+          type: integer
+          format: int64
+          description: Percentage of packets dropped due to congestion vs total number of transmitted packets on all QOS queues
     XiqWiredUsageCapacityUsageUtilization:
       type: object
       properties:
@@ -248,25 +315,6 @@ components:
       - error_code
       - error_id
       - error_message
-    XiqWiredUsageCapacityFilter:
-      description: The filters available for usage and capacity grid
-      enum:
-      - TOTAL_QUEUE_CONGESTION_PKTS
-    XiqWiredUsageCapacityCongestion:
-      type: object
-      properties:
-        total_queue_tx_packets:
-          type: integer
-          format: int64
-          description: Total number of transmitted packets on all QOS queues
-        total_queue_congestion_packets:
-          type: integer
-          format: int64
-          description: Total number of packets dropped due to congestion on all QOS queues
-        total_congestion_percentage:
-          type: integer
-          format: int64
-          description: Percentage of packets dropped due to congestion vs total number of transmitted packets on all QOS queues
     XiqWiredUsageCapacityGridResponse:
       type: object
       properties:
@@ -336,80 +384,7 @@ components:
           type: integer
           format: int64
           description: Total number of unicast, multicast and broadcast packets
-    XiqSortOrder:
-      type: string
-      enum:
-      - ASC
-      - DESC
-    XiqErrorParams:
-      type: object
-      description: Error parameters
-      properties:
-        field:
-          type: string
-          description: The error field
-        value:
-          type: string
-          description: The error value
-    XiqPage:
-      required:
-      - count
-      - page
-      - total_count
-      - total_pages
-      type: object
-      properties:
-        page:
-          type: integer
-          description: The current page number
-          format: int32
-        count:
-          type: integer
-          description: The element count of the current page
-          format: int32
-        total_pages:
-          type: integer
-          description: The total page number based on request page size
-          format: int32
-        total_count:
-          type: integer
-          description: The total element count
-          format: int64
-    XiqWiredUsageCapacitySortField:
-      type: string
-      title: WiredUsageAndCapacitySortField
-      description: Pre-defined fields for usage and capacity sorting - DEVICE_HOSTNAME - DEVICE_IP - SITE - TOTAL_CLIENTS_COUNT - TOTAL_ISSUE_CLIENTS_COUNT - TOTAL_BANDWIDTH_UTILIZED - TOTAL_THROUGHPUT_RX - TOTAL_THROUGHPUT_TX - TOTAL_UNICAST_PACKETS - TOTAL_MULTICAST_PACKETS - TOTAL_BROADCAST_PACKETS - TOTAL_QUEUE_TX_PKTS - TOTAL_QUEUE_CONGESTION_PKTS
-      example: TOTAL_BANDWIDTH_UTILIZED
-    XiqWiredUsageCapacityThroughput:
-      type: object
-      properties:
-        total_packets_count:
-          type: integer
-          format: int64
-          description: Total number of packets
-        unicast_utilization_percentage:
-          type: integer
-          format: int32
-          description: Percentage of unicast packets from total number of packets
-        multicast_utilization_percentage:
-          type: integer
-          format: int32
-          description: Percentage of multicast packets from total number of packets
-        broadcast_utilization_percentage:
-          type: integer
-          format: int32
-          description: Percentage of broadcast packets from total number of packets
   parameters:
-    page:
-      name: page
-      in: query
-      description: Page number, min = 1
-      required: false
-      schema:
-        minimum: 1
-        type: integer
-        format: int32
-        default: 1
     limit:
       name: limit
       in: query
@@ -421,6 +396,16 @@ components:
         type: integer
         format: int32
         default: 10
+    page:
+      name: page
+      in: query
+      description: Page number, min = 1
+      required: false
+      schema:
+        minimum: 1
+        type: integer
+        format: int32
+        default: 1
   responses:
     ErrorResponse:
       description: The generic ExtremeCloud IQ API error response

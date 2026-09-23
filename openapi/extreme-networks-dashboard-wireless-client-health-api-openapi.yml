@@ -1,24 +1,9 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: ExtremeCloud IQ Account Dashboard - Wireless Client Health API
+  title: ExtremeCloud IQ Dashboard - Wireless Client Health API
   description: 'ExtremeCloud IQ™ API allows customers and partners to create solutions for the management, monitoring, and provisioning
 
-    of any ExtremeCloud IQ™ environment.
-
-
-    All related resources and documentation are available at [ExtremeCloud IQ Developer Portal](https://developer.extremecloudiq.com/).
-
-    Please check [Get Started and Tutorial](https://developer.extremecloudiq.com/documentation/) to understand how to use the APIs.
-
-
-    Get the [latest OpenAPI definition](https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI/blob/main/xcloudiq-openapi.yaml)
-
-    from [ExtremeCloud IQ OpenAPI GitHub repository](https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI).
-
-
-    Please have a valid [ExtremeCloud IQ](https://extremecloudiq.com/) account before getting started.
-
-    If you don''t have one, please [register a new account](https://www.extremenetworks.com/cloud-networking/).'
+    of any ExtremeCloud IQ™ environment.'
   termsOfService: https://www.extremenetworks.com/company/legal/terms-of-use/
   contact:
     name: Extreme Networks Support
@@ -775,232 +760,7 @@ paths:
       security:
       - BearerAuth: []
 components:
-  parameters:
-    page:
-      name: page
-      in: query
-      description: Page number, min = 1
-      required: false
-      schema:
-        minimum: 1
-        type: integer
-        format: int32
-        default: 1
-    limit:
-      name: limit
-      in: query
-      description: Page Size, min = 1, max = 100
-      required: false
-      schema:
-        maximum: 100
-        minimum: 1
-        type: integer
-        format: int32
-        default: 10
   schemas:
-    RmWirelessClientHealthIpAddressIssueResponse:
-      allOf:
-      - $ref: '#/components/schemas/XiqPage'
-      - type: object
-        description: The response body of wireless client health issues.
-        properties:
-          data:
-            type: array
-            description: The data in the current page
-            items:
-              type: object
-              properties:
-                date_time:
-                  description: The timestamp of the issue.
-                  type: string
-                  format: date-time
-                issue_type:
-                  description: The issue type.
-                  type: string
-                device_name:
-                  type: string
-                  description: The device name.
-    XiqSortOrder:
-      type: string
-      enum:
-      - ASC
-      - DESC
-    RmWirelessClientHealthIssueResponse:
-      allOf:
-      - $ref: '#/components/schemas/XiqPage'
-      - type: object
-        description: The response body of wireless client health issues.
-        properties:
-          data:
-            type: array
-            description: The data in the current page
-            items:
-              type: object
-              properties:
-                date_time:
-                  description: The timestamp of the issue.
-                  type: string
-                  format: date-time
-                reason_code:
-                  description: The reason code for the issue.
-                  type: string
-                device_name:
-                  type: string
-                  description: The device name.
-    XiqWirelessClientHealthFrequencyDistribution:
-      type: object
-      properties:
-        total_clients:
-          type: integer
-          format: int64
-          description: The total number of clients
-        clients_2dot4GHz:
-          type: integer
-          format: int64
-          description: The number of clients using the 2.4 GHz frequency band
-        clients_5GHz:
-          type: integer
-          format: int64
-          description: The number of clients using the 5 GHz frequency band
-        clients_6GHz:
-          type: integer
-          format: int64
-          description: The number of clients using the 6 GHz frequency band
-    XiqWirelessConnectionStatus:
-      type: string
-      enum:
-      - CONNECTED
-      - DISCONNECTED
-    XiqClientHealthConnectionStatus:
-      type: string
-      title: ClientHealthSortField
-      description: Pre-defined filters for warnings in dashboard - CONNECTED - DISCONNECTED
-      example: CONNECTED
-    XiqClientHealthSortField:
-      type: string
-      title: ClientHealthSortField
-      description: Pre-defined filters for warnings in dashboard - OPERATING_SYSTEM - CLIENT_RETRIES - IPV6 - RSSI - SNR - CLIENT_MAC - USER_PROFILE - ENCRYPTION - DEVICE_MAC - IPV4 - CONNECTION_STATUS - ALIAS - CATEGORY_ASSIGNMENT - CLIENT_IP - AIR_TIME - FREQUENCY - RX_CLIENT_RETIRES - AUTHENTICATION - CLIENT_DEVICE_ID - VLAN - TX_CLIENT_RETIRES
-      example: OPERATING_SYSTEM
-    XiqWirelessClientHealthConnectivityIssues:
-      type: object
-      properties:
-        total_clients:
-          type: integer
-          format: int64
-          description: The total number of clients
-        association_failures:
-          type: integer
-          format: int64
-          description: The number of failed or slow associations (where slow is defined as >= 5 seconds)
-        authentication_failures:
-          type: integer
-          format: int64
-          description: The number of failed or slow authentications (where slow is defined as >= 5 seconds)
-        ip_address_issues:
-          type: integer
-          format: int64
-          description: The number of DHCP issues, including private IP address assignments or slow responses (where slow is defined as >= 5 seconds)
-    XiqErrorParams:
-      type: object
-      description: Error parameters
-      properties:
-        field:
-          type: string
-          description: The error field
-        value:
-          type: string
-          description: The error value
-    number_filter:
-      type: object
-      description: If the filter type is between, only then min and max are to be used, else value is to be used.
-      properties:
-        column_name:
-          description: The name of the column being filtered
-          type: string
-        filter_type:
-          description: The type of number filter
-          type: string
-          enum:
-          - eq
-          - neq
-          - gt
-          - gte
-          - lt
-          - lte
-          - bw
-          - blank
-          - notblank
-        value:
-          description: The value of the number
-          type: integer
-          format: int64
-        min:
-          description: The minimum value of the number
-          type: integer
-          format: int64
-        max:
-          description: The maximum value of the number
-          type: integer
-          format: int64
-    PagedXiqClientHealthGridResponse:
-      allOf:
-      - $ref: '#/components/schemas/XiqPage'
-      - type: object
-        properties:
-          data:
-            type: array
-            description: The data in the current page
-            items:
-              $ref: '#/components/schemas/XiqClientHealthGridResponse'
-    XiqError:
-      type: object
-      properties:
-        error_code:
-          type: string
-          description: The error code
-        error_id:
-          type: string
-          description: The error ID for internal troubleshooting
-        error_message:
-          type: string
-          description: The error detailed message
-        error_message_code:
-          type: string
-          description: The error message code
-        error_message_description:
-          type: string
-          description: The error message description
-        error_params:
-          $ref: '#/components/schemas/XiqErrorParams'
-      required:
-      - error_code
-      - error_id
-      - error_message
-    RmWirelessClientHealthRoamingIssueResponse:
-      allOf:
-      - $ref: '#/components/schemas/XiqPage'
-      - type: object
-        description: The response body of wireless client health issues.
-        properties:
-          data:
-            type: array
-            description: The data in the current page
-            items:
-              type: object
-              properties:
-                date_time:
-                  description: The timestamp of the issue.
-                  type: string
-                  format: date-time
-                issue_type:
-                  description: The issue type.
-                  type: string
-                roaming_time:
-                  description: The roaming time.
-                  type: string
-                device_name:
-                  type: string
-                  description: The device name.
     XiqPage:
       required:
       - count
@@ -1030,6 +790,11 @@ components:
       title: ClientHealthFrequencyField
       description: Pre-defined filters for client health frequency - 2.4GHz - 5Ghz - 6Ghz
       example: 2.4GHz
+    XiqClientHealthConnectionStatus:
+      type: string
+      title: ClientHealthSortField
+      description: Pre-defined filters for warnings in dashboard - CONNECTED - DISCONNECTED
+      example: CONNECTED
     XiqClientHealthGridResponse:
       type: object
       properties:
@@ -1167,6 +932,226 @@ components:
         rtts_supported:
           type: boolean
           description: Indicates if RTT Session is supported
+    XiqClientHealthSortField:
+      type: string
+      title: ClientHealthSortField
+      description: Pre-defined filters for warnings in dashboard - OPERATING_SYSTEM - CLIENT_RETRIES - IPV6 - RSSI - SNR - CLIENT_MAC - USER_PROFILE - ENCRYPTION - DEVICE_MAC - IPV4 - CONNECTION_STATUS - ALIAS - CATEGORY_ASSIGNMENT - CLIENT_IP - AIR_TIME - FREQUENCY - RX_CLIENT_RETIRES - AUTHENTICATION - CLIENT_DEVICE_ID - VLAN - TX_CLIENT_RETIRES
+      example: OPERATING_SYSTEM
+    XiqSortOrder:
+      type: string
+      enum:
+      - ASC
+      - DESC
+    XiqWirelessClientHealthConnectivityIssues:
+      type: object
+      properties:
+        total_clients:
+          type: integer
+          format: int64
+          description: The total number of clients
+        association_failures:
+          type: integer
+          format: int64
+          description: The number of failed or slow associations (where slow is defined as >= 5 seconds)
+        authentication_failures:
+          type: integer
+          format: int64
+          description: The number of failed or slow authentications (where slow is defined as >= 5 seconds)
+        ip_address_issues:
+          type: integer
+          format: int64
+          description: The number of DHCP issues, including private IP address assignments or slow responses (where slow is defined as >= 5 seconds)
+    PagedXiqClientHealthGridResponse:
+      allOf:
+      - $ref: '#/components/schemas/XiqPage'
+      - type: object
+        properties:
+          data:
+            type: array
+            description: The data in the current page
+            items:
+              $ref: '#/components/schemas/XiqClientHealthGridResponse'
+    XiqWirelessConnectionStatus:
+      type: string
+      enum:
+      - CONNECTED
+      - DISCONNECTED
+    XiqErrorParams:
+      type: object
+      description: Error parameters
+      properties:
+        field:
+          type: string
+          description: The error field
+        value:
+          type: string
+          description: The error value
+    XiqError:
+      type: object
+      properties:
+        error_code:
+          type: string
+          description: The error code
+        error_id:
+          type: string
+          description: The error ID for internal troubleshooting
+        error_message:
+          type: string
+          description: The error detailed message
+        error_message_code:
+          type: string
+          description: The error message code
+        error_message_description:
+          type: string
+          description: The error message description
+        error_params:
+          $ref: '#/components/schemas/XiqErrorParams'
+      required:
+      - error_code
+      - error_id
+      - error_message
+    RmWirelessClientHealthIssueResponse:
+      allOf:
+      - $ref: '#/components/schemas/XiqPage'
+      - type: object
+        description: The response body of wireless client health issues.
+        properties:
+          data:
+            type: array
+            description: The data in the current page
+            items:
+              type: object
+              properties:
+                date_time:
+                  description: The timestamp of the issue.
+                  type: string
+                  format: date-time
+                reason_code:
+                  description: The reason code for the issue.
+                  type: string
+                device_name:
+                  type: string
+                  description: The device name.
+    RmWirelessClientHealthRoamingIssueResponse:
+      allOf:
+      - $ref: '#/components/schemas/XiqPage'
+      - type: object
+        description: The response body of wireless client health issues.
+        properties:
+          data:
+            type: array
+            description: The data in the current page
+            items:
+              type: object
+              properties:
+                date_time:
+                  description: The timestamp of the issue.
+                  type: string
+                  format: date-time
+                issue_type:
+                  description: The issue type.
+                  type: string
+                roaming_time:
+                  description: The roaming time.
+                  type: string
+                device_name:
+                  type: string
+                  description: The device name.
+    XiqWirelessClientHealthFrequencyDistribution:
+      type: object
+      properties:
+        total_clients:
+          type: integer
+          format: int64
+          description: The total number of clients
+        clients_2dot4GHz:
+          type: integer
+          format: int64
+          description: The number of clients using the 2.4 GHz frequency band
+        clients_5GHz:
+          type: integer
+          format: int64
+          description: The number of clients using the 5 GHz frequency band
+        clients_6GHz:
+          type: integer
+          format: int64
+          description: The number of clients using the 6 GHz frequency band
+    RmWirelessClientHealthIpAddressIssueResponse:
+      allOf:
+      - $ref: '#/components/schemas/XiqPage'
+      - type: object
+        description: The response body of wireless client health issues.
+        properties:
+          data:
+            type: array
+            description: The data in the current page
+            items:
+              type: object
+              properties:
+                date_time:
+                  description: The timestamp of the issue.
+                  type: string
+                  format: date-time
+                issue_type:
+                  description: The issue type.
+                  type: string
+                device_name:
+                  type: string
+                  description: The device name.
+    number_filter:
+      type: object
+      description: If the filter type is between, only then min and max are to be used, else value is to be used.
+      properties:
+        column_name:
+          description: The name of the column being filtered
+          type: string
+        filter_type:
+          description: The type of number filter
+          type: string
+          enum:
+          - eq
+          - neq
+          - gt
+          - gte
+          - lt
+          - lte
+          - bw
+          - blank
+          - notblank
+        value:
+          description: The value of the number
+          type: integer
+          format: int64
+        min:
+          description: The minimum value of the number
+          type: integer
+          format: int64
+        max:
+          description: The maximum value of the number
+          type: integer
+          format: int64
+  parameters:
+    limit:
+      name: limit
+      in: query
+      description: Page Size, min = 1, max = 100
+      required: false
+      schema:
+        maximum: 100
+        minimum: 1
+        type: integer
+        format: int32
+        default: 10
+    page:
+      name: page
+      in: query
+      description: Page number, min = 1
+      required: false
+      schema:
+        minimum: 1
+        type: integer
+        format: int32
+        default: 1
   responses:
     ErrorResponse:
       description: The generic ExtremeCloud IQ API error response

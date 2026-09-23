@@ -1,24 +1,9 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: ExtremeCloud IQ Account Dashboard API
+  title: ExtremeCloud IQ Dashboard API
   description: 'ExtremeCloud IQ™ API allows customers and partners to create solutions for the management, monitoring, and provisioning
 
-    of any ExtremeCloud IQ™ environment.
-
-
-    All related resources and documentation are available at [ExtremeCloud IQ Developer Portal](https://developer.extremecloudiq.com/).
-
-    Please check [Get Started and Tutorial](https://developer.extremecloudiq.com/documentation/) to understand how to use the APIs.
-
-
-    Get the [latest OpenAPI definition](https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI/blob/main/xcloudiq-openapi.yaml)
-
-    from [ExtremeCloud IQ OpenAPI GitHub repository](https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI).
-
-
-    Please have a valid [ExtremeCloud IQ](https://extremecloudiq.com/) account before getting started.
-
-    If you don''t have one, please [register a new account](https://www.extremenetworks.com/cloud-networking/).'
+    of any ExtremeCloud IQ™ environment.'
   termsOfService: https://www.extremenetworks.com/company/legal/terms-of-use/
   contact:
     name: Extreme Networks Support
@@ -654,61 +639,30 @@ paths:
       - BearerAuth: []
 components:
   schemas:
-    XiqClientHealthResponse:
+    XiqPage:
+      required:
+      - count
+      - page
+      - total_count
+      - total_pages
       type: object
       properties:
-        total_clients:
+        page:
           type: integer
-          format: int64
-          description: Total count of clients
-        total_unhealthy_clients:
+          description: The current page number
+          format: int32
+        count:
           type: integer
-          format: int64
-          description: Total count of unhealthy clients
-        wired_unhealthy_clients:
+          description: The element count of the current page
+          format: int32
+        total_pages:
           type: integer
-          format: int64
-          description: Count of wired unhealthy clients
-        wireless_unhealthy_clients:
+          description: The total page number based on request page size
+          format: int32
+        total_count:
           type: integer
+          description: The total element count
           format: int64
-          description: Count of wireless unhealthy clients
-    XiqSortOrder:
-      type: string
-      enum:
-      - ASC
-      - DESC
-    XiqAssetsResponse:
-      type: object
-      properties:
-        total_devices:
-          type: integer
-          format: int64
-          description: Total count of devices
-        total_offline_devices:
-          type: integer
-          format: int64
-          description: Total count of offline devices
-        wired_offline_devices:
-          type: integer
-          format: int64
-          description: Count of wired offline devices
-        wireless_offline_devices:
-          type: integer
-          format: int64
-          description: Count of wireless offline devices
-    XiqSiteWithIssuesSortField:
-      type: string
-      title: XiqSiteWithIssuesSortField
-      description: Pre-defined sort fields for Site with issues
-      enum:
-      - ALERTS
-      - STATUS
-      - DEVICE_HEALTH
-      - CLIENT_HEALTH
-      - USAGE_CAPACITY
-      - SITE_NAME
-      example: ALERTS
     XiqSitesWithIssuesResponse:
       type: object
       properties:
@@ -736,28 +690,191 @@ components:
         usage_and_capacity:
           $ref: '#/components/schemas/XiqUsageAndCapacityResponse'
           description: Usage and Capacity diagnostics of the site
-    XiqUsageAndCapacityResponse:
+    XiqPostWirelessUsageAndCapacityCriteria:
       type: object
       properties:
-        total_usage_and_capacity_issues:
+        channel_utilization:
           type: integer
           format: int64
-          description: Total count of usage & capacity issues
-        wired_usage_and_capacity_issues:
+          description: Channel Utilization percentage
+        lnk_err:
           type: integer
           format: int64
-          description: Count of wired usage & capacity issues which includes switches and client issues
-        wireless_usage_and_capacity_issues:
+          description: Link Error percentage
+        retries:
           type: integer
           format: int64
-          description: Count of wireless usage & capacity issues which includes access point issues
-    XiqRmDiagnosticsDeviceType:
+          description: Retries percentage
+        pkt_loss:
+          type: integer
+          format: int64
+          description: Packet Loss percentage
+        interference:
+          type: integer
+          format: int64
+          description: Interference percentage
+        noise:
+          type: integer
+          format: int64
+          description: Noise level
+        noise_unit:
+          type: string
+          description: Unit for Noise level
+    XiqSortOrder:
       type: string
-      description: The type of RM diagnostic device
       enum:
-      - WIRED
-      - WIRELESS
-      - ALL
+      - ASC
+      - DESC
+    XiqErrorParams:
+      type: object
+      description: Error parameters
+      properties:
+        field:
+          type: string
+          description: The error field
+        value:
+          type: string
+          description: The error value
+    PagedXiqSitesWithIssuesResponse:
+      allOf:
+      - $ref: '#/components/schemas/XiqPage'
+      - type: object
+        properties:
+          data:
+            type: array
+            description: The data in the current page
+            items:
+              $ref: '#/components/schemas/XiqSitesWithIssuesResponse'
+    XiqSiteWithIssuesSortField:
+      type: string
+      title: XiqSiteWithIssuesSortField
+      description: Pre-defined sort fields for Site with issues
+      enum:
+      - ALERTS
+      - STATUS
+      - DEVICE_HEALTH
+      - CLIENT_HEALTH
+      - USAGE_CAPACITY
+      - SITE_NAME
+      example: ALERTS
+    XiqError:
+      type: object
+      properties:
+        error_code:
+          type: string
+          description: The error code
+        error_id:
+          type: string
+          description: The error ID for internal troubleshooting
+        error_message:
+          type: string
+          description: The error detailed message
+        error_message_code:
+          type: string
+          description: The error message code
+        error_message_description:
+          type: string
+          description: The error message description
+        error_params:
+          $ref: '#/components/schemas/XiqErrorParams'
+      required:
+      - error_code
+      - error_id
+      - error_message
+    XiqDeviceHealthResponse:
+      type: object
+      properties:
+        total_devices:
+          type: integer
+          format: int64
+          description: Total count of devices
+        total_unhealthy_devices:
+          type: integer
+          format: int64
+          description: Total count of unhealthy devices
+        wired_unhealthy_devices:
+          type: integer
+          format: int64
+          description: Count of wired unhealthy devices
+        wireless_unhealthy_devices:
+          type: integer
+          format: int64
+          description: Count of wireless unhealthy devices
+    XiqPostWirelessClientHealthCriteria:
+      type: object
+      properties:
+        assoc_param_slow:
+          type: integer
+          format: int64
+          description: Association parameter for slow connections
+        assoc_unit_slow:
+          type: string
+          description: Unit for association parameter for slow connections
+        auth_param_slow:
+          type: integer
+          format: int64
+          description: Authentication parameter for slow connections
+        auth_unit_slow:
+          type: string
+          description: Unit for authentication parameter for slow connections
+        dhcp_param_slow:
+          type: integer
+          format: int64
+          description: DHCP parameter for slow connections
+        dhcp_unit_slow:
+          type: string
+          description: Unit for DHCP parameter for slow connections
+        roams_param_slow:
+          type: integer
+          format: int64
+          description: Roaming parameter for slow connections
+        roams_unit_slow:
+          type: string
+          description: Unit for roaming parameter for slow connections
+        rssi_param:
+          type: integer
+          format: int64
+          description: RSSI parameter
+        rssi_unit:
+          type: string
+          description: Unit for RSSI parameter
+        snr_param:
+          type: integer
+          format: int64
+          description: SNR parameter
+        snr_unit:
+          type: string
+          description: Unit for SNR parameter
+        onboard_param:
+          type: integer
+          format: int64
+          description: Onboarding parameter
+        onboard_unit:
+          type: string
+          description: Unit for onboarding parameter
+    XiqPostWirelessDeviceHealthCriteria:
+      type: object
+      properties:
+        cpu_utilization:
+          type: integer
+          format: int64
+          description: CPU Utilization percentage
+        memory_utilization:
+          type: integer
+          format: int64
+          description: Memory Utilization percentage
+        poe:
+          type: integer
+          format: int64
+          description: Power over Ethernet (PoE) usage
+        wired_port_multicast:
+          type: integer
+          format: int64
+          description: Wired Port Multicast traffic percentage
+        wired_port_broadcast:
+          type: integer
+          format: int64
+          description: Wired Port Broadcast traffic percentage
     XiqWirelessUsageAndCapacityCriteria:
       type: object
       properties:
@@ -908,78 +1025,6 @@ components:
         noise_6_unit:
           type: string
           description: Unit for 6GHz Noise
-    PagedXiqSitesWithIssuesResponse:
-      allOf:
-      - $ref: '#/components/schemas/XiqPage'
-      - type: object
-        properties:
-          data:
-            type: array
-            description: The data in the current page
-            items:
-              $ref: '#/components/schemas/XiqSitesWithIssuesResponse'
-    XiqErrorParams:
-      type: object
-      description: Error parameters
-      properties:
-        field:
-          type: string
-          description: The error field
-        value:
-          type: string
-          description: The error value
-    XiqPostWirelessClientHealthCriteria:
-      type: object
-      properties:
-        assoc_param_slow:
-          type: integer
-          format: int64
-          description: Association parameter for slow connections
-        assoc_unit_slow:
-          type: string
-          description: Unit for association parameter for slow connections
-        auth_param_slow:
-          type: integer
-          format: int64
-          description: Authentication parameter for slow connections
-        auth_unit_slow:
-          type: string
-          description: Unit for authentication parameter for slow connections
-        dhcp_param_slow:
-          type: integer
-          format: int64
-          description: DHCP parameter for slow connections
-        dhcp_unit_slow:
-          type: string
-          description: Unit for DHCP parameter for slow connections
-        roams_param_slow:
-          type: integer
-          format: int64
-          description: Roaming parameter for slow connections
-        roams_unit_slow:
-          type: string
-          description: Unit for roaming parameter for slow connections
-        rssi_param:
-          type: integer
-          format: int64
-          description: RSSI parameter
-        rssi_unit:
-          type: string
-          description: Unit for RSSI parameter
-        snr_param:
-          type: integer
-          format: int64
-          description: SNR parameter
-        snr_unit:
-          type: string
-          description: Unit for SNR parameter
-        onboard_param:
-          type: integer
-          format: int64
-          description: Onboarding parameter
-        onboard_unit:
-          type: string
-          description: Unit for onboarding parameter
     XiqWirelessDeviceHealthCriteria:
       type: object
       properties:
@@ -1027,77 +1072,66 @@ components:
         wired_port_broadcast_reln:
           type: string
           description: Operator for wired port broadcast
-    XiqError:
+    XiqRmDiagnosticsDeviceType:
+      type: string
+      description: The type of RM diagnostic device
+      enum:
+      - WIRED
+      - WIRELESS
+      - ALL
+    XiqAssetsResponse:
       type: object
       properties:
-        error_code:
-          type: string
-          description: The error code
-        error_id:
-          type: string
-          description: The error ID for internal troubleshooting
-        error_message:
-          type: string
-          description: The error detailed message
-        error_message_code:
-          type: string
-          description: The error message code
-        error_message_description:
-          type: string
-          description: The error message description
-        error_params:
-          $ref: '#/components/schemas/XiqErrorParams'
-      required:
-      - error_code
-      - error_id
-      - error_message
-    XiqPage:
-      required:
-      - count
-      - page
-      - total_count
-      - total_pages
+        total_devices:
+          type: integer
+          format: int64
+          description: Total count of devices
+        total_offline_devices:
+          type: integer
+          format: int64
+          description: Total count of offline devices
+        wired_offline_devices:
+          type: integer
+          format: int64
+          description: Count of wired offline devices
+        wireless_offline_devices:
+          type: integer
+          format: int64
+          description: Count of wireless offline devices
+    XiqClientHealthResponse:
       type: object
       properties:
-        page:
+        total_clients:
           type: integer
-          description: The current page number
-          format: int32
-        count:
-          type: integer
-          description: The element count of the current page
-          format: int32
-        total_pages:
-          type: integer
-          description: The total page number based on request page size
-          format: int32
-        total_count:
-          type: integer
-          description: The total element count
           format: int64
-    XiqPostWirelessDeviceHealthCriteria:
+          description: Total count of clients
+        total_unhealthy_clients:
+          type: integer
+          format: int64
+          description: Total count of unhealthy clients
+        wired_unhealthy_clients:
+          type: integer
+          format: int64
+          description: Count of wired unhealthy clients
+        wireless_unhealthy_clients:
+          type: integer
+          format: int64
+          description: Count of wireless unhealthy clients
+    XiqUsageAndCapacityResponse:
       type: object
       properties:
-        cpu_utilization:
+        total_usage_and_capacity_issues:
           type: integer
           format: int64
-          description: CPU Utilization percentage
-        memory_utilization:
+          description: Total count of usage & capacity issues
+        wired_usage_and_capacity_issues:
           type: integer
           format: int64
-          description: Memory Utilization percentage
-        poe:
+          description: Count of wired usage & capacity issues which includes switches and client issues
+        wireless_usage_and_capacity_issues:
           type: integer
           format: int64
-          description: Power over Ethernet (PoE) usage
-        wired_port_multicast:
-          type: integer
-          format: int64
-          description: Wired Port Multicast traffic percentage
-        wired_port_broadcast:
-          type: integer
-          format: int64
-          description: Wired Port Broadcast traffic percentage
+          description: Count of wireless usage & capacity issues which includes access point issues
     XiqWirelessClientHealthCriteria:
       type: object
       properties:
@@ -1183,55 +1217,6 @@ components:
         onboard_unit:
           type: string
           description: Unit for onboard timing
-    XiqPostWirelessUsageAndCapacityCriteria:
-      type: object
-      properties:
-        channel_utilization:
-          type: integer
-          format: int64
-          description: Channel Utilization percentage
-        lnk_err:
-          type: integer
-          format: int64
-          description: Link Error percentage
-        retries:
-          type: integer
-          format: int64
-          description: Retries percentage
-        pkt_loss:
-          type: integer
-          format: int64
-          description: Packet Loss percentage
-        interference:
-          type: integer
-          format: int64
-          description: Interference percentage
-        noise:
-          type: integer
-          format: int64
-          description: Noise level
-        noise_unit:
-          type: string
-          description: Unit for Noise level
-    XiqDeviceHealthResponse:
-      type: object
-      properties:
-        total_devices:
-          type: integer
-          format: int64
-          description: Total count of devices
-        total_unhealthy_devices:
-          type: integer
-          format: int64
-          description: Total count of unhealthy devices
-        wired_unhealthy_devices:
-          type: integer
-          format: int64
-          description: Count of wired unhealthy devices
-        wireless_unhealthy_devices:
-          type: integer
-          format: int64
-          description: Count of wireless unhealthy devices
     XiqAlertsResponse:
       type: object
       properties:
@@ -1257,16 +1242,6 @@ components:
       - information
       - total_unacknowledged
   parameters:
-    page:
-      name: page
-      in: query
-      description: Page number, min = 1
-      required: false
-      schema:
-        minimum: 1
-        type: integer
-        format: int32
-        default: 1
     limit:
       name: limit
       in: query
@@ -1278,6 +1253,16 @@ components:
         type: integer
         format: int32
         default: 10
+    page:
+      name: page
+      in: query
+      description: Page number, min = 1
+      required: false
+      schema:
+        minimum: 1
+        type: integer
+        format: int32
+        default: 1
   responses:
     ErrorResponse:
       description: The generic ExtremeCloud IQ API error response

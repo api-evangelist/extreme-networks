@@ -1,24 +1,9 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: ExtremeCloud IQ Account RTTS API
+  title: ExtremeCloud IQ RTTS API
   description: 'ExtremeCloud IQ™ API allows customers and partners to create solutions for the management, monitoring, and provisioning
 
-    of any ExtremeCloud IQ™ environment.
-
-
-    All related resources and documentation are available at [ExtremeCloud IQ Developer Portal](https://developer.extremecloudiq.com/).
-
-    Please check [Get Started and Tutorial](https://developer.extremecloudiq.com/documentation/) to understand how to use the APIs.
-
-
-    Get the [latest OpenAPI definition](https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI/blob/main/xcloudiq-openapi.yaml)
-
-    from [ExtremeCloud IQ OpenAPI GitHub repository](https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI).
-
-
-    Please have a valid [ExtremeCloud IQ](https://extremecloudiq.com/) account before getting started.
-
-    If you don''t have one, please [register a new account](https://www.extremenetworks.com/cloud-networking/).'
+    of any ExtremeCloud IQ™ environment.'
   termsOfService: https://www.extremenetworks.com/company/legal/terms-of-use/
   contact:
     name: Extreme Networks Support
@@ -66,6 +51,30 @@ paths:
       - BearerAuth: []
 components:
   schemas:
+    XiqErrorParams:
+      type: object
+      description: Error parameters
+      properties:
+        field:
+          type: string
+          description: The error field
+        value:
+          type: string
+          description: The error value
+    XiqRttsSupportedDevice:
+      type: object
+      description: Device Details
+      properties:
+        device_id:
+          type: integer
+          description: The Device ID
+          format: int64
+        host_name:
+          type: string
+          description: The Hostname of Device
+        serial_number:
+          type: string
+          description: The Serial Number of Device
     XiqError:
       type: object
       properties:
@@ -115,30 +124,6 @@ components:
             type: integer
             description: The Floor ID
             format: int64
-    XiqErrorParams:
-      type: object
-      description: Error parameters
-      properties:
-        field:
-          type: string
-          description: The error field
-        value:
-          type: string
-          description: The error value
-    XiqRttsSupportedDevice:
-      type: object
-      description: Device Details
-      properties:
-        device_id:
-          type: integer
-          description: The Device ID
-          format: int64
-        host_name:
-          type: string
-          description: The Hostname of Device
-        serial_number:
-          type: string
-          description: The Serial Number of Device
   responses:
     ErrorResponse:
       description: The generic ExtremeCloud IQ API error response

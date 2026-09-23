@@ -1,24 +1,9 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: ExtremeCloud IQ Account NG Scheduled Reports API
+  title: ExtremeCloud IQ NG Scheduled Reports API
   description: 'ExtremeCloud IQ™ API allows customers and partners to create solutions for the management, monitoring, and provisioning
 
-    of any ExtremeCloud IQ™ environment.
-
-
-    All related resources and documentation are available at [ExtremeCloud IQ Developer Portal](https://developer.extremecloudiq.com/).
-
-    Please check [Get Started and Tutorial](https://developer.extremecloudiq.com/documentation/) to understand how to use the APIs.
-
-
-    Get the [latest OpenAPI definition](https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI/blob/main/xcloudiq-openapi.yaml)
-
-    from [ExtremeCloud IQ OpenAPI GitHub repository](https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI).
-
-
-    Please have a valid [ExtremeCloud IQ](https://extremecloudiq.com/) account before getting started.
-
-    If you don''t have one, please [register a new account](https://www.extremenetworks.com/cloud-networking/).'
+    of any ExtremeCloud IQ™ environment.'
   termsOfService: https://www.extremenetworks.com/company/legal/terms-of-use/
   contact:
     name: Extreme Networks Support
@@ -583,61 +568,77 @@ paths:
       - BearerAuth: []
 components:
   schemas:
-    XiqCustomScheduledReport:
+    XiqPage:
+      required:
+      - count
+      - page
+      - total_count
+      - total_pages
       type: object
       properties:
-        report_schedule_id:
+        page:
+          type: integer
+          description: The current page number
+          format: int32
+        count:
+          type: integer
+          description: The element count of the current page
+          format: int32
+        total_pages:
+          type: integer
+          description: The total page number based on request page size
+          format: int32
+        total_count:
+          type: integer
+          description: The total element count
+          format: int64
+    XiqReportMetrics:
+      type: string
+      description: Metrics Type.
+      enum:
+      - MAX_CONCURRENT_CLIENTS
+      - UNIQUE_CLIENTS_BY_SSID
+      - UNIQUE_WIFI_CLIENTS
+      - CLIENT_QUALITY_SCORE
+      - CLIENT_SESSIONS
+      - CLIENT_AIRTIME_USAGE
+      - WIRELESS_CLIENTS_BY_OS
+      - UNIQUE_CLIENTS_BY_OS
+      - TRAFFIC_VOLUME_PER_APP
+      - APP_TRAFFIC_PERCENTAGE
+      - DEVICES_BY_CLIENTS
+      - SWITCH_SUMMARY
+      - UNIQUE_CLIENT_BY_SSID_PIE_CHART
+      - APP_TRAFFIC_PERCENTAGE_PIE_CHART
+      - TRAFFIC_VOLUME_PER_APP_PIE_CHART
+    XiqReportRun:
+      type: object
+      properties:
+        report_run_id:
           type: integer
           format: int64
-          description: Unique identifier for the report schedule
+          description: Unique identifier for the report run
+        report_run_timestamp:
+          type: integer
+          format: int64
+          description: Epoch timestamp (in milliseconds) when the report was run
+        report_name:
+          type: string
+          description: Name of the report
         report_id:
           type: integer
           format: int64
           description: Unique identifier for the report
-        report_name:
-          type: string
-          description: The name of the scheduled report
-        report_description:
-          type: string
-          description: The description of the report
-        recipients_count:
-          type: integer
-          format: int64
-          description: The number of recipients for the report
-        frequency:
-          type: string
-          enum:
-          - MONTHLY
-          - WEEKLY
-          - DAILY
-          description: Frequency of the report schedule
-        enable_schedule:
-          type: boolean
-          default: true
-          description: Whether the schedule is enabled
-    XiqReportRecipient:
+    XiqErrorParams:
       type: object
+      description: Error parameters
       properties:
-        report_id:
-          type: integer
-          format: int64
-          description: Unique identifier for the report
-        report_name:
+        field:
           type: string
-          description: Name of the scheduled report
-        recipients:
-          type: array
-          description: List of recipients for this scheduled report
-          items:
-            type: object
-            properties:
-              recipient_id:
-                type: string
-                description: Unique identifier of the recipient
-              recipient_email:
-                type: string
-                format: email
-                description: Email address of the recipient
+          description: The error field
+        value:
+          type: string
+          description: The error value
     XiqScheduleFrequencyRequest:
       type: object
       properties:
@@ -671,30 +672,29 @@ components:
             - For MONTHLY: 1–31 or -1 for the last day of the month
 
             '
-    XiqError:
+    XiqReportRecipient:
       type: object
       properties:
-        error_code:
+        report_id:
+          type: integer
+          format: int64
+          description: Unique identifier for the report
+        report_name:
           type: string
-          description: The error code
-        error_id:
-          type: string
-          description: The error ID for internal troubleshooting
-        error_message:
-          type: string
-          description: The error detailed message
-        error_message_code:
-          type: string
-          description: The error message code
-        error_message_description:
-          type: string
-          description: The error message description
-        error_params:
-          $ref: '#/components/schemas/XiqErrorParams'
-      required:
-      - error_code
-      - error_id
-      - error_message
+          description: Name of the scheduled report
+        recipients:
+          type: array
+          description: List of recipients for this scheduled report
+          items:
+            type: object
+            properties:
+              recipient_id:
+                type: string
+                description: Unique identifier of the recipient
+              recipient_email:
+                type: string
+                format: email
+                description: Email address of the recipient
     XiqReportRunRecipient:
       type: object
       properties:
@@ -722,24 +722,78 @@ components:
                 type: string
                 format: email
                 description: Email address of the recipient
-    XiqReportRun:
+    XiqUpdateCustomReportScheduleRequest:
       type: object
       properties:
-        report_run_id:
-          type: integer
-          format: int64
-          description: Unique identifier for the report run
-        report_run_timestamp:
-          type: integer
-          format: int64
-          description: Epoch timestamp (in milliseconds) when the report was run
+        metrics:
+          type: array
+          items:
+            $ref: '#/components/schemas/XiqReportMetrics'
+          description: List of metrics to include in the report
         report_name:
           type: string
-          description: Name of the report
-        report_id:
-          type: integer
-          format: int64
-          description: Unique identifier for the report
+          description: The name of the report
+        report_description:
+          type: string
+          description: The description of the report
+        site_ids:
+          type: array
+          items:
+            type: integer
+            format: int64
+          description: List of Site IDs
+        building_ids:
+          type: array
+          items:
+            type: integer
+            format: int64
+          description: List of building IDs
+        floor_ids:
+          type: array
+          items:
+            type: integer
+            format: int64
+          description: List of Floor IDs
+        ssids:
+          type: array
+          items:
+            type: string
+          description: List of SSIDs to filter
+        bands:
+          type: array
+          items:
+            type: string
+            enum:
+            - TWO_GHZ
+            - FIVE_GHZ
+            - SIX_GHZ
+          description: List of Bands to filter
+        recipients:
+          type: array
+          description: List of recipients to update
+          items:
+            type: object
+            properties:
+              email:
+                type: string
+                description: Recipient email address
+              notifier_id:
+                type: integer
+                format: int64
+                description: Unique identifier for the notifier
+        schedules:
+          type: array
+          items:
+            $ref: '#/components/schemas/XiqScheduleFrequencyResponse'
+          description: List of report schedules by frequency
+        file_format:
+          type: array
+          items:
+            type: string
+            enum:
+            - PDF
+            - XLSX
+          description: File format to download (PDF or XLSX)
     XiqCustomReportScheduleResponse:
       type: object
       properties:
@@ -816,88 +870,6 @@ components:
             - PDF
             - XLSX
           description: File format to download (PDF or XLSX)
-    XiqErrorParams:
-      type: object
-      description: Error parameters
-      properties:
-        field:
-          type: string
-          description: The error field
-        value:
-          type: string
-          description: The error value
-    XiqUpdateCustomReportScheduleRequest:
-      type: object
-      properties:
-        metrics:
-          type: array
-          items:
-            $ref: '#/components/schemas/XiqReportMetrics'
-          description: List of metrics to include in the report
-        report_name:
-          type: string
-          description: The name of the report
-        report_description:
-          type: string
-          description: The description of the report
-        site_ids:
-          type: array
-          items:
-            type: integer
-            format: int64
-          description: List of Site IDs
-        building_ids:
-          type: array
-          items:
-            type: integer
-            format: int64
-          description: List of building IDs
-        floor_ids:
-          type: array
-          items:
-            type: integer
-            format: int64
-          description: List of Floor IDs
-        ssids:
-          type: array
-          items:
-            type: string
-          description: List of SSIDs to filter
-        bands:
-          type: array
-          items:
-            type: string
-            enum:
-            - TWO_GHZ
-            - FIVE_GHZ
-            - SIX_GHZ
-          description: List of Bands to filter
-        recipients:
-          type: array
-          description: List of recipients to update
-          items:
-            type: object
-            properties:
-              email:
-                type: string
-                description: Recipient email address
-              notifier_id:
-                type: integer
-                format: int64
-                description: Unique identifier for the notifier
-        schedules:
-          type: array
-          items:
-            $ref: '#/components/schemas/XiqScheduleFrequencyResponse'
-          description: List of report schedules by frequency
-        file_format:
-          type: array
-          items:
-            type: string
-            enum:
-            - PDF
-            - XLSX
-          description: File format to download (PDF or XLSX)
     PagedCustomScheduledReport:
       allOf:
       - $ref: '#/components/schemas/XiqPage'
@@ -908,67 +880,38 @@ components:
             description: The data in the current page
             items:
               $ref: '#/components/schemas/XiqCustomScheduledReport'
-    XiqPage:
-      required:
-      - count
-      - page
-      - total_count
-      - total_pages
+    XiqCustomScheduledReport:
       type: object
       properties:
-        page:
-          type: integer
-          description: The current page number
-          format: int32
-        count:
-          type: integer
-          description: The element count of the current page
-          format: int32
-        total_pages:
-          type: integer
-          description: The total page number based on request page size
-          format: int32
-        total_count:
-          type: integer
-          description: The total element count
-          format: int64
-    XiqReportMetrics:
-      type: string
-      description: Metrics Type.
-      enum:
-      - MAX_CONCURRENT_CLIENTS
-      - UNIQUE_CLIENTS_BY_SSID
-      - UNIQUE_WIFI_CLIENTS
-      - CLIENT_QUALITY_SCORE
-      - CLIENT_SESSIONS
-      - CLIENT_AIRTIME_USAGE
-      - WIRELESS_CLIENTS_BY_OS
-      - UNIQUE_CLIENTS_BY_OS
-      - TRAFFIC_VOLUME_PER_APP
-      - APP_TRAFFIC_PERCENTAGE
-      - DEVICES_BY_CLIENTS
-      - SWITCH_SUMMARY
-      - UNIQUE_CLIENT_BY_SSID_PIE_CHART
-      - APP_TRAFFIC_PERCENTAGE_PIE_CHART
-      - TRAFFIC_VOLUME_PER_APP_PIE_CHART
-    XiqScheduledReport:
-      type: object
-      properties:
-        report_run_id:
+        report_schedule_id:
           type: integer
           format: int64
-          description: Unique identifier for the report run
-        report_run_timestamp:
+          description: Unique identifier for the report schedule
+        report_id:
           type: integer
           format: int64
-          description: Epoch timestamp (in milliseconds) when the report was run
+          description: Unique identifier for the report
+        report_name:
+          type: string
+          description: The name of the scheduled report
+        report_description:
+          type: string
+          description: The description of the report
         recipients_count:
           type: integer
           format: int64
-          description: Number of recipients for the report
-        report_name:
+          description: The number of recipients for the report
+        frequency:
           type: string
-          description: Name of the scheduled report
+          enum:
+          - MONTHLY
+          - WEEKLY
+          - DAILY
+          description: Frequency of the report schedule
+        enable_schedule:
+          type: boolean
+          default: true
+          description: Whether the schedule is enabled
     XiqCreateCustomReportScheduleRequest:
       type: object
       properties:
@@ -1041,6 +984,48 @@ components:
             - PDF
             - XLSX
           description: File format to download (PDF or XLSX)
+    XiqError:
+      type: object
+      properties:
+        error_code:
+          type: string
+          description: The error code
+        error_id:
+          type: string
+          description: The error ID for internal troubleshooting
+        error_message:
+          type: string
+          description: The error detailed message
+        error_message_code:
+          type: string
+          description: The error message code
+        error_message_description:
+          type: string
+          description: The error message description
+        error_params:
+          $ref: '#/components/schemas/XiqErrorParams'
+      required:
+      - error_code
+      - error_id
+      - error_message
+    XiqScheduledReport:
+      type: object
+      properties:
+        report_run_id:
+          type: integer
+          format: int64
+          description: Unique identifier for the report run
+        report_run_timestamp:
+          type: integer
+          format: int64
+          description: Epoch timestamp (in milliseconds) when the report was run
+        recipients_count:
+          type: integer
+          format: int64
+          description: Number of recipients for the report
+        report_name:
+          type: string
+          description: Name of the scheduled report
     XiqScheduleFrequencyResponse:
       type: object
       properties:
@@ -1079,16 +1064,6 @@ components:
 
             '
   parameters:
-    page:
-      name: page
-      in: query
-      description: Page number, min = 1
-      required: false
-      schema:
-        minimum: 1
-        type: integer
-        format: int32
-        default: 1
     limit:
       name: limit
       in: query
@@ -1100,6 +1075,16 @@ components:
         type: integer
         format: int32
         default: 10
+    page:
+      name: page
+      in: query
+      description: Page number, min = 1
+      required: false
+      schema:
+        minimum: 1
+        type: integer
+        format: int32
+        default: 1
   responses:
     ErrorResponse:
       description: The generic ExtremeCloud IQ API error response

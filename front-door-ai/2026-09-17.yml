@@ -1,0 +1,30 @@
+# Front Door AI Index — extreme-networks — 2026-09-17
+# AI vocabulary counted on the provider's root page. Generated; do not edit.
+# `score` is null unless ownership is `own` — see front_door_ai.py.
+front_door_ai:
+  slug: extreme-networks
+  lexicon_version: '1.0'
+  probed_at: '2026-09-17'
+  host: www.extremenetworks.com
+  final_host: www.extremenetworks.com
+  ownership: own
+  owner: extreme-networks
+  shares_host_with: null
+  inherited_from: null
+  verdict: scored
+  score: 19
+  host_score: 19
+  density: 11.85
+  words: 1603
+  tiers:
+    agentic: 3
+    core: 16
+    model: 0
+  ambiguous: 6
+  top_terms:
+    AI: 16
+    agent: 4
+    automation: 2
+    AI agent: 1
+    AI assistant: 1
+    agentic: 1

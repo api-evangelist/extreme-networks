@@ -1,24 +1,9 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: ExtremeCloud IQ Account Switch Inspector Panel API
+  title: ExtremeCloud IQ Switch Inspector Panel API
   description: 'ExtremeCloud IQ™ API allows customers and partners to create solutions for the management, monitoring, and provisioning
 
-    of any ExtremeCloud IQ™ environment.
-
-
-    All related resources and documentation are available at [ExtremeCloud IQ Developer Portal](https://developer.extremecloudiq.com/).
-
-    Please check [Get Started and Tutorial](https://developer.extremecloudiq.com/documentation/) to understand how to use the APIs.
-
-
-    Get the [latest OpenAPI definition](https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI/blob/main/xcloudiq-openapi.yaml)
-
-    from [ExtremeCloud IQ OpenAPI GitHub repository](https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI).
-
-
-    Please have a valid [ExtremeCloud IQ](https://extremecloudiq.com/) account before getting started.
-
-    If you don''t have one, please [register a new account](https://www.extremenetworks.com/cloud-networking/).'
+    of any ExtremeCloud IQ™ environment.'
   termsOfService: https://www.extremenetworks.com/company/legal/terms-of-use/
   contact:
     name: Extreme Networks Support
@@ -66,21 +51,6 @@ paths:
       - BearerAuth: []
 components:
   schemas:
-    XiqSwitchInspectorPanelDiagnosticsWidget:
-      type: object
-      properties:
-        device_health_issues:
-          type: integer
-          format: int64
-          description: The number of "Device Health" issues
-        usage_capacity_issues:
-          type: integer
-          format: int64
-          description: The number of "Usage and Capacity" issues
-        client_health_issues:
-          type: integer
-          format: int64
-          description: The number of "Client Health" issues
     XiqErrorParams:
       type: object
       description: Error parameters
@@ -115,6 +85,21 @@ components:
       - error_code
       - error_id
       - error_message
+    XiqSwitchInspectorPanelDiagnosticsWidget:
+      type: object
+      properties:
+        device_health_issues:
+          type: integer
+          format: int64
+          description: The number of "Device Health" issues
+        usage_capacity_issues:
+          type: integer
+          format: int64
+          description: The number of "Usage and Capacity" issues
+        client_health_issues:
+          type: integer
+          format: int64
+          description: The number of "Client Health" issues
   responses:
     ErrorResponse:
       description: The generic ExtremeCloud IQ API error response

@@ -1,24 +1,9 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: ExtremeCloud IQ Account Operation API
+  title: ExtremeCloud IQ Operation API
   description: 'ExtremeCloud IQ™ API allows customers and partners to create solutions for the management, monitoring, and provisioning
 
-    of any ExtremeCloud IQ™ environment.
-
-
-    All related resources and documentation are available at [ExtremeCloud IQ Developer Portal](https://developer.extremecloudiq.com/).
-
-    Please check [Get Started and Tutorial](https://developer.extremecloudiq.com/documentation/) to understand how to use the APIs.
-
-
-    Get the [latest OpenAPI definition](https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI/blob/main/xcloudiq-openapi.yaml)
-
-    from [ExtremeCloud IQ OpenAPI GitHub repository](https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI).
-
-
-    Please have a valid [ExtremeCloud IQ](https://extremecloudiq.com/) account before getting started.
-
-    If you don''t have one, please [register a new account](https://www.extremenetworks.com/cloud-networking/).'
+    of any ExtremeCloud IQ™ environment.'
   termsOfService: https://www.extremenetworks.com/company/legal/terms-of-use/
   contact:
     name: Extreme Networks Support
@@ -116,71 +101,6 @@ paths:
       - BearerAuth: []
 components:
   schemas:
-    XiqOperationStatus:
-      type: string
-      description: The current operation status
-      enum:
-      - PENDING
-      - RUNNING
-      - CANCELING
-      - SUCCEEDED
-      - FAILED
-      - CANCELED
-    XiqError:
-      type: object
-      properties:
-        error_code:
-          type: string
-          description: The error code
-        error_id:
-          type: string
-          description: The error ID for internal troubleshooting
-        error_message:
-          type: string
-          description: The error detailed message
-        error_message_code:
-          type: string
-          description: The error message code
-        error_message_description:
-          type: string
-          description: The error message description
-        error_params:
-          $ref: '#/components/schemas/XiqErrorParams'
-      required:
-      - error_code
-      - error_id
-      - error_message
-    XiqErrorParams:
-      type: object
-      description: Error parameters
-      properties:
-        field:
-          type: string
-          description: The error field
-        value:
-          type: string
-          description: The error value
-    XiqOperationObject:
-      type: object
-      description: Long Running Operation (LRO) model
-      required:
-      - id
-      - metadata
-      - done
-      properties:
-        id:
-          type: string
-          description: The unique identifier of the operation
-        metadata:
-          $ref: '#/components/schemas/XiqOperationMetadata'
-        done:
-          type: boolean
-          description: Whether the operation is done
-        response:
-          type: object
-          description: The API response of the operation if the status is SUCCEEDED
-        error:
-          $ref: '#/components/schemas/XiqError'
     XiqOperationMetadata:
       type: object
       description: The metadata of Long Running Operation (LRO)
@@ -225,6 +145,71 @@ components:
           type: integer
           description: The number of seconds remaining until the operation expires and is to be deleted.
           format: int64
+    XiqErrorParams:
+      type: object
+      description: Error parameters
+      properties:
+        field:
+          type: string
+          description: The error field
+        value:
+          type: string
+          description: The error value
+    XiqOperationObject:
+      type: object
+      description: Long Running Operation (LRO) model
+      required:
+      - id
+      - metadata
+      - done
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the operation
+        metadata:
+          $ref: '#/components/schemas/XiqOperationMetadata'
+        done:
+          type: boolean
+          description: Whether the operation is done
+        response:
+          type: object
+          description: The API response of the operation if the status is SUCCEEDED
+        error:
+          $ref: '#/components/schemas/XiqError'
+    XiqOperationStatus:
+      type: string
+      description: The current operation status
+      enum:
+      - PENDING
+      - RUNNING
+      - CANCELING
+      - SUCCEEDED
+      - FAILED
+      - CANCELED
+    XiqError:
+      type: object
+      properties:
+        error_code:
+          type: string
+          description: The error code
+        error_id:
+          type: string
+          description: The error ID for internal troubleshooting
+        error_message:
+          type: string
+          description: The error detailed message
+        error_message_code:
+          type: string
+          description: The error message code
+        error_message_description:
+          type: string
+          description: The error message description
+        error_params:
+          $ref: '#/components/schemas/XiqErrorParams'
+      required:
+      - error_code
+      - error_id
+      - error_message
   responses:
     ErrorResponse:
       description: The generic ExtremeCloud IQ API error response

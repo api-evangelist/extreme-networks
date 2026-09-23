@@ -1,24 +1,9 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: ExtremeCloud IQ Account Dashboard - Wireless Device Health API
+  title: ExtremeCloud IQ Dashboard - Wireless Device Health API
   description: 'ExtremeCloud IQ™ API allows customers and partners to create solutions for the management, monitoring, and provisioning
 
-    of any ExtremeCloud IQ™ environment.
-
-
-    All related resources and documentation are available at [ExtremeCloud IQ Developer Portal](https://developer.extremecloudiq.com/).
-
-    Please check [Get Started and Tutorial](https://developer.extremecloudiq.com/documentation/) to understand how to use the APIs.
-
-
-    Get the [latest OpenAPI definition](https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI/blob/main/xcloudiq-openapi.yaml)
-
-    from [ExtremeCloud IQ OpenAPI GitHub repository](https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI).
-
-
-    Please have a valid [ExtremeCloud IQ](https://extremecloudiq.com/) account before getting started.
-
-    If you don''t have one, please [register a new account](https://www.extremenetworks.com/cloud-networking/).'
+    of any ExtremeCloud IQ™ environment.'
   termsOfService: https://www.extremenetworks.com/company/legal/terms-of-use/
   contact:
     name: Extreme Networks Support
@@ -472,6 +457,126 @@ components:
           type: integer
           format: int64
           description: Count of devices with CPU usage issues.
+    XiqSortOrder:
+      type: string
+      enum:
+      - ASC
+      - DESC
+    XiqPage:
+      required:
+      - count
+      - page
+      - total_count
+      - total_pages
+      type: object
+      properties:
+        page:
+          type: integer
+          description: The current page number
+          format: int32
+        count:
+          type: integer
+          description: The element count of the current page
+          format: int32
+        total_pages:
+          type: integer
+          description: The total page number based on request page size
+          format: int32
+        total_count:
+          type: integer
+          description: The total element count
+          format: int64
+    XiqDeviceHealthGridSortField:
+      type: string
+      title: XiqDeviceHealthGridSortField
+      description: Pre-defined filters for device health filters - HOSTNAME - SITE - CPU_USAGE_PERCENTAGE - MEMORY_USAGE_PERCENTAGE - TOTAL_ETH0_SCORE - TOTAL_ETH1_SCORE
+      example: HOSTNAME
+    XiqErrorParams:
+      type: object
+      description: Error parameters
+      properties:
+        field:
+          type: string
+          description: The error field
+        value:
+          type: string
+          description: The error value
+    XiqWirelessDeviceHealthSummary:
+      type: object
+      properties:
+        wireless_devices:
+          type: integer
+          format: int64
+          description: Total count of devices
+        wireless_unhealthy_devices:
+          type: integer
+          format: int64
+          description: Total count of unhealthy devices
+    XiqWirelessDeviceHealthMemoryUsageIssues:
+      type: object
+      properties:
+        memory_usage_issue_device_count:
+          type: integer
+          format: int64
+          description: Count of devices with Memory usage issues.
+    XiqWirelessDeviceHealthPoEUsageIssues:
+      type: object
+      properties:
+        poe_usage_issue_device_count:
+          type: integer
+          format: int64
+          description: Count of devices with PoE usage issues.
+    PagedXiqDeviceRebootSummaryResponse:
+      allOf:
+      - $ref: '#/components/schemas/XiqPage'
+      - type: object
+        description: The response body of wireless device reboot summary.
+        properties:
+          data:
+            type: array
+            description: The data in the current page
+            items:
+              type: object
+              properties:
+                date_time:
+                  description: The timestamp of the device reboot.
+                  type: string
+                  format: date-time
+                description:
+                  description: The reason for the device reboot.
+                  type: string
+    number_filter:
+      type: object
+      description: If the filter type is between, only then min and max are to be used, else value is to be used.
+      properties:
+        column_name:
+          description: The name of the column being filtered
+          type: string
+        filter_type:
+          description: The type of number filter
+          type: string
+          enum:
+          - eq
+          - neq
+          - gt
+          - gte
+          - lt
+          - lte
+          - bw
+          - blank
+          - notblank
+        value:
+          description: The value of the number
+          type: integer
+          format: int64
+        min:
+          description: The minimum value of the number
+          type: integer
+          format: int64
+        max:
+          description: The maximum value of the number
+          type: integer
+          format: int64
     XiqDeviceHealthGridResponse:
       type: object
       properties:
@@ -564,44 +669,6 @@ components:
       - error_code
       - error_id
       - error_message
-    XiqWirelessDeviceHealthMemoryUsageIssues:
-      type: object
-      properties:
-        memory_usage_issue_device_count:
-          type: integer
-          format: int64
-          description: Count of devices with Memory usage issues.
-    XiqWirelessDeviceHealthSummary:
-      type: object
-      properties:
-        wireless_devices:
-          type: integer
-          format: int64
-          description: Total count of devices
-        wireless_unhealthy_devices:
-          type: integer
-          format: int64
-          description: Total count of unhealthy devices
-    XiqSortOrder:
-      type: string
-      enum:
-      - ASC
-      - DESC
-    XiqDeviceHealthGridSortField:
-      type: string
-      title: XiqDeviceHealthGridSortField
-      description: Pre-defined filters for device health filters - HOSTNAME - SITE - CPU_USAGE_PERCENTAGE - MEMORY_USAGE_PERCENTAGE - TOTAL_ETH0_SCORE - TOTAL_ETH1_SCORE
-      example: HOSTNAME
-    XiqErrorParams:
-      type: object
-      description: Error parameters
-      properties:
-        field:
-          type: string
-          description: The error field
-        value:
-          type: string
-          description: The error value
     PagedXiqDeviceHealthGridResponse:
       allOf:
       - $ref: '#/components/schemas/XiqPage'
@@ -612,99 +679,7 @@ components:
             description: The data in the current page
             items:
               $ref: '#/components/schemas/XiqDeviceHealthGridResponse'
-    XiqPage:
-      required:
-      - count
-      - page
-      - total_count
-      - total_pages
-      type: object
-      properties:
-        page:
-          type: integer
-          description: The current page number
-          format: int32
-        count:
-          type: integer
-          description: The element count of the current page
-          format: int32
-        total_pages:
-          type: integer
-          description: The total page number based on request page size
-          format: int32
-        total_count:
-          type: integer
-          description: The total element count
-          format: int64
-    number_filter:
-      type: object
-      description: If the filter type is between, only then min and max are to be used, else value is to be used.
-      properties:
-        column_name:
-          description: The name of the column being filtered
-          type: string
-        filter_type:
-          description: The type of number filter
-          type: string
-          enum:
-          - eq
-          - neq
-          - gt
-          - gte
-          - lt
-          - lte
-          - bw
-          - blank
-          - notblank
-        value:
-          description: The value of the number
-          type: integer
-          format: int64
-        min:
-          description: The minimum value of the number
-          type: integer
-          format: int64
-        max:
-          description: The maximum value of the number
-          type: integer
-          format: int64
-    XiqWirelessDeviceHealthPoEUsageIssues:
-      type: object
-      properties:
-        poe_usage_issue_device_count:
-          type: integer
-          format: int64
-          description: Count of devices with PoE usage issues.
-    PagedXiqDeviceRebootSummaryResponse:
-      allOf:
-      - $ref: '#/components/schemas/XiqPage'
-      - type: object
-        description: The response body of wireless device reboot summary.
-        properties:
-          data:
-            type: array
-            description: The data in the current page
-            items:
-              type: object
-              properties:
-                date_time:
-                  description: The timestamp of the device reboot.
-                  type: string
-                  format: date-time
-                description:
-                  description: The reason for the device reboot.
-                  type: string
   parameters:
-    page:
-      name: page
-      in: query
-      description: Page number, min = 1
-      required: false
-      schema:
-        minimum: 1
-        type: integer
-        format: int32
-        default: 1
     limit:
       name: limit
       in: query
@@ -716,6 +691,16 @@ components:
         type: integer
         format: int32
         default: 10
+    page:
+      name: page
+      in: query
+      description: Page number, min = 1
+      required: false
+      schema:
+        minimum: 1
+        type: integer
+        format: int32
+        default: 1
   responses:
     ErrorResponse:
       description: The generic ExtremeCloud IQ API error response

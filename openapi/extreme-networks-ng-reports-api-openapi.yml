@@ -1,24 +1,9 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: ExtremeCloud IQ Account NG Reports API
+  title: ExtremeCloud IQ NG Reports API
   description: 'ExtremeCloud IQ™ API allows customers and partners to create solutions for the management, monitoring, and provisioning
 
-    of any ExtremeCloud IQ™ environment.
-
-
-    All related resources and documentation are available at [ExtremeCloud IQ Developer Portal](https://developer.extremecloudiq.com/).
-
-    Please check [Get Started and Tutorial](https://developer.extremecloudiq.com/documentation/) to understand how to use the APIs.
-
-
-    Get the [latest OpenAPI definition](https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI/blob/main/xcloudiq-openapi.yaml)
-
-    from [ExtremeCloud IQ OpenAPI GitHub repository](https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI).
-
-
-    Please have a valid [ExtremeCloud IQ](https://extremecloudiq.com/) account before getting started.
-
-    If you don''t have one, please [register a new account](https://www.extremenetworks.com/cloud-networking/).'
+    of any ExtremeCloud IQ™ environment.'
   termsOfService: https://www.extremenetworks.com/company/legal/terms-of-use/
   contact:
     name: Extreme Networks Support
@@ -854,7 +839,7 @@ paths:
       - BearerAuth: []
 components:
   schemas:
-    XiqUniqueWifiClientsRequest-2:
+    XiqAppTrafficPercentageRequest-2:
       allOf:
       - type: object
         description: Network Service
@@ -864,17 +849,145 @@ components:
           METRICS:
             $ref: '#/components/schemas/XiqReportMetrics'
           sortField:
-            description: default TIME_STAMP
+            description: ''
             type: string
             enum:
             - TIME_STAMP (default)
             - MAC
             - HOSTNAME
-            - CONNECTED_TIME
-            - DICONNECTED_TIME
+            - APPLICATION_USAGE
           sortOrder:
             type: string
-            description: default ASC
+            description: ''
+            enum:
+            - ASC (default)
+            - DESC
+          siteIds:
+            description: List of Site IDs
+            type: array
+            items:
+              type: integer
+              format: int64
+          buildingIds:
+            description: List of building IDs
+            type: array
+            items:
+              type: integer
+              format: int64
+          floorIds:
+            description: List of Floor IDs
+            type: array
+            items:
+              type: integer
+              format: int64
+          userID:
+            description: List of User IDs.
+            type: array
+            items:
+              type: integer
+              format: int64
+          clientMac:
+            description: List of Client Mac Address.
+            type: array
+            items:
+              type: string
+          applicationId:
+            description: List of Application IDs.
+            type: array
+            items:
+              type: integer
+              format: int64
+          startTime:
+            description: Epoch Time in milliseconds since 1/1/1970
+            type: array
+            items:
+              type: integer
+              format: int64
+          endTime:
+            description: Epoch Time in milliseconds since 1/1/1970
+            type: array
+            items:
+              type: integer
+              format: int64
+          export:
+            description: export to CSV format. true will initiate export. default value false
+            type: boolean
+          pageno:
+            description: page number >= 1. Ignored if export is set to true
+            type: integer
+            format: int
+          limit:
+            description: size of each page. Ignored if export is set to true
+            type: integer
+            format: int
+          async:
+            description: LRO operation. default value false. Will be true if export is set to true
+            type: boolean
+    XiqAppTrafficPercentageResponse:
+      allOf:
+      - type: object
+        description: Network Service
+        required:
+        - service_type
+        properties:
+          metrics:
+            $ref: '#/components/schemas/XiqReportMetrics'
+      - type: object
+        properties:
+          time_stamp:
+            type: integer
+            description: time in epoch
+            format: int64
+          application_name:
+            type: string
+            description: Name of the Application
+          application_usage:
+            type: integer
+            format: int64
+            description: Application Usage in Bytes
+    XiqPage:
+      required:
+      - count
+      - page
+      - total_count
+      - total_pages
+      type: object
+      properties:
+        page:
+          type: integer
+          description: The current page number
+          format: int32
+        count:
+          type: integer
+          description: The element count of the current page
+          format: int32
+        total_pages:
+          type: integer
+          description: The total page number based on request page size
+          format: int32
+        total_count:
+          type: integer
+          description: The total element count
+          format: int64
+    XiqUniqueClientsByOSRequest-2:
+      allOf:
+      - type: object
+        description: Network Service
+        required:
+        - service_type
+        properties:
+          METRICS:
+            $ref: '#/components/schemas/XiqReportMetrics'
+          sortField:
+            description: ''
+            type: string
+            enum:
+            - TIME_STAMP (default)
+            - MAC
+            - HOSTNAME
+          sortOrder:
+            type: string
+            description: ''
             enum:
             - ASC (default)
             - DESC
@@ -912,22 +1025,16 @@ components:
             - 2.4GHz
             - 5GHz
             - 6GHz
-          channelNums:
-            description: 'List of channel numbers to filter
-
-              '
+          ostypes:
+            description: List of OS types **The below table defines the different Widgets with there path param and description** 1.  UnKnown         --  0 2.  Windows         --  21000 3.  Windows Phone   --  21001 4.  MAC OS          --  21002 5.  IPad            --  21003 6.  IPhone          --  21004 7.  IOS Device      --  21005 8.  android         --  21006 9.  Symbian         --  21007 10. blackbery       --  21008 11. chrome          --  21009
+            type: integer
+            format: int32
+          deviceType:
+            description: Device types
             type: array
             items:
               type: integer
-              format: int32
-          deviceIds:
-            description: 'List of deviceIds to filter
-
-              '
-            type: array
-            items:
-              type: integer
-              format: int64
+              format: int
           startTime:
             description: Epoch Time in milliseconds since 1/1/1970
             type: array
@@ -954,155 +1061,6 @@ components:
           async:
             description: LRO operation. default value false. Will be true if export is set to true
             type: boolean
-    XiqMaxConcurrentClientsResponse:
-      allOf:
-      - type: object
-        description: Network Service
-        required:
-        - service_type
-        properties:
-          metrics:
-            $ref: '#/components/schemas/XiqReportMetrics'
-      - type: object
-        properties:
-          time_stamp:
-            type: integer
-            description: time in epoch
-            format: int64
-          user_name:
-            type: string
-            description: Name of the User
-          user_profile_name:
-            type: string
-            description: Profile Name of the User
-          os_name:
-            type: string
-            description: Profile Name of the operating system
-          ssid:
-            type: string
-            description: ssid
-    XiqQoeDiagnosticsTimeRange:
-      required:
-      - startTime
-      - endTime
-      type: object
-      properties:
-        startTime:
-          type: integer
-          description: Start time in epoch
-          format: int64
-        endTime:
-          type: integer
-          description: End time in epoch
-          format: int64
-    XiqAppTrafficPercentageRequest:
-      allOf:
-      - type: object
-        description: Network Service
-        required:
-        - service_type
-        properties:
-          metrics:
-            $ref: '#/components/schemas/XiqReportMetrics'
-          sortField:
-            description: ''
-            type: string
-            enum:
-            - TIME_STAMP (default)
-            - MAC
-            - HOSTNAME
-            - APPLICATION_USAGE
-          sortOrder:
-            type: string
-            description: ''
-            enum:
-            - ASC (default)
-            - DESC
-          site_ids:
-            description: List of Site IDs
-            type: array
-            items:
-              type: integer
-              format: int64
-          building_ids:
-            description: List of building IDs
-            type: array
-            items:
-              type: integer
-              format: int64
-          floor_ids:
-            description: List of Floor IDs
-            type: array
-            items:
-              type: integer
-              format: int64
-          user_id:
-            description: List of User IDs.
-            type: array
-            items:
-              type: integer
-              format: int64
-          client_mac:
-            description: List of Client Mac Address.
-            type: array
-            items:
-              type: string
-          application_id:
-            description: List of Application IDs.
-            type: array
-            items:
-              type: integer
-              format: int64
-          start_time:
-            description: Epoch Time in milliseconds since 1/1/1970
-            type: integer
-            format: int64
-          end_time:
-            description: Epoch Time in milliseconds since 1/1/1970
-            type: integer
-            format: int64
-          pageno:
-            description: page number >= 1. Ignored if export is set to true
-            type: integer
-            format: int
-          limit:
-            description: size of each page. Ignored if export is set to true
-            type: integer
-            format: int
-          async:
-            description: LRO operation. default value false. Will be true if export is set to true
-    XiqClientAirtimeUsageResponse:
-      allOf:
-      - type: object
-        description: Network Service
-        required:
-        - service_type
-        properties:
-          metrics:
-            $ref: '#/components/schemas/XiqReportMetrics'
-      - type: object
-        properties:
-          time_stamp:
-            type: integer
-            description: time in epoch
-            format: int64
-          devicet_hostname:
-            type: string
-            description: Host Name of the Device
-          device_mac:
-            type: string
-            description: MAC Address of the Device
-          ip_address:
-            type: string
-            description: IP Address of the Device
-          percentage_airtime_utilization:
-            type: integer
-            description: percentage channle utilization
-            format: int64
-          releative_time:
-            type: integer
-            description: relative time in epoch
-            format: int64
     XiqMaxConcurrentClientsRequest-2:
       allOf:
       - type: object
@@ -1203,31 +1161,7 @@ components:
           async:
             description: LRO operation. default value false. Will be true if export is set to true
             type: boolean
-    XiqQoeDiagnosticsData:
-      required:
-      - timestamp
-      - value
-      type: object
-      properties:
-        timestamp:
-          type: integer
-          description: Time Stamp
-          format: int64
-        value:
-          type: integer
-          description: values
-          format: int64
-    XiqErrorParams:
-      type: object
-      description: Error parameters
-      properties:
-        field:
-          type: string
-          description: The error field
-        value:
-          type: string
-          description: The error value
-    XiqAppTrafficPercentageResponse:
+    XiqAppTrafficPercentageRequest:
       allOf:
       - type: object
         description: Network Service
@@ -1236,20 +1170,224 @@ components:
         properties:
           metrics:
             $ref: '#/components/schemas/XiqReportMetrics'
-      - type: object
-        properties:
-          time_stamp:
-            type: integer
-            description: time in epoch
-            format: int64
-          application_name:
+          sortField:
+            description: ''
             type: string
-            description: Name of the Application
-          application_usage:
+            enum:
+            - TIME_STAMP (default)
+            - MAC
+            - HOSTNAME
+            - APPLICATION_USAGE
+          sortOrder:
+            type: string
+            description: ''
+            enum:
+            - ASC (default)
+            - DESC
+          site_ids:
+            description: List of Site IDs
+            type: array
+            items:
+              type: integer
+              format: int64
+          building_ids:
+            description: List of building IDs
+            type: array
+            items:
+              type: integer
+              format: int64
+          floor_ids:
+            description: List of Floor IDs
+            type: array
+            items:
+              type: integer
+              format: int64
+          user_id:
+            description: List of User IDs.
+            type: array
+            items:
+              type: integer
+              format: int64
+          client_mac:
+            description: List of Client Mac Address.
+            type: array
+            items:
+              type: string
+          application_id:
+            description: List of Application IDs.
+            type: array
+            items:
+              type: integer
+              format: int64
+          start_time:
+            description: Epoch Time in milliseconds since 1/1/1970
             type: integer
             format: int64
-            description: Application Usage in Bytes
-    XiqClientSessionsRequest-2:
+          end_time:
+            description: Epoch Time in milliseconds since 1/1/1970
+            type: integer
+            format: int64
+          pageno:
+            description: page number >= 1. Ignored if export is set to true
+            type: integer
+            format: int
+          limit:
+            description: size of each page. Ignored if export is set to true
+            type: integer
+            format: int
+          async:
+            description: LRO operation. default value false. Will be true if export is set to true
+    XiqMaxConcurrentClientsRequest:
+      allOf:
+      - type: object
+        description: Network Service
+        required:
+        - service_type
+        properties:
+          metrics:
+            $ref: '#/components/schemas/XiqReportMetrics'
+          sort_field:
+            description: ''
+            type: string
+            enum:
+            - TIME_STAMP (default)
+            - MAC
+            - HOSTNAME
+          sort_order:
+            type: string
+            description: ''
+            enum:
+            - ASC (default)
+            - DESC
+          site_ids:
+            description: List of Site IDs
+            type: array
+            items:
+              type: integer
+              format: int64
+          building_ids:
+            description: List of building IDs
+            type: array
+            items:
+              type: integer
+              format: int64
+          floor_ids:
+            description: List of Floor IDs
+            type: array
+            items:
+              type: integer
+              format: int64
+          connTypes:
+            description: 'List of connection types
+
+              '
+            type: string
+            enum:
+            - UNKNOWN
+            - WIRELESS
+            - WIRED
+            - THREAD
+          ssids:
+            description: 'List of SSIDs to filter
+
+              '
+            type: array
+            items:
+              type: string
+          bands:
+            description: List of Bands to filter (Supports Multi-Select)
+            type: array
+            items:
+              type: string
+              enum:
+              - 2.4GHz
+              - 5GHz
+              - 6GHz
+          device_ids:
+            description: 'List of deviceIds to filter
+
+              '
+            type: array
+            items:
+              type: integer
+              format: int64
+          start_time:
+            description: Epoch Time in milliseconds since 1/1/1970
+            type: integer
+            format: int64
+          end_time:
+            description: Epoch Time in milliseconds since 1/1/1970
+            type: integer
+            format: int64
+          pageno:
+            description: page number >= 1. Ignored if export is set to true
+            type: integer
+            format: int
+          limit:
+            description: size of each page. Ignored if export is set to true
+            type: integer
+            format: int
+          async:
+            description: LRO operation. default value false. Will be true if export is set to true
+            type: boolean
+    XiqDiagnosticsPieChart:
+      allOf:
+      - type: object
+        description: Network Service
+        required:
+        - service_type
+        properties:
+          metrics:
+            $ref: '#/components/schemas/XiqReportMetrics'
+          name:
+            type: string
+            description: Name of the Metrics
+          timeRange:
+            description: Time Range ( Start and End Time )
+            $ref: '#/components/schemas/XiqQoeDiagnosticsTimeRange'
+          data:
+            type: array
+            description: The data for a particular metrics
+            items:
+              required:
+              - id
+              - name
+              - value
+              type: object
+              properties:
+                id:
+                  type: integer
+                  description: Time Stamp
+                  format: int64
+                name:
+                  type: string
+                  description: name of the fraction
+                value:
+                  type: integer
+                  description: values
+                  format: int64
+    XiqDiagnosticsTableDataResponse:
+      type: object
+      description: Metrics response
+      properties:
+        Response Body ( Select Metrics ):
+          anyOf:
+          - $ref: '#/components/schemas/XiqMaxConcurrentClientsResponse'
+          - $ref: '#/components/schemas/XiqUniqueWifiClientsResponse'
+          - $ref: '#/components/schemas/XiqClientSessionsResponse'
+          - $ref: '#/components/schemas/XiqAppTrafficPercentageResponse'
+          - $ref: '#/components/schemas/XiqClientAirtimeUsageResponse'
+          - $ref: '#/components/schemas/XiqUniqueClientsByOSResponse'
+          discriminator:
+            propertyName: metrics
+            mapping:
+              MAX_CONCURRENT_CLIENTS: '#/components/schemas/XiqMaxConcurrentClientsResponse'
+              UNIQUE_WIFI_CLIENTS: '#/components/schemas/XiqUniqueWifiClientsResponse'
+              CLIENT_SESSIONS: '#/components/schemas/XiqClientSessionsResponse'
+              APP_TRAFFIC_PERCENTAGE: '#/components/schemas/XiqAppTrafficPercentageResponse'
+              CLIENT_AIRTIME_USAGE: '#/components/schemas/XiqClientAirtimeUsageResponse'
+              UNIQUE_CLIENTS_BY_OS: '#/components/schemas/XiqUniqueClientsByOSResponse'
+    XiqClientAirtimeUsageRequest-2:
       allOf:
       - type: object
         description: Network Service
@@ -1265,7 +1403,8 @@ components:
             - TIME_STAMP (default)
             - MAC
             - HOSTNAME
-            - SESSION_DURATION
+            - PERCENTAGE_AIRTIME_UTILIZATION
+            - RELATIVE_TIME
           sortOrder:
             type: string
             description: ''
@@ -1348,7 +1487,117 @@ components:
           async:
             description: LRO operation. default value false. Will be true if export is set to true
             type: boolean
-    XiqDownloadReportsRequest:
+    XiqUniqueWifiClientsRequest-2:
+      allOf:
+      - type: object
+        description: Network Service
+        required:
+        - service_type
+        properties:
+          METRICS:
+            $ref: '#/components/schemas/XiqReportMetrics'
+          sortField:
+            description: default TIME_STAMP
+            type: string
+            enum:
+            - TIME_STAMP (default)
+            - MAC
+            - HOSTNAME
+            - CONNECTED_TIME
+            - DICONNECTED_TIME
+          sortOrder:
+            type: string
+            description: default ASC
+            enum:
+            - ASC (default)
+            - DESC
+          siteIds:
+            description: List of Site IDs
+            type: array
+            items:
+              type: integer
+              format: int64
+          buildingIds:
+            description: List of building IDs
+            type: array
+            items:
+              type: integer
+              format: int64
+          floorIds:
+            description: List of Floor IDs
+            type: array
+            items:
+              type: integer
+              format: int64
+          ssids:
+            description: 'List of SSIDs to filter
+
+              '
+            type: array
+            items:
+              type: string
+          band:
+            description: 'List of Bands to filter
+
+              '
+            type: string
+            enum:
+            - 2.4GHz
+            - 5GHz
+            - 6GHz
+          channelNums:
+            description: 'List of channel numbers to filter
+
+              '
+            type: array
+            items:
+              type: integer
+              format: int32
+          deviceIds:
+            description: 'List of deviceIds to filter
+
+              '
+            type: array
+            items:
+              type: integer
+              format: int64
+          startTime:
+            description: Epoch Time in milliseconds since 1/1/1970
+            type: array
+            items:
+              type: integer
+              format: int64
+          endTime:
+            description: Epoch Time in milliseconds since 1/1/1970
+            type: array
+            items:
+              type: integer
+              format: int64
+          export:
+            description: export to CSV format. true will initiate export. default value false
+            type: boolean
+          pageno:
+            description: page number >= 1. Ignored if export is set to true
+            type: integer
+            format: int
+          limit:
+            description: size of each page. Ignored if export is set to true
+            type: integer
+            format: int
+          async:
+            description: LRO operation. default value false. Will be true if export is set to true
+            type: boolean
+    XiqErrorParams:
+      type: object
+      description: Error parameters
+      properties:
+        field:
+          type: string
+          description: The error field
+        value:
+          type: string
+          description: The error value
+    XiqMaxConcurrentClientsResponse:
       allOf:
       - type: object
         description: Network Service
@@ -1356,82 +1605,67 @@ components:
         - service_type
         properties:
           metrics:
-            type: array
-            items:
-              $ref: '#/components/schemas/XiqReportMetrics'
-          site_ids:
-            description: List of Site IDs
-            type: array
-            items:
-              type: integer
-              format: int64
-          building_ids:
-            description: List of Building IDs
-            type: array
-            items:
-              type: integer
-              format: int64
-          floor_ids:
-            description: List of Floor IDs
-            type: array
-            items:
-              type: integer
-              format: int64
-          ssids:
-            description: List of SSIDs to filter
-            type: array
-            items:
-              type: string
-          bands:
-            description: List of Bands to filter (Supports Multi-Select)
-            type: array
-            items:
-              type: string
-              enum:
-              - 2.4GHz
-              - 5GHz
-              - 6GHz
-          channel_nums:
-            description: List of channel numbers to filter
-            type: array
-            items:
-              type: integer
-              format: int32
-          device_ids:
-            description: List of device IDs to filter
-            type: array
-            items:
-              type: integer
-              format: int64
-          start_time:
-            description: Epoch Time in milliseconds since 1/1/1970
+            $ref: '#/components/schemas/XiqReportMetrics'
+      - type: object
+        properties:
+          time_stamp:
             type: integer
+            description: time in epoch
             format: int64
-          end_time:
-            description: Epoch Time in milliseconds since 1/1/1970
-            type: integer
-            format: int64
-          mode:
+          user_name:
             type: string
-            enum:
-            - AGG_SNAPSHOT
-            - SNAPSHOT
-          download_type:
+            description: Name of the User
+          user_profile_name:
             type: string
-            enum:
-            - XLSX
-            - PDF
-          connTypes:
-            description: 'List of connection types
-
-              '
+            description: Profile Name of the User
+          os_name:
             type: string
-            enum:
-            - UNKNOWN
-            - WIRELESS
-            - WIRED
-            - THREAD
-    XiqAppTrafficPercentageRequest-2:
+            description: Profile Name of the operating system
+          ssid:
+            type: string
+            description: ssid
+    XiqDiagnosticsTimeSeriesResponse:
+      type: object
+      description: Metrics response
+      properties:
+        Response Body ( Select Metrics ):
+          anyOf:
+          - $ref: '#/components/schemas/XiqQoeDiagnosticsResponse'
+          - $ref: '#/components/schemas/XiqDiagnosticsPieChart'
+          discriminator:
+            propertyName: metrics
+            mapping:
+              MAX_CONCURRENT_CLIENTS: '#/components/schemas/XiqQoeDiagnosticsResponse'
+              UNIQUE_WIFI_CLIENTS: '#/components/schemas/XiqQoeDiagnosticsResponse'
+              CLIENT_SESSIONS: '#/components/schemas/XiqQoeDiagnosticsResponse'
+              APP_TRAFFIC_PERCENTAGE: '#/components/schemas/XiqDiagnosticsPieChart'
+              CLIENT_AIRTIME_USAGE: '#/components/schemas/XiqQoeDiagnosticsResponse'
+              UNIQUE_CLIENTS_BY_OS: '#/components/schemas/XiqDiagnosticsPieChart'
+    XiqError:
+      type: object
+      properties:
+        error_code:
+          type: string
+          description: The error code
+        error_id:
+          type: string
+          description: The error ID for internal troubleshooting
+        error_message:
+          type: string
+          description: The error detailed message
+        error_message_code:
+          type: string
+          description: The error message code
+        error_message_description:
+          type: string
+          description: The error message description
+        error_params:
+          $ref: '#/components/schemas/XiqErrorParams'
+      required:
+      - error_code
+      - error_id
+      - error_message
+    XiqClientSessionsRequest-2:
       allOf:
       - type: object
         description: Network Service
@@ -1447,7 +1681,7 @@ components:
             - TIME_STAMP (default)
             - MAC
             - HOSTNAME
-            - APPLICATION_USAGE
+            - SESSION_DURATION
           sortOrder:
             type: string
             description: ''
@@ -1472,19 +1706,34 @@ components:
             items:
               type: integer
               format: int64
-          userID:
-            description: List of User IDs.
-            type: array
-            items:
-              type: integer
-              format: int64
-          clientMac:
-            description: List of Client Mac Address.
+          ssids:
+            description: 'List of SSIDs to filter
+
+              '
             type: array
             items:
               type: string
-          applicationId:
-            description: List of Application IDs.
+          band:
+            description: 'List of Bands to filter
+
+              '
+            type: string
+            enum:
+            - 2.4GHz
+            - 5GHz
+            - 6GHz
+          channelNums:
+            description: 'List of channel numbers to filter
+
+              '
+            type: array
+            items:
+              type: integer
+              format: int32
+          deviceIds:
+            description: 'List of deviceIds to filter
+
+              '
             type: array
             items:
               type: integer
@@ -1608,66 +1857,6 @@ components:
           async:
             description: LRO operation. default value false. Will be true if export is set to true
             type: boolean
-    XiqDiagnosticsPieChart:
-      allOf:
-      - type: object
-        description: Network Service
-        required:
-        - service_type
-        properties:
-          metrics:
-            $ref: '#/components/schemas/XiqReportMetrics'
-          name:
-            type: string
-            description: Name of the Metrics
-          timeRange:
-            description: Time Range ( Start and End Time )
-            $ref: '#/components/schemas/XiqQoeDiagnosticsTimeRange'
-          data:
-            type: array
-            description: The data for a particular metrics
-            items:
-              required:
-              - id
-              - name
-              - value
-              type: object
-              properties:
-                id:
-                  type: integer
-                  description: Time Stamp
-                  format: int64
-                name:
-                  type: string
-                  description: name of the fraction
-                value:
-                  type: integer
-                  description: values
-                  format: int64
-    XiqError:
-      type: object
-      properties:
-        error_code:
-          type: string
-          description: The error code
-        error_id:
-          type: string
-          description: The error ID for internal troubleshooting
-        error_message:
-          type: string
-          description: The error detailed message
-        error_message_code:
-          type: string
-          description: The error message code
-        error_message_description:
-          type: string
-          description: The error message description
-        error_params:
-          $ref: '#/components/schemas/XiqErrorParams'
-      required:
-      - error_code
-      - error_id
-      - error_message
     XiqUniqueClientsByOSRequest:
       allOf:
       - type: object
@@ -1753,30 +1942,92 @@ components:
           async:
             description: LRO operation. default value false. Will be true if export is set to true
             type: boolean
-    XiqPage:
-      required:
-      - count
-      - page
-      - total_count
-      - total_pages
-      type: object
-      properties:
-        page:
-          type: integer
-          description: The current page number
-          format: int32
-        count:
-          type: integer
-          description: The element count of the current page
-          format: int32
-        total_pages:
-          type: integer
-          description: The total page number based on request page size
-          format: int32
-        total_count:
-          type: integer
-          description: The total element count
-          format: int64
+    XiqReportMetrics:
+      type: string
+      description: Metrics Type.
+      enum:
+      - MAX_CONCURRENT_CLIENTS
+      - UNIQUE_CLIENTS_BY_SSID
+      - UNIQUE_WIFI_CLIENTS
+      - CLIENT_QUALITY_SCORE
+      - CLIENT_SESSIONS
+      - CLIENT_AIRTIME_USAGE
+      - WIRELESS_CLIENTS_BY_OS
+      - UNIQUE_CLIENTS_BY_OS
+      - TRAFFIC_VOLUME_PER_APP
+      - APP_TRAFFIC_PERCENTAGE
+      - DEVICES_BY_CLIENTS
+      - SWITCH_SUMMARY
+      - UNIQUE_CLIENT_BY_SSID_PIE_CHART
+      - APP_TRAFFIC_PERCENTAGE_PIE_CHART
+      - TRAFFIC_VOLUME_PER_APP_PIE_CHART
+    XiqUniqueWifiClientsResponse:
+      allOf:
+      - type: object
+        description: Network Service
+        required:
+        - service_type
+        properties:
+          metrics:
+            $ref: '#/components/schemas/XiqReportMetrics'
+      - type: object
+        properties:
+          time_stamp:
+            type: integer
+            description: Time in Epoch
+            format: int64
+          client_hostname:
+            type: string
+            description: Host Name of the Client
+          client_mac:
+            type: string
+            description: MAC Address of the Client
+          ip_address:
+            type: string
+            description: IP Address of the Client
+          os_type:
+            type: string
+            description: Operating System of the Client
+          connected_time:
+            type: integer
+            description: Connected Time of the Client
+            format: int64
+          disconnected_time:
+            type: integer
+            description: Disconnected Time of the Client
+            format: int64
+    XiqClientAirtimeUsageResponse:
+      allOf:
+      - type: object
+        description: Network Service
+        required:
+        - service_type
+        properties:
+          metrics:
+            $ref: '#/components/schemas/XiqReportMetrics'
+      - type: object
+        properties:
+          time_stamp:
+            type: integer
+            description: time in epoch
+            format: int64
+          devicet_hostname:
+            type: string
+            description: Host Name of the Device
+          device_mac:
+            type: string
+            description: MAC Address of the Device
+          ip_address:
+            type: string
+            description: IP Address of the Device
+          percentage_airtime_utilization:
+            type: integer
+            description: percentage channle utilization
+            format: int64
+          releative_time:
+            type: integer
+            description: relative time in epoch
+            format: int64
     XiqQoeDiagnosticsResponse:
       allOf:
       - type: object
@@ -1797,6 +2048,89 @@ components:
             description: The data for a particular metrics
             items:
               $ref: '#/components/schemas/XiqQoeDiagnosticsData'
+    XiqDownloadReportsRequest:
+      allOf:
+      - type: object
+        description: Network Service
+        required:
+        - service_type
+        properties:
+          metrics:
+            type: array
+            items:
+              $ref: '#/components/schemas/XiqReportMetrics'
+          site_ids:
+            description: List of Site IDs
+            type: array
+            items:
+              type: integer
+              format: int64
+          building_ids:
+            description: List of Building IDs
+            type: array
+            items:
+              type: integer
+              format: int64
+          floor_ids:
+            description: List of Floor IDs
+            type: array
+            items:
+              type: integer
+              format: int64
+          ssids:
+            description: List of SSIDs to filter
+            type: array
+            items:
+              type: string
+          bands:
+            description: List of Bands to filter (Supports Multi-Select)
+            type: array
+            items:
+              type: string
+              enum:
+              - 2.4GHz
+              - 5GHz
+              - 6GHz
+          channel_nums:
+            description: List of channel numbers to filter
+            type: array
+            items:
+              type: integer
+              format: int32
+          device_ids:
+            description: List of device IDs to filter
+            type: array
+            items:
+              type: integer
+              format: int64
+          start_time:
+            description: Epoch Time in milliseconds since 1/1/1970
+            type: integer
+            format: int64
+          end_time:
+            description: Epoch Time in milliseconds since 1/1/1970
+            type: integer
+            format: int64
+          mode:
+            type: string
+            enum:
+            - AGG_SNAPSHOT
+            - SNAPSHOT
+          download_type:
+            type: string
+            enum:
+            - XLSX
+            - PDF
+          connTypes:
+            description: 'List of connection types
+
+              '
+            type: string
+            enum:
+            - UNKNOWN
+            - WIRELESS
+            - WIRED
+            - THREAD
     XiqUniqueClientsByOSResponse:
       allOf:
       - type: object
@@ -1825,37 +2159,6 @@ components:
             type: integer
             description: Type of Operating System
             format: int
-    XiqClientSessionsResponse:
-      allOf:
-      - type: object
-        description: Network Service
-        required:
-        - service_type
-        properties:
-          metrics:
-            $ref: '#/components/schemas/XiqReportMetrics'
-      - type: object
-        properties:
-          time_stamp:
-            type: integer
-            description: time in epoch
-            format: int64
-          client_hostname:
-            type: string
-            description: Host Name of the Client
-          client_mac:
-            type: string
-            description: MAC Address of the Client
-          ip_address:
-            type: string
-            description: IP Address of the Client
-          os_type:
-            type: string
-            description: Operating System of the Client
-          session_duration:
-            description: Session Duration of the Client in MilliSeconds
-            type: integer
-            format: int64
     XiqClientAirtimeUsageRequest:
       allOf:
       - type: object
@@ -1949,349 +2252,35 @@ components:
           async:
             description: LRO operation. default value false. Will be true if export is set to true
             type: boolean
-    XiqMaxConcurrentClientsRequest:
-      allOf:
-      - type: object
-        description: Network Service
-        required:
-        - service_type
-        properties:
-          metrics:
-            $ref: '#/components/schemas/XiqReportMetrics'
-          sort_field:
-            description: ''
-            type: string
-            enum:
-            - TIME_STAMP (default)
-            - MAC
-            - HOSTNAME
-          sort_order:
-            type: string
-            description: ''
-            enum:
-            - ASC (default)
-            - DESC
-          site_ids:
-            description: List of Site IDs
-            type: array
-            items:
-              type: integer
-              format: int64
-          building_ids:
-            description: List of building IDs
-            type: array
-            items:
-              type: integer
-              format: int64
-          floor_ids:
-            description: List of Floor IDs
-            type: array
-            items:
-              type: integer
-              format: int64
-          connTypes:
-            description: 'List of connection types
-
-              '
-            type: string
-            enum:
-            - UNKNOWN
-            - WIRELESS
-            - WIRED
-            - THREAD
-          ssids:
-            description: 'List of SSIDs to filter
-
-              '
-            type: array
-            items:
-              type: string
-          bands:
-            description: List of Bands to filter (Supports Multi-Select)
-            type: array
-            items:
-              type: string
-              enum:
-              - 2.4GHz
-              - 5GHz
-              - 6GHz
-          device_ids:
-            description: 'List of deviceIds to filter
-
-              '
-            type: array
-            items:
-              type: integer
-              format: int64
-          start_time:
-            description: Epoch Time in milliseconds since 1/1/1970
-            type: integer
-            format: int64
-          end_time:
-            description: Epoch Time in milliseconds since 1/1/1970
-            type: integer
-            format: int64
-          pageno:
-            description: page number >= 1. Ignored if export is set to true
-            type: integer
-            format: int
-          limit:
-            description: size of each page. Ignored if export is set to true
-            type: integer
-            format: int
-          async:
-            description: LRO operation. default value false. Will be true if export is set to true
-            type: boolean
-    XiqDiagnosticsTableDataResponse:
+    XiqQoeDiagnosticsTimeRange:
+      required:
+      - startTime
+      - endTime
       type: object
-      description: Metrics response
       properties:
-        Response Body ( Select Metrics ):
-          anyOf:
-          - $ref: '#/components/schemas/XiqMaxConcurrentClientsResponse'
-          - $ref: '#/components/schemas/XiqUniqueWifiClientsResponse'
-          - $ref: '#/components/schemas/XiqClientSessionsResponse'
-          - $ref: '#/components/schemas/XiqAppTrafficPercentageResponse'
-          - $ref: '#/components/schemas/XiqClientAirtimeUsageResponse'
-          - $ref: '#/components/schemas/XiqUniqueClientsByOSResponse'
-          discriminator:
-            propertyName: metrics
-            mapping:
-              MAX_CONCURRENT_CLIENTS: '#/components/schemas/XiqMaxConcurrentClientsResponse'
-              UNIQUE_WIFI_CLIENTS: '#/components/schemas/XiqUniqueWifiClientsResponse'
-              CLIENT_SESSIONS: '#/components/schemas/XiqClientSessionsResponse'
-              APP_TRAFFIC_PERCENTAGE: '#/components/schemas/XiqAppTrafficPercentageResponse'
-              CLIENT_AIRTIME_USAGE: '#/components/schemas/XiqClientAirtimeUsageResponse'
-              UNIQUE_CLIENTS_BY_OS: '#/components/schemas/XiqUniqueClientsByOSResponse'
-    XiqUniqueClientsByOSRequest-2:
-      allOf:
-      - type: object
-        description: Network Service
-        required:
-        - service_type
-        properties:
-          METRICS:
-            $ref: '#/components/schemas/XiqReportMetrics'
-          sortField:
-            description: ''
-            type: string
-            enum:
-            - TIME_STAMP (default)
-            - MAC
-            - HOSTNAME
-          sortOrder:
-            type: string
-            description: ''
-            enum:
-            - ASC (default)
-            - DESC
-          siteIds:
-            description: List of Site IDs
-            type: array
-            items:
-              type: integer
-              format: int64
-          buildingIds:
-            description: List of building IDs
-            type: array
-            items:
-              type: integer
-              format: int64
-          floorIds:
-            description: List of Floor IDs
-            type: array
-            items:
-              type: integer
-              format: int64
-          ssids:
-            description: 'List of SSIDs to filter
-
-              '
-            type: array
-            items:
-              type: string
-          band:
-            description: 'List of Bands to filter
-
-              '
-            type: string
-            enum:
-            - 2.4GHz
-            - 5GHz
-            - 6GHz
-          ostypes:
-            description: List of OS types **The below table defines the different Widgets with there path param and description** 1.  UnKnown         --  0 2.  Windows         --  21000 3.  Windows Phone   --  21001 4.  MAC OS          --  21002 5.  IPad            --  21003 6.  IPhone          --  21004 7.  IOS Device      --  21005 8.  android         --  21006 9.  Symbian         --  21007 10. blackbery       --  21008 11. chrome          --  21009
-            type: integer
-            format: int32
-          deviceType:
-            description: Device types
-            type: array
-            items:
-              type: integer
-              format: int
-          startTime:
-            description: Epoch Time in milliseconds since 1/1/1970
-            type: array
-            items:
-              type: integer
-              format: int64
-          endTime:
-            description: Epoch Time in milliseconds since 1/1/1970
-            type: array
-            items:
-              type: integer
-              format: int64
-          export:
-            description: export to CSV format. true will initiate export. default value false
-            type: boolean
-          pageno:
-            description: page number >= 1. Ignored if export is set to true
-            type: integer
-            format: int
-          limit:
-            description: size of each page. Ignored if export is set to true
-            type: integer
-            format: int
-          async:
-            description: LRO operation. default value false. Will be true if export is set to true
-            type: boolean
-    XiqClientAirtimeUsageRequest-2:
-      allOf:
-      - type: object
-        description: Network Service
-        required:
-        - service_type
-        properties:
-          METRICS:
-            $ref: '#/components/schemas/XiqReportMetrics'
-          sortField:
-            description: ''
-            type: string
-            enum:
-            - TIME_STAMP (default)
-            - MAC
-            - HOSTNAME
-            - PERCENTAGE_AIRTIME_UTILIZATION
-            - RELATIVE_TIME
-          sortOrder:
-            type: string
-            description: ''
-            enum:
-            - ASC (default)
-            - DESC
-          siteIds:
-            description: List of Site IDs
-            type: array
-            items:
-              type: integer
-              format: int64
-          buildingIds:
-            description: List of building IDs
-            type: array
-            items:
-              type: integer
-              format: int64
-          floorIds:
-            description: List of Floor IDs
-            type: array
-            items:
-              type: integer
-              format: int64
-          ssids:
-            description: 'List of SSIDs to filter
-
-              '
-            type: array
-            items:
-              type: string
-          band:
-            description: 'List of Bands to filter
-
-              '
-            type: string
-            enum:
-            - 2.4GHz
-            - 5GHz
-            - 6GHz
-          channelNums:
-            description: 'List of channel numbers to filter
-
-              '
-            type: array
-            items:
-              type: integer
-              format: int32
-          deviceIds:
-            description: 'List of deviceIds to filter
-
-              '
-            type: array
-            items:
-              type: integer
-              format: int64
-          startTime:
-            description: Epoch Time in milliseconds since 1/1/1970
-            type: array
-            items:
-              type: integer
-              format: int64
-          endTime:
-            description: Epoch Time in milliseconds since 1/1/1970
-            type: array
-            items:
-              type: integer
-              format: int64
-          export:
-            description: export to CSV format. true will initiate export. default value false
-            type: boolean
-          pageno:
-            description: page number >= 1. Ignored if export is set to true
-            type: integer
-            format: int
-          limit:
-            description: size of each page. Ignored if export is set to true
-            type: integer
-            format: int
-          async:
-            description: LRO operation. default value false. Will be true if export is set to true
-            type: boolean
-    XiqDiagnosticsTimeSeriesResponse:
+        startTime:
+          type: integer
+          description: Start time in epoch
+          format: int64
+        endTime:
+          type: integer
+          description: End time in epoch
+          format: int64
+    XiqQoeDiagnosticsData:
+      required:
+      - timestamp
+      - value
       type: object
-      description: Metrics response
       properties:
-        Response Body ( Select Metrics ):
-          anyOf:
-          - $ref: '#/components/schemas/XiqQoeDiagnosticsResponse'
-          - $ref: '#/components/schemas/XiqDiagnosticsPieChart'
-          discriminator:
-            propertyName: metrics
-            mapping:
-              MAX_CONCURRENT_CLIENTS: '#/components/schemas/XiqQoeDiagnosticsResponse'
-              UNIQUE_WIFI_CLIENTS: '#/components/schemas/XiqQoeDiagnosticsResponse'
-              CLIENT_SESSIONS: '#/components/schemas/XiqQoeDiagnosticsResponse'
-              APP_TRAFFIC_PERCENTAGE: '#/components/schemas/XiqDiagnosticsPieChart'
-              CLIENT_AIRTIME_USAGE: '#/components/schemas/XiqQoeDiagnosticsResponse'
-              UNIQUE_CLIENTS_BY_OS: '#/components/schemas/XiqDiagnosticsPieChart'
-    XiqReportMetrics:
-      type: string
-      description: Metrics Type.
-      enum:
-      - MAX_CONCURRENT_CLIENTS
-      - UNIQUE_CLIENTS_BY_SSID
-      - UNIQUE_WIFI_CLIENTS
-      - CLIENT_QUALITY_SCORE
-      - CLIENT_SESSIONS
-      - CLIENT_AIRTIME_USAGE
-      - WIRELESS_CLIENTS_BY_OS
-      - UNIQUE_CLIENTS_BY_OS
-      - TRAFFIC_VOLUME_PER_APP
-      - APP_TRAFFIC_PERCENTAGE
-      - DEVICES_BY_CLIENTS
-      - SWITCH_SUMMARY
-      - UNIQUE_CLIENT_BY_SSID_PIE_CHART
-      - APP_TRAFFIC_PERCENTAGE_PIE_CHART
-      - TRAFFIC_VOLUME_PER_APP_PIE_CHART
-    XiqUniqueWifiClientsResponse:
+        timestamp:
+          type: integer
+          description: Time Stamp
+          format: int64
+        value:
+          type: integer
+          description: values
+          format: int64
+    XiqClientSessionsResponse:
       allOf:
       - type: object
         description: Network Service
@@ -2304,7 +2293,7 @@ components:
         properties:
           time_stamp:
             type: integer
-            description: Time in Epoch
+            description: time in epoch
             format: int64
           client_hostname:
             type: string
@@ -2318,13 +2307,9 @@ components:
           os_type:
             type: string
             description: Operating System of the Client
-          connected_time:
+          session_duration:
+            description: Session Duration of the Client in MilliSeconds
             type: integer
-            description: Connected Time of the Client
-            format: int64
-          disconnected_time:
-            type: integer
-            description: Disconnected Time of the Client
             format: int64
     XiqClientSessionsRequest:
       allOf:
@@ -2418,6 +2403,13 @@ components:
           async:
             description: LRO operation. default value false. Will be true if export is set to true
             type: boolean
+  responses:
+    ErrorResponse:
+      description: The generic ExtremeCloud IQ API error response
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/XiqError'
   parameters:
     id-2:
       name: metrics
@@ -2465,13 +2457,6 @@ components:
       schema:
         type: integer
         format: int64
-  responses:
-    ErrorResponse:
-      description: The generic ExtremeCloud IQ API error response
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/XiqError'
   securitySchemes:
     BearerAuth:
       type: http

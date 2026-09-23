@@ -1,24 +1,9 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: ExtremeCloud IQ Account User API
+  title: ExtremeCloud IQ User API
   description: 'ExtremeCloud IQ™ API allows customers and partners to create solutions for the management, monitoring, and provisioning
 
-    of any ExtremeCloud IQ™ environment.
-
-
-    All related resources and documentation are available at [ExtremeCloud IQ Developer Portal](https://developer.extremecloudiq.com/).
-
-    Please check [Get Started and Tutorial](https://developer.extremecloudiq.com/documentation/) to understand how to use the APIs.
-
-
-    Get the [latest OpenAPI definition](https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI/blob/main/xcloudiq-openapi.yaml)
-
-    from [ExtremeCloud IQ OpenAPI GitHub repository](https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI).
-
-
-    Please have a valid [ExtremeCloud IQ](https://extremecloudiq.com/) account before getting started.
-
-    If you don''t have one, please [register a new account](https://www.extremenetworks.com/cloud-networking/).'
+    of any ExtremeCloud IQ™ environment.'
   termsOfService: https://www.extremenetworks.com/company/legal/terms-of-use/
   contact:
     name: Extreme Networks Support
@@ -618,110 +603,31 @@ paths:
       security:
       - BearerAuth: []
 components:
-  parameters:
-    order:
-      name: order
-      in: query
-      description: The sort order (ascending by default)
-      required: false
-      schema:
-        $ref: '#/components/schemas/XiqSortOrder'
-    page:
-      name: page
-      in: query
-      description: Page number, min = 1
-      required: false
-      schema:
-        minimum: 1
-        type: integer
-        format: int32
-        default: 1
-    startTime:
-      name: startTime
-      in: query
-      description: The start time to query, epoch time in milliseconds since 1/1/1970
-      required: true
-      schema:
-        type: integer
-        format: int64
-    limit:
-      name: limit
-      in: query
-      description: Page Size, min = 1, max = 100
-      required: false
-      schema:
-        maximum: 100
-        minimum: 1
-        type: integer
-        format: int32
-        default: 10
-    endTime:
-      name: endTime
-      in: query
-      description: The end time to query, epoch time in milliseconds since 1/1/1970
-      required: true
-      schema:
-        type: integer
-        format: int64
-    id:
-      name: id
-      in: path
-      description: The unique identifier
-      required: true
-      schema:
-        type: integer
-        format: int64
   schemas:
-    XiqSortOrder:
-      type: string
-      enum:
-      - ASC
-      - DESC
-    RmUsers:
+    XiqPage:
+      required:
+      - count
+      - page
+      - total_count
+      - total_pages
       type: object
       properties:
-        status:
-          type: boolean
-          description: The connection status of user
-        site:
-          type: string
-          description: The site where the user is located
-        building:
-          type: string
-          description: The building where the user is located
-        floor:
-          type: string
-          description: The floor where the user is located
-        user_name:
-          type: string
-          description: Name of the user
-        email:
-          type: string
-          description: Email address of the user
-        group:
-          type: string
-          description: Group to which the user belongs
-        wireless_clients:
+        page:
           type: integer
-          description: The number of wireless clients
-        wired_clients:
+          description: The current page number
+          format: int32
+        count:
           type: integer
-          description: The number of wired clients
-        data_usage:
+          description: The element count of the current page
+          format: int32
+        total_pages:
           type: integer
+          description: The total page number based on request page size
+          format: int32
+        total_count:
+          type: integer
+          description: The total element count
           format: int64
-          description: Total data usage in bytes
-        source:
-          type: string
-          description: Source of the session (e.g., RADIUS, SAML)
-        session_duration:
-          type: integer
-          format: int64
-          description: Duration of the session in seconds
-        expiration:
-          type: integer
-          format: int64
-          description: Time in seconds until the session expires
     XiqGrantExternalUserRequest:
       type: object
       required:
@@ -750,6 +656,133 @@ components:
             description: The data in the current page
             items:
               $ref: '#/components/schemas/RmUsers'
+    XiqBaseEntity:
+      required:
+      - id
+      - create_time
+      - update_time
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The unique identifier
+          format: int64
+        create_time:
+          type: string
+          description: The create time
+          format: date-time
+        update_time:
+          type: string
+          description: The last update time
+          format: date-time
+    XiqSortOrder:
+      type: string
+      enum:
+      - ASC
+      - DESC
+    XiqExternalUser:
+      allOf:
+      - $ref: '#/components/schemas/XiqBaseEntity'
+      - type: object
+        required:
+        - login_name
+        - user_role
+        properties:
+          login_name:
+            type: string
+            description: Login name, i.e. username or login Email
+          user_role:
+            $ref: '#/components/schemas/XiqUserRole'
+          org_id:
+            type: integer
+            description: The HIQ organization ID if it is HIQ user.
+            format: int64
+          enable_api_access:
+            type: boolean
+            description: Whether to enable API access.
+    XiqUserRole:
+      type: string
+      description: The user administrative role.
+      enum:
+      - ADMINISTRATOR
+      - OPERATOR
+      - MONITOR
+      - HELP_DESK
+      - GUEST_MANAGEMENT
+      - OBSERVER
+      - INSTALLER
+      - APPLICATION_OPERATOR
+    XiqErrorParams:
+      type: object
+      description: Error parameters
+      properties:
+        field:
+          type: string
+          description: The error field
+        value:
+          type: string
+          description: The error value
+    PagedXiqUser:
+      allOf:
+      - $ref: '#/components/schemas/XiqPage'
+      - type: object
+        properties:
+          data:
+            type: array
+            description: The data in the current page
+            items:
+              $ref: '#/components/schemas/XiqUser'
+    XiqUpdateExternalUserRequest:
+      type: object
+      properties:
+        user_role:
+          $ref: '#/components/schemas/XiqUserRole'
+        org_id:
+          type: integer
+          description: The HIQ organization ID if it is HIQ user, otherwise leave it as empty.
+          format: int64
+        enable_api_access:
+          type: boolean
+          description: Whether to enable API access, false by default.
+    XiqError:
+      type: object
+      properties:
+        error_code:
+          type: string
+          description: The error code
+        error_id:
+          type: string
+          description: The error ID for internal troubleshooting
+        error_message:
+          type: string
+          description: The error detailed message
+        error_message_code:
+          type: string
+          description: The error message code
+        error_message_description:
+          type: string
+          description: The error message description
+        error_params:
+          $ref: '#/components/schemas/XiqErrorParams'
+      required:
+      - error_code
+      - error_id
+      - error_message
+    XiqUpdateUserRequest:
+      type: object
+      properties:
+        login_name:
+          type: string
+          description: Login name, i.e. username or login Email
+        display_name:
+          type: string
+          description: The user name to display
+        idle_timeout:
+          type: integer
+          description: The idle timeout in minutes, the minimum value is 5 minutes and the maximum value is 4 hours
+          format: int32
+        user_role:
+          $ref: '#/components/schemas/XiqUserRole'
     PagedXiqExternalUser:
       allOf:
       - $ref: '#/components/schemas/XiqPage'
@@ -802,18 +835,12 @@ components:
             type: integer
             description: The HIQ organization ID if it is HIQ user
             format: int64
-    XiqErrorParams:
+    XiqCreateUserRequest:
       type: object
-      description: Error parameters
-      properties:
-        field:
-          type: string
-          description: The error field
-        value:
-          type: string
-          description: The error value
-    XiqUpdateUserRequest:
-      type: object
+      required:
+      - login_name
+      - display_name
+      - user_role
       properties:
         login_name:
           type: string
@@ -859,146 +886,104 @@ components:
           description: The maximum value of the number
           type: integer
           format: int64
-    XiqExternalUser:
-      allOf:
-      - $ref: '#/components/schemas/XiqBaseEntity'
-      - type: object
-        required:
-        - login_name
-        - user_role
-        properties:
-          login_name:
-            type: string
-            description: Login name, i.e. username or login Email
-          user_role:
-            $ref: '#/components/schemas/XiqUserRole'
-          org_id:
-            type: integer
-            description: The HIQ organization ID if it is HIQ user.
-            format: int64
-          enable_api_access:
-            type: boolean
-            description: Whether to enable API access.
-    PagedXiqUser:
-      allOf:
-      - $ref: '#/components/schemas/XiqPage'
-      - type: object
-        properties:
-          data:
-            type: array
-            description: The data in the current page
-            items:
-              $ref: '#/components/schemas/XiqUser'
-    XiqBaseEntity:
-      required:
-      - id
-      - create_time
-      - update_time
+    RmUsers:
       type: object
       properties:
-        id:
-          type: integer
-          description: The unique identifier
-          format: int64
-        create_time:
-          type: string
-          description: The create time
-          format: date-time
-        update_time:
-          type: string
-          description: The last update time
-          format: date-time
-    XiqError:
-      type: object
-      properties:
-        error_code:
-          type: string
-          description: The error code
-        error_id:
-          type: string
-          description: The error ID for internal troubleshooting
-        error_message:
-          type: string
-          description: The error detailed message
-        error_message_code:
-          type: string
-          description: The error message code
-        error_message_description:
-          type: string
-          description: The error message description
-        error_params:
-          $ref: '#/components/schemas/XiqErrorParams'
-      required:
-      - error_code
-      - error_id
-      - error_message
-    XiqPage:
-      required:
-      - count
-      - page
-      - total_count
-      - total_pages
-      type: object
-      properties:
-        page:
-          type: integer
-          description: The current page number
-          format: int32
-        count:
-          type: integer
-          description: The element count of the current page
-          format: int32
-        total_pages:
-          type: integer
-          description: The total page number based on request page size
-          format: int32
-        total_count:
-          type: integer
-          description: The total element count
-          format: int64
-    XiqUpdateExternalUserRequest:
-      type: object
-      properties:
-        user_role:
-          $ref: '#/components/schemas/XiqUserRole'
-        org_id:
-          type: integer
-          description: The HIQ organization ID if it is HIQ user, otherwise leave it as empty.
-          format: int64
-        enable_api_access:
+        status:
           type: boolean
-          description: Whether to enable API access, false by default.
-    XiqCreateUserRequest:
-      type: object
-      required:
-      - login_name
-      - display_name
-      - user_role
-      properties:
-        login_name:
+          description: The connection status of user
+        site:
           type: string
-          description: Login name, i.e. username or login Email
-        display_name:
+          description: The site where the user is located
+        building:
           type: string
-          description: The user name to display
-        idle_timeout:
+          description: The building where the user is located
+        floor:
+          type: string
+          description: The floor where the user is located
+        user_name:
+          type: string
+          description: Name of the user
+        email:
+          type: string
+          description: Email address of the user
+        group:
+          type: string
+          description: Group to which the user belongs
+        wireless_clients:
           type: integer
-          description: The idle timeout in minutes, the minimum value is 5 minutes and the maximum value is 4 hours
-          format: int32
-        user_role:
-          $ref: '#/components/schemas/XiqUserRole'
-    XiqUserRole:
-      type: string
-      description: The user administrative role.
-      enum:
-      - ADMINISTRATOR
-      - OPERATOR
-      - MONITOR
-      - HELP_DESK
-      - GUEST_MANAGEMENT
-      - OBSERVER
-      - INSTALLER
-      - APPLICATION_OPERATOR
+          description: The number of wireless clients
+        wired_clients:
+          type: integer
+          description: The number of wired clients
+        data_usage:
+          type: integer
+          format: int64
+          description: Total data usage in bytes
+        source:
+          type: string
+          description: Source of the session (e.g., RADIUS, SAML)
+        session_duration:
+          type: integer
+          format: int64
+          description: Duration of the session in seconds
+        expiration:
+          type: integer
+          format: int64
+          description: Time in seconds until the session expires
+  parameters:
+    startTime:
+      name: startTime
+      in: query
+      description: The start time to query, epoch time in milliseconds since 1/1/1970
+      required: true
+      schema:
+        type: integer
+        format: int64
+    limit:
+      name: limit
+      in: query
+      description: Page Size, min = 1, max = 100
+      required: false
+      schema:
+        maximum: 100
+        minimum: 1
+        type: integer
+        format: int32
+        default: 10
+    order:
+      name: order
+      in: query
+      description: The sort order (ascending by default)
+      required: false
+      schema:
+        $ref: '#/components/schemas/XiqSortOrder'
+    endTime:
+      name: endTime
+      in: query
+      description: The end time to query, epoch time in milliseconds since 1/1/1970
+      required: true
+      schema:
+        type: integer
+        format: int64
+    page:
+      name: page
+      in: query
+      description: Page number, min = 1
+      required: false
+      schema:
+        minimum: 1
+        type: integer
+        format: int32
+        default: 1
+    id:
+      name: id
+      in: path
+      description: The unique identifier
+      required: true
+      schema:
+        type: integer
+        format: int64
   responses:
     ErrorResponse:
       description: The generic ExtremeCloud IQ API error response

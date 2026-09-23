@@ -1,24 +1,9 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: ExtremeCloud IQ Account Configuration - Basic API
+  title: ExtremeCloud IQ Configuration - Basic API
   description: 'ExtremeCloud IQ™ API allows customers and partners to create solutions for the management, monitoring, and provisioning
 
-    of any ExtremeCloud IQ™ environment.
-
-
-    All related resources and documentation are available at [ExtremeCloud IQ Developer Portal](https://developer.extremecloudiq.com/).
-
-    Please check [Get Started and Tutorial](https://developer.extremecloudiq.com/documentation/) to understand how to use the APIs.
-
-
-    Get the [latest OpenAPI definition](https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI/blob/main/xcloudiq-openapi.yaml)
-
-    from [ExtremeCloud IQ OpenAPI GitHub repository](https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI).
-
-
-    Please have a valid [ExtremeCloud IQ](https://extremecloudiq.com/) account before getting started.
-
-    If you don''t have one, please [register a new account](https://www.extremenetworks.com/cloud-networking/).'
+    of any ExtremeCloud IQ™ environment.'
   termsOfService: https://www.extremenetworks.com/company/legal/terms-of-use/
   contact:
     name: Extreme Networks Support
@@ -158,116 +143,6 @@ paths:
       - BearerAuth: []
 components:
   schemas:
-    PagedXiqVlanProfile:
-      allOf:
-      - $ref: '#/components/schemas/XiqPage'
-      - type: object
-        properties:
-          data:
-            type: array
-            description: The data in the current page
-            items:
-              $ref: '#/components/schemas/XiqVlanProfile'
-    XiqUpdateVlanProfileRequest:
-      type: object
-      required:
-      - name
-      - default_vlan_id
-      - enable_classification
-      properties:
-        name:
-          type: string
-          description: The VLAN profile name
-        default_vlan_id:
-          type: integer
-          description: The default VLAN ID
-          format: int32
-        enable_classification:
-          type: boolean
-          description: If apply VLANs to devices using classification
-        classified_entries:
-          type: array
-          description: The VLAN object classified entries
-          items:
-            $ref: '#/components/schemas/XiqUpdateVlanObjectClassifiedEntryRequest'
-    XiqVlanProfile:
-      allOf:
-      - $ref: '#/components/schemas/XiqBaseEntity'
-      - type: object
-        description: The payload of common object - VLAN profile
-        required:
-        - name
-        - default_vlan_id
-        - enable_classification
-        properties:
-          name:
-            type: string
-            description: The VLAN profile name
-          default_vlan_id:
-            type: integer
-            description: The default VLAN ID
-            format: int32
-          enable_classification:
-            type: boolean
-            description: If apply VLANs to devices using classification
-          classified_entries:
-            type: array
-            description: The VLAN object classified entries
-            items:
-              $ref: '#/components/schemas/XiqVlanObjectClassifiedEntry'
-    XiqError:
-      type: object
-      properties:
-        error_code:
-          type: string
-          description: The error code
-        error_id:
-          type: string
-          description: The error ID for internal troubleshooting
-        error_message:
-          type: string
-          description: The error detailed message
-        error_message_code:
-          type: string
-          description: The error message code
-        error_message_description:
-          type: string
-          description: The error message description
-        error_params:
-          $ref: '#/components/schemas/XiqErrorParams'
-      required:
-      - error_code
-      - error_id
-      - error_message
-    XiqVlanObjectClassifiedEntry:
-      allOf:
-      - $ref: '#/components/schemas/XiqBaseEntity'
-      - type: object
-        description: The payload of VLAN object classified entry
-        required:
-        - vlan_id
-        properties:
-          vlan_id:
-            type: integer
-            description: The VLAN ID
-            format: int32
-          classification_rule:
-            $ref: '#/components/schemas/XiqClassificationRule'
-    XiqUpdateVlanObjectClassifiedEntryRequest:
-      type: object
-      description: The VLAN object classified entries
-      required:
-      - vlan_id
-      - classification_rule_id
-      properties:
-        vlan_id:
-          type: integer
-          description: The VLAN ID
-          format: int32
-        classification_rule_id:
-          type: integer
-          description: The classification rule ID
-          format: int64
     XiqClassificationRule:
       allOf:
       - $ref: '#/components/schemas/XiqBaseEntity'
@@ -296,16 +171,6 @@ components:
       - IP_ADDRESS
       - IP_SUBNET
       - IP_RANGE
-    XiqErrorParams:
-      type: object
-      description: Error parameters
-      properties:
-        field:
-          type: string
-          description: The error field
-        value:
-          type: string
-          description: The error value
     XiqPage:
       required:
       - count
@@ -330,6 +195,111 @@ components:
           type: integer
           description: The total element count
           format: int64
+    XiqUpdateVlanProfileRequest:
+      type: object
+      required:
+      - name
+      - default_vlan_id
+      - enable_classification
+      properties:
+        name:
+          type: string
+          description: The VLAN profile name
+        default_vlan_id:
+          type: integer
+          description: The default VLAN ID
+          format: int32
+        enable_classification:
+          type: boolean
+          description: If apply VLANs to devices using classification
+        classified_entries:
+          type: array
+          description: The VLAN object classified entries
+          items:
+            $ref: '#/components/schemas/XiqUpdateVlanObjectClassifiedEntryRequest'
+    XiqErrorParams:
+      type: object
+      description: Error parameters
+      properties:
+        field:
+          type: string
+          description: The error field
+        value:
+          type: string
+          description: The error value
+    XiqCreateVlanObjectClassifiedEntryRequest:
+      type: object
+      description: The VLAN object classified entries
+      required:
+      - vlan_id
+      - classification_rule_id
+      properties:
+        vlan_id:
+          type: integer
+          description: The VLAN ID
+          format: int32
+        classification_rule_id:
+          type: integer
+          description: The classification rule ID
+          format: int64
+    PagedXiqVlanProfile:
+      allOf:
+      - $ref: '#/components/schemas/XiqPage'
+      - type: object
+        properties:
+          data:
+            type: array
+            description: The data in the current page
+            items:
+              $ref: '#/components/schemas/XiqVlanProfile'
+    XiqVlanObjectClassifiedEntry:
+      allOf:
+      - $ref: '#/components/schemas/XiqBaseEntity'
+      - type: object
+        description: The payload of VLAN object classified entry
+        required:
+        - vlan_id
+        properties:
+          vlan_id:
+            type: integer
+            description: The VLAN ID
+            format: int32
+          classification_rule:
+            $ref: '#/components/schemas/XiqClassificationRule'
+    XiqBaseEntity:
+      required:
+      - id
+      - create_time
+      - update_time
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The unique identifier
+          format: int64
+        create_time:
+          type: string
+          description: The create time
+          format: date-time
+        update_time:
+          type: string
+          description: The last update time
+          format: date-time
+    XiqUpdateVlanObjectClassifiedEntryRequest:
+      type: object
+      description: The VLAN object classified entries
+      required:
+      - vlan_id
+      - classification_rule_id
+      properties:
+        vlan_id:
+          type: integer
+          description: The VLAN ID
+          format: int32
+        classification_rule_id:
+          type: integer
+          description: The classification rule ID
+          format: int64
     XiqClassification:
       allOf:
       - $ref: '#/components/schemas/XiqBaseEntity'
@@ -353,40 +323,30 @@ components:
           value:
             type: string
             description: The value of classification
-    XiqBaseEntity:
-      required:
-      - id
-      - create_time
-      - update_time
+    XiqError:
       type: object
       properties:
-        id:
-          type: integer
-          description: The unique identifier
-          format: int64
-        create_time:
+        error_code:
           type: string
-          description: The create time
-          format: date-time
-        update_time:
+          description: The error code
+        error_id:
           type: string
-          description: The last update time
-          format: date-time
-    XiqCreateVlanObjectClassifiedEntryRequest:
-      type: object
-      description: The VLAN object classified entries
+          description: The error ID for internal troubleshooting
+        error_message:
+          type: string
+          description: The error detailed message
+        error_message_code:
+          type: string
+          description: The error message code
+        error_message_description:
+          type: string
+          description: The error message description
+        error_params:
+          $ref: '#/components/schemas/XiqErrorParams'
       required:
-      - vlan_id
-      - classification_rule_id
-      properties:
-        vlan_id:
-          type: integer
-          description: The VLAN ID
-          format: int32
-        classification_rule_id:
-          type: integer
-          description: The classification rule ID
-          format: int64
+      - error_code
+      - error_id
+      - error_message
     XiqCreateVlanProfileRequest:
       type: object
       required:
@@ -409,6 +369,31 @@ components:
           description: The VLAN object classified entries
           items:
             $ref: '#/components/schemas/XiqCreateVlanObjectClassifiedEntryRequest'
+    XiqVlanProfile:
+      allOf:
+      - $ref: '#/components/schemas/XiqBaseEntity'
+      - type: object
+        description: The payload of common object - VLAN profile
+        required:
+        - name
+        - default_vlan_id
+        - enable_classification
+        properties:
+          name:
+            type: string
+            description: The VLAN profile name
+          default_vlan_id:
+            type: integer
+            description: The default VLAN ID
+            format: int32
+          enable_classification:
+            type: boolean
+            description: If apply VLANs to devices using classification
+          classified_entries:
+            type: array
+            description: The VLAN object classified entries
+            items:
+              $ref: '#/components/schemas/XiqVlanObjectClassifiedEntry'
   parameters:
     page:
       name: page
@@ -420,14 +405,6 @@ components:
         type: integer
         format: int32
         default: 1
-    id:
-      name: id
-      in: path
-      description: The unique identifier
-      required: true
-      schema:
-        type: integer
-        format: int64
     limit:
       name: limit
       in: query
@@ -439,6 +416,14 @@ components:
         type: integer
         format: int32
         default: 10
+    id:
+      name: id
+      in: path
+      description: The unique identifier
+      required: true
+      schema:
+        type: integer
+        format: int64
   responses:
     ErrorResponse:
       description: The generic ExtremeCloud IQ API error response

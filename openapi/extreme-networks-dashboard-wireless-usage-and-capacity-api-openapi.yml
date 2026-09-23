@@ -1,24 +1,9 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: ExtremeCloud IQ Account Dashboard - Wireless Usage and Capacity API
+  title: ExtremeCloud IQ Dashboard - Wireless Usage and Capacity API
   description: 'ExtremeCloud IQ™ API allows customers and partners to create solutions for the management, monitoring, and provisioning
 
-    of any ExtremeCloud IQ™ environment.
-
-
-    All related resources and documentation are available at [ExtremeCloud IQ Developer Portal](https://developer.extremecloudiq.com/).
-
-    Please check [Get Started and Tutorial](https://developer.extremecloudiq.com/documentation/) to understand how to use the APIs.
-
-
-    Get the [latest OpenAPI definition](https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI/blob/main/xcloudiq-openapi.yaml)
-
-    from [ExtremeCloud IQ OpenAPI GitHub repository](https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI).
-
-
-    Please have a valid [ExtremeCloud IQ](https://extremecloudiq.com/) account before getting started.
-
-    If you don''t have one, please [register a new account](https://www.extremenetworks.com/cloud-networking/).'
+    of any ExtremeCloud IQ™ environment.'
   termsOfService: https://www.extremenetworks.com/company/legal/terms-of-use/
   contact:
     name: Extreme Networks Support
@@ -269,7 +254,7 @@ paths:
     post:
       tags:
       - Dashboard - Wireless Usage and Capacity
-      summary: 'Export Wireless usage & capacity grid as CSV File '
+      summary: Export Wireless usage & capacity grid as CSV File
       description: Returns the CSV File of the usage & capacity grid of wireless devices based on the provided filters. You can filter the results by sites.
       externalDocs:
         description: API Reference
@@ -433,135 +418,6 @@ paths:
       - BearerAuth: []
 components:
   schemas:
-    XiqError:
-      type: object
-      properties:
-        error_code:
-          type: string
-          description: The error code
-        error_id:
-          type: string
-          description: The error ID for internal troubleshooting
-        error_message:
-          type: string
-          description: The error detailed message
-        error_message_code:
-          type: string
-          description: The error message code
-        error_message_description:
-          type: string
-          description: The error message description
-        error_params:
-          $ref: '#/components/schemas/XiqErrorParams'
-      required:
-      - error_code
-      - error_id
-      - error_message
-    XiqUsageAndCapacitySortField:
-      type: string
-      title: UsageAndCapacitySortField
-      description: Pre-defined filters for usage and capacity filters - HOSTNAME - SITE - RADIO_2DOT4G_UTILIZATION_SCORE - RADIO_5G_UTILIZATION_SCORE - RADIO_6G_UTILIZATION_SCORE - WIFI0_RETRY_SCORE - WIFI1_RETRY_SCORE - WIFI2_RETRY_SCORE - WIFI0_PACKET_LOSS - WIFI1_PACKET_LOSS - WIFI2_PACKET_LOSS - ETH0_UNICAST_SCORE - ETH0_BROADCAST_SCORE - ETH0_MULTICAST_SCORE - ETH1_UNICAST_SCORE - ETH1_BROADCAST_SCORE - ETH1_MULTICAST_SCORE - WIFI0_INTERFERENCE_SCORE - WIFI1_INTERFERENCE_SCORE - WIFI2_INTERFERENCE_SCORE - WIFI0_NOISE - WIFI1_NOISE - WIFI2_NOISE - TOTAL_ETH0_SCORE - TOTAL_ETH1_SCORE
-      example: HOSTNAME
-    XiqSortOrder:
-      type: string
-      enum:
-      - ASC
-      - DESC
-    XiqErrorParams:
-      type: object
-      description: Error parameters
-      properties:
-        field:
-          type: string
-          description: The error field
-        value:
-          type: string
-          description: The error value
-    XiqPage:
-      required:
-      - count
-      - page
-      - total_count
-      - total_pages
-      type: object
-      properties:
-        page:
-          type: integer
-          description: The current page number
-          format: int32
-        count:
-          type: integer
-          description: The element count of the current page
-          format: int32
-        total_pages:
-          type: integer
-          description: The total page number based on request page size
-          format: int32
-        total_count:
-          type: integer
-          description: The total element count
-          format: int64
-    XiqWirelessUsageCapacityExcessiveUtilization:
-      type: object
-      properties:
-        total_ap_count:
-          type: integer
-          format: int64
-          description: Total count of APs
-        radio2_dot4g_utilization_issue_ap_count:
-          type: integer
-          format: int64
-          description: Count of APs with utilization issues for 2.4 GHz radio
-        radio5g_utilization_issue_ap_count:
-          type: integer
-          format: int64
-          description: Count of APs with utilization issues for 5 GHz radio
-        radio6g_utilization_issue_ap_count:
-          type: integer
-          format: int64
-          description: Count of APs with utilization issues for 6 GHz radio
-    number_filter:
-      type: object
-      description: If the filter type is between, only then min and max are to be used, else value is to be used.
-      properties:
-        column_name:
-          description: The name of the column being filtered
-          type: string
-        filter_type:
-          description: The type of number filter
-          type: string
-          enum:
-          - eq
-          - neq
-          - gt
-          - gte
-          - lt
-          - lte
-          - bw
-          - blank
-          - notblank
-        value:
-          description: The value of the number
-          type: integer
-          format: int64
-        min:
-          description: The minimum value of the number
-          type: integer
-          format: int64
-        max:
-          description: The maximum value of the number
-          type: integer
-          format: int64
-    PagedXiqUsageAndCapacityGridResponse:
-      allOf:
-      - $ref: '#/components/schemas/XiqPage'
-      - type: object
-        properties:
-          data:
-            type: array
-            description: The data in the current page
-            items:
-              $ref: '#/components/schemas/XiqUsageAndCapacityGridResponse'
     XiqUsageAndCapacityGridResponse:
       type: object
       properties:
@@ -694,17 +550,136 @@ components:
         has_usage_capacity_issue:
           type: boolean
           description: Indicates if the device has a usage capacity issue
+    XiqSortOrder:
+      type: string
+      enum:
+      - ASC
+      - DESC
+    XiqUsageAndCapacitySortField:
+      type: string
+      title: UsageAndCapacitySortField
+      description: Pre-defined filters for usage and capacity filters - HOSTNAME - SITE - RADIO_2DOT4G_UTILIZATION_SCORE - RADIO_5G_UTILIZATION_SCORE - RADIO_6G_UTILIZATION_SCORE - WIFI0_RETRY_SCORE - WIFI1_RETRY_SCORE - WIFI2_RETRY_SCORE - WIFI0_PACKET_LOSS - WIFI1_PACKET_LOSS - WIFI2_PACKET_LOSS - ETH0_UNICAST_SCORE - ETH0_BROADCAST_SCORE - ETH0_MULTICAST_SCORE - ETH1_UNICAST_SCORE - ETH1_BROADCAST_SCORE - ETH1_MULTICAST_SCORE - WIFI0_INTERFERENCE_SCORE - WIFI1_INTERFERENCE_SCORE - WIFI2_INTERFERENCE_SCORE - WIFI0_NOISE - WIFI1_NOISE - WIFI2_NOISE - TOTAL_ETH0_SCORE - TOTAL_ETH1_SCORE
+      example: HOSTNAME
+    PagedXiqUsageAndCapacityGridResponse:
+      allOf:
+      - $ref: '#/components/schemas/XiqPage'
+      - type: object
+        properties:
+          data:
+            type: array
+            description: The data in the current page
+            items:
+              $ref: '#/components/schemas/XiqUsageAndCapacityGridResponse'
+    XiqPage:
+      required:
+      - count
+      - page
+      - total_count
+      - total_pages
+      type: object
+      properties:
+        page:
+          type: integer
+          description: The current page number
+          format: int32
+        count:
+          type: integer
+          description: The element count of the current page
+          format: int32
+        total_pages:
+          type: integer
+          description: The total page number based on request page size
+          format: int32
+        total_count:
+          type: integer
+          description: The total element count
+          format: int64
+    XiqErrorParams:
+      type: object
+      description: Error parameters
+      properties:
+        field:
+          type: string
+          description: The error field
+        value:
+          type: string
+          description: The error value
+    XiqWirelessUsageCapacityExcessiveUtilization:
+      type: object
+      properties:
+        total_ap_count:
+          type: integer
+          format: int64
+          description: Total count of APs
+        radio2_dot4g_utilization_issue_ap_count:
+          type: integer
+          format: int64
+          description: Count of APs with utilization issues for 2.4 GHz radio
+        radio5g_utilization_issue_ap_count:
+          type: integer
+          format: int64
+          description: Count of APs with utilization issues for 5 GHz radio
+        radio6g_utilization_issue_ap_count:
+          type: integer
+          format: int64
+          description: Count of APs with utilization issues for 6 GHz radio
+    number_filter:
+      type: object
+      description: If the filter type is between, only then min and max are to be used, else value is to be used.
+      properties:
+        column_name:
+          description: The name of the column being filtered
+          type: string
+        filter_type:
+          description: The type of number filter
+          type: string
+          enum:
+          - eq
+          - neq
+          - gt
+          - gte
+          - lt
+          - lte
+          - bw
+          - blank
+          - notblank
+        value:
+          description: The value of the number
+          type: integer
+          format: int64
+        min:
+          description: The minimum value of the number
+          type: integer
+          format: int64
+        max:
+          description: The maximum value of the number
+          type: integer
+          format: int64
+    XiqError:
+      type: object
+      properties:
+        error_code:
+          type: string
+          description: The error code
+        error_id:
+          type: string
+          description: The error ID for internal troubleshooting
+        error_message:
+          type: string
+          description: The error detailed message
+        error_message_code:
+          type: string
+          description: The error message code
+        error_message_description:
+          type: string
+          description: The error message description
+        error_params:
+          $ref: '#/components/schemas/XiqErrorParams'
+      required:
+      - error_code
+      - error_id
+      - error_message
   parameters:
-    page:
-      name: page
-      in: query
-      description: Page number, min = 1
-      required: false
-      schema:
-        minimum: 1
-        type: integer
-        format: int32
-        default: 1
     limit:
       name: limit
       in: query
@@ -716,6 +691,16 @@ components:
         type: integer
         format: int32
         default: 10
+    page:
+      name: page
+      in: query
+      description: Page number, min = 1
+      required: false
+      schema:
+        minimum: 1
+        type: integer
+        format: int32
+        default: 1
   responses:
     ErrorResponse:
       description: The generic ExtremeCloud IQ API error response

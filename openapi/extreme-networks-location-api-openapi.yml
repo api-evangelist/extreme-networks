@@ -1,24 +1,9 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: ExtremeCloud IQ Account Location API
+  title: ExtremeCloud IQ Location API
   description: 'ExtremeCloud IQ™ API allows customers and partners to create solutions for the management, monitoring, and provisioning
 
-    of any ExtremeCloud IQ™ environment.
-
-
-    All related resources and documentation are available at [ExtremeCloud IQ Developer Portal](https://developer.extremecloudiq.com/).
-
-    Please check [Get Started and Tutorial](https://developer.extremecloudiq.com/documentation/) to understand how to use the APIs.
-
-
-    Get the [latest OpenAPI definition](https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI/blob/main/xcloudiq-openapi.yaml)
-
-    from [ExtremeCloud IQ OpenAPI GitHub repository](https://github.com/extremenetworks/ExtremeCloudIQ-OpenAPI).
-
-
-    Please have a valid [ExtremeCloud IQ](https://extremecloudiq.com/) account before getting started.
-
-    If you don''t have one, please [register a new account](https://www.extremenetworks.com/cloud-networking/).'
+    of any ExtremeCloud IQ™ environment.'
   termsOfService: https://www.extremenetworks.com/company/legal/terms-of-use/
   contact:
     name: Extreme Networks Support
@@ -821,232 +806,7 @@ paths:
       security:
       - BearerAuth: []
 components:
-  parameters:
-    page:
-      name: page
-      in: query
-      description: Page number, min = 1
-      required: false
-      schema:
-        minimum: 1
-        type: integer
-        format: int32
-        default: 1
-    limit:
-      name: limit
-      in: query
-      description: Page Size, min = 1, max = 100
-      required: false
-      schema:
-        maximum: 100
-        minimum: 1
-        type: integer
-        format: int32
-        default: 10
-    id:
-      name: id
-      in: path
-      description: The unique identifier
-      required: true
-      schema:
-        type: integer
-        format: int64
   schemas:
-    ClsCreateBuildingRequest:
-      type: object
-      required:
-      - parent_id
-      - name
-      - address
-      properties:
-        parent_id:
-          type: integer
-          description: The parent location ID
-          format: int64
-        name:
-          type: string
-          description: The building name
-        address:
-          $ref: '#/components/schemas/ClsAddress'
-        latitude:
-          type: number
-          description: The latitude coordinate for the building
-          format: double
-        longitude:
-          type: number
-          description: The longitude coordinate for the building
-          format: double
-    PagedClsLocationTreeMap:
-      allOf:
-      - $ref: '#/components/schemas/XiqPage'
-      - type: object
-        properties:
-          data:
-            type: array
-            description: The data in the current page
-            items:
-              $ref: '#/components/schemas/ClsLocationTreeMap'
-    ClsMeasurementUnit:
-      type: string
-      description: The measurement unit in feet/meters
-      enum:
-      - FEET
-      - METERS
-    ClsCreateLocationRequest:
-      type: object
-      required:
-      - parent_id
-      - name
-      properties:
-        parent_id:
-          type: integer
-          description: The parent location ID
-          format: int64
-        name:
-          type: string
-          description: The location name
-    ClsAddress:
-      type: object
-      required:
-      - address
-      - city
-      - state
-      properties:
-        address:
-          type: string
-          description: The street address 1
-        address2:
-          type: string
-          description: The street address 2
-        city:
-          type: string
-          description: the city/town of the address
-        postal_code:
-          type: string
-          description: The postal/ZIP code of the address
-        state:
-          type: string
-          description: The province/state of the address
-    ClsUpdateWallTypeRequest:
-      type: object
-      required:
-      - attenuation
-      - color
-      - name
-      properties:
-        name:
-          maxLength: 254
-          type: string
-          description: The Wall type name
-        attenuation:
-          maximum: 999
-          minimum: -999
-          type: number
-          description: The Wall type attenuation
-          format: double
-        color:
-          pattern: ^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{8})$
-          type: string
-          description: The Wall type color
-    ClsBuilding:
-      allOf:
-      - $ref: '#/components/schemas/XiqViqEntity'
-      - type: object
-        description: The building information
-        required:
-        - name
-        - parent_id
-        properties:
-          parent_id:
-            type: integer
-            description: The parent location ID
-            format: int64
-          name:
-            type: string
-            description: The location name
-          unique_name:
-            type: string
-            description: The unique location name
-          type:
-            type: string
-            description: The location type
-          address:
-            $ref: '#/components/schemas/ClsAddress'
-          latitude:
-            type: number
-            description: The latitude coordinate for the building
-            format: double
-          longitude:
-            type: number
-            description: The longitude coordinate for the building
-            format: double
-    ClsWallTypeReference:
-      type: object
-      properties:
-        folder_id:
-          type: integer
-          description: The folder ID
-          format: int64
-        path:
-          type: string
-          description: The path
-    ClsFloor:
-      allOf:
-      - $ref: '#/components/schemas/XiqViqEntity'
-      - type: object
-        description: The Floor information on the floor plan
-        required:
-        - parent_id
-        - name
-        - unique_name
-        - environment
-        - db_attenuation
-        - measurement_unit
-        - installation_height
-        properties:
-          parent_id:
-            type: integer
-            description: The parent building ID
-            format: int64
-          name:
-            type: string
-            description: The floor name
-          unique_name:
-            type: string
-            description: The floor unique name
-          environment:
-            $ref: '#/components/schemas/ClsRfEnvironmentType'
-          db_attenuation:
-            type: number
-            description: The floor attenuation in dBs
-            format: double
-          measurement_unit:
-            $ref: '#/components/schemas/ClsMeasurementUnit'
-          installation_height:
-            type: number
-            description: The installation height
-            format: double
-          map_size_width:
-            type: number
-            description: The floormap width
-            format: double
-          map_size_height:
-            type: number
-            description: The floormap height
-            format: double
-          map_name:
-            type: string
-            description: The floormap name
-    XiqErrorParams:
-      type: object
-      description: Error parameters
-      properties:
-        field:
-          type: string
-          description: The error field
-        value:
-          type: string
-          description: The error value
     ClsSite:
       allOf:
       - $ref: '#/components/schemas/XiqViqEntity'
@@ -1088,60 +848,30 @@ components:
             type: number
             description: The longitude coordinate for the site address
             format: double
-    XiqBaseEntity:
+    XiqPage:
       required:
-      - id
-      - create_time
-      - update_time
+      - count
+      - page
+      - total_count
+      - total_pages
       type: object
       properties:
-        id:
+        page:
           type: integer
-          description: The unique identifier
-          format: int64
-        create_time:
-          type: string
-          description: The create time
-          format: date-time
-        update_time:
-          type: string
-          description: The last update time
-          format: date-time
-    ClsUpdateBuildingRequest:
-      type: object
-      required:
-      - parent_id
-      - name
-      - address
-      properties:
-        parent_id:
+          description: The current page number
+          format: int32
+        count:
           type: integer
-          description: The parent location ID
+          description: The element count of the current page
+          format: int32
+        total_pages:
+          type: integer
+          description: The total page number based on request page size
+          format: int32
+        total_count:
+          type: integer
+          description: The total element count
           format: int64
-        name:
-          type: string
-          description: The building name
-        address:
-          $ref: '#/components/schemas/ClsAddress'
-        latitude:
-          type: number
-          description: The latitude coordinate for the building
-          format: double
-        longitude:
-          type: number
-          description: The longitude coordinate for the building
-          format: double
-    ClsRfEnvironmentType:
-      type: string
-      description: The floor RF environment
-      enum:
-      - AUTO_ESTIMATE
-      - OFFICE
-      - OUTDOOR_FREE_SPACE
-      - OBSTRUCTED_IN_BUILDING
-      - OUTDOOR_SUBURBAN
-      - WAREHOUSE
-      - OUTDOOR_DENSE_URBAN
     ClsLocationTreeDevice:
       type: object
       description: The device on the location hierarchy.
@@ -1199,57 +929,101 @@ components:
           type: number
           description: The vertical scale for the background map in meter.
           format: double
-    ClsCreateSiteRequest:
+    ClsWallType:
       type: object
-      required:
-      - name
-      - country_code
       properties:
-        parent_id:
+        id:
           type: integer
-          description: The parent site group ID
+          description: The Wall type id
           format: int64
         name:
           type: string
-          description: The site name
-        country_code:
+          description: The Wall type name
+        attenuation:
+          type: number
+          description: The Wall type attenuation
+          format: double
+        color:
+          type: string
+          description: The Wall type color
+        owner_id:
           type: integer
-          format: int32
-          description: The site country code. Get the list of country codes from /countries XAPI
-        address:
-          $ref: '#/components/schemas/ClsAddress'
-        latitude:
-          type: number
-          description: The latitude coordinate for the site
-          format: double
-        longitude:
-          type: number
-          description: The longitude coordinate for the site
-          format: double
-    XiqError:
-      type: object
-      properties:
-        error_code:
-          type: string
-          description: The error code
-        error_id:
-          type: string
-          description: The error ID for internal troubleshooting
-        error_message:
-          type: string
-          description: The error detailed message
-        error_message_code:
-          type: string
-          description: The error message code
-        error_message_description:
-          type: string
-          description: The error message description
-        error_params:
-          $ref: '#/components/schemas/XiqErrorParams'
+          description: The Owner ID
+          format: int64
+        org_id:
+          type: integer
+          description: The Org ID
+          format: int64
+        predefined:
+          type: boolean
+          description: Is the Wall type is predefined
+    ClsCreateWallTypeRequest:
       required:
-      - error_code
-      - error_id
-      - error_message
+      - attenuation
+      - color
+      - name
+      properties:
+        name:
+          maxLength: 254
+          type: string
+          description: The Wall type name
+        attenuation:
+          maximum: 999
+          minimum: -999
+          type: number
+          description: The Wall type attenuation
+          format: double
+        color:
+          pattern: ^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{8})$
+          type: string
+          description: The Wall type color
+    ClsFloor:
+      allOf:
+      - $ref: '#/components/schemas/XiqViqEntity'
+      - type: object
+        description: The Floor information on the floor plan
+        required:
+        - parent_id
+        - name
+        - unique_name
+        - environment
+        - db_attenuation
+        - measurement_unit
+        - installation_height
+        properties:
+          parent_id:
+            type: integer
+            description: The parent building ID
+            format: int64
+          name:
+            type: string
+            description: The floor name
+          unique_name:
+            type: string
+            description: The floor unique name
+          environment:
+            $ref: '#/components/schemas/ClsRfEnvironmentType'
+          db_attenuation:
+            type: number
+            description: The floor attenuation in dBs
+            format: double
+          measurement_unit:
+            $ref: '#/components/schemas/ClsMeasurementUnit'
+          installation_height:
+            type: number
+            description: The installation height
+            format: double
+          map_size_width:
+            type: number
+            description: The floormap width
+            format: double
+          map_size_height:
+            type: number
+            description: The floormap height
+            format: double
+          map_name:
+            type: string
+            description: The floormap name
     ClsLocation:
       allOf:
       - $ref: '#/components/schemas/XiqViqEntity'
@@ -1281,44 +1055,7 @@ components:
             description: The child locations
             items:
               $ref: '#/components/schemas/ClsLocation'
-    ClsUpdateLocationRequest:
-      type: object
-      required:
-      - parent_id
-      - name
-      properties:
-        parent_id:
-          type: integer
-          description: The parent location ID
-          format: int64
-        name:
-          type: string
-          description: The location name
-    XiqPage:
-      required:
-      - count
-      - page
-      - total_count
-      - total_pages
-      type: object
-      properties:
-        page:
-          type: integer
-          description: The current page number
-          format: int32
-        count:
-          type: integer
-          description: The element count of the current page
-          format: int32
-        total_pages:
-          type: integer
-          description: The total page number based on request page size
-          format: int32
-        total_count:
-          type: integer
-          description: The total element count
-          format: int64
-    ClsUpdateSiteRequest:
+    ClsCreateSiteRequest:
       type: object
       required:
       - name
@@ -1345,18 +1082,72 @@ components:
           type: number
           description: The longitude coordinate for the site
           format: double
-    XiqViqEntity:
-      allOf:
-      - $ref: '#/components/schemas/XiqBaseEntity'
-      - type: object
-        properties:
-          org_id:
-            type: integer
-            description: The organization identifier, valid when enabling HIQ feature
-            format: int64
-        required:
-        - org_id
-    PagedClsLocationTreeDevice:
+    ClsAddress:
+      type: object
+      required:
+      - address
+      - city
+      - state
+      properties:
+        address:
+          type: string
+          description: The street address 1
+        address2:
+          type: string
+          description: The street address 2
+        city:
+          type: string
+          description: the city/town of the address
+        postal_code:
+          type: string
+          description: The postal/ZIP code of the address
+        state:
+          type: string
+          description: The province/state of the address
+    ClsCreateBuildingRequest:
+      type: object
+      required:
+      - parent_id
+      - name
+      - address
+      properties:
+        parent_id:
+          type: integer
+          description: The parent location ID
+          format: int64
+        name:
+          type: string
+          description: The building name
+        address:
+          $ref: '#/components/schemas/ClsAddress'
+        latitude:
+          type: number
+          description: The latitude coordinate for the building
+          format: double
+        longitude:
+          type: number
+          description: The longitude coordinate for the building
+          format: double
+    XiqBaseEntity:
+      required:
+      - id
+      - create_time
+      - update_time
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The unique identifier
+          format: int64
+        create_time:
+          type: string
+          description: The create time
+          format: date-time
+        update_time:
+          type: string
+          description: The last update time
+          format: date-time
+    PagedClsLocationTreeMap:
       allOf:
       - $ref: '#/components/schemas/XiqPage'
       - type: object
@@ -1365,55 +1156,7 @@ components:
             type: array
             description: The data in the current page
             items:
-              $ref: '#/components/schemas/ClsLocationTreeDevice'
-    ClsCreateWallTypeRequest:
-      required:
-      - attenuation
-      - color
-      - name
-      properties:
-        name:
-          maxLength: 254
-          type: string
-          description: The Wall type name
-        attenuation:
-          maximum: 999
-          minimum: -999
-          type: number
-          description: The Wall type attenuation
-          format: double
-        color:
-          pattern: ^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{8})$
-          type: string
-          description: The Wall type color
-    ClsWallType:
-      type: object
-      properties:
-        id:
-          type: integer
-          description: The Wall type id
-          format: int64
-        name:
-          type: string
-          description: The Wall type name
-        attenuation:
-          type: number
-          description: The Wall type attenuation
-          format: double
-        color:
-          type: string
-          description: The Wall type color
-        owner_id:
-          type: integer
-          description: The Owner ID
-          format: int64
-        org_id:
-          type: integer
-          description: The Org ID
-          format: int64
-        predefined:
-          type: boolean
-          description: Is the Wall type is predefined
+              $ref: '#/components/schemas/ClsLocationTreeMap'
     ClsUpdateFloorRequest:
       type: object
       required:
@@ -1455,6 +1198,218 @@ components:
         map_name:
           type: string
           description: The floor map name
+    ClsBuilding:
+      allOf:
+      - $ref: '#/components/schemas/XiqViqEntity'
+      - type: object
+        description: The building information
+        required:
+        - name
+        - parent_id
+        properties:
+          parent_id:
+            type: integer
+            description: The parent location ID
+            format: int64
+          name:
+            type: string
+            description: The location name
+          unique_name:
+            type: string
+            description: The unique location name
+          type:
+            type: string
+            description: The location type
+          address:
+            $ref: '#/components/schemas/ClsAddress'
+          latitude:
+            type: number
+            description: The latitude coordinate for the building
+            format: double
+          longitude:
+            type: number
+            description: The longitude coordinate for the building
+            format: double
+    XiqErrorParams:
+      type: object
+      description: Error parameters
+      properties:
+        field:
+          type: string
+          description: The error field
+        value:
+          type: string
+          description: The error value
+    XiqViqEntity:
+      allOf:
+      - $ref: '#/components/schemas/XiqBaseEntity'
+      - type: object
+        properties:
+          org_id:
+            type: integer
+            description: The organization identifier, valid when enabling HIQ feature
+            format: int64
+        required:
+        - org_id
+    XiqError:
+      type: object
+      properties:
+        error_code:
+          type: string
+          description: The error code
+        error_id:
+          type: string
+          description: The error ID for internal troubleshooting
+        error_message:
+          type: string
+          description: The error detailed message
+        error_message_code:
+          type: string
+          description: The error message code
+        error_message_description:
+          type: string
+          description: The error message description
+        error_params:
+          $ref: '#/components/schemas/XiqErrorParams'
+      required:
+      - error_code
+      - error_id
+      - error_message
+    ClsUpdateWallTypeRequest:
+      type: object
+      required:
+      - attenuation
+      - color
+      - name
+      properties:
+        name:
+          maxLength: 254
+          type: string
+          description: The Wall type name
+        attenuation:
+          maximum: 999
+          minimum: -999
+          type: number
+          description: The Wall type attenuation
+          format: double
+        color:
+          pattern: ^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{8})$
+          type: string
+          description: The Wall type color
+    ClsUpdateBuildingRequest:
+      type: object
+      required:
+      - parent_id
+      - name
+      - address
+      properties:
+        parent_id:
+          type: integer
+          description: The parent location ID
+          format: int64
+        name:
+          type: string
+          description: The building name
+        address:
+          $ref: '#/components/schemas/ClsAddress'
+        latitude:
+          type: number
+          description: The latitude coordinate for the building
+          format: double
+        longitude:
+          type: number
+          description: The longitude coordinate for the building
+          format: double
+    ClsMeasurementUnit:
+      type: string
+      description: The measurement unit in feet/meters
+      enum:
+      - FEET
+      - METERS
+    ClsCreateLocationRequest:
+      type: object
+      required:
+      - parent_id
+      - name
+      properties:
+        parent_id:
+          type: integer
+          description: The parent location ID
+          format: int64
+        name:
+          type: string
+          description: The location name
+    ClsRfEnvironmentType:
+      type: string
+      description: The floor RF environment
+      enum:
+      - AUTO_ESTIMATE
+      - OFFICE
+      - OUTDOOR_FREE_SPACE
+      - OBSTRUCTED_IN_BUILDING
+      - OUTDOOR_SUBURBAN
+      - WAREHOUSE
+      - OUTDOOR_DENSE_URBAN
+    PagedClsLocationTreeDevice:
+      allOf:
+      - $ref: '#/components/schemas/XiqPage'
+      - type: object
+        properties:
+          data:
+            type: array
+            description: The data in the current page
+            items:
+              $ref: '#/components/schemas/ClsLocationTreeDevice'
+    ClsUpdateLocationRequest:
+      type: object
+      required:
+      - parent_id
+      - name
+      properties:
+        parent_id:
+          type: integer
+          description: The parent location ID
+          format: int64
+        name:
+          type: string
+          description: The location name
+    ClsWallTypeReference:
+      type: object
+      properties:
+        folder_id:
+          type: integer
+          description: The folder ID
+          format: int64
+        path:
+          type: string
+          description: The path
+    ClsUpdateSiteRequest:
+      type: object
+      required:
+      - name
+      - country_code
+      properties:
+        parent_id:
+          type: integer
+          description: The parent site group ID
+          format: int64
+        name:
+          type: string
+          description: The site name
+        country_code:
+          type: integer
+          format: int32
+          description: The site country code. Get the list of country codes from /countries XAPI
+        address:
+          $ref: '#/components/schemas/ClsAddress'
+        latitude:
+          type: number
+          description: The latitude coordinate for the site
+          format: double
+        longitude:
+          type: number
+          description: The longitude coordinate for the site
+          format: double
     ClsLocationTreeMap:
       type: object
       description: The map on the location hierarchy.
@@ -1519,6 +1474,36 @@ components:
         map_name:
           type: string
           description: The floor map name
+  parameters:
+    limit:
+      name: limit
+      in: query
+      description: Page Size, min = 1, max = 100
+      required: false
+      schema:
+        maximum: 100
+        minimum: 1
+        type: integer
+        format: int32
+        default: 10
+    page:
+      name: page
+      in: query
+      description: Page number, min = 1
+      required: false
+      schema:
+        minimum: 1
+        type: integer
+        format: int32
+        default: 1
+    id:
+      name: id
+      in: path
+      description: The unique identifier
+      required: true
+      schema:
+        type: integer
+        format: int64
   responses:
     ErrorResponse:
       description: The generic ExtremeCloud IQ API error response
