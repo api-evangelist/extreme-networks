@@ -177,26 +177,6 @@ components:
           type: integer
           description: The network usage value in MB
           format: int64
-    DeviceOverallHealth:
-      type: object
-      description: The devices health score over the period
-      properties:
-        overall_score:
-          type: integer
-          description: The overall health score
-          format: int32
-        device_availability_score:
-          type: integer
-          description: The device availability score
-          format: int32
-        device_hardware_health_score:
-          type: integer
-          description: The device hardware health score
-          format: int32
-        config_and_firmware_score:
-          type: integer
-          description: The config and firmware score
-          format: int32
     WiFiOverallHealth:
       type: object
       description: The clients health score over the period
@@ -216,36 +196,6 @@ components:
         association_health_score:
           type: integer
           description: The health score of association
-          format: int32
-    XiqErrorParams:
-      type: object
-      description: Error parameters
-      properties:
-        field:
-          type: string
-          description: The error field
-        value:
-          type: string
-          description: The error value
-    ServicesOverallHealth:
-      type: object
-      description: The network health score over the period
-      properties:
-        overall_score:
-          type: integer
-          description: The overall health score
-          format: int32
-        network_services_score:
-          type: integer
-          description: The health score of network services
-          format: int32
-        authentication_services_score:
-          type: integer
-          description: The health score of authentication services
-          format: int32
-        management_services_score:
-          type: integer
-          description: The health score of management services
           format: int32
     XiqError:
       type: object
@@ -271,6 +221,56 @@ components:
       - error_code
       - error_id
       - error_message
+    ServicesOverallHealth:
+      type: object
+      description: The network health score over the period
+      properties:
+        overall_score:
+          type: integer
+          description: The overall health score
+          format: int32
+        network_services_score:
+          type: integer
+          description: The health score of network services
+          format: int32
+        authentication_services_score:
+          type: integer
+          description: The health score of authentication services
+          format: int32
+        management_services_score:
+          type: integer
+          description: The health score of management services
+          format: int32
+    DeviceOverallHealth:
+      type: object
+      description: The devices health score over the period
+      properties:
+        overall_score:
+          type: integer
+          description: The overall health score
+          format: int32
+        device_availability_score:
+          type: integer
+          description: The device availability score
+          format: int32
+        device_hardware_health_score:
+          type: integer
+          description: The device hardware health score
+          format: int32
+        config_and_firmware_score:
+          type: integer
+          description: The config and firmware score
+          format: int32
+    XiqErrorParams:
+      type: object
+      description: Error parameters
+      properties:
+        field:
+          type: string
+          description: The error field
+        value:
+          type: string
+          description: The error value
     ClientOverallHealth:
       type: object
       description: The clients health score over the period

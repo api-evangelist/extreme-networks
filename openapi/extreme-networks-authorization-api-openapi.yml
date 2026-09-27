@@ -195,23 +195,6 @@ components:
           minimum: 1
           description: The maximum burst allowance per second. If omitted, no short-term throttling is applied.
           example: 100
-    XiqPermission:
-      type: object
-      description: The permission
-      required:
-      - name
-      - description
-      - category
-      properties:
-        name:
-          type: string
-          description: The permission name
-        description:
-          type: string
-          description: The description for the permission
-        category:
-          type: string
-          description: The category for the permission
     XiqGenerateApiTokenResponse:
       type: object
       required:
@@ -249,16 +232,30 @@ components:
           items:
             type: string
             description: The permissions for the API token
-    XiqErrorParams:
+    XiqError:
       type: object
-      description: Error parameters
       properties:
-        field:
+        error_code:
           type: string
-          description: The error field
-        value:
+          description: The error code
+        error_id:
           type: string
-          description: The error value
+          description: The error ID for internal troubleshooting
+        error_message:
+          type: string
+          description: The error detailed message
+        error_message_code:
+          type: string
+          description: The error message code
+        error_message_description:
+          type: string
+          description: The error message description
+        error_params:
+          $ref: '#/components/schemas/XiqErrorParams'
+      required:
+      - error_code
+      - error_id
+      - error_message
     XiqCheckPermissionRequest:
       type: object
       required:
@@ -310,6 +307,16 @@ components:
               description: The token permissions
           rate_limit:
             $ref: '#/components/schemas/RateLimitPolicy'
+    XiqErrorParams:
+      type: object
+      description: Error parameters
+      properties:
+        field:
+          type: string
+          description: The error field
+        value:
+          type: string
+          description: The error value
     XiqApiTokenInfo:
       type: object
       required:
@@ -356,30 +363,23 @@ components:
           type: integer
           description: The expires in seconds
           format: int64
-    XiqError:
+    XiqPermission:
       type: object
-      properties:
-        error_code:
-          type: string
-          description: The error code
-        error_id:
-          type: string
-          description: The error ID for internal troubleshooting
-        error_message:
-          type: string
-          description: The error detailed message
-        error_message_code:
-          type: string
-          description: The error message code
-        error_message_description:
-          type: string
-          description: The error message description
-        error_params:
-          $ref: '#/components/schemas/XiqErrorParams'
+      description: The permission
       required:
-      - error_code
-      - error_id
-      - error_message
+      - name
+      - description
+      - category
+      properties:
+        name:
+          type: string
+          description: The permission name
+        description:
+          type: string
+          description: The description for the permission
+        category:
+          type: string
+          description: The category for the permission
   responses:
     ErrorResponse:
       description: The generic ExtremeCloud IQ API error response

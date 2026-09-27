@@ -296,24 +296,16 @@ paths:
       - BearerAuth: []
 components:
   schemas:
-    XiqDeployDeviceFilter:
+    XiqDeploymentRequest:
       type: object
-      description: The filter to get matched devices
+      description: The configuration deployment request to devices
       properties:
-        ids:
-          type: array
-          description: The device ID list
-          items:
-            type: integer
-            description: The device ID list
-            format: int64
-        site_ids:
-          type: array
-          description: The site ID list
-          items:
-            type: integer
-            description: The site ID list
-            format: int64
+        schedule:
+          $ref: '#/components/schemas/XiqScheduleDetails'
+        devices:
+          $ref: '#/components/schemas/XiqDeployDeviceFilter'
+        policy:
+          $ref: '#/components/schemas/XiqDeploymentPolicy'
     XiqDeploymentStatus:
       type: object
       description: The configuration deployment status
@@ -340,33 +332,6 @@ components:
         status_message:
           type: string
           description: The status message
-    XiqDeploymentDetailsResponse:
-      type: object
-      description: The deployment details
-      properties:
-        deployment_id:
-          type: integer
-          format: uint64
-        schedule:
-          $ref: '#/components/schemas/XiqScheduleDetails'
-        devices:
-          $ref: '#/components/schemas/XiqDeployDeviceFilter'
-        policy:
-          $ref: '#/components/schemas/XiqDeploymentPolicy'
-        overview:
-          $ref: '#/components/schemas/XiqDeploymentOverviewDetails'
-    XiqDeploymentResponse:
-      type: object
-      description: The configuration deployment response
-      properties:
-        deployment_id:
-          type: integer
-          description: The deployment ID
-          format: uint64
-        deployment_status:
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/XiqDeploymentStatus'
     XiqPage:
       required:
       - count
@@ -390,6 +355,48 @@ components:
         total_count:
           type: integer
           description: The total element count
+          format: int64
+    XiqFirmwareUpgradePolicy:
+      type: object
+      description: The firmware upgrade policy
+      required:
+      - enable_enforce_upgrade
+      - enable_distributed_upgrade
+      properties:
+        enable_enforce_upgrade:
+          type: boolean
+          description: Whether enforce firmware upgrade even if the versions are the same
+        enable_distributed_upgrade:
+          type: boolean
+          description: Whether enable distributed firmware upgrade (Only applicable to APs)
+    XiqFirmwareUpgradeVersion:
+      type: object
+      description: Upgrade to the specific firmware version
+      required:
+      - firmware_id
+      - device_id
+      - product_type
+      properties:
+        firmware_id:
+          type: integer
+          description: The device compatible firmware metadata ID
+          format: int64
+        device_id:
+          type: integer
+          description: The device ID
+          format: int64
+        product_type:
+          type: string
+          description: The product type
+    XiqScheduleDetails:
+      type: object
+      description: The deployment schedule details
+      required:
+      - start_time
+      properties:
+        start_time:
+          type: integer
+          description: The start time of the firmware upgrade
           format: int64
     XiqDeploymentScheduleStatusResponse:
       type: object
@@ -428,26 +435,60 @@ components:
             $ref: '#/components/schemas/XiqDeploymentStatus'
         overview:
           $ref: '#/components/schemas/XiqDeploymentOverview'
-    XiqDeploymentRequest:
+    XiqDeploymentDetailsResponse:
       type: object
-      description: The configuration deployment request to devices
+      description: The deployment details
       properties:
+        deployment_id:
+          type: integer
+          format: uint64
         schedule:
           $ref: '#/components/schemas/XiqScheduleDetails'
         devices:
           $ref: '#/components/schemas/XiqDeployDeviceFilter'
         policy:
           $ref: '#/components/schemas/XiqDeploymentPolicy'
-    XiqErrorParams:
+        overview:
+          $ref: '#/components/schemas/XiqDeploymentOverviewDetails'
+    XiqFirmwareActivateOption:
       type: object
-      description: Error parameters
+      description: The firmware activate option (Only one of them can be enabled)
       properties:
-        field:
+        activation_delay_seconds:
+          type: integer
+          description: Activate after the given seconds
+          format: int64
+        activation_time:
+          type: integer
+          description: Activate at the following time according to the system clock on the updated device
+          format: int64
+        enable_activate_at_next_reboot:
+          type: boolean
+          description: Activate at next reboot (requires rebooting manually)
+    XiqError:
+      type: object
+      properties:
+        error_code:
           type: string
-          description: The error field
-        value:
+          description: The error code
+        error_id:
           type: string
-          description: The error value
+          description: The error ID for internal troubleshooting
+        error_message:
+          type: string
+          description: The error detailed message
+        error_message_code:
+          type: string
+          description: The error message code
+        error_message_description:
+          type: string
+          description: The error message description
+        error_params:
+          $ref: '#/components/schemas/XiqErrorParams'
+      required:
+      - error_code
+      - error_id
+      - error_message
     XiqDeploymentOverview:
       type: object
       description: The configuration deployment overview
@@ -472,21 +513,6 @@ components:
       - COMPLETED
       - FAILED
       - TIME_OUT
-    XiqFirmwareActivateOption:
-      type: object
-      description: The firmware activate option (Only one of them can be enabled)
-      properties:
-        activation_delay_seconds:
-          type: integer
-          description: Activate after the given seconds
-          format: int64
-        activation_time:
-          type: integer
-          description: Activate at the following time according to the system clock on the updated device
-          format: int64
-        enable_activate_at_next_reboot:
-          type: boolean
-          description: Activate at next reboot (requires rebooting manually)
     XiqDeviceFirmwareMetadata:
       type: object
       description: The device compatible firmware metadata
@@ -530,59 +556,18 @@ components:
         md5:
           type: string
           description: The firmware md5 hash
-    XiqError:
+    XiqDeploymentResponse:
       type: object
+      description: The configuration deployment response
       properties:
-        error_code:
-          type: string
-          description: The error code
-        error_id:
-          type: string
-          description: The error ID for internal troubleshooting
-        error_message:
-          type: string
-          description: The error detailed message
-        error_message_code:
-          type: string
-          description: The error message code
-        error_message_description:
-          type: string
-          description: The error message description
-        error_params:
-          $ref: '#/components/schemas/XiqErrorParams'
-      required:
-      - error_code
-      - error_id
-      - error_message
-    XiqFirmwareUpgradeVersion:
-      type: object
-      description: Upgrade to the specific firmware version
-      required:
-      - firmware_id
-      - device_id
-      - product_type
-      properties:
-        firmware_id:
+        deployment_id:
           type: integer
-          description: The device compatible firmware metadata ID
-          format: int64
-        device_id:
-          type: integer
-          description: The device ID
-          format: int64
-        product_type:
-          type: string
-          description: The product type
-    XiqScheduleDetails:
-      type: object
-      description: The deployment schedule details
-      required:
-      - start_time
-      properties:
-        start_time:
-          type: integer
-          description: The start time of the firmware upgrade
-          format: int64
+          description: The deployment ID
+          format: uint64
+        deployment_status:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/XiqDeploymentStatus'
     XiqDeploymentOverviewDetails:
       type: object
       description: The configuration deployment overview
@@ -619,19 +604,41 @@ components:
             $ref: '#/components/schemas/XiqFirmwareUpgradeVersion'
         firmware_activate_option:
           $ref: '#/components/schemas/XiqFirmwareActivateOption'
-    XiqFirmwareUpgradePolicy:
+    XiqErrorParams:
       type: object
-      description: The firmware upgrade policy
-      required:
-      - enable_enforce_upgrade
-      - enable_distributed_upgrade
+      description: Error parameters
       properties:
-        enable_enforce_upgrade:
-          type: boolean
-          description: Whether enforce firmware upgrade even if the versions are the same
-        enable_distributed_upgrade:
-          type: boolean
-          description: Whether enable distributed firmware upgrade (Only applicable to APs)
+        field:
+          type: string
+          description: The error field
+        value:
+          type: string
+          description: The error value
+    XiqDeployDeviceFilter:
+      type: object
+      description: The filter to get matched devices
+      properties:
+        ids:
+          type: array
+          description: The device ID list
+          items:
+            type: integer
+            description: The device ID list
+            format: int64
+        site_ids:
+          type: array
+          description: The site ID list
+          items:
+            type: integer
+            description: The site ID list
+            format: int64
+  responses:
+    ErrorResponse:
+      description: The generic ExtremeCloud IQ API error response
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/XiqError'
   parameters:
     limit:
       name: limit
@@ -662,13 +669,6 @@ components:
         type: integer
         format: int32
         default: 1
-  responses:
-    ErrorResponse:
-      description: The generic ExtremeCloud IQ API error response
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/XiqError'
   securitySchemes:
     BearerAuth:
       type: http

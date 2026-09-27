@@ -119,48 +119,6 @@ components:
           minimum: 1
           description: The maximum burst allowance per second. If omitted, no short-term throttling is applied.
           example: 100
-    XiqErrorParams:
-      type: object
-      description: Error parameters
-      properties:
-        field:
-          type: string
-          description: The error field
-        value:
-          type: string
-          description: The error value
-    XiqLoginResponse:
-      type: object
-      required:
-      - access_token
-      - token_type
-      - expires_in
-      properties:
-        access_token:
-          type: string
-          description: The access token with JWT format issued by ExtremeCloud IQ
-        token_type:
-          type: string
-          description: The type of token, only supports "Bearer" currently
-        expires_in:
-          type: integer
-          format: int32
-          description: The lifetime in seconds of the access token
-    XiqLoginRequest:
-      allOf:
-      - type: object
-        required:
-        - username
-        - password
-        properties:
-          username:
-            type: string
-            description: The login username
-          password:
-            type: string
-            description: The login password
-          rate_limit:
-            $ref: '#/components/schemas/RateLimitPolicy'
     XiqError:
       type: object
       properties:
@@ -185,6 +143,48 @@ components:
       - error_code
       - error_id
       - error_message
+    XiqLoginResponse:
+      type: object
+      required:
+      - access_token
+      - token_type
+      - expires_in
+      properties:
+        access_token:
+          type: string
+          description: The access token with JWT format issued by ExtremeCloud IQ
+        token_type:
+          type: string
+          description: The type of token, only supports "Bearer" currently
+        expires_in:
+          type: integer
+          format: int32
+          description: The lifetime in seconds of the access token
+    XiqErrorParams:
+      type: object
+      description: Error parameters
+      properties:
+        field:
+          type: string
+          description: The error field
+        value:
+          type: string
+          description: The error value
+    XiqLoginRequest:
+      allOf:
+      - type: object
+        required:
+        - username
+        - password
+        properties:
+          username:
+            type: string
+            description: The login username
+          password:
+            type: string
+            description: The login password
+          rate_limit:
+            $ref: '#/components/schemas/RateLimitPolicy'
   responses:
     ErrorResponse:
       description: The generic ExtremeCloud IQ API error response

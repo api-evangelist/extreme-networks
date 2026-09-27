@@ -220,6 +220,197 @@ paths:
       - BearerAuth: []
 components:
   schemas:
+    XiqCaptureIdentifier:
+      type: object
+      description: Identifier for AP device selections. APs can be selected using the AP serial number, a list of device numeric IDs or the location ID.
+      required:
+      - capture_id_type
+      properties:
+        capture_id_type:
+          description: The capture identifier type for selecting the APs. Depending on the type, one of "AP_SERIAL_NUMBER", "DEVICE_IDS" and "LOCATION" must be provided.
+          type: string
+          enum:
+          - AP_SERIAL_NUMBER
+          - DEVICE_IDS
+          - LOCATION
+      anyOf:
+      - $ref: '#/components/schemas/XiqSerialNumber'
+      - $ref: '#/components/schemas/XiqDeviceIds'
+      - $ref: '#/components/schemas/XiqLocationId'
+      discriminator:
+        propertyName: capture_id_type
+        mapping:
+          AP_SERIAL_NUMBER: '#/components/schemas/XiqSerialNumber'
+          DEVICE_IDS: '#/components/schemas/XiqDeviceIds'
+          LOCATION: '#/components/schemas/XiqLocationId'
+    XiqLocationLegend:
+      type: object
+      description: The simple location information
+      properties:
+        id:
+          type: integer
+          description: The location ID
+          format: int64
+        name:
+          type: string
+          description: The location name
+    XiqPage:
+      required:
+      - count
+      - page
+      - total_count
+      - total_pages
+      type: object
+      properties:
+        page:
+          type: integer
+          description: The current page number
+          format: int32
+        count:
+          type: integer
+          description: The element count of the current page
+          format: int32
+        total_pages:
+          type: integer
+          description: The total page number based on request page size
+          format: int32
+        total_count:
+          type: integer
+          description: The total element count
+          format: int64
+    XiqDeviceIds:
+      type: object
+      description: The device ID list.
+      properties:
+        device_ids:
+          type: array
+          items:
+            type: integer
+            description: The device ID
+            format: int64
+    XiqPktCaptureStatus:
+      type: string
+      title: XiqPktCaptureStatus
+      description: The status of the overall packet capture session or a packet capture result on an AP device's interface.
+      enum:
+      - INITIAL
+      - ACTIVE
+      - SUCCESS
+      - PARTIAL_SUCCESS
+      - FAILED
+      default: INITIAL
+      example: ACTIVE
+    PagedXiqPacketCapture:
+      allOf:
+      - $ref: '#/components/schemas/XiqPage'
+      - type: object
+        properties:
+          data:
+            type: array
+            description: The data in the current page
+            items:
+              $ref: '#/components/schemas/XiqPacketCapture'
+    XiqSortOrder:
+      type: string
+      enum:
+      - ASC
+      - DESC
+    XiqCaptureFilter:
+      title: XiqCaptureFilter
+      description: This represents the properties of filters used for the packet capture.
+      allOf:
+      - type: object
+        properties:
+          mac_addr:
+            type: array
+            items:
+              type: string
+            description: A string containing the client MAC address used for packet capturing.
+          ip_addr:
+            type: array
+            items:
+              type: string
+            description: A string containing the client IP addresses used to filter the packets.
+          protocol:
+            $ref: '#/components/schemas/XiqPolicyRuleProtocolType'
+          protocol_number:
+            type: integer
+            format: int32
+            description: The protocol number if protocol is "USER_DEFINED".
+          port:
+            type: integer
+            format: int32
+            description: The port for packet capture
+          vlan:
+            type: string
+            description: Specific vlan ids in a string, e.g. range "2-100"; single "3"; list "1,2,5,7,122"; mixed "2,4,5-10,19,29". If not specified, default is all VLANs.
+          wlan:
+            type: string
+            description: A WLAN SSID. If not specified, default is all WLANs.
+      example:
+        mac_addr:
+        - '...'
+        - '...'
+        ip_addr:
+        - '...'
+        - '...'
+        protocol: any
+        port: 12345
+        vlan: 2,4,5-10
+    XiqCaptureWiredSelection:
+      type: string
+      title: XiqCaptureWiredSelection
+      description: Wired interface to filter by.
+      enum:
+      - ALL
+      - ETH0
+      - ETH1
+      - ETH2
+      - ETH3
+      example: ETH0
+    XiqError:
+      type: object
+      properties:
+        error_code:
+          type: string
+          description: The error code
+        error_id:
+          type: string
+          description: The error ID for internal troubleshooting
+        error_message:
+          type: string
+          description: The error detailed message
+        error_message_code:
+          type: string
+          description: The error message code
+        error_message_description:
+          type: string
+          description: The error message description
+        error_params:
+          $ref: '#/components/schemas/XiqErrorParams'
+      required:
+      - error_code
+      - error_id
+      - error_message
+    XiqLocationId:
+      type: object
+      description: The assigned location ID, it must be FLOOR type
+      properties:
+        location_id:
+          type: integer
+          format: int64
+    XiqWirelessFilterType:
+      type: string
+      title: XiqWirelessFilterType
+      description: Pre-defined filters for wireless packet captures.
+      enum:
+      - MANAGEMENT
+      - CONTROL
+      - DATA
+      - EAPOL
+      - BEACONS
+      - PROBES
+      example: DATA
     XiqCaptureLocation:
       title: XiqCaptureLocation
       description: This represents the options for location packet capture.
@@ -254,13 +445,113 @@ components:
         wireless_filters:
         - MANAGEMENT
         - CONTROL
-    XiqLocationId:
+    XiqPacketCapture:
+      title: XiqPacketCapture
+      description: This represents the packet capture session
+      allOf:
+      - $ref: '#/components/schemas/XiqCaptureIdentifier'
+      - type: object
+        properties:
+          id:
+            type: integer
+            description: The unique identifier
+            format: int64
+          org_id:
+            type: integer
+            description: The organization identifier, valid when enabling HIQ feature
+            format: int64
+          name:
+            description: The packet capture session name. If the name is null or empty, it will be auto generated.
+            type: string
+            pattern: ^[A-Z0-9.-_]{0,128}$
+          duration:
+            type: integer
+            format: int32
+            maximum: 604800
+            minimum: 5
+            description: An integer containing the set packet capture duration in seconds, from 5 to a maximum of 604800 seconds (1 week). If not manually stopped, packet capture continues until the specified duration is reached, or the platform-maximum file size of the AP is reached. If duration is set to 0 or unspecified, capture stops when platform-maximum size is reached.
+          destination:
+            $ref: '#/components/schemas/XiqDestinationType'
+          filter:
+            $ref: '#/components/schemas/XiqCaptureFilter'
+          capture_if:
+            $ref: '#/components/schemas/XiqCaptureLocation'
+          start_time:
+            type: string
+            readOnly: true
+            description: The packet capture start time
+            format: date-time
+          end_time:
+            type: string
+            readOnly: true
+            description: The packet capture end time
+            format: date-time
+          status:
+            readOnly: true
+            description: The status of the packet capture session
+            allOf:
+            - $ref: '#/components/schemas/XiqPktCaptureStatus'
+          cloud_storage:
+            description: XIQ cloud storage location for the archive of all capture files in this capture session, if available.
+            type: string
+          results:
+            type: array
+            readOnly: true
+            description: The list of packet capture results - a PacketCaptureResult for each device's interface
+            items:
+              $ref: '#/components/schemas/XiqCaptureResult'
+    XiqCloudSharkStorage:
       type: object
-      description: The assigned location ID, it must be FLOOR type
+      title: XiqCloudSharkStorage
+      description: The packet capture file name and URL in CloudShark.
       properties:
-        location_id:
-          type: integer
-          format: int64
+        file_name:
+          type: string
+        file_url:
+          type: string
+      example:
+        file_name: 2023051105924UTC-241FBD8FEDC0-wifi0.pcap
+        file_url: https://www.cloudshark.org/captures/f27d1494400c
+    XiqCaptureDirectionSelection:
+      type: string
+      title: XiqCaptureDirectionSelection
+      description: The capture traffic direction
+      enum:
+      - OUT
+      - IN
+      - BOTH
+      default: BOTH
+      example: BOTH
+    XiqCaptureStopRequest:
+      title: XiqCaptureStopRequest
+      description: This represents the request for stopping a packet capture session.
+      properties:
+        device_ids:
+          type: array
+          description: The IDs of the devices for which the active packet capture is to be stopped.  If empty, packet capture is to be stopped on all devices in this packet capture.
+          items:
+            type: integer
+            description: The device ID
+            format: int64
+    XiqDestinationType:
+      title: XiqDestinationType
+      type: string
+      description: The destination for the packet capture files. CLOUD for XIQ cloud storage. CLOUD_SHARK for sending the capture files to CloudShark, in addition to XIQ cloud storage.
+      enum:
+      - CLOUD
+      - CLOUD_SHARK
+      example: CLOUD
+    XiqWiredFilterType:
+      type: string
+      title: XiqWiredFilterType
+      description: Pre-defined filters for wired packet captures.
+      enum:
+      - DHCP
+      - RADIUS
+      - LLDP
+      - ARP
+      - MDNS
+      example: DHCP
     XiqCaptureResult:
       title: XiqCaptureResult
       description: This represents the packet capture result on an AP's interface. A packet capture session may involve multiple APs on multiple interfaces.
@@ -323,344 +614,6 @@ components:
               cloud_storage:
                 description: XIQ cloud storage location after a packet capture is completed.
                 type: string
-    XiqPage:
-      required:
-      - count
-      - page
-      - total_count
-      - total_pages
-      type: object
-      properties:
-        page:
-          type: integer
-          description: The current page number
-          format: int32
-        count:
-          type: integer
-          description: The element count of the current page
-          format: int32
-        total_pages:
-          type: integer
-          description: The total page number based on request page size
-          format: int32
-        total_count:
-          type: integer
-          description: The total element count
-          format: int64
-    PagedXiqPacketCapture:
-      allOf:
-      - $ref: '#/components/schemas/XiqPage'
-      - type: object
-        properties:
-          data:
-            type: array
-            description: The data in the current page
-            items:
-              $ref: '#/components/schemas/XiqPacketCapture'
-    XiqCaptureWiredSelection:
-      type: string
-      title: XiqCaptureWiredSelection
-      description: Wired interface to filter by.
-      enum:
-      - ALL
-      - ETH0
-      - ETH1
-      - ETH2
-      - ETH3
-      example: ETH0
-    XiqDestinationType:
-      title: XiqDestinationType
-      type: string
-      description: The destination for the packet capture files. CLOUD for XIQ cloud storage. CLOUD_SHARK for sending the capture files to CloudShark, in addition to XIQ cloud storage.
-      enum:
-      - CLOUD
-      - CLOUD_SHARK
-      example: CLOUD
-    XiqSerialNumber:
-      type: object
-      description: The globally unique serial number of the device being registered. The serial number is represented as a string.
-      properties:
-        ap_serial_number:
-          type: string
-          pattern: "^[\\p{Print}&&[^\t\n;:&\\p{Cntrl}'\"]]{1,16}$"
-    XiqCaptureDirectionSelection:
-      type: string
-      title: XiqCaptureDirectionSelection
-      description: The capture traffic direction
-      enum:
-      - OUT
-      - IN
-      - BOTH
-      default: BOTH
-      example: BOTH
-    XiqSortOrder:
-      type: string
-      enum:
-      - ASC
-      - DESC
-    XiqCaptureStopRequest:
-      title: XiqCaptureStopRequest
-      description: This represents the request for stopping a packet capture session.
-      properties:
-        device_ids:
-          type: array
-          description: The IDs of the devices for which the active packet capture is to be stopped.  If empty, packet capture is to be stopped on all devices in this packet capture.
-          items:
-            type: integer
-            description: The device ID
-            format: int64
-    XiqDeviceIds:
-      type: object
-      description: The device ID list.
-      properties:
-        device_ids:
-          type: array
-          items:
-            type: integer
-            description: The device ID
-            format: int64
-    XiqWirelessFilterType:
-      type: string
-      title: XiqWirelessFilterType
-      description: Pre-defined filters for wireless packet captures.
-      enum:
-      - MANAGEMENT
-      - CONTROL
-      - DATA
-      - EAPOL
-      - BEACONS
-      - PROBES
-      example: DATA
-    XiqCaptureBandSelection:
-      type: string
-      title: XiqCaptureBandSelection
-      description: Wireless band to filter by.
-      enum:
-      - ALL
-      - 2.4GHZ
-      - 5GHZ
-      - 6GHZ
-      default: ALL
-      example: 2.4GHZ
-    XiqCloudSharkStorage:
-      type: object
-      title: XiqCloudSharkStorage
-      description: The packet capture file name and URL in CloudShark.
-      properties:
-        file_name:
-          type: string
-        file_url:
-          type: string
-      example:
-        file_name: 2023051105924UTC-241FBD8FEDC0-wifi0.pcap
-        file_url: https://www.cloudshark.org/captures/f27d1494400c
-    XiqErrorParams:
-      type: object
-      description: Error parameters
-      properties:
-        field:
-          type: string
-          description: The error field
-        value:
-          type: string
-          description: The error value
-    XiqWiredFilterType:
-      type: string
-      title: XiqWiredFilterType
-      description: Pre-defined filters for wired packet captures.
-      enum:
-      - DHCP
-      - RADIUS
-      - LLDP
-      - ARP
-      - MDNS
-      example: DHCP
-    XiqPacketCaptureField:
-      type: string
-      enum:
-      - ID
-      - ORG_ID
-      - NAME
-      - CAPTURE_ID_TYPE
-      - AP_SERIAL_NUMBER
-      - DEVICE_IDS
-      - LOCATION_ID
-      - DURATION
-      - DESTINATION
-      - FILTER
-      - CAPTURE_IF
-      - START_TIME
-      - END_TIME
-      - STATUS
-      - CLOUD_STORAGE
-      - RESULTS
-    XiqPktCaptureStatus:
-      type: string
-      title: XiqPktCaptureStatus
-      description: The status of the overall packet capture session or a packet capture result on an AP device's interface.
-      enum:
-      - INITIAL
-      - ACTIVE
-      - SUCCESS
-      - PARTIAL_SUCCESS
-      - FAILED
-      default: INITIAL
-      example: ACTIVE
-    XiqError:
-      type: object
-      properties:
-        error_code:
-          type: string
-          description: The error code
-        error_id:
-          type: string
-          description: The error ID for internal troubleshooting
-        error_message:
-          type: string
-          description: The error detailed message
-        error_message_code:
-          type: string
-          description: The error message code
-        error_message_description:
-          type: string
-          description: The error message description
-        error_params:
-          $ref: '#/components/schemas/XiqErrorParams'
-      required:
-      - error_code
-      - error_id
-      - error_message
-    XiqCaptureIdentifier:
-      type: object
-      description: Identifier for AP device selections. APs can be selected using the AP serial number, a list of device numeric IDs or the location ID.
-      required:
-      - capture_id_type
-      properties:
-        capture_id_type:
-          description: The capture identifier type for selecting the APs. Depending on the type, one of "AP_SERIAL_NUMBER", "DEVICE_IDS" and "LOCATION" must be provided.
-          type: string
-          enum:
-          - AP_SERIAL_NUMBER
-          - DEVICE_IDS
-          - LOCATION
-      anyOf:
-      - $ref: '#/components/schemas/XiqSerialNumber'
-      - $ref: '#/components/schemas/XiqDeviceIds'
-      - $ref: '#/components/schemas/XiqLocationId'
-      discriminator:
-        propertyName: capture_id_type
-        mapping:
-          AP_SERIAL_NUMBER: '#/components/schemas/XiqSerialNumber'
-          DEVICE_IDS: '#/components/schemas/XiqDeviceIds'
-          LOCATION: '#/components/schemas/XiqLocationId'
-    XiqLocationLegend:
-      type: object
-      description: The simple location information
-      properties:
-        id:
-          type: integer
-          description: The location ID
-          format: int64
-        name:
-          type: string
-          description: The location name
-    XiqCaptureFilter:
-      title: XiqCaptureFilter
-      description: This represents the properties of filters used for the packet capture.
-      allOf:
-      - type: object
-        properties:
-          mac_addr:
-            type: array
-            items:
-              type: string
-            description: A string containing the client MAC address used for packet capturing.
-          ip_addr:
-            type: array
-            items:
-              type: string
-            description: A string containing the client IP addresses used to filter the packets.
-          protocol:
-            $ref: '#/components/schemas/XiqPolicyRuleProtocolType'
-          protocol_number:
-            type: integer
-            format: int32
-            description: The protocol number if protocol is "USER_DEFINED".
-          port:
-            type: integer
-            format: int32
-            description: The port for packet capture
-          vlan:
-            type: string
-            description: Specific vlan ids in a string, e.g. range "2-100"; single "3"; list "1,2,5,7,122"; mixed "2,4,5-10,19,29". If not specified, default is all VLANs.
-          wlan:
-            type: string
-            description: A WLAN SSID. If not specified, default is all WLANs.
-      example:
-        mac_addr:
-        - '...'
-        - '...'
-        ip_addr:
-        - '...'
-        - '...'
-        protocol: any
-        port: 12345
-        vlan: 2,4,5-10
-    XiqPacketCapture:
-      title: XiqPacketCapture
-      description: This represents the packet capture session
-      allOf:
-      - $ref: '#/components/schemas/XiqCaptureIdentifier'
-      - type: object
-        properties:
-          id:
-            type: integer
-            description: The unique identifier
-            format: int64
-          org_id:
-            type: integer
-            description: The organization identifier, valid when enabling HIQ feature
-            format: int64
-          name:
-            description: The packet capture session name. If the name is null or empty, it will be auto generated.
-            type: string
-            pattern: ^[A-Z0-9.-_]{0,128}$
-          duration:
-            type: integer
-            format: int32
-            maximum: 604800
-            minimum: 5
-            description: An integer containing the set packet capture duration in seconds, from 5 to a maximum of 604800 seconds (1 week). If not manually stopped, packet capture continues until the specified duration is reached, or the platform-maximum file size of the AP is reached. If duration is set to 0 or unspecified, capture stops when platform-maximum size is reached.
-          destination:
-            $ref: '#/components/schemas/XiqDestinationType'
-          filter:
-            $ref: '#/components/schemas/XiqCaptureFilter'
-          capture_if:
-            $ref: '#/components/schemas/XiqCaptureLocation'
-          start_time:
-            type: string
-            readOnly: true
-            description: The packet capture start time
-            format: date-time
-          end_time:
-            type: string
-            readOnly: true
-            description: The packet capture end time
-            format: date-time
-          status:
-            readOnly: true
-            description: The status of the packet capture session
-            allOf:
-            - $ref: '#/components/schemas/XiqPktCaptureStatus'
-          cloud_storage:
-            description: XIQ cloud storage location for the archive of all capture files in this capture session, if available.
-            type: string
-          results:
-            type: array
-            readOnly: true
-            description: The list of packet capture results - a PacketCaptureResult for each device's interface
-            items:
-              $ref: '#/components/schemas/XiqCaptureResult'
     XiqPolicyRuleProtocolType:
       type: string
       title: XiqPolicyRuleProtocolType
@@ -687,6 +640,60 @@ components:
       - RADIO2
       - RADIO3
       example: RADIO1
+    XiqCaptureBandSelection:
+      type: string
+      title: XiqCaptureBandSelection
+      description: Wireless band to filter by.
+      enum:
+      - ALL
+      - 2.4GHZ
+      - 5GHZ
+      - 6GHZ
+      default: ALL
+      example: 2.4GHZ
+    XiqSerialNumber:
+      type: object
+      description: The globally unique serial number of the device being registered. The serial number is represented as a string.
+      properties:
+        ap_serial_number:
+          type: string
+          pattern: "^[\\p{Print}&&[^\t\n;:&\\p{Cntrl}'\"]]{1,16}$"
+    XiqErrorParams:
+      type: object
+      description: Error parameters
+      properties:
+        field:
+          type: string
+          description: The error field
+        value:
+          type: string
+          description: The error value
+    XiqPacketCaptureField:
+      type: string
+      enum:
+      - ID
+      - ORG_ID
+      - NAME
+      - CAPTURE_ID_TYPE
+      - AP_SERIAL_NUMBER
+      - DEVICE_IDS
+      - LOCATION_ID
+      - DURATION
+      - DESTINATION
+      - FILTER
+      - CAPTURE_IF
+      - START_TIME
+      - END_TIME
+      - STATUS
+      - CLOUD_STORAGE
+      - RESULTS
+  responses:
+    ErrorResponse:
+      description: The generic ExtremeCloud IQ API error response
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/XiqError'
   parameters:
     limit:
       name: limit
@@ -699,13 +706,14 @@ components:
         type: integer
         format: int32
         default: 10
-    order:
-      name: order
-      in: query
-      description: The sort order (ascending by default)
-      required: false
+    id:
+      name: id
+      in: path
+      description: The unique identifier
+      required: true
       schema:
-        $ref: '#/components/schemas/XiqSortOrder'
+        type: integer
+        format: int64
     page:
       name: page
       in: query
@@ -716,21 +724,13 @@ components:
         type: integer
         format: int32
         default: 1
-    id:
-      name: id
-      in: path
-      description: The unique identifier
-      required: true
+    order:
+      name: order
+      in: query
+      description: The sort order (ascending by default)
+      required: false
       schema:
-        type: integer
-        format: int64
-  responses:
-    ErrorResponse:
-      description: The generic ExtremeCloud IQ API error response
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/XiqError'
+        $ref: '#/components/schemas/XiqSortOrder'
   securitySchemes:
     BearerAuth:
       type: http

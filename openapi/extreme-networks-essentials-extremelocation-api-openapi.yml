@@ -46,39 +46,7 @@ paths:
       security:
       - BearerAuth: []
 components:
-  parameters:
-    mac:
-      name: clientMac
-      in: path
-      description: The mac address of client
-      required: true
-      schema:
-        type: string
-    floorId:
-      in: query
-      description: The location ID of the floor
-      name: floorId
-      required: true
-      schema:
-        type: string
-    parentId:
-      in: query
-      description: The location ID of the floor's parent
-      name: parentId
-      required: true
-      schema:
-        type: string
   schemas:
-    XiqErrorParams:
-      type: object
-      description: Error parameters
-      properties:
-        field:
-          type: string
-          description: The error field
-        value:
-          type: string
-          description: The error value
     XiqEssentialsElocClientLastknownLocation:
       type: object
       description: The client's last known location on the floor plan
@@ -119,6 +87,16 @@ components:
       - error_code
       - error_id
       - error_message
+    XiqErrorParams:
+      type: object
+      description: Error parameters
+      properties:
+        field:
+          type: string
+          description: The error field
+        value:
+          type: string
+          description: The error value
   responses:
     ErrorResponse:
       description: The generic ExtremeCloud IQ API error response
@@ -126,6 +104,28 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/XiqError'
+  parameters:
+    mac:
+      name: clientMac
+      in: path
+      description: The mac address of client
+      required: true
+      schema:
+        type: string
+    parentId:
+      in: query
+      description: The location ID of the floor's parent
+      name: parentId
+      required: true
+      schema:
+        type: string
+    floorId:
+      in: query
+      description: The location ID of the floor
+      name: floorId
+      required: true
+      schema:
+        type: string
   securitySchemes:
     BearerAuth:
       type: http

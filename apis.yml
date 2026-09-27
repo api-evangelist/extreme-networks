@@ -144,13 +144,14 @@ apis:
   - Automation
   - Ansible
   - SLX-OS
-  - Data-Center
+  - Data Center
   tags_raw:
   - Networking
   - Automation
   - Ansible
   - SLX-OS
   - Data Center
+  - Data-Center
   properties:
   - type: Repository
     url: https://github.com/extremenetworks/ansible_collections.extreme.slxos
