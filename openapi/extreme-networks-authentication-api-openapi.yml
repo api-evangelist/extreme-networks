@@ -101,24 +101,6 @@ paths:
       - BearerAuth: []
 components:
   schemas:
-    RateLimitPolicy:
-      type: object
-      description: Configuration for API usage quotas and throughput limits.
-      required:
-      - hour
-      properties:
-        hour:
-          type: integer
-          format: int64
-          minimum: 1
-          description: The sustained request quota per hour. Defines the baseline traffic capacity.
-          example: 7500
-        second:
-          type: integer
-          format: int64
-          minimum: 1
-          description: The maximum burst allowance per second. If omitted, no short-term throttling is applied.
-          example: 100
     XiqError:
       type: object
       properties:
@@ -160,16 +142,24 @@ components:
           type: integer
           format: int32
           description: The lifetime in seconds of the access token
-    XiqErrorParams:
+    RateLimitPolicy:
       type: object
-      description: Error parameters
+      description: Configuration for API usage quotas and throughput limits.
+      required:
+      - hour
       properties:
-        field:
-          type: string
-          description: The error field
-        value:
-          type: string
-          description: The error value
+        hour:
+          type: integer
+          format: int64
+          minimum: 1
+          description: The sustained request quota per hour. Defines the baseline traffic capacity.
+          example: 7500
+        second:
+          type: integer
+          format: int64
+          minimum: 1
+          description: The maximum burst allowance per second. If omitted, no short-term throttling is applied.
+          example: 100
     XiqLoginRequest:
       allOf:
       - type: object
@@ -185,6 +175,16 @@ components:
             description: The login password
           rate_limit:
             $ref: '#/components/schemas/RateLimitPolicy'
+    XiqErrorParams:
+      type: object
+      description: Error parameters
+      properties:
+        field:
+          type: string
+          description: The error field
+        value:
+          type: string
+          description: The error value
   responses:
     ErrorResponse:
       description: The generic ExtremeCloud IQ API error response

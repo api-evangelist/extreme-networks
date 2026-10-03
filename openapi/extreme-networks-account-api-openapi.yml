@@ -538,6 +538,306 @@ paths:
       - BearerAuth: []
 components:
   schemas:
+    XiqAccountType:
+      type: string
+      description: Account type
+      enum:
+      - INTERNAL
+      - CUSTOMER
+      - HIQ
+      - PARTNER
+    XiqLoginResponse:
+      type: object
+      required:
+      - access_token
+      - token_type
+      - expires_in
+      properties:
+        access_token:
+          type: string
+          description: The access token with JWT format issued by ExtremeCloud IQ
+        token_type:
+          type: string
+          description: The type of token, only supports "Bearer" currently
+        expires_in:
+          type: integer
+          format: int32
+          description: The lifetime in seconds of the access token
+    XiqVhmSettingInfo:
+      allOf:
+      - $ref: '#/components/schemas/XiqBaseEntity'
+      - type: object
+        properties:
+          id:
+            type: integer
+            description: VHM Setting Id
+            format: int64
+          vhm_name:
+            type: string
+            description: The viq name.
+          current_status:
+            type: string
+            description: The viq current status like ACTIVE_STATUS.
+          backed_up_on:
+            type: integer
+            description: The last backup time in milliseconds.
+            format: int64
+          enable_copilot:
+            type: boolean
+            description: Flag indicating whether Co-Pilot should be enabled (true) or disabled (false).
+          enable_ssh:
+            type: boolean
+            description: Flag indicating Ssh Availability.
+          enable_supplemental_cli:
+            type: boolean
+            description: Flag indicating Supplemental CLI.
+          enable_wireless_onboarding:
+            type: boolean
+            description: Flag indicating AP Out-of-the-box Wireless Onboarding.
+          enable_password_for_exos_voss:
+            type: boolean
+            description: Flag to enable device management settings for Switch Engine (EXOS) / Fabric Engine (VOSS) switches.
+          enable_auto_config_push:
+            type: boolean
+            description: Flag to enable auto config push
+          enable_site_isolation:
+            type: boolean
+            description: Flag to enable site isolation
+    XiqThirdPartyApplications:
+      type: object
+      properties:
+        client_id:
+          type: string
+          description: The ID of the application client
+        redirect_url:
+          type: string
+          description: The redirect URL of the application
+        name:
+          type: string
+          description: The name of the application
+        description:
+          type: string
+          description: The description of the application
+        state:
+          type: string
+          description: The state of the application
+    XiqBackupGrid:
+      type: object
+      description: Backup History Grid
+      properties:
+        backup_date:
+          type: integer
+          format: int64
+          description: The backup date.
+        backup_units:
+          type: string
+          description: The units of the backup.
+        owner_id:
+          type: integer
+          format: int64
+          description: The owner ID.
+        backup_file_name:
+          type: string
+          description: The filename of the backup entry.
+        backup_version:
+          type: string
+          description: The version of the backup.
+        backup_file_suffix:
+          type: string
+          description: The suffix of the backup file.
+        version_matched:
+          type: boolean
+          description: If this flag is true, it indicates that backup can be restored.
+    XiqViqLicense:
+      allOf:
+      - $ref: '#/components/schemas/XiqBaseEntity'
+      - type: object
+        properties:
+          status:
+            $ref: '#/components/schemas/XiqLicenseStatus'
+          active_date:
+            type: string
+            description: The active date
+            format: date-time
+          expire_date:
+            type: string
+            description: The expire date
+            format: date-time
+          entitlement_key:
+            type: string
+            description: The entitlement key
+          entitlement_type:
+            $ref: '#/components/schemas/XiqEntitlementType'
+          mode:
+            $ref: '#/components/schemas/XiqLicenseMode'
+          devices:
+            type: integer
+            description: The device number
+            format: int32
+          activated:
+            type: integer
+            description: The activated device number
+            format: int32
+          available:
+            type: integer
+            description: The available device number
+            format: int32
+    XiqViqTasks:
+      type: object
+      properties:
+        tesk:
+          type: string
+          description: The name of the task
+        finish_percentage:
+          type: integer
+          description: Task finish percentage
+          format: int64
+        detail:
+          type: string
+          description: Details of task
+        status:
+          type: string
+          description: Status of the task
+    XiqError:
+      type: object
+      properties:
+        error_code:
+          type: string
+          description: The error code
+        error_id:
+          type: string
+          description: The error ID for internal troubleshooting
+        error_message:
+          type: string
+          description: The error detailed message
+        error_message_code:
+          type: string
+          description: The error message code
+        error_message_description:
+          type: string
+          description: The error message description
+        error_params:
+          $ref: '#/components/schemas/XiqErrorParams'
+      required:
+      - error_code
+      - error_id
+      - error_message
+    XiqVhmStatus:
+      type: object
+      description: VHM Account Status
+      properties:
+        vhm_name:
+          type: string
+          description: The viq name.
+        current_status:
+          type: string
+          description: The viq current status like ACTIVE_STATUS.
+    XiqViqExportReport:
+      type: object
+      description: ExtremeCloud IQ Viq Export data
+      properties:
+        export_status:
+          type: string
+          description: The viq export status
+        export_file_name:
+          type: string
+          description: The viq export report file name
+        log_file_name:
+          type: string
+          description: The viq export log file name
+    XiqErrorParams:
+      type: object
+      description: Error parameters
+      properties:
+        field:
+          type: string
+          description: The error field
+        value:
+          type: string
+          description: The error value
+    XiqViq:
+      type: object
+      properties:
+        devices:
+          type: integer
+          description: Total number of all licensed devices
+          format: int32
+        standalone:
+          type: boolean
+          description: Returns true if HIQ is not enabled, otherwise returns false
+        expired:
+          type: boolean
+          description: Whether VIQ is expired
+        customer_id:
+          type: string
+          description: The customer ID, also known as Salesforce customer ID
+        vhm_id:
+          type: string
+          description: The VIQ ID
+        owner_id:
+          type: integer
+          description: The owner account ID
+          format: int64
+        licenses:
+          type: array
+          description: The license list
+          items:
+            $ref: '#/components/schemas/XiqViqLicense'
+    XiqVhmSetting:
+      allOf:
+      - $ref: '#/components/schemas/XiqBaseEntity'
+      - type: object
+        properties:
+          id:
+            type: integer
+            description: VHM Setting Id
+            format: int64
+          enable_copilot:
+            type: boolean
+            description: Flag indicating whether Co-Pilot should be enabled (true) or disabled (false).
+          enable_ssh:
+            type: boolean
+            description: Flag indicating Ssh Availability.
+          enable_supplemental_cli:
+            type: boolean
+            description: Flag indicating Supplemental CLI.
+          enable_wireless_onboarding:
+            type: boolean
+            description: Flag indicating AP Out-of-the-box Wireless Onboarding.
+          enable_password_for_exos_voss:
+            type: boolean
+            description: Flag to enable device management settings for Switch Engine (EXOS) / Fabric Engine (VOSS) switches.
+          enable_auto_config_push:
+            type: boolean
+            description: Flag to enable auto config push
+          enable_site_isolation:
+            type: boolean
+            description: Flag to enable site isolation
+    XiqLicenseMode:
+      type: string
+      description: The license mode
+      enum:
+      - BUY
+      - PLANNER
+      - EVAL
+      - MSP
+      - UNKNOWN
+    XiqAccountMode:
+      type: string
+      description: Account mode
+      enum:
+      - COPILOT
+      - CONNECT
+    PagedBackupGrid:
+      allOf:
+      - $ref: '#/components/schemas/XiqPage'
+      - type: object
+        properties:
+          data:
+            type: array
+            description: The data in the current page
+            items:
+              $ref: '#/components/schemas/XiqBackupGrid'
     XiqBaseEntity:
       required:
       - id
@@ -557,6 +857,79 @@ components:
           type: string
           description: The last update time
           format: date-time
+    XiqViqStatusType:
+      type: string
+      enum:
+      - EXPORT
+      - IMPORT
+    XiqViqImportReport:
+      type: object
+      description: ExtremeCloud IQ Viq Import data
+      properties:
+        import_status:
+          type: string
+          description: The viq import status
+        log_file_name:
+          type: string
+          description: The viq import log file name
+    XiqPage:
+      required:
+      - count
+      - page
+      - total_count
+      - total_pages
+      type: object
+      properties:
+        page:
+          type: integer
+          description: The current page number
+          format: int32
+        count:
+          type: integer
+          description: The element count of the current page
+          format: int32
+        total_pages:
+          type: integer
+          description: The total page number based on request page size
+          format: int32
+        total_count:
+          type: integer
+          description: The total element count
+          format: int64
+    XiqViqExportImportResponse:
+      type: object
+      properties:
+        user_name:
+          type: string
+          description: The user name of the user
+        vhm_id:
+          type: string
+          description: The VIQ ID
+        operation:
+          type: string
+          description: Type of Operation export/import
+        status:
+          type: string
+          description: Status of the request
+        total_finish_percentage:
+          type: integer
+          description: Total finish percentage of the operation
+          format: int64
+        task_progress:
+          type: array
+          description: The tasks list
+          items:
+            $ref: '#/components/schemas/XiqViqTasks'
+        export_file_name:
+          type: string
+          description: The VIQ export report file name
+        log_file:
+          type: string
+          description: The VIQ export log file name
+        export_time:
+          type: integer
+          description: The last exported time
+          format: int64
     XiqDefaultDevicePassword:
       type: object
       description: The default device password
@@ -566,6 +939,16 @@ components:
         password:
           type: string
           description: The default device password
+    XiqLicenseStatus:
+      type: string
+      description: The VIQ license status
+      enum:
+      - BUY
+      - PLAN
+      - EVAL
+      - EXPIRED
+      - INVALID
+      - MIGRATED
     XiqAccount:
       allOf:
       - $ref: '#/components/schemas/XiqBaseEntity'
@@ -608,335 +991,6 @@ components:
           zipcode:
             type: string
             description: The zipcode of the address
-    XiqBackupGrid:
-      type: object
-      description: Backup History Grid
-      properties:
-        backup_date:
-          type: integer
-          format: int64
-          description: The backup date.
-        backup_units:
-          type: string
-          description: The units of the backup.
-        owner_id:
-          type: integer
-          format: int64
-          description: The owner ID.
-        backup_file_name:
-          type: string
-          description: The filename of the backup entry.
-        backup_version:
-          type: string
-          description: The version of the backup.
-        backup_file_suffix:
-          type: string
-          description: The suffix of the backup file.
-        version_matched:
-          type: boolean
-          description: If this flag is true, it indicates that backup can be restored.
-    XiqPage:
-      required:
-      - count
-      - page
-      - total_count
-      - total_pages
-      type: object
-      properties:
-        page:
-          type: integer
-          description: The current page number
-          format: int32
-        count:
-          type: integer
-          description: The element count of the current page
-          format: int32
-        total_pages:
-          type: integer
-          description: The total page number based on request page size
-          format: int32
-        total_count:
-          type: integer
-          description: The total element count
-          format: int64
-    XiqViqLicense:
-      allOf:
-      - $ref: '#/components/schemas/XiqBaseEntity'
-      - type: object
-        properties:
-          status:
-            $ref: '#/components/schemas/XiqLicenseStatus'
-          active_date:
-            type: string
-            description: The active date
-            format: date-time
-          expire_date:
-            type: string
-            description: The expire date
-            format: date-time
-          entitlement_key:
-            type: string
-            description: The entitlement key
-          entitlement_type:
-            $ref: '#/components/schemas/XiqEntitlementType'
-          mode:
-            $ref: '#/components/schemas/XiqLicenseMode'
-          devices:
-            type: integer
-            description: The device number
-            format: int32
-          activated:
-            type: integer
-            description: The activated device number
-            format: int32
-          available:
-            type: integer
-            description: The available device number
-            format: int32
-    XiqViqImportReport:
-      type: object
-      description: ExtremeCloud IQ Viq Import data
-      properties:
-        import_status:
-          type: string
-          description: The viq import status
-        log_file_name:
-          type: string
-          description: The viq import log file name
-    XiqVhmSettingInfo:
-      allOf:
-      - $ref: '#/components/schemas/XiqBaseEntity'
-      - type: object
-        properties:
-          id:
-            type: integer
-            description: VHM Setting Id
-            format: int64
-          vhm_name:
-            type: string
-            description: The viq name.
-          current_status:
-            type: string
-            description: The viq current status like ACTIVE_STATUS.
-          backed_up_on:
-            type: integer
-            description: The last backup time in milliseconds.
-            format: int64
-          enable_copilot:
-            type: boolean
-            description: Flag indicating whether Co-Pilot should be enabled (true) or disabled (false).
-          enable_ssh:
-            type: boolean
-            description: Flag indicating Ssh Availability.
-          enable_supplemental_cli:
-            type: boolean
-            description: Flag indicating Supplemental CLI.
-          enable_wireless_onboarding:
-            type: boolean
-            description: Flag indicating AP Out-of-the-box Wireless Onboarding.
-          enable_password_for_exos_voss:
-            type: boolean
-            description: Flag to enable device management settings for Switch Engine (EXOS) / Fabric Engine (VOSS) switches.
-          enable_auto_config_push:
-            type: boolean
-            description: Flag to enable auto config push
-          enable_site_isolation:
-            type: boolean
-            description: Flag to enable site isolation
-    XiqViqStatusType:
-      type: string
-      enum:
-      - EXPORT
-      - IMPORT
-    XiqVhmSetting:
-      allOf:
-      - $ref: '#/components/schemas/XiqBaseEntity'
-      - type: object
-        properties:
-          id:
-            type: integer
-            description: VHM Setting Id
-            format: int64
-          enable_copilot:
-            type: boolean
-            description: Flag indicating whether Co-Pilot should be enabled (true) or disabled (false).
-          enable_ssh:
-            type: boolean
-            description: Flag indicating Ssh Availability.
-          enable_supplemental_cli:
-            type: boolean
-            description: Flag indicating Supplemental CLI.
-          enable_wireless_onboarding:
-            type: boolean
-            description: Flag indicating AP Out-of-the-box Wireless Onboarding.
-          enable_password_for_exos_voss:
-            type: boolean
-            description: Flag to enable device management settings for Switch Engine (EXOS) / Fabric Engine (VOSS) switches.
-          enable_auto_config_push:
-            type: boolean
-            description: Flag to enable auto config push
-          enable_site_isolation:
-            type: boolean
-            description: Flag to enable site isolation
-    XiqViqExportImportResponse:
-      type: object
-      properties:
-        user_name:
-          type: string
-          description: The user name of the user
-        vhm_id:
-          type: string
-          description: The VIQ ID
-        operation:
-          type: string
-          description: Type of Operation export/import
-        status:
-          type: string
-          description: Status of the request
-        total_finish_percentage:
-          type: integer
-          description: Total finish percentage of the operation
-          format: int64
-        task_progress:
-          type: array
-          description: The tasks list
-          items:
-            $ref: '#/components/schemas/XiqViqTasks'
-        export_file_name:
-          type: string
-          description: The VIQ export report file name
-        log_file:
-          type: string
-          description: The VIQ export log file name
-        export_time:
-          type: integer
-          description: The last exported time
-          format: int64
-    XiqError:
-      type: object
-      properties:
-        error_code:
-          type: string
-          description: The error code
-        error_id:
-          type: string
-          description: The error ID for internal troubleshooting
-        error_message:
-          type: string
-          description: The error detailed message
-        error_message_code:
-          type: string
-          description: The error message code
-        error_message_description:
-          type: string
-          description: The error message description
-        error_params:
-          $ref: '#/components/schemas/XiqErrorParams'
-      required:
-      - error_code
-      - error_id
-      - error_message
-    XiqViqExportReport:
-      type: object
-      description: ExtremeCloud IQ Viq Export data
-      properties:
-        export_status:
-          type: string
-          description: The viq export status
-        export_file_name:
-          type: string
-          description: The viq export report file name
-        log_file_name:
-          type: string
-          description: The viq export log file name
-    XiqThirdPartyApplications:
-      type: object
-      properties:
-        client_id:
-          type: string
-          description: The ID of the application client
-        redirect_url:
-          type: string
-          description: The redirect URL of the application
-        name:
-          type: string
-          description: The name of the application
-        description:
-          type: string
-          description: The description of the application
-        state:
-          type: string
-          description: The state of the application
-    XiqAccountType:
-      type: string
-      description: Account type
-      enum:
-      - INTERNAL
-      - CUSTOMER
-      - HIQ
-      - PARTNER
-    XiqViqTasks:
-      type: object
-      properties:
-        tesk:
-          type: string
-          description: The name of the task
-        finish_percentage:
-          type: integer
-          description: Task finish percentage
-          format: int64
-        detail:
-          type: string
-          description: Details of task
-        status:
-          type: string
-          description: Status of the task
-    PagedBackupGrid:
-      allOf:
-      - $ref: '#/components/schemas/XiqPage'
-      - type: object
-        properties:
-          data:
-            type: array
-            description: The data in the current page
-            items:
-              $ref: '#/components/schemas/XiqBackupGrid'
-    XiqLicenseStatus:
-      type: string
-      description: The VIQ license status
-      enum:
-      - BUY
-      - PLAN
-      - EVAL
-      - EXPIRED
-      - INVALID
-      - MIGRATED
-    XiqLoginResponse:
-      type: object
-      required:
-      - access_token
-      - token_type
-      - expires_in
-      properties:
-        access_token:
-          type: string
-          description: The access token with JWT format issued by ExtremeCloud IQ
-        token_type:
-          type: string
-          description: The type of token, only supports "Bearer" currently
-        expires_in:
-          type: integer
-          format: int32
-          description: The lifetime in seconds of the access token
-    XiqLicenseMode:
-      type: string
-      description: The license mode
-      enum:
-      - BUY
-      - PLANNER
-      - EVAL
-      - MSP
-      - UNKNOWN
     XiqExternalAccount:
       allOf:
       - $ref: '#/components/schemas/XiqBaseEntity'
@@ -959,34 +1013,14 @@ components:
           data_center:
             type: string
             description: The data center to store the VIQ data
-    XiqViq:
-      type: object
-      properties:
-        devices:
-          type: integer
-          description: Total number of all licensed devices
-          format: int32
-        standalone:
-          type: boolean
-          description: Returns true if HIQ is not enabled, otherwise returns false
-        expired:
-          type: boolean
-          description: Whether VIQ is expired
-        customer_id:
-          type: string
-          description: The customer ID, also known as Salesforce customer ID
-        vhm_id:
-          type: string
-          description: The VIQ ID
-        owner_id:
-          type: integer
-          description: The owner account ID
-          format: int64
-        licenses:
-          type: array
-          description: The license list
-          items:
-            $ref: '#/components/schemas/XiqViqLicense'
+    XiqEntitlementType:
+      type: string
+      description: The entitlement key type
+      enum:
+      - EVALUATION
+      - PERMANENT
+      - RENEW
+      - UNKNOWN
     XiqUpdateVhmSettingRequest:
       type: object
       properties:
@@ -1011,40 +1045,6 @@ components:
         enable_site_isolation:
           type: boolean
           description: Flag to enable site isolation
-    XiqAccountMode:
-      type: string
-      description: Account mode
-      enum:
-      - COPILOT
-      - CONNECT
-    XiqErrorParams:
-      type: object
-      description: Error parameters
-      properties:
-        field:
-          type: string
-          description: The error field
-        value:
-          type: string
-          description: The error value
-    XiqEntitlementType:
-      type: string
-      description: The entitlement key type
-      enum:
-      - EVALUATION
-      - PERMANENT
-      - RENEW
-      - UNKNOWN
-    XiqVhmStatus:
-      type: object
-      description: VHM Account Status
-      properties:
-        vhm_name:
-          type: string
-          description: The viq name.
-        current_status:
-          type: string
-          description: The viq current status like ACTIVE_STATUS.
   responses:
     ErrorResponse:
       description: The generic ExtremeCloud IQ API error response

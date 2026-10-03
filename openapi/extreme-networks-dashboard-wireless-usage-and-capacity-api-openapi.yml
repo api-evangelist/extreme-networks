@@ -418,45 +418,6 @@ paths:
       - BearerAuth: []
 components:
   schemas:
-    PagedXiqUsageAndCapacityGridResponse:
-      allOf:
-      - $ref: '#/components/schemas/XiqPage'
-      - type: object
-        properties:
-          data:
-            type: array
-            description: The data in the current page
-            items:
-              $ref: '#/components/schemas/XiqUsageAndCapacityGridResponse'
-    XiqSortOrder:
-      type: string
-      enum:
-      - ASC
-      - DESC
-    XiqWirelessUsageCapacityExcessiveUtilization:
-      type: object
-      properties:
-        total_ap_count:
-          type: integer
-          format: int64
-          description: Total count of APs
-        radio2_dot4g_utilization_issue_ap_count:
-          type: integer
-          format: int64
-          description: Count of APs with utilization issues for 2.4 GHz radio
-        radio5g_utilization_issue_ap_count:
-          type: integer
-          format: int64
-          description: Count of APs with utilization issues for 5 GHz radio
-        radio6g_utilization_issue_ap_count:
-          type: integer
-          format: int64
-          description: Count of APs with utilization issues for 6 GHz radio
-    XiqUsageAndCapacitySortField:
-      type: string
-      title: UsageAndCapacitySortField
-      description: Pre-defined filters for usage and capacity filters - HOSTNAME - SITE - RADIO_2DOT4G_UTILIZATION_SCORE - RADIO_5G_UTILIZATION_SCORE - RADIO_6G_UTILIZATION_SCORE - WIFI0_RETRY_SCORE - WIFI1_RETRY_SCORE - WIFI2_RETRY_SCORE - WIFI0_PACKET_LOSS - WIFI1_PACKET_LOSS - WIFI2_PACKET_LOSS - ETH0_UNICAST_SCORE - ETH0_BROADCAST_SCORE - ETH0_MULTICAST_SCORE - ETH1_UNICAST_SCORE - ETH1_BROADCAST_SCORE - ETH1_MULTICAST_SCORE - WIFI0_INTERFERENCE_SCORE - WIFI1_INTERFERENCE_SCORE - WIFI2_INTERFERENCE_SCORE - WIFI0_NOISE - WIFI1_NOISE - WIFI2_NOISE - TOTAL_ETH0_SCORE - TOTAL_ETH1_SCORE
-      example: HOSTNAME
     XiqError:
       type: object
       properties:
@@ -613,6 +574,69 @@ components:
         has_usage_capacity_issue:
           type: boolean
           description: Indicates if the device has a usage capacity issue
+    XiqUsageAndCapacitySortField:
+      type: string
+      title: UsageAndCapacitySortField
+      description: Pre-defined filters for usage and capacity filters - HOSTNAME - SITE - RADIO_2DOT4G_UTILIZATION_SCORE - RADIO_5G_UTILIZATION_SCORE - RADIO_6G_UTILIZATION_SCORE - WIFI0_RETRY_SCORE - WIFI1_RETRY_SCORE - WIFI2_RETRY_SCORE - WIFI0_PACKET_LOSS - WIFI1_PACKET_LOSS - WIFI2_PACKET_LOSS - ETH0_UNICAST_SCORE - ETH0_BROADCAST_SCORE - ETH0_MULTICAST_SCORE - ETH1_UNICAST_SCORE - ETH1_BROADCAST_SCORE - ETH1_MULTICAST_SCORE - WIFI0_INTERFERENCE_SCORE - WIFI1_INTERFERENCE_SCORE - WIFI2_INTERFERENCE_SCORE - WIFI0_NOISE - WIFI1_NOISE - WIFI2_NOISE - TOTAL_ETH0_SCORE - TOTAL_ETH1_SCORE
+      example: HOSTNAME
+    XiqSortOrder:
+      type: string
+      enum:
+      - ASC
+      - DESC
+    XiqErrorParams:
+      type: object
+      description: Error parameters
+      properties:
+        field:
+          type: string
+          description: The error field
+        value:
+          type: string
+          description: The error value
+    XiqWirelessUsageCapacityExcessiveUtilization:
+      type: object
+      properties:
+        total_ap_count:
+          type: integer
+          format: int64
+          description: Total count of APs
+        radio2_dot4g_utilization_issue_ap_count:
+          type: integer
+          format: int64
+          description: Count of APs with utilization issues for 2.4 GHz radio
+        radio5g_utilization_issue_ap_count:
+          type: integer
+          format: int64
+          description: Count of APs with utilization issues for 5 GHz radio
+        radio6g_utilization_issue_ap_count:
+          type: integer
+          format: int64
+          description: Count of APs with utilization issues for 6 GHz radio
+    XiqPage:
+      required:
+      - count
+      - page
+      - total_count
+      - total_pages
+      type: object
+      properties:
+        page:
+          type: integer
+          description: The current page number
+          format: int32
+        count:
+          type: integer
+          description: The element count of the current page
+          format: int32
+        total_pages:
+          type: integer
+          description: The total page number based on request page size
+          format: int32
+        total_count:
+          type: integer
+          description: The total element count
+          format: int64
     number_filter:
       type: object
       description: If the filter type is between, only then min and max are to be used, else value is to be used.
@@ -645,40 +669,16 @@ components:
           description: The maximum value of the number
           type: integer
           format: int64
-    XiqPage:
-      required:
-      - count
-      - page
-      - total_count
-      - total_pages
-      type: object
-      properties:
-        page:
-          type: integer
-          description: The current page number
-          format: int32
-        count:
-          type: integer
-          description: The element count of the current page
-          format: int32
-        total_pages:
-          type: integer
-          description: The total page number based on request page size
-          format: int32
-        total_count:
-          type: integer
-          description: The total element count
-          format: int64
-    XiqErrorParams:
-      type: object
-      description: Error parameters
-      properties:
-        field:
-          type: string
-          description: The error field
-        value:
-          type: string
-          description: The error value
+    PagedXiqUsageAndCapacityGridResponse:
+      allOf:
+      - $ref: '#/components/schemas/XiqPage'
+      - type: object
+        properties:
+          data:
+            type: array
+            description: The data in the current page
+            items:
+              $ref: '#/components/schemas/XiqUsageAndCapacityGridResponse'
   responses:
     ErrorResponse:
       description: The generic ExtremeCloud IQ API error response

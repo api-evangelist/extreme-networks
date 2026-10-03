@@ -479,28 +479,6 @@ paths:
       - BearerAuth: []
 components:
   schemas:
-    XiqAfcApInterfaceDetails:
-      type: object
-      properties:
-        status:
-          $ref: '#/components/schemas/XiqAfcApStatus'
-        expire:
-          type: integer
-          format: int64
-          description: Timestamp of the next AP channel/power info query (seconds from epoch)
-        received:
-          type: integer
-          format: int64
-          description: Timestamp of the acquired channel/power (seconds from epoch)
-        reason:
-          type: string
-          description: Reason for the current AFC status
-        spectrum:
-          $ref: '#/components/schemas/XiqAfcAvailableSpectrum'
-        band_width:
-          type: integer
-          format: int64
-          description: Bandwidth used by the AP
     XiqAfcMobileappCoordinates:
       allOf:
       - type: object
@@ -520,256 +498,6 @@ components:
           ts:
             type: number
             description: Timestamp of the acquired geolocation (milliseconds from epoch)
-    XiqReportFtmDataRequest:
-      type: object
-      properties:
-        owner_id:
-          type: integer
-          format: int64
-          description: The owner ID
-        ids:
-          type: array
-          description: List of Access Point IDs to request FTM data for
-          items:
-            type: integer
-            format: int64
-      required:
-      - owner_id
-      - ids
-    XiqAfcServersStatistics:
-      allOf:
-      - type: object
-        properties:
-          data:
-            type: array
-            items:
-              $ref: '#/components/schemas/XiqAfcServerStatistics'
-            description: List of AFC server statistics
-    XiqListAfcServers:
-      type: object
-      properties:
-        servers:
-          type: array
-          description: List of AFC servers
-          items:
-            $ref: '#/components/schemas/XiqAfcServer'
-    XiqAfcApStatus:
-      type: string
-      description: Status of AP AFC.
-      enum:
-      - PENDING
-      - GRACE_PERIOD
-      - AVAILABLE
-      - NA
-    XiqAfcGeolocationSummary:
-      allOf:
-      - type: object
-        properties:
-          total_available:
-            type: integer
-            description: Total number of Aps that have reported their geo location.
-          total_unavailable:
-            type: integer
-            description: Total number of Aps that have not reported their geo location.
-    XiqSpectrumMismatchSummary:
-      type: object
-      description: Spectrum Mismatch Summary information
-      properties:
-        total_backup:
-          type: integer
-          description: Total number of APs in backup mode
-        total_radio_off:
-          type: integer
-          description: Total number of APs with radio off
-        total_reduced:
-          type: integer
-          description: Total number of APs with reduced power
-    XiqAfcServerStatistics:
-      allOf:
-      - type: object
-        properties:
-          id:
-            type: integer
-            format: int64
-            description: The unique identifier
-          create_time:
-            type: string
-            format: date-time
-            description: The create time
-          update_time:
-            type: string
-            format: date-time
-            description: The last update time
-          connection_state:
-            type: string
-            description: The connection state of the AFC server
-            enum:
-            - CONNECTED
-            - DISCONNECTED
-            - CONNECTING
-            - ERROR
-          timestamp:
-            type: integer
-            format: int64
-            description: The timestamp of the statistics data point
-    XiqAfcMobileappScanInfo:
-      allOf:
-      - type: object
-        properties:
-          ownerId:
-            type: integer
-            format: int64
-          bssidList:
-            type: array
-            description: Base radio BSSIDs reported by the mobile application scan
-            items:
-              $ref: '#/components/schemas/XiqMacAddress'
-    XiqAfcSiteSchedule:
-      allOf:
-      - type: object
-        properties:
-          ownerId:
-            type: integer
-            format: int64
-          folderId:
-            type: integer
-            format: int64
-            description: Site folder ID, retrievable through device inventory API
-            example: 67890
-          siteTimeZone:
-            type: string
-            description: The timezone identifier for the site location, uses TZ database time zones format
-            example: America/New_York
-          siteSchedule:
-            type: integer
-            format: int64
-            description: The time of day in milliseconds since 00:00:00 (midnight) in the specified timezone when AFC spectrum recalculation should be performed for this site. Default is 0 (midnight) for new outdoor sites.
-            example: 7200000
-          isDefaultSchedule:
-            type: boolean
-    XiqError:
-      type: object
-      properties:
-        error_code:
-          type: string
-          description: The error code
-        error_id:
-          type: string
-          description: The error ID for internal troubleshooting
-        error_message:
-          type: string
-          description: The error detailed message
-        error_message_code:
-          type: string
-          description: The error message code
-        error_message_description:
-          type: string
-          description: The error message description
-        error_params:
-          $ref: '#/components/schemas/XiqErrorParams'
-      required:
-      - error_code
-      - error_id
-      - error_message
-    XiqAfcApDiagnostics:
-      type: object
-      description: AFC AP Diagnostics containing spectrum details
-      properties:
-        afc_spectrum_details:
-          type: string
-          description: AFC spectrum details for the AP diagnostics
-    XiqAfcApsInfoElement:
-      type: object
-      description: AFC APs Information Element containing status summaries
-      properties:
-        total_devices:
-          type: integer
-          description: Total number of AFC supported APs
-        afc_status:
-          $ref: '#/components/schemas/XiqAfcStatusSummary'
-          description: AFC status summary information
-        geo_location:
-          $ref: '#/components/schemas/XiqAfcGeolocationSummary'
-          description: Geolocation summary information
-        spectrum_mismatch:
-          $ref: '#/components/schemas/XiqSpectrumMismatchSummary'
-          description: Spectrum mismatch summary information
-    XiqAfcApManualSpectrum:
-      type: object
-      description: Manual spectrum request for AFC AP devices
-      properties:
-        ids:
-          type: array
-          description: List of AP device IDs for manual spectrum request
-          items:
-            type: integer
-            format: int64
-      required:
-      - ids
-    XiqMobileappAnchorCandidatesResponse:
-      type: object
-      properties:
-        candidates:
-          description: List of AP candidates that may be used as anchors
-          type: array
-          items:
-            $ref: '#/components/schemas/XiqAfcMobileappAnchorCandidate'
-      description: The response for afc mobile app anchor candidates
-    XiqAfcSiteScheduleResponse:
-      allOf:
-      - type: object
-        properties:
-          ownerId:
-            type: integer
-            format: int64
-          folderId:
-            type: integer
-            format: int64
-            description: Site folder ID, retrievable through device inventory API
-            example: 67890
-          siteTimeZone:
-            type: string
-            description: The timezone identifier for the site location, uses TZ database time zones format
-            example: America/New_York
-          siteSchedule:
-            type: integer
-            format: int64
-            description: The time of day in milliseconds since 00:00:00 (midnight) in the specified timezone when AFC spectrum recalculation should be performed for this site. Default is 0 (midnight) for new outdoor sites.
-            example: 7200000
-          default_schedule:
-            type: boolean
-    XiqMacAddress:
-      description: Colon separated MAC address in upper or lower case
-      type: string
-      pattern: ^([0-9A-Fa-f]{2}[:]){5}([0-9A-Fa-f]{2})$
-      example: 18:09:F8:61:6B:C0
-    XiqAfcServerState:
-      type: string
-      description: Status of AFC server connection
-      enum:
-      - CONNECTED
-      - DNS_ERROR
-      - UNREACHABLE
-      - CONNECTION_REFUSED
-      - INVALID_CERT
-      - REVOKED_CERT
-      - NOT_FOUND
-      - HTTP_ERROR
-      - INVALID_RESPONSE
-      - CONNECTION_RESET
-      - READ_TIMEOUT
-      - UNKNOWN_ERROR
-    XiqGetAfcGeolocationFloorReportResponse:
-      type: object
-      description: Response containing AFC floor report data
-      properties:
-        floor_report:
-          type: string
-          description: 'Floor geolocation report data used for AFC (Automated Frequency Coordination) calculations.
-
-            '
-      required:
-      - floor_report
     XiqAfcFloorDetails:
       type: object
       description: AFC Floor Details containing floor and AP height information
@@ -798,20 +526,6 @@ components:
           type: integer
           format: int64
           description: Accuracy of the AP height measurement
-    XiqAfcAvailableSpectrum:
-      type: object
-      properties:
-        request_id:
-          type: string
-          description: serial number of AP
-        available_channel_info:
-          type: array
-          description: Available channel information for this AP
-          items:
-            $ref: '#/components/schemas/XiqAvailableChannelInfo'
-        availability_expire_time:
-          type: string
-          description: Expiration time for the spectrum availability in ISO 8601 format
     XiqAfcMobileappAnchorCandidate:
       allOf:
       - type: object
@@ -849,13 +563,77 @@ components:
           neighbors:
             type: integer
             description: Number of neighboring APs.
-    XiqAfcCoordinatesSource:
+    XiqAfcServerState:
       type: string
-      description: Source of coordinates:<br/> APP - Mobile Application GPS coordinates,<br/> GPS - AP reported GPS coordinates,<br/> GEO - Geolocation Agent derived coordinates<br/>
+      description: Status of AFC server connection
       enum:
-      - APP
-      - GPS
-      - GEO
+      - CONNECTED
+      - DNS_ERROR
+      - UNREACHABLE
+      - CONNECTION_REFUSED
+      - INVALID_CERT
+      - REVOKED_CERT
+      - NOT_FOUND
+      - HTTP_ERROR
+      - INVALID_RESPONSE
+      - CONNECTION_RESET
+      - READ_TIMEOUT
+      - UNKNOWN_ERROR
+    XiqError:
+      type: object
+      properties:
+        error_code:
+          type: string
+          description: The error code
+        error_id:
+          type: string
+          description: The error ID for internal troubleshooting
+        error_message:
+          type: string
+          description: The error detailed message
+        error_message_code:
+          type: string
+          description: The error message code
+        error_message_description:
+          type: string
+          description: The error message description
+        error_params:
+          $ref: '#/components/schemas/XiqErrorParams'
+      required:
+      - error_code
+      - error_id
+      - error_message
+    XiqAfcApStatus:
+      type: string
+      description: Status of AP AFC.
+      enum:
+      - PENDING
+      - GRACE_PERIOD
+      - AVAILABLE
+      - NA
+    XiqAfcSiteScheduleResponse:
+      allOf:
+      - type: object
+        properties:
+          ownerId:
+            type: integer
+            format: int64
+          folderId:
+            type: integer
+            format: int64
+            description: Site folder ID, retrievable through device inventory API
+            example: 67890
+          siteTimeZone:
+            type: string
+            description: The timezone identifier for the site location, uses TZ database time zones format
+            example: America/New_York
+          siteSchedule:
+            type: integer
+            format: int64
+            description: The time of day in milliseconds since 00:00:00 (midnight) in the specified timezone when AFC spectrum recalculation should be performed for this site. Default is 0 (midnight) for new outdoor sites.
+            example: 7200000
+          default_schedule:
+            type: boolean
     XiqAfcStatusSummary:
       type: object
       description: AFC Status Summary information
@@ -869,26 +647,11 @@ components:
         total_grace_period:
           type: integer
           description: Total number of APs in grace period
-    XiqAfcApStatusSummary:
-      allOf:
-      - type: object
-        properties:
-          totalAvailable:
-            type: integer
-          totalPending:
-            type: integer
-          totalGracePeriod:
-            type: integer
-    XiqErrorParams:
-      type: object
-      description: Error parameters
-      properties:
-        field:
-          type: string
-          description: The error field
-        value:
-          type: string
-          description: The error value
+    XiqMacAddress:
+      description: Colon separated MAC address in upper or lower case
+      type: string
+      pattern: ^([0-9A-Fa-f]{2}[:]){5}([0-9A-Fa-f]{2})$
+      example: 18:09:F8:61:6B:C0
     XiqAfcServer:
       type: object
       properties:
@@ -907,6 +670,92 @@ components:
           format: int64
           description: The unique identifier of the AFC server
           example: 2
+    XiqAfcSiteSchedule:
+      allOf:
+      - type: object
+        properties:
+          ownerId:
+            type: integer
+            format: int64
+          folderId:
+            type: integer
+            format: int64
+            description: Site folder ID, retrievable through device inventory API
+            example: 67890
+          siteTimeZone:
+            type: string
+            description: The timezone identifier for the site location, uses TZ database time zones format
+            example: America/New_York
+          siteSchedule:
+            type: integer
+            format: int64
+            description: The time of day in milliseconds since 00:00:00 (midnight) in the specified timezone when AFC spectrum recalculation should be performed for this site. Default is 0 (midnight) for new outdoor sites.
+            example: 7200000
+          isDefaultSchedule:
+            type: boolean
+    XiqAfcApDiagnostics:
+      type: object
+      description: AFC AP Diagnostics containing spectrum details
+      properties:
+        afc_spectrum_details:
+          type: string
+          description: AFC spectrum details for the AP diagnostics
+    XiqGetAfcGeolocationFloorReportResponse:
+      type: object
+      description: Response containing AFC floor report data
+      properties:
+        floor_report:
+          type: string
+          description: 'Floor geolocation report data used for AFC (Automated Frequency Coordination) calculations.
+
+            '
+      required:
+      - floor_report
+    XiqErrorParams:
+      type: object
+      description: Error parameters
+      properties:
+        field:
+          type: string
+          description: The error field
+        value:
+          type: string
+          description: The error value
+    XiqAfcApManualSpectrum:
+      type: object
+      description: Manual spectrum request for AFC AP devices
+      properties:
+        ids:
+          type: array
+          description: List of AP device IDs for manual spectrum request
+          items:
+            type: integer
+            format: int64
+      required:
+      - ids
+    XiqSpectrumMismatchSummary:
+      type: object
+      description: Spectrum Mismatch Summary information
+      properties:
+        total_backup:
+          type: integer
+          description: Total number of APs in backup mode
+        total_radio_off:
+          type: integer
+          description: Total number of APs with radio off
+        total_reduced:
+          type: integer
+          description: Total number of APs with reduced power
+    XiqAfcApStatusSummary:
+      allOf:
+      - type: object
+        properties:
+          totalAvailable:
+            type: integer
+          totalPending:
+            type: integer
+          totalGracePeriod:
+            type: integer
     XiqAvailableChannelInfo:
       type: object
       properties:
@@ -924,14 +773,166 @@ components:
           items:
             type: number
             format: double
-  responses:
-    ErrorResponse:
-      description: The generic ExtremeCloud IQ API error response
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/XiqError'
+    XiqMobileappAnchorCandidatesResponse:
+      type: object
+      properties:
+        candidates:
+          description: List of AP candidates that may be used as anchors
+          type: array
+          items:
+            $ref: '#/components/schemas/XiqAfcMobileappAnchorCandidate'
+      description: The response for afc mobile app anchor candidates
+    XiqListAfcServers:
+      type: object
+      properties:
+        servers:
+          type: array
+          description: List of AFC servers
+          items:
+            $ref: '#/components/schemas/XiqAfcServer'
+    XiqAfcAvailableSpectrum:
+      type: object
+      properties:
+        request_id:
+          type: string
+          description: serial number of AP
+        available_channel_info:
+          type: array
+          description: Available channel information for this AP
+          items:
+            $ref: '#/components/schemas/XiqAvailableChannelInfo'
+        availability_expire_time:
+          type: string
+          description: Expiration time for the spectrum availability in ISO 8601 format
+    XiqAfcApInterfaceDetails:
+      type: object
+      properties:
+        status:
+          $ref: '#/components/schemas/XiqAfcApStatus'
+        expire:
+          type: integer
+          format: int64
+          description: Timestamp of the next AP channel/power info query (seconds from epoch)
+        received:
+          type: integer
+          format: int64
+          description: Timestamp of the acquired channel/power (seconds from epoch)
+        reason:
+          type: string
+          description: Reason for the current AFC status
+        spectrum:
+          $ref: '#/components/schemas/XiqAfcAvailableSpectrum'
+        band_width:
+          type: integer
+          format: int64
+          description: Bandwidth used by the AP
+    XiqReportFtmDataRequest:
+      type: object
+      properties:
+        owner_id:
+          type: integer
+          format: int64
+          description: The owner ID
+        ids:
+          type: array
+          description: List of Access Point IDs to request FTM data for
+          items:
+            type: integer
+            format: int64
+      required:
+      - owner_id
+      - ids
+    XiqAfcMobileappScanInfo:
+      allOf:
+      - type: object
+        properties:
+          ownerId:
+            type: integer
+            format: int64
+          bssidList:
+            type: array
+            description: Base radio BSSIDs reported by the mobile application scan
+            items:
+              $ref: '#/components/schemas/XiqMacAddress'
+    XiqAfcGeolocationSummary:
+      allOf:
+      - type: object
+        properties:
+          total_available:
+            type: integer
+            description: Total number of Aps that have reported their geo location.
+          total_unavailable:
+            type: integer
+            description: Total number of Aps that have not reported their geo location.
+    XiqAfcServersStatistics:
+      allOf:
+      - type: object
+        properties:
+          data:
+            type: array
+            items:
+              $ref: '#/components/schemas/XiqAfcServerStatistics'
+            description: List of AFC server statistics
+    XiqAfcServerStatistics:
+      allOf:
+      - type: object
+        properties:
+          id:
+            type: integer
+            format: int64
+            description: The unique identifier
+          create_time:
+            type: string
+            format: date-time
+            description: The create time
+          update_time:
+            type: string
+            format: date-time
+            description: The last update time
+          connection_state:
+            type: string
+            description: The connection state of the AFC server
+            enum:
+            - CONNECTED
+            - DISCONNECTED
+            - CONNECTING
+            - ERROR
+          timestamp:
+            type: integer
+            format: int64
+            description: The timestamp of the statistics data point
+    XiqAfcApsInfoElement:
+      type: object
+      description: AFC APs Information Element containing status summaries
+      properties:
+        total_devices:
+          type: integer
+          description: Total number of AFC supported APs
+        afc_status:
+          $ref: '#/components/schemas/XiqAfcStatusSummary'
+          description: AFC status summary information
+        geo_location:
+          $ref: '#/components/schemas/XiqAfcGeolocationSummary'
+          description: Geolocation summary information
+        spectrum_mismatch:
+          $ref: '#/components/schemas/XiqSpectrumMismatchSummary'
+          description: Spectrum mismatch summary information
+    XiqAfcCoordinatesSource:
+      type: string
+      description: Source of coordinates:<br/> APP - Mobile Application GPS coordinates,<br/> GPS - AP reported GPS coordinates,<br/> GEO - Geolocation Agent derived coordinates<br/>
+      enum:
+      - APP
+      - GPS
+      - GEO
   parameters:
+    folderId:
+      name: folderId
+      in: query
+      description: The folder id for the location
+      required: true
+      schema:
+        type: integer
+        format: int64
     ownerId:
       name: ownerId
       in: query
@@ -947,14 +948,13 @@ components:
       required: true
       schema:
         type: string
-    folderId:
-      name: folderId
-      in: query
-      description: The folder id for the location
-      required: true
-      schema:
-        type: integer
-        format: int64
+  responses:
+    ErrorResponse:
+      description: The generic ExtremeCloud IQ API error response
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/XiqError'
   securitySchemes:
     BearerAuth:
       type: http

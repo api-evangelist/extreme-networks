@@ -250,391 +250,32 @@ paths:
       - BearerAuth: []
 components:
   schemas:
-    XiqBaseEntity:
-      required:
-      - id
-      - create_time
-      - update_time
+    XiqThreadNat64Service:
       type: object
       properties:
-        id:
-          type: integer
-          description: The unique identifier
-          format: int64
-        create_time:
+        prefix_manager_state:
           type: string
-          description: The create time
-          format: date-time
-        update_time:
+        translator_state:
           type: string
-          description: The last update time
-          format: date-time
-    PagedXiqThreadRouter:
-      allOf:
-      - $ref: '#/components/schemas/XiqPage'
-      - type: object
-        properties:
-          data:
-            type: array
-            description: The data in the current page
-            items:
-              $ref: '#/components/schemas/XiqThreadRouter'
-    XiqLocationLegend:
-      type: object
-      description: The simple location information
-      properties:
-        id:
-          type: integer
-          description: The location ID
-          format: int64
-        name:
+        translator_cidr:
           type: string
-          description: The location name
-    XiqThreadLeaderService:
+      description: The nat64 service on border router
+    XiqThreadNetDataService:
       type: object
       properties:
-        partition_id:
+        enterprise_number:
           type: integer
           format: int64
-        weighting:
-          type: integer
-          format: int32
-        full_network_data_version:
-          type: integer
-          format: int32
-        stable_network_data_version:
-          type: integer
-          format: int32
-      description: The thread leader service
-    XiqThreadMleLinkMode:
-      type: object
-      properties:
-        rx_on_when_idle:
-          type: boolean
-        full_thread_device:
-          type: boolean
-        full_network_data:
-          type: boolean
-      description: The thread MLE Link Mode configuration
-    XiqPage:
-      required:
-      - count
-      - page
-      - total_count
-      - total_pages
-      type: object
-      properties:
-        page:
-          type: integer
-          description: The current page number
-          format: int32
-        count:
-          type: integer
-          description: The element count of the current page
-          format: int32
-        total_pages:
-          type: integer
-          description: The total page number based on request page size
-          format: int32
-        total_count:
-          type: integer
-          description: The total element count
-          format: int64
-    XiqThreadNetworks:
-      type: object
-      properties:
-        networks:
-          type: array
-          items:
-            $ref: '#/components/schemas/XiqThreadNetworkConfig'
-      description: Active thread networks
-    XiqThreadNetworkTopology:
-      type: object
-      properties:
-        neighbors:
-          type: array
-          items:
-            $ref: '#/components/schemas/XiqThreadRouterNeighbor'
-        routers:
-          type: array
-          items:
-            $ref: '#/components/schemas/XiqThreadRouter'
-        clients:
-          type: array
-          items:
-            $ref: '#/components/schemas/XiqClient'
-      description: The thread network topology
-    XiqThreadRouterNeighbor:
-      type: object
-      properties:
-        parent_device_id:
-          type: integer
-          format: int64
-        child_device_id:
-          type: integer
-          format: int64
-        connection_status:
-          type: integer
-          format: int32
-        last_reported_time:
-          type: integer
-          format: int64
-      description: The Thread Router neighbors associate to ExtremeCloud IQ device
-    XiqClientField:
-      type: string
-      enum:
-      - ID
-      - CREATE_TIME
-      - UPDATE_TIME
-      - ORG_ID
-      - ORG_NAME
-      - LOCATION_ID
-      - LOCATIONS
-      - HOSTNAME
-      - MAC_ADDRESS
-      - IP_ADDRESS
-      - IPV6_ADDRESS
-      - OS_TYPE
-      - DEVICE_ID
-      - DEVICE_FUNCTION
-      - DEVICE_NAME
-      - USERNAME
-      - USER_PROFILE_NAME
-      - CONNECTED
-      - ONLINE_TIME
-      - OFFLINE_TIME
-      - VLAN
-      - CONNECTION_TYPE
-      - SSID
-      - PORT
-      - BSSID
-      - PORT_TYPE_NAME
-      - INTERFACE_NAME
-      - AUTH
-      - ENCRYPTION_METHOD
-      - CHANNEL
-      - CLIENT_HEALTH
-      - APPLICATION_HEALTH
-      - NETWORK_HEALTH
-      - RADIO_HEALTH
-      - RSSI
-      - SNR
-      - RADIO_TYPE
-      - WING_AP
-      - VENDOR
-      - MOBILITY
-      - CATEGORY
-      - DESCRIPTION
-      - DEVICE_MAC_ADDRESS
-      - ALIAS
-      - PRODUCT_TYPE
-      - MAKE
-      - OS_VERSION
-      - CONNECTED_TO
-      - CONNECTION_DURATION
-      - CAPTIVE_WEB_PORTAL
-    XiqViqEntity:
-      allOf:
-      - $ref: '#/components/schemas/XiqBaseEntity'
-      - type: object
-        properties:
-          org_id:
-            type: integer
-            description: The organization identifier, valid when enabling HIQ feature
-            format: int64
-        required:
-        - org_id
-    XiqLocationEntity:
-      allOf:
-      - $ref: '#/components/schemas/XiqViqEntity'
-      - type: object
-        properties:
-          location_id:
-            type: integer
-            description: The location identifier
-            format: int64
-        required:
-        - location_id
-    XiqThreadVersion:
-      type: object
-      properties:
-        thread_version:
+        service_data:
           type: string
-        build_version:
+        server_data:
           type: string
-        api_version:
-          type: string
-        rcp_version:
-          type: string
-      description: The thread version
-    XiqThreadNetDataRoute:
-      type: object
-      properties:
-        prefix:
-          type: string
-        nat64:
-          type: boolean
         stable:
           type: boolean
-        route_preference:
-          type: string
         added_by_rloc16:
           type: string
         added_by_ext_mac:
           type: string
-    XiqSortOrder:
-      type: string
-      enum:
-      - ASC
-      - DESC
-    XiqDeviceEntity:
-      allOf:
-      - $ref: '#/components/schemas/XiqLocationEntity'
-      - type: object
-        properties:
-          device_id:
-            type: integer
-            description: The device identifier
-            format: int64
-        required:
-        - device_id
-    XiqError:
-      type: object
-      properties:
-        error_code:
-          type: string
-          description: The error code
-        error_id:
-          type: string
-          description: The error ID for internal troubleshooting
-        error_message:
-          type: string
-          description: The error detailed message
-        error_message_code:
-          type: string
-          description: The error message code
-        error_message_description:
-          type: string
-          description: The error message description
-        error_params:
-          $ref: '#/components/schemas/XiqErrorParams'
-      required:
-      - error_code
-      - error_id
-      - error_message
-    XiqThreadRouter:
-      allOf:
-      - $ref: '#/components/schemas/XiqBaseEntity'
-      - type: object
-        description: The Thread Router associate to ExtremeCloud IQ device
-        properties:
-          id:
-            type: integer
-            description: The unique identifier
-            format: int64
-          create_time:
-            type: string
-            description: The create time
-            format: date-time
-          update_time:
-            type: string
-            description: The last update time
-            format: date-time
-          org_id:
-            type: integer
-            description: The organization identifier, valid when enabling HIQ feature
-            format: int64
-          owner_id:
-            type: integer
-            description: The owner id
-            format: int64
-          device_id:
-            type: integer
-            description: The device unique identifier
-            format: int64
-          serial_number:
-            type: string
-            description: The device serial number
-          eui64:
-            type: string
-            description: The Extended Unique Identifier
-          ext_mac:
-            type: string
-            description: The Extended Mac Address
-          rloc16:
-            type: string
-            description: The router RLOC16
-          global_ipv6:
-            type: string
-            description: The global IPv6 address
-          tx_power:
-            type: integer
-            description: The transmit power
-            format: int32
-          region:
-            type: string
-            description: The device region
-          thread_platform:
-            type: string
-            description: The thread platform
-          device_role:
-            type: string
-            description: The thread device role/state
-          router_interface:
-            $ref: '#/components/schemas/XiqThreadNetworkInterface'
-          veth0:
-            $ref: '#/components/schemas/XiqThreadNetworkInterface'
-          network_data:
-            $ref: '#/components/schemas/XiqThreadNetworkData'
-          thread_mle_link_mode:
-            $ref: '#/components/schemas/XiqThreadMleLinkMode'
-          thread_version:
-            $ref: '#/components/schemas/XiqThreadVersion'
-          leader_service:
-            $ref: '#/components/schemas/XiqThreadLeaderService'
-          border_router_service:
-            $ref: '#/components/schemas/XiqThreadBorderRouterService'
-          backbone_border_router_service:
-            $ref: '#/components/schemas/XiqThreadBackboneBorderRouterService'
-          border_agent_service:
-            $ref: '#/components/schemas/XiqThreadBorderAgentService'
-          commissioner_service:
-            $ref: '#/components/schemas/XiqThreadCommissionerService'
-          nat64_service:
-            $ref: '#/components/schemas/XiqThreadNat64Service'
-          network_config:
-            $ref: '#/components/schemas/XiqThreadNetworkConfig'
-          active_clients:
-            type: integer
-            description: The count of active connected clients
-            format: int32
-          hostname:
-            type: string
-            description: The device hostname
-          last_reported:
-            type: string
-            description: The last reported datetime
-            format: date-time
-          thread_connected:
-            type: boolean
-            description: Is router connected to thread network
-    XiqThreadCommissionerService:
-      type: object
-      properties:
-        state:
-          type: string
-      description: The commissioner service
-    XiqClientView:
-      type: string
-      description: The logic collections of client fields<br/><br/><b>BASIC:</b> ID, ORG_ID, HOSTNAME, MAC_ADDRESS, IP_ADDRESS, IPV6_ADDRESS, OS_TYPE, DEVICE_ID,CONNECTED, ONLINE_TIME, OFFLINE_TIME, CONNECTION_TYPE, SSID, PORT<br/><b>FULL:</b> All fields<br/><b>STATUS:</b> ID, CONNECTED, ONLINE_TIME, OFFLINE_TIME<br/><b>DETAIL:</b> ID, CREATE_TIME, UPDATE_TIME, ORG_ID, ORG_NAME, LOCATION_ID, HOSTNAME, MAC_ADDRESS, IP_ADDRESS, IPV6_ADDRESS, OS_TYPE, DEVICE_ID, DEVICE_FUNCTION, DEVICE_NAME, DEVICE_MAC_ADDRESS, USERNAME, USER_PROFILE_NAME, CONNECTED, ONLINE_TIME, OFFLINE_TIME, VLAN, CONNECTION_TYPE, SSID, PORT, BSSID, PORT_TYPE_NAME, INTERFACE_NAME, AUTH, ENCRYPTION_METHOD, CHANNEL, RSSI, SNR, WING_AP, VENDOR, RADIO_TYPE, ALIAS, MAC_PROTOCOL, MAKE, OS_VERSION, CONNECTED_TO, CONNECTION_DURATION, CAPTIVE_WEB_PORTAL<br/><b>LOCATION:</b> ID, LOCATION_ID, LOCATIONS<br/><b>METRICS:</b> ID, CLIENT_HEALTH, APPLICATION_HEALTH, NETWORK_HEALTH, RADIO_HEALTH<br/><b>IOT:</b> ID, MOBILITY, CATEGORY, DESCRIPTION
-      enum:
-      - BASIC
-      - FULL
-      - STATUS
-      - DETAIL
-      - LOCATION
-      - METRICS
-      - IOT
     XiqThreadNetworkData:
       type: object
       properties:
@@ -657,50 +298,6 @@ components:
           items:
             $ref: '#/components/schemas/XiqThreadNetDataService'
       description: The thread network data
-    XiqThreadRouterField:
-      type: string
-      enum:
-      - DEVICE_ID
-      - SERIAL_NUMBER
-      - EUI64
-      - EXT_MAC
-      - RLOC16
-      - GLOBAL_IPV6
-      - TX_POWER
-      - REGION
-      - THREAD_PLATFORM
-      - DEVICE_ROLE
-      - ROUTER_INTERFACE
-      - VETH0
-      - NETWORK_DATA
-      - THREAD_MLE_LINK_MODE
-      - THREAD_VERSION
-      - LEADER_SERVICE
-      - BORDER_ROUTER_SERVICE
-      - BACKBONE_BORDER_ROUTER_SERVICE
-      - BORDER_AGENT_SERVICE
-      - COMMISSIONER_SERVICE
-      - NAT64_SERVICE
-      - NETWORK_CONFIG
-      - OWNER_ID
-      - ORG_ID
-      - ID
-      - CREATE_TIME
-      - UPDATE_TIME
-      - ACTIVE_CLIENTS
-      - HOSTNAME
-      - LAST_REPORTED
-      - THREAD_CONNECTED
-    XiqThreadNat64Service:
-      type: object
-      properties:
-        prefix_manager_state:
-          type: string
-        translator_state:
-          type: string
-        translator_cidr:
-          type: string
-      description: The nat64 service on border router
     XiqThreadBorderRouterService:
       type: object
       properties:
@@ -725,135 +322,16 @@ components:
         nat64_onlink_favored_preference:
           type: string
       description: The thread border router service
-    XiqThreadRouterView:
-      type: string
-      enum:
-      - BASIC
-      - DETAIL
-      - FULL
-    XiqThreadNetDataService:
+    XiqThreadMleLinkMode:
       type: object
       properties:
-        enterprise_number:
-          type: integer
-          format: int64
-        service_data:
-          type: string
-        server_data:
-          type: string
-        stable:
+        rx_on_when_idle:
           type: boolean
-        added_by_rloc16:
-          type: string
-        added_by_ext_mac:
-          type: string
-    XiqThreadIpv6Setting:
-      type: object
-      properties:
-        address:
-          type: string
-        scope:
-          type: string
-        cast:
-          type: string
-        type:
-          type: string
-      description: The thread client IP addresses
-    XiqThreadNetDataPrefix:
-      type: object
-      properties:
-        prefix:
-          type: string
-        route_preference:
-          type: string
-        added_by_rloc16:
-          type: string
-        added_by_ext_mac:
-          type: string
-        preferred:
+        full_thread_device:
           type: boolean
-        slaac:
+        full_network_data:
           type: boolean
-        dhcp:
-          type: boolean
-        configure:
-          type: boolean
-        default_route:
-          type: boolean
-        on_mesh:
-          type: string
-        stable:
-          type: boolean
-        nd_dns:
-          type: boolean
-        dp:
-          type: boolean
-    XiqThreadNetworkInterface:
-      type: object
-      properties:
-        interface_name:
-          type: string
-        is_active:
-          type: boolean
-        is_broadcast:
-          type: boolean
-        is_loopback:
-          type: boolean
-        is_point_to_point:
-          type: boolean
-        is_running:
-          type: boolean
-        is_arp:
-          type: boolean
-        is_promisc:
-          type: boolean
-        is_all_multi:
-          type: boolean
-        is_multicast:
-          type: boolean
-        is_dynamic:
-          type: boolean
-        mtu:
-          type: integer
-          format: int32
-        hw_mac_address:
-          type: string
-        ipv4:
-          type: string
-        ipv4_mask:
-          type: string
-        ipv4_broadcast:
-          type: string
-        ipv6_settings:
-          type: array
-          items:
-            $ref: '#/components/schemas/XiqThreadIpv6Setting'
-      description: The thread veth0 network interface
-    XiqThreadBackboneBorderRouterService:
-      type: object
-      properties:
-        state:
-          type: string
-      description: The thread backbone border router service
-    XiqThreadBorderAgentService:
-      type: object
-      properties:
-        state:
-          type: string
-        udp_port:
-          type: integer
-          format: int32
-      description: The thread backbone agent service
-    XiqErrorParams:
-      type: object
-      description: Error parameters
-      properties:
-        field:
-          type: string
-          description: The error field
-        value:
-          type: string
-          description: The error value
+      description: The thread MLE Link Mode configuration
     XiqClient:
       allOf:
       - $ref: '#/components/schemas/XiqDeviceEntity'
@@ -1059,6 +537,470 @@ components:
             type: string
             maxLength: 255
             description: The alias of the client
+    XiqThreadBorderAgentService:
+      type: object
+      properties:
+        state:
+          type: string
+        udp_port:
+          type: integer
+          format: int32
+      description: The thread backbone agent service
+    XiqThreadNetworkConfig:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The unique identifier
+          format: int64
+        channel:
+          type: integer
+          description: The network channel
+          format: int32
+        channel_mask:
+          type: string
+          description: The network channel mask
+        ext_pan_id:
+          type: string
+          description: The unique extended pan id
+        mesh_local_prefix:
+          type: string
+          description: The mesh local prefix
+        network_key:
+          type: string
+          description: The thread network key
+        network_name:
+          type: string
+          description: The thread network name
+        pan_id:
+          type: string
+          description: The pan id
+        pskc:
+          type: string
+          description: The Pre-Shared Key for the Commissioner
+        obtain_network_key_enabled:
+          type: boolean
+        native_commissioning_enabled:
+          type: boolean
+        routers_enabled:
+          type: boolean
+        external_commissioning_enabled:
+          type: boolean
+        beacons_enabled:
+          type: boolean
+        commercial_commissioning_enabled:
+          type: boolean
+        autonomous_enrollment_enabled:
+          type: boolean
+        network_key_provisioning_enabled:
+          type: boolean
+        non_ccm_routers_enabled:
+          type: boolean
+        active_timestamp:
+          type: integer
+          format: int32
+      description: The thread network configuration and security policy
+    XiqThreadRouter:
+      allOf:
+      - $ref: '#/components/schemas/XiqBaseEntity'
+      - type: object
+        description: The Thread Router associate to ExtremeCloud IQ device
+        properties:
+          id:
+            type: integer
+            description: The unique identifier
+            format: int64
+          create_time:
+            type: string
+            description: The create time
+            format: date-time
+          update_time:
+            type: string
+            description: The last update time
+            format: date-time
+          org_id:
+            type: integer
+            description: The organization identifier, valid when enabling HIQ feature
+            format: int64
+          owner_id:
+            type: integer
+            description: The owner id
+            format: int64
+          device_id:
+            type: integer
+            description: The device unique identifier
+            format: int64
+          serial_number:
+            type: string
+            description: The device serial number
+          eui64:
+            type: string
+            description: The Extended Unique Identifier
+          ext_mac:
+            type: string
+            description: The Extended Mac Address
+          rloc16:
+            type: string
+            description: The router RLOC16
+          global_ipv6:
+            type: string
+            description: The global IPv6 address
+          tx_power:
+            type: integer
+            description: The transmit power
+            format: int32
+          region:
+            type: string
+            description: The device region
+          thread_platform:
+            type: string
+            description: The thread platform
+          device_role:
+            type: string
+            description: The thread device role/state
+          router_interface:
+            $ref: '#/components/schemas/XiqThreadNetworkInterface'
+          veth0:
+            $ref: '#/components/schemas/XiqThreadNetworkInterface'
+          network_data:
+            $ref: '#/components/schemas/XiqThreadNetworkData'
+          thread_mle_link_mode:
+            $ref: '#/components/schemas/XiqThreadMleLinkMode'
+          thread_version:
+            $ref: '#/components/schemas/XiqThreadVersion'
+          leader_service:
+            $ref: '#/components/schemas/XiqThreadLeaderService'
+          border_router_service:
+            $ref: '#/components/schemas/XiqThreadBorderRouterService'
+          backbone_border_router_service:
+            $ref: '#/components/schemas/XiqThreadBackboneBorderRouterService'
+          border_agent_service:
+            $ref: '#/components/schemas/XiqThreadBorderAgentService'
+          commissioner_service:
+            $ref: '#/components/schemas/XiqThreadCommissionerService'
+          nat64_service:
+            $ref: '#/components/schemas/XiqThreadNat64Service'
+          network_config:
+            $ref: '#/components/schemas/XiqThreadNetworkConfig'
+          active_clients:
+            type: integer
+            description: The count of active connected clients
+            format: int32
+          hostname:
+            type: string
+            description: The device hostname
+          last_reported:
+            type: string
+            description: The last reported datetime
+            format: date-time
+          thread_connected:
+            type: boolean
+            description: Is router connected to thread network
+    XiqThreadRouterNeighbor:
+      type: object
+      properties:
+        parent_device_id:
+          type: integer
+          format: int64
+        child_device_id:
+          type: integer
+          format: int64
+        connection_status:
+          type: integer
+          format: int32
+        last_reported_time:
+          type: integer
+          format: int64
+      description: The Thread Router neighbors associate to ExtremeCloud IQ device
+    XiqViqEntity:
+      allOf:
+      - $ref: '#/components/schemas/XiqBaseEntity'
+      - type: object
+        properties:
+          org_id:
+            type: integer
+            description: The organization identifier, valid when enabling HIQ feature
+            format: int64
+        required:
+        - org_id
+    XiqThreadNetDataPrefix:
+      type: object
+      properties:
+        prefix:
+          type: string
+        route_preference:
+          type: string
+        added_by_rloc16:
+          type: string
+        added_by_ext_mac:
+          type: string
+        preferred:
+          type: boolean
+        slaac:
+          type: boolean
+        dhcp:
+          type: boolean
+        configure:
+          type: boolean
+        default_route:
+          type: boolean
+        on_mesh:
+          type: string
+        stable:
+          type: boolean
+        nd_dns:
+          type: boolean
+        dp:
+          type: boolean
+    XiqThreadLeaderService:
+      type: object
+      properties:
+        partition_id:
+          type: integer
+          format: int64
+        weighting:
+          type: integer
+          format: int32
+        full_network_data_version:
+          type: integer
+          format: int32
+        stable_network_data_version:
+          type: integer
+          format: int32
+      description: The thread leader service
+    XiqError:
+      type: object
+      properties:
+        error_code:
+          type: string
+          description: The error code
+        error_id:
+          type: string
+          description: The error ID for internal troubleshooting
+        error_message:
+          type: string
+          description: The error detailed message
+        error_message_code:
+          type: string
+          description: The error message code
+        error_message_description:
+          type: string
+          description: The error message description
+        error_params:
+          $ref: '#/components/schemas/XiqErrorParams'
+      required:
+      - error_code
+      - error_id
+      - error_message
+    XiqThreadCommissionerService:
+      type: object
+      properties:
+        state:
+          type: string
+      description: The commissioner service
+    XiqDeviceEntity:
+      allOf:
+      - $ref: '#/components/schemas/XiqLocationEntity'
+      - type: object
+        properties:
+          device_id:
+            type: integer
+            description: The device identifier
+            format: int64
+        required:
+        - device_id
+    PagedXiqThreadRouter:
+      allOf:
+      - $ref: '#/components/schemas/XiqPage'
+      - type: object
+        properties:
+          data:
+            type: array
+            description: The data in the current page
+            items:
+              $ref: '#/components/schemas/XiqThreadRouter'
+    XiqThreadRouterField:
+      type: string
+      enum:
+      - DEVICE_ID
+      - SERIAL_NUMBER
+      - EUI64
+      - EXT_MAC
+      - RLOC16
+      - GLOBAL_IPV6
+      - TX_POWER
+      - REGION
+      - THREAD_PLATFORM
+      - DEVICE_ROLE
+      - ROUTER_INTERFACE
+      - VETH0
+      - NETWORK_DATA
+      - THREAD_MLE_LINK_MODE
+      - THREAD_VERSION
+      - LEADER_SERVICE
+      - BORDER_ROUTER_SERVICE
+      - BACKBONE_BORDER_ROUTER_SERVICE
+      - BORDER_AGENT_SERVICE
+      - COMMISSIONER_SERVICE
+      - NAT64_SERVICE
+      - NETWORK_CONFIG
+      - OWNER_ID
+      - ORG_ID
+      - ID
+      - CREATE_TIME
+      - UPDATE_TIME
+      - ACTIVE_CLIENTS
+      - HOSTNAME
+      - LAST_REPORTED
+      - THREAD_CONNECTED
+    XiqThreadNetworks:
+      type: object
+      properties:
+        networks:
+          type: array
+          items:
+            $ref: '#/components/schemas/XiqThreadNetworkConfig'
+      description: Active thread networks
+    XiqThreadNetworkTopology:
+      type: object
+      properties:
+        neighbors:
+          type: array
+          items:
+            $ref: '#/components/schemas/XiqThreadRouterNeighbor'
+        routers:
+          type: array
+          items:
+            $ref: '#/components/schemas/XiqThreadRouter'
+        clients:
+          type: array
+          items:
+            $ref: '#/components/schemas/XiqClient'
+      description: The thread network topology
+    XiqLocationEntity:
+      allOf:
+      - $ref: '#/components/schemas/XiqViqEntity'
+      - type: object
+        properties:
+          location_id:
+            type: integer
+            description: The location identifier
+            format: int64
+        required:
+        - location_id
+    XiqErrorParams:
+      type: object
+      description: Error parameters
+      properties:
+        field:
+          type: string
+          description: The error field
+        value:
+          type: string
+          description: The error value
+    XiqThreadBackboneBorderRouterService:
+      type: object
+      properties:
+        state:
+          type: string
+      description: The thread backbone border router service
+    XiqThreadNetworkInterface:
+      type: object
+      properties:
+        interface_name:
+          type: string
+        is_active:
+          type: boolean
+        is_broadcast:
+          type: boolean
+        is_loopback:
+          type: boolean
+        is_point_to_point:
+          type: boolean
+        is_running:
+          type: boolean
+        is_arp:
+          type: boolean
+        is_promisc:
+          type: boolean
+        is_all_multi:
+          type: boolean
+        is_multicast:
+          type: boolean
+        is_dynamic:
+          type: boolean
+        mtu:
+          type: integer
+          format: int32
+        hw_mac_address:
+          type: string
+        ipv4:
+          type: string
+        ipv4_mask:
+          type: string
+        ipv4_broadcast:
+          type: string
+        ipv6_settings:
+          type: array
+          items:
+            $ref: '#/components/schemas/XiqThreadIpv6Setting'
+      description: The thread veth0 network interface
+    XiqLocationLegend:
+      type: object
+      description: The simple location information
+      properties:
+        id:
+          type: integer
+          description: The location ID
+          format: int64
+        name:
+          type: string
+          description: The location name
+    XiqThreadNetDataRoute:
+      type: object
+      properties:
+        prefix:
+          type: string
+        nat64:
+          type: boolean
+        stable:
+          type: boolean
+        route_preference:
+          type: string
+        added_by_rloc16:
+          type: string
+        added_by_ext_mac:
+          type: string
+    XiqSortOrder:
+      type: string
+      enum:
+      - ASC
+      - DESC
+    XiqBaseEntity:
+      required:
+      - id
+      - create_time
+      - update_time
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The unique identifier
+          format: int64
+        create_time:
+          type: string
+          description: The create time
+          format: date-time
+        update_time:
+          type: string
+          description: The last update time
+          format: date-time
+    XiqThreadRouterView:
+      type: string
+      enum:
+      - BASIC
+      - DETAIL
+      - FULL
     ThreadRouterSortField:
       type: string
       description: All available thread router sort fields
@@ -1135,60 +1077,118 @@ components:
       - NAT64_TRANSLATOR_STATE
       - NAT64_TRANSLATOR_CIDR
       - HOSTNAME
-    XiqThreadNetworkConfig:
+    XiqPage:
+      required:
+      - count
+      - page
+      - total_count
+      - total_pages
       type: object
       properties:
-        id:
+        page:
           type: integer
-          description: The unique identifier
+          description: The current page number
+          format: int32
+        count:
+          type: integer
+          description: The element count of the current page
+          format: int32
+        total_pages:
+          type: integer
+          description: The total page number based on request page size
+          format: int32
+        total_count:
+          type: integer
+          description: The total element count
           format: int64
-        channel:
-          type: integer
-          description: The network channel
-          format: int32
-        channel_mask:
+    XiqThreadVersion:
+      type: object
+      properties:
+        thread_version:
           type: string
-          description: The network channel mask
-        ext_pan_id:
+        build_version:
           type: string
-          description: The unique extended pan id
-        mesh_local_prefix:
+        api_version:
           type: string
-          description: The mesh local prefix
-        network_key:
+        rcp_version:
           type: string
-          description: The thread network key
-        network_name:
+      description: The thread version
+    XiqClientView:
+      type: string
+      description: The logic collections of client fields<br/><br/><b>BASIC:</b> ID, ORG_ID, HOSTNAME, MAC_ADDRESS, IP_ADDRESS, IPV6_ADDRESS, OS_TYPE, DEVICE_ID,CONNECTED, ONLINE_TIME, OFFLINE_TIME, CONNECTION_TYPE, SSID, PORT<br/><b>FULL:</b> All fields<br/><b>STATUS:</b> ID, CONNECTED, ONLINE_TIME, OFFLINE_TIME<br/><b>DETAIL:</b> ID, CREATE_TIME, UPDATE_TIME, ORG_ID, ORG_NAME, LOCATION_ID, HOSTNAME, MAC_ADDRESS, IP_ADDRESS, IPV6_ADDRESS, OS_TYPE, DEVICE_ID, DEVICE_FUNCTION, DEVICE_NAME, DEVICE_MAC_ADDRESS, USERNAME, USER_PROFILE_NAME, CONNECTED, ONLINE_TIME, OFFLINE_TIME, VLAN, CONNECTION_TYPE, SSID, PORT, BSSID, PORT_TYPE_NAME, INTERFACE_NAME, AUTH, ENCRYPTION_METHOD, CHANNEL, RSSI, SNR, WING_AP, VENDOR, RADIO_TYPE, ALIAS, MAC_PROTOCOL, MAKE, OS_VERSION, CONNECTED_TO, CONNECTION_DURATION, CAPTIVE_WEB_PORTAL<br/><b>LOCATION:</b> ID, LOCATION_ID, LOCATIONS<br/><b>METRICS:</b> ID, CLIENT_HEALTH, APPLICATION_HEALTH, NETWORK_HEALTH, RADIO_HEALTH<br/><b>IOT:</b> ID, MOBILITY, CATEGORY, DESCRIPTION
+      enum:
+      - BASIC
+      - FULL
+      - STATUS
+      - DETAIL
+      - LOCATION
+      - METRICS
+      - IOT
+    XiqClientField:
+      type: string
+      enum:
+      - ID
+      - CREATE_TIME
+      - UPDATE_TIME
+      - ORG_ID
+      - ORG_NAME
+      - LOCATION_ID
+      - LOCATIONS
+      - HOSTNAME
+      - MAC_ADDRESS
+      - IP_ADDRESS
+      - IPV6_ADDRESS
+      - OS_TYPE
+      - DEVICE_ID
+      - DEVICE_FUNCTION
+      - DEVICE_NAME
+      - USERNAME
+      - USER_PROFILE_NAME
+      - CONNECTED
+      - ONLINE_TIME
+      - OFFLINE_TIME
+      - VLAN
+      - CONNECTION_TYPE
+      - SSID
+      - PORT
+      - BSSID
+      - PORT_TYPE_NAME
+      - INTERFACE_NAME
+      - AUTH
+      - ENCRYPTION_METHOD
+      - CHANNEL
+      - CLIENT_HEALTH
+      - APPLICATION_HEALTH
+      - NETWORK_HEALTH
+      - RADIO_HEALTH
+      - RSSI
+      - SNR
+      - RADIO_TYPE
+      - WING_AP
+      - VENDOR
+      - MOBILITY
+      - CATEGORY
+      - DESCRIPTION
+      - DEVICE_MAC_ADDRESS
+      - ALIAS
+      - PRODUCT_TYPE
+      - MAKE
+      - OS_VERSION
+      - CONNECTED_TO
+      - CONNECTION_DURATION
+      - CAPTIVE_WEB_PORTAL
+    XiqThreadIpv6Setting:
+      type: object
+      properties:
+        address:
           type: string
-          description: The thread network name
-        pan_id:
+        scope:
           type: string
-          description: The pan id
-        pskc:
+        cast:
           type: string
-          description: The Pre-Shared Key for the Commissioner
-        obtain_network_key_enabled:
-          type: boolean
-        native_commissioning_enabled:
-          type: boolean
-        routers_enabled:
-          type: boolean
-        external_commissioning_enabled:
-          type: boolean
-        beacons_enabled:
-          type: boolean
-        commercial_commissioning_enabled:
-          type: boolean
-        autonomous_enrollment_enabled:
-          type: boolean
-        network_key_provisioning_enabled:
-          type: boolean
-        non_ccm_routers_enabled:
-          type: boolean
-        active_timestamp:
-          type: integer
-          format: int32
-      description: The thread network configuration and security policy
+        type:
+          type: string
+      description: The thread client IP addresses
   responses:
     ErrorResponse:
       description: The generic ExtremeCloud IQ API error response

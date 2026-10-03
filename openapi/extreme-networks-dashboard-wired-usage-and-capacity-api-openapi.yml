@@ -192,25 +192,6 @@ paths:
       - BearerAuth: []
 components:
   schemas:
-    XiqSortOrder:
-      type: string
-      enum:
-      - ASC
-      - DESC
-    PagedXiqWiredUsageCapacityGridResponse:
-      allOf:
-      - $ref: '#/components/schemas/XiqPage'
-      - type: object
-        properties:
-          data:
-            type: array
-            description: The data in the current page
-            items:
-              $ref: '#/components/schemas/XiqWiredUsageCapacityGridResponse'
-    XiqWiredUsageCapacityFilter:
-      description: The filters available for usage and capacity grid
-      enum:
-      - TOTAL_QUEUE_CONGESTION_PKTS
     XiqError:
       type: object
       properties:
@@ -235,37 +216,30 @@ components:
       - error_code
       - error_id
       - error_message
-    XiqWiredUsageCapacityUsageUtilization:
+    XiqWiredUsageCapacityCongestion:
       type: object
       properties:
-        total_bandwidth_utilized:
+        total_queue_tx_packets:
           type: integer
           format: int64
-          description: Total utilized bandwidth in Bytes
-    XiqPage:
-      required:
-      - count
-      - page
-      - total_count
-      - total_pages
-      type: object
-      properties:
-        page:
+          description: Total number of transmitted packets on all QOS queues
+        total_queue_congestion_packets:
           type: integer
-          description: The current page number
-          format: int32
-        count:
-          type: integer
-          description: The element count of the current page
-          format: int32
-        total_pages:
-          type: integer
-          description: The total page number based on request page size
-          format: int32
-        total_count:
-          type: integer
-          description: The total element count
           format: int64
+          description: Total number of packets dropped due to congestion on all QOS queues
+        total_congestion_percentage:
+          type: integer
+          format: int64
+          description: Percentage of packets dropped due to congestion vs total number of transmitted packets on all QOS queues
+    XiqSortOrder:
+      type: string
+      enum:
+      - ASC
+      - DESC
+    XiqWiredUsageCapacityFilter:
+      description: The filters available for usage and capacity grid
+      enum:
+      - TOTAL_QUEUE_CONGESTION_PKTS
     XiqWiredUsageCapacityGridResponse:
       type: object
       properties:
@@ -335,6 +309,57 @@ components:
           type: integer
           format: int64
           description: Total number of unicast, multicast and broadcast packets
+    XiqErrorParams:
+      type: object
+      description: Error parameters
+      properties:
+        field:
+          type: string
+          description: The error field
+        value:
+          type: string
+          description: The error value
+    XiqPage:
+      required:
+      - count
+      - page
+      - total_count
+      - total_pages
+      type: object
+      properties:
+        page:
+          type: integer
+          description: The current page number
+          format: int32
+        count:
+          type: integer
+          description: The element count of the current page
+          format: int32
+        total_pages:
+          type: integer
+          description: The total page number based on request page size
+          format: int32
+        total_count:
+          type: integer
+          description: The total element count
+          format: int64
+    PagedXiqWiredUsageCapacityGridResponse:
+      allOf:
+      - $ref: '#/components/schemas/XiqPage'
+      - type: object
+        properties:
+          data:
+            type: array
+            description: The data in the current page
+            items:
+              $ref: '#/components/schemas/XiqWiredUsageCapacityGridResponse'
+    XiqWiredUsageCapacityUsageUtilization:
+      type: object
+      properties:
+        total_bandwidth_utilized:
+          type: integer
+          format: int64
+          description: Total utilized bandwidth in Bytes
     XiqWiredUsageCapacityThroughput:
       type: object
       properties:
@@ -354,31 +379,6 @@ components:
           type: integer
           format: int32
           description: Percentage of broadcast packets from total number of packets
-    XiqWiredUsageCapacityCongestion:
-      type: object
-      properties:
-        total_queue_tx_packets:
-          type: integer
-          format: int64
-          description: Total number of transmitted packets on all QOS queues
-        total_queue_congestion_packets:
-          type: integer
-          format: int64
-          description: Total number of packets dropped due to congestion on all QOS queues
-        total_congestion_percentage:
-          type: integer
-          format: int64
-          description: Percentage of packets dropped due to congestion vs total number of transmitted packets on all QOS queues
-    XiqErrorParams:
-      type: object
-      description: Error parameters
-      properties:
-        field:
-          type: string
-          description: The error field
-        value:
-          type: string
-          description: The error value
     XiqWiredUsageCapacitySortField:
       type: string
       title: WiredUsageAndCapacitySortField
@@ -392,6 +392,16 @@ components:
           schema:
             $ref: '#/components/schemas/XiqError'
   parameters:
+    page:
+      name: page
+      in: query
+      description: Page number, min = 1
+      required: false
+      schema:
+        minimum: 1
+        type: integer
+        format: int32
+        default: 1
     limit:
       name: limit
       in: query
@@ -403,16 +413,6 @@ components:
         type: integer
         format: int32
         default: 10
-    page:
-      name: page
-      in: query
-      description: Page number, min = 1
-      required: false
-      schema:
-        minimum: 1
-        type: integer
-        format: int32
-        default: 1
   securitySchemes:
     BearerAuth:
       type: http

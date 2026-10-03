@@ -220,6 +220,103 @@ paths:
       - BearerAuth: []
 components:
   schemas:
+    XiqCreateCertBundleRequest:
+      type: object
+      description: The payload to create a new Certificate Bundle.
+      required:
+      - name
+      - bundle_type
+      properties:
+        name:
+          type: string
+          description: The Certificate Bundle name.
+        description:
+          type: string
+          description: The Certificate Bundle description.
+        bundle_type:
+          $ref: '#/components/schemas/XiqCertBundleType'
+        certificate_ids:
+          type: array
+          description: Collection of Certificate IDs.
+          items:
+            type: integer
+            format: int64
+    PagedXiqCertificateBundle:
+      allOf:
+      - $ref: '#/components/schemas/XiqPage'
+      - type: object
+        properties:
+          data:
+            type: array
+            description: The data in the current page
+            items:
+              $ref: '#/components/schemas/XiqCertificateBundle'
+    XiqCertificateType:
+      type: string
+      enum:
+      - CERT
+      - KEY
+      - CA
+    XiqViqEntity:
+      allOf:
+      - $ref: '#/components/schemas/XiqBaseEntity'
+      - type: object
+        properties:
+          org_id:
+            type: integer
+            description: The organization identifier, valid when enabling HIQ feature
+            format: int64
+        required:
+        - org_id
+    XiqError:
+      type: object
+      properties:
+        error_code:
+          type: string
+          description: The error code
+        error_id:
+          type: string
+          description: The error ID for internal troubleshooting
+        error_message:
+          type: string
+          description: The error detailed message
+        error_message_code:
+          type: string
+          description: The error message code
+        error_message_description:
+          type: string
+          description: The error message description
+        error_params:
+          $ref: '#/components/schemas/XiqErrorParams'
+      required:
+      - error_code
+      - error_id
+      - error_message
+    XiqCertBundleType:
+      type: string
+      description: The type of Certificate Bundle.
+      enum:
+      - TRUST_POINT
+    PagedXiqCertificate:
+      allOf:
+      - $ref: '#/components/schemas/XiqPage'
+      - type: object
+        properties:
+          data:
+            type: array
+            description: The data in the current page
+            items:
+              $ref: '#/components/schemas/XiqCertificate'
+    XiqErrorParams:
+      type: object
+      description: Error parameters
+      properties:
+        field:
+          type: string
+          description: The error field
+        value:
+          type: string
+          description: The error value
     XiqCertConvertOptionType:
       type: string
       description: The Certificate convert option, required when the convert option type is 'KEY'.
@@ -269,95 +366,6 @@ components:
           type: integer
           description: The total element count
           format: int64
-    XiqCertificate:
-      allOf:
-      - $ref: '#/components/schemas/XiqBaseEntity'
-      - type: object
-        description: The certificate
-        required:
-        - name
-        properties:
-          name:
-            type: string
-            description: The certificate file name
-          cert_type:
-            $ref: '#/components/schemas/XiqCertificateType'
-    XiqViqEntity:
-      allOf:
-      - $ref: '#/components/schemas/XiqBaseEntity'
-      - type: object
-        properties:
-          org_id:
-            type: integer
-            description: The organization identifier, valid when enabling HIQ feature
-            format: int64
-        required:
-        - org_id
-    XiqError:
-      type: object
-      properties:
-        error_code:
-          type: string
-          description: The error code
-        error_id:
-          type: string
-          description: The error ID for internal troubleshooting
-        error_message:
-          type: string
-          description: The error detailed message
-        error_message_code:
-          type: string
-          description: The error message code
-        error_message_description:
-          type: string
-          description: The error message description
-        error_params:
-          $ref: '#/components/schemas/XiqErrorParams'
-      required:
-      - error_code
-      - error_id
-      - error_message
-    PagedXiqCertificateBundle:
-      allOf:
-      - $ref: '#/components/schemas/XiqPage'
-      - type: object
-        properties:
-          data:
-            type: array
-            description: The data in the current page
-            items:
-              $ref: '#/components/schemas/XiqCertificateBundle'
-    PagedXiqCertificate:
-      allOf:
-      - $ref: '#/components/schemas/XiqPage'
-      - type: object
-        properties:
-          data:
-            type: array
-            description: The data in the current page
-            items:
-              $ref: '#/components/schemas/XiqCertificate'
-    XiqCreateCertBundleRequest:
-      type: object
-      description: The payload to create a new Certificate Bundle.
-      required:
-      - name
-      - bundle_type
-      properties:
-        name:
-          type: string
-          description: The Certificate Bundle name.
-        description:
-          type: string
-          description: The Certificate Bundle description.
-        bundle_type:
-          $ref: '#/components/schemas/XiqCertBundleType'
-        certificate_ids:
-          type: array
-          description: Collection of Certificate IDs.
-          items:
-            type: integer
-            format: int64
     XiqCertificateBundle:
       allOf:
       - $ref: '#/components/schemas/XiqViqEntity'
@@ -373,11 +381,6 @@ components:
             description: Certificate Bundles certificates.
             items:
               $ref: '#/components/schemas/XiqCertificate'
-    XiqCertBundleType:
-      type: string
-      description: The type of Certificate Bundle.
-      enum:
-      - TRUST_POINT
     XiqImportCertRequest:
       type: object
       description: The payload to import a certificate.
@@ -409,6 +412,19 @@ components:
         der_password:
           type: string
           description: The DER password, required when the convert option type is 'KEY'.
+    XiqCertificate:
+      allOf:
+      - $ref: '#/components/schemas/XiqBaseEntity'
+      - type: object
+        description: The certificate
+        required:
+        - name
+        properties:
+          name:
+            type: string
+            description: The certificate file name
+          cert_type:
+            $ref: '#/components/schemas/XiqCertificateType'
     XiqUpdateCertBundleRequest:
       type: object
       description: The payload to update a Certificate Bundle.
@@ -427,29 +443,6 @@ components:
           items:
             type: integer
             format: int64
-    XiqCertificateType:
-      type: string
-      enum:
-      - CERT
-      - KEY
-      - CA
-    XiqErrorParams:
-      type: object
-      description: Error parameters
-      properties:
-        field:
-          type: string
-          description: The error field
-        value:
-          type: string
-          description: The error value
-  responses:
-    ErrorResponse:
-      description: The generic ExtremeCloud IQ API error response
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/XiqError'
   parameters:
     limit:
       name: limit
@@ -462,14 +455,6 @@ components:
         type: integer
         format: int32
         default: 10
-    id:
-      name: id
-      in: path
-      description: The unique identifier
-      required: true
-      schema:
-        type: integer
-        format: int64
     page:
       name: page
       in: query
@@ -480,6 +465,21 @@ components:
         type: integer
         format: int32
         default: 1
+    id:
+      name: id
+      in: path
+      description: The unique identifier
+      required: true
+      schema:
+        type: integer
+        format: int64
+  responses:
+    ErrorResponse:
+      description: The generic ExtremeCloud IQ API error response
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/XiqError'
   securitySchemes:
     BearerAuth:
       type: http

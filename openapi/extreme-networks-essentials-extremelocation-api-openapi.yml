@@ -47,22 +47,6 @@ paths:
       - BearerAuth: []
 components:
   schemas:
-    XiqEssentialsElocClientLastknownLocation:
-      type: object
-      description: The client's last known location on the floor plan
-      properties:
-        timestamp:
-          type: string
-          description: The located client's last known timestamp in format of date, time and abbreviated timezone
-          format: date-time
-        x:
-          type: number
-          description: The located client's last known horizontal value on the floor plan
-          format: double
-        y:
-          type: number
-          description: The located client's last known vertical value on the floor plan
-          format: double
     XiqError:
       type: object
       properties:
@@ -87,6 +71,22 @@ components:
       - error_code
       - error_id
       - error_message
+    XiqEssentialsElocClientLastknownLocation:
+      type: object
+      description: The client's last known location on the floor plan
+      properties:
+        timestamp:
+          type: string
+          description: The located client's last known timestamp in format of date, time and abbreviated timezone
+          format: date-time
+        x:
+          type: number
+          description: The located client's last known horizontal value on the floor plan
+          format: double
+        y:
+          type: number
+          description: The located client's last known vertical value on the floor plan
+          format: double
     XiqErrorParams:
       type: object
       description: Error parameters
@@ -105,6 +105,13 @@ components:
           schema:
             $ref: '#/components/schemas/XiqError'
   parameters:
+    floorId:
+      in: query
+      description: The location ID of the floor
+      name: floorId
+      required: true
+      schema:
+        type: string
     mac:
       name: clientMac
       in: path
@@ -116,13 +123,6 @@ components:
       in: query
       description: The location ID of the floor's parent
       name: parentId
-      required: true
-      schema:
-        type: string
-    floorId:
-      in: query
-      description: The location ID of the floor
-      name: floorId
       required: true
       schema:
         type: string

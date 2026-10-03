@@ -450,22 +450,6 @@ paths:
       - BearerAuth: []
 components:
   schemas:
-    XiqSortOrder:
-      type: string
-      enum:
-      - ASC
-      - DESC
-    XiqWirelessDeviceHealthSummary:
-      type: object
-      properties:
-        wireless_devices:
-          type: integer
-          format: int64
-          description: Total count of devices
-        wireless_unhealthy_devices:
-          type: integer
-          format: int64
-          description: Total count of unhealthy devices
     XiqError:
       type: object
       properties:
@@ -490,6 +474,69 @@ components:
       - error_code
       - error_id
       - error_message
+    XiqWirelessDeviceHealthCpuUsageIssues:
+      type: object
+      properties:
+        cpu_usage_issue_device_count:
+          type: integer
+          format: int64
+          description: Count of devices with CPU usage issues.
+    XiqSortOrder:
+      type: string
+      enum:
+      - ASC
+      - DESC
+    XiqWirelessDeviceHealthPoEUsageIssues:
+      type: object
+      properties:
+        poe_usage_issue_device_count:
+          type: integer
+          format: int64
+          description: Count of devices with PoE usage issues.
+    PagedXiqDeviceHealthGridResponse:
+      allOf:
+      - $ref: '#/components/schemas/XiqPage'
+      - type: object
+        properties:
+          data:
+            type: array
+            description: The data in the current page
+            items:
+              $ref: '#/components/schemas/XiqDeviceHealthGridResponse'
+    XiqDeviceHealthGridSortField:
+      type: string
+      title: XiqDeviceHealthGridSortField
+      description: Pre-defined filters for device health filters - HOSTNAME - SITE - CPU_USAGE_PERCENTAGE - MEMORY_USAGE_PERCENTAGE - TOTAL_ETH0_SCORE - TOTAL_ETH1_SCORE
+      example: HOSTNAME
+    PagedXiqDeviceRebootSummaryResponse:
+      allOf:
+      - $ref: '#/components/schemas/XiqPage'
+      - type: object
+        description: The response body of wireless device reboot summary.
+        properties:
+          data:
+            type: array
+            description: The data in the current page
+            items:
+              type: object
+              properties:
+                date_time:
+                  description: The timestamp of the device reboot.
+                  type: string
+                  format: date-time
+                description:
+                  description: The reason for the device reboot.
+                  type: string
+    XiqErrorParams:
+      type: object
+      description: Error parameters
+      properties:
+        field:
+          type: string
+          description: The error field
+        value:
+          type: string
+          description: The error value
     XiqPage:
       required:
       - count
@@ -514,6 +561,56 @@ components:
           type: integer
           description: The total element count
           format: int64
+    number_filter:
+      type: object
+      description: If the filter type is between, only then min and max are to be used, else value is to be used.
+      properties:
+        column_name:
+          description: The name of the column being filtered
+          type: string
+        filter_type:
+          description: The type of number filter
+          type: string
+          enum:
+          - eq
+          - neq
+          - gt
+          - gte
+          - lt
+          - lte
+          - bw
+          - blank
+          - notblank
+        value:
+          description: The value of the number
+          type: integer
+          format: int64
+        min:
+          description: The minimum value of the number
+          type: integer
+          format: int64
+        max:
+          description: The maximum value of the number
+          type: integer
+          format: int64
+    XiqWirelessDeviceHealthMemoryUsageIssues:
+      type: object
+      properties:
+        memory_usage_issue_device_count:
+          type: integer
+          format: int64
+          description: Count of devices with Memory usage issues.
+    XiqWirelessDeviceHealthSummary:
+      type: object
+      properties:
+        wireless_devices:
+          type: integer
+          format: int64
+          description: Total count of devices
+        wireless_unhealthy_devices:
+          type: integer
+          format: int64
+          description: Total count of unhealthy devices
     XiqDeviceHealthGridResponse:
       type: object
       properties:
@@ -582,103 +679,6 @@ components:
         has_device_health_issue:
           type: boolean
           description: Indicates where the device has a device health issue
-    number_filter:
-      type: object
-      description: If the filter type is between, only then min and max are to be used, else value is to be used.
-      properties:
-        column_name:
-          description: The name of the column being filtered
-          type: string
-        filter_type:
-          description: The type of number filter
-          type: string
-          enum:
-          - eq
-          - neq
-          - gt
-          - gte
-          - lt
-          - lte
-          - bw
-          - blank
-          - notblank
-        value:
-          description: The value of the number
-          type: integer
-          format: int64
-        min:
-          description: The minimum value of the number
-          type: integer
-          format: int64
-        max:
-          description: The maximum value of the number
-          type: integer
-          format: int64
-    PagedXiqDeviceRebootSummaryResponse:
-      allOf:
-      - $ref: '#/components/schemas/XiqPage'
-      - type: object
-        description: The response body of wireless device reboot summary.
-        properties:
-          data:
-            type: array
-            description: The data in the current page
-            items:
-              type: object
-              properties:
-                date_time:
-                  description: The timestamp of the device reboot.
-                  type: string
-                  format: date-time
-                description:
-                  description: The reason for the device reboot.
-                  type: string
-    XiqWirelessDeviceHealthMemoryUsageIssues:
-      type: object
-      properties:
-        memory_usage_issue_device_count:
-          type: integer
-          format: int64
-          description: Count of devices with Memory usage issues.
-    XiqDeviceHealthGridSortField:
-      type: string
-      title: XiqDeviceHealthGridSortField
-      description: Pre-defined filters for device health filters - HOSTNAME - SITE - CPU_USAGE_PERCENTAGE - MEMORY_USAGE_PERCENTAGE - TOTAL_ETH0_SCORE - TOTAL_ETH1_SCORE
-      example: HOSTNAME
-    XiqErrorParams:
-      type: object
-      description: Error parameters
-      properties:
-        field:
-          type: string
-          description: The error field
-        value:
-          type: string
-          description: The error value
-    XiqWirelessDeviceHealthCpuUsageIssues:
-      type: object
-      properties:
-        cpu_usage_issue_device_count:
-          type: integer
-          format: int64
-          description: Count of devices with CPU usage issues.
-    XiqWirelessDeviceHealthPoEUsageIssues:
-      type: object
-      properties:
-        poe_usage_issue_device_count:
-          type: integer
-          format: int64
-          description: Count of devices with PoE usage issues.
-    PagedXiqDeviceHealthGridResponse:
-      allOf:
-      - $ref: '#/components/schemas/XiqPage'
-      - type: object
-        properties:
-          data:
-            type: array
-            description: The data in the current page
-            items:
-              $ref: '#/components/schemas/XiqDeviceHealthGridResponse'
   responses:
     ErrorResponse:
       description: The generic ExtremeCloud IQ API error response

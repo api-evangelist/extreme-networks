@@ -157,46 +157,6 @@ paths:
       - BearerAuth: []
 components:
   schemas:
-    NetworkOverallHealth:
-      type: object
-      description: The network health score over the period
-      properties:
-        overall_score:
-          type: integer
-          description: The overall health score
-          format: int32
-        internet_availability_score:
-          type: integer
-          description: The overall network health score
-          format: int64
-        average_internet_latency:
-          type: integer
-          description: The internet performance value in milli-seconds
-          format: int64
-        network_usage:
-          type: integer
-          description: The network usage value in MB
-          format: int64
-    WiFiOverallHealth:
-      type: object
-      description: The clients health score over the period
-      properties:
-        overall_score:
-          type: integer
-          description: The overall health score
-          format: int32
-        snr_health_score:
-          type: integer
-          description: The health score of snr
-          format: int32
-        utilization_health_score:
-          type: integer
-          description: The health score of utilization
-          format: int32
-        association_health_score:
-          type: integer
-          description: The health score of association
-          format: int32
     XiqError:
       type: object
       properties:
@@ -261,16 +221,6 @@ components:
           type: integer
           description: The config and firmware score
           format: int32
-    XiqErrorParams:
-      type: object
-      description: Error parameters
-      properties:
-        field:
-          type: string
-          description: The error field
-        value:
-          type: string
-          description: The error value
     ClientOverallHealth:
       type: object
       description: The clients health score over the period
@@ -291,11 +241,68 @@ components:
           type: integer
           description: The health score of application
           format: int32
+    XiqErrorParams:
+      type: object
+      description: Error parameters
+      properties:
+        field:
+          type: string
+          description: The error field
+        value:
+          type: string
+          description: The error value
+    WiFiOverallHealth:
+      type: object
+      description: The clients health score over the period
+      properties:
+        overall_score:
+          type: integer
+          description: The overall health score
+          format: int32
+        snr_health_score:
+          type: integer
+          description: The health score of snr
+          format: int32
+        utilization_health_score:
+          type: integer
+          description: The health score of utilization
+          format: int32
+        association_health_score:
+          type: integer
+          description: The health score of association
+          format: int32
+    NetworkOverallHealth:
+      type: object
+      description: The network health score over the period
+      properties:
+        overall_score:
+          type: integer
+          description: The overall health score
+          format: int32
+        internet_availability_score:
+          type: integer
+          description: The overall network health score
+          format: int64
+        average_internet_latency:
+          type: integer
+          description: The internet performance value in milli-seconds
+          format: int64
+        network_usage:
+          type: integer
+          description: The network usage value in MB
+          format: int64
+  responses:
+    ErrorResponse:
+      description: The generic ExtremeCloud IQ API error response
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/XiqError'
   parameters:
-    startTime:
-      name: startTime
+    endTime:
+      name: endTime
       in: query
-      description: The start time to query, epoch time in milliseconds since 1/1/1970
+      description: The end time to query, epoch time in milliseconds since 1/1/1970
       required: true
       schema:
         type: integer
@@ -308,21 +315,14 @@ components:
       schema:
         type: integer
         format: int64
-    endTime:
-      name: endTime
+    startTime:
+      name: startTime
       in: query
-      description: The end time to query, epoch time in milliseconds since 1/1/1970
+      description: The start time to query, epoch time in milliseconds since 1/1/1970
       required: true
       schema:
         type: integer
         format: int64
-  responses:
-    ErrorResponse:
-      description: The generic ExtremeCloud IQ API error response
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/XiqError'
   securitySchemes:
     BearerAuth:
       type: http

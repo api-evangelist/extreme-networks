@@ -93,45 +93,6 @@ paths:
       - BearerAuth: []
 components:
   schemas:
-    topology_link:
-      type: object
-      description: The Topology Link
-      properties:
-        source:
-          type: integer
-        source_port_id:
-          type: string
-        source_lag:
-          type: string
-        destination:
-          type: integer
-        destination_port_id:
-          type: string
-        destination_lag:
-          type: string
-        index:
-          type: integer
-        connected:
-          type: boolean
-        connection_mode:
-          type: string
-          enum:
-          - LLDP
-          - CLIENT
-          - UNKNOWNDEVICE
-          - MESH
-          - VGVA
-          - FAKEGATEWAY
-    topology_position:
-      type: object
-      description: Position for Topology Node
-      properties:
-        x:
-          type: integer
-          format: dobule
-        y:
-          type: integer
-          format: double
     XiqError:
       type: object
       properties:
@@ -156,6 +117,50 @@ components:
       - error_code
       - error_id
       - error_message
+    topology_node_poe_info:
+      type: object
+      description: Poe Info of Topology Node
+      properties:
+        powerState:
+          type: object
+        unit_power_available:
+          type: number
+          format: double
+        unit_power_consumed:
+          type: number
+          format: double
+        unit_power_threshold:
+          type: number
+          format: double
+        poe_power_available:
+          type: number
+          format: double
+        poe_power_consumed:
+          type: number
+          format: double
+        poe_power_threshold:
+          type: number
+          format: double
+    topology_node_vlan:
+      type: object
+      description: Vlan Info for Topology Node
+      properties:
+        mgmt_vlan:
+          type: integer
+        native_vlan:
+          type: integer
+        access_port_vlans:
+          type: array
+          items:
+            type: integer
+        trunk_port_vlans:
+          type: array
+          items:
+            type: integer
+        user_profile_vlans:
+          type: array
+          items:
+            type: integer
     topology_stack_member_info:
       type: object
       description: Details of Topology Node stack vlan_info
@@ -247,6 +252,57 @@ components:
           type: boolean
         sim_type:
           type: string
+    topology_link:
+      type: object
+      description: The Topology Link
+      properties:
+        source:
+          type: integer
+        source_port_id:
+          type: string
+        source_lag:
+          type: string
+        destination:
+          type: integer
+        destination_port_id:
+          type: string
+        destination_lag:
+          type: string
+        index:
+          type: integer
+        connected:
+          type: boolean
+        connection_mode:
+          type: string
+          enum:
+          - LLDP
+          - CLIENT
+          - UNKNOWNDEVICE
+          - MESH
+          - VGVA
+          - FAKEGATEWAY
+    XiqErrorParams:
+      type: object
+      description: Error parameters
+      properties:
+        field:
+          type: string
+          description: The error field
+        value:
+          type: string
+          description: The error value
+    topology_unknown_device:
+      type: object
+      description: Details of Unknown Device in Topology
+      properties:
+        mac_address:
+          type: string
+        hostname:
+          type: string
+        type:
+          type: string
+        ip_address:
+          type: string
     client_details_topology:
       type: object
       description: The Topology for Client
@@ -275,6 +331,44 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/topology_neighbor'
+    topology_position:
+      type: object
+      description: Position for Topology Node
+      properties:
+        x:
+          type: integer
+          format: dobule
+        y:
+          type: integer
+          format: double
+    topology_neighbor:
+      type: object
+      description: Neighbor of Topology nodes
+      properties:
+        device_id:
+          type: integer
+          format: int64
+        hostname:
+          type: string
+        ip_address:
+          type: string
+        mac_address:
+          type: string
+        rssi:
+          type: integer
+          format: int64
+        connection_failure_reason:
+          type: string
+          enum:
+          - OTHER
+          - ABORT_FROM_OS
+          - DEASSOC_FROM_AP
+          - DEAUTH_FROM_AP
+          - INTERNAL_TERMINATION
+          - INVALID_CAPABILITIES
+          - ASSOC_FAILURE_802_11
+          - AUTH_FAILURE_802_11
+          - TX_RX_FAILURE_REASON
     client_details_overview:
       type: object
       description: The OverView for Client
@@ -324,100 +418,6 @@ components:
           type: string
         rtts_supported:
           type: boolean
-    XiqErrorParams:
-      type: object
-      description: Error parameters
-      properties:
-        field:
-          type: string
-          description: The error field
-        value:
-          type: string
-          description: The error value
-    topology_unknown_device:
-      type: object
-      description: Details of Unknown Device in Topology
-      properties:
-        mac_address:
-          type: string
-        hostname:
-          type: string
-        type:
-          type: string
-        ip_address:
-          type: string
-    topology_node_poe_info:
-      type: object
-      description: Poe Info of Topology Node
-      properties:
-        powerState:
-          type: object
-        unit_power_available:
-          type: number
-          format: double
-        unit_power_consumed:
-          type: number
-          format: double
-        unit_power_threshold:
-          type: number
-          format: double
-        poe_power_available:
-          type: number
-          format: double
-        poe_power_consumed:
-          type: number
-          format: double
-        poe_power_threshold:
-          type: number
-          format: double
-    topology_neighbor:
-      type: object
-      description: Neighbor of Topology nodes
-      properties:
-        device_id:
-          type: integer
-          format: int64
-        hostname:
-          type: string
-        ip_address:
-          type: string
-        mac_address:
-          type: string
-        rssi:
-          type: integer
-          format: int64
-        connection_failure_reason:
-          type: string
-          enum:
-          - OTHER
-          - ABORT_FROM_OS
-          - DEASSOC_FROM_AP
-          - DEAUTH_FROM_AP
-          - INTERNAL_TERMINATION
-          - INVALID_CAPABILITIES
-          - ASSOC_FAILURE_802_11
-          - AUTH_FAILURE_802_11
-          - TX_RX_FAILURE_REASON
-    topology_node_vlan:
-      type: object
-      description: Vlan Info for Topology Node
-      properties:
-        mgmt_vlan:
-          type: integer
-        native_vlan:
-          type: integer
-        access_port_vlans:
-          type: array
-          items:
-            type: integer
-        trunk_port_vlans:
-          type: array
-          items:
-            type: integer
-        user_profile_vlans:
-          type: array
-          items:
-            type: integer
   responses:
     ErrorResponse:
       description: The generic ExtremeCloud IQ API error response

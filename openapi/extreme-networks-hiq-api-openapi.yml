@@ -290,34 +290,38 @@ paths:
       - BearerAuth: []
 components:
   schemas:
-    XiqViqEntity:
-      allOf:
-      - $ref: '#/components/schemas/XiqBaseEntity'
-      - type: object
-        properties:
-          org_id:
-            type: integer
-            description: The organization identifier, valid when enabling HIQ feature
-            format: int64
-        required:
-        - org_id
-    XiqOrganization:
-      allOf:
-      - $ref: '#/components/schemas/XiqViqEntity'
-      - type: object
-        description: The HIQ organization
-        required:
-        - name
-        - type
-        properties:
-          name:
-            type: string
-            description: The organization name
-          type:
-            $ref: '#/components/schemas/XiqOrganizationType'
-          color:
-            type: string
-            description: The tagged color for the organization
+    XiqError:
+      type: object
+      properties:
+        error_code:
+          type: string
+          description: The error code
+        error_id:
+          type: string
+          description: The error ID for internal troubleshooting
+        error_message:
+          type: string
+          description: The error detailed message
+        error_message_code:
+          type: string
+          description: The error message code
+        error_message_description:
+          type: string
+          description: The error message description
+        error_params:
+          $ref: '#/components/schemas/XiqErrorParams'
+      required:
+      - error_code
+      - error_id
+      - error_message
+    XiqHiqStatus:
+      type: object
+      required:
+      - enabled
+      properties:
+        enabled:
+          type: boolean
+          description: HIQ is enabled or not
     XiqHiqContext:
       type: object
       required:
@@ -354,44 +358,6 @@ components:
           type: string
           description: The last update time
           format: date-time
-    XiqError:
-      type: object
-      properties:
-        error_code:
-          type: string
-          description: The error code
-        error_id:
-          type: string
-          description: The error ID for internal troubleshooting
-        error_message:
-          type: string
-          description: The error detailed message
-        error_message_code:
-          type: string
-          description: The error message code
-        error_message_description:
-          type: string
-          description: The error message description
-        error_params:
-          $ref: '#/components/schemas/XiqErrorParams'
-      required:
-      - error_code
-      - error_id
-      - error_message
-    XiqOrganizationType:
-      type: string
-      description: The organization type
-      enum:
-      - REGULAR
-      - PRIVATE
-    XiqHiqStatus:
-      type: object
-      required:
-      - enabled
-      properties:
-        enabled:
-          type: boolean
-          description: HIQ is enabled or not
     XiqErrorParams:
       type: object
       description: Error parameters
@@ -402,6 +368,29 @@ components:
         value:
           type: string
           description: The error value
+    XiqOrganizationType:
+      type: string
+      description: The organization type
+      enum:
+      - REGULAR
+      - PRIVATE
+    XiqOrganization:
+      allOf:
+      - $ref: '#/components/schemas/XiqViqEntity'
+      - type: object
+        description: The HIQ organization
+        required:
+        - name
+        - type
+        properties:
+          name:
+            type: string
+            description: The organization name
+          type:
+            $ref: '#/components/schemas/XiqOrganizationType'
+          color:
+            type: string
+            description: The tagged color for the organization
     XiqCreateOrganizationRequest:
       type: object
       required:
@@ -413,6 +402,17 @@ components:
         color:
           type: string
           description: The tagged color for the organization
+    XiqViqEntity:
+      allOf:
+      - $ref: '#/components/schemas/XiqBaseEntity'
+      - type: object
+        properties:
+          org_id:
+            type: integer
+            description: The organization identifier, valid when enabling HIQ feature
+            format: int64
+        required:
+        - org_id
   responses:
     ErrorResponse:
       description: The generic ExtremeCloud IQ API error response

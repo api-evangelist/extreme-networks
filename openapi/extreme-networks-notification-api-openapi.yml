@@ -156,80 +156,6 @@ paths:
       - BearerAuth: []
 components:
   schemas:
-    XiqSubscriptionMessageType:
-      type: string
-      description: The subscription message type.
-      enum:
-      - LOCATION_AP_CENTRIC
-      - LOCATION_CLIENT_CENTRIC
-      - AUDIT_LOG_ALL
-      - GDPR_LOG_ALL
-      - CREDENTIAL_LOG_ALL
-      - ACCOUNTING_LOG_ALL
-      - AUTHENTICATION_LOG_ALL
-      - EMAIL_LOG_ALL
-      - SMS_LOG_ALL
-    XiqSubscriptionDataType:
-      type: string
-      description: The webhook subscription data type.
-      enum:
-      - LOCATION
-      - AUDIT_LOG
-      - GDPR_LOG
-      - CREDENTIAL_LOG
-      - ACCOUNTING_LOG
-      - AUTHENTICATION_LOG
-      - EMAIL_LOG
-      - SMS_LOG
-    XiqCreateWebhookSubscriptionRequest:
-      type: object
-      description: The payload to create webhook subscription
-      required:
-      - application
-      - url
-      - message_type
-      properties:
-        application:
-          type: string
-          description: The external application name.
-        url:
-          type: string
-          description: The webhook endpoint URL.
-        secret:
-          type: string
-          description: The basic auth secret for the webhook endpoint.
-        message_type:
-          $ref: '#/components/schemas/XiqSubscriptionMessageType'
-    XiqBaseEntity:
-      required:
-      - id
-      - create_time
-      - update_time
-      type: object
-      properties:
-        id:
-          type: integer
-          description: The unique identifier
-          format: int64
-        create_time:
-          type: string
-          description: The create time
-          format: date-time
-        update_time:
-          type: string
-          description: The last update time
-          format: date-time
-    XiqSortOrder:
-      type: string
-      enum:
-      - ASC
-      - DESC
-    XiqSubscriptionStatus:
-      type: string
-      description: The webhook subscription status.
-      enum:
-      - ENABLED
-      - DISABLED
     XiqError:
       type: object
       properties:
@@ -254,50 +180,55 @@ components:
       - error_code
       - error_id
       - error_message
-    XiqPage:
+    XiqSubscriptionDataType:
+      type: string
+      description: The webhook subscription data type.
+      enum:
+      - LOCATION
+      - AUDIT_LOG
+      - GDPR_LOG
+      - CREDENTIAL_LOG
+      - ACCOUNTING_LOG
+      - AUTHENTICATION_LOG
+      - EMAIL_LOG
+      - SMS_LOG
+    XiqSubscriptionMessageType:
+      type: string
+      description: The subscription message type.
+      enum:
+      - LOCATION_AP_CENTRIC
+      - LOCATION_CLIENT_CENTRIC
+      - AUDIT_LOG_ALL
+      - GDPR_LOG_ALL
+      - CREDENTIAL_LOG_ALL
+      - ACCOUNTING_LOG_ALL
+      - AUTHENTICATION_LOG_ALL
+      - EMAIL_LOG_ALL
+      - SMS_LOG_ALL
+    XiqSortOrder:
+      type: string
+      enum:
+      - ASC
+      - DESC
+    XiqBaseEntity:
       required:
-      - count
-      - page
-      - total_count
-      - total_pages
+      - id
+      - create_time
+      - update_time
       type: object
       properties:
-        page:
+        id:
           type: integer
-          description: The current page number
-          format: int32
-        count:
-          type: integer
-          description: The element count of the current page
-          format: int32
-        total_pages:
-          type: integer
-          description: The total page number based on request page size
-          format: int32
-        total_count:
-          type: integer
-          description: The total element count
+          description: The unique identifier
           format: int64
-    XiqErrorParams:
-      type: object
-      description: Error parameters
-      properties:
-        field:
+        create_time:
           type: string
-          description: The error field
-        value:
+          description: The create time
+          format: date-time
+        update_time:
           type: string
-          description: The error value
-    PagedXiqWebhookSubscription:
-      allOf:
-      - $ref: '#/components/schemas/XiqPage'
-      - type: object
-        properties:
-          data:
-            type: array
-            description: The data in the current page
-            items:
-              $ref: '#/components/schemas/XiqWebhookSubscription'
+          description: The last update time
+          format: date-time
     XiqWebhookSubscription:
       allOf:
       - $ref: '#/components/schemas/XiqBaseEntity'
@@ -326,6 +257,50 @@ components:
             $ref: '#/components/schemas/XiqSubscriptionMessageType'
           status:
             $ref: '#/components/schemas/XiqSubscriptionStatus'
+    PagedXiqWebhookSubscription:
+      allOf:
+      - $ref: '#/components/schemas/XiqPage'
+      - type: object
+        properties:
+          data:
+            type: array
+            description: The data in the current page
+            items:
+              $ref: '#/components/schemas/XiqWebhookSubscription'
+    XiqErrorParams:
+      type: object
+      description: Error parameters
+      properties:
+        field:
+          type: string
+          description: The error field
+        value:
+          type: string
+          description: The error value
+    XiqPage:
+      required:
+      - count
+      - page
+      - total_count
+      - total_pages
+      type: object
+      properties:
+        page:
+          type: integer
+          description: The current page number
+          format: int32
+        count:
+          type: integer
+          description: The element count of the current page
+          format: int32
+        total_pages:
+          type: integer
+          description: The total page number based on request page size
+          format: int32
+        total_count:
+          type: integer
+          description: The total element count
+          format: int64
     XiqUpdateWebhookSubscriptionRequest:
       type: object
       description: The payload to update webhook subscription
@@ -350,6 +325,31 @@ components:
         status:
           $ref: '#/components/schemas/XiqSubscriptionStatus'
           description: The API Subscriber status e.g, "ENABLED" or "DISABLED".
+    XiqCreateWebhookSubscriptionRequest:
+      type: object
+      description: The payload to create webhook subscription
+      required:
+      - application
+      - url
+      - message_type
+      properties:
+        application:
+          type: string
+          description: The external application name.
+        url:
+          type: string
+          description: The webhook endpoint URL.
+        secret:
+          type: string
+          description: The basic auth secret for the webhook endpoint.
+        message_type:
+          $ref: '#/components/schemas/XiqSubscriptionMessageType'
+    XiqSubscriptionStatus:
+      type: string
+      description: The webhook subscription status.
+      enum:
+      - ENABLED
+      - DISABLED
   responses:
     ErrorResponse:
       description: The generic ExtremeCloud IQ API error response
@@ -368,6 +368,14 @@ components:
         type: integer
         format: int32
         default: 1
+    id:
+      name: id
+      in: path
+      description: The unique identifier
+      required: true
+      schema:
+        type: integer
+        format: int64
     limit:
       name: limit
       in: query
@@ -379,14 +387,6 @@ components:
         type: integer
         format: int32
         default: 10
-    id:
-      name: id
-      in: path
-      description: The unique identifier
-      required: true
-      schema:
-        type: integer
-        format: int64
   securitySchemes:
     BearerAuth:
       type: http
