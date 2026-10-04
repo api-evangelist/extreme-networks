@@ -220,12 +220,21 @@ paths:
       - BearerAuth: []
 components:
   schemas:
-    XiqCreateCertBundleRequest:
+    XiqErrorParams:
       type: object
-      description: The payload to create a new Certificate Bundle.
+      description: Error parameters
+      properties:
+        field:
+          type: string
+          description: The error field
+        value:
+          type: string
+          description: The error value
+    XiqUpdateCertBundleRequest:
+      type: object
+      description: The payload to update a Certificate Bundle.
       required:
       - name
-      - bundle_type
       properties:
         name:
           type: string
@@ -233,14 +242,36 @@ components:
         description:
           type: string
           description: The Certificate Bundle description.
-        bundle_type:
-          $ref: '#/components/schemas/XiqCertBundleType'
         certificate_ids:
           type: array
           description: Collection of Certificate IDs.
           items:
             type: integer
             format: int64
+    XiqPage:
+      required:
+      - count
+      - page
+      - total_count
+      - total_pages
+      type: object
+      properties:
+        page:
+          type: integer
+          description: The current page number
+          format: int32
+        count:
+          type: integer
+          description: The element count of the current page
+          format: int32
+        total_pages:
+          type: integer
+          description: The total page number based on request page size
+          format: int32
+        total_count:
+          type: integer
+          description: The total element count
+          format: int64
     PagedXiqCertificateBundle:
       allOf:
       - $ref: '#/components/schemas/XiqPage'
@@ -251,12 +282,6 @@ components:
             description: The data in the current page
             items:
               $ref: '#/components/schemas/XiqCertificateBundle'
-    XiqCertificateType:
-      type: string
-      enum:
-      - CERT
-      - KEY
-      - CA
     XiqViqEntity:
       allOf:
       - $ref: '#/components/schemas/XiqBaseEntity'
@@ -292,11 +317,6 @@ components:
       - error_code
       - error_id
       - error_message
-    XiqCertBundleType:
-      type: string
-      description: The type of Certificate Bundle.
-      enum:
-      - TRUST_POINT
     PagedXiqCertificate:
       allOf:
       - $ref: '#/components/schemas/XiqPage'
@@ -307,80 +327,33 @@ components:
             description: The data in the current page
             items:
               $ref: '#/components/schemas/XiqCertificate'
-    XiqErrorParams:
-      type: object
-      description: Error parameters
-      properties:
-        field:
-          type: string
-          description: The error field
-        value:
-          type: string
-          description: The error value
-    XiqCertConvertOptionType:
+    XiqCertificateType:
       type: string
-      description: The Certificate convert option, required when the convert option type is 'KEY'.
       enum:
-      - CERTIFICATE
+      - CERT
       - KEY
-    XiqBaseEntity:
-      required:
-      - id
-      - create_time
-      - update_time
+      - CA
+    XiqCreateCertBundleRequest:
       type: object
-      properties:
-        id:
-          type: integer
-          description: The unique identifier
-          format: int64
-        create_time:
-          type: string
-          description: The create time
-          format: date-time
-        update_time:
-          type: string
-          description: The last update time
-          format: date-time
-    XiqPage:
+      description: The payload to create a new Certificate Bundle.
       required:
-      - count
-      - page
-      - total_count
-      - total_pages
-      type: object
+      - name
+      - bundle_type
       properties:
-        page:
-          type: integer
-          description: The current page number
-          format: int32
-        count:
-          type: integer
-          description: The element count of the current page
-          format: int32
-        total_pages:
-          type: integer
-          description: The total page number based on request page size
-          format: int32
-        total_count:
-          type: integer
-          description: The total element count
-          format: int64
-    XiqCertificateBundle:
-      allOf:
-      - $ref: '#/components/schemas/XiqViqEntity'
-      - type: object
-        description: The configuration of Certificate Bundle
-        required:
-        - bundle_type
-        properties:
-          bundle_type:
-            $ref: '#/components/schemas/XiqCertBundleType'
-          certificates:
-            type: array
-            description: Certificate Bundles certificates.
-            items:
-              $ref: '#/components/schemas/XiqCertificate'
+        name:
+          type: string
+          description: The Certificate Bundle name.
+        description:
+          type: string
+          description: The Certificate Bundle description.
+        bundle_type:
+          $ref: '#/components/schemas/XiqCertBundleType'
+        certificate_ids:
+          type: array
+          description: Collection of Certificate IDs.
+          items:
+            type: integer
+            format: int64
     XiqImportCertRequest:
       type: object
       description: The payload to import a certificate.
@@ -412,6 +385,25 @@ components:
         der_password:
           type: string
           description: The DER password, required when the convert option type is 'KEY'.
+    XiqBaseEntity:
+      required:
+      - id
+      - create_time
+      - update_time
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The unique identifier
+          format: int64
+        create_time:
+          type: string
+          description: The create time
+          format: date-time
+        update_time:
+          type: string
+          description: The last update time
+          format: date-time
     XiqCertificate:
       allOf:
       - $ref: '#/components/schemas/XiqBaseEntity'
@@ -425,25 +417,43 @@ components:
             description: The certificate file name
           cert_type:
             $ref: '#/components/schemas/XiqCertificateType'
-    XiqUpdateCertBundleRequest:
-      type: object
-      description: The payload to update a Certificate Bundle.
-      required:
-      - name
-      properties:
-        name:
-          type: string
-          description: The Certificate Bundle name.
-        description:
-          type: string
-          description: The Certificate Bundle description.
-        certificate_ids:
-          type: array
-          description: Collection of Certificate IDs.
-          items:
-            type: integer
-            format: int64
+    XiqCertificateBundle:
+      allOf:
+      - $ref: '#/components/schemas/XiqViqEntity'
+      - type: object
+        description: The configuration of Certificate Bundle
+        required:
+        - bundle_type
+        properties:
+          bundle_type:
+            $ref: '#/components/schemas/XiqCertBundleType'
+          certificates:
+            type: array
+            description: Certificate Bundles certificates.
+            items:
+              $ref: '#/components/schemas/XiqCertificate'
+    XiqCertConvertOptionType:
+      type: string
+      description: The Certificate convert option, required when the convert option type is 'KEY'.
+      enum:
+      - CERTIFICATE
+      - KEY
+    XiqCertBundleType:
+      type: string
+      description: The type of Certificate Bundle.
+      enum:
+      - TRUST_POINT
   parameters:
+    page:
+      name: page
+      in: query
+      description: Page number, min = 1
+      required: false
+      schema:
+        minimum: 1
+        type: integer
+        format: int32
+        default: 1
     limit:
       name: limit
       in: query
@@ -455,16 +465,6 @@ components:
         type: integer
         format: int32
         default: 10
-    page:
-      name: page
-      in: query
-      description: Page number, min = 1
-      required: false
-      schema:
-        minimum: 1
-        type: integer
-        format: int32
-        default: 1
     id:
       name: id
       in: path

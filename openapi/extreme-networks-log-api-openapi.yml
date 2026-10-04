@@ -430,16 +430,6 @@ paths:
       - BearerAuth: []
 components:
   schemas:
-    PagedXiqAuditLog:
-      allOf:
-      - $ref: '#/components/schemas/XiqPage'
-      - type: object
-        properties:
-          data:
-            type: array
-            description: The data in the current page
-            items:
-              $ref: '#/components/schemas/XiqAuditLog'
     XiqAuditLogCategory:
       type: string
       enum:
@@ -449,40 +439,40 @@ components:
       - CONFIG
       - MONITOR
       - ALARM
-    PagedXiqCredentialLog:
-      allOf:
-      - $ref: '#/components/schemas/XiqPage'
-      - type: object
-        properties:
-          data:
-            type: array
-            description: The data in the current page
-            items:
-              $ref: '#/components/schemas/XiqCredentialLog'
-    XiqError:
+    XiqErrorParams:
+      type: object
+      description: Error parameters
+      properties:
+        field:
+          type: string
+          description: The error field
+        value:
+          type: string
+          description: The error value
+    XiqPage:
+      required:
+      - count
+      - page
+      - total_count
+      - total_pages
       type: object
       properties:
-        error_code:
-          type: string
-          description: The error code
-        error_id:
-          type: string
-          description: The error ID for internal troubleshooting
-        error_message:
-          type: string
-          description: The error detailed message
-        error_message_code:
-          type: string
-          description: The error message code
-        error_message_description:
-          type: string
-          description: The error message description
-        error_params:
-          $ref: '#/components/schemas/XiqErrorParams'
-      required:
-      - error_code
-      - error_id
-      - error_message
+        page:
+          type: integer
+          description: The current page number
+          format: int32
+        count:
+          type: integer
+          description: The element count of the current page
+          format: int32
+        total_pages:
+          type: integer
+          description: The total page number based on request page size
+          format: int32
+        total_count:
+          type: integer
+          description: The total element count
+          format: int64
     PagedXiqAuthLog:
       allOf:
       - $ref: '#/components/schemas/XiqPage'
@@ -493,6 +483,16 @@ components:
             description: The data in the current page
             items:
               $ref: '#/components/schemas/XiqAuthLog'
+    PagedXiqSmsLog:
+      allOf:
+      - $ref: '#/components/schemas/XiqPage'
+      - type: object
+        properties:
+          data:
+            type: array
+            description: The data in the current page
+            items:
+              $ref: '#/components/schemas/XiqSmsLog'
     XiqEmailLog:
       type: object
       description: ExtremeCloud IQ Email Log
@@ -527,144 +527,38 @@ components:
         status:
           type: string
           description: The email log status
-    PagedXiqEmailLog:
-      allOf:
-      - $ref: '#/components/schemas/XiqPage'
-      - type: object
-        properties:
-          data:
-            type: array
-            description: The data in the current page
-            items:
-              $ref: '#/components/schemas/XiqEmailLog'
-    XiqAuditLog:
+    XiqAuditLogReport:
       type: object
-      description: ExtremeCloud IQ Audit Log
-      required:
-      - id
+      description: ExtremeCloud IQ Audit Log report
       properties:
         id:
           type: integer
-          description: The audit log id
+          description: The audit log report ID
           format: int64
-        category:
-          $ref: '#/components/schemas/XiqAuditLogCategory'
-        user_id:
-          type: integer
-          description: The user id
-          format: int64
-        code:
-          type: integer
-          description: The audit log code
-          format: int32
-        username:
-          type: string
-          description: The user name
-        vhm_name:
-          type: string
-          description: The vhm name
-        parameters:
-          type: string
-          description: The audit log parameters
-        org_id:
-          type: integer
-          description: The org id
-          format: int64
-        timestamp:
-          type: integer
-          description: The audit log timestamp
-          format: int64
-        description:
-          type: string
-          description: The audit log summary
-        full_description_id:
-          type: integer
-          description: The audit log full description id
-          format: int64
-    XiqErrorParams:
+    XiqError:
       type: object
-      description: Error parameters
       properties:
-        field:
+        error_code:
           type: string
-          description: The error field
-        value:
+          description: The error code
+        error_id:
           type: string
-          description: The error value
-    XiqSmsLogStatus:
-      type: string
-      description: The SMS status
-      enum:
-      - SEND_OUT
-      - COMPLETE
-      - SUCCESS
-      - FAIL
-    XiqSmsLog:
-      type: object
-      description: ExtremeCloud IQ SMS Log
+          description: The error ID for internal troubleshooting
+        error_message:
+          type: string
+          description: The error detailed message
+        error_message_code:
+          type: string
+          description: The error message code
+        error_message_description:
+          type: string
+          description: The error message description
+        error_params:
+          $ref: '#/components/schemas/XiqErrorParams'
       required:
-      - id
-      properties:
-        id:
-          type: integer
-          description: The SMS log id
-          format: int64
-        user_id:
-          type: integer
-          description: The user id
-          format: int64
-        customer_id:
-          type: string
-          description: The customer id
-        tel:
-          type: string
-          description: The phone number
-        profile_name:
-          type: string
-          description: The profile name
-        status:
-          $ref: '#/components/schemas/XiqSmsLogStatus'
-        message_id:
-          type: string
-          description: The message id from 3rd provider
-        status_from_provider:
-          type: string
-          description: The status from provider
-        provider_type:
-          type: string
-          description: The provider type
-        org_id:
-          type: integer
-          description: The org id
-          format: int64
-        timestamp:
-          type: integer
-          description: The audit log timestamp
-          format: int64
-    XiqAuditLogFullDescriptions:
-      type: object
-      description: ExtremeCloud IQ Audit Log full descriptions
-      required:
-      - id
-      - timestamp
-      - device_id
-      - description
-      properties:
-        id:
-          type: integer
-          description: The audit log full description id
-          format: int64
-        timestamp:
-          type: integer
-          description: The full description timestamp
-          format: int64
-        device_id:
-          type: integer
-          description: The device id
-          format: int64
-        description:
-          type: string
-          description: The audit log full description
+      - error_code
+      - error_id
+      - error_message
     XiqAccountingLog:
       type: object
       description: ExtremeCloud IQ Accounting Log
@@ -779,60 +673,87 @@ components:
           type: integer
           description: The event time
           format: int64
-    PagedXiqSmsLog:
-      allOf:
-      - $ref: '#/components/schemas/XiqPage'
-      - type: object
-        properties:
-          data:
-            type: array
-            description: The data in the current page
-            items:
-              $ref: '#/components/schemas/XiqSmsLog'
-    XiqSortOrder:
-      type: string
-      enum:
-      - ASC
-      - DESC
-    PagedXiqAccountingLog:
-      allOf:
-      - $ref: '#/components/schemas/XiqPage'
-      - type: object
-        properties:
-          data:
-            type: array
-            description: The data in the current page
-            items:
-              $ref: '#/components/schemas/XiqAccountingLog'
-    XiqPage:
-      required:
-      - count
-      - page
-      - total_count
-      - total_pages
+    XiqSmsLog:
       type: object
+      description: ExtremeCloud IQ SMS Log
+      required:
+      - id
       properties:
-        page:
+        id:
           type: integer
-          description: The current page number
-          format: int32
-        count:
+          description: The SMS log id
+          format: int64
+        user_id:
           type: integer
-          description: The element count of the current page
-          format: int32
-        total_pages:
+          description: The user id
+          format: int64
+        customer_id:
+          type: string
+          description: The customer id
+        tel:
+          type: string
+          description: The phone number
+        profile_name:
+          type: string
+          description: The profile name
+        status:
+          $ref: '#/components/schemas/XiqSmsLogStatus'
+        message_id:
+          type: string
+          description: The message id from 3rd provider
+        status_from_provider:
+          type: string
+          description: The status from provider
+        provider_type:
+          type: string
+          description: The provider type
+        org_id:
           type: integer
-          description: The total page number based on request page size
-          format: int32
-        total_count:
+          description: The org id
+          format: int64
+        timestamp:
           type: integer
-          description: The total element count
+          description: The audit log timestamp
           format: int64
     XiqAuditLogSortField:
       type: string
       description: All fields used to sort the audit logs
       enum:
       - TIMESTAMP
+    XiqAuditLogFullDescriptions:
+      type: object
+      description: ExtremeCloud IQ Audit Log full descriptions
+      required:
+      - id
+      - timestamp
+      - device_id
+      - description
+      properties:
+        id:
+          type: integer
+          description: The audit log full description id
+          format: int64
+        timestamp:
+          type: integer
+          description: The full description timestamp
+          format: int64
+        device_id:
+          type: integer
+          description: The device id
+          format: int64
+        description:
+          type: string
+          description: The audit log full description
+    PagedXiqEmailLog:
+      allOf:
+      - $ref: '#/components/schemas/XiqPage'
+      - type: object
+        properties:
+          data:
+            type: array
+            description: The data in the current page
+            items:
+              $ref: '#/components/schemas/XiqEmailLog'
     XiqCredentialLog:
       type: object
       description: ExtremeCloud IQ Credential Log
@@ -857,14 +778,80 @@ components:
           type: integer
           description: The credential log timestamp
           format: int64
-    XiqAuditLogReport:
+    PagedXiqAuditLog:
+      allOf:
+      - $ref: '#/components/schemas/XiqPage'
+      - type: object
+        properties:
+          data:
+            type: array
+            description: The data in the current page
+            items:
+              $ref: '#/components/schemas/XiqAuditLog'
+    PagedXiqAccountingLog:
+      allOf:
+      - $ref: '#/components/schemas/XiqPage'
+      - type: object
+        properties:
+          data:
+            type: array
+            description: The data in the current page
+            items:
+              $ref: '#/components/schemas/XiqAccountingLog'
+    XiqAuditLog:
       type: object
-      description: ExtremeCloud IQ Audit Log report
+      description: ExtremeCloud IQ Audit Log
+      required:
+      - id
       properties:
         id:
           type: integer
-          description: The audit log report ID
+          description: The audit log id
           format: int64
+        category:
+          $ref: '#/components/schemas/XiqAuditLogCategory'
+        user_id:
+          type: integer
+          description: The user id
+          format: int64
+        code:
+          type: integer
+          description: The audit log code
+          format: int32
+        username:
+          type: string
+          description: The user name
+        vhm_name:
+          type: string
+          description: The vhm name
+        parameters:
+          type: string
+          description: The audit log parameters
+        org_id:
+          type: integer
+          description: The org id
+          format: int64
+        timestamp:
+          type: integer
+          description: The audit log timestamp
+          format: int64
+        description:
+          type: string
+          description: The audit log summary
+        full_description_id:
+          type: integer
+          description: The audit log full description id
+          format: int64
+    PagedXiqCredentialLog:
+      allOf:
+      - $ref: '#/components/schemas/XiqPage'
+      - type: object
+        properties:
+          data:
+            type: array
+            description: The data in the current page
+            items:
+              $ref: '#/components/schemas/XiqCredentialLog'
     XiqAuthLog:
       type: object
       description: ExtremeCloud IQ Auth Log
@@ -925,7 +912,38 @@ components:
           type: integer
           description: The audit log timestamp
           format: int64
+    XiqSmsLogStatus:
+      type: string
+      description: The SMS status
+      enum:
+      - SEND_OUT
+      - COMPLETE
+      - SUCCESS
+      - FAIL
+    XiqSortOrder:
+      type: string
+      enum:
+      - ASC
+      - DESC
   parameters:
+    page:
+      name: page
+      in: query
+      description: Page number, min = 1
+      required: false
+      schema:
+        minimum: 1
+        type: integer
+        format: int32
+        default: 1
+    startTime:
+      name: startTime
+      in: query
+      description: The start time to query, epoch time in milliseconds since 1/1/1970
+      required: true
+      schema:
+        type: integer
+        format: int64
     order:
       name: order
       in: query
@@ -944,24 +962,6 @@ components:
         type: integer
         format: int32
         default: 10
-    startTime:
-      name: startTime
-      in: query
-      description: The start time to query, epoch time in milliseconds since 1/1/1970
-      required: true
-      schema:
-        type: integer
-        format: int64
-    page:
-      name: page
-      in: query
-      description: Page number, min = 1
-      required: false
-      schema:
-        minimum: 1
-        type: integer
-        format: int32
-        default: 1
     id:
       name: id
       in: path

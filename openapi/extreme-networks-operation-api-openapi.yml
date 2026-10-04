@@ -101,30 +101,6 @@ paths:
       - BearerAuth: []
 components:
   schemas:
-    XiqError:
-      type: object
-      properties:
-        error_code:
-          type: string
-          description: The error code
-        error_id:
-          type: string
-          description: The error ID for internal troubleshooting
-        error_message:
-          type: string
-          description: The error detailed message
-        error_message_code:
-          type: string
-          description: The error message code
-        error_message_description:
-          type: string
-          description: The error message description
-        error_params:
-          $ref: '#/components/schemas/XiqErrorParams'
-      required:
-      - error_code
-      - error_id
-      - error_message
     XiqOperationStatus:
       type: string
       description: The current operation status
@@ -135,37 +111,6 @@ components:
       - SUCCEEDED
       - FAILED
       - CANCELED
-    XiqErrorParams:
-      type: object
-      description: Error parameters
-      properties:
-        field:
-          type: string
-          description: The error field
-        value:
-          type: string
-          description: The error value
-    XiqOperationObject:
-      type: object
-      description: Long Running Operation (LRO) model
-      required:
-      - id
-      - metadata
-      - done
-      properties:
-        id:
-          type: string
-          description: The unique identifier of the operation
-        metadata:
-          $ref: '#/components/schemas/XiqOperationMetadata'
-        done:
-          type: boolean
-          description: Whether the operation is done
-        response:
-          type: object
-          description: The API response of the operation if the status is SUCCEEDED
-        error:
-          $ref: '#/components/schemas/XiqError'
     XiqOperationMetadata:
       type: object
       description: The metadata of Long Running Operation (LRO)
@@ -210,6 +155,61 @@ components:
           type: integer
           description: The number of seconds remaining until the operation expires and is to be deleted.
           format: int64
+    XiqErrorParams:
+      type: object
+      description: Error parameters
+      properties:
+        field:
+          type: string
+          description: The error field
+        value:
+          type: string
+          description: The error value
+    XiqOperationObject:
+      type: object
+      description: Long Running Operation (LRO) model
+      required:
+      - id
+      - metadata
+      - done
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the operation
+        metadata:
+          $ref: '#/components/schemas/XiqOperationMetadata'
+        done:
+          type: boolean
+          description: Whether the operation is done
+        response:
+          type: object
+          description: The API response of the operation if the status is SUCCEEDED
+        error:
+          $ref: '#/components/schemas/XiqError'
+    XiqError:
+      type: object
+      properties:
+        error_code:
+          type: string
+          description: The error code
+        error_id:
+          type: string
+          description: The error ID for internal troubleshooting
+        error_message:
+          type: string
+          description: The error detailed message
+        error_message_code:
+          type: string
+          description: The error message code
+        error_message_description:
+          type: string
+          description: The error message description
+        error_params:
+          $ref: '#/components/schemas/XiqErrorParams'
+      required:
+      - error_code
+      - error_id
+      - error_message
   responses:
     ErrorResponse:
       description: The generic ExtremeCloud IQ API error response

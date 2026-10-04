@@ -336,192 +336,6 @@ paths:
       - BearerAuth: []
 components:
   schemas:
-    XiqApiAccessToken:
-      type: object
-      description: The API Access Token.
-      properties:
-        id:
-          type: integer
-          description: The unique identifier
-          format: int64
-        create_time:
-          type: string
-          description: The create time
-          format: date-time
-        update_time:
-          type: string
-          description: The last update time
-          format: date-time
-        accessToken:
-          type: string
-          description: The access token granted
-        expireAt:
-          type: integer
-          description: The timestamp at which the token expires
-        refreshToken:
-          type: string
-          description: The refresh token
-        grantor:
-          type: string
-          description: The name of the grantor of API Access Token
-        applicationName:
-          type: string
-          description: The third party application name
-        clientId:
-          type: string
-          description: The client ID
-    XiqThirdPartyApiConnection:
-      allOf:
-      - type: object
-        description: The 3rd party API connections data model
-        required:
-        - api_token
-        properties:
-          api_token:
-            type: string
-            description: The api token.
-          created_at:
-            type: integer
-            description: The api token created time in milliseconds.
-    XiqAdEmployeeGroup:
-      allOf:
-      - $ref: '#/components/schemas/XiqViqEntity'
-      - type: object
-        properties:
-          name:
-            type: string
-            description: Name of the member group.
-          owner_id:
-            type: integer
-            description: ID of the owner of the member group.
-    PagedXiqCredentialDistributionGroup:
-      allOf:
-      - $ref: '#/components/schemas/XiqPage'
-      - type: object
-        properties:
-          data:
-            type: array
-            description: The data in the current page
-            items:
-              $ref: '#/components/schemas/XiqCredentialDistributionGroup'
-    XiqAdEmployeeGroupRequest:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Name of the member group.
-        owner_id:
-          type: integer
-          description: ID of the owner of the member group.
-    XiqCredentialDistributionGroup:
-      allOf:
-      - $ref: '#/components/schemas/XiqViqEntity'
-      - type: object
-        properties:
-          owner_id:
-            type: integer
-            description: The owner id.
-          group_type:
-            type: string
-            description: The type of credential distribution group which can be "MANAGE" or "AD".
-          enable_email_approval:
-            type: boolean
-            description: Flag indicating whether email approval is enabled (true) or disabled (false).
-          enable_user_limitation:
-            type: boolean
-            description: Flag indicating whether user limitation is enabled (true) or disabled (false).
-          employee_group_type:
-            $ref: '#/components/schemas/XiqEmployeeGroup'
-            description: Type of JSON, in this case "ad-employee-group", "admin-employee-group" or "manage-employee-group".
-          employee_group:
-            type: array
-            items:
-              type: object
-              description: The Employee Group
-              oneOf:
-              - $ref: '#/components/schemas/XiqAdEmployeeGroup'
-              - $ref: '#/components/schemas/XiqManageEmployeeGroup'
-              - $ref: '#/components/schemas/XiqAdminEmployeeGroup'
-              discriminator:
-                propertyName: json_type
-                mapping:
-                  ad-employee-group: '#/components/schemas/XiqAdEmployeeGroup'
-                  manage-employee-group: '#/components/schemas/XiqManageEmployeeGroup'
-                  admin-employee-group: '#/components/schemas/XiqAdminEmployeeGroup'
-          name:
-            type: string
-            description: Name of the entity.
-          restrict_number:
-            type: string
-            description: Number restriction.
-          user_groups:
-            type: array
-            description: The list of User Groups
-            items:
-              $ref: '#/components/schemas/XiqUserGroups'
-    XiqViqEntity:
-      allOf:
-      - $ref: '#/components/schemas/XiqBaseEntity'
-      - type: object
-        properties:
-          org_id:
-            type: integer
-            description: The organization identifier, valid when enabling HIQ feature
-            format: int64
-        required:
-        - org_id
-    XiqError:
-      type: object
-      properties:
-        error_code:
-          type: string
-          description: The error code
-        error_id:
-          type: string
-          description: The error ID for internal troubleshooting
-        error_message:
-          type: string
-          description: The error detailed message
-        error_message_code:
-          type: string
-          description: The error message code
-        error_message_description:
-          type: string
-          description: The error message description
-        error_params:
-          $ref: '#/components/schemas/XiqErrorParams'
-      required:
-      - error_code
-      - error_id
-      - error_message
-    XiqEmployeeGroup:
-      type: string
-      description: Employee Group Json Type
-      enum:
-      - EMPLOYEE_GROUP_ADMIN
-      - EMPLOYEE_GROUP_AD
-      - EMPLOYEE_GROUP_MANAGE
-    XiqManageEmployeeGroup:
-      allOf:
-      - $ref: '#/components/schemas/XiqViqEntity'
-      - type: object
-        properties:
-          name:
-            type: string
-            description: Acct User Details name.
-          owner_id:
-            type: integer
-            description: The owner ID.
-    PagedXiqApiAccessToken:
-      allOf:
-      - $ref: '#/components/schemas/XiqPage'
-      - type: object
-        properties:
-          data:
-            type: array
-            description: The data in the current page
-            items:
-              $ref: '#/components/schemas/XiqApiAccessToken'
     XiqErrorParams:
       type: object
       description: Error parameters
@@ -532,15 +346,63 @@ components:
         value:
           type: string
           description: The error value
-    XiqUpdateApiAccessTokenRequest:
+    XiqAdminEmployeeGroup:
+      allOf:
+      - $ref: '#/components/schemas/XiqViqEntity'
+      - type: object
+        properties:
+          id:
+            type: integer
+            description: The admin member group ID.
+    XiqPage:
+      required:
+      - count
+      - page
+      - total_count
+      - total_pages
+      type: object
+      properties:
+        page:
+          type: integer
+          description: The current page number
+          format: int32
+        count:
+          type: integer
+          description: The element count of the current page
+          format: int32
+        total_pages:
+          type: integer
+          description: The total page number based on request page size
+          format: int32
+        total_count:
+          type: integer
+          description: The total element count
+          format: int64
+    XiqEmployeeGroup:
+      type: string
+      description: Employee Group Json Type
+      enum:
+      - EMPLOYEE_GROUP_ADMIN
+      - EMPLOYEE_GROUP_AD
+      - EMPLOYEE_GROUP_MANAGE
+    XiqAdminEmployeeGroupRequest:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The admin member group ID.
+    XiqCreateApiAccessTokenRequest:
       type: object
       required:
       - clientId
       properties:
+        clientId:
+          type: string
+          description: The ID given to the client
         tokenExpireInDay:
           type: string
           description: The expiry of the token in days
-    XiqCreateCredentialDistributionGroupRequest:
+    XiqUpdateCredentialDistributionGroupRequest:
       type: object
       properties:
         name:
@@ -581,6 +443,41 @@ components:
           items:
             type: integer
             description: The list of user group IDs.
+    XiqViqEntity:
+      allOf:
+      - $ref: '#/components/schemas/XiqBaseEntity'
+      - type: object
+        properties:
+          org_id:
+            type: integer
+            description: The organization identifier, valid when enabling HIQ feature
+            format: int64
+        required:
+        - org_id
+    XiqError:
+      type: object
+      properties:
+        error_code:
+          type: string
+          description: The error code
+        error_id:
+          type: string
+          description: The error ID for internal troubleshooting
+        error_message:
+          type: string
+          description: The error detailed message
+        error_message_code:
+          type: string
+          description: The error message code
+        error_message_description:
+          type: string
+          description: The error message description
+        error_params:
+          $ref: '#/components/schemas/XiqErrorParams'
+      required:
+      - error_code
+      - error_id
+      - error_message
     XiqUserGroups:
       allOf:
       - $ref: '#/components/schemas/XiqViqEntity'
@@ -638,15 +535,103 @@ components:
           enable_renew:
             type: boolean
             description: Indicates if renewal is enabled.
-    XiqManageEmployeeGroupRequest:
+    XiqAdEmployeeGroupRequest:
       type: object
       properties:
         name:
           type: string
-          description: Acct User Details name.
+          description: Name of the member group.
         owner_id:
           type: integer
-          description: The owner ID.
+          description: ID of the owner of the member group.
+    XiqThirdPartyApiConnection:
+      allOf:
+      - type: object
+        description: The 3rd party API connections data model
+        required:
+        - api_token
+        properties:
+          api_token:
+            type: string
+            description: The api token.
+          created_at:
+            type: integer
+            description: The api token created time in milliseconds.
+    XiqCredentialDistributionGroup:
+      allOf:
+      - $ref: '#/components/schemas/XiqViqEntity'
+      - type: object
+        properties:
+          owner_id:
+            type: integer
+            description: The owner id.
+          group_type:
+            type: string
+            description: The type of credential distribution group which can be "MANAGE" or "AD".
+          enable_email_approval:
+            type: boolean
+            description: Flag indicating whether email approval is enabled (true) or disabled (false).
+          enable_user_limitation:
+            type: boolean
+            description: Flag indicating whether user limitation is enabled (true) or disabled (false).
+          employee_group_type:
+            $ref: '#/components/schemas/XiqEmployeeGroup'
+            description: Type of JSON, in this case "ad-employee-group", "admin-employee-group" or "manage-employee-group".
+          employee_group:
+            type: array
+            items:
+              type: object
+              description: The Employee Group
+              oneOf:
+              - $ref: '#/components/schemas/XiqAdEmployeeGroup'
+              - $ref: '#/components/schemas/XiqManageEmployeeGroup'
+              - $ref: '#/components/schemas/XiqAdminEmployeeGroup'
+              discriminator:
+                propertyName: json_type
+                mapping:
+                  ad-employee-group: '#/components/schemas/XiqAdEmployeeGroup'
+                  manage-employee-group: '#/components/schemas/XiqManageEmployeeGroup'
+                  admin-employee-group: '#/components/schemas/XiqAdminEmployeeGroup'
+          name:
+            type: string
+            description: Name of the entity.
+          restrict_number:
+            type: string
+            description: Number restriction.
+          user_groups:
+            type: array
+            description: The list of User Groups
+            items:
+              $ref: '#/components/schemas/XiqUserGroups'
+    XiqUpdateApiAccessTokenRequest:
+      type: object
+      required:
+      - clientId
+      properties:
+        tokenExpireInDay:
+          type: string
+          description: The expiry of the token in days
+    PagedXiqApiAccessToken:
+      allOf:
+      - $ref: '#/components/schemas/XiqPage'
+      - type: object
+        properties:
+          data:
+            type: array
+            description: The data in the current page
+            items:
+              $ref: '#/components/schemas/XiqApiAccessToken'
+    XiqAdEmployeeGroup:
+      allOf:
+      - $ref: '#/components/schemas/XiqViqEntity'
+      - type: object
+        properties:
+          name:
+            type: string
+            description: Name of the member group.
+          owner_id:
+            type: integer
+            description: ID of the owner of the member group.
     XiqBaseEntity:
       required:
       - id
@@ -666,7 +651,90 @@ components:
           type: string
           description: The last update time
           format: date-time
-    XiqUpdateCredentialDistributionGroupRequest:
+    XiqManageEmployeeGroupRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Acct User Details name.
+        owner_id:
+          type: integer
+          description: The owner ID.
+    XiqApiAccessTokenResponse:
+      type: object
+      properties:
+        owner_id:
+          type: integer
+          description: Owner ID
+        vhm_id:
+          type: string
+          description: The VHM ID
+        vpc_url:
+          type: string
+          description: The VPC URL
+        access_token:
+          type: string
+          description: The access token generated
+        expiration:
+          type: integer
+          description: The expiration
+        refresh_token:
+          type: string
+          description: The refresh token generated
+    XiqUpdateThirdPartyApiConnectionRequest:
+      type: object
+      description: The payload to update 3rd party API connection
+      required:
+      - api_token
+      properties:
+        api_token:
+          type: string
+          description: This api token will overwrite the existing api token.
+    PagedXiqCredentialDistributionGroup:
+      allOf:
+      - $ref: '#/components/schemas/XiqPage'
+      - type: object
+        properties:
+          data:
+            type: array
+            description: The data in the current page
+            items:
+              $ref: '#/components/schemas/XiqCredentialDistributionGroup'
+    XiqApiAccessToken:
+      type: object
+      description: The API Access Token.
+      properties:
+        id:
+          type: integer
+          description: The unique identifier
+          format: int64
+        create_time:
+          type: string
+          description: The create time
+          format: date-time
+        update_time:
+          type: string
+          description: The last update time
+          format: date-time
+        accessToken:
+          type: string
+          description: The access token granted
+        expireAt:
+          type: integer
+          description: The timestamp at which the token expires
+        refreshToken:
+          type: string
+          description: The refresh token
+        grantor:
+          type: string
+          description: The name of the grantor of API Access Token
+        applicationName:
+          type: string
+          description: The third party application name
+        clientId:
+          type: string
+          description: The client ID
+    XiqCreateCredentialDistributionGroupRequest:
       type: object
       properties:
         name:
@@ -707,86 +775,28 @@ components:
           items:
             type: integer
             description: The list of user group IDs.
-    XiqAdminEmployeeGroupRequest:
-      type: object
-      properties:
-        id:
-          type: integer
-          description: The admin member group ID.
-    XiqPage:
-      required:
-      - count
-      - page
-      - total_count
-      - total_pages
-      type: object
-      properties:
-        page:
-          type: integer
-          description: The current page number
-          format: int32
-        count:
-          type: integer
-          description: The element count of the current page
-          format: int32
-        total_pages:
-          type: integer
-          description: The total page number based on request page size
-          format: int32
-        total_count:
-          type: integer
-          description: The total element count
-          format: int64
-    XiqApiAccessTokenResponse:
-      type: object
-      properties:
-        owner_id:
-          type: integer
-          description: Owner ID
-        vhm_id:
-          type: string
-          description: The VHM ID
-        vpc_url:
-          type: string
-          description: The VPC URL
-        access_token:
-          type: string
-          description: The access token generated
-        expiration:
-          type: integer
-          description: The expiration
-        refresh_token:
-          type: string
-          description: The refresh token generated
-    XiqAdminEmployeeGroup:
+    XiqManageEmployeeGroup:
       allOf:
       - $ref: '#/components/schemas/XiqViqEntity'
       - type: object
         properties:
-          id:
+          name:
+            type: string
+            description: Acct User Details name.
+          owner_id:
             type: integer
-            description: The admin member group ID.
-    XiqCreateApiAccessTokenRequest:
-      type: object
-      required:
-      - clientId
-      properties:
-        clientId:
-          type: string
-          description: The ID given to the client
-        tokenExpireInDay:
-          type: string
-          description: The expiry of the token in days
-    XiqUpdateThirdPartyApiConnectionRequest:
-      type: object
-      description: The payload to update 3rd party API connection
-      required:
-      - api_token
-      properties:
-        api_token:
-          type: string
-          description: This api token will overwrite the existing api token.
+            description: The owner ID.
   parameters:
+    page:
+      name: page
+      in: query
+      description: Page number, min = 1
+      required: false
+      schema:
+        minimum: 1
+        type: integer
+        format: int32
+        default: 1
     limit:
       name: limit
       in: query
@@ -798,16 +808,6 @@ components:
         type: integer
         format: int32
         default: 10
-    page:
-      name: page
-      in: query
-      description: Page number, min = 1
-      required: false
-      schema:
-        minimum: 1
-        type: integer
-        format: int32
-        default: 1
     id:
       name: id
       in: path

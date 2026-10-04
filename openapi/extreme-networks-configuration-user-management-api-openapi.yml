@@ -715,24 +715,163 @@ paths:
       - BearerAuth: []
 components:
   schemas:
-    XiqPskGenerationMethod:
+    XiqPcgType:
       type: string
-      description: The psk generation method
+      description: The private client group type for pcgUseOnly
       enum:
-      - PASSWORD_ONLY
-      - USER_STRING_PASSWORD
-    XiqValidForTimePeriodSettings:
+      - AP_BASED
+      - KEY_BASED
+    XiqCreateKeyBasedPcgNetworkPolicyRequest:
       type: object
-      description: The settings for Valid For Time Period option or null for other settings.
+      description: The request to initiate Key-based Private Client Group
       required:
-      - valid_time_period_after
+      - policy_name
+      - ssid_name
+      - users
       properties:
-        valid_time_period_after:
-          $ref: '#/components/schemas/XiqValidTimePeriodAfterType'
-        after_id_creation_settings:
-          $ref: '#/components/schemas/XiqValidTimePeriodAfterIdCreation'
-        after_first_login_settings:
-          $ref: '#/components/schemas/XiqValidTimePeriodAfterFirstLogin'
+        policy_name:
+          type: string
+          description: The network policy name
+        ssid_name:
+          type: string
+          description: The SSID name
+        users:
+          type: array
+          description: The Key-based PCG users
+          items:
+            $ref: '#/components/schemas/XiqKeyBasedPcgUserBaseInfo'
+    XiqPcgAssignPortsResponse:
+      type: object
+      description: The response of assign ports for AP150W
+      required:
+      - policy_id
+      - policy_name
+      - pcg_port_assignment_entries
+      properties:
+        policy_id:
+          type: integer
+          description: The network policy ID
+          format: int64
+        policy_name:
+          type: string
+          description: The network policy name
+        pcg_port_assignment_entries:
+          type: array
+          description: The port assignment entry list
+          items:
+            $ref: '#/components/schemas/XiqPcgPortAssignmentEntry'
+    XiqKeyBasedPcgUserBaseInfo:
+      required:
+      - email
+      - name
+      - user_group_name
+      type: object
+      properties:
+        name:
+          type: string
+          description: The user name of key based PCG, which could not share with other exist key based PCG
+        email:
+          type: string
+          description: The email for deliver key based PCG user password
+        user_group_name:
+          type: string
+          description: The user group name
+      description: The user's base info
+    XiqErrorParams:
+      type: object
+      description: Error parameters
+      properties:
+        field:
+          type: string
+          description: The error field
+        value:
+          type: string
+          description: The error value
+    XiqPcgPortAssignment:
+      type: object
+      description: The PCG port assignment entry
+      required:
+      - device_id
+      properties:
+        device_id:
+          type: integer
+          description: The device ID of AP150W
+          format: int64
+        eth1_user_id:
+          type: integer
+          description: The eth1 user ID, get available users from "/pcgs/key-based/network-policy-{policyId}/users"
+          format: int64
+        eth2_user_id:
+          type: integer
+          description: The eth2 user ID, get available users from "/pcgs/key-based/network-policy-{policyId}/users"
+          format: int64
+        eth3_user_id:
+          type: integer
+          description: The eth3 user ID, get available users from "/pcgs/key-based/network-policy-{policyId}/users"
+          format: int64
+    XiqPage:
+      required:
+      - count
+      - page
+      - total_count
+      - total_pages
+      type: object
+      properties:
+        page:
+          type: integer
+          description: The current page number
+          format: int32
+        count:
+          type: integer
+          description: The element count of the current page
+          format: int32
+        total_pages:
+          type: integer
+          description: The total page number based on request page size
+          format: int32
+        total_count:
+          type: integer
+          description: The total element count
+          format: int64
+    XiqPcgPortAssignmentEntryDeviceMeta:
+      allOf:
+      - $ref: '#/components/schemas/XiqViqEntity'
+      - type: object
+        description: The PCG port assignment entry device info
+        required:
+        - mac_address
+        - serial_number
+        - product_type
+        properties:
+          mac_address:
+            type: string
+            description: The mac address
+          serial_number:
+            type: string
+            description: The serial number
+          product_type:
+            type: string
+            description: The product type
+    XiqRegenerateEndUserPasswordResponse:
+      type: object
+      description: The newly generated password for the end user
+      required:
+      - password
+      properties:
+        password:
+          type: string
+          description: The new password of the end user
+    XiqUpdateKeyBasedPcgUsersRequest:
+      type: object
+      description: The payload of replace Key-based Private Client Group users request
+      required:
+      - users
+      properties:
+        users:
+          type: array
+          description: The Key-based PCG users
+          items:
+            $ref: '#/components/schemas/XiqKeyBasedPcgUserBaseInfo'
     XiqUserGroup:
       allOf:
       - $ref: '#/components/schemas/XiqViqEntity'
@@ -777,121 +916,17 @@ components:
             $ref: '#/components/schemas/XiqExpirationSettings'
           delivery_settings:
             $ref: '#/components/schemas/XiqDeliverySettings'
-    XiqPcgPortAssignmentEntryDeviceMeta:
+    XiqViqEntity:
       allOf:
-      - $ref: '#/components/schemas/XiqViqEntity'
+      - $ref: '#/components/schemas/XiqBaseEntity'
       - type: object
-        description: The PCG port assignment entry device info
+        properties:
+          org_id:
+            type: integer
+            description: The organization identifier, valid when enabling HIQ feature
+            format: int64
         required:
-        - mac_address
-        - serial_number
-        - product_type
-        properties:
-          mac_address:
-            type: string
-            description: The mac address
-          serial_number:
-            type: string
-            description: The serial number
-          product_type:
-            type: string
-            description: The product type
-    XiqPasswordDbLocation:
-      type: string
-      description: The access key storage location
-      enum:
-      - CLOUD
-      - LOCAL
-    XiqEmailTemplate:
-      allOf:
-      - $ref: '#/components/schemas/XiqViqEntity'
-      - type: object
-        description: The password or the PPSK notification template for user groups.
-        required:
-        - name
-        - predefined
-        - password_type
-        properties:
-          name:
-            type: string
-            description: The email template name
-          description:
-            type: string
-            description: The email template description
-          predefined:
-            type: boolean
-            description: Whether or not it is a system predefined template
-          content:
-            type: string
-            description: The email template form.
-          enable_preview:
-            type: boolean
-            description: The setting to enable preview
-          logo_url:
-            type: string
-            description: The logo url
-          icon_url:
-            type: string
-            description: The icon url
-          password_type:
-            $ref: '#/components/schemas/XiqPasswordType'
-    XiqPcgPortAssignmentEntryEthUserMeta:
-      allOf:
-      - $ref: '#/components/schemas/XiqViqEntity'
-      - type: object
-        description: The PCG port assignment entry of eth user info
-        required:
-        - name
-        - password
-        - user_type
-        - user_group_name
-        - ssids
-        properties:
-          name:
-            type: string
-            description: The user name
-          password:
-            type: string
-            description: The user password
-          user_type:
-            type: string
-            description: The user type
-          user_group_name:
-            type: string
-            description: The user group name
-          ssids:
-            type: array
-            description: The SSIDs
-            items:
-              type: string
-              description: The SSIDs
-    XiqValidTimePeriodAfterIdCreation:
-      type: object
-      description: The settings for the valid time period after ID Creation option or null for the other option
-      required:
-      - valid_time_period
-      - valid_time_period_unit
-      properties:
-        valid_time_period:
-          type: integer
-          description: The valid time period after account creation
-          format: int32
-        valid_time_period_unit:
-          $ref: '#/components/schemas/XiqDateTimeUnitType'
-    XiqPcgPortAssignmentEntryDetail:
-      allOf:
-      - $ref: '#/components/schemas/XiqViqEntity'
-      - type: object
-        description: The PCG port assignment entry detail
-        properties:
-          device:
-            $ref: '#/components/schemas/XiqPcgPortAssignmentEntryDeviceMeta'
-          eth1:
-            $ref: '#/components/schemas/XiqPcgPortAssignmentEntryEthUserMeta'
-          eth2:
-            $ref: '#/components/schemas/XiqPcgPortAssignmentEntryEthUserMeta'
-          eth3:
-            $ref: '#/components/schemas/XiqPcgPortAssignmentEntryEthUserMeta'
+        - org_id
     XiqEndUser:
       allOf:
       - $ref: '#/components/schemas/XiqViqEntity'
@@ -949,32 +984,70 @@ components:
             format: int32
             minimum: 1
             maximum: 4094
-    XiqUpdateKeyBasedPcgUsersRequest:
+    XiqDeleteKeyBasedPcgUsersRequest:
       type: object
-      description: The payload of replace Key-based Private Client Group users request
+      description: The payload of delete Key Based Private Client Group users request
+      required:
+      - user_ids
+      properties:
+        user_ids:
+          type: array
+          description: The user ID list
+          items:
+            type: integer
+            description: The user ID list
+            format: int64
+    XiqCreateKeyBasedPcgUsersRequest:
+      type: object
+      description: The payload of add Key-based Private Client Group users request
       required:
       - users
       properties:
         users:
           type: array
-          description: The Key-based PCG users
+          description: The key based PCG users
           items:
             $ref: '#/components/schemas/XiqKeyBasedPcgUserBaseInfo'
-    PagedXiqUserGroup:
-      allOf:
-      - $ref: '#/components/schemas/XiqPage'
-      - type: object
-        properties:
-          data:
-            type: array
-            description: The data in the current page
-            items:
-              $ref: '#/components/schemas/XiqUserGroup'
-    XiqSmsTemplate:
+    XiqExpirationSettings:
+      type: object
+      description: The password expiration settings
+      properties:
+        expiration_type:
+          $ref: '#/components/schemas/XiqExpirationType'
+        valid_during_dates:
+          $ref: '#/components/schemas/XiqValidDuringDateSettings'
+        valid_for_time_period:
+          $ref: '#/components/schemas/XiqValidForTimePeriodSettings'
+        valid_daily:
+          $ref: '#/components/schemas/XiqValidDailySettings'
+        expiration_action:
+          $ref: '#/components/schemas/XiqExpirationActionType'
+        post_expiration_action:
+          $ref: '#/components/schemas/XiqPostExpirationAction'
+    XiqGetPortAssignmentDetailsResponse:
+      type: object
+      description: The response of port assignment details for AP150W
+      required:
+      - policy_id
+      - policy_name
+      properties:
+        policy_id:
+          type: integer
+          description: The network policy ID
+          format: int64
+        policy_name:
+          type: string
+          description: The network policy name
+        pcg_port_assignment_entry_details:
+          type: array
+          description: The PCG port assignment entry details
+          items:
+            $ref: '#/components/schemas/XiqPcgPortAssignmentEntryDetail'
+    XiqEmailTemplate:
       allOf:
       - $ref: '#/components/schemas/XiqViqEntity'
       - type: object
-        description: The password or PPSK notification template for user groups.
+        description: The password or the PPSK notification template for user groups.
         required:
         - name
         - predefined
@@ -982,71 +1055,43 @@ components:
         properties:
           name:
             type: string
-            description: The SMS template name
+            description: The email template name
           description:
             type: string
-            description: The SMS template description
+            description: The email template description
           predefined:
             type: boolean
-            description: Wheter or not it is a system prefined template
+            description: Whether or not it is a system predefined template
           content:
             type: string
-            description: The SMS template content
+            description: The email template form.
+          enable_preview:
+            type: boolean
+            description: The setting to enable preview
+          logo_url:
+            type: string
+            description: The logo url
+          icon_url:
+            type: string
+            description: The icon url
           password_type:
             $ref: '#/components/schemas/XiqPasswordType'
-    XiqUpdateEndUserRequest:
+    XiqPostExpirationAction:
       type: object
+      description: The type of action to take after the account expiration.
       properties:
-        name:
-          type: string
-          description: The user common name
-        organization:
-          type: string
-          description: The organization name
-        visit_purpose:
-          type: string
-          description: The purpose of visit
-        description:
-          type: string
-          description: The user description
-        email_address:
-          type: string
-          description: The user email
-        phone_number:
-          type: string
-          description: The user phone number
-        password:
-          type: string
-          description: The user password
-        email_password_delivery:
-          type: string
-          description: The password delivery Email
-        sms_password_delivery:
-          type: string
-          description: The password delivery SMS
-        vlan_override:
+        enable_credentials_renewal:
+          type: boolean
+          description: The renew user credentials option or null for other option.
+        enable_delete_immediately:
+          type: boolean
+          description: The immediate delete option or null to schedule the delete.
+        delete_after_value:
           type: integer
-          minimum: 1
-          maximum: 4094
-          description: VLAN ID override assigned to the user (range 1-4094, Optional)
+          description: The after expiration scheduled time to delete or null to not delete..
           format: int32
-    XiqExpirationActionType:
-      type: string
-      description: The Expiration Action to take, null if the account is never expired.
-      enum:
-      - SHOW_MESSAGE
-      - REJECT_ACCESS
-    XiqViqEntity:
-      allOf:
-      - $ref: '#/components/schemas/XiqBaseEntity'
-      - type: object
-        properties:
-          org_id:
-            type: integer
-            description: The organization identifier, valid when enabling HIQ feature
-            format: int64
-        required:
-        - org_id
+        delete_after_unit:
+          $ref: '#/components/schemas/XiqDateTimeUnitType'
     XiqError:
       type: object
       properties:
@@ -1071,86 +1116,7 @@ components:
       - error_code
       - error_id
       - error_message
-    XiqPasswordType:
-      type: string
-      description: The access key type
-      enum:
-      - PPSK
-      - RADIUS
-    XiqOnboardKeyBasedPcgResponse:
-      type: object
-      description: Add users to a PCG-enabled network policy
-      properties:
-        policy_name:
-          type: string
-          description: The policy name
-        ssid_name:
-          type: string
-          description: The SSID name
-        status:
-          type: string
-          description: Add user status
-    XiqCreateUserGroupRequest:
-      type: object
-      required:
-      - name
-      - password_db_location
-      - password_type
-      - password_settings
-      - expiration_settings
-      - delivery_settings
-      properties:
-        name:
-          type: string
-          description: The user group name
-        description:
-          type: string
-          description: The user group description
-        password_db_location:
-          $ref: '#/components/schemas/XiqPasswordDbLocation'
-        ppsk_use_only:
-          type: boolean
-          description: Whether it's for PPSK use only
-        password_type:
-          $ref: '#/components/schemas/XiqPasswordType'
-        enable_max_clients_per_ppsk:
-          type: boolean
-          description: The enablement for the maximum number of clients per private PSK
-        max_clients_per_ppsk:
-          type: integer
-          description: The maximum number of clients per private PSK
-          format: int32
-        pcg_use_only:
-          type: boolean
-          description: Whether it's for PCG use only
-        pcg_type:
-          $ref: '#/components/schemas/XiqPcgType'
-        enable_cwp_reg:
-          type: boolean
-          description: Whether to enable CWP registration setting
-        password_settings:
-          $ref: '#/components/schemas/XiqPasswordSettings'
-        expiration_settings:
-          $ref: '#/components/schemas/XiqExpirationSettings'
-        delivery_settings:
-          $ref: '#/components/schemas/XiqDeliverySettings'
-    PagedXiqEndUser:
-      allOf:
-      - $ref: '#/components/schemas/XiqPage'
-      - type: object
-        properties:
-          data:
-            type: array
-            description: The data in the current page
-            items:
-              $ref: '#/components/schemas/XiqEndUser'
-    XiqValidTimePeriodAfterType:
-      type: string
-      description: The valid time period after Id creation or first login.
-      enum:
-      - ID_CREATION
-      - FIRST_LOGIN
-    XiqCreateKeyBasedPcgNetworkPolicyResponse:
+    XiqKeyBasedPcg:
       allOf:
       - $ref: '#/components/schemas/XiqViqEntity'
       - type: object
@@ -1159,6 +1125,7 @@ components:
         - policy_id
         - policy_name
         - ssid_name
+        - enabled
         properties:
           policy_id:
             type: integer
@@ -1170,322 +1137,20 @@ components:
           ssid_name:
             type: string
             description: The SSID name
+          enabled:
+            type: boolean
+            description: Enabled Key Based PCG
           users:
             type: array
             description: The XIQ key based PCG users
             items:
               $ref: '#/components/schemas/XiqKeyBasedPcgUser'
-    XiqErrorParams:
-      type: object
-      description: Error parameters
-      properties:
-        field:
-          type: string
-          description: The error field
-        value:
-          type: string
-          description: The error value
-    XiqValidDuringDateSettings:
-      type: object
-      description: The settings for Valid During Dates option or null for other settings.
-      required:
-      - start_date_time
-      - end_date_time
-      - time_zone
-      properties:
-        start_date_time:
-          $ref: '#/components/schemas/XiqDateTimeType'
-        end_date_time:
-          $ref: '#/components/schemas/XiqDateTimeType'
-        time_zone:
-          type: string
-          description: The date/time timezone
-    XiqCreateKeyBasedPcgNetworkPolicyRequest:
-      type: object
-      description: The request to initiate Key-based Private Client Group
-      required:
-      - policy_name
-      - ssid_name
-      - users
-      properties:
-        policy_name:
-          type: string
-          description: The network policy name
-        ssid_name:
-          type: string
-          description: The SSID name
-        users:
-          type: array
-          description: The Key-based PCG users
-          items:
-            $ref: '#/components/schemas/XiqKeyBasedPcgUserBaseInfo'
-    XiqAddKeyBasedPcgUsersToNetworkPolicyResponse:
-      type: object
-      description: Add users to a PCG-enabled network policy
-      properties:
-        policy_id:
-          type: integer
-          description: The policy id
-          format: int64
-        status:
-          type: string
-          description: Add user status
-        users:
-          type: array
-          description: The XIQ key based PCG users
-          items:
-            $ref: '#/components/schemas/XiqKeyBasedPcgUser'
-    XiqPcgType:
+    XiqExpirationActionType:
       type: string
-      description: The private client group type for pcgUseOnly
+      description: The Expiration Action to take, null if the account is never expired.
       enum:
-      - AP_BASED
-      - KEY_BASED
-    XiqDateTimeUnitType:
-      type: string
-      description: The after expiration scheduled time unit.
-      enum:
-      - MINUTE
-      - HOUR
-      - DAY
-      - WEEK
-    XiqPasswordSettings:
-      type: object
-      description: The password settings ID
-      required:
-      - psk_generation_method
-      - password_character_types
-      - password_length
-      properties:
-        enable_letters:
-          type: boolean
-          description: Enable use of letters
-        enable_numbers:
-          type: boolean
-          description: Enable use of numbers
-        enable_special_characters:
-          type: boolean
-          description: Enable use of special characters
-        password_concat_string:
-          type: string
-          description: The password concatenated string
-        psk_generation_method:
-          $ref: '#/components/schemas/XiqPskGenerationMethod'
-        password_character_types:
-          $ref: '#/components/schemas/XiqPasswordCharacterType'
-        password_length:
-          type: integer
-          description: The maximun password string length
-          format: int32
-    XiqPcgAssignPortsResponse:
-      type: object
-      description: The response of assign ports for AP150W
-      required:
-      - policy_id
-      - policy_name
-      - pcg_port_assignment_entries
-      properties:
-        policy_id:
-          type: integer
-          description: The network policy ID
-          format: int64
-        policy_name:
-          type: string
-          description: The network policy name
-        pcg_port_assignment_entries:
-          type: array
-          description: The port assignment entry list
-          items:
-            $ref: '#/components/schemas/XiqPcgPortAssignmentEntry'
-    XiqKeyBasedPcgUser:
-      allOf:
-      - $ref: '#/components/schemas/XiqViqEntity'
-      - type: object
-        description: The key based PCG user detailed info
-        required:
-        - name
-        - email
-        - user_group_name
-        properties:
-          name:
-            type: string
-            description: The user name of key based PCG, which could not share with other exist key based PCG
-          email:
-            type: string
-            description: The email for deliver key based PCG user password
-          user_group_name:
-            type: string
-            description: The user group name
-    XiqDeleteKeyBasedPcgUsersRequest:
-      type: object
-      description: The payload of delete Key Based Private Client Group users request
-      required:
-      - user_ids
-      properties:
-        user_ids:
-          type: array
-          description: The user ID list
-          items:
-            type: integer
-            description: The user ID list
-            format: int64
-    XiqOnboardKeyBasedPcgRequest:
-      type: object
-      description: The payload to create Key Based PCG data(from exist network policy and SSID)
-      required:
-      - ssid_name
-      - enabled
-      - user_ids
-      properties:
-        ssid_name:
-          type: string
-        enabled:
-          type: boolean
-          description: Enable the key based PCG
-        user_ids:
-          type: array
-          description: The request user IDs
-          items:
-            type: integer
-            description: The request user IDs
-            format: int64
-    XiqBaseEntity:
-      required:
-      - id
-      - create_time
-      - update_time
-      type: object
-      properties:
-        id:
-          type: integer
-          description: The unique identifier
-          format: int64
-        create_time:
-          type: string
-          description: The create time
-          format: date-time
-        update_time:
-          type: string
-          description: The last update time
-          format: date-time
-    XiqDateTimeType:
-      type: object
-      description: The end date and time
-      required:
-      - day_of_month
-      - month
-      - year
-      - hour_of_day
-      - minute_of_hour
-      properties:
-        day_of_month:
-          type: integer
-          description: The day of month
-          format: int32
-        month:
-          type: integer
-          description: The month
-          format: int32
-        year:
-          type: integer
-          description: The year
-          format: int32
-        hour_of_day:
-          type: integer
-          description: The 24-hour format hour of day
-          format: int32
-        minute_of_hour:
-          type: integer
-          description: The minute of the hour
-          format: int32
-    XiqUpdateUserGroupRequest:
-      type: object
-      required:
-      - name
-      - password_db_location
-      - password_type
-      - delivery_settings
-      - password_settings
-      - expiration_settings
-      properties:
-        name:
-          type: string
-          description: The user group name
-        description:
-          type: string
-          description: The user group description
-        password_db_location:
-          $ref: '#/components/schemas/XiqPasswordDbLocation'
-        ppsk_use_only:
-          type: boolean
-          description: Whether it's for PPSK use only
-        password_type:
-          $ref: '#/components/schemas/XiqPasswordType'
-        enable_max_clients_per_ppsk:
-          type: boolean
-          description: The enablement for the maximum number of clients per private PSK
-        max_clients_per_ppsk:
-          type: integer
-          description: The maximum number of clients per private PSK
-          format: int32
-        pcg_use_only:
-          type: boolean
-          description: Whether it's for PCG use only
-        pcg_type:
-          $ref: '#/components/schemas/XiqPcgType'
-        enable_cwp_reg:
-          type: boolean
-          description: Whether to enable CWP registration setting
-        password_settings:
-          $ref: '#/components/schemas/XiqPasswordSettings'
-        expiration_settings:
-          $ref: '#/components/schemas/XiqExpirationSettings'
-        delivery_settings:
-          $ref: '#/components/schemas/XiqDeliverySettings'
-    XiqRegenerateEndUserPasswordResponse:
-      type: object
-      description: The newly generated password for the end user
-      required:
-      - password
-      properties:
-        password:
-          type: string
-          description: The new password of the end user
-    XiqPage:
-      required:
-      - count
-      - page
-      - total_count
-      - total_pages
-      type: object
-      properties:
-        page:
-          type: integer
-          description: The current page number
-          format: int32
-        count:
-          type: integer
-          description: The element count of the current page
-          format: int32
-        total_pages:
-          type: integer
-          description: The total page number based on request page size
-          format: int32
-        total_count:
-          type: integer
-          description: The total element count
-          format: int64
-    XiqCreateKeyBasedPcgUsersRequest:
-      type: object
-      description: The payload of add Key-based Private Client Group users request
-      required:
-      - users
-      properties:
-        users:
-          type: array
-          description: The key based PCG users
-          items:
-            $ref: '#/components/schemas/XiqKeyBasedPcgUserBaseInfo'
+      - SHOW_MESSAGE
+      - REJECT_ACCESS
     XiqValidTimePeriodAfterFirstLogin:
       type: object
       description: The settings for the valid time period after First Login option or null for the other option
@@ -1507,142 +1172,26 @@ components:
           format: int32
         first_login_within_unit:
           $ref: '#/components/schemas/XiqDateTimeUnitType'
-    XiqPasswordCharacterType:
-      type: string
-      description: Password generation using letters, numbers, and/or special characters
-      enum:
-      - INCLUDE_ALL_CHARACTER_TYPE_ENABLED
-      - INCLUDE_ANY_CHARACTER_TYPES_ENABLED
-      - INCLUDE_ONLY_ONE_CHARACTER_TYPE_ENABLED
-    XiqDeliverySettings:
+    XiqOnboardKeyBasedPcgRequest:
       type: object
-      description: The password delivery settings
-      properties:
-        email_template_id:
-          type: integer
-          description: The Email Template ID
-          format: int64
-        sms_template_id:
-          type: integer
-          description: The SMS Template ID
-          format: int64
-    XiqGetPortAssignmentDetailsResponse:
-      type: object
-      description: The response of port assignment details for AP150W
+      description: The payload to create Key Based PCG data(from exist network policy and SSID)
       required:
-      - policy_id
-      - policy_name
+      - ssid_name
+      - enabled
+      - user_ids
       properties:
-        policy_id:
-          type: integer
-          description: The network policy ID
-          format: int64
-        policy_name:
+        ssid_name:
           type: string
-          description: The network policy name
-        pcg_port_assignment_entry_details:
+        enabled:
+          type: boolean
+          description: Enable the key based PCG
+        user_ids:
           type: array
-          description: The PCG port assignment entry details
+          description: The request user IDs
           items:
-            $ref: '#/components/schemas/XiqPcgPortAssignmentEntryDetail'
-    XiqKeyBasedPcgUserBaseInfo:
-      required:
-      - email
-      - name
-      - user_group_name
-      type: object
-      properties:
-        name:
-          type: string
-          description: The user name of key based PCG, which could not share with other exist key based PCG
-        email:
-          type: string
-          description: The email for deliver key based PCG user password
-        user_group_name:
-          type: string
-          description: The user group name
-      description: The user's base info
-    XiqExpirationType:
-      type: string
-      description: The for one of the account expiration types.
-      enum:
-      - NEVER_EXPIRE
-      - VALID_DURING_DATES
-      - VALID_FOR_TIME_PERIOD
-      - DAILY
-    XiqPcgPortAssignment:
-      type: object
-      description: The PCG port assignment entry
-      required:
-      - device_id
-      properties:
-        device_id:
-          type: integer
-          description: The device ID of AP150W
-          format: int64
-        eth1_user_id:
-          type: integer
-          description: The eth1 user ID, get available users from "/pcgs/key-based/network-policy-{policyId}/users"
-          format: int64
-        eth2_user_id:
-          type: integer
-          description: The eth2 user ID, get available users from "/pcgs/key-based/network-policy-{policyId}/users"
-          format: int64
-        eth3_user_id:
-          type: integer
-          description: The eth3 user ID, get available users from "/pcgs/key-based/network-policy-{policyId}/users"
-          format: int64
-    XiqPcgPortAssignmentEntry:
-      allOf:
-      - $ref: '#/components/schemas/XiqViqEntity'
-      - type: object
-        description: The PCG port assignment entry
-        required:
-        - device_id
-        properties:
-          device_id:
             type: integer
-            description: The device ID of AP150W
+            description: The request user IDs
             format: int64
-          eth1_user_id:
-            type: integer
-            description: The eth1 user ID, get available users from "/pcgs/key-based/network-policy-{policyId}/users"
-            format: int64
-          eth2_user_id:
-            type: integer
-            description: The eth2 user ID, get available users from "/pcgs/key-based/network-policy-{policyId}/users"
-            format: int64
-          eth3_user_id:
-            type: integer
-            description: The eth3 user ID, get available users from "/pcgs/key-based/network-policy-{policyId}/users"
-            format: int64
-    XiqExpirationSettings:
-      type: object
-      description: The password expiration settings
-      properties:
-        expiration_type:
-          $ref: '#/components/schemas/XiqExpirationType'
-        valid_during_dates:
-          $ref: '#/components/schemas/XiqValidDuringDateSettings'
-        valid_for_time_period:
-          $ref: '#/components/schemas/XiqValidForTimePeriodSettings'
-        valid_daily:
-          $ref: '#/components/schemas/XiqValidDailySettings'
-        expiration_action:
-          $ref: '#/components/schemas/XiqExpirationActionType'
-        post_expiration_action:
-          $ref: '#/components/schemas/XiqPostExpirationAction'
-    XiqPcgAssignPortsRequest:
-      type: object
-      description: The payload to assign ports for AP150W
-      required:
-      - port_assignments
-      properties:
-        port_assignments:
-          type: array
-          description: The port assignment list
-          items:
-            $ref: '#/components/schemas/XiqPcgPortAssignment'
     XiqCreateEndUserRequest:
       type: object
       required:
@@ -1689,6 +1238,79 @@ components:
           maximum: 4094
           description: VLAN ID override assigned to the user (range 1-4094, Optional)
           format: int32
+    XiqPcgPortAssignmentEntry:
+      allOf:
+      - $ref: '#/components/schemas/XiqViqEntity'
+      - type: object
+        description: The PCG port assignment entry
+        required:
+        - device_id
+        properties:
+          device_id:
+            type: integer
+            description: The device ID of AP150W
+            format: int64
+          eth1_user_id:
+            type: integer
+            description: The eth1 user ID, get available users from "/pcgs/key-based/network-policy-{policyId}/users"
+            format: int64
+          eth2_user_id:
+            type: integer
+            description: The eth2 user ID, get available users from "/pcgs/key-based/network-policy-{policyId}/users"
+            format: int64
+          eth3_user_id:
+            type: integer
+            description: The eth3 user ID, get available users from "/pcgs/key-based/network-policy-{policyId}/users"
+            format: int64
+    XiqSmsTemplate:
+      allOf:
+      - $ref: '#/components/schemas/XiqViqEntity'
+      - type: object
+        description: The password or PPSK notification template for user groups.
+        required:
+        - name
+        - predefined
+        - password_type
+        properties:
+          name:
+            type: string
+            description: The SMS template name
+          description:
+            type: string
+            description: The SMS template description
+          predefined:
+            type: boolean
+            description: Wheter or not it is a system prefined template
+          content:
+            type: string
+            description: The SMS template content
+          password_type:
+            $ref: '#/components/schemas/XiqPasswordType'
+    XiqKeyBasedPcgUser:
+      allOf:
+      - $ref: '#/components/schemas/XiqViqEntity'
+      - type: object
+        description: The key based PCG user detailed info
+        required:
+        - name
+        - email
+        - user_group_name
+        properties:
+          name:
+            type: string
+            description: The user name of key based PCG, which could not share with other exist key based PCG
+          email:
+            type: string
+            description: The email for deliver key based PCG user password
+          user_group_name:
+            type: string
+            description: The user group name
+    XiqPskGenerationMethod:
+      type: string
+      description: The psk generation method
+      enum:
+      - PASSWORD_ONLY
+      - USER_STRING_PASSWORD
     XiqValidDailySettings:
       type: object
       description: The settings for Valid Daily option or null for other settings.
@@ -1714,23 +1336,338 @@ components:
           type: integer
           description: The minute of the hour
           format: int32
-    XiqPostExpirationAction:
+    XiqValidForTimePeriodSettings:
       type: object
-      description: The type of action to take after the account expiration.
+      description: The settings for Valid For Time Period option or null for other settings.
+      required:
+      - valid_time_period_after
       properties:
-        enable_credentials_renewal:
+        valid_time_period_after:
+          $ref: '#/components/schemas/XiqValidTimePeriodAfterType'
+        after_id_creation_settings:
+          $ref: '#/components/schemas/XiqValidTimePeriodAfterIdCreation'
+        after_first_login_settings:
+          $ref: '#/components/schemas/XiqValidTimePeriodAfterFirstLogin'
+    XiqValidDuringDateSettings:
+      type: object
+      description: The settings for Valid During Dates option or null for other settings.
+      required:
+      - start_date_time
+      - end_date_time
+      - time_zone
+      properties:
+        start_date_time:
+          $ref: '#/components/schemas/XiqDateTimeType'
+        end_date_time:
+          $ref: '#/components/schemas/XiqDateTimeType'
+        time_zone:
+          type: string
+          description: The date/time timezone
+    XiqUpdateUserGroupRequest:
+      type: object
+      required:
+      - name
+      - password_db_location
+      - password_type
+      - delivery_settings
+      - password_settings
+      - expiration_settings
+      properties:
+        name:
+          type: string
+          description: The user group name
+        description:
+          type: string
+          description: The user group description
+        password_db_location:
+          $ref: '#/components/schemas/XiqPasswordDbLocation'
+        ppsk_use_only:
           type: boolean
-          description: The renew user credentials option or null for other option.
-        enable_delete_immediately:
+          description: Whether it's for PPSK use only
+        password_type:
+          $ref: '#/components/schemas/XiqPasswordType'
+        enable_max_clients_per_ppsk:
           type: boolean
-          description: The immediate delete option or null to schedule the delete.
-        delete_after_value:
+          description: The enablement for the maximum number of clients per private PSK
+        max_clients_per_ppsk:
           type: integer
-          description: The after expiration scheduled time to delete or null to not delete..
+          description: The maximum number of clients per private PSK
           format: int32
-        delete_after_unit:
-          $ref: '#/components/schemas/XiqDateTimeUnitType'
-    XiqKeyBasedPcg:
+        pcg_use_only:
+          type: boolean
+          description: Whether it's for PCG use only
+        pcg_type:
+          $ref: '#/components/schemas/XiqPcgType'
+        enable_cwp_reg:
+          type: boolean
+          description: Whether to enable CWP registration setting
+        password_settings:
+          $ref: '#/components/schemas/XiqPasswordSettings'
+        expiration_settings:
+          $ref: '#/components/schemas/XiqExpirationSettings'
+        delivery_settings:
+          $ref: '#/components/schemas/XiqDeliverySettings'
+    XiqValidTimePeriodAfterType:
+      type: string
+      description: The valid time period after Id creation or first login.
+      enum:
+      - ID_CREATION
+      - FIRST_LOGIN
+    XiqBaseEntity:
+      required:
+      - id
+      - create_time
+      - update_time
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The unique identifier
+          format: int64
+        create_time:
+          type: string
+          description: The create time
+          format: date-time
+        update_time:
+          type: string
+          description: The last update time
+          format: date-time
+    XiqCreateUserGroupRequest:
+      type: object
+      required:
+      - name
+      - password_db_location
+      - password_type
+      - password_settings
+      - expiration_settings
+      - delivery_settings
+      properties:
+        name:
+          type: string
+          description: The user group name
+        description:
+          type: string
+          description: The user group description
+        password_db_location:
+          $ref: '#/components/schemas/XiqPasswordDbLocation'
+        ppsk_use_only:
+          type: boolean
+          description: Whether it's for PPSK use only
+        password_type:
+          $ref: '#/components/schemas/XiqPasswordType'
+        enable_max_clients_per_ppsk:
+          type: boolean
+          description: The enablement for the maximum number of clients per private PSK
+        max_clients_per_ppsk:
+          type: integer
+          description: The maximum number of clients per private PSK
+          format: int32
+        pcg_use_only:
+          type: boolean
+          description: Whether it's for PCG use only
+        pcg_type:
+          $ref: '#/components/schemas/XiqPcgType'
+        enable_cwp_reg:
+          type: boolean
+          description: Whether to enable CWP registration setting
+        password_settings:
+          $ref: '#/components/schemas/XiqPasswordSettings'
+        expiration_settings:
+          $ref: '#/components/schemas/XiqExpirationSettings'
+        delivery_settings:
+          $ref: '#/components/schemas/XiqDeliverySettings'
+    PagedXiqUserGroup:
+      allOf:
+      - $ref: '#/components/schemas/XiqPage'
+      - type: object
+        properties:
+          data:
+            type: array
+            description: The data in the current page
+            items:
+              $ref: '#/components/schemas/XiqUserGroup'
+    XiqUpdateEndUserRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The user common name
+        organization:
+          type: string
+          description: The organization name
+        visit_purpose:
+          type: string
+          description: The purpose of visit
+        description:
+          type: string
+          description: The user description
+        email_address:
+          type: string
+          description: The user email
+        phone_number:
+          type: string
+          description: The user phone number
+        password:
+          type: string
+          description: The user password
+        email_password_delivery:
+          type: string
+          description: The password delivery Email
+        sms_password_delivery:
+          type: string
+          description: The password delivery SMS
+        vlan_override:
+          type: integer
+          minimum: 1
+          maximum: 4094
+          description: VLAN ID override assigned to the user (range 1-4094, Optional)
+          format: int32
+    XiqPasswordSettings:
+      type: object
+      description: The password settings ID
+      required:
+      - psk_generation_method
+      - password_character_types
+      - password_length
+      properties:
+        enable_letters:
+          type: boolean
+          description: Enable use of letters
+        enable_numbers:
+          type: boolean
+          description: Enable use of numbers
+        enable_special_characters:
+          type: boolean
+          description: Enable use of special characters
+        password_concat_string:
+          type: string
+          description: The password concatenated string
+        psk_generation_method:
+          $ref: '#/components/schemas/XiqPskGenerationMethod'
+        password_character_types:
+          $ref: '#/components/schemas/XiqPasswordCharacterType'
+        password_length:
+          type: integer
+          description: The maximun password string length
+          format: int32
+    XiqPasswordDbLocation:
+      type: string
+      description: The access key storage location
+      enum:
+      - CLOUD
+      - LOCAL
+    XiqPasswordCharacterType:
+      type: string
+      description: Password generation using letters, numbers, and/or special characters
+      enum:
+      - INCLUDE_ALL_CHARACTER_TYPE_ENABLED
+      - INCLUDE_ANY_CHARACTER_TYPES_ENABLED
+      - INCLUDE_ONLY_ONE_CHARACTER_TYPE_ENABLED
+    XiqPcgPortAssignmentEntryEthUserMeta:
+      allOf:
+      - $ref: '#/components/schemas/XiqViqEntity'
+      - type: object
+        description: The PCG port assignment entry of eth user info
+        required:
+        - name
+        - password
+        - user_type
+        - user_group_name
+        - ssids
+        properties:
+          name:
+            type: string
+            description: The user name
+          password:
+            type: string
+            description: The user password
+          user_type:
+            type: string
+            description: The user type
+          user_group_name:
+            type: string
+            description: The user group name
+          ssids:
+            type: array
+            description: The SSIDs
+            items:
+              type: string
+              description: The SSIDs
+    XiqPasswordType:
+      type: string
+      description: The access key type
+      enum:
+      - PPSK
+      - RADIUS
+    XiqPcgPortAssignmentEntryDetail:
+      allOf:
+      - $ref: '#/components/schemas/XiqViqEntity'
+      - type: object
+        description: The PCG port assignment entry detail
+        properties:
+          device:
+            $ref: '#/components/schemas/XiqPcgPortAssignmentEntryDeviceMeta'
+          eth1:
+            $ref: '#/components/schemas/XiqPcgPortAssignmentEntryEthUserMeta'
+          eth2:
+            $ref: '#/components/schemas/XiqPcgPortAssignmentEntryEthUserMeta'
+          eth3:
+            $ref: '#/components/schemas/XiqPcgPortAssignmentEntryEthUserMeta'
+    XiqDateTimeUnitType:
+      type: string
+      description: The after expiration scheduled time unit.
+      enum:
+      - MINUTE
+      - HOUR
+      - DAY
+      - WEEK
+    XiqAddKeyBasedPcgUsersToNetworkPolicyResponse:
+      type: object
+      description: Add users to a PCG-enabled network policy
+      properties:
+        policy_id:
+          type: integer
+          description: The policy id
+          format: int64
+        status:
+          type: string
+          description: Add user status
+        users:
+          type: array
+          description: The XIQ key based PCG users
+          items:
+            $ref: '#/components/schemas/XiqKeyBasedPcgUser'
+    PagedXiqEndUser:
+      allOf:
+      - $ref: '#/components/schemas/XiqPage'
+      - type: object
+        properties:
+          data:
+            type: array
+            description: The data in the current page
+            items:
+              $ref: '#/components/schemas/XiqEndUser'
+    XiqExpirationType:
+      type: string
+      description: The for one of the account expiration types.
+      enum:
+      - NEVER_EXPIRE
+      - VALID_DURING_DATES
+      - VALID_FOR_TIME_PERIOD
+      - DAILY
+    XiqDeliverySettings:
+      type: object
+      description: The password delivery settings
+      properties:
+        email_template_id:
+          type: integer
+          description: The Email Template ID
+          format: int64
+        sms_template_id:
+          type: integer
+          description: The SMS Template ID
+          format: int64
+    XiqCreateKeyBasedPcgNetworkPolicyResponse:
       allOf:
       - $ref: '#/components/schemas/XiqViqEntity'
       - type: object
@@ -1739,7 +1676,6 @@ components:
         - policy_id
         - policy_name
         - ssid_name
-        - enabled
         properties:
           policy_id:
             type: integer
@@ -1751,15 +1687,89 @@ components:
           ssid_name:
             type: string
             description: The SSID name
-          enabled:
-            type: boolean
-            description: Enabled Key Based PCG
           users:
             type: array
             description: The XIQ key based PCG users
             items:
               $ref: '#/components/schemas/XiqKeyBasedPcgUser'
+    XiqValidTimePeriodAfterIdCreation:
+      type: object
+      description: The settings for the valid time period after ID Creation option or null for the other option
+      required:
+      - valid_time_period
+      - valid_time_period_unit
+      properties:
+        valid_time_period:
+          type: integer
+          description: The valid time period after account creation
+          format: int32
+        valid_time_period_unit:
+          $ref: '#/components/schemas/XiqDateTimeUnitType'
+    XiqPcgAssignPortsRequest:
+      type: object
+      description: The payload to assign ports for AP150W
+      required:
+      - port_assignments
+      properties:
+        port_assignments:
+          type: array
+          description: The port assignment list
+          items:
+            $ref: '#/components/schemas/XiqPcgPortAssignment'
+    XiqDateTimeType:
+      type: object
+      description: The end date and time
+      required:
+      - day_of_month
+      - month
+      - year
+      - hour_of_day
+      - minute_of_hour
+      properties:
+        day_of_month:
+          type: integer
+          description: The day of month
+          format: int32
+        month:
+          type: integer
+          description: The month
+          format: int32
+        year:
+          type: integer
+          description: The year
+          format: int32
+        hour_of_day:
+          type: integer
+          description: The 24-hour format hour of day
+          format: int32
+        minute_of_hour:
+          type: integer
+          description: The minute of the hour
+          format: int32
+    XiqOnboardKeyBasedPcgResponse:
+      type: object
+      description: Add users to a PCG-enabled network policy
+      properties:
+        policy_name:
+          type: string
+          description: The policy name
+        ssid_name:
+          type: string
+          description: The SSID name
+        status:
+          type: string
+          description: Add user status
   parameters:
+    page:
+      name: page
+      in: query
+      description: Page number, min = 1
+      required: false
+      schema:
+        minimum: 1
+        type: integer
+        format: int32
+        default: 1
     limit:
       name: limit
       in: query
@@ -1771,16 +1781,6 @@ components:
         type: integer
         format: int32
         default: 10
-    page:
-      name: page
-      in: query
-      description: Page number, min = 1
-      required: false
-      schema:
-        minimum: 1
-        type: integer
-        format: int32
-        default: 1
     id:
       name: id
       in: path

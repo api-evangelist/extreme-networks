@@ -814,61 +814,7 @@ paths:
       security:
       - BearerAuth: []
 components:
-  parameters:
-    endTime:
-      name: endTime
-      in: query
-      description: The end time to query, epoch time in milliseconds since 1/1/1970
-      required: true
-      schema:
-        type: integer
-        format: int64
-    selectedTime:
-      name: selectedTime
-      in: query
-      description: The selected time to query, epoch time in milliseconds since 1/1/1970
-      required: false
-      schema:
-        type: integer
-        format: int64
-    limit:
-      name: limit
-      in: query
-      description: Page Size, min = 1, max = 100
-      required: false
-      schema:
-        maximum: 100
-        minimum: 1
-        type: integer
-        format: int32
-        default: 10
-    startTime:
-      name: startTime
-      in: query
-      description: The start time to query, epoch time in milliseconds since 1/1/1970
-      required: true
-      schema:
-        type: integer
-        format: int64
-    page:
-      name: page
-      in: query
-      description: Page number, min = 1
-      required: false
-      schema:
-        minimum: 1
-        type: integer
-        format: int32
-        default: 1
   schemas:
-    XiqDeviceAdminState:
-      type: string
-      enum:
-      - NEW
-      - BOOTSTRAP
-      - STAGED
-      - MANAGED
-      - UNMANAGED
     RmChannelFilterType:
       type: string
       title: RmChannelFilterType
@@ -878,105 +824,6 @@ components:
       - WIFI1
       - WIFI2
       example: WIFI0
-    PagedRmWiredQueueGridResponse:
-      allOf:
-      - $ref: '#/components/schemas/XiqPage'
-      - type: object
-        properties:
-          data:
-            type: array
-            description: The data in the current page
-            items:
-              $ref: '#/components/schemas/RmWiredQueueGridResponse'
-    PagedRmD360ClientGrid:
-      allOf:
-      - $ref: '#/components/schemas/XiqPage'
-      - type: object
-        properties:
-          data:
-            type: array
-            description: The data in the current page
-            items:
-              $ref: '#/components/schemas/RmD360ClientGrid'
-    RmWiredPortQosState:
-      type: object
-      description: QOS queue statistics of the interface
-      properties:
-        port_name:
-          type: string
-          description: The interface name
-        queue_stats:
-          type: array
-          description: QOS queue statistics of the interface
-          items:
-            allOf:
-            - type: array
-            - $ref: '#/components/schemas/RmWiredQueueStats'
-    RmDevicePathInfo:
-      type: object
-      description: The Device location path info.
-      properties:
-        folder_id:
-          type: integer
-          format: int64
-          description: Unique identifier for the folder.
-        parent_id:
-          type: integer
-          format: int64
-          description: Unique identifier for the parent folder.
-        name:
-          type: string
-          description: Name of the folder.
-        folder_type:
-          type: string
-          description: Type of the folder (e.g., FLOOR).
-    XiqError:
-      type: object
-      properties:
-        error_code:
-          type: string
-          description: The error code
-        error_id:
-          type: string
-          description: The error ID for internal troubleshooting
-        error_message:
-          type: string
-          description: The error detailed message
-        error_message_code:
-          type: string
-          description: The error message code
-        error_message_description:
-          type: string
-          description: The error message description
-        error_params:
-          $ref: '#/components/schemas/XiqErrorParams'
-      required:
-      - error_code
-      - error_id
-      - error_message
-    XiqAfcApStatus:
-      type: string
-      description: Status of AP AFC.
-      enum:
-      - PENDING
-      - GRACE_PERIOD
-      - AVAILABLE
-      - NA
-    RmWiredQueueStats:
-      type: object
-      properties:
-        qos_queue:
-          type: integer
-          format: int64
-          description: QOS queue value. In Switch Engine (EXOS) the values of 1 through 8 correspond to QOS profiles QP1 through QP8 respectively. In Fabric Engine (VOSS) the values of 0 to 7 correspond to QOS COS queues.
-        cong_pkts:
-          type: integer
-          format: int64
-          description: Number of packets dropped due to congestion on the QOS queue.
-        tx_pkts:
-          type: integer
-          format: int64
-          description: Number of packets transmitted on the QOS queue.
     RmDeviceData:
       type: object
       description: The Device Data.
@@ -1036,64 +883,181 @@ components:
         value:
           type: string
           description: The error value
-    RmClientGraphFilterType:
+    XiqPage:
+      required:
+      - count
+      - page
+      - total_count
+      - total_pages
+      type: object
+      properties:
+        page:
+          type: integer
+          description: The current page number
+          format: int32
+        count:
+          type: integer
+          description: The element count of the current page
+          format: int32
+        total_pages:
+          type: integer
+          description: The total page number based on request page size
+          format: int32
+        total_count:
+          type: integer
+          description: The total element count
+          format: int64
+    RmWiredPortQosState:
+      type: object
+      description: QOS queue statistics of the interface
+      properties:
+        port_name:
+          type: string
+          description: The interface name
+        queue_stats:
+          type: array
+          description: QOS queue statistics of the interface
+          items:
+            allOf:
+            - type: array
+            - $ref: '#/components/schemas/RmWiredQueueStats'
+    RmSourceFilterType:
       type: string
-      title: RmClientGraphFilterType
-      description: Pre-defined filters for client graph
+      title: RmSourceFilterType
+      description: Pre-defined filters for wireless interface graph
       enum:
+      - CHANNEL_UTILIZATION
       - CONNECTED_CLIENTS
-      - UNIQUE_CLIENTS
-      - POOR_HEALTH_CLIENTS
-      - ALL
-      example: CONNECTED_CLIENTS
-    RmWiredQueueGridResponse:
+      example: CHANNEL_UTILIZATION
+    PagedRmD360ClientGrid:
+      allOf:
+      - $ref: '#/components/schemas/XiqPage'
+      - type: object
+        properties:
+          data:
+            type: array
+            description: The data in the current page
+            items:
+              $ref: '#/components/schemas/RmD360ClientGrid'
+    XiqDeviceFunction:
+      type: string
+      description: The device function, such as AP, Router, Switch, etc.
+      enum:
+      - AP
+      - ROUTER
+      - ROUTER_AS_L2_VPN_GATEWAY
+      - ROUTER_AS_L3_VPN_GATEWAY
+      - SWITCH
+      - SWITCH_HAC
+      - SWITCH_DELL
+      - L2_VPN_GATEWAY
+      - L3_VPN_GATEWAY
+    XiqDeviceAdminState:
+      type: string
+      enum:
+      - NEW
+      - BOOTSTRAP
+      - STAGED
+      - MANAGED
+      - UNMANAGED
+    XiqDeviceLicenseTier:
+      type: string
+      description: The Device License Tier Enum.
+      enum:
+      - NOT_APPLICABLE
+      - TIER_A
+      - TIER_B
+      - TIER_C
+      - TIER_D
+      - UNKNOWN
+      - NONE
+    RmWiredInterfaceGrid:
       type: array
-      description: QOS queue statistics per interface
+      description: An array of wired interface objects.
       items:
-        allOf:
-        - type: array
-        - $ref: '#/components/schemas/RmWiredPortQosState'
-    RmDeviceInterfaces:
+        type: object
+        properties:
+          status:
+            type: string
+            enum:
+            - online
+            - offline
+            - unknown
+            description: The status of the interface.
+          interface:
+            type: string
+            enum:
+            - eth0
+            - eth1
+            description: The interface identifier.
+          poe_usage:
+            type: boolean
+            description: Whether POE is being used
+          port:
+            type: string
+            description: The port type.
+          speed:
+            type: integer
+            description: The speed of the interface in Mbps.
+          tx_bytes:
+            type: integer
+            description: The number of transmitted bytes.
+          rx_bytes:
+            type: integer
+            description: The number of received bytes.
+          tx_errors:
+            type: integer
+            description: The number of transmission errors.
+          rx_errors:
+            type: integer
+            description: The number of reception errors.
+          tx_drops:
+            type: integer
+            description: The number of dropped transmitted packets.
+          rx_drops:
+            type: integer
+            description: The number of dropped received packets.
+    RmClientStatisticsFilter:
+      type: string
+      title: RmClientStatisticsFilter
+      description: The pre defined filters for Client statistics grid
+      enum:
+      - POOR_HEALTH
+      - UNIQUE
+      - TOTAL
+      example: POOR_HEALTH
+    XiqError:
+      type: object
+      properties:
+        error_code:
+          type: string
+          description: The error code
+        error_id:
+          type: string
+          description: The error ID for internal troubleshooting
+        error_message:
+          type: string
+          description: The error detailed message
+        error_message_code:
+          type: string
+          description: The error message code
+        error_message_description:
+          type: string
+          description: The error message description
+        error_params:
+          $ref: '#/components/schemas/XiqErrorParams'
+      required:
+      - error_code
+      - error_id
+      - error_message
+    XiqDeviceType:
       type: string
       title: XiqDeviceType
       description: Pre-defined filters for XIQ device type
       enum:
-      - WIFI0
-      - WIFI1
-      - WIFI2
-      example: WIFI0
-    number_filter:
-      type: object
-      description: If the filter type is between, only then min and max are to be used, else value is to be used.
-      properties:
-        column_name:
-          description: The name of the column being filtered
-          type: string
-        filter_type:
-          description: The type of number filter
-          type: string
-          enum:
-          - eq
-          - neq
-          - gt
-          - gte
-          - lt
-          - lte
-          - bw
-          - blank
-          - notblank
-        value:
-          description: The value of the number
-          type: integer
-          format: int64
-        min:
-          description: The minimum value of the number
-          type: integer
-          format: int64
-        max:
-          description: The maximum value of the number
-          type: integer
-          format: int64
+      - WIRELESS
+      - WIRED
+      example: WIRED
     RmDeviceSystemInformation:
       type: object
       description: The Device System Information.
@@ -1176,101 +1140,40 @@ components:
                 type: integer
                 description: The graph metric timestamp
                 format: int64
-    RmWirelessInterfacesGraphResponse:
-      type: object
-      description: The response for Wireless Interfaces graph.
-      properties:
-        timestamp:
-          type: integer
-          description: The graph metric timestamp.
-          format: int64
-        channel_utilization:
-          type: integer
-          description: The channel utilization.
-          format: int64
-        connected_clients:
-          type: integer
-          format: int64
-          description: The channel utilization percentage.
-    RmClientStats:
-      type: object
-      description: The Client statistics..
-      properties:
-        total_clients:
-          type: integer
-          description: Total clients within selected time range.
-        poor_health_clients:
-          type: integer
-          description: Number of poor health clients
-        unique_clients:
-          type: integer
-          description: Number of unique clients
-    XiqDeviceType:
+    RmDevices:
+      title: RmDevices
+      description: The devices supported with IQE.
+      enum:
+      - AP_650
+      - AP_650X
+      - AP_4000
+      - AP_4000U
+      - AP_302W
+      - AP_510C
+      - AP_510CX
+      - AP_410C
+      - AP_460C
+      - AP_305C
+      - AP_305CX
+      - AP_460S6C
+      - AP_460S12C
+      - AP_5010
+      - AP_5010U
+      - AP_5050U
+      - AP_5050D
+      - AP_3000
+      - AP_3000X
+      - AP_5020
+      example: AP_650
+    RmDeviceInterfaces:
       type: string
       title: XiqDeviceType
       description: Pre-defined filters for XIQ device type
       enum:
-      - WIRELESS
-      - WIRED
-      example: WIRED
-    RmDeviceSummary:
-      type: object
-      description: The Device Summary.
-      properties:
-        connected_status:
-          type: boolean
-          description: Whether device is connected or not
-        active_since:
-          type: integer
-          description: Timestamp for time since when device is online
-          format: int64
-        device_health_issues:
-          type: integer
-          description: Number of device issues
-        usage_and_capacity_issues:
-          type: integer
-          description: Number of usage and capacity issues
-        client_health_issues:
-          type: integer
-          description: Number of client health issues
-        device_details:
-          $ref: '#/components/schemas/RmDeviceDetails'
-        system_information:
-          $ref: '#/components/schemas/RmDeviceSystemInformation'
-    RmSurroundingAps:
-      type: object
-      description: The Info about surrounding AP
-      properties:
-        mac:
-          type: string
-          description: The MAC address (BSSID) of the AP
-        ssid:
-          type: string
-          description: SSID of the AP
-        channelWidth:
-          type: string
-          description: Channel width
-        rssi:
-          type: integer
-          description: Received Signal Strength Indicator (RSSI)
-        mode:
-          type: string
-          description: Mode (Access / Backhaul)
-        apType:
-          type: integer
-          description: Type of AP (0 --> unknown, 1 --> rogue AP, 2 --> friendly AP)
-        isExtremeDevice:
-          type: string
-          description: Indicates if the device is an Extreme device
-        channelUtilization:
-          type: string
-          description: Channel utilization percentage
-        channelCrcRate:
-          type: string
-          description: Channel CRC rate
-        clientNum:
-          type: integer
-          description: Number of clients connected
+      - WIFI0
+      - WIFI1
+      - WIFI2
+      example: WIFI0
     RmMediaUploadResponse:
       type: object
       description: The Media Upload response.
@@ -1319,6 +1222,19 @@ components:
         description:
           type: string
           description: Description of the media.
+    RmClientStats:
+      type: object
+      description: The Client statistics..
+      properties:
+        total_clients:
+          type: integer
+          description: Total clients within selected time range.
+        poor_health_clients:
+          type: integer
+          description: Number of poor health clients
+        unique_clients:
+          type: integer
+          description: Number of unique clients
     RmClientGraphResponse:
       type: object
       description: The response for client graph.
@@ -1339,138 +1255,6 @@ components:
           type: integer
           format: int64
           description: The signal-to-noise ratio.
-    PagedRmSurroundingAps:
-      allOf:
-      - $ref: '#/components/schemas/XiqPage'
-      - type: object
-        properties:
-          data:
-            type: array
-            description: The data in the current page
-            items:
-              $ref: '#/components/schemas/RmSurroundingAps'
-    XiqPage:
-      required:
-      - count
-      - page
-      - total_count
-      - total_pages
-      type: object
-      properties:
-        page:
-          type: integer
-          description: The current page number
-          format: int32
-        count:
-          type: integer
-          description: The element count of the current page
-          format: int32
-        total_pages:
-          type: integer
-          description: The total page number based on request page size
-          format: int32
-        total_count:
-          type: integer
-          description: The total element count
-          format: int64
-    RmClientStatisticsFilter:
-      type: string
-      title: RmClientStatisticsFilter
-      description: The pre defined filters for Client statistics grid
-      enum:
-      - POOR_HEALTH
-      - UNIQUE
-      - TOTAL
-      example: POOR_HEALTH
-    RmSourceFilterType:
-      type: string
-      title: RmSourceFilterType
-      description: Pre-defined filters for wireless interface graph
-      enum:
-      - CHANNEL_UTILIZATION
-      - CONNECTED_CLIENTS
-      example: CHANNEL_UTILIZATION
-    RmWifiIntStats:
-      type: object
-      description: The WiFi interface stats
-      properties:
-        ssid_count:
-          type: integer
-        ssids:
-          type: array
-          items:
-            type: string
-        number_of_clients:
-          type: integer
-        channel_utilization:
-          type: integer
-        channel:
-          type: integer
-        channel_width:
-          type: integer
-        load_balancing:
-          type: boolean
-        band_steering:
-          type: boolean
-        channel_utilization_details:
-          type: object
-          properties:
-            interference_percentage:
-              type: integer
-            tx_retries_percentage:
-              type: integer
-            rx_retries_percentage:
-              type: integer
-    XiqDeviceFunction:
-      type: string
-      description: The device function, such as AP, Router, Switch, etc.
-      enum:
-      - AP
-      - ROUTER
-      - ROUTER_AS_L2_VPN_GATEWAY
-      - ROUTER_AS_L3_VPN_GATEWAY
-      - SWITCH
-      - SWITCH_HAC
-      - SWITCH_DELL
-      - L2_VPN_GATEWAY
-      - L3_VPN_GATEWAY
-    XiqAhDeviceLicenseType:
-      type: string
-      description: The Device License Type Enum.
-      enum:
-      - LEGACY
-      - NAVIGATOR
-      - PILOT
-      - COPILOT
-      - NONE
-      - NA
-      - TRIAL
-      - NOT_REQUIRED
-      - GRACEPERIOD
-      - UNLICENSED
-      - STANDARD
-      - ADVANCED
-      - NOT_LICENSED
-    RmWirelessInterfacesList:
-      type: array
-      description: The WiFi interface list.
-      items:
-        type: object
-        properties:
-          wifi0:
-            $ref: '#/components/schemas/RmWifiIntStats'
-            description: Stats of WiFi interface 0
-          wifi1:
-            $ref: '#/components/schemas/RmWifiIntStats'
-            description: Stats of WiFi interface 1
-          wifi2:
-            description: Stats of WiFi interface 2
-            allOf:
-            - $ref: '#/components/schemas/RmWifiIntStats'
-            - type: object
-              properties:
-                afc_status:
-                  $ref: '#/components/schemas/XiqAfcApStatus'
     RmD360ClientGrid:
       type: object
       description: The Client statistics.
@@ -1566,146 +1350,50 @@ components:
         client_mac:
           type: string
           description: MAC address of the client device.
-    RmDeviceGeoLocation:
-      type: object
-      description: The Device Details.
-      properties:
-        gps_last_reported:
-          type: integer
-          description: Timestamp of when gps was last reported
-          format: int64
-        latitude:
-          type: integer
-          description: The latitude of geo location
-          format: int64
-        longitude:
-          type: integer
-          description: The longitude of geo location
-          format: int64
-        elevation:
-          type: integer
-          description: The elevation in metres
-          format: int64
-    XiqDeviceLicenseTier:
+    RmClientGraphFilterType:
       type: string
-      description: The Device License Tier Enum.
+      title: RmClientGraphFilterType
+      description: Pre-defined filters for client graph
       enum:
-      - NOT_APPLICABLE
-      - TIER_A
-      - TIER_B
-      - TIER_C
-      - TIER_D
-      - UNKNOWN
-      - NONE
-    RmDevices:
-      title: RmDevices
-      description: The devices supported with IQE.
-      enum:
-      - AP_650
-      - AP_650X
-      - AP_4000
-      - AP_4000U
-      - AP_302W
-      - AP_510C
-      - AP_510CX
-      - AP_410C
-      - AP_460C
-      - AP_305C
-      - AP_305CX
-      - AP_460S6C
-      - AP_460S12C
-      - AP_5010
-      - AP_5010U
-      - AP_5050U
-      - AP_5050D
-      - AP_3000
-      - AP_3000X
-      - AP_5020
-      example: AP_650
-    RmDeviceDetails:
+      - CONNECTED_CLIENTS
+      - UNIQUE_CLIENTS
+      - POOR_HEALTH_CLIENTS
+      - ALL
+      example: CONNECTED_CLIENTS
+    RmDeviceSummary:
       type: object
-      description: The Device Details.
+      description: The Device Summary.
       properties:
-        system_name:
-          type: string
-          description: The name of the system
-        ip_address:
-          type: string
-          description: The IP address of the device
-        model:
-          type: string
-          description: The model of the device
-        sys_up_time:
-          type: string
-          description: The system uptime
-        os_version:
-          type: string
-          description: The operating system version
-        location:
-          type: string
-          description: The physical location of the device
-        system_mac:
-          type: string
-          description: The MAC address of the system
-        serial_number:
-          type: string
-          description: The serial number of the device
-        system_description:
-          type: string
-          description: A brief description of the system
-        software_version:
-          type: string
-          description: The version of the software running on the device
-        device_license_tier:
-          $ref: '#/components/schemas/XiqDeviceLicenseTier'
-        device_license_type:
-          $ref: '#/components/schemas/XiqAhDeviceLicenseType'
-    RmWiredInterfaceGrid:
-      type: array
-      description: An array of wired interface objects.
-      items:
-        type: object
+        connected_status:
+          type: boolean
+          description: Whether device is connected or not
+        active_since:
+          type: integer
+          description: Timestamp for time since when device is online
+          format: int64
+        device_health_issues:
+          type: integer
+          description: Number of device issues
+        usage_and_capacity_issues:
+          type: integer
+          description: Number of usage and capacity issues
+        client_health_issues:
+          type: integer
+          description: Number of client health issues
+        device_details:
+          $ref: '#/components/schemas/RmDeviceDetails'
+        system_information:
+          $ref: '#/components/schemas/RmDeviceSystemInformation'
+    PagedRmSurroundingAps:
+      allOf:
+      - $ref: '#/components/schemas/XiqPage'
+      - type: object
         properties:
-          status:
-            type: string
-            enum:
-            - online
-            - offline
-            - unknown
-            description: The status of the interface.
-          interface:
-            type: string
-            enum:
-            - eth0
-            - eth1
-            description: The interface identifier.
-          poe_usage:
-            type: boolean
-            description: Whether POE is being used
-          port:
-            type: string
-            description: The port type.
-          speed:
-            type: integer
-            description: The speed of the interface in Mbps.
-          tx_bytes:
-            type: integer
-            description: The number of transmitted bytes.
-          rx_bytes:
-            type: integer
-            description: The number of received bytes.
-          tx_errors:
-            type: integer
-            description: The number of transmission errors.
-          rx_errors:
-            type: integer
-            description: The number of reception errors.
-          tx_drops:
-            type: integer
-            description: The number of dropped transmitted packets.
-          rx_drops:
-            type: integer
-            description: The number of dropped received packets.
+          data:
+            type: array
+            description: The data in the current page
+            items:
+              $ref: '#/components/schemas/RmSurroundingAps'
     XiqDeviceHealthGridResponse:
       type: object
       properties:
@@ -1774,6 +1462,318 @@ components:
         has_device_health_issue:
           type: boolean
           description: Indicates where the device has a device health issue
+    PagedRmWiredQueueGridResponse:
+      allOf:
+      - $ref: '#/components/schemas/XiqPage'
+      - type: object
+        properties:
+          data:
+            type: array
+            description: The data in the current page
+            items:
+              $ref: '#/components/schemas/RmWiredQueueGridResponse'
+    RmWiredQueueStats:
+      type: object
+      properties:
+        qos_queue:
+          type: integer
+          format: int64
+          description: QOS queue value. In Switch Engine (EXOS) the values of 1 through 8 correspond to QOS profiles QP1 through QP8 respectively. In Fabric Engine (VOSS) the values of 0 to 7 correspond to QOS COS queues.
+        cong_pkts:
+          type: integer
+          format: int64
+          description: Number of packets dropped due to congestion on the QOS queue.
+        tx_pkts:
+          type: integer
+          format: int64
+          description: Number of packets transmitted on the QOS queue.
+    RmDeviceDetails:
+      type: object
+      description: The Device Details.
+      properties:
+        system_name:
+          type: string
+          description: The name of the system
+        ip_address:
+          type: string
+          description: The IP address of the device
+        model:
+          type: string
+          description: The model of the device
+        sys_up_time:
+          type: string
+          description: The system uptime
+        os_version:
+          type: string
+          description: The operating system version
+        location:
+          type: string
+          description: The physical location of the device
+        system_mac:
+          type: string
+          description: The MAC address of the system
+        serial_number:
+          type: string
+          description: The serial number of the device
+        system_description:
+          type: string
+          description: A brief description of the system
+        software_version:
+          type: string
+          description: The version of the software running on the device
+        device_license_tier:
+          $ref: '#/components/schemas/XiqDeviceLicenseTier'
+        device_license_type:
+          $ref: '#/components/schemas/XiqAhDeviceLicenseType'
+    RmDeviceGeoLocation:
+      type: object
+      description: The Device Details.
+      properties:
+        gps_last_reported:
+          type: integer
+          description: Timestamp of when gps was last reported
+          format: int64
+        latitude:
+          type: integer
+          description: The latitude of geo location
+          format: int64
+        longitude:
+          type: integer
+          description: The longitude of geo location
+          format: int64
+        elevation:
+          type: integer
+          description: The elevation in metres
+          format: int64
+    XiqAfcApStatus:
+      type: string
+      description: Status of AP AFC.
+      enum:
+      - PENDING
+      - GRACE_PERIOD
+      - AVAILABLE
+      - NA
+    number_filter:
+      type: object
+      description: If the filter type is between, only then min and max are to be used, else value is to be used.
+      properties:
+        column_name:
+          description: The name of the column being filtered
+          type: string
+        filter_type:
+          description: The type of number filter
+          type: string
+          enum:
+          - eq
+          - neq
+          - gt
+          - gte
+          - lt
+          - lte
+          - bw
+          - blank
+          - notblank
+        value:
+          description: The value of the number
+          type: integer
+          format: int64
+        min:
+          description: The minimum value of the number
+          type: integer
+          format: int64
+        max:
+          description: The maximum value of the number
+          type: integer
+          format: int64
+    RmWirelessInterfacesList:
+      type: array
+      description: The WiFi interface list.
+      items:
+        type: object
+        properties:
+          wifi0:
+            $ref: '#/components/schemas/RmWifiIntStats'
+            description: Stats of WiFi interface 0
+          wifi1:
+            $ref: '#/components/schemas/RmWifiIntStats'
+            description: Stats of WiFi interface 1
+          wifi2:
+            description: Stats of WiFi interface 2
+            allOf:
+            - $ref: '#/components/schemas/RmWifiIntStats'
+            - type: object
+              properties:
+                afc_status:
+                  $ref: '#/components/schemas/XiqAfcApStatus'
+    RmWirelessInterfacesGraphResponse:
+      type: object
+      description: The response for Wireless Interfaces graph.
+      properties:
+        timestamp:
+          type: integer
+          description: The graph metric timestamp.
+          format: int64
+        channel_utilization:
+          type: integer
+          description: The channel utilization.
+          format: int64
+        connected_clients:
+          type: integer
+          format: int64
+          description: The channel utilization percentage.
+    RmWifiIntStats:
+      type: object
+      description: The WiFi interface stats
+      properties:
+        ssid_count:
+          type: integer
+        ssids:
+          type: array
+          items:
+            type: string
+        number_of_clients:
+          type: integer
+        channel_utilization:
+          type: integer
+        channel:
+          type: integer
+        channel_width:
+          type: integer
+        load_balancing:
+          type: boolean
+        band_steering:
+          type: boolean
+        channel_utilization_details:
+          type: object
+          properties:
+            interference_percentage:
+              type: integer
+            tx_retries_percentage:
+              type: integer
+            rx_retries_percentage:
+              type: integer
+    RmSurroundingAps:
+      type: object
+      description: The Info about surrounding AP
+      properties:
+        mac:
+          type: string
+          description: The MAC address (BSSID) of the AP
+        ssid:
+          type: string
+          description: SSID of the AP
+        channelWidth:
+          type: string
+          description: Channel width
+        rssi:
+          type: integer
+          description: Received Signal Strength Indicator (RSSI)
+        mode:
+          type: string
+          description: Mode (Access / Backhaul)
+        apType:
+          type: integer
+          description: Type of AP (0 --> unknown, 1 --> rogue AP, 2 --> friendly AP)
+        isExtremeDevice:
+          type: string
+          description: Indicates if the device is an Extreme device
+        channelUtilization:
+          type: string
+          description: Channel utilization percentage
+        channelCrcRate:
+          type: string
+          description: Channel CRC rate
+        clientNum:
+          type: integer
+          description: Number of clients connected
+    RmWiredQueueGridResponse:
+      type: array
+      description: QOS queue statistics per interface
+      items:
+        allOf:
+        - type: array
+        - $ref: '#/components/schemas/RmWiredPortQosState'
+    XiqAhDeviceLicenseType:
+      type: string
+      description: The Device License Type Enum.
+      enum:
+      - LEGACY
+      - NAVIGATOR
+      - PILOT
+      - COPILOT
+      - NONE
+      - NA
+      - TRIAL
+      - NOT_REQUIRED
+      - GRACEPERIOD
+      - UNLICENSED
+      - STANDARD
+      - ADVANCED
+      - NOT_LICENSED
+    RmDevicePathInfo:
+      type: object
+      description: The Device location path info.
+      properties:
+        folder_id:
+          type: integer
+          format: int64
+          description: Unique identifier for the folder.
+        parent_id:
+          type: integer
+          format: int64
+          description: Unique identifier for the parent folder.
+        name:
+          type: string
+          description: Name of the folder.
+        folder_type:
+          type: string
+          description: Type of the folder (e.g., FLOOR).
+  parameters:
+    page:
+      name: page
+      in: query
+      description: Page number, min = 1
+      required: false
+      schema:
+        minimum: 1
+        type: integer
+        format: int32
+        default: 1
+    startTime:
+      name: startTime
+      in: query
+      description: The start time to query, epoch time in milliseconds since 1/1/1970
+      required: true
+      schema:
+        type: integer
+        format: int64
+    limit:
+      name: limit
+      in: query
+      description: Page Size, min = 1, max = 100
+      required: false
+      schema:
+        maximum: 100
+        minimum: 1
+        type: integer
+        format: int32
+        default: 10
+    endTime:
+      name: endTime
+      in: query
+      description: The end time to query, epoch time in milliseconds since 1/1/1970
+      required: true
+      schema:
+        type: integer
+        format: int64
+    selectedTime:
+      name: selectedTime
+      in: query
+      description: The selected time to query, epoch time in milliseconds since 1/1/1970
+      required: false
+      schema:
+        type: integer
+        format: int64
   responses:
     ErrorResponse:
       description: The generic ExtremeCloud IQ API error response

@@ -296,33 +296,64 @@ paths:
       - BearerAuth: []
 components:
   schemas:
-    XiqDeployDeviceFilter:
+    XiqDeploymentRequest:
       type: object
-      description: The filter to get matched devices
+      description: The configuration deployment request to devices
       properties:
-        ids:
-          type: array
-          description: The device ID list
-          items:
-            type: integer
-            description: The device ID list
-            format: int64
-        site_ids:
-          type: array
-          description: The site ID list
-          items:
-            type: integer
-            description: The site ID list
-            format: int64
-    XiqScheduleDetails:
+        schedule:
+          $ref: '#/components/schemas/XiqScheduleDetails'
+        devices:
+          $ref: '#/components/schemas/XiqDeployDeviceFilter'
+        policy:
+          $ref: '#/components/schemas/XiqDeploymentPolicy'
+    XiqErrorParams:
       type: object
-      description: The deployment schedule details
-      required:
-      - start_time
+      description: Error parameters
       properties:
-        start_time:
+        field:
+          type: string
+          description: The error field
+        value:
+          type: string
+          description: The error value
+    XiqFirmwareActivateOption:
+      type: object
+      description: The firmware activate option (Only one of them can be enabled)
+      properties:
+        activation_delay_seconds:
           type: integer
-          description: The start time of the firmware upgrade
+          description: Activate after the given seconds
+          format: int64
+        activation_time:
+          type: integer
+          description: Activate at the following time according to the system clock on the updated device
+          format: int64
+        enable_activate_at_next_reboot:
+          type: boolean
+          description: Activate at next reboot (requires rebooting manually)
+    XiqPage:
+      required:
+      - count
+      - page
+      - total_count
+      - total_pages
+      type: object
+      properties:
+        page:
+          type: integer
+          description: The current page number
+          format: int32
+        count:
+          type: integer
+          description: The element count of the current page
+          format: int32
+        total_pages:
+          type: integer
+          description: The total page number based on request page size
+          format: int32
+        total_count:
+          type: integer
+          description: The total element count
           format: int64
     XiqDeploymentStatus:
       type: object
@@ -350,41 +381,6 @@ components:
         status_message:
           type: string
           description: The status message
-    XiqDeploymentPolicy:
-      type: object
-      description: Push configuration and upgrade firmware policy
-      properties:
-        enable_complete_configuration_update:
-          type: boolean
-          description: 'true if update complete configuration, otherwise update delta configuration.  Note: ExtremeCloud IQ will neither upgrade device firmware nor reboot device for a delta configuration push.  That means that the other parameters for firmware upgrade and activation are not required when this is false.'
-        firmware_upgrade_policy:
-          $ref: '#/components/schemas/XiqFirmwareUpgradePolicy'
-        firmware_upgrade_versions:
-          type: array
-          description: The firmware upgrade versions
-          items:
-            $ref: '#/components/schemas/XiqFirmwareUpgradeVersion'
-        firmware_activate_option:
-          $ref: '#/components/schemas/XiqFirmwareActivateOption'
-    XiqFirmwareUpgradeVersion:
-      type: object
-      description: Upgrade to the specific firmware version
-      required:
-      - firmware_id
-      - device_id
-      - product_type
-      properties:
-        firmware_id:
-          type: integer
-          description: The device compatible firmware metadata ID
-          format: int64
-        device_id:
-          type: integer
-          description: The device ID
-          format: int64
-        product_type:
-          type: string
-          description: The product type
     XiqDeploymentResponse:
       type: object
       description: The configuration deployment response
@@ -397,6 +393,16 @@ components:
           type: object
           additionalProperties:
             $ref: '#/components/schemas/XiqDeploymentStatus'
+    XiqScheduleDetails:
+      type: object
+      description: The deployment schedule details
+      required:
+      - start_time
+      properties:
+        start_time:
+          type: integer
+          description: The start time of the firmware upgrade
+          format: int64
     XiqError:
       type: object
       properties:
@@ -421,37 +427,18 @@ components:
       - error_code
       - error_id
       - error_message
-    XiqScheduleStatus:
-      type: string
-      enum:
-      - SCHEDULED
-      - IN_PROGRESS
-      - ABORTED
-      - COMPLETED
-      - FAILED
-      - TIME_OUT
-    XiqFirmwareActivateOption:
-      type: object
-      description: The firmware activate option (Only one of them can be enabled)
-      properties:
-        activation_delay_seconds:
-          type: integer
-          description: Activate after the given seconds
-          format: int64
-        activation_time:
-          type: integer
-          description: Activate at the following time according to the system clock on the updated device
-          format: int64
-        enable_activate_at_next_reboot:
-          type: boolean
-          description: Activate at next reboot (requires rebooting manually)
-    XiqDeploymentOverview:
+    XiqDeploymentOverviewDetails:
       type: object
       description: The configuration deployment overview
       required:
+      - total_devices
       - in_progress_devices
       - total_progress
       properties:
+        total_devices:
+          type: integer
+          description: The total device count
+          format: int32
         in_progress_devices:
           type: integer
           description: The device count with in progress deployment
@@ -460,41 +447,22 @@ components:
           type: integer
           description: The total progress, range from 0 to 100
           format: int32
-    XiqErrorParams:
+    XiqDeploymentPolicy:
       type: object
-      description: Error parameters
+      description: Push configuration and upgrade firmware policy
       properties:
-        field:
-          type: string
-          description: The error field
-        value:
-          type: string
-          description: The error value
-    XiqDeploymentDetailsResponse:
-      type: object
-      description: The deployment details
-      properties:
-        deployment_id:
-          type: integer
-          format: uint64
-        schedule:
-          $ref: '#/components/schemas/XiqScheduleDetails'
-        devices:
-          $ref: '#/components/schemas/XiqDeployDeviceFilter'
-        policy:
-          $ref: '#/components/schemas/XiqDeploymentPolicy'
-        overview:
-          $ref: '#/components/schemas/XiqDeploymentOverviewDetails'
-    XiqDeploymentRequest:
-      type: object
-      description: The configuration deployment request to devices
-      properties:
-        schedule:
-          $ref: '#/components/schemas/XiqScheduleDetails'
-        devices:
-          $ref: '#/components/schemas/XiqDeployDeviceFilter'
-        policy:
-          $ref: '#/components/schemas/XiqDeploymentPolicy'
+        enable_complete_configuration_update:
+          type: boolean
+          description: 'true if update complete configuration, otherwise update delta configuration.  Note: ExtremeCloud IQ will neither upgrade device firmware nor reboot device for a delta configuration push.  That means that the other parameters for firmware upgrade and activation are not required when this is false.'
+        firmware_upgrade_policy:
+          $ref: '#/components/schemas/XiqFirmwareUpgradePolicy'
+        firmware_upgrade_versions:
+          type: array
+          description: The firmware upgrade versions
+          items:
+            $ref: '#/components/schemas/XiqFirmwareUpgradeVersion'
+        firmware_activate_option:
+          $ref: '#/components/schemas/XiqFirmwareActivateOption'
     XiqDeviceFirmwareMetadata:
       type: object
       description: The device compatible firmware metadata
@@ -538,43 +506,43 @@ components:
         md5:
           type: string
           description: The firmware md5 hash
-    XiqPage:
-      required:
-      - count
-      - page
-      - total_count
-      - total_pages
+    XiqFirmwareUpgradeVersion:
       type: object
+      description: Upgrade to the specific firmware version
+      required:
+      - firmware_id
+      - device_id
+      - product_type
       properties:
-        page:
+        firmware_id:
           type: integer
-          description: The current page number
-          format: int32
-        count:
-          type: integer
-          description: The element count of the current page
-          format: int32
-        total_pages:
-          type: integer
-          description: The total page number based on request page size
-          format: int32
-        total_count:
-          type: integer
-          description: The total element count
+          description: The device compatible firmware metadata ID
           format: int64
-    XiqFirmwareUpgradePolicy:
+        device_id:
+          type: integer
+          description: The device ID
+          format: int64
+        product_type:
+          type: string
+          description: The product type
+    XiqDeployDeviceFilter:
       type: object
-      description: The firmware upgrade policy
-      required:
-      - enable_enforce_upgrade
-      - enable_distributed_upgrade
+      description: The filter to get matched devices
       properties:
-        enable_enforce_upgrade:
-          type: boolean
-          description: Whether enforce firmware upgrade even if the versions are the same
-        enable_distributed_upgrade:
-          type: boolean
-          description: Whether enable distributed firmware upgrade (Only applicable to APs)
+        ids:
+          type: array
+          description: The device ID list
+          items:
+            type: integer
+            description: The device ID list
+            format: int64
+        site_ids:
+          type: array
+          description: The site ID list
+          items:
+            type: integer
+            description: The site ID list
+            format: int64
     XiqDeploymentScheduleStatusResponse:
       type: object
       description: The status of the firmware upgrade sites/devices
@@ -612,18 +580,50 @@ components:
             $ref: '#/components/schemas/XiqDeploymentStatus'
         overview:
           $ref: '#/components/schemas/XiqDeploymentOverview'
-    XiqDeploymentOverviewDetails:
+    XiqScheduleStatus:
+      type: string
+      enum:
+      - SCHEDULED
+      - IN_PROGRESS
+      - ABORTED
+      - COMPLETED
+      - FAILED
+      - TIME_OUT
+    XiqFirmwareUpgradePolicy:
+      type: object
+      description: The firmware upgrade policy
+      required:
+      - enable_enforce_upgrade
+      - enable_distributed_upgrade
+      properties:
+        enable_enforce_upgrade:
+          type: boolean
+          description: Whether enforce firmware upgrade even if the versions are the same
+        enable_distributed_upgrade:
+          type: boolean
+          description: Whether enable distributed firmware upgrade (Only applicable to APs)
+    XiqDeploymentDetailsResponse:
+      type: object
+      description: The deployment details
+      properties:
+        deployment_id:
+          type: integer
+          format: uint64
+        schedule:
+          $ref: '#/components/schemas/XiqScheduleDetails'
+        devices:
+          $ref: '#/components/schemas/XiqDeployDeviceFilter'
+        policy:
+          $ref: '#/components/schemas/XiqDeploymentPolicy'
+        overview:
+          $ref: '#/components/schemas/XiqDeploymentOverviewDetails'
+    XiqDeploymentOverview:
       type: object
       description: The configuration deployment overview
       required:
-      - total_devices
       - in_progress_devices
       - total_progress
       properties:
-        total_devices:
-          type: integer
-          description: The total device count
-          format: int32
         in_progress_devices:
           type: integer
           description: The device count with in progress deployment
@@ -633,6 +633,16 @@ components:
           description: The total progress, range from 0 to 100
           format: int32
   parameters:
+    page:
+      name: page
+      in: query
+      description: Page number, min = 1
+      required: false
+      schema:
+        minimum: 1
+        type: integer
+        format: int32
+        default: 1
     limit:
       name: limit
       in: query
@@ -644,16 +654,6 @@ components:
         type: integer
         format: int32
         default: 10
-    page:
-      name: page
-      in: query
-      description: Page number, min = 1
-      required: false
-      schema:
-        minimum: 1
-        type: integer
-        format: int32
-        default: 1
     async:
       in: query
       name: async

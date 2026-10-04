@@ -444,28 +444,14 @@ paths:
       - BearerAuth: []
 components:
   schemas:
-    XiqWiredDeviceHealthGridSortField:
-      type: string
-      title: WiredDeviceHealthSortField
-      description: Pre-defined fields for device health sorting - CPU - MEM - TEMP - POE - FAN - PSU
-      example: CPU
-    XiqWiredDeviceHealthTemperatureStatusResponse:
+    XiqWiredDeviceHealthFanStatusResponse:
       type: object
       properties:
         devices:
           type: array
           description: The list contains a single element for standalone devices and multiple elements for each member of a stack
           items:
-            $ref: '#/components/schemas/XiqWiredDeviceHealthTemperatureStatusResponseEntry'
-    XiqWiredDeviceHealthFanStatus:
-      type: object
-      properties:
-        fan_description:
-          type: string
-          description: The fan description
-        fan_status:
-          type: string
-          description: The fan status
+            $ref: '#/components/schemas/XiqWiredDeviceHealthFanStatusResponseEntry'
     XiqWiredDeviceHealthPsuStatus:
       type: object
       properties:
@@ -475,40 +461,64 @@ components:
         psu_status:
           type: string
           description: The PSU status
-    PagedXiqWiredDeviceHealthGridResponse:
-      allOf:
-      - $ref: '#/components/schemas/XiqPage'
-      - type: object
-        properties:
-          data:
-            type: array
-            description: The data in the current page
-            items:
-              $ref: '#/components/schemas/XiqWiredDeviceHealthGridResponse'
-    XiqWiredDeviceHealthCpuUsageIssues:
+    XiqWiredDeviceHealthTemperatureStatusResponse:
       type: object
       properties:
-        cpu_usage_issue_device_count:
-          type: integer
-          format: int64
-          description: Count of devices with CPU usage issues
-    XiqWiredDeviceHealthPoeUsageIssues:
+        devices:
+          type: array
+          description: The list contains a single element for standalone devices and multiple elements for each member of a stack
+          items:
+            $ref: '#/components/schemas/XiqWiredDeviceHealthTemperatureStatusResponseEntry'
+    XiqErrorParams:
+      type: object
+      description: Error parameters
+      properties:
+        field:
+          type: string
+          description: The error field
+        value:
+          type: string
+          description: The error value
+    XiqPage:
+      required:
+      - count
+      - page
+      - total_count
+      - total_pages
       type: object
       properties:
-        poe_usage_issue_device_count:
+        page:
           type: integer
+          description: The current page number
+          format: int32
+        count:
+          type: integer
+          description: The element count of the current page
+          format: int32
+        total_pages:
+          type: integer
+          description: The total page number based on request page size
+          format: int32
+        total_count:
+          type: integer
+          description: The total element count
           format: int64
-          description: Count of devices with PoE usage issues
-    XiqWiredDeviceHealthGridFilterField:
-      description: The filters available for the wired device health grid
-      enum:
-      - CPU
-      - MEM
-      - TEMP
-      - POE
-      - FAN
-      - PSU
-      - HEALTH
+    XiqWiredDeviceHealthPsuStatusResponse:
+      type: object
+      properties:
+        devices:
+          type: array
+          description: The list contains a single element for standalone devices and multiple elements for each member of a stack
+          items:
+            $ref: '#/components/schemas/XiqWiredDeviceHealthPsuStatusResponseEntry'
+    XiqWiredDeviceHealthPoeUsageStatusResponse:
+      type: object
+      properties:
+        devices:
+          type: array
+          description: The list contains a single element for standalone devices and multiple elements for each member of a stack
+          items:
+            $ref: '#/components/schemas/XiqWiredDeviceHealthPoeUsageStatusResponseEntry'
     XiqError:
       type: object
       properties:
@@ -533,89 +543,58 @@ components:
       - error_code
       - error_id
       - error_message
-    XiqWiredDeviceHealthFanStatusResponse:
+    XiqWiredDeviceHealthMemoryUsageIssues:
       type: object
       properties:
-        devices:
-          type: array
-          description: The list contains a single element for standalone devices and multiple elements for each member of a stack
-          items:
-            $ref: '#/components/schemas/XiqWiredDeviceHealthFanStatusResponseEntry'
-    XiqWiredDeviceHealthPoeUsageStatusResponseEntry:
-      type: object
-      properties:
-        slot_number:
-          type: integer
-          format: int8
-          description: The slot number of the device
-        poe_usage:
-          type: integer
-          format: int8
-          description: The PoE usage percentage of the device
-    XiqWiredDeviceHealthPsuStatusResponse:
-      type: object
-      properties:
-        devices:
-          type: array
-          description: The list contains a single element for standalone devices and multiple elements for each member of a stack
-          items:
-            $ref: '#/components/schemas/XiqWiredDeviceHealthPsuStatusResponseEntry'
-    XiqErrorParams:
-      type: object
-      description: Error parameters
-      properties:
-        field:
-          type: string
-          description: The error field
-        value:
-          type: string
-          description: The error value
-    XiqWiredDeviceHealthPoeUsageStatusResponse:
-      type: object
-      properties:
-        devices:
-          type: array
-          description: The list contains a single element for standalone devices and multiple elements for each member of a stack
-          items:
-            $ref: '#/components/schemas/XiqWiredDeviceHealthPoeUsageStatusResponseEntry'
-    XiqWiredDeviceHealthPsuStatusIssues:
-      type: object
-      properties:
-        psu_status_issue_device_count:
+        memory_usage_issue_device_count:
           type: integer
           format: int64
-          description: Count of devices with PSU status issues
-    XiqWiredDeviceHealthPsuStatusResponseEntry:
+          description: Count of devices with memory usage issues
+    XiqWiredDeviceHealthSummary:
       type: object
       properties:
-        slot_number:
+        wired_devices:
           type: integer
-          format: int8
-          description: The slot number of the device (0 for standalone)
-        psu_status_error:
+          format: int64
+          description: Total count of devices
+        wired_unhealthy_devices:
           type: integer
-          format: int8
-          description: The number of PSUs that are not operating correctly
-        psu_total:
-          type: integer
-          format: int8
-          description: The total number of PSUs
-        psu_units:
-          type: array
-          description: The list of PSUs with their corresponding status
-          items:
-            $ref: '#/components/schemas/XiqWiredDeviceHealthPsuStatus'
-    XiqWiredDeviceHealthTemperatureStatusResponseEntry:
+          format: int64
+          description: Total count of unhealthy devices
+    XiqWiredDeviceHealthCpuUsageIssues:
       type: object
       properties:
-        slot_number:
+        cpu_usage_issue_device_count:
           type: integer
-          format: int8
-          description: The slot number of the device
-        temperature:
+          format: int64
+          description: Count of devices with CPU usage issues
+    PagedXiqWiredDeviceHealthGridResponse:
+      allOf:
+      - $ref: '#/components/schemas/XiqPage'
+      - type: object
+        properties:
+          data:
+            type: array
+            description: The data in the current page
+            items:
+              $ref: '#/components/schemas/XiqWiredDeviceHealthGridResponse'
+    XiqWiredDeviceHealthGridFilterField:
+      description: The filters available for the wired device health grid
+      enum:
+      - CPU
+      - MEM
+      - TEMP
+      - POE
+      - FAN
+      - PSU
+      - HEALTH
+    XiqWiredDeviceHealthPoeUsageIssues:
+      type: object
+      properties:
+        poe_usage_issue_device_count:
           type: integer
-          format: int16
-          description: The temperature of the device
+          format: int64
+          description: Count of devices with PoE usage issues
     XiqWiredDeviceHealthFanStatusResponseEntry:
       type: object
       properties:
@@ -636,18 +615,26 @@ components:
           description: The list of fans with their corresponding status
           items:
             $ref: '#/components/schemas/XiqWiredDeviceHealthFanStatus'
-    XiqSortOrder:
-      type: string
-      enum:
-      - ASC
-      - DESC
-    XiqWiredDeviceHealthTemperatureIssues:
+    XiqWiredDeviceHealthPsuStatusResponseEntry:
       type: object
       properties:
-        temperature_issue_device_count:
+        slot_number:
           type: integer
-          format: int64
-          description: Count of devices with temperature issues
+          format: int8
+          description: The slot number of the device (0 for standalone)
+        psu_status_error:
+          type: integer
+          format: int8
+          description: The number of PSUs that are not operating correctly
+        psu_total:
+          type: integer
+          format: int8
+          description: The total number of PSUs
+        psu_units:
+          type: array
+          description: The list of PSUs with their corresponding status
+          items:
+            $ref: '#/components/schemas/XiqWiredDeviceHealthPsuStatus'
     XiqWiredDeviceHealthFanStatusIssues:
       type: object
       properties:
@@ -655,13 +642,6 @@ components:
           type: integer
           format: int64
           description: Count of devices with fan status issues
-    XiqWiredDeviceHealthMemoryUsageIssues:
-      type: object
-      properties:
-        memory_usage_issue_device_count:
-          type: integer
-          format: int64
-          description: Count of devices with memory usage issues
     XiqWiredDeviceHealthGridResponse:
       type: object
       properties:
@@ -720,42 +700,72 @@ components:
           type: integer
           format: int8
           description: Indicates the number of the stack slots that have PSU errors/if a standalone device has PSU errors
-    XiqPage:
-      required:
-      - count
-      - page
-      - total_count
-      - total_pages
+    XiqWiredDeviceHealthPsuStatusIssues:
       type: object
       properties:
-        page:
+        psu_status_issue_device_count:
           type: integer
-          description: The current page number
-          format: int32
-        count:
-          type: integer
-          description: The element count of the current page
-          format: int32
-        total_pages:
-          type: integer
-          description: The total page number based on request page size
-          format: int32
-        total_count:
-          type: integer
-          description: The total element count
           format: int64
-    XiqWiredDeviceHealthSummary:
+          description: Count of devices with PSU status issues
+    XiqWiredDeviceHealthFanStatus:
       type: object
       properties:
-        wired_devices:
+        fan_description:
+          type: string
+          description: The fan description
+        fan_status:
+          type: string
+          description: The fan status
+    XiqWiredDeviceHealthGridSortField:
+      type: string
+      title: WiredDeviceHealthSortField
+      description: Pre-defined fields for device health sorting - CPU - MEM - TEMP - POE - FAN - PSU
+      example: CPU
+    XiqWiredDeviceHealthPoeUsageStatusResponseEntry:
+      type: object
+      properties:
+        slot_number:
+          type: integer
+          format: int8
+          description: The slot number of the device
+        poe_usage:
+          type: integer
+          format: int8
+          description: The PoE usage percentage of the device
+    XiqWiredDeviceHealthTemperatureStatusResponseEntry:
+      type: object
+      properties:
+        slot_number:
+          type: integer
+          format: int8
+          description: The slot number of the device
+        temperature:
+          type: integer
+          format: int16
+          description: The temperature of the device
+    XiqSortOrder:
+      type: string
+      enum:
+      - ASC
+      - DESC
+    XiqWiredDeviceHealthTemperatureIssues:
+      type: object
+      properties:
+        temperature_issue_device_count:
           type: integer
           format: int64
-          description: Total count of devices
-        wired_unhealthy_devices:
-          type: integer
-          format: int64
-          description: Total count of unhealthy devices
+          description: Count of devices with temperature issues
   parameters:
+    page:
+      name: page
+      in: query
+      description: Page number, min = 1
+      required: false
+      schema:
+        minimum: 1
+        type: integer
+        format: int32
+        default: 1
     limit:
       name: limit
       in: query
@@ -767,16 +777,6 @@ components:
         type: integer
         format: int32
         default: 10
-    page:
-      name: page
-      in: query
-      description: Page number, min = 1
-      required: false
-      schema:
-        minimum: 1
-        type: integer
-        format: int32
-        default: 1
   responses:
     ErrorResponse:
       description: The generic ExtremeCloud IQ API error response

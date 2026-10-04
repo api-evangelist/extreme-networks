@@ -449,98 +449,206 @@ paths:
       security:
       - BearerAuth: []
 components:
-  parameters:
-    endTime:
-      name: endTime
-      in: query
-      description: The end time to query, epoch time in milliseconds since 1/1/1970
-      required: true
-      schema:
-        type: integer
-        format: int64
-    deviceIds:
-      name: deviceIds
-      in: query
-      description: The device IDs
-      required: false
-      schema:
-        type: array
-        items:
-          type: integer
-          format: int64
-    mac:
-      name: clientMac
-      in: path
-      description: The mac address of client
-      required: true
-      schema:
-        type: string
-    views:
-      name: views
-      in: query
-      description: The views to return client fields (Check fields for each view at XiqClientView schema)
-      required: false
-      schema:
-        type: array
-        items:
-          $ref: '#/components/schemas/XiqClientView'
-    locationIds:
-      name: locationIds
-      in: query
-      description: The location IDs
-      required: false
-      schema:
-        type: array
-        items:
-          type: integer
-          format: int64
-    limit:
-      name: limit
-      in: query
-      description: Page Size, min = 1, max = 100
-      required: false
-      schema:
-        maximum: 100
-        minimum: 1
-        type: integer
-        format: int32
-        default: 10
-    fields:
-      name: fields
-      in: query
-      description: The client fields to return
-      required: false
-      schema:
-        type: array
-        items:
-          $ref: '#/components/schemas/XiqClientField'
-    startTime:
-      name: startTime
-      in: query
-      description: The start time to query, epoch time in milliseconds since 1/1/1970
-      required: true
-      schema:
-        type: integer
-        format: int64
-    page:
-      name: page
-      in: query
-      description: Page number, min = 1
-      required: false
-      schema:
-        minimum: 1
-        type: integer
-        format: int32
-        default: 1
-    id:
-      name: id
-      in: path
-      description: The unique identifier
-      required: true
-      schema:
-        type: integer
-        format: int64
   schemas:
+    XiqClientField:
+      type: string
+      enum:
+      - ID
+      - CREATE_TIME
+      - UPDATE_TIME
+      - ORG_ID
+      - ORG_NAME
+      - LOCATION_ID
+      - LOCATIONS
+      - HOSTNAME
+      - MAC_ADDRESS
+      - IP_ADDRESS
+      - IPV6_ADDRESS
+      - OS_TYPE
+      - DEVICE_ID
+      - DEVICE_FUNCTION
+      - DEVICE_NAME
+      - USERNAME
+      - USER_PROFILE_NAME
+      - CONNECTED
+      - ONLINE_TIME
+      - OFFLINE_TIME
+      - VLAN
+      - CONNECTION_TYPE
+      - SSID
+      - PORT
+      - BSSID
+      - PORT_TYPE_NAME
+      - INTERFACE_NAME
+      - AUTH
+      - ENCRYPTION_METHOD
+      - CHANNEL
+      - CLIENT_HEALTH
+      - APPLICATION_HEALTH
+      - NETWORK_HEALTH
+      - RADIO_HEALTH
+      - RSSI
+      - SNR
+      - RADIO_TYPE
+      - WING_AP
+      - VENDOR
+      - MOBILITY
+      - CATEGORY
+      - DESCRIPTION
+      - DEVICE_MAC_ADDRESS
+      - ALIAS
+      - PRODUCT_TYPE
+      - MAKE
+      - OS_VERSION
+      - CONNECTED_TO
+      - CONNECTION_DURATION
+      - CAPTIVE_WEB_PORTAL
+    XiqErrorParams:
+      type: object
+      description: Error parameters
+      properties:
+        field:
+          type: string
+          description: The error field
+        value:
+          type: string
+          description: The error value
+    XiqPage:
+      required:
+      - count
+      - page
+      - total_count
+      - total_pages
+      type: object
+      properties:
+        page:
+          type: integer
+          description: The current page number
+          format: int32
+        count:
+          type: integer
+          description: The element count of the current page
+          format: int32
+        total_pages:
+          type: integer
+          description: The total page number based on request page size
+          format: int32
+        total_count:
+          type: integer
+          description: The total element count
+          format: int64
+    PagedXiqClient:
+      allOf:
+      - $ref: '#/components/schemas/XiqPage'
+      - type: object
+        properties:
+          data:
+            type: array
+            description: The data in the current page
+            items:
+              $ref: '#/components/schemas/XiqClient'
+    XiqLocationEntity:
+      allOf:
+      - $ref: '#/components/schemas/XiqViqEntity'
+      - type: object
+        properties:
+          location_id:
+            type: integer
+            description: The location identifier
+            format: int64
+        required:
+        - location_id
+    XiqViqEntity:
+      allOf:
+      - $ref: '#/components/schemas/XiqBaseEntity'
+      - type: object
+        properties:
+          org_id:
+            type: integer
+            description: The organization identifier, valid when enabling HIQ feature
+            format: int64
+        required:
+        - org_id
+    XiqError:
+      type: object
+      properties:
+        error_code:
+          type: string
+          description: The error code
+        error_id:
+          type: string
+          description: The error ID for internal troubleshooting
+        error_message:
+          type: string
+          description: The error detailed message
+        error_message_code:
+          type: string
+          description: The error message code
+        error_message_description:
+          type: string
+          description: The error message description
+        error_params:
+          $ref: '#/components/schemas/XiqErrorParams'
+      required:
+      - error_code
+      - error_id
+      - error_message
+    XiqClientMacAddressAlias:
+      type: object
+      description: The client's mac address and alias
+      required:
+      - mac_address
+      properties:
+        mac_address:
+          type: string
+          minLength: 12
+          maxLength: 12
+          description: The MAC address of the client
+        alias:
+          type: string
+          maxLength: 255
+          description: The alias of the client
+    XiqDeviceEntity:
+      allOf:
+      - $ref: '#/components/schemas/XiqLocationEntity'
+      - type: object
+        properties:
+          device_id:
+            type: integer
+            description: The device identifier
+            format: int64
+        required:
+        - device_id
+    XiqClientView:
+      type: string
+      description: The logic collections of client fields<br/><br/><b>BASIC:</b> ID, ORG_ID, HOSTNAME, MAC_ADDRESS, IP_ADDRESS, IPV6_ADDRESS, OS_TYPE, DEVICE_ID,CONNECTED, ONLINE_TIME, OFFLINE_TIME, CONNECTION_TYPE, SSID, PORT<br/><b>FULL:</b> All fields<br/><b>STATUS:</b> ID, CONNECTED, ONLINE_TIME, OFFLINE_TIME<br/><b>DETAIL:</b> ID, CREATE_TIME, UPDATE_TIME, ORG_ID, ORG_NAME, LOCATION_ID, HOSTNAME, MAC_ADDRESS, IP_ADDRESS, IPV6_ADDRESS, OS_TYPE, DEVICE_ID, DEVICE_FUNCTION, DEVICE_NAME, DEVICE_MAC_ADDRESS, USERNAME, USER_PROFILE_NAME, CONNECTED, ONLINE_TIME, OFFLINE_TIME, VLAN, CONNECTION_TYPE, SSID, PORT, BSSID, PORT_TYPE_NAME, INTERFACE_NAME, AUTH, ENCRYPTION_METHOD, CHANNEL, RSSI, SNR, WING_AP, VENDOR, RADIO_TYPE, ALIAS, MAC_PROTOCOL, MAKE, OS_VERSION, CONNECTED_TO, CONNECTION_DURATION, CAPTIVE_WEB_PORTAL<br/><b>LOCATION:</b> ID, LOCATION_ID, LOCATIONS<br/><b>METRICS:</b> ID, CLIENT_HEALTH, APPLICATION_HEALTH, NETWORK_HEALTH, RADIO_HEALTH<br/><b>IOT:</b> ID, MOBILITY, CATEGORY, DESCRIPTION
+      enum:
+      - BASIC
+      - FULL
+      - STATUS
+      - DETAIL
+      - LOCATION
+      - METRICS
+      - IOT
+    XiqBaseEntity:
+      required:
+      - id
+      - create_time
+      - update_time
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The unique identifier
+          format: int64
+        create_time:
+          type: string
+          description: The create time
+          format: date-time
+        update_time:
+          type: string
+          description: The last update time
+          format: date-time
     XiqClient:
       allOf:
       - $ref: '#/components/schemas/XiqDeviceEntity'
@@ -746,235 +854,6 @@ components:
             type: string
             maxLength: 255
             description: The alias of the client
-    XiqViqEntity:
-      allOf:
-      - $ref: '#/components/schemas/XiqBaseEntity'
-      - type: object
-        properties:
-          org_id:
-            type: integer
-            description: The organization identifier, valid when enabling HIQ feature
-            format: int64
-        required:
-        - org_id
-    XiqError:
-      type: object
-      properties:
-        error_code:
-          type: string
-          description: The error code
-        error_id:
-          type: string
-          description: The error ID for internal troubleshooting
-        error_message:
-          type: string
-          description: The error detailed message
-        error_message_code:
-          type: string
-          description: The error message code
-        error_message_description:
-          type: string
-          description: The error message description
-        error_params:
-          $ref: '#/components/schemas/XiqErrorParams'
-      required:
-      - error_code
-      - error_id
-      - error_message
-    XiqDeviceEntity:
-      allOf:
-      - $ref: '#/components/schemas/XiqLocationEntity'
-      - type: object
-        properties:
-          device_id:
-            type: integer
-            description: The device identifier
-            format: int64
-        required:
-        - device_id
-    XiqClientSummary:
-      type: object
-      description: The summary for clients
-      properties:
-        connected_wireless_client_count:
-          type: integer
-          description: The connected wireless client count
-          format: int64
-        detected_wired_client_count:
-          type: integer
-          description: The detected wired client count
-          format: int64
-    PagedXiqClient:
-      allOf:
-      - $ref: '#/components/schemas/XiqPage'
-      - type: object
-        properties:
-          data:
-            type: array
-            description: The data in the current page
-            items:
-              $ref: '#/components/schemas/XiqClient'
-    XiqLocationEntity:
-      allOf:
-      - $ref: '#/components/schemas/XiqViqEntity'
-      - type: object
-        properties:
-          location_id:
-            type: integer
-            description: The location identifier
-            format: int64
-        required:
-        - location_id
-    XiqErrorParams:
-      type: object
-      description: Error parameters
-      properties:
-        field:
-          type: string
-          description: The error field
-        value:
-          type: string
-          description: The error value
-    XiqClientMacAddressAlias:
-      type: object
-      description: The client's mac address and alias
-      required:
-      - mac_address
-      properties:
-        mac_address:
-          type: string
-          minLength: 12
-          maxLength: 12
-          description: The MAC address of the client
-        alias:
-          type: string
-          maxLength: 255
-          description: The alias of the client
-    XiqLocationLegend:
-      type: object
-      description: The simple location information
-      properties:
-        id:
-          type: integer
-          description: The location ID
-          format: int64
-        name:
-          type: string
-          description: The location name
-    XiqBaseEntity:
-      required:
-      - id
-      - create_time
-      - update_time
-      type: object
-      properties:
-        id:
-          type: integer
-          description: The unique identifier
-          format: int64
-        create_time:
-          type: string
-          description: The create time
-          format: date-time
-        update_time:
-          type: string
-          description: The last update time
-          format: date-time
-    XiqPage:
-      required:
-      - count
-      - page
-      - total_count
-      - total_pages
-      type: object
-      properties:
-        page:
-          type: integer
-          description: The current page number
-          format: int32
-        count:
-          type: integer
-          description: The element count of the current page
-          format: int32
-        total_pages:
-          type: integer
-          description: The total page number based on request page size
-          format: int32
-        total_count:
-          type: integer
-          description: The total element count
-          format: int64
-    XiqClientView:
-      type: string
-      description: The logic collections of client fields<br/><br/><b>BASIC:</b> ID, ORG_ID, HOSTNAME, MAC_ADDRESS, IP_ADDRESS, IPV6_ADDRESS, OS_TYPE, DEVICE_ID,CONNECTED, ONLINE_TIME, OFFLINE_TIME, CONNECTION_TYPE, SSID, PORT<br/><b>FULL:</b> All fields<br/><b>STATUS:</b> ID, CONNECTED, ONLINE_TIME, OFFLINE_TIME<br/><b>DETAIL:</b> ID, CREATE_TIME, UPDATE_TIME, ORG_ID, ORG_NAME, LOCATION_ID, HOSTNAME, MAC_ADDRESS, IP_ADDRESS, IPV6_ADDRESS, OS_TYPE, DEVICE_ID, DEVICE_FUNCTION, DEVICE_NAME, DEVICE_MAC_ADDRESS, USERNAME, USER_PROFILE_NAME, CONNECTED, ONLINE_TIME, OFFLINE_TIME, VLAN, CONNECTION_TYPE, SSID, PORT, BSSID, PORT_TYPE_NAME, INTERFACE_NAME, AUTH, ENCRYPTION_METHOD, CHANNEL, RSSI, SNR, WING_AP, VENDOR, RADIO_TYPE, ALIAS, MAC_PROTOCOL, MAKE, OS_VERSION, CONNECTED_TO, CONNECTION_DURATION, CAPTIVE_WEB_PORTAL<br/><b>LOCATION:</b> ID, LOCATION_ID, LOCATIONS<br/><b>METRICS:</b> ID, CLIENT_HEALTH, APPLICATION_HEALTH, NETWORK_HEALTH, RADIO_HEALTH<br/><b>IOT:</b> ID, MOBILITY, CATEGORY, DESCRIPTION
-      enum:
-      - BASIC
-      - FULL
-      - STATUS
-      - DETAIL
-      - LOCATION
-      - METRICS
-      - IOT
-    XiqClientField:
-      type: string
-      enum:
-      - ID
-      - CREATE_TIME
-      - UPDATE_TIME
-      - ORG_ID
-      - ORG_NAME
-      - LOCATION_ID
-      - LOCATIONS
-      - HOSTNAME
-      - MAC_ADDRESS
-      - IP_ADDRESS
-      - IPV6_ADDRESS
-      - OS_TYPE
-      - DEVICE_ID
-      - DEVICE_FUNCTION
-      - DEVICE_NAME
-      - USERNAME
-      - USER_PROFILE_NAME
-      - CONNECTED
-      - ONLINE_TIME
-      - OFFLINE_TIME
-      - VLAN
-      - CONNECTION_TYPE
-      - SSID
-      - PORT
-      - BSSID
-      - PORT_TYPE_NAME
-      - INTERFACE_NAME
-      - AUTH
-      - ENCRYPTION_METHOD
-      - CHANNEL
-      - CLIENT_HEALTH
-      - APPLICATION_HEALTH
-      - NETWORK_HEALTH
-      - RADIO_HEALTH
-      - RSSI
-      - SNR
-      - RADIO_TYPE
-      - WING_AP
-      - VENDOR
-      - MOBILITY
-      - CATEGORY
-      - DESCRIPTION
-      - DEVICE_MAC_ADDRESS
-      - ALIAS
-      - PRODUCT_TYPE
-      - MAKE
-      - OS_VERSION
-      - CONNECTED_TO
-      - CONNECTION_DURATION
-      - CAPTIVE_WEB_PORTAL
-    GetActiveClientsResponse:
-      type: object
-      properties:
-        count:
-          type: integer
-          description: The connected wireless client count
-          format: int64
     XiqClientUsage:
       type: object
       description: The client usage over the period
@@ -987,6 +866,127 @@ components:
           type: integer
           description: The client total usage
           format: int64
+    XiqLocationLegend:
+      type: object
+      description: The simple location information
+      properties:
+        id:
+          type: integer
+          description: The location ID
+          format: int64
+        name:
+          type: string
+          description: The location name
+    GetActiveClientsResponse:
+      type: object
+      properties:
+        count:
+          type: integer
+          description: The connected wireless client count
+          format: int64
+    XiqClientSummary:
+      type: object
+      description: The summary for clients
+      properties:
+        connected_wireless_client_count:
+          type: integer
+          description: The connected wireless client count
+          format: int64
+        detected_wired_client_count:
+          type: integer
+          description: The detected wired client count
+          format: int64
+  parameters:
+    startTime:
+      name: startTime
+      in: query
+      description: The start time to query, epoch time in milliseconds since 1/1/1970
+      required: true
+      schema:
+        type: integer
+        format: int64
+    page:
+      name: page
+      in: query
+      description: Page number, min = 1
+      required: false
+      schema:
+        minimum: 1
+        type: integer
+        format: int32
+        default: 1
+    mac:
+      name: clientMac
+      in: path
+      description: The mac address of client
+      required: true
+      schema:
+        type: string
+    deviceIds:
+      name: deviceIds
+      in: query
+      description: The device IDs
+      required: false
+      schema:
+        type: array
+        items:
+          type: integer
+          format: int64
+    limit:
+      name: limit
+      in: query
+      description: Page Size, min = 1, max = 100
+      required: false
+      schema:
+        maximum: 100
+        minimum: 1
+        type: integer
+        format: int32
+        default: 10
+    id:
+      name: id
+      in: path
+      description: The unique identifier
+      required: true
+      schema:
+        type: integer
+        format: int64
+    endTime:
+      name: endTime
+      in: query
+      description: The end time to query, epoch time in milliseconds since 1/1/1970
+      required: true
+      schema:
+        type: integer
+        format: int64
+    locationIds:
+      name: locationIds
+      in: query
+      description: The location IDs
+      required: false
+      schema:
+        type: array
+        items:
+          type: integer
+          format: int64
+    views:
+      name: views
+      in: query
+      description: The views to return client fields (Check fields for each view at XiqClientView schema)
+      required: false
+      schema:
+        type: array
+        items:
+          $ref: '#/components/schemas/XiqClientView'
+    fields:
+      name: fields
+      in: query
+      description: The client fields to return
+      required: false
+      schema:
+        type: array
+        items:
+          $ref: '#/components/schemas/XiqClientField'
   responses:
     ErrorResponse:
       description: The generic ExtremeCloud IQ API error response

@@ -603,112 +603,7 @@ paths:
       security:
       - BearerAuth: []
 components:
-  parameters:
-    endTime:
-      name: endTime
-      in: query
-      description: The end time to query, epoch time in milliseconds since 1/1/1970
-      required: true
-      schema:
-        type: integer
-        format: int64
-    order:
-      name: order
-      in: query
-      description: The sort order (ascending by default)
-      required: false
-      schema:
-        $ref: '#/components/schemas/XiqSortOrder'
-    limit:
-      name: limit
-      in: query
-      description: Page Size, min = 1, max = 100
-      required: false
-      schema:
-        maximum: 100
-        minimum: 1
-        type: integer
-        format: int32
-        default: 10
-    startTime:
-      name: startTime
-      in: query
-      description: The start time to query, epoch time in milliseconds since 1/1/1970
-      required: true
-      schema:
-        type: integer
-        format: int64
-    page:
-      name: page
-      in: query
-      description: Page number, min = 1
-      required: false
-      schema:
-        minimum: 1
-        type: integer
-        format: int32
-        default: 1
-    id:
-      name: id
-      in: path
-      description: The unique identifier
-      required: true
-      schema:
-        type: integer
-        format: int64
   schemas:
-    XiqError:
-      type: object
-      properties:
-        error_code:
-          type: string
-          description: The error code
-        error_id:
-          type: string
-          description: The error ID for internal troubleshooting
-        error_message:
-          type: string
-          description: The error detailed message
-        error_message_code:
-          type: string
-          description: The error message code
-        error_message_description:
-          type: string
-          description: The error message description
-        error_params:
-          $ref: '#/components/schemas/XiqErrorParams'
-      required:
-      - error_code
-      - error_id
-      - error_message
-    RmPagedUsers:
-      allOf:
-      - $ref: '#/components/schemas/XiqPage'
-      - type: object
-        properties:
-          data:
-            type: array
-            description: The data in the current page
-            items:
-              $ref: '#/components/schemas/RmUsers'
-    XiqGrantExternalUserRequest:
-      type: object
-      required:
-      - login_name
-      - user_role
-      properties:
-        login_name:
-          type: string
-          description: Login name, i.e. username or login Email
-        user_role:
-          $ref: '#/components/schemas/XiqUserRole'
-        org_id:
-          type: integer
-          description: The HIQ organization ID if it is HIQ user, otherwise leave it as empty
-          format: int64
-        enable_api_access:
-          type: boolean
-          description: Whether to enable API access, false by default
     XiqErrorParams:
       type: object
       description: Error parameters
@@ -719,115 +614,6 @@ components:
         value:
           type: string
           description: The error value
-    XiqUserRole:
-      type: string
-      description: The user administrative role.
-      enum:
-      - ADMINISTRATOR
-      - OPERATOR
-      - MONITOR
-      - HELP_DESK
-      - GUEST_MANAGEMENT
-      - OBSERVER
-      - INSTALLER
-      - APPLICATION_OPERATOR
-    number_filter:
-      type: object
-      description: If the filter type is between, only then min and max are to be used, else value is to be used.
-      properties:
-        column_name:
-          description: The name of the column being filtered
-          type: string
-        filter_type:
-          description: The type of number filter
-          type: string
-          enum:
-          - eq
-          - neq
-          - gt
-          - gte
-          - lt
-          - lte
-          - bw
-          - blank
-          - notblank
-        value:
-          description: The value of the number
-          type: integer
-          format: int64
-        min:
-          description: The minimum value of the number
-          type: integer
-          format: int64
-        max:
-          description: The maximum value of the number
-          type: integer
-          format: int64
-    PagedXiqUser:
-      allOf:
-      - $ref: '#/components/schemas/XiqPage'
-      - type: object
-        properties:
-          data:
-            type: array
-            description: The data in the current page
-            items:
-              $ref: '#/components/schemas/XiqUser'
-    XiqCreateUserRequest:
-      type: object
-      required:
-      - login_name
-      - display_name
-      - user_role
-      properties:
-        login_name:
-          type: string
-          description: Login name, i.e. username or login Email
-        display_name:
-          type: string
-          description: The user name to display
-        idle_timeout:
-          type: integer
-          description: The idle timeout in minutes, the minimum value is 5 minutes and the maximum value is 4 hours
-          format: int32
-        user_role:
-          $ref: '#/components/schemas/XiqUserRole'
-    XiqSortOrder:
-      type: string
-      enum:
-      - ASC
-      - DESC
-    XiqBaseEntity:
-      required:
-      - id
-      - create_time
-      - update_time
-      type: object
-      properties:
-        id:
-          type: integer
-          description: The unique identifier
-          format: int64
-        create_time:
-          type: string
-          description: The create time
-          format: date-time
-        update_time:
-          type: string
-          description: The last update time
-          format: date-time
-    XiqUpdateExternalUserRequest:
-      type: object
-      properties:
-        user_role:
-          $ref: '#/components/schemas/XiqUserRole'
-        org_id:
-          type: integer
-          description: The HIQ organization ID if it is HIQ user, otherwise leave it as empty.
-          format: int64
-        enable_api_access:
-          type: boolean
-          description: Whether to enable API access, false by default.
     XiqPage:
       required:
       - count
@@ -852,6 +638,40 @@ components:
           type: integer
           description: The total element count
           format: int64
+    RmPagedUsers:
+      allOf:
+      - $ref: '#/components/schemas/XiqPage'
+      - type: object
+        properties:
+          data:
+            type: array
+            description: The data in the current page
+            items:
+              $ref: '#/components/schemas/RmUsers'
+    XiqError:
+      type: object
+      properties:
+        error_code:
+          type: string
+          description: The error code
+        error_id:
+          type: string
+          description: The error ID for internal troubleshooting
+        error_message:
+          type: string
+          description: The error detailed message
+        error_message_code:
+          type: string
+          description: The error message code
+        error_message_description:
+          type: string
+          description: The error message description
+        error_params:
+          $ref: '#/components/schemas/XiqErrorParams'
+      required:
+      - error_code
+      - error_id
+      - error_message
     XiqExternalUser:
       allOf:
       - $ref: '#/components/schemas/XiqBaseEntity'
@@ -872,48 +692,89 @@ components:
           enable_api_access:
             type: boolean
             description: Whether to enable API access.
-    XiqUser:
-      allOf:
-      - $ref: '#/components/schemas/XiqBaseEntity'
-      - type: object
-        required:
-        - login_name
-        properties:
-          login_name:
-            type: string
-            description: Login name, i.e. username or login Email
-          first_name:
-            type: string
-            description: The first name
-          last_name:
-            type: string
-            description: The last name, i.e. family name
-          display_name:
-            type: string
-            description: The name to display
-          phone:
-            type: string
-            description: The Phone Number
-          job_title:
-            type: string
-            description: The job title
-          locale:
-            type: string
-            description: The locale
-          user_role:
-            $ref: '#/components/schemas/XiqUserRole'
-          idle_timeout:
-            type: integer
-            description: The idle timeout in minutes, the minimum value is 5 minutes and the maximum value is 4 hours
-            format: int32
-          last_login_time:
-            type: string
-            description: The last login time
-            format: date-time
-          org_id:
-            type: integer
-            description: The HIQ organization ID if it is HIQ user
-            format: int64
+    XiqUpdateExternalUserRequest:
+      type: object
+      properties:
+        user_role:
+          $ref: '#/components/schemas/XiqUserRole'
+        org_id:
+          type: integer
+          description: The HIQ organization ID if it is HIQ user, otherwise leave it as empty.
+          format: int64
+        enable_api_access:
+          type: boolean
+          description: Whether to enable API access, false by default.
+    XiqBaseEntity:
+      required:
+      - id
+      - create_time
+      - update_time
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The unique identifier
+          format: int64
+        create_time:
+          type: string
+          description: The create time
+          format: date-time
+        update_time:
+          type: string
+          description: The last update time
+          format: date-time
+    XiqCreateUserRequest:
+      type: object
+      required:
+      - login_name
+      - display_name
+      - user_role
+      properties:
+        login_name:
+          type: string
+          description: Login name, i.e. username or login Email
+        display_name:
+          type: string
+          description: The user name to display
+        idle_timeout:
+          type: integer
+          description: The idle timeout in minutes, the minimum value is 5 minutes and the maximum value is 4 hours
+          format: int32
+        user_role:
+          $ref: '#/components/schemas/XiqUserRole'
+    XiqGrantExternalUserRequest:
+      type: object
+      required:
+      - login_name
+      - user_role
+      properties:
+        login_name:
+          type: string
+          description: Login name, i.e. username or login Email
+        user_role:
+          $ref: '#/components/schemas/XiqUserRole'
+        org_id:
+          type: integer
+          description: The HIQ organization ID if it is HIQ user, otherwise leave it as empty
+          format: int64
+        enable_api_access:
+          type: boolean
+          description: Whether to enable API access, false by default
+    XiqUpdateUserRequest:
+      type: object
+      properties:
+        login_name:
+          type: string
+          description: Login name, i.e. username or login Email
+        display_name:
+          type: string
+          description: The user name to display
+        idle_timeout:
+          type: integer
+          description: The idle timeout in minutes, the minimum value is 5 minutes and the maximum value is 4 hours
+          format: int32
+        user_role:
+          $ref: '#/components/schemas/XiqUserRole'
     RmUsers:
       type: object
       properties:
@@ -959,6 +820,102 @@ components:
           type: integer
           format: int64
           description: Time in seconds until the session expires
+    number_filter:
+      type: object
+      description: If the filter type is between, only then min and max are to be used, else value is to be used.
+      properties:
+        column_name:
+          description: The name of the column being filtered
+          type: string
+        filter_type:
+          description: The type of number filter
+          type: string
+          enum:
+          - eq
+          - neq
+          - gt
+          - gte
+          - lt
+          - lte
+          - bw
+          - blank
+          - notblank
+        value:
+          description: The value of the number
+          type: integer
+          format: int64
+        min:
+          description: The minimum value of the number
+          type: integer
+          format: int64
+        max:
+          description: The maximum value of the number
+          type: integer
+          format: int64
+    XiqUserRole:
+      type: string
+      description: The user administrative role.
+      enum:
+      - ADMINISTRATOR
+      - OPERATOR
+      - MONITOR
+      - HELP_DESK
+      - GUEST_MANAGEMENT
+      - OBSERVER
+      - INSTALLER
+      - APPLICATION_OPERATOR
+    PagedXiqUser:
+      allOf:
+      - $ref: '#/components/schemas/XiqPage'
+      - type: object
+        properties:
+          data:
+            type: array
+            description: The data in the current page
+            items:
+              $ref: '#/components/schemas/XiqUser'
+    XiqUser:
+      allOf:
+      - $ref: '#/components/schemas/XiqBaseEntity'
+      - type: object
+        required:
+        - login_name
+        properties:
+          login_name:
+            type: string
+            description: Login name, i.e. username or login Email
+          first_name:
+            type: string
+            description: The first name
+          last_name:
+            type: string
+            description: The last name, i.e. family name
+          display_name:
+            type: string
+            description: The name to display
+          phone:
+            type: string
+            description: The Phone Number
+          job_title:
+            type: string
+            description: The job title
+          locale:
+            type: string
+            description: The locale
+          user_role:
+            $ref: '#/components/schemas/XiqUserRole'
+          idle_timeout:
+            type: integer
+            description: The idle timeout in minutes, the minimum value is 5 minutes and the maximum value is 4 hours
+            format: int32
+          last_login_time:
+            type: string
+            description: The last login time
+            format: date-time
+          org_id:
+            type: integer
+            description: The HIQ organization ID if it is HIQ user
+            format: int64
     PagedXiqExternalUser:
       allOf:
       - $ref: '#/components/schemas/XiqPage'
@@ -969,21 +926,64 @@ components:
             description: The data in the current page
             items:
               $ref: '#/components/schemas/XiqExternalUser'
-    XiqUpdateUserRequest:
-      type: object
-      properties:
-        login_name:
-          type: string
-          description: Login name, i.e. username or login Email
-        display_name:
-          type: string
-          description: The user name to display
-        idle_timeout:
-          type: integer
-          description: The idle timeout in minutes, the minimum value is 5 minutes and the maximum value is 4 hours
-          format: int32
-        user_role:
-          $ref: '#/components/schemas/XiqUserRole'
+    XiqSortOrder:
+      type: string
+      enum:
+      - ASC
+      - DESC
+  parameters:
+    startTime:
+      name: startTime
+      in: query
+      description: The start time to query, epoch time in milliseconds since 1/1/1970
+      required: true
+      schema:
+        type: integer
+        format: int64
+    page:
+      name: page
+      in: query
+      description: Page number, min = 1
+      required: false
+      schema:
+        minimum: 1
+        type: integer
+        format: int32
+        default: 1
+    order:
+      name: order
+      in: query
+      description: The sort order (ascending by default)
+      required: false
+      schema:
+        $ref: '#/components/schemas/XiqSortOrder'
+    limit:
+      name: limit
+      in: query
+      description: Page Size, min = 1, max = 100
+      required: false
+      schema:
+        maximum: 100
+        minimum: 1
+        type: integer
+        format: int32
+        default: 10
+    id:
+      name: id
+      in: path
+      description: The unique identifier
+      required: true
+      schema:
+        type: integer
+        format: int64
+    endTime:
+      name: endTime
+      in: query
+      description: The end time to query, epoch time in milliseconds since 1/1/1970
+      required: true
+      schema:
+        type: integer
+        format: int64
   responses:
     ErrorResponse:
       description: The generic ExtremeCloud IQ API error response

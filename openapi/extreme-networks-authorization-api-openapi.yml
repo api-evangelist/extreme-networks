@@ -177,30 +177,6 @@ paths:
       - BearerAuth: []
 components:
   schemas:
-    XiqError:
-      type: object
-      properties:
-        error_code:
-          type: string
-          description: The error code
-        error_id:
-          type: string
-          description: The error ID for internal troubleshooting
-        error_message:
-          type: string
-          description: The error detailed message
-        error_message_code:
-          type: string
-          description: The error message code
-        error_message_description:
-          type: string
-          description: The error message description
-        error_params:
-          $ref: '#/components/schemas/XiqErrorParams'
-      required:
-      - error_code
-      - error_id
-      - error_message
     XiqGenerateApiTokenResponse:
       type: object
       required:
@@ -238,18 +214,23 @@ components:
           items:
             type: string
             description: The permissions for the API token
-    XiqCheckPermissionRequest:
+    XiqPermission:
       type: object
+      description: The permission
       required:
-      - uri
-      - method
+      - name
+      - description
+      - category
       properties:
-        uri:
+        name:
           type: string
-          description: The request HTTP URI
-        method:
+          description: The permission name
+        description:
           type: string
-          description: The request HTTP method
+          description: The description for the permission
+        category:
+          type: string
+          description: The category for the permission
     XiqGenerateApiTokenRequest:
       allOf:
       - type: object
@@ -271,6 +252,46 @@ components:
               description: The token permissions
           rate_limit:
             $ref: '#/components/schemas/RateLimitPolicy'
+    XiqCheckPermissionRequest:
+      type: object
+      required:
+      - uri
+      - method
+      properties:
+        uri:
+          type: string
+          description: The request HTTP URI
+        method:
+          type: string
+          description: The request HTTP method
+    XiqErrorParams:
+      type: object
+      description: Error parameters
+      properties:
+        field:
+          type: string
+          description: The error field
+        value:
+          type: string
+          description: The error value
+    RateLimitPolicy:
+      type: object
+      description: Configuration for API usage quotas and throughput limits.
+      required:
+      - hour
+      properties:
+        hour:
+          type: integer
+          format: int64
+          minimum: 1
+          description: The sustained request quota per hour. Defines the baseline traffic capacity.
+          example: 7500
+        second:
+          type: integer
+          format: int64
+          minimum: 1
+          description: The maximum burst allowance per second. If omitted, no short-term throttling is applied.
+          example: 100
     XiqApiTokenInfo:
       type: object
       required:
@@ -317,51 +338,6 @@ components:
           type: integer
           description: The expires in seconds
           format: int64
-    RateLimitPolicy:
-      type: object
-      description: Configuration for API usage quotas and throughput limits.
-      required:
-      - hour
-      properties:
-        hour:
-          type: integer
-          format: int64
-          minimum: 1
-          description: The sustained request quota per hour. Defines the baseline traffic capacity.
-          example: 7500
-        second:
-          type: integer
-          format: int64
-          minimum: 1
-          description: The maximum burst allowance per second. If omitted, no short-term throttling is applied.
-          example: 100
-    XiqErrorParams:
-      type: object
-      description: Error parameters
-      properties:
-        field:
-          type: string
-          description: The error field
-        value:
-          type: string
-          description: The error value
-    XiqPermission:
-      type: object
-      description: The permission
-      required:
-      - name
-      - description
-      - category
-      properties:
-        name:
-          type: string
-          description: The permission name
-        description:
-          type: string
-          description: The description for the permission
-        category:
-          type: string
-          description: The category for the permission
     XiqCheckPermissionResponse:
       type: object
       required:
@@ -380,6 +356,30 @@ components:
           items:
             type: string
             description: The role list
+    XiqError:
+      type: object
+      properties:
+        error_code:
+          type: string
+          description: The error code
+        error_id:
+          type: string
+          description: The error ID for internal troubleshooting
+        error_message:
+          type: string
+          description: The error detailed message
+        error_message_code:
+          type: string
+          description: The error message code
+        error_message_description:
+          type: string
+          description: The error message description
+        error_params:
+          $ref: '#/components/schemas/XiqErrorParams'
+      required:
+      - error_code
+      - error_id
+      - error_message
   responses:
     ErrorResponse:
       description: The generic ExtremeCloud IQ API error response

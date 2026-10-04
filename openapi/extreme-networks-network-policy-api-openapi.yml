@@ -234,30 +234,27 @@ paths:
       - BearerAuth: []
 components:
   schemas:
-    XiqError:
-      type: object
-      properties:
-        error_code:
-          type: string
-          description: The error code
-        error_id:
-          type: string
-          description: The error ID for internal troubleshooting
-        error_message:
-          type: string
-          description: The error detailed message
-        error_message_code:
-          type: string
-          description: The error message code
-        error_message_description:
-          type: string
-          description: The error message description
-        error_params:
-          $ref: '#/components/schemas/XiqErrorParams'
-      required:
-      - error_code
-      - error_id
-      - error_message
+    PagedXiqSsid:
+      allOf:
+      - $ref: '#/components/schemas/XiqPage'
+      - type: object
+        properties:
+          data:
+            type: array
+            description: The data in the current page
+            items:
+              $ref: '#/components/schemas/XiqSsid'
+    XiqNetworkPolicyType:
+      type: string
+      description: The network policy type
+      enum:
+      - NETWORK_ACCESS_AND_SWITCHING
+      - BRANCH_ROUTING
+      - WIRELESS_ACCESS
+      - SWITCHING
+      - NETWORK_ACCESS_AND_SWITCHING_AND_BR
+      - NETWORK_ACCESS_AND_BRANCH_ROUTING
+      - SWITCHING_AND_BRANCH_ROUTING
     XiqBaseEntity:
       required:
       - id
@@ -277,16 +274,6 @@ components:
           type: string
           description: The last update time
           format: date-time
-    XiqErrorParams:
-      type: object
-      description: Error parameters
-      properties:
-        field:
-          type: string
-          description: The error field
-        value:
-          type: string
-          description: The error value
     XiqCreateNetworkPolicyRequest:
       type: object
       required:
@@ -301,6 +288,38 @@ components:
           description: The network policy description
         type:
           $ref: '#/components/schemas/XiqNetworkPolicyType'
+    XiqErrorParams:
+      type: object
+      description: Error parameters
+      properties:
+        field:
+          type: string
+          description: The error field
+        value:
+          type: string
+          description: The error value
+    XiqNetworkPolicy:
+      allOf:
+      - $ref: '#/components/schemas/XiqViqEntity'
+      - type: object
+        description: The network policy
+        required:
+        - name
+        - predefined
+        - type
+        properties:
+          name:
+            type: string
+            description: The network policy name
+          description:
+            type: string
+            description: The network policy description
+          predefined:
+            type: boolean
+            description: Whether it is a predefined network policy
+          type:
+            type: string
+            description: The network policy type
     XiqPage:
       required:
       - count
@@ -325,38 +344,6 @@ components:
           type: integer
           description: The total element count
           format: int64
-    PagedXiqSsid:
-      allOf:
-      - $ref: '#/components/schemas/XiqPage'
-      - type: object
-        properties:
-          data:
-            type: array
-            description: The data in the current page
-            items:
-              $ref: '#/components/schemas/XiqSsid'
-    XiqNetworkPolicy:
-      allOf:
-      - $ref: '#/components/schemas/XiqViqEntity'
-      - type: object
-        description: The network policy
-        required:
-        - name
-        - predefined
-        - type
-        properties:
-          name:
-            type: string
-            description: The network policy name
-          description:
-            type: string
-            description: The network policy description
-          predefined:
-            type: boolean
-            description: Whether it is a predefined network policy
-          type:
-            type: string
-            description: The network policy type
     PagedXiqNetworkPolicy:
       allOf:
       - $ref: '#/components/schemas/XiqPage'
@@ -378,17 +365,17 @@ components:
           description: The network policy description
         type:
           $ref: '#/components/schemas/XiqNetworkPolicyType'
-    XiqNetworkPolicyType:
-      type: string
-      description: The network policy type
-      enum:
-      - NETWORK_ACCESS_AND_SWITCHING
-      - BRANCH_ROUTING
-      - WIRELESS_ACCESS
-      - SWITCHING
-      - NETWORK_ACCESS_AND_SWITCHING_AND_BR
-      - NETWORK_ACCESS_AND_BRANCH_ROUTING
-      - SWITCHING_AND_BRANCH_ROUTING
+    XiqViqEntity:
+      allOf:
+      - $ref: '#/components/schemas/XiqBaseEntity'
+      - type: object
+        properties:
+          org_id:
+            type: integer
+            description: The organization identifier, valid when enabling HIQ feature
+            format: int64
+        required:
+        - org_id
     XiqSsid:
       allOf:
       - $ref: '#/components/schemas/XiqViqEntity'
@@ -415,43 +402,31 @@ components:
             type: integer
             description: The SSID advanced settings ID
             format: int64
-    XiqViqEntity:
-      allOf:
-      - $ref: '#/components/schemas/XiqBaseEntity'
-      - type: object
-        properties:
-          org_id:
-            type: integer
-            description: The organization identifier, valid when enabling HIQ feature
-            format: int64
-        required:
-        - org_id
-  responses:
-    ErrorResponse:
-      description: The generic ExtremeCloud IQ API error response
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/XiqError'
+    XiqError:
+      type: object
+      properties:
+        error_code:
+          type: string
+          description: The error code
+        error_id:
+          type: string
+          description: The error ID for internal troubleshooting
+        error_message:
+          type: string
+          description: The error detailed message
+        error_message_code:
+          type: string
+          description: The error message code
+        error_message_description:
+          type: string
+          description: The error message description
+        error_params:
+          $ref: '#/components/schemas/XiqErrorParams'
+      required:
+      - error_code
+      - error_id
+      - error_message
   parameters:
-    page:
-      name: page
-      in: query
-      description: Page number, min = 1
-      required: false
-      schema:
-        minimum: 1
-        type: integer
-        format: int32
-        default: 1
-    id:
-      name: id
-      in: path
-      description: The unique identifier
-      required: true
-      schema:
-        type: integer
-        format: int64
     limit:
       name: limit
       in: query
@@ -463,6 +438,31 @@ components:
         type: integer
         format: int32
         default: 10
+    id:
+      name: id
+      in: path
+      description: The unique identifier
+      required: true
+      schema:
+        type: integer
+        format: int64
+    page:
+      name: page
+      in: query
+      description: Page number, min = 1
+      required: false
+      schema:
+        minimum: 1
+        type: integer
+        format: int32
+        default: 1
+  responses:
+    ErrorResponse:
+      description: The generic ExtremeCloud IQ API error response
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/XiqError'
   securitySchemes:
     BearerAuth:
       type: http

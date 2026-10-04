@@ -231,33 +231,44 @@ paths:
       - BearerAuth: []
 components:
   schemas:
-    XiqNetworkAlgType:
-      type: string
-      enum:
-      - NONE
-      - FTP
-      - TFTP
-      - SIP
-      - DNS
-      - HTTP
-    XiqNetworkIpProtocol:
-      type: string
-      enum:
-      - TCP
-      - UDP
-      - SVP
-      - CUSTOM
     XiqTunnelConcentrator:
       allOf:
       - $ref: '#/components/schemas/XiqViqEntity'
       - $ref: '#/components/schemas/XiqTunnelConcentratorRequest'
-    XiqMulticastRule:
-      allOf:
-      - type: object
-        properties:
-          ip:
-            type: string
-            description: IPv4 or IPv6 address with optional CIDR
+    XiqErrorParams:
+      type: object
+      description: Error parameters
+      properties:
+        field:
+          type: string
+          description: The error field
+        value:
+          type: string
+          description: The error value
+    XiqPage:
+      required:
+      - count
+      - page
+      - total_count
+      - total_pages
+      type: object
+      properties:
+        page:
+          type: integer
+          description: The current page number
+          format: int32
+        count:
+          type: integer
+          description: The element count of the current page
+          format: int32
+        total_pages:
+          type: integer
+          description: The total page number based on request page size
+          format: int32
+        total_count:
+          type: integer
+          description: The total element count
+          format: int64
     XiqViqEntity:
       allOf:
       - $ref: '#/components/schemas/XiqBaseEntity'
@@ -293,6 +304,19 @@ components:
       - error_code
       - error_id
       - error_message
+    XiqNetworkAlgType:
+      type: string
+      enum:
+      - NONE
+      - FTP
+      - TFTP
+      - SIP
+      - DNS
+      - HTTP
+    XiqNetwork:
+      allOf:
+      - $ref: '#/components/schemas/XiqViqEntity'
+      - $ref: '#/components/schemas/XiqNetworkServiceRequest'
     PagedXiqTunnelConcentrator:
       allOf:
       - $ref: '#/components/schemas/XiqPage'
@@ -303,97 +327,6 @@ components:
             description: The data in the current page
             items:
               $ref: '#/components/schemas/XiqTunnelConcentrator'
-    XiqErrorParams:
-      type: object
-      description: Error parameters
-      properties:
-        field:
-          type: string
-          description: The error field
-        value:
-          type: string
-          description: The error value
-    XiqNetworkServiceRequest:
-      type: object
-      description: Network
-      properties:
-        name:
-          type: string
-          description: The network service name.
-        description:
-          type: string
-          description: The network service name.
-        ip_protocol:
-          $ref: '#/components/schemas/XiqNetworkIpProtocol'
-          description: The IP protocol.
-        protocol_number:
-          type: integer
-          format: int32
-          description: The protocol number.
-        port_number:
-          type: integer
-          format: int32
-          description: The port number.
-        alg_type:
-          $ref: '#/components/schemas/XiqNetworkAlgType'
-          description: The Application Layer Gateway (ALG) type.
-    PagedXiqNetworkService:
-      allOf:
-      - $ref: '#/components/schemas/XiqPage'
-      - type: object
-        properties:
-          data:
-            type: array
-            description: The data in the current page
-            items:
-              $ref: '#/components/schemas/XiqNetworkService'
-    XiqNetwork:
-      allOf:
-      - $ref: '#/components/schemas/XiqViqEntity'
-      - $ref: '#/components/schemas/XiqNetworkServiceRequest'
-    XiqBaseEntity:
-      required:
-      - id
-      - create_time
-      - update_time
-      type: object
-      properties:
-        id:
-          type: integer
-          description: The unique identifier
-          format: int64
-        create_time:
-          type: string
-          description: The create time
-          format: date-time
-        update_time:
-          type: string
-          description: The last update time
-          format: date-time
-    XiqPage:
-      required:
-      - count
-      - page
-      - total_count
-      - total_pages
-      type: object
-      properties:
-        page:
-          type: integer
-          description: The current page number
-          format: int32
-        count:
-          type: integer
-          description: The element count of the current page
-          format: int32
-        total_pages:
-          type: integer
-          description: The total page number based on request page size
-          format: int32
-        total_count:
-          type: integer
-          description: The total element count
-          format: int64
     XiqTunnelConcentratorRequest:
       type: object
       required:
@@ -513,6 +446,59 @@ components:
           items:
             $ref: '#/components/schemas/XiqMulticastRule'
           description: List of Multicast rules
+    PagedXiqNetworkService:
+      allOf:
+      - $ref: '#/components/schemas/XiqPage'
+      - type: object
+        properties:
+          data:
+            type: array
+            description: The data in the current page
+            items:
+              $ref: '#/components/schemas/XiqNetworkService'
+    XiqBaseEntity:
+      required:
+      - id
+      - create_time
+      - update_time
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The unique identifier
+          format: int64
+        create_time:
+          type: string
+          description: The create time
+          format: date-time
+        update_time:
+          type: string
+          description: The last update time
+          format: date-time
+    XiqNetworkServiceRequest:
+      type: object
+      description: Network
+      properties:
+        name:
+          type: string
+          description: The network service name.
+        description:
+          type: string
+          description: The network service name.
+        ip_protocol:
+          $ref: '#/components/schemas/XiqNetworkIpProtocol'
+          description: The IP protocol.
+        protocol_number:
+          type: integer
+          format: int32
+          description: The protocol number.
+        port_number:
+          type: integer
+          format: int32
+          description: The port number.
+        alg_type:
+          $ref: '#/components/schemas/XiqNetworkAlgType'
+          description: The Application Layer Gateway (ALG) type.
     XiqNetworkService:
       allOf:
       - $ref: '#/components/schemas/XiqNetwork'
@@ -527,7 +513,31 @@ components:
             enum:
             - NETWORK
             - APPLICATION
+    XiqMulticastRule:
+      allOf:
+      - type: object
+        properties:
+          ip:
+            type: string
+            description: IPv4 or IPv6 address with optional CIDR
+    XiqNetworkIpProtocol:
+      type: string
+      enum:
+      - TCP
+      - UDP
+      - SVP
+      - CUSTOM
   parameters:
+    page:
+      name: page
+      in: query
+      description: Page number, min = 1
+      required: false
+      schema:
+        minimum: 1
+        type: integer
+        format: int32
+        default: 1
     limit:
       name: limit
       in: query
@@ -539,16 +549,6 @@ components:
         type: integer
         format: int32
         default: 10
-    page:
-      name: page
-      in: query
-      description: Page number, min = 1
-      required: false
-      schema:
-        minimum: 1
-        type: integer
-        format: int32
-        default: 1
     id:
       name: id
       in: path
