@@ -1,0 +1,12 @@
+{
+ "url": "https://raw.githubusercontent.com/extremenetworks/ExtremeCloudIQ-OpenAPI-Specification/main/xcloudiq-openapi.yaml",
+ "requested_url": "https://raw.githubusercontent.com/extremenetworks/ExtremeCloudIQ-OpenAPI-Specification/main/xcloudiq-openapi.yaml",
+ "status": 200,
+ "content_type": "text/plain; charset=utf-8",
+ "bytes": 1550413,
+ "sha256": "fd24dcb9f481fcd476137175c9aea08e27a9500af6f563127909ff7b5d664528",
+ "fetched_at": "2026-10-04",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "byte-identical",
+ "note": "Re-fetched from the provider by verify-openapi-sources.py; the archived file is byte-identical to what the provider serves."
+}
