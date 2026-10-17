@@ -231,92 +231,6 @@ paths:
       - BearerAuth: []
 components:
   schemas:
-    XiqTunnelConcentrator:
-      allOf:
-      - $ref: '#/components/schemas/XiqViqEntity'
-      - $ref: '#/components/schemas/XiqTunnelConcentratorRequest'
-    XiqErrorParams:
-      type: object
-      description: Error parameters
-      properties:
-        field:
-          type: string
-          description: The error field
-        value:
-          type: string
-          description: The error value
-    XiqPage:
-      required:
-      - count
-      - page
-      - total_count
-      - total_pages
-      type: object
-      properties:
-        page:
-          type: integer
-          description: The current page number
-          format: int32
-        count:
-          type: integer
-          description: The element count of the current page
-          format: int32
-        total_pages:
-          type: integer
-          description: The total page number based on request page size
-          format: int32
-        total_count:
-          type: integer
-          description: The total element count
-          format: int64
-    XiqViqEntity:
-      allOf:
-      - $ref: '#/components/schemas/XiqBaseEntity'
-      - type: object
-        properties:
-          org_id:
-            type: integer
-            description: The organization identifier, valid when enabling HIQ feature
-            format: int64
-        required:
-        - org_id
-    XiqError:
-      type: object
-      properties:
-        error_code:
-          type: string
-          description: The error code
-        error_id:
-          type: string
-          description: The error ID for internal troubleshooting
-        error_message:
-          type: string
-          description: The error detailed message
-        error_message_code:
-          type: string
-          description: The error message code
-        error_message_description:
-          type: string
-          description: The error message description
-        error_params:
-          $ref: '#/components/schemas/XiqErrorParams'
-      required:
-      - error_code
-      - error_id
-      - error_message
-    XiqNetworkAlgType:
-      type: string
-      enum:
-      - NONE
-      - FTP
-      - TFTP
-      - SIP
-      - DNS
-      - HTTP
-    XiqNetwork:
-      allOf:
-      - $ref: '#/components/schemas/XiqViqEntity'
-      - $ref: '#/components/schemas/XiqNetworkServiceRequest'
     PagedXiqTunnelConcentrator:
       allOf:
       - $ref: '#/components/schemas/XiqPage'
@@ -327,6 +241,25 @@ components:
             description: The data in the current page
             items:
               $ref: '#/components/schemas/XiqTunnelConcentrator'
+    XiqBaseEntity:
+      required:
+      - id
+      - create_time
+      - update_time
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The unique identifier
+          format: int64
+        create_time:
+          type: string
+          description: The create time
+          format: date-time
+        update_time:
+          type: string
+          description: The last update time
+          format: date-time
     XiqTunnelConcentratorRequest:
       type: object
       required:
@@ -446,6 +379,28 @@ components:
           items:
             $ref: '#/components/schemas/XiqMulticastRule'
           description: List of Multicast rules
+    XiqMulticastRule:
+      allOf:
+      - type: object
+        properties:
+          ip:
+            type: string
+            description: IPv4 or IPv6 address with optional CIDR
+    XiqViqEntity:
+      allOf:
+      - $ref: '#/components/schemas/XiqBaseEntity'
+      - type: object
+        properties:
+          org_id:
+            type: integer
+            description: The organization identifier, valid when enabling HIQ feature
+            format: int64
+        required:
+        - org_id
+    XiqTunnelConcentrator:
+      allOf:
+      - $ref: '#/components/schemas/XiqViqEntity'
+      - $ref: '#/components/schemas/XiqTunnelConcentratorRequest'
     PagedXiqNetworkService:
       allOf:
       - $ref: '#/components/schemas/XiqPage'
@@ -456,25 +411,30 @@ components:
             description: The data in the current page
             items:
               $ref: '#/components/schemas/XiqNetworkService'
-    XiqBaseEntity:
-      required:
-      - id
-      - create_time
-      - update_time
+    XiqError:
       type: object
       properties:
-        id:
-          type: integer
-          description: The unique identifier
-          format: int64
-        create_time:
+        error_code:
           type: string
-          description: The create time
-          format: date-time
-        update_time:
+          description: The error code
+        error_id:
           type: string
-          description: The last update time
-          format: date-time
+          description: The error ID for internal troubleshooting
+        error_message:
+          type: string
+          description: The error detailed message
+        error_message_code:
+          type: string
+          description: The error message code
+        error_message_description:
+          type: string
+          description: The error message description
+        error_params:
+          $ref: '#/components/schemas/XiqErrorParams'
+      required:
+      - error_code
+      - error_id
+      - error_message
     XiqNetworkServiceRequest:
       type: object
       description: Network
@@ -499,6 +459,53 @@ components:
         alg_type:
           $ref: '#/components/schemas/XiqNetworkAlgType'
           description: The Application Layer Gateway (ALG) type.
+    XiqPage:
+      required:
+      - count
+      - page
+      - total_count
+      - total_pages
+      type: object
+      properties:
+        page:
+          type: integer
+          description: The current page number
+          format: int32
+        count:
+          type: integer
+          description: The element count of the current page
+          format: int32
+        total_pages:
+          type: integer
+          description: The total page number based on request page size
+          format: int32
+        total_count:
+          type: integer
+          description: The total element count
+          format: int64
+    XiqNetwork:
+      allOf:
+      - $ref: '#/components/schemas/XiqViqEntity'
+      - $ref: '#/components/schemas/XiqNetworkServiceRequest'
+    XiqErrorParams:
+      type: object
+      description: Error parameters
+      properties:
+        field:
+          type: string
+          description: The error field
+        value:
+          type: string
+          description: The error value
+    XiqNetworkAlgType:
+      type: string
+      enum:
+      - NONE
+      - FTP
+      - TFTP
+      - SIP
+      - DNS
+      - HTTP
     XiqNetworkService:
       allOf:
       - $ref: '#/components/schemas/XiqNetwork'
@@ -513,13 +520,6 @@ components:
             enum:
             - NETWORK
             - APPLICATION
-    XiqMulticastRule:
-      allOf:
-      - type: object
-        properties:
-          ip:
-            type: string
-            description: IPv4 or IPv6 address with optional CIDR
     XiqNetworkIpProtocol:
       type: string
       enum:

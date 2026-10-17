@@ -710,353 +710,7 @@ paths:
       security:
       - BearerAuth: []
 components:
-  parameters:
-    offsetTime:
-      in: query
-      description: The offset value
-      name: offsetTime
-      required: true
-      schema:
-        type: integer
-        format: int32
-    endTime1:
-      in: query
-      description: The end time
-      name: endTime
-      required: false
-      schema:
-        type: integer
-        format: int64
-    buildingId:
-      in: query
-      description: The building id
-      name: buildingId
-      required: false
-      schema:
-        type: integer
-        format: int64
-    muted:
-      in: query
-      name: excludeMuted
-      description: To filter muted anomalies
-      required: false
-      schema:
-        type: boolean
-        default: false
-    channelNumber:
-      in: query
-      description: The channel number
-      name: channel
-      required: true
-      schema:
-        type: integer
-        format: int32
-    sortOrder:
-      name: sortOrder
-      in: query
-      description: The sort order (ascending by default)
-      required: false
-      schema:
-        $ref: '#/components/schemas/XiqSortOrder'
-    anomalyId:
-      in: query
-      description: The anomaly id
-      name: anomalyId
-      required: true
-      schema:
-        type: string
-    page:
-      name: page
-      in: query
-      description: Page number, min = 1
-      required: false
-      schema:
-        minimum: 1
-        type: integer
-        format: int32
-        default: 1
-    vlanIds:
-      in: query
-      description: The vlan ids
-      name: vlanIds
-      required: true
-      schema:
-        type: array
-        description: The vlan Ids
-        items:
-          type: integer
-          format: int64
-    anomalyType:
-      name: anomalyType
-      in: query
-      description: The anomaly type
-      required: false
-      schema:
-        $ref: '#/components/schemas/XiqAnomalyType'
-    searchKey:
-      in: query
-      description: The search key
-      name: searchKey
-      required: false
-      schema:
-        type: string
-    sortField1:
-      name: sortField
-      in: query
-      description: The sort field
-      required: false
-      schema:
-        type: string
-        enum:
-        - DEVICE_NAME
-        - SEVERITY
-        - LOCATION
-        - CATEGORY
-        - ANOMALY_TYPE
-        - TIME
-    endTimeCount:
-      in: query
-      name: endTime
-      description: The End time
-      required: true
-      schema:
-        type: integer
-        format: int64
-    deviceId:
-      in: query
-      description: The device id
-      name: deviceId
-      required: true
-      schema:
-        type: integer
-        format: int64
-    siteIds:
-      in: query
-      description: The site ids
-      name: siteIds
-      required: true
-      schema:
-        type: array
-        description: The site Ids
-        items:
-          type: integer
-          format: int64
-    startTimeCount:
-      in: query
-      name: startTime
-      description: The Start time
-      required: true
-      schema:
-        type: integer
-        format: int64
-    severity:
-      name: severity
-      in: query
-      description: The anomaly severity
-      required: false
-      schema:
-        $ref: '#/components/schemas/XiqAnomalySeverity'
-    fileType:
-      name: fileType
-      in: query
-      description: The file type
-      required: false
-      schema:
-        type: string
-    limit:
-      name: limit
-      in: query
-      description: Page Size, min = 1, max = 100
-      required: false
-      schema:
-        maximum: 100
-        minimum: 1
-        type: integer
-        format: int32
-        default: 10
-    startTime1:
-      in: query
-      description: The start time
-      name: startTime
-      required: false
-      schema:
-        type: integer
-        format: int64
-    async:
-      in: query
-      name: async
-      description: Whether to enable async mode
-      required: false
-      schema:
-        type: boolean
-        default: false
-    lastDetectedTime:
-      in: query
-      description: The last detected time
-      name: lastDetectedTime
-      required: false
-      schema:
-        type: integer
-        format: int64
-    hhStatsFieldType:
-      name: hhStatsFieldType
-      in: query
-      description: The Hardware Health anomaly CPU or Memory Stats type
-      required: true
-      schema:
-        $ref: '#/components/schemas/XiqAnomalyHhStatsType'
-    timestamp1:
-      in: query
-      description: The timestamp
-      name: timestamp
-      required: true
-      schema:
-        type: integer
-        format: int64
   schemas:
-    XiqUpdateActionAnomalyDetails:
-      type: object
-      description: Update Action Anomaly Details Entity
-      required:
-      - buildingId
-      - locationId
-      - anomalyId
-      - anomalyType
-      properties:
-        buildingId:
-          type: integer
-          format: int64
-        locationId:
-          type: integer
-          format: int64
-        anomalyId:
-          type: string
-        anomalyType:
-          $ref: '#/components/schemas/XiqAnomalyType'
-    XiqCopilotAnomaliesSiteEntity:
-      type: object
-      description: data sequence
-      required:
-      - site_id
-      - site_name
-      - anomalies_count
-      properties:
-        site_id:
-          type: integer
-          format: int64
-        site_name:
-          type: string
-        anomalies_count:
-          type: integer
-          format: int64
-    XiqFlapCountEntity:
-      type: object
-      description: data sequence
-      required:
-      - timestamp
-      - flap_count
-      - sub_optimal_count
-      - optimal_time_spent
-      properties:
-        timestamp:
-          type: integer
-          format: int64
-        flap_count:
-          type: integer
-        sub_optimal_count:
-          type: integer
-        optimal_time_spent:
-          type: number
-          format: double
-    XiqError:
-      type: object
-      properties:
-        error_code:
-          type: string
-          description: The error code
-        error_id:
-          type: string
-          description: The error ID for internal troubleshooting
-        error_message:
-          type: string
-          description: The error detailed message
-        error_message_code:
-          type: string
-          description: The error message code
-        error_message_description:
-          type: string
-          description: The error message description
-        error_params:
-          $ref: '#/components/schemas/XiqErrorParams'
-      required:
-      - error_code
-      - error_id
-      - error_message
-    XiqCopilotLldpCdpInfo:
-      type: object
-      description: Copilot Anomalies LLdp-Cdp Info Response
-      properties:
-        lldp_cdp_info:
-          type: object
-          description: The data in the current page
-          $ref: '#/components/schemas/XiqPowerSourceEquipment'
-    XiqCopilotAnomaliesByCategory:
-      type: object
-      description: data sequence
-      required:
-      - anomalies_by_location
-      - anomalies_by_severity
-      - anomalies_by_type
-      properties:
-        anomalies_by_location:
-          type: array
-          description: The data in the current page
-          items:
-            $ref: '#/components/schemas/XiqAnomaliesSiteEntity'
-        anomalies_by_severity:
-          type: object
-          description: The data in the current page
-          required:
-          - low_severity_anomalies_count
-          - medium_severity__anomalies_count
-          - high_severity_anomalies_count
-          - anomalies_count_by_severity
-          properties:
-            low_severity_anomalies_count:
-              type: integer
-              format: int32
-            medium_severity_anomalies_count:
-              type: integer
-              format: int32
-            high_severity_anomalies_count:
-              type: integer
-              format: int32
-            anomalies_count_by_severity:
-              type: integer
-              format: int32
-        anomalies_by_type:
-          type: array
-          description: The data in the current page
-          items:
-            $ref: '#/components/schemas/XiqAnomaliesTypeEntity'
-    XiqHardwareHealthCpuMemStatsEntity:
-      type: object
-      description: data sequence
-      required:
-      - timestamp
-      - stats_ten_secs
-      - stats_twenty_secs
-      - stats_thirty_secs
-      properties:
-        timestamp:
-          type: integer
-          format: int64
-        stats_ten_secs:
-          type: string
-        stats_twenty_secs:
-          type: string
-        stats_thirty_secs:
-          type: string
     XiqHardwareHealthRebootStatsEntity:
       type: object
       description: data sequence
@@ -1070,120 +724,20 @@ components:
         reboot_code:
           type: integer
           format: int64
-    XiqCopilotExceptionalVlanList:
-      allOf:
-      - $ref: '#/components/schemas/XiqPage'
-      - type: object
-        description: data sequence
-        required:
-        - excluded_vlan_details
-        properties:
-          excluded_vlan_details_entity:
-            type: array
-            description: The data in the current page
-            items:
-              $ref: '#/components/schemas/XiqCopilotExcludedVlanDetailsEntity'
-    XiqFeedbackType:
+    XiqAnomalySeverity:
       type: string
       enum:
-      - LIKE
-      - DISLIKE
-    XiqCopilotATPPacketCounts:
+      - LOW
+      - MEDIUM
+      - HIGH
+    XiqCopilotWifiEfficiencyClientlist:
       type: object
       properties:
-        atp_packet_counts_entities:
+        client_stats_entities:
           type: array
           description: The data in the current page
           items:
-            $ref: '#/components/schemas/XiqATPPacketCountsEntity'
-    XiqCopilotAnomaliesSuccess:
-      type: object
-      description: value
-      required:
-      - success
-      properties:
-        success:
-          type: boolean
-    XiqAffectedDownlinkDevice:
-      type: object
-      description: Copilot Anomaly Affected Downlink Devices Details
-      required:
-      - host_name
-      - product_type
-      - interface_name
-      - port_id
-      - last_detected_time
-      properties:
-        host_name:
-          type: string
-          description: host name of affected downlink device
-        product_type:
-          type: string
-          description: model of affected downlink device
-        interface_name:
-          type: string
-          description: interface name of affected downlink device
-        port_id:
-          type: string
-          description: port ID of affected downlink device
-        last_detected_time:
-          type: integer
-          description: last detected timestamp
-          format: int64
-    XiqHardwareHealthDeviceStatsEntity:
-      type: object
-      description: data sequence
-      required:
-      - timestamp
-      - avg_cpu_utilization
-      - avg_memory_utilization
-      - avg_client_count
-      - unit_temperature
-      - poe_power_mode
-      properties:
-        timestamp:
-          type: integer
-          format: int64
-        avg_cpu_utilization:
-          type: number
-          format: double
-        avg_memory_utilization:
-          type: number
-          format: double
-        avg_client_count:
-          type: integer
-        unit_temperature:
-          type: number
-          format: double
-        poe_power_mode:
-          type: string
-    XiqDuplexDataRateEntity:
-      type: object
-      description: data sequence
-      required:
-      - timestamp
-      - duplex_mode
-      - datarate_mode
-      properties:
-        timestamp:
-          type: integer
-          format: int64
-        duplex_mode:
-          type: integer
-        datarate_mode:
-          type: integer
-    XiqCopilotAnomaliesReport:
-      allOf:
-      - type: object
-        description: The devices and location entity data
-        required:
-        - anomaly_details
-        properties:
-          anomaly_details:
-            type: array
-            description: The data in the current page
-            items:
-              $ref: '#/components/schemas/XiqCopilotAnomaliesDetails'
+            $ref: '#/components/schemas/XiqClientStatsEntity'
     XiqCopilotWifiEfficiencyStats:
       type: object
       description: data sequence
@@ -1202,52 +756,19 @@ components:
           description: The data in the current page
           items:
             $ref: '#/components/schemas/XiqTxRxStatsDataEntity'
-    XiqCopilotWifiCapacityStats:
+    XiqCopilotHardwareHealthClientlist:
       type: object
       properties:
-        device_stats:
+        client_stats_entities:
           type: array
           description: The data in the current page
           items:
-            $ref: '#/components/schemas/XiqDeviceStatsEntity'
-    XiqPage:
-      required:
-      - count
-      - page
-      - total_count
-      - total_pages
-      type: object
-      properties:
-        page:
-          type: integer
-          description: The current page number
-          format: int32
-        count:
-          type: integer
-          description: The element count of the current page
-          format: int32
-        total_pages:
-          type: integer
-          description: The total page number based on request page size
-          format: int32
-        total_count:
-          type: integer
-          description: The total element count
-          format: int64
-    XiqCopilotExcludedVlanDetailsEntity:
-      type: object
-      description: Excluded Vlan details Entity
-      required:
-      - vlan_id
-      - site_details
-      properties:
-        vlan_id:
-          type: integer
-          format: int64
-        site_details:
-          type: array
-          items:
-            $ref: '#/components/schemas/XiqCopilotVlanSiteDetails'
+            $ref: '#/components/schemas/XiqHardwareHealthClientStatsEntity'
+    XiqSortOrder:
+      type: string
+      enum:
+      - ASC
+      - DESC
     XiqPoeTrendGraphsResponse:
       type: object
       properties:
@@ -1256,33 +777,6 @@ components:
           description: The data in the current page
           items:
             $ref: '#/components/schemas/XiqTrendGraphEntity'
-    XiqCopilotAnomaliesDetails:
-      type: object
-      description: Anomaly Devices & Location Entity
-      required:
-      - location_name
-      - severity
-      - anomaly_type
-      - last_detected_time
-      - device_name
-      - category
-      - interface_name
-      properties:
-        location_name:
-          type: string
-        severity:
-          $ref: '#/components/schemas/XiqAnomalySeverity'
-        anomaly_type:
-          $ref: '#/components/schemas/XiqAnomalyType'
-        last_detected_time:
-          type: integer
-          format: int64
-        device_name:
-          type: string
-        category:
-          $ref: '#/components/schemas/XiqDeviceCategory'
-        interface_name:
-          type: string
     XiqCopilotMissingVlanCount:
       type: object
       description: data sequence
@@ -1298,306 +792,6 @@ components:
           description: The data in the current page
           items:
             $ref: '#/components/schemas/XiqCopilotAnomaliesSiteEntity'
-    XiqAnomaliesCount:
-      type: object
-      description: data sequence
-      required:
-      - timestamp
-      - total_anomalies_count
-      - wifi_efficiency_count
-      - wifi_capacity_count
-      - poe_count
-      - pe_count
-      - dfs_count
-      - mb_cast_count
-      - hardware_health_count
-      - missing_vlan_count
-      properties:
-        timestamp:
-          type: integer
-          format: int64
-        total_anomalies_count:
-          type: integer
-          format: int64
-        wifi_efficiency_count:
-          type: integer
-          format: int64
-        wifi_capacity_count:
-          type: integer
-          format: int64
-        poe_count:
-          type: integer
-          format: int64
-        pe_count:
-          type: integer
-          format: int64
-        dfs_count:
-          type: integer
-          format: int64
-        mb_cast_count:
-          type: integer
-          format: int64
-        hardware_health_count:
-          type: integer
-          format: int64
-        missing_vlan_count:
-          type: integer
-          format: int64
-    HealthScoreType:
-      type: string
-      enum:
-      - GOOD
-      - MEDIUM
-      - POOR
-    XiqCopilotAnomaliesDevicesWithLocation:
-      allOf:
-      - $ref: '#/components/schemas/XiqPage'
-      - type: object
-        description: The devices and location entity data
-        required:
-        - anomaly_details
-        - affected_count
-        properties:
-          anomaly_details:
-            type: array
-            description: The data in the current page
-            items:
-              $ref: '#/components/schemas/XiqAnomalyDeviceWithLocation'
-          affected_count:
-            type: object
-            description: The data in the current page
-            required:
-            - total_anomaly_count
-            - affected_location_count
-            - affected_devices_count
-            properties:
-              total_anomaly_count:
-                type: integer
-                format: int32
-              affected_location_count:
-                type: integer
-                format: int32
-              affected_devices_count:
-                type: integer
-                format: int32
-    XiqClientWifiStatsEntity:
-      type: object
-      description: data sequence
-      required:
-      - client_mac
-      - client_name
-      - client_host_os
-      - avg_snr
-      - avg_rssi
-      - health_score
-      - client_id
-      properties:
-        client_mac:
-          type: string
-        client_name:
-          type: string
-        client_host_os:
-          type: string
-        avg_snr:
-          type: integer
-        avg_rssi:
-          type: integer
-        health_score:
-          type: array
-          description: The health score type
-          items:
-            $ref: '#/components/schemas/HealthScoreType'
-        client_id:
-          type: integer
-          format: int64
-    XiqCopilotWifiCapacityClientlist:
-      type: object
-      properties:
-        client_wifi_stats:
-          type: array
-          description: The data in the current page
-          items:
-            $ref: '#/components/schemas/XiqClientWifiStatsEntity'
-    XiqCopilotPortEfficiencyStats:
-      type: object
-      properties:
-        duplex_data_rate_entities:
-          type: array
-          description: The data in the current page
-          items:
-            $ref: '#/components/schemas/XiqDuplexDataRateEntity'
-    XiqATPDeviceStatEntity:
-      type: object
-      description: data sequence
-      required:
-      - timestamp
-      - avg_cpu
-      - avg_memory
-      - avg_client_count
-      properties:
-        timestamp:
-          type: integer
-          format: int64
-        avg_cpu:
-          type: number
-          format: double
-        avg_memory:
-          type: number
-          format: double
-        avg_client_count:
-          type: integer
-    XiqCopilotPortEfficiencySpeedDuplex:
-      type: object
-      properties:
-        speed_duplex_entities:
-          type: array
-          description: The data in the current page
-          items:
-            $ref: '#/components/schemas/XiqSpeedDuplexEntity'
-    XiqCopilotATPDeviceStats:
-      type: object
-      properties:
-        atp_device_stat_entities:
-          type: array
-          description: The data in the current page
-          items:
-            $ref: '#/components/schemas/XiqATPDeviceStatEntity'
-    XiqCopilotWifiEfficiencyClientlist:
-      type: object
-      properties:
-        client_stats_entities:
-          type: array
-          description: The data in the current page
-          items:
-            $ref: '#/components/schemas/XiqClientStatsEntity'
-    XiqChannelStatsEntity:
-      type: object
-      description: data sequence
-      required:
-      - timestamp
-      - channel_number
-      properties:
-        timestamp:
-          type: integer
-          format: int64
-        channel_number:
-          type: integer
-    XiqCopilotAssuranceScansOverview:
-      type: object
-      description: data sequence
-      required:
-      - aggregated_scans_count
-      - anomalies_count
-      properties:
-        aggregated_scans_count:
-          type: integer
-          format: int64
-        anomalies_count:
-          type: array
-          description: The data in the current page
-          items:
-            $ref: '#/components/schemas/XiqAnomaliesCount'
-    XiqCopilotActionType:
-      description: type of action to be performed
-      type: string
-      enum:
-      - ADD
-      - UPDATE
-      - DELETE
-    XiqSpeedDuplexEntity:
-      type: object
-      description: data sequence
-      required:
-      - timestamp
-      - value
-      properties:
-        timestamp:
-          type: integer
-          format: int64
-        value:
-          type: integer
-    XiqAnomaliesSiteEntity:
-      type: object
-      description: data sequence
-      required:
-      - building_id
-      - location_name
-      - anomalies_count_by_location
-      properties:
-        building_id:
-          type: integer
-          format: int64
-        location_name:
-          type: string
-        anomalies_count_by_location:
-          type: integer
-          format: int32
-    XiqAnomaliesTypeEntity:
-      type: object
-      description: data sequence
-      required:
-      - anomaly_type
-      - anomalies_count_by_type
-      properties:
-        anomaly_type:
-          $ref: '#/components/schemas/XiqAnomalyType'
-        anomalies_count_by_type:
-          type: integer
-          format: int32
-    XiqCopilotDFSRecurrenceChannelStats:
-      type: object
-      description: data sequence
-      required:
-      - dfs_channel_stats_entity
-      - min_channel
-      - max_channel
-      properties:
-        dfs_channel_stats_entity:
-          type: array
-          description: The data in the current page
-          items:
-            $ref: '#/components/schemas/XiqChannelStatsEntity'
-        min_channel:
-          type: integer
-        max_channel:
-          type: integer
-    XiqHardwareHealthPacketCountsEntity:
-      type: object
-      description: data sequence
-      required:
-      - timestamp
-      - unicast_tx
-      - unicast_rx
-      - multicast_tx
-      - multicast_rx
-      - broadcast_tx
-      - broadcast_rx
-      - throughput
-      properties:
-        timestamp:
-          type: integer
-          format: int64
-        unicast_tx:
-          type: integer
-          format: int64
-        unicast_rx:
-          type: integer
-          format: int64
-        multicast_tx:
-          type: integer
-          format: int64
-        multicast_rx:
-          type: integer
-          format: int64
-        broadcast_tx:
-          type: integer
-          format: int64
-        broadcast_rx:
-          type: integer
-          format: int64
-        throughput:
-          type: integer
-          format: int64
     XiqClientStatsEntity:
       type: object
       description: data sequence
@@ -1625,154 +819,6 @@ components:
         client_id:
           type: integer
           format: int64
-    XiqTxRxStatsDataEntity:
-      type: object
-      description: data sequence
-      required:
-      - timestamp
-      - data_rate_failure_percent
-      - client_count
-      - normal_failure_percent
-      properties:
-        timestamp:
-          type: integer
-          format: int64
-        data_rate_failure_percent:
-          type: number
-          format: double
-        client_count:
-          type: integer
-          format: int32
-        normal_failure_percent:
-          type: integer
-    XiqDeviceStatsEntity:
-      type: object
-      description: data sequence
-      required:
-      - timestamp
-      - avg_interference_utilization
-      - avg_tx_utilization
-      - avg_rx_utilization
-      - avg_total_channel_utilization
-      - avg_num_clients
-      - normal_interference
-      properties:
-        timestamp:
-          type: integer
-          format: int64
-        avg_interference_utilization:
-          type: integer
-        avg_tx_utilization:
-          type: integer
-        avg_rx_utilization:
-          type: integer
-        avg_total_channel_utilization:
-          type: integer
-        avg_num_clients:
-          type: integer
-        normal_interference:
-          type: integer
-    XiqPowerSourceEquipment:
-      type: object
-      description: Copilot LLdp-Cdp Info For Anomalous Access Points
-      required:
-      - is_lldp_cdp_enabled
-      - affected_downlink_devices
-      - unaffected_downlink_devices
-      properties:
-        is_lldp_cdp_enabled:
-          type: boolean
-        uplink_switch_system_name:
-          type: string
-        uplink_switch_system_id:
-          type: string
-        uplink_switch_device_id:
-          type: integer
-          format: int64
-        location_name:
-          type: string
-        floor_name:
-          type: string
-        affected_downlink_devices:
-          type: array
-          description: The list of affected downlink devices
-          items:
-            $ref: '#/components/schemas/XiqAffectedDownlinkDevice'
-        unaffected_downlink_devices:
-          type: array
-          description: The list of unaffected downlink devices
-          items:
-            $ref: '#/components/schemas/XiqUnaffectedDownlinkDevice'
-    XiqAnomalyType:
-      type: string
-      enum:
-      - POE_STABILITY
-      - DFS_RECURRENCE
-      - ADVERSE_TRAFFIC
-      - PORT_EFFICIENCY
-      - WIFI_CAPACITY
-      - WIFI_EFFICIENCY
-      - HARDWARE_HEALTH
-      - MISSING_VLAN
-    XiqCopilotHardwareHealthClientlist:
-      type: object
-      properties:
-        client_stats_entities:
-          type: array
-          description: The data in the current page
-          items:
-            $ref: '#/components/schemas/XiqHardwareHealthClientStatsEntity'
-    XiqCopilotVlanSiteDetails:
-      description: Details of a site
-      type: object
-      required:
-      - site_name
-      - site_id
-      properties:
-        site_id:
-          type: integer
-          format: int64
-        site_name:
-          type: string
-    XiqCopilotHardwareHealthCpuMemStats:
-      type: object
-      properties:
-        cpu_memory_stats_entity:
-          type: array
-          description: The data in the current page
-          items:
-            $ref: '#/components/schemas/XiqHardwareHealthCpuMemStatsEntity'
-    XiqCopilotMissingVlanAffectedDevicesEntity:
-      type: object
-      required:
-      - ap_device_id
-      - ap_name
-      - upstream_switch_interface
-      - missing_vlans
-      properties:
-        ap_device_id:
-          type: integer
-          format: int64
-        ap_name:
-          type: string
-        upstream_switch_interface:
-          type: string
-        missing_vlans:
-          type: array
-          items:
-            type: integer
-    XiqAnomaliesFeedbackRequest:
-      type: object
-      description: The feedback request
-      properties:
-        anomalyType:
-          $ref: '#/components/schemas/XiqAnomalyType'
-        anomalyId:
-          type: string
-        feedbackType:
-          $ref: '#/components/schemas/XiqFeedbackType'
-        feedback:
-          type: string
     XiqCopilotVlanDetailsEntity:
       type: object
       description: details of vlans to be excluded from sites
@@ -1790,17 +836,14 @@ components:
           items:
             type: integer
             format: int64
-    XiqDeviceCategory:
-      type: string
-      enum:
-      - WIRED
-      - WIRELESS
-    XiqActionType:
-      type: string
-      enum:
-      - MUTE
-      - UNMUTE
-      - DISMISSED
+    XiqCopilotATPPacketCounts:
+      type: object
+      properties:
+        atp_packet_counts_entities:
+          type: array
+          description: The data in the current page
+          items:
+            $ref: '#/components/schemas/XiqATPPacketCountsEntity'
     XiqUnaffectedDownlinkDevice:
       type: object
       description: Copilot Anomaly Unaffected Downlink Devices Details
@@ -1822,92 +865,6 @@ components:
         port_id:
           type: string
           description: port ID of unaffected downlink device
-    XiqUpdateAnomaliesAndDevicesRequest:
-      type: object
-      description: The device update action request
-      required:
-      - anomalyDetails
-      - actionType
-      properties:
-        anomalyDetails:
-          type: array
-          description: The data in the current page
-          items:
-            $ref: '#/components/schemas/XiqUpdateActionAnomalyDetails'
-        actionType:
-          $ref: '#/components/schemas/XiqActionType'
-    XiqAnomalyHhStatsType:
-      type: string
-      enum:
-      - CPU_STATS
-      - MEMORY_STATS
-    XiqTrendGraphEntity:
-      type: object
-      description: power mode trends
-      required:
-      - timestamp
-      properties:
-        timestamp:
-          type: integer
-          format: int64
-        power_mode:
-          type: string
-    XiqCopilotPoeFlappingStats:
-      type: object
-      properties:
-        flap_count_entities:
-          type: array
-          description: The data in the current page
-          items:
-            $ref: '#/components/schemas/XiqFlapCountEntity'
-    XiqCopilotMissingVlanInfo:
-      type: object
-      required:
-      - lldp_enabled
-      - upstream_switch_name
-      - floor_name
-      - affected_devices_entity
-      properties:
-        lldp_enabled:
-          type: boolean
-        upstream_switch_name:
-          type: string
-        floor_name:
-          type: string
-        affected_devices_entity:
-          type: array
-          items:
-            $ref: '#/components/schemas/XiqCopilotMissingVlanAffectedDevicesEntity'
-    XiqAnomalySeverity:
-      type: string
-      enum:
-      - LOW
-      - MEDIUM
-      - HIGH
-    XiqErrorParams:
-      type: object
-      description: Error parameters
-      properties:
-        field:
-          type: string
-          description: The error field
-        value:
-          type: string
-          description: The error value
-    XiqCopilotDfsRecurrenceCountStats:
-      type: object
-      description: data sequence
-      required:
-      - dfs_channel_changes_entity
-      - normal
-      properties:
-        dfs_channel_changes_entity:
-          type: array
-          description: The data in the current page
-          items:
-            $ref: '#/components/schemas/XiqCountStatsEntity'
-        normal:
-          type: integer
     XiqAnomalyDeviceWithLocation:
       type: object
       description: Anomaly Location Entity
@@ -1980,42 +937,156 @@ components:
           type: string
         missing_vlan_info:
           $ref: '#/components/schemas/XiqCopilotMissingVlanInfo'
-    XiqCopilotHardwareHealthStats:
-      allOf:
-      - type: object
-        description: data sequence
-        required:
-        - hardware-health_device_stats_entities
-        - hardware-health_packet_counts_entities
-        - hardware-health_reboot_stats_entities
-        properties:
-          hardware-health_device_stats_entities:
-            type: array
-            description: The data in the current page
-            items:
-              $ref: '#/components/schemas/XiqHardwareHealthDeviceStatsEntity'
-          hardware-health_packet_counts_entities:
-            type: array
-            description: The data in the current page
-            items:
-              $ref: '#/components/schemas/XiqHardwareHealthPacketCountsEntity'
-          hardware-health_reboot_stats_entities:
-            type: array
-            description: The data in the current page
-            items:
-              $ref: '#/components/schemas/XiqHardwareHealthRebootStatsEntity'
-    XiqCountStatsEntity:
+    XiqCopilotDFSRecurrenceChannelStats:
+      type: object
+      description: data sequence
+      required:
+      - dfs_channel_stats_entity
+      - min_channel
+      - max_channel
+      properties:
+        dfs_channel_stats_entity:
+          type: array
+          description: The data in the current page
+          items:
+            $ref: '#/components/schemas/XiqChannelStatsEntity'
+        min_channel:
+          type: integer
+        max_channel:
+          type: integer
+    XiqFlapCountEntity:
       type: object
       description: data sequence
       required:
       - timestamp
-      - count
+      - flap_count
+      - sub_optimal_count
+      - optimal_time_spent
       properties:
         timestamp:
           type: integer
           format: int64
+        flap_count:
+          type: integer
+        sub_optimal_count:
+          type: integer
+        optimal_time_spent:
+          type: number
+          format: double
+    XiqCopilotActionType:
+      description: type of action to be performed
+      type: string
+      enum:
+      - ADD
+      - UPDATE
+      - DELETE
+    XiqCopilotAnomaliesDevicesWithLocation:
+      allOf:
+      - $ref: '#/components/schemas/XiqPage'
+      - type: object
+        description: The devices and location entity data
+        required:
+        - anomaly_details
+        - affected_count
+        properties:
+          anomaly_details:
+            type: array
+            description: The data in the current page
+            items:
+              $ref: '#/components/schemas/XiqAnomalyDeviceWithLocation'
+          affected_count:
+            type: object
+            description: The data in the current page
+            required:
+            - total_anomaly_count
+            - affected_location_count
+            - affected_devices_count
+            properties:
+              total_anomaly_count:
+                type: integer
+                format: int32
+              affected_location_count:
+                type: integer
+                format: int32
+              affected_devices_count:
+                type: integer
+                format: int32
+    XiqPage:
+      required:
+      - count
+      - page
+      - total_count
+      - total_pages
+      type: object
+      properties:
+        page:
+          type: integer
+          description: The current page number
+          format: int32
         count:
           type: integer
+          description: The element count of the current page
+          format: int32
+        total_pages:
+          type: integer
+          description: The total page number based on request page size
+          format: int32
+        total_count:
+          type: integer
+          description: The total element count
+          format: int64
+    XiqTxRxStatsDataEntity:
+      type: object
+      description: data sequence
+      required:
+      - timestamp
+      - data_rate_failure_percent
+      - client_count
+      - normal_failure_percent
+      properties:
+        timestamp:
+          type: integer
+          format: int64
+        data_rate_failure_percent:
+          type: number
+          format: double
+        client_count:
+          type: integer
+          format: int32
+        normal_failure_percent:
+          type: integer
+    XiqHardwareHealthCpuMemStatsEntity:
+      type: object
+      description: data sequence
+      required:
+      - timestamp
+      - stats_ten_secs
+      - stats_twenty_secs
+      - stats_thirty_secs
+      properties:
+        timestamp:
+          type: integer
+          format: int64
+        stats_ten_secs:
+          type: string
+        stats_twenty_secs:
+          type: string
+        stats_thirty_secs:
+          type: string
+    XiqCopilotWifiCapacityStats:
+      type: object
+      properties:
+        device_stats:
+          type: array
+          description: The data in the current page
+          items:
+            $ref: '#/components/schemas/XiqDeviceStatsEntity'
+    XiqActionType:
+      type: string
+      enum:
+      - MUTE
+      - UNMUTE
+      - DISMISSED
     XiqATPPacketCountsEntity:
       type: object
       description: data sequence
@@ -2049,6 +1120,26 @@ components:
         broadcast_rx:
           type: integer
           format: int64
+    XiqATPDeviceStatEntity:
+      type: object
+      description: data sequence
+      required:
+      - timestamp
+      - avg_cpu
+      - avg_memory
+      - avg_client_count
+      properties:
+        timestamp:
+          type: integer
+          format: int64
+        avg_cpu:
+          type: number
+          format: double
+        avg_memory:
+          type: number
+          format: double
+        avg_client_count:
+          type: integer
     XiqHardwareHealthClientStatsEntity:
       type: object
       description: data sequence
@@ -2076,11 +1167,920 @@ components:
         client_id:
           type: integer
           format: int64
-    XiqSortOrder:
+    XiqCopilotWifiCapacityClientlist:
+      type: object
+      properties:
+        client_wifi_stats:
+          type: array
+          description: The data in the current page
+          items:
+            $ref: '#/components/schemas/XiqClientWifiStatsEntity'
+    XiqCopilotATPDeviceStats:
+      type: object
+      properties:
+        atp_device_stat_entities:
+          type: array
+          description: The data in the current page
+          items:
+            $ref: '#/components/schemas/XiqATPDeviceStatEntity'
+    XiqCopilotExcludedVlanDetailsEntity:
+      type: object
+      description: Excluded Vlan details Entity
+      required:
+      - vlan_id
+      - site_details
+      properties:
+        vlan_id:
+          type: integer
+          format: int64
+        site_details:
+          type: array
+          items:
+            $ref: '#/components/schemas/XiqCopilotVlanSiteDetails'
+    XiqCopilotVlanSiteDetails:
+      description: Details of a site
+      type: object
+      required:
+      - site_name
+      - site_id
+      properties:
+        site_id:
+          type: integer
+          format: int64
+        site_name:
+          type: string
+    XiqCopilotHardwareHealthCpuMemStats:
+      type: object
+      properties:
+        cpu_memory_stats_entity:
+          type: array
+          description: The data in the current page
+          items:
+            $ref: '#/components/schemas/XiqHardwareHealthCpuMemStatsEntity'
+    XiqChannelStatsEntity:
+      type: object
+      description: data sequence
+      required:
+      - timestamp
+      - channel_number
+      properties:
+        timestamp:
+          type: integer
+          format: int64
+        channel_number:
+          type: integer
+    XiqCopilotMissingVlanInfo:
+      type: object
+      required:
+      - lldp_enabled
+      - upstream_switch_name
+      - floor_name
+      - affected_devices_entity
+      properties:
+        lldp_enabled:
+          type: boolean
+        upstream_switch_name:
+          type: string
+        floor_name:
+          type: string
+        affected_devices_entity:
+          type: array
+          items:
+            $ref: '#/components/schemas/XiqCopilotMissingVlanAffectedDevicesEntity'
+    XiqCopilotPoeFlappingStats:
+      type: object
+      properties:
+        flap_count_entities:
+          type: array
+          description: The data in the current page
+          items:
+            $ref: '#/components/schemas/XiqFlapCountEntity'
+    XiqUpdateActionAnomalyDetails:
+      type: object
+      description: Update Action Anomaly Details Entity
+      required:
+      - buildingId
+      - locationId
+      - anomalyId
+      - anomalyType
+      properties:
+        buildingId:
+          type: integer
+          format: int64
+        locationId:
+          type: integer
+          format: int64
+        anomalyId:
+          type: string
+        anomalyType:
+          $ref: '#/components/schemas/XiqAnomalyType'
+    XiqError:
+      type: object
+      properties:
+        error_code:
+          type: string
+          description: The error code
+        error_id:
+          type: string
+          description: The error ID for internal troubleshooting
+        error_message:
+          type: string
+          description: The error detailed message
+        error_message_code:
+          type: string
+          description: The error message code
+        error_message_description:
+          type: string
+          description: The error message description
+        error_params:
+          $ref: '#/components/schemas/XiqErrorParams'
+      required:
+      - error_code
+      - error_id
+      - error_message
+    XiqCopilotMissingVlanAffectedDevicesEntity:
+      type: object
+      required:
+      - ap_device_id
+      - ap_name
+      - upstream_switch_interface
+      - missing_vlans
+      properties:
+        ap_device_id:
+          type: integer
+          format: int64
+        ap_name:
+          type: string
+        upstream_switch_interface:
+          type: string
+        missing_vlans:
+          type: array
+          items:
+            type: integer
+    XiqAnomalyHhStatsType:
       type: string
       enum:
-      - ASC
-      - DESC
+      - CPU_STATS
+      - MEMORY_STATS
+    XiqCopilotAssuranceScansOverview:
+      type: object
+      description: data sequence
+      required:
+      - aggregated_scans_count
+      - anomalies_count
+      properties:
+        aggregated_scans_count:
+          type: integer
+          format: int64
+        anomalies_count:
+          type: array
+          description: The data in the current page
+          items:
+            $ref: '#/components/schemas/XiqAnomaliesCount'
+    XiqCopilotDfsRecurrenceCountStats:
+      type: object
+      description: data sequence
+      required:
+      - dfs_channel_changes_entity
+      - normal
+      properties:
+        dfs_channel_changes_entity:
+          type: array
+          description: The data in the current page
+          items:
+            $ref: '#/components/schemas/XiqCountStatsEntity'
+        normal:
+          type: integer
+    XiqHardwareHealthPacketCountsEntity:
+      type: object
+      description: data sequence
+      required:
+      - timestamp
+      - unicast_tx
+      - unicast_rx
+      - multicast_tx
+      - multicast_rx
+      - broadcast_tx
+      - broadcast_rx
+      - throughput
+      properties:
+        timestamp:
+          type: integer
+          format: int64
+        unicast_tx:
+          type: integer
+          format: int64
+        unicast_rx:
+          type: integer
+          format: int64
+        multicast_tx:
+          type: integer
+          format: int64
+        multicast_rx:
+          type: integer
+          format: int64
+        broadcast_tx:
+          type: integer
+          format: int64
+        broadcast_rx:
+          type: integer
+          format: int64
+        throughput:
+          type: integer
+          format: int64
+    XiqCopilotAnomaliesReport:
+      allOf:
+      - type: object
+        description: The devices and location entity data
+        required:
+        - anomaly_details
+        properties:
+          anomaly_details:
+            type: array
+            description: The data in the current page
+            items:
+              $ref: '#/components/schemas/XiqCopilotAnomaliesDetails'
+    XiqAnomalyType:
+      type: string
+      enum:
+      - POE_STABILITY
+      - DFS_RECURRENCE
+      - ADVERSE_TRAFFIC
+      - PORT_EFFICIENCY
+      - WIFI_CAPACITY
+      - WIFI_EFFICIENCY
+      - HARDWARE_HEALTH
+      - MISSING_VLAN
+    XiqAffectedDownlinkDevice:
+      type: object
+      description: Copilot Anomaly Affected Downlink Devices Details
+      required:
+      - host_name
+      - product_type
+      - interface_name
+      - port_id
+      - last_detected_time
+      properties:
+        host_name:
+          type: string
+          description: host name of affected downlink device
+        product_type:
+          type: string
+          description: model of affected downlink device
+        interface_name:
+          type: string
+          description: interface name of affected downlink device
+        port_id:
+          type: string
+          description: port ID of affected downlink device
+        last_detected_time:
+          type: integer
+          description: last detected timestamp
+          format: int64
+    XiqCopilotAnomaliesDetails:
+      type: object
+      description: Anomaly Devices & Location Entity
+      required:
+      - location_name
+      - severity
+      - anomaly_type
+      - last_detected_time
+      - device_name
+      - category
+      - interface_name
+      properties:
+        location_name:
+          type: string
+        severity:
+          $ref: '#/components/schemas/XiqAnomalySeverity'
+        anomaly_type:
+          $ref: '#/components/schemas/XiqAnomalyType'
+        last_detected_time:
+          type: integer
+          format: int64
+        device_name:
+          type: string
+        category:
+          $ref: '#/components/schemas/XiqDeviceCategory'
+        interface_name:
+          type: string
+    XiqSpeedDuplexEntity:
+      type: object
+      description: data sequence
+      required:
+      - timestamp
+      - value
+      properties:
+        timestamp:
+          type: integer
+          format: int64
+        value:
+          type: integer
+    XiqCopilotAnomaliesSiteEntity:
+      type: object
+      description: data sequence
+      required:
+      - site_id
+      - site_name
+      - anomalies_count
+      properties:
+        site_id:
+          type: integer
+          format: int64
+        site_name:
+          type: string
+        anomalies_count:
+          type: integer
+          format: int64
+    XiqAnomaliesFeedbackRequest:
+      type: object
+      description: The feedback request
+      properties:
+        anomalyType:
+          $ref: '#/components/schemas/XiqAnomalyType'
+        anomalyId:
+          type: string
+        feedbackType:
+          $ref: '#/components/schemas/XiqFeedbackType'
+        feedback:
+          type: string
+    XiqCopilotPortEfficiencyStats:
+      type: object
+      properties:
+        duplex_data_rate_entities:
+          type: array
+          description: The data in the current page
+          items:
+            $ref: '#/components/schemas/XiqDuplexDataRateEntity'
+    XiqAnomaliesSiteEntity:
+      type: object
+      description: data sequence
+      required:
+      - building_id
+      - location_name
+      - anomalies_count_by_location
+      properties:
+        building_id:
+          type: integer
+          format: int64
+        location_name:
+          type: string
+        anomalies_count_by_location:
+          type: integer
+          format: int32
+    XiqAnomaliesCount:
+      type: object
+      description: data sequence
+      required:
+      - timestamp
+      - total_anomalies_count
+      - wifi_efficiency_count
+      - wifi_capacity_count
+      - poe_count
+      - pe_count
+      - dfs_count
+      - mb_cast_count
+      - hardware_health_count
+      - missing_vlan_count
+      properties:
+        timestamp:
+          type: integer
+          format: int64
+        total_anomalies_count:
+          type: integer
+          format: int64
+        wifi_efficiency_count:
+          type: integer
+          format: int64
+        wifi_capacity_count:
+          type: integer
+          format: int64
+        poe_count:
+          type: integer
+          format: int64
+        pe_count:
+          type: integer
+          format: int64
+        dfs_count:
+          type: integer
+          format: int64
+        mb_cast_count:
+          type: integer
+          format: int64
+        hardware_health_count:
+          type: integer
+          format: int64
+        missing_vlan_count:
+          type: integer
+          format: int64
+    XiqErrorParams:
+      type: object
+      description: Error parameters
+      properties:
+        field:
+          type: string
+          description: The error field
+        value:
+          type: string
+          description: The error value
+    XiqCopilotExceptionalVlanList:
+      allOf:
+      - $ref: '#/components/schemas/XiqPage'
+      - type: object
+        description: data sequence
+        required:
+        - excluded_vlan_details
+        properties:
+          excluded_vlan_details_entity:
+            type: array
+            description: The data in the current page
+            items:
+              $ref: '#/components/schemas/XiqCopilotExcludedVlanDetailsEntity'
+    XiqDeviceCategory:
+      type: string
+      enum:
+      - WIRED
+      - WIRELESS
+    XiqCopilotHardwareHealthStats:
+      allOf:
+      - type: object
+        description: data sequence
+        required:
+        - hardware-health_device_stats_entities
+        - hardware-health_packet_counts_entities
+        - hardware-health_reboot_stats_entities
+        properties:
+          hardware-health_device_stats_entities:
+            type: array
+            description: The data in the current page
+            items:
+              $ref: '#/components/schemas/XiqHardwareHealthDeviceStatsEntity'
+          hardware-health_packet_counts_entities:
+            type: array
+            description: The data in the current page
+            items:
+              $ref: '#/components/schemas/XiqHardwareHealthPacketCountsEntity'
+          hardware-health_reboot_stats_entities:
+            type: array
+            description: The data in the current page
+            items:
+              $ref: '#/components/schemas/XiqHardwareHealthRebootStatsEntity'
+    XiqDeviceStatsEntity:
+      type: object
+      description: data sequence
+      required:
+      - timestamp
+      - avg_interference_utilization
+      - avg_tx_utilization
+      - avg_rx_utilization
+      - avg_total_channel_utilization
+      - avg_num_clients
+      - normal_interference
+      properties:
+        timestamp:
+          type: integer
+          format: int64
+        avg_interference_utilization:
+          type: integer
+        avg_tx_utilization:
+          type: integer
+        avg_rx_utilization:
+          type: integer
+        avg_total_channel_utilization:
+          type: integer
+        avg_num_clients:
+          type: integer
+        normal_interference:
+          type: integer
+    XiqTrendGraphEntity:
+      type: object
+      description: power mode trends
+      required:
+      - timestamp
+      properties:
+        timestamp:
+          type: integer
+          format: int64
+        power_mode:
+          type: string
+    XiqCopilotLldpCdpInfo:
+      type: object
+      description: Copilot Anomalies LLdp-Cdp Info Response
+      properties:
+        lldp_cdp_info:
+          type: object
+          description: The data in the current page
+          $ref: '#/components/schemas/XiqPowerSourceEquipment'
+    XiqClientWifiStatsEntity:
+      type: object
+      description: data sequence
+      required:
+      - client_mac
+      - client_name
+      - client_host_os
+      - avg_snr
+      - avg_rssi
+      - health_score
+      - client_id
+      properties:
+        client_mac:
+          type: string
+        client_name:
+          type: string
+        client_host_os:
+          type: string
+        avg_snr:
+          type: integer
+        avg_rssi:
+          type: integer
+        health_score:
+          type: array
+          description: The health score type
+          items:
+            $ref: '#/components/schemas/HealthScoreType'
+        client_id:
+          type: integer
+          format: int64
+    HealthScoreType:
+      type: string
+      enum:
+      - GOOD
+      - MEDIUM
+      - POOR
+    XiqAnomaliesTypeEntity:
+      type: object
+      description: data sequence
+      required:
+      - anomaly_type
+      - anomalies_count_by_type
+      properties:
+        anomaly_type:
+          $ref: '#/components/schemas/XiqAnomalyType'
+        anomalies_count_by_type:
+          type: integer
+          format: int32
+    XiqFeedbackType:
+      type: string
+      enum:
+      - LIKE
+      - DISLIKE
+    XiqDuplexDataRateEntity:
+      type: object
+      description: data sequence
+      required:
+      - timestamp
+      - duplex_mode
+      - datarate_mode
+      properties:
+        timestamp:
+          type: integer
+          format: int64
+        duplex_mode:
+          type: integer
+        datarate_mode:
+          type: integer
+    XiqUpdateAnomaliesAndDevicesRequest:
+      type: object
+      description: The device update action request
+      required:
+      - anomalyDetails
+      - actionType
+      properties:
+        anomalyDetails:
+          type: array
+          description: The data in the current page
+          items:
+            $ref: '#/components/schemas/XiqUpdateActionAnomalyDetails'
+        actionType:
+          $ref: '#/components/schemas/XiqActionType'
+    XiqCountStatsEntity:
+      type: object
+      description: data sequence
+      required:
+      - timestamp
+      - count
+      properties:
+        timestamp:
+          type: integer
+          format: int64
+        count:
+          type: integer
+    XiqPowerSourceEquipment:
+      type: object
+      description: Copilot LLdp-Cdp Info For Anomalous Access Points
+      required:
+      - is_lldp_cdp_enabled
+      - affected_downlink_devices
+      - unaffected_downlink_devices
+      properties:
+        is_lldp_cdp_enabled:
+          type: boolean
+        uplink_switch_system_name:
+          type: string
+        uplink_switch_system_id:
+          type: string
+        uplink_switch_device_id:
+          type: integer
+          format: int64
+        location_name:
+          type: string
+        floor_name:
+          type: string
+        affected_downlink_devices:
+          type: array
+          description: The list of affected downlink devices
+          items:
+            $ref: '#/components/schemas/XiqAffectedDownlinkDevice'
+        unaffected_downlink_devices:
+          type: array
+          description: The list of unaffected downlink devices
+          items:
+            $ref: '#/components/schemas/XiqUnaffectedDownlinkDevice'
+    XiqCopilotAnomaliesByCategory:
+      type: object
+      description: data sequence
+      required:
+      - anomalies_by_location
+      - anomalies_by_severity
+      - anomalies_by_type
+      properties:
+        anomalies_by_location:
+          type: array
+          description: The data in the current page
+          items:
+            $ref: '#/components/schemas/XiqAnomaliesSiteEntity'
+        anomalies_by_severity:
+          type: object
+          description: The data in the current page
+          required:
+          - low_severity_anomalies_count
+          - medium_severity__anomalies_count
+          - high_severity_anomalies_count
+          - anomalies_count_by_severity
+          properties:
+            low_severity_anomalies_count:
+              type: integer
+              format: int32
+            medium_severity_anomalies_count:
+              type: integer
+              format: int32
+            high_severity_anomalies_count:
+              type: integer
+              format: int32
+            anomalies_count_by_severity:
+              type: integer
+              format: int32
+        anomalies_by_type:
+          type: array
+          description: The data in the current page
+          items:
+            $ref: '#/components/schemas/XiqAnomaliesTypeEntity'
+    XiqCopilotAnomaliesSuccess:
+      type: object
+      description: value
+      required:
+      - success
+      properties:
+        success:
+          type: boolean
+    XiqHardwareHealthDeviceStatsEntity:
+      type: object
+      description: data sequence
+      required:
+      - timestamp
+      - avg_cpu_utilization
+      - avg_memory_utilization
+      - avg_client_count
+      - unit_temperature
+      - poe_power_mode
+      properties:
+        timestamp:
+          type: integer
+          format: int64
+        avg_cpu_utilization:
+          type: number
+          format: double
+        avg_memory_utilization:
+          type: number
+          format: double
+        avg_client_count:
+          type: integer
+        unit_temperature:
+          type: number
+          format: double
+        poe_power_mode:
+          type: string
+    XiqCopilotPortEfficiencySpeedDuplex:
+      type: object
+      properties:
+        speed_duplex_entities:
+          type: array
+          description: The data in the current page
+          items:
+            $ref: '#/components/schemas/XiqSpeedDuplexEntity'
+  parameters:
+    anomalyId:
+      in: query
+      description: The anomaly id
+      name: anomalyId
+      required: true
+      schema:
+        type: string
+    async:
+      in: query
+      name: async
+      description: Whether to enable async mode
+      required: false
+      schema:
+        type: boolean
+        default: false
+    channelNumber:
+      in: query
+      description: The channel number
+      name: channel
+      required: true
+      schema:
+        type: integer
+        format: int32
+    hhStatsFieldType:
+      name: hhStatsFieldType
+      in: query
+      description: The Hardware Health anomaly CPU or Memory Stats type
+      required: true
+      schema:
+        $ref: '#/components/schemas/XiqAnomalyHhStatsType'
+    siteIds:
+      in: query
+      description: The site ids
+      name: siteIds
+      required: true
+      schema:
+        type: array
+        description: The site Ids
+        items:
+          type: integer
+          format: int64
+    vlanIds:
+      in: query
+      description: The vlan ids
+      name: vlanIds
+      required: true
+      schema:
+        type: array
+        description: The vlan Ids
+        items:
+          type: integer
+          format: int64
+    offsetTime:
+      in: query
+      description: The offset value
+      name: offsetTime
+      required: true
+      schema:
+        type: integer
+        format: int32
+    startTime1:
+      in: query
+      description: The start time
+      name: startTime
+      required: false
+      schema:
+        type: integer
+        format: int64
+    anomalyType:
+      name: anomalyType
+      in: query
+      description: The anomaly type
+      required: false
+      schema:
+        $ref: '#/components/schemas/XiqAnomalyType'
+    endTime1:
+      in: query
+      description: The end time
+      name: endTime
+      required: false
+      schema:
+        type: integer
+        format: int64
+    buildingId:
+      in: query
+      description: The building id
+      name: buildingId
+      required: false
+      schema:
+        type: integer
+        format: int64
+    page:
+      name: page
+      in: query
+      description: Page number, min = 1
+      required: false
+      schema:
+        minimum: 1
+        type: integer
+        format: int32
+        default: 1
+    limit:
+      name: limit
+      in: query
+      description: Page Size, min = 1, max = 100
+      required: false
+      schema:
+        maximum: 100
+        minimum: 1
+        type: integer
+        format: int32
+        default: 10
+    muted:
+      in: query
+      name: excludeMuted
+      description: To filter muted anomalies
+      required: false
+      schema:
+        type: boolean
+        default: false
+    startTimeCount:
+      in: query
+      name: startTime
+      description: The Start time
+      required: true
+      schema:
+        type: integer
+        format: int64
+    endTimeCount:
+      in: query
+      name: endTime
+      description: The End time
+      required: true
+      schema:
+        type: integer
+        format: int64
+    searchKey:
+      in: query
+      description: The search key
+      name: searchKey
+      required: false
+      schema:
+        type: string
+    lastDetectedTime:
+      in: query
+      description: The last detected time
+      name: lastDetectedTime
+      required: false
+      schema:
+        type: integer
+        format: int64
+    sortOrder:
+      name: sortOrder
+      in: query
+      description: The sort order (ascending by default)
+      required: false
+      schema:
+        $ref: '#/components/schemas/XiqSortOrder'
+    fileType:
+      name: fileType
+      in: query
+      description: The file type
+      required: false
+      schema:
+        type: string
+    deviceId:
+      in: query
+      description: The device id
+      name: deviceId
+      required: true
+      schema:
+        type: integer
+        format: int64
+    timestamp1:
+      in: query
+      description: The timestamp
+      name: timestamp
+      required: true
+      schema:
+        type: integer
+        format: int64
+    sortField1:
+      name: sortField
+      in: query
+      description: The sort field
+      required: false
+      schema:
+        type: string
+        enum:
+        - DEVICE_NAME
+        - SEVERITY
+        - LOCATION
+        - CATEGORY
+        - ANOMALY_TYPE
+        - TIME
+    severity:
+      name: severity
+      in: query
+      description: The anomaly severity
+      required: false
+      schema:
+        $ref: '#/components/schemas/XiqAnomalySeverity'
   responses:
     ErrorResponse:
       description: The generic ExtremeCloud IQ API error response

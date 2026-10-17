@@ -349,15 +349,86 @@ paths:
       - BearerAuth: []
 components:
   parameters:
-    wiredViewType:
+    clientType:
+      name: clientType
       in: query
-      description: The wired experience view type
-      name: viewType
+      description: The client type
       required: false
+      schema:
+        $ref: '#/components/schemas/XiqClientType'
+    viewId:
+      in: query
+      description: The location id
+      name: locationId
+      required: true
+      schema:
+        type: integer
+        format: int64
+    wirelessViewType:
+      in: query
+      description: The wireless experience view type
+      name: viewType
+      required: true
       schema:
         type: string
         enum:
         - LOCATION
+        - SSID
+        - OS
+    wiredSortField:
+      name: sortField
+      in: query
+      description: The sort field
+      required: false
+      schema:
+        type: string
+        enum:
+        - IN_ERRORS
+    locationId:
+      in: query
+      description: The location id
+      name: locationId
+      required: false
+      schema:
+        type: integer
+        format: int64
+    searchKey:
+      in: query
+      description: The search key
+      name: searchKey
+      required: false
+      schema:
+        type: string
+    sortField:
+      name: sortField
+      in: query
+      description: The sort field
+      required: false
+      schema:
+        type: string
+        enum:
+        - NAME
+        - QUALITY_INDEX
+    wirelessScoreType:
+      in: query
+      description: The wireless score type
+      name: scoreType
+      required: true
+      schema:
+        type: string
+        enum:
+        - TIME_TO_AUTHENTICATE
+        - TIME_TO_ASSOCIATE
+        - TIME_TO_DHCP
+        - RETRIES
+    timestamp:
+      name: timestamp
+      in: query
+      description: The timestamp to query, epoch time in milliseconds since 1/1/1970
+      required: false
+      schema:
+        type: integer
+        format: int64
     startTime:
       name: startTime
       in: query
@@ -366,6 +437,31 @@ components:
       schema:
         type: integer
         format: int64
+    sortOrder:
+      name: sortOrder
+      in: query
+      description: The sort order (ascending by default)
+      required: false
+      schema:
+        $ref: '#/components/schemas/XiqSortOrder'
+    wirelessSortField:
+      name: sortField
+      in: query
+      description: The sort field
+      required: false
+      schema:
+        type: string
+        enum:
+        - AVERAGE
+    wiredScoreType:
+      in: query
+      description: The wired score type
+      name: scoreType
+      required: true
+      schema:
+        type: string
+        enum:
+        - PORT_ERRORS
     page:
       name: page
       in: query
@@ -376,50 +472,6 @@ components:
         type: integer
         format: int32
         default: 1
-    forensicBucket:
-      in: query
-      description: The historical period bucket
-      name: forensicBucket
-      required: true
-      schema:
-        type: string
-        enum:
-        - TWENTY_FOUR_HOURS
-        - ONE_HOUR
-        - ONE_DAY
-        - ONE_WEEK
-        - SEVEN_DAYS
-        - THIRTY_DAYS
-        - NINETY_DAYS
-    qualityIndex:
-      name: qualityIndex
-      in: query
-      description: The quality index score
-      required: false
-      schema:
-        $ref: '#/components/schemas/XiqQualityIndex'
-    wiredViewIdentifier:
-      in: query
-      description: The view identifier based on selected view type
-      name: viewId
-      required: true
-      schema:
-        type: string
-    viewId:
-      in: query
-      description: The location id
-      name: locationId
-      required: true
-      schema:
-        type: integer
-        format: int64
-    ssid:
-      in: query
-      description: The ssid value
-      name: ssid
-      required: false
-      schema:
-        type: string
     limit:
       name: limit
       in: query
@@ -438,71 +490,13 @@ components:
       required: false
       schema:
         type: string
-    sortField:
-      name: sortField
+    ssid:
       in: query
-      description: The sort field
+      description: The ssid value
+      name: ssid
       required: false
       schema:
         type: string
-        enum:
-        - NAME
-        - QUALITY_INDEX
-    clientType:
-      name: clientType
-      in: query
-      description: The client type
-      required: false
-      schema:
-        $ref: '#/components/schemas/XiqClientType'
-    wiredSortField:
-      name: sortField
-      in: query
-      description: The sort field
-      required: false
-      schema:
-        type: string
-        enum:
-        - IN_ERRORS
-    wirelessViewType:
-      in: query
-      description: The wireless experience view type
-      name: viewType
-      required: true
-      schema:
-        type: string
-        enum:
-        - LOCATION
-        - SSID
-        - OS
-    wirelessSortField:
-      name: sortField
-      in: query
-      description: The sort field
-      required: false
-      schema:
-        type: string
-        enum:
-        - AVERAGE
-    searchKey:
-      in: query
-      description: The search key
-      name: searchKey
-      required: false
-      schema:
-        type: string
-    wirelessScoreType:
-      in: query
-      description: The wireless score type
-      name: scoreType
-      required: true
-      schema:
-        type: string
-        enum:
-        - TIME_TO_AUTHENTICATE
-        - TIME_TO_ASSOCIATE
-        - TIME_TO_DHCP
-        - RETRIES
     endTime:
       name: endTime
       in: query
@@ -511,88 +505,127 @@ components:
       schema:
         type: integer
         format: int64
-    sortOrder:
-      name: sortOrder
+    wiredViewIdentifier:
       in: query
-      description: The sort order (ascending by default)
+      description: The view identifier based on selected view type
+      name: viewId
+      required: true
+      schema:
+        type: string
+    qualityIndex:
+      name: qualityIndex
+      in: query
+      description: The quality index score
       required: false
       schema:
-        $ref: '#/components/schemas/XiqSortOrder'
-    wiredScoreType:
+        $ref: '#/components/schemas/XiqQualityIndex'
+    wiredViewType:
       in: query
-      description: The wired score type
-      name: scoreType
+      description: The wired experience view type
+      name: viewType
+      required: false
+      schema:
+        type: string
+        enum:
+        - LOCATION
+    forensicBucket:
+      in: query
+      description: The historical period bucket
+      name: forensicBucket
       required: true
       schema:
         type: string
         enum:
-        - PORT_ERRORS
-    timestamp:
-      name: timestamp
-      in: query
-      description: The timestamp to query, epoch time in milliseconds since 1/1/1970
-      required: false
-      schema:
-        type: integer
-        format: int64
-    locationId:
-      in: query
-      description: The location id
-      name: locationId
-      required: false
-      schema:
-        type: integer
-        format: int64
+        - TWENTY_FOUR_HOURS
+        - ONE_HOUR
+        - ONE_DAY
+        - ONE_WEEK
+        - SEVEN_DAYS
+        - THIRTY_DAYS
+        - NINETY_DAYS
   schemas:
-    XiqErrorParams:
+    XiqCopilotConnectivityExperienceEntity:
       type: object
-      description: Error parameters
-      properties:
-        field:
-          type: string
-          description: The error field
-        value:
-          type: string
-          description: The error value
-    XiqPage:
+      description: Copilot Experience Entity
       required:
-      - count
-      - page
-      - total_count
-      - total_pages
+      - id
+      - name
+      - info
+      - quality_index
+      - trend_indicator
+      - client_type
+      - quality_index_graph
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        info:
+          type: string
+        quality_index:
+          type: integer
+          minimum: 1
+          maximum: 10
+        trend_indicator:
+          type: string
+          enum:
+          - UP
+          - DOWN
+          - EQUAL
+          - NA
+        client_type:
+          $ref: '#/components/schemas/XiqClientType'
+        quality_index_graph:
+          type: array
+          description: The data in the current page
+          items:
+            type: object
+            description: Connectivity experience quality sequence
+            required:
+            - timestamp
+            - value
+            properties:
+              timestamp:
+                type: integer
+                format: int64
+              value:
+                type: integer
+                minimum: 1
+                maximum: 10
+    XiqClientType:
+      type: string
+      enum:
+      - WIRELESS
+      - WIRED
+    XiqCopilotTimeToConnect:
       type: object
       properties:
-        page:
-          type: integer
-          description: The current page number
-          format: int32
-        count:
-          type: integer
-          description: The element count of the current page
-          format: int32
-        total_pages:
-          type: integer
-          description: The total page number based on request page size
-          format: int32
-        total_count:
-          type: integer
-          description: The total element count
-          format: int64
-    XiqCopilotTimeToConnectEntity:
+        quality_index_graph:
+          type: array
+          description: The data in the current page
+          items:
+            $ref: '#/components/schemas/XiqCopilotTimeToConnectEntity'
+    XiqCopilotConnectivityExperience:
+      allOf:
+      - $ref: '#/components/schemas/XiqPage'
+      - type: object
+        properties:
+          data:
+            type: array
+            description: The data in the current page
+            items:
+              $ref: '#/components/schemas/XiqCopilotConnectivityExperienceEntity'
+    XiqCopilotPerformanceEntity:
       type: object
-      description: Connectivity experience Time-To-Connect entity
+      description: Connectivity Experience Performance Entity
       required:
       - timestamp
       - quality_index
       - total_clients
       - time_to_connect_score
-      - above_assoc_threshold
-      - above_auth_threshold
-      - above_dhcp_threshold
-      - time_to_assoc
-      - time_to_auth
-      - time_to_dhcp
       - performance_score
+      - snr
+      - retries_data
       properties:
         timestamp:
           type: integer
@@ -601,60 +634,134 @@ components:
           type: integer
           minimum: 1
           maximum: 10
-        total_clients:
-          type: integer
         time_to_connect_score:
           type: integer
           minimum: 1
           maximum: 10
-        above_assoc_threshold:
-          type: number
-          format: double
-        above_auth_threshold:
-          type: number
-          format: double
-        above_dhcp_threshold:
-          type: number
-          format: double
-        time_to_assoc:
-          type: integer
-        time_to_auth:
-          type: integer
-        time_to_dhcp:
+        total_clients:
           type: integer
         performance_score:
           type: integer
           minimum: 1
           maximum: 10
-    XiqClientType:
+        snr:
+          type: integer
+          minimum: 1
+          maximum: 100
+        retries_data:
+          type: object
+          description: retry related data
+          required:
+          - rx_retry
+          - tx_retry
+          - above_retry_threshold
+          properties:
+            rx_retry:
+              type: number
+              format: double
+            tx_retry:
+              type: number
+              format: double
+            above_retry_threshold:
+              type: number
+              format: double
+    XiqSortOrder:
       type: string
       enum:
-      - WIRELESS
-      - WIRED
-    XiqError:
+      - ASC
+      - DESC
+    XiqCopilotWiredEvents:
+      allOf:
+      - $ref: '#/components/schemas/XiqPage'
+      - type: object
+        properties:
+          data:
+            type: array
+            description: The data in the current page
+            items:
+              $ref: '#/components/schemas/XiqCopilotWiredEventEntity'
+    XiqCopilotPerformance:
       type: object
       properties:
-        error_code:
-          type: string
-          description: The error code
-        error_id:
-          type: string
-          description: The error ID for internal troubleshooting
-        error_message:
-          type: string
-          description: The error detailed message
-        error_message_code:
-          type: string
-          description: The error message code
-        error_message_description:
-          type: string
-          description: The error message description
-        error_params:
-          $ref: '#/components/schemas/XiqErrorParams'
+        quality_index_graph:
+          type: array
+          description: The data in the current page
+          items:
+            $ref: '#/components/schemas/XiqCopilotPerformanceEntity'
+    XiqCopilotWiredEventEntity:
+      type: object
+      description: Wired Event Entity
       required:
-      - error_code
-      - error_id
-      - error_message
+      - device_id
+      - hostname
+      - interface_errors
+      - maximum_errors
+      - mgmt_ip
+      - port
+      - serial_number
+      properties:
+        device_id:
+          type: string
+        hostname:
+          type: string
+        interface_errors:
+          type: number
+          format: double
+        maximum_errors:
+          type: number
+          format: double
+        mgmt_ip:
+          type: string
+        port:
+          type: string
+        serial_number:
+          type: string
+    XiqCopilotConnectivityByLocationsEntity:
+      type: object
+      description: Copilot Experience Entity
+      required:
+      - id
+      - name
+      - quality_index
+      - quality_index_value
+      - client_type
+      - quality_index_graph
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        quality_index:
+          type: integer
+          minimum: 1
+          maximum: 10
+        quality_index_value:
+          $ref: '#/components/schemas/XiqQualityIndex'
+        client_type:
+          $ref: '#/components/schemas/XiqClientType'
+        quality_index_graph:
+          type: array
+          description: The data in the current page
+          items:
+            type: object
+            description: Connectivity experience quality sequence
+            required:
+            - timestamp
+            - value
+            properties:
+              timestamp:
+                type: integer
+                format: int64
+              value:
+                type: integer
+                minimum: 1
+                maximum: 10
+    XiqQualityIndex:
+      type: string
+      enum:
+      - LOW
+      - MEDIUM
+      - HIGH
     XiqCopilotWirelessEventEntity:
       type: object
       description: Wireless Event Entity
@@ -717,81 +824,21 @@ components:
             tx_retry_threshold:
               type: number
               format: double
-    XiqQualityIndex:
-      type: string
-      enum:
-      - LOW
-      - MEDIUM
-      - HIGH
-    XiqCopilotConnectivityExperienceEntity:
+    XiqCopilotTimeToConnectEntity:
       type: object
-      description: Copilot Experience Entity
-      required:
-      - id
-      - name
-      - info
-      - quality_index
-      - trend_indicator
-      - client_type
-      - quality_index_graph
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        info:
-          type: string
-        quality_index:
-          type: integer
-          minimum: 1
-          maximum: 10
-        trend_indicator:
-          type: string
-          enum:
-          - UP
-          - DOWN
-          - EQUAL
-          - NA
-        client_type:
-          $ref: '#/components/schemas/XiqClientType'
-        quality_index_graph:
-          type: array
-          description: The data in the current page
-          items:
-            type: object
-            description: Connectivity experience quality sequence
-            required:
-            - timestamp
-            - value
-            properties:
-              timestamp:
-                type: integer
-                format: int64
-              value:
-                type: integer
-                minimum: 1
-                maximum: 10
-    XiqCopilotConnectivityExperience:
-      allOf:
-      - $ref: '#/components/schemas/XiqPage'
-      - type: object
-        properties:
-          data:
-            type: array
-            description: The data in the current page
-            items:
-              $ref: '#/components/schemas/XiqCopilotConnectivityExperienceEntity'
-    XiqCopilotPerformanceEntity:
-      type: object
-      description: Connectivity Experience Performance Entity
+      description: Connectivity experience Time-To-Connect entity
       required:
       - timestamp
       - quality_index
       - total_clients
       - time_to_connect_score
+      - above_assoc_threshold
+      - above_auth_threshold
+      - above_dhcp_threshold
+      - time_to_assoc
+      - time_to_auth
+      - time_to_dhcp
       - performance_score
-      - snr
-      - retries_data
       properties:
         timestamp:
           type: integer
@@ -800,57 +847,31 @@ components:
           type: integer
           minimum: 1
           maximum: 10
+        total_clients:
+          type: integer
         time_to_connect_score:
           type: integer
           minimum: 1
           maximum: 10
-        total_clients:
+        above_assoc_threshold:
+          type: number
+          format: double
+        above_auth_threshold:
+          type: number
+          format: double
+        above_dhcp_threshold:
+          type: number
+          format: double
+        time_to_assoc:
+          type: integer
+        time_to_auth:
+          type: integer
+        time_to_dhcp:
           type: integer
         performance_score:
           type: integer
           minimum: 1
           maximum: 10
-        snr:
-          type: integer
-          minimum: 1
-          maximum: 100
-        retries_data:
-          type: object
-          description: retry related data
-          required:
-          - rx_retry
-          - tx_retry
-          - above_retry_threshold
-          properties:
-            rx_retry:
-              type: number
-              format: double
-            tx_retry:
-              type: number
-              format: double
-            above_retry_threshold:
-              type: number
-              format: double
-    XiqCopilotWiredEvents:
-      allOf:
-      - $ref: '#/components/schemas/XiqPage'
-      - type: object
-        properties:
-          data:
-            type: array
-            description: The data in the current page
-            items:
-              $ref: '#/components/schemas/XiqCopilotWiredEventEntity'
-    XiqCopilotConnectivityByLocations:
-      allOf:
-      - $ref: '#/components/schemas/XiqPage'
-      - type: object
-        properties:
-          data:
-            type: array
-            description: The data in the current page
-            items:
-              $ref: '#/components/schemas/XiqCopilotConnectivityByLocationsEntity'
     XiqCopilotHardwareByLocation:
       type: object
       description: Wired Connectivity Experience Hardware
@@ -870,6 +891,30 @@ components:
         total_affected_ports:
           type: integer
           format: int32
+    XiqCopilotWirelessQualityIndexByLocation:
+      type: object
+      description: Wireless Connectivity Experience QualityIndex
+      required:
+      - quality_index
+      - time_to_connect_score
+      - performance_score
+      - total_clients
+      properties:
+        quality_index:
+          type: integer
+          minimum: 1
+          maximum: 10
+        time_to_connect_score:
+          type: integer
+          minimum: 1
+          maximum: 10
+        performance_score:
+          type: integer
+          minimum: 1
+          maximum: 10
+        total_clients:
+          type: integer
+          format: int32
     XiqCopilotWirelessEvents:
       allOf:
       - $ref: '#/components/schemas/XiqPage'
@@ -880,127 +925,6 @@ components:
             description: The data in the current page
             items:
               $ref: '#/components/schemas/XiqCopilotWirelessEventEntity'
-    XiqCopilotConnectivityByLocationsEntity:
-      type: object
-      description: Copilot Experience Entity
-      required:
-      - id
-      - name
-      - quality_index
-      - quality_index_value
-      - client_type
-      - quality_index_graph
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        quality_index:
-          type: integer
-          minimum: 1
-          maximum: 10
-        quality_index_value:
-          $ref: '#/components/schemas/XiqQualityIndex'
-        client_type:
-          $ref: '#/components/schemas/XiqClientType'
-        quality_index_graph:
-          type: array
-          description: The data in the current page
-          items:
-            type: object
-            description: Connectivity experience quality sequence
-            required:
-            - timestamp
-            - value
-            properties:
-              timestamp:
-                type: integer
-                format: int64
-              value:
-                type: integer
-                minimum: 1
-                maximum: 10
-    XiqCopilotPerformance:
-      type: object
-      properties:
-        quality_index_graph:
-          type: array
-          description: The data in the current page
-          items:
-            $ref: '#/components/schemas/XiqCopilotPerformanceEntity'
-    XiqCopilotHardwareEntity:
-      type: object
-      description: Connectivity Experience Hardware entity
-      required:
-      - timestamp
-      - quality_index
-      - total_switches
-      - affected_ratio
-      properties:
-        timestamp:
-          type: integer
-          format: int64
-        quality_index:
-          type: integer
-          minimum: 1
-          maximum: 10
-        total_switches:
-          type: integer
-        affected_ratio:
-          type: integer
-          minimum: 1
-          maximum: 100
-    XiqCopilotTimeToConnect:
-      type: object
-      properties:
-        quality_index_graph:
-          type: array
-          description: The data in the current page
-          items:
-            $ref: '#/components/schemas/XiqCopilotTimeToConnectEntity'
-    XiqCopilotWiredEventEntity:
-      type: object
-      description: Wired Event Entity
-      required:
-      - device_id
-      - hostname
-      - interface_errors
-      - maximum_errors
-      - mgmt_ip
-      - port
-      - serial_number
-      properties:
-        device_id:
-          type: string
-        hostname:
-          type: string
-        interface_errors:
-          type: number
-          format: double
-        maximum_errors:
-          type: number
-          format: double
-        mgmt_ip:
-          type: string
-        port:
-          type: string
-        serial_number:
-          type: string
-    XiqCopilotWiredQualityIndex:
-      type: object
-      description: Wired Connectivity Experience QualityIndex
-      required:
-      - quality_index
-      - hardware_score
-      properties:
-        quality_index:
-          type: integer
-          minimum: 1
-          maximum: 10
-        hardware_score:
-          type: integer
-          minimum: 1
-          maximum: 10
     XiqCopilotConnectivityByClientType:
       type: object
       description: data sequence
@@ -1050,35 +974,111 @@ components:
             total_quality_score_count:
               type: integer
               format: int32
-    XiqCopilotWirelessQualityIndexByLocation:
+    XiqCopilotHardwareEntity:
       type: object
-      description: Wireless Connectivity Experience QualityIndex
+      description: Connectivity Experience Hardware entity
+      required:
+      - timestamp
+      - quality_index
+      - total_switches
+      - affected_ratio
+      properties:
+        timestamp:
+          type: integer
+          format: int64
+        quality_index:
+          type: integer
+          minimum: 1
+          maximum: 10
+        total_switches:
+          type: integer
+        affected_ratio:
+          type: integer
+          minimum: 1
+          maximum: 100
+    XiqCopilotWiredQualityIndex:
+      type: object
+      description: Wired Connectivity Experience QualityIndex
       required:
       - quality_index
-      - time_to_connect_score
-      - performance_score
-      - total_clients
+      - hardware_score
       properties:
         quality_index:
           type: integer
           minimum: 1
           maximum: 10
-        time_to_connect_score:
+        hardware_score:
           type: integer
           minimum: 1
           maximum: 10
-        performance_score:
+    XiqError:
+      type: object
+      properties:
+        error_code:
+          type: string
+          description: The error code
+        error_id:
+          type: string
+          description: The error ID for internal troubleshooting
+        error_message:
+          type: string
+          description: The error detailed message
+        error_message_code:
+          type: string
+          description: The error message code
+        error_message_description:
+          type: string
+          description: The error message description
+        error_params:
+          $ref: '#/components/schemas/XiqErrorParams'
+      required:
+      - error_code
+      - error_id
+      - error_message
+    XiqPage:
+      required:
+      - count
+      - page
+      - total_count
+      - total_pages
+      type: object
+      properties:
+        page:
           type: integer
-          minimum: 1
-          maximum: 10
-        total_clients:
-          type: integer
+          description: The current page number
           format: int32
-    XiqSortOrder:
-      type: string
-      enum:
-      - ASC
-      - DESC
+        count:
+          type: integer
+          description: The element count of the current page
+          format: int32
+        total_pages:
+          type: integer
+          description: The total page number based on request page size
+          format: int32
+        total_count:
+          type: integer
+          description: The total element count
+          format: int64
+    XiqErrorParams:
+      type: object
+      description: Error parameters
+      properties:
+        field:
+          type: string
+          description: The error field
+        value:
+          type: string
+          description: The error value
+    XiqCopilotConnectivityByLocations:
+      allOf:
+      - $ref: '#/components/schemas/XiqPage'
+      - type: object
+        properties:
+          data:
+            type: array
+            description: The data in the current page
+            items:
+              $ref: '#/components/schemas/XiqCopilotConnectivityByLocationsEntity'
   responses:
     ErrorResponse:
       description: The generic ExtremeCloud IQ API error response

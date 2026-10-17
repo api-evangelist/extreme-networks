@@ -101,16 +101,6 @@ paths:
       - BearerAuth: []
 components:
   schemas:
-    XiqOperationStatus:
-      type: string
-      description: The current operation status
-      enum:
-      - PENDING
-      - RUNNING
-      - CANCELING
-      - SUCCEEDED
-      - FAILED
-      - CANCELED
     XiqOperationMetadata:
       type: object
       description: The metadata of Long Running Operation (LRO)
@@ -186,6 +176,16 @@ components:
           description: The API response of the operation if the status is SUCCEEDED
         error:
           $ref: '#/components/schemas/XiqError'
+    XiqOperationStatus:
+      type: string
+      description: The current operation status
+      enum:
+      - PENDING
+      - RUNNING
+      - CANCELING
+      - SUCCEEDED
+      - FAILED
+      - CANCELED
     XiqError:
       type: object
       properties:

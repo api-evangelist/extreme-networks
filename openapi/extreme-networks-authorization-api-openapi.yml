@@ -177,6 +177,126 @@ paths:
       - BearerAuth: []
 components:
   schemas:
+    XiqGenerateApiTokenRequest:
+      allOf:
+      - type: object
+        required:
+        - permissions
+        properties:
+          expire_time:
+            type: integer
+            description: The token expire time, format is the number of seconds from epoch of 1970-01-01T00:00:00Z. If null means no expiration, the minimum value is current time plus 300 seconds.
+            format: int64
+          description:
+            type: string
+            description: The token description
+          permissions:
+            type: array
+            description: The token permissions
+            items:
+              type: string
+              description: The token permissions
+          rate_limit:
+            $ref: '#/components/schemas/RateLimitPolicy'
+    XiqErrorParams:
+      type: object
+      description: Error parameters
+      properties:
+        field:
+          type: string
+          description: The error field
+        value:
+          type: string
+          description: The error value
+    XiqCheckPermissionRequest:
+      type: object
+      required:
+      - uri
+      - method
+      properties:
+        uri:
+          type: string
+          description: The request HTTP URI
+        method:
+          type: string
+          description: The request HTTP method
+    RateLimitPolicy:
+      type: object
+      description: Configuration for API usage quotas and throughput limits.
+      required:
+      - hour
+      properties:
+        hour:
+          type: integer
+          format: int64
+          minimum: 1
+          description: The sustained request quota per hour. Defines the baseline traffic capacity.
+          example: 7500
+        second:
+          type: integer
+          format: int64
+          minimum: 1
+          description: The maximum burst allowance per second. If omitted, no short-term throttling is applied.
+          example: 100
+    XiqCheckPermissionResponse:
+      type: object
+      required:
+      - permissions
+      - roles
+      properties:
+        permissions:
+          type: array
+          description: The permission list
+          items:
+            $ref: '#/components/schemas/XiqPermission'
+        roles:
+          uniqueItems: true
+          type: array
+          description: The role list
+          items:
+            type: string
+            description: The role list
+    XiqPermission:
+      type: object
+      description: The permission
+      required:
+      - name
+      - description
+      - category
+      properties:
+        name:
+          type: string
+          description: The permission name
+        description:
+          type: string
+          description: The description for the permission
+        category:
+          type: string
+          description: The category for the permission
+    XiqError:
+      type: object
+      properties:
+        error_code:
+          type: string
+          description: The error code
+        error_id:
+          type: string
+          description: The error ID for internal troubleshooting
+        error_message:
+          type: string
+          description: The error detailed message
+        error_message_code:
+          type: string
+          description: The error message code
+        error_message_description:
+          type: string
+          description: The error message description
+        error_params:
+          $ref: '#/components/schemas/XiqErrorParams'
+      required:
+      - error_code
+      - error_id
+      - error_message
     XiqGenerateApiTokenResponse:
       type: object
       required:
@@ -214,84 +334,6 @@ components:
           items:
             type: string
             description: The permissions for the API token
-    XiqPermission:
-      type: object
-      description: The permission
-      required:
-      - name
-      - description
-      - category
-      properties:
-        name:
-          type: string
-          description: The permission name
-        description:
-          type: string
-          description: The description for the permission
-        category:
-          type: string
-          description: The category for the permission
-    XiqGenerateApiTokenRequest:
-      allOf:
-      - type: object
-        required:
-        - permissions
-        properties:
-          expire_time:
-            type: integer
-            description: The token expire time, format is the number of seconds from epoch of 1970-01-01T00:00:00Z. If null means no expiration, the minimum value is current time plus 300 seconds.
-            format: int64
-          description:
-            type: string
-            description: The token description
-          permissions:
-            type: array
-            description: The token permissions
-            items:
-              type: string
-              description: The token permissions
-          rate_limit:
-            $ref: '#/components/schemas/RateLimitPolicy'
-    XiqCheckPermissionRequest:
-      type: object
-      required:
-      - uri
-      - method
-      properties:
-        uri:
-          type: string
-          description: The request HTTP URI
-        method:
-          type: string
-          description: The request HTTP method
-    XiqErrorParams:
-      type: object
-      description: Error parameters
-      properties:
-        field:
-          type: string
-          description: The error field
-        value:
-          type: string
-          description: The error value
-    RateLimitPolicy:
-      type: object
-      description: Configuration for API usage quotas and throughput limits.
-      required:
-      - hour
-      properties:
-        hour:
-          type: integer
-          format: int64
-          minimum: 1
-          description: The sustained request quota per hour. Defines the baseline traffic capacity.
-          example: 7500
-        second:
-          type: integer
-          format: int64
-          minimum: 1
-          description: The maximum burst allowance per second. If omitted, no short-term throttling is applied.
-          example: 100
     XiqApiTokenInfo:
       type: object
       required:
@@ -338,48 +380,6 @@ components:
           type: integer
           description: The expires in seconds
           format: int64
-    XiqCheckPermissionResponse:
-      type: object
-      required:
-      - permissions
-      - roles
-      properties:
-        permissions:
-          type: array
-          description: The permission list
-          items:
-            $ref: '#/components/schemas/XiqPermission'
-        roles:
-          uniqueItems: true
-          type: array
-          description: The role list
-          items:
-            type: string
-            description: The role list
-    XiqError:
-      type: object
-      properties:
-        error_code:
-          type: string
-          description: The error code
-        error_id:
-          type: string
-          description: The error ID for internal troubleshooting
-        error_message:
-          type: string
-          description: The error detailed message
-        error_message_code:
-          type: string
-          description: The error message code
-        error_message_description:
-          type: string
-          description: The error message description
-        error_params:
-          $ref: '#/components/schemas/XiqErrorParams'
-      required:
-      - error_code
-      - error_id
-      - error_message
   responses:
     ErrorResponse:
       description: The generic ExtremeCloud IQ API error response

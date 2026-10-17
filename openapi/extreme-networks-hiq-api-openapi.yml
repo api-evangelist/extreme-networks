@@ -289,15 +289,32 @@ paths:
       security:
       - BearerAuth: []
 components:
+  parameters:
+    id:
+      name: id
+      in: path
+      description: The unique identifier
+      required: true
+      schema:
+        type: integer
+        format: int64
   schemas:
-    XiqHiqStatus:
+    XiqOrganizationType:
+      type: string
+      description: The organization type
+      enum:
+      - REGULAR
+      - PRIVATE
+    XiqErrorParams:
       type: object
-      required:
-      - enabled
+      description: Error parameters
       properties:
-        enabled:
-          type: boolean
-          description: HIQ is enabled or not
+        field:
+          type: string
+          description: The error field
+        value:
+          type: string
+          description: The error value
     XiqBaseEntity:
       required:
       - id
@@ -317,27 +334,49 @@ components:
           type: string
           description: The last update time
           format: date-time
-    XiqCreateOrganizationRequest:
+    XiqError:
+      type: object
+      properties:
+        error_code:
+          type: string
+          description: The error code
+        error_id:
+          type: string
+          description: The error ID for internal troubleshooting
+        error_message:
+          type: string
+          description: The error detailed message
+        error_message_code:
+          type: string
+          description: The error message code
+        error_message_description:
+          type: string
+          description: The error message description
+        error_params:
+          $ref: '#/components/schemas/XiqErrorParams'
+      required:
+      - error_code
+      - error_id
+      - error_message
+    XiqHiqStatus:
       type: object
       required:
-      - name
+      - enabled
       properties:
-        name:
-          type: string
-          description: The organization name, must be unique in VIQ
-        color:
-          type: string
-          description: The tagged color for the organization
-    XiqErrorParams:
-      type: object
-      description: Error parameters
-      properties:
-        field:
-          type: string
-          description: The error field
-        value:
-          type: string
-          description: The error value
+        enabled:
+          type: boolean
+          description: HIQ is enabled or not
+    XiqViqEntity:
+      allOf:
+      - $ref: '#/components/schemas/XiqBaseEntity'
+      - type: object
+        properties:
+          org_id:
+            type: integer
+            description: The organization identifier, valid when enabling HIQ feature
+            format: int64
+        required:
+        - org_id
     XiqOrganization:
       allOf:
       - $ref: '#/components/schemas/XiqViqEntity'
@@ -372,56 +411,17 @@ components:
           type: integer
           description: The organization ID for creating new data
           format: int64
-    XiqOrganizationType:
-      type: string
-      description: The organization type
-      enum:
-      - REGULAR
-      - PRIVATE
-    XiqViqEntity:
-      allOf:
-      - $ref: '#/components/schemas/XiqBaseEntity'
-      - type: object
-        properties:
-          org_id:
-            type: integer
-            description: The organization identifier, valid when enabling HIQ feature
-            format: int64
-        required:
-        - org_id
-    XiqError:
+    XiqCreateOrganizationRequest:
       type: object
-      properties:
-        error_code:
-          type: string
-          description: The error code
-        error_id:
-          type: string
-          description: The error ID for internal troubleshooting
-        error_message:
-          type: string
-          description: The error detailed message
-        error_message_code:
-          type: string
-          description: The error message code
-        error_message_description:
-          type: string
-          description: The error message description
-        error_params:
-          $ref: '#/components/schemas/XiqErrorParams'
       required:
-      - error_code
-      - error_id
-      - error_message
-  parameters:
-    id:
-      name: id
-      in: path
-      description: The unique identifier
-      required: true
-      schema:
-        type: integer
-        format: int64
+      - name
+      properties:
+        name:
+          type: string
+          description: The organization name, must be unique in VIQ
+        color:
+          type: string
+          description: The tagged color for the organization
   responses:
     ErrorResponse:
       description: The generic ExtremeCloud IQ API error response

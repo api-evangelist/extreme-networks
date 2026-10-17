@@ -220,103 +220,6 @@ paths:
       - BearerAuth: []
 components:
   schemas:
-    XiqErrorParams:
-      type: object
-      description: Error parameters
-      properties:
-        field:
-          type: string
-          description: The error field
-        value:
-          type: string
-          description: The error value
-    XiqUpdateCertBundleRequest:
-      type: object
-      description: The payload to update a Certificate Bundle.
-      required:
-      - name
-      properties:
-        name:
-          type: string
-          description: The Certificate Bundle name.
-        description:
-          type: string
-          description: The Certificate Bundle description.
-        certificate_ids:
-          type: array
-          description: Collection of Certificate IDs.
-          items:
-            type: integer
-            format: int64
-    XiqPage:
-      required:
-      - count
-      - page
-      - total_count
-      - total_pages
-      type: object
-      properties:
-        page:
-          type: integer
-          description: The current page number
-          format: int32
-        count:
-          type: integer
-          description: The element count of the current page
-          format: int32
-        total_pages:
-          type: integer
-          description: The total page number based on request page size
-          format: int32
-        total_count:
-          type: integer
-          description: The total element count
-          format: int64
-    PagedXiqCertificateBundle:
-      allOf:
-      - $ref: '#/components/schemas/XiqPage'
-      - type: object
-        properties:
-          data:
-            type: array
-            description: The data in the current page
-            items:
-              $ref: '#/components/schemas/XiqCertificateBundle'
-    XiqViqEntity:
-      allOf:
-      - $ref: '#/components/schemas/XiqBaseEntity'
-      - type: object
-        properties:
-          org_id:
-            type: integer
-            description: The organization identifier, valid when enabling HIQ feature
-            format: int64
-        required:
-        - org_id
-    XiqError:
-      type: object
-      properties:
-        error_code:
-          type: string
-          description: The error code
-        error_id:
-          type: string
-          description: The error ID for internal troubleshooting
-        error_message:
-          type: string
-          description: The error detailed message
-        error_message_code:
-          type: string
-          description: The error message code
-        error_message_description:
-          type: string
-          description: The error message description
-        error_params:
-          $ref: '#/components/schemas/XiqErrorParams'
-      required:
-      - error_code
-      - error_id
-      - error_message
     PagedXiqCertificate:
       allOf:
       - $ref: '#/components/schemas/XiqPage'
@@ -327,12 +230,6 @@ components:
             description: The data in the current page
             items:
               $ref: '#/components/schemas/XiqCertificate'
-    XiqCertificateType:
-      type: string
-      enum:
-      - CERT
-      - KEY
-      - CA
     XiqCreateCertBundleRequest:
       type: object
       description: The payload to create a new Certificate Bundle.
@@ -354,37 +251,12 @@ components:
           items:
             type: integer
             format: int64
-    XiqImportCertRequest:
-      type: object
-      description: The payload to import a certificate.
-      required:
-      - name
-      - file
-      - file_type
-      properties:
-        name:
-          type: string
-          description: The certificate name.
-        file:
-          type: string
-          format: binary
-          description: The certificate file to import.
-        file_type:
-          $ref: '#/components/schemas/XiqCertificateType'
-        enable_convert_pfx:
-          type: boolean
-          description: Whether to convert the certificate format from PFX to PEM.
-        pfx_password:
-          type: string
-          description: The PFX password.
-        enable_convert_der:
-          type: boolean
-          description: Whether to convert the certificate format from DER to PEM.
-        convert_option_type:
-          $ref: '#/components/schemas/XiqCertConvertOptionType'
-        der_password:
-          type: string
-          description: The DER password, required when the convert option type is 'KEY'.
+    XiqCertificateType:
+      type: string
+      enum:
+      - CERT
+      - KEY
+      - CA
     XiqBaseEntity:
       required:
       - id
@@ -417,6 +289,53 @@ components:
             description: The certificate file name
           cert_type:
             $ref: '#/components/schemas/XiqCertificateType'
+    XiqImportCertRequest:
+      type: object
+      description: The payload to import a certificate.
+      required:
+      - name
+      - file
+      - file_type
+      properties:
+        name:
+          type: string
+          description: The certificate name.
+        file:
+          type: string
+          format: binary
+          description: The certificate file to import.
+        file_type:
+          $ref: '#/components/schemas/XiqCertificateType'
+        enable_convert_pfx:
+          type: boolean
+          description: Whether to convert the certificate format from PFX to PEM.
+        pfx_password:
+          type: string
+          description: The PFX password.
+        enable_convert_der:
+          type: boolean
+          description: Whether to convert the certificate format from DER to PEM.
+        convert_option_type:
+          $ref: '#/components/schemas/XiqCertConvertOptionType'
+        der_password:
+          type: string
+          description: The DER password, required when the convert option type is 'KEY'.
+    XiqViqEntity:
+      allOf:
+      - $ref: '#/components/schemas/XiqBaseEntity'
+      - type: object
+        properties:
+          org_id:
+            type: integer
+            description: The organization identifier, valid when enabling HIQ feature
+            format: int64
+        required:
+        - org_id
+    XiqCertBundleType:
+      type: string
+      description: The type of Certificate Bundle.
+      enum:
+      - TRUST_POINT
     XiqCertificateBundle:
       allOf:
       - $ref: '#/components/schemas/XiqViqEntity'
@@ -432,17 +351,98 @@ components:
             description: Certificate Bundles certificates.
             items:
               $ref: '#/components/schemas/XiqCertificate'
+    PagedXiqCertificateBundle:
+      allOf:
+      - $ref: '#/components/schemas/XiqPage'
+      - type: object
+        properties:
+          data:
+            type: array
+            description: The data in the current page
+            items:
+              $ref: '#/components/schemas/XiqCertificateBundle'
+    XiqError:
+      type: object
+      properties:
+        error_code:
+          type: string
+          description: The error code
+        error_id:
+          type: string
+          description: The error ID for internal troubleshooting
+        error_message:
+          type: string
+          description: The error detailed message
+        error_message_code:
+          type: string
+          description: The error message code
+        error_message_description:
+          type: string
+          description: The error message description
+        error_params:
+          $ref: '#/components/schemas/XiqErrorParams'
+      required:
+      - error_code
+      - error_id
+      - error_message
     XiqCertConvertOptionType:
       type: string
       description: The Certificate convert option, required when the convert option type is 'KEY'.
       enum:
       - CERTIFICATE
       - KEY
-    XiqCertBundleType:
-      type: string
-      description: The type of Certificate Bundle.
-      enum:
-      - TRUST_POINT
+    XiqPage:
+      required:
+      - count
+      - page
+      - total_count
+      - total_pages
+      type: object
+      properties:
+        page:
+          type: integer
+          description: The current page number
+          format: int32
+        count:
+          type: integer
+          description: The element count of the current page
+          format: int32
+        total_pages:
+          type: integer
+          description: The total page number based on request page size
+          format: int32
+        total_count:
+          type: integer
+          description: The total element count
+          format: int64
+    XiqUpdateCertBundleRequest:
+      type: object
+      description: The payload to update a Certificate Bundle.
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          description: The Certificate Bundle name.
+        description:
+          type: string
+          description: The Certificate Bundle description.
+        certificate_ids:
+          type: array
+          description: Collection of Certificate IDs.
+          items:
+            type: integer
+            format: int64
+    XiqErrorParams:
+      type: object
+      description: Error parameters
+      properties:
+        field:
+          type: string
+          description: The error field
+        value:
+          type: string
+          description: The error value
   parameters:
     page:
       name: page

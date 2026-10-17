@@ -307,73 +307,78 @@ paths:
       security:
       - BearerAuth: []
 components:
+  parameters:
+    async:
+      in: query
+      name: async
+      description: Whether to enable async mode
+      required: false
+      schema:
+        type: boolean
+        default: false
+    n:
+      name: n
+      in: path
+      description: The TopN number
+      required: true
+      schema:
+        maximum: 100
+        minimum: 1
+        type: integer
+        format: int32
+    startTime:
+      name: startTime
+      in: query
+      description: The start time to query, epoch time in milliseconds since 1/1/1970
+      required: true
+      schema:
+        type: integer
+        format: int64
+    page:
+      name: page
+      in: query
+      description: Page number, min = 1
+      required: false
+      schema:
+        minimum: 1
+        type: integer
+        format: int32
+        default: 1
+    limit:
+      name: limit
+      in: query
+      description: Page Size, min = 1, max = 100
+      required: false
+      schema:
+        maximum: 100
+        minimum: 1
+        type: integer
+        format: int32
+        default: 10
+    order:
+      name: order
+      in: query
+      description: The sort order (ascending by default)
+      required: false
+      schema:
+        $ref: '#/components/schemas/XiqSortOrder'
+    endTime:
+      name: endTime
+      in: query
+      description: The end time to query, epoch time in milliseconds since 1/1/1970
+      required: true
+      schema:
+        type: integer
+        format: int64
+    id:
+      name: id
+      in: path
+      description: The unique identifier
+      required: true
+      schema:
+        type: integer
+        format: int64
   schemas:
-    XiqApplicationDetectionType:
-      type: string
-      enum:
-      - HOST_NAME
-      - SERVER_IP_ADDRESS
-      - PORT_NUMBER
-    XiqApplication:
-      allOf:
-      - $ref: '#/components/schemas/XiqViqEntity'
-      - type: object
-        properties:
-          name:
-            type: string
-            description: The application name.
-          description:
-            type: string
-            description: The application description.
-          predefined:
-            type: boolean
-            description: Flag to describe whether the application is predefined or customized.
-          category_id:
-            type: integer
-            description: The category ID of application.
-            format: int64
-          category_name:
-            type: string
-            description: The category name of application.
-          detection_rules:
-            type: array
-            description: The application detection rules.
-            items:
-              $ref: '#/components/schemas/XiqApplicationDetectionRule'
-    XiqErrorParams:
-      type: object
-      description: Error parameters
-      properties:
-        field:
-          type: string
-          description: The error field
-        value:
-          type: string
-          description: The error value
-    XiqPage:
-      required:
-      - count
-      - page
-      - total_count
-      - total_pages
-      type: object
-      properties:
-        page:
-          type: integer
-          description: The current page number
-          format: int32
-        count:
-          type: integer
-          description: The element count of the current page
-          format: int32
-        total_pages:
-          type: integer
-          description: The total page number based on request page size
-          format: int32
-        total_count:
-          type: integer
-          description: The total element count
-          format: int64
     XiqTopApplicationsUsage:
       type: object
       description: The Top N Applications Usage
@@ -397,88 +402,6 @@ components:
           type: integer
           description: The application usage
           format: int64
-    PagedXiqApplication:
-      allOf:
-      - $ref: '#/components/schemas/XiqPage'
-      - type: object
-        properties:
-          data:
-            type: array
-            description: The data in the current page
-            items:
-              $ref: '#/components/schemas/XiqApplication'
-    XiqApplicationTopClientsUsage:
-      type: object
-      description: The Top N Clients Usage per Application
-      properties:
-        application_id:
-          type: integer
-          description: The application ID
-          format: int64
-        client_id:
-          type: integer
-          description: The TOP N client ID
-          format: int64
-        client_mac_address:
-          type: string
-          description: The MAC address of TOP N client
-        client_host_name:
-          type: string
-          description: The host name of TOP N client
-        usage:
-          type: integer
-          description: The TOP N client usage
-          format: int64
-    XiqViqEntity:
-      allOf:
-      - $ref: '#/components/schemas/XiqBaseEntity'
-      - type: object
-        properties:
-          org_id:
-            type: integer
-            description: The organization identifier, valid when enabling HIQ feature
-            format: int64
-        required:
-        - org_id
-    XiqError:
-      type: object
-      properties:
-        error_code:
-          type: string
-          description: The error code
-        error_id:
-          type: string
-          description: The error ID for internal troubleshooting
-        error_message:
-          type: string
-          description: The error detailed message
-        error_message_code:
-          type: string
-          description: The error message code
-        error_message_description:
-          type: string
-          description: The error message description
-        error_params:
-          $ref: '#/components/schemas/XiqErrorParams'
-      required:
-      - error_code
-      - error_id
-      - error_message
-    XiqApplicationSortField:
-      type: string
-      enum:
-      - NAME
-      - CATEGORY
-    PagedAppUsageSummary:
-      allOf:
-      - $ref: '#/components/schemas/XiqPage'
-      - type: object
-        properties:
-          data:
-            type: array
-            description: The data in the current page
-            items:
-              $ref: '#/components/schemas/RmAppUsageSummary'
     XiqBaseEntity:
       required:
       - id
@@ -498,17 +421,50 @@ components:
           type: string
           description: The last update time
           format: date-time
-    XiqApplicationDetectionRule:
+    XiqSortOrder:
+      type: string
+      enum:
+      - ASC
+      - DESC
+    XiqApplicationDetectionType:
+      type: string
+      enum:
+      - HOST_NAME
+      - SERVER_IP_ADDRESS
+      - PORT_NUMBER
+    PagedXiqApplication:
+      allOf:
+      - $ref: '#/components/schemas/XiqPage'
+      - type: object
+        properties:
+          data:
+            type: array
+            description: The data in the current page
+            items:
+              $ref: '#/components/schemas/XiqApplication'
+    RmAppUsageSummary:
       type: object
-      description: The Application Detection Rule
       properties:
-        value:
+        application_name:
           type: string
-          description: The value of detection rule type.
-        protocol:
-          $ref: '#/components/schemas/XiqApplicationDetectionProtocol'
-        type:
-          $ref: '#/components/schemas/XiqApplicationDetectionType'
+          description: Name of the application
+        category_name:
+          type: string
+          description: Name of the application group or category
+        usage:
+          type: integer
+          format: int64
+          description: Total data usage in bytes for the application
+        percentage_usage:
+          type: number
+          format: float
+          description: Percentage of total traffic attributed to this application
+        clients:
+          type: integer
+          description: Number of unique client devices that used the application
+        users:
+          type: integer
+          description: Number of unique users associated with the application
     number_filter:
       type: object
       description: If the filter type is between, only then min and max are to be used, else value is to be used.
@@ -541,110 +497,154 @@ components:
           description: The maximum value of the number
           type: integer
           format: int64
-    RmAppUsageSummary:
-      type: object
-      properties:
-        application_name:
-          type: string
-          description: Name of the application
-        category_name:
-          type: string
-          description: Name of the application group or category
-        usage:
-          type: integer
-          format: int64
-          description: Total data usage in bytes for the application
-        percentage_usage:
-          type: number
-          format: float
-          description: Percentage of total traffic attributed to this application
-        clients:
-          type: integer
-          description: Number of unique client devices that used the application
-        users:
-          type: integer
-          description: Number of unique users associated with the application
     XiqApplicationDetectionProtocol:
       type: string
       enum:
       - HTTP
       - HTTPS
-    XiqSortOrder:
+    XiqViqEntity:
+      allOf:
+      - $ref: '#/components/schemas/XiqBaseEntity'
+      - type: object
+        properties:
+          org_id:
+            type: integer
+            description: The organization identifier, valid when enabling HIQ feature
+            format: int64
+        required:
+        - org_id
+    XiqApplicationDetectionRule:
+      type: object
+      description: The Application Detection Rule
+      properties:
+        value:
+          type: string
+          description: The value of detection rule type.
+        protocol:
+          $ref: '#/components/schemas/XiqApplicationDetectionProtocol'
+        type:
+          $ref: '#/components/schemas/XiqApplicationDetectionType'
+    XiqApplication:
+      allOf:
+      - $ref: '#/components/schemas/XiqViqEntity'
+      - type: object
+        properties:
+          name:
+            type: string
+            description: The application name.
+          description:
+            type: string
+            description: The application description.
+          predefined:
+            type: boolean
+            description: Flag to describe whether the application is predefined or customized.
+          category_id:
+            type: integer
+            description: The category ID of application.
+            format: int64
+          category_name:
+            type: string
+            description: The category name of application.
+          detection_rules:
+            type: array
+            description: The application detection rules.
+            items:
+              $ref: '#/components/schemas/XiqApplicationDetectionRule'
+    XiqApplicationTopClientsUsage:
+      type: object
+      description: The Top N Clients Usage per Application
+      properties:
+        application_id:
+          type: integer
+          description: The application ID
+          format: int64
+        client_id:
+          type: integer
+          description: The TOP N client ID
+          format: int64
+        client_mac_address:
+          type: string
+          description: The MAC address of TOP N client
+        client_host_name:
+          type: string
+          description: The host name of TOP N client
+        usage:
+          type: integer
+          description: The TOP N client usage
+          format: int64
+    PagedAppUsageSummary:
+      allOf:
+      - $ref: '#/components/schemas/XiqPage'
+      - type: object
+        properties:
+          data:
+            type: array
+            description: The data in the current page
+            items:
+              $ref: '#/components/schemas/RmAppUsageSummary'
+    XiqError:
+      type: object
+      properties:
+        error_code:
+          type: string
+          description: The error code
+        error_id:
+          type: string
+          description: The error ID for internal troubleshooting
+        error_message:
+          type: string
+          description: The error detailed message
+        error_message_code:
+          type: string
+          description: The error message code
+        error_message_description:
+          type: string
+          description: The error message description
+        error_params:
+          $ref: '#/components/schemas/XiqErrorParams'
+      required:
+      - error_code
+      - error_id
+      - error_message
+    XiqPage:
+      required:
+      - count
+      - page
+      - total_count
+      - total_pages
+      type: object
+      properties:
+        page:
+          type: integer
+          description: The current page number
+          format: int32
+        count:
+          type: integer
+          description: The element count of the current page
+          format: int32
+        total_pages:
+          type: integer
+          description: The total page number based on request page size
+          format: int32
+        total_count:
+          type: integer
+          description: The total element count
+          format: int64
+    XiqErrorParams:
+      type: object
+      description: Error parameters
+      properties:
+        field:
+          type: string
+          description: The error field
+        value:
+          type: string
+          description: The error value
+    XiqApplicationSortField:
       type: string
       enum:
-      - ASC
-      - DESC
-  parameters:
-    n:
-      name: n
-      in: path
-      description: The TopN number
-      required: true
-      schema:
-        maximum: 100
-        minimum: 1
-        type: integer
-        format: int32
-    startTime:
-      name: startTime
-      in: query
-      description: The start time to query, epoch time in milliseconds since 1/1/1970
-      required: true
-      schema:
-        type: integer
-        format: int64
-    page:
-      name: page
-      in: query
-      description: Page number, min = 1
-      required: false
-      schema:
-        minimum: 1
-        type: integer
-        format: int32
-        default: 1
-    order:
-      name: order
-      in: query
-      description: The sort order (ascending by default)
-      required: false
-      schema:
-        $ref: '#/components/schemas/XiqSortOrder'
-    limit:
-      name: limit
-      in: query
-      description: Page Size, min = 1, max = 100
-      required: false
-      schema:
-        maximum: 100
-        minimum: 1
-        type: integer
-        format: int32
-        default: 10
-    id:
-      name: id
-      in: path
-      description: The unique identifier
-      required: true
-      schema:
-        type: integer
-        format: int64
-    endTime:
-      name: endTime
-      in: query
-      description: The end time to query, epoch time in milliseconds since 1/1/1970
-      required: true
-      schema:
-        type: integer
-        format: int64
-    async:
-      in: query
-      name: async
-      description: Whether to enable async mode
-      required: false
-      schema:
-        type: boolean
-        default: false
+      - NAME
+      - CATEGORY
   responses:
     ErrorResponse:
       description: The generic ExtremeCloud IQ API error response

@@ -98,33 +98,6 @@ paths:
       security: []
 components:
   schemas:
-    XiqCountryState:
-      type: object
-      description: The states list of a country.
-      required:
-      - country_code
-      - code
-      - name
-      properties:
-        country_code:
-          description: The country ISO 2-letter code.
-          type: string
-        code:
-          description: The state or province code.
-          type: string
-        name:
-          description: The state or province name.
-          type: string
-    XiqErrorParams:
-      type: object
-      description: Error parameters
-      properties:
-        field:
-          type: string
-          description: The error field
-        value:
-          type: string
-          description: The error value
     XiqCountry:
       type: object
       description: The country list and country codes.
@@ -182,6 +155,33 @@ components:
         name_ko:
           description: The country official name in Korean.
           type: string
+    XiqCountryState:
+      type: object
+      description: The states list of a country.
+      required:
+      - country_code
+      - code
+      - name
+      properties:
+        country_code:
+          description: The country ISO 2-letter code.
+          type: string
+        code:
+          description: The state or province code.
+          type: string
+        name:
+          description: The state or province name.
+          type: string
+    XiqErrorParams:
+      type: object
+      description: Error parameters
+      properties:
+        field:
+          type: string
+          description: The error field
+        value:
+          type: string
+          description: The error value
     XiqError:
       type: object
       properties:

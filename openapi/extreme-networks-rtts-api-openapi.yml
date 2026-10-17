@@ -65,6 +65,16 @@ components:
         serial_number:
           type: string
           description: The Serial Number of Device
+    XiqErrorParams:
+      type: object
+      description: Error parameters
+      properties:
+        field:
+          type: string
+          description: The error field
+        value:
+          type: string
+          description: The error value
     XiqRttsSupportedDevicesRequest:
       type: object
       description: Location filters
@@ -90,16 +100,6 @@ components:
             type: integer
             description: The Floor ID
             format: int64
-    XiqErrorParams:
-      type: object
-      description: Error parameters
-      properties:
-        field:
-          type: string
-          description: The error field
-        value:
-          type: string
-          description: The error value
     XiqError:
       type: object
       properties:
