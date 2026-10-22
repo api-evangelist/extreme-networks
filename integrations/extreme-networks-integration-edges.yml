@@ -143,6 +143,98 @@ edges:
     identity_source: wikidata P856 (labelled provenance step; Kin 2026-10-15 decision 1)
   detected_by: sweep-common-criteria-certified-products.py
   first_seen: '2026-10-21'
+- partner_name: Wi-Fi Alliance certified products
+  partner: null
+  partner_match: register-name
+  type: register
+  channel: standard-directory
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://www.wi-fi.org/product-finder
+  category: Wi-Fi certification
+  contract_reference:
+    register: Wi-Fi Alliance product finder (wi-fi.org/product-finder; prf.cert.wi-fi.org public JSON / CSV)
+    standard: Wi-Fi CERTIFIED
+    spec_file: null
+    role: wi-fi-certified-product
+    registered_name: Extreme Networks
+    register_id: WFA141606
+    matched_domain: null
+    matched_by: register-name
+    register_name_note: register-name 'extremenetworks' = extreme-networks; no wikidata P856
+    certified_products:
+    - product: Computers & Accessories
+      lapsed: false
+      newest_certification: '2000-04-10'
+      generations:
+      - Wi-Fi 7
+      - Wi-Fi 6
+      - Wi-Fi 5 (ac)
+      - Wi-Fi 4 (n)
+    - product: Routers
+      lapsed: false
+      newest_certification: '2026-08-10'
+      generations:
+      - Wi-Fi 7
+      - Wi-Fi 6
+      - Wi-Fi 5 (ac)
+      - Wi-Fi 4 (n)
+    products_sample:
+    - AP 121
+    - AP 122
+    - AP 141
+    - AP 170
+    - AP 20
+    - AP 230
+    - AP 245X
+    - AP 250
+    signal_note: certified_products = one entry per Wi-Fi Alliance product category, never per product, variant
+      or CID; generations are context. Wi-Fi CERTIFIED does not expire and the finder marks nothing withdrawn, so
+      lapsed is false
+    detected_by: sweep-wireless-connectivity-certification.py
+    detected: '2026-10-22'
+    identity_source: register-name
+    identity_note: register gave only the name; exact normalised match to the repo's apis.yml name, one repo, Wikidata
+      P856 not contradicting (Kin 2026-10-20 decision 2)
+  detected_by: sweep-wireless-connectivity-certification.py
+  first_seen: '2026-10-22'
+- partner_name: US EPA ENERGY STAR
+  partner: null
+  partner_match: register
+  type: register
+  channel: standard-directory
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://data.energystar.gov/d/8wj2-sec8
+  category: ENERGY STAR product certification
+  contract_reference:
+    register: ENERGY STAR Model Index, all currently certified models (data.energystar.gov/resource/8wj2-sec8)
+    standard: ENERGY STAR (US EPA product specifications)
+    spec_file: null
+    role: energy-star-partner
+    registered_name: EXTREME NETWORKS, INC.
+    register_id: https://data.energystar.gov/d/8wj2-sec8
+    matched_domain: extremenetworks.com
+    matched_by: domain
+    certified_products:
+    - product: Large Network Equipment
+      product_type: Large Network Equipment
+      lapsed: false
+      brands:
+      - Extreme
+      first_certified: '2025-04-28'
+    connected_product_types: []
+    signal_note: 'certified_products = ONE entry per ENERGY STAR product category with a currently certified model
+      (the Model Index lists current certifications only, so lapsed is False; delisted models drop out); connected:
+      true where the category''s dataset flags connected / network capability for this partner''s models (Smart
+      Thermostats and Connected lighting are connected by definition). Brands are context; model counts are never
+      counted.'
+    detected_by: sweep-energy-star-certified-products.py
+    detected: '2026-10-22'
+    identity: wikidata Q2034659 'Extreme Networks' P856 https://www.extremenetworks.com/
+    identity_source: wikidata P856 (labelled provenance step; Kin 2026-10-15 decision 1)
+  detected_by: sweep-energy-star-certified-products.py
+  first_seen: '2026-10-22'
 generated: '2026-10-15'
 method: searched
 source:
@@ -159,3 +251,9 @@ checked:
 - https://www.commoncriteriaportal.org/products/certified_products-archived.csv
 - https://www.commoncriteriaportal.org/products/certified_products.csv
 - https://www.niap-ccevs.org/Product/PCL.cfm
+- https://www.threadgroup.org/What-is-Thread/Certified-Products
+- https://www.usb.org/products
+- https://www.wi-fi.org/product-finder
+- https://data.energystar.gov/api/views/metadata/v1
+- https://data.energystar.gov/resource/8wj2-sec8.json
+- https://www.energystar.gov/productfinder/
