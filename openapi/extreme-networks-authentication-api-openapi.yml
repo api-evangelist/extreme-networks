@@ -201,3 +201,9 @@ components:
 externalDocs:
   description: API Reference
   url: https://extremecloudiq.com/api-docs/api-reference.html
+x-provenance:
+  method: harvested
+  publisher: Extreme Networks
+  source: https://raw.githubusercontent.com/extremenetworks/ExtremeCloudIQ-OpenAPI-Specification/main/xcloudiq-openapi.yaml
+  note: split by refine-openapis from the provider's own published document, verified by fetch (openapi/_original/*.fetch.json);
+    stamped by stamp-openapi-provenance.py (roadmap#793)
